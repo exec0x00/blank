@@ -170,7 +170,7 @@ def sho_steps(k, a, b, c=C0, pi=PI):
     mu = mu_amu(a, b) * AMU; nu = sho_nu(k, a, b, c, pi)
     return [f"$\\mu=\\dfrac{{{a}\\times{b}}}{{{a+b:.5g}}}={mu/AMU:.4f}$ amu $={sci(mu)}$ kg.",
             f"$\\bar\\nu=\\dfrac{{1}}{{2\\pi c}}\\sqrt{{\\dfrac{{k}}{{\\mu}}}}=\\dfrac{{1}}{{2({pi:.3g})(3\\times10^{{10}})}}\\sqrt{{\\dfrac{{{k:g}}}{{{sci(mu)}}}}}={nu:.0f}$ cm$^{{-1}}$.",
-            f"ZPE $=\\tfrac12\\bar\\nu={nu/2:.0f}$ cm$^{{-1}}$ $={nu/2*H0*c:.3g}\\ \\text{{J}}$ (×$hc$)."], nu
+            f"ZPE $=\\tfrac12\\bar\\nu={nu/2:.0f}$ cm$^{{-1}}$ $={sci(nu/2*H0*c)}\\ \\text{{J}}$ (×$hc$)."], nu
 st, nu = sho_steps(970, 1.008, 18.99, pi=3.14)
 past(c2, "J24a", 6, "(i) The force constant of HF (SHO) is 970 N m$^{-1}$. Calculate the oscillation frequency (cm$^{-1}$) and the zero-point energy. (ii) Why does the SHO spectrum show only one line? (c = 3×10⁸ m s⁻¹, π = 3.14, 1 amu = 1.66×10⁻²⁷ kg; H = 1.008, F = 18.99 amu)",
      st + ["(ii) Levels $\\varepsilon_v=(v+\\tfrac12)\\bar\\nu$ are equally spaced and the selection rule is $\\Delta v=\\pm1$, so every allowed transition needs the same energy $\\bar\\nu$ — one line."], f"$\\bar\\nu\\approx{nu:.0f}$ cm$^{{-1}}$, ZPE ≈ {nu/2:.0f} cm$^{{-1}}$ ≈ ${sci(nu/2*H0*C0)}$ J")
@@ -178,7 +178,7 @@ st, nu = sho_steps(970, 1.004, 18.998, pi=3.14)
 past(c2, "D24b", 6, "Same HF question with H = 1.004 amu, F = 18.998 amu (k = 970 N m⁻¹): (i) oscillation frequency in cm⁻¹; (ii) zero-point energy; (iii) why one line?", st + ["(iii) Equal spacing + $\\Delta v=\\pm1$."], f"$\\bar\\nu\\approx{nu:.0f}$ cm$^{{-1}}$; ZPE ≈ {nu/2:.0f} cm$^{{-1}}$")
 k = sho_k(2168, 12, 15.999, pi=3.14)
 past(c2, "J24b", 6, "(i) CO absorbs at 2168 cm$^{-1}$ in a vibrational transition. Calculate the ground-state vibrational energy and force constant (SHO). ($c=3\\times10^{10}$ cm s$^{-1}$, $h=6.625\\times10^{-34}$ J s, C = 12, O = 15.999 amu). (ii) Write a note on the failure of the SHO model.",
-     [f"Ground state ($v=0$): $\\varepsilon_0=\\tfrac12(2168)=1084$ cm$^{{-1}}$ $=1084\\times hc={1084*6.625e-34*3e10:.3g}$ J.", f"$\\mu={mu_amu(12,15.999):.4f}$ amu; $k=4\\pi^2c^2\\bar\\nu^2\\mu={sci(k)}\\approx{k:.0f}$ N m$^{{-1}}$.",
+     [f"Ground state ($v=0$): $\\varepsilon_0=\\tfrac12(2168)=1084$ cm$^{{-1}}$ $=1084\\times hc={sci(1084*6.625e-34*3e10)}$ J.", f"$\\mu={mu_amu(12,15.999):.4f}$ amu; $k=4\\pi^2c^2\\bar\\nu^2\\mu={sci(k)}\\approx{k:.0f}$ N m$^{{-1}}$.",
       "(ii) See Q3 and the note after this chapter: real bonds dissociate, levels converge, overtones/hot bands occur — SHO predicts none."], f"$\\varepsilon_0=1084$ cm$^{{-1}}$; $k\\approx{k:.0f}$ N m$^{{-1}}$")
 past(c2, "JAN", 6, "(i) Radiation absorbed by CO in a vibrational transition is 2168 cm⁻¹. Calculate the ground-state vibrational energy and the force constant (SHO; π = 3.14, h = 6.627×10⁻³⁴ J s, c = 3×10¹⁰ cm s⁻¹, C = 12, O = 15.999). (ii) Only one peak is observed in the SHO model. Substantiate.",
      ["Same as the previous CO question: $\\varepsilon_0=1084$ cm$^{-1}$; $k\\approx1.90\\times10^3$ N m$^{-1}$.", "(ii) Equal level spacing and $\\Delta v=\\pm1$."], "ZPE 1084 cm⁻¹; k ≈ 1.90×10³ N m⁻¹")
@@ -193,7 +193,7 @@ past(c2, "D24a", 4, "The force constant of CO is 1840 N m$^{-1}$. Calculate the 
      st[:2] + [f"Frequency $\\nu=c\\bar\\nu=(3\\times10^{{10}})({nu:.0f})={sci(3e10*nu)}$ Hz."], f"$\\bar\\nu\\approx{nu:.0f}$ cm$^{{-1}}$; $\\nu\\approx{sci(3e10*nu,3)}$ Hz")
 nuNO = sho_nu(1530, 14, 16, pi=3.14)
 past(c2, "J25a", 7, "(i) Using the harmonic oscillator model calculate the zero-point vibrational energy of NO (k = 1530 N m$^{-1}$; N = 14, O = 16 amu). (ii) Draw the vibrational level diagram and the spectrum. (iii) Calculate the energies of $v=3$ and $v=4$. ($c=3\\times10^8$ m s$^{-1}$, $\\pi=3.14$, $h=6.627\\times10^{-34}$ J s)",
-     sho_steps(1530, 14, 16, pi=3.14)[0] + [f"$\\bar\\nu={nuNO:.0f}$ cm$^{{-1}}$; ZPE $={nuNO/2:.0f}$ cm$^{{-1}}$ $={nuNO/2*6.627e-34*3e10:.3g}$ J.", "(ii) Equally spaced levels (gap $\\bar\\nu$) on a parabola; one line at $\\bar\\nu$ (**Fig. G13**).",
+     sho_steps(1530, 14, 16, pi=3.14)[0][:2] + [f"ZPE $=\\tfrac12\\bar\\nu={nuNO/2:.0f}$ cm$^{{-1}}$ $={sci(nuNO/2*6.627e-34*3e10)}$ J (using $h=6.627\\times10^{{-34}}$).", "(ii) Equally spaced levels (gap $\\bar\\nu$) on a parabola; one line at $\\bar\\nu$ (**Fig. G13**).",
       f"(iii) $\\varepsilon_3=3.5\\bar\\nu={3.5*nuNO:.0f}$ cm$^{{-1}}$; $\\varepsilon_4=4.5\\bar\\nu={4.5*nuNO:.0f}$ cm$^{{-1}}$."], f"ZPE ≈ {nuNO/2:.0f} cm⁻¹; ε₃ ≈ {3.5*nuNO:.0f}, ε₄ ≈ {4.5*nuNO:.0f} cm⁻¹")
 c2["theory"] = [
     ("Why does the SHO spectrum show only one line? (asked ×5)", "Levels $\\varepsilon_v=(v+\\tfrac12)\\bar\\nu$ are **equally spaced**; the selection rule $\\Delta v=\\pm1$ allows only neighbouring-level jumps. Every jump has the same energy $\\bar\\nu$, so all coincide in one line."),
