@@ -1,6 +1,6 @@
 # Agent brief: Engineering Chemistry, Unit 1 study pack (HTML first, then PDF)
 
-> **Who this is for:** an autonomous coding/research agent with a Linux shell, Python 3, network access to `huggingface.co`, LibreOffice, poppler-utils (`pdftotext`, `pdftoppm`), and Chromium/Playwright.
+> **Who this is for:** an autonomous coding/research agent with a Linux shell, Python 3 (+ numpy), network access to `huggingface.co`, ffmpeg/ffprobe, LibreOffice, poppler-utils (`pdftotext`, `pdftoppm`), Chromium/Playwright, and the ability to **view images** (to read rendered slides and video frames).
 > **What it produces:** six study documents, each as a standalone HTML file and a matching PDF, built only from the PESU Engineering Chemistry **Semester 1, Unit 1** material in the Hugging Face bucket below.
 > **Read this entire brief before starting.** Section 3 lists data-quality problems that will produce wrong formulas if you ignore them.
 
@@ -8,7 +8,7 @@
 
 ## 0. The task in one paragraph
 
-Read every Unit 1 source for **Engineering Chemistry (UE26CY151A), Semester 1**: the AV Summary video transcripts, the per-class slide decks, and the consolidated Unit 1 slide PDF. Use the past ESA papers to rank what matters. Extract every formula, every symbol used in those formulas, every important point, every graph or plot, every flowchart or process, and every keyword or short note. Organise the results into **five themed reference documents** and **one master document** that merges everything by topic. Author each one as clean, print-ready HTML, then convert each to PDF. Do not invent content. Tag every item with its source.
+Use **every** Unit 1 source in the bucket for **Engineering Chemistry (UE26CY151A), Semester 1**: all the AV Summary **videos** (watched as key frames), all their **transcripts** in every format, all the per-class **slide decks** in every format, the consolidated Unit 1 slide PDF, and the course metadata files. Nothing in the Unit 1 folders may be skipped. Use the past ESA papers to rank what matters. Extract every formula, every symbol used in those formulas, every important point, every graph or plot, every flowchart or process, and every keyword or short note. Organise the results into **five themed reference documents** and **one master document** that merges everything by topic. Author each one as clean, print-ready HTML, then convert each to PDF. Do not invent content. Tag every item with its source.
 
 ---
 
@@ -17,8 +17,10 @@ Read every Unit 1 source for **Engineering Chemistry (UE26CY151A), Semester 1**:
 | In scope | Out of scope |
 |---|---|
 | Course **UE26CY151A Engineering Chemistry**, Sem-1, **Unit 1 only** | Units 2, 3 and 4 (electrochemistry, corrosion, batteries, nano, polymers, and so on) |
-| Unit 1 AV Summary **transcripts** (14 files) | The `.mp4` video files. Don't download them; the transcripts already contain the speech. |
-| Unit 1 per-class **slides** (12 decks, `.pptx` plus extracted `.slides.md`) | Lab record, the lab cheat sheet, and the other subjects in the bucket |
+| Unit 1 AV Summary **videos**: all 14 `.mp4` files (≈289 min, 1.63 GB), processed as de-duplicated key frames (§6A) | Lab record, the lab cheat sheet, and the other subjects in the bucket |
+| Unit 1 AV Summary **transcripts**: all four formats per video (`.transcript.md`, `.transcript.json`, `.srt`, `.transcript.txt`) | |
+| Unit 1 per-class **slides**: all 12 decks in all three formats (`.pptx` rendered to images, `.slides.md`, `.slides.txt`) | |
+| Course-level files: `ALL_SLIDE_TEXT.md` and `ALL_VIDEO_TRANSCRIPTS.md` (Unit 1 sections), `DOWNLOAD_MANIFEST.csv/json`, `FAILED_VIDEOS.md`, `SUMMARY.json`, `README.md` | |
 | Older consolidated **`Chem_Slides_Unit-1` PDF** (137 pages) as a cross-check and gap-filler | Unit 1 questions on conductometry, colorimetry or α-Al₂O₃ in old papers. Those are lab or other-unit questions under an older syllabus. |
 | **ESA past papers**, Q1 only (Unit 1), used for importance ranking and worked examples | |
 | Computational-chemistry pages of the `Chem_Extra_Topics` PDF, as a supplement to class 11 | |
@@ -66,24 +68,47 @@ Base path: `pesuc/PESU_Materials/Sem-1/UE26CY151A_Engineering_Chemistry/Unit_01/
 | 011 | Computational chemistry | `011_Computational_chemistry_Scope_computational_methods_electronic_structure_determination_AI-enhanced_computation__07fe702917862787` |
 | 012 | Experiential learning: cooling curves / thermal analysis | `012_Experiential_learning_Based_on_Phase_Diagram__42cc75d52ba7f0e4` |
 
-**Transcripts** (`AV_Summaries/`): use the `.transcript.md` files, which are timestamped. Ignore the `.mp4`, `.srt`, `.json` and `.txt` files.
+**Videos and transcripts** (`AV_Summaries/`): each video stem has **five files**: `.mp4`, `.transcript.md`, `.transcript.json`, `.srt` and `.transcript.txt`. Use all of them:
 
-| File stem (append `.transcript.md`) | Maps to slide class |
+| Format | What to use it for |
 |---|---|
-| `001_Interaction_of_radiation_with_matter__1eb05f6c3f230eec` | 001 |
-| `002_Electromagnetic_spectrum__d84acfbd19ed2af4` | 002. **Also covers Raman, Rayleigh, Stokes and anti-Stokes, which aren't on any slide.** |
-| `004_Rotational_spectroscopy__cda73f2030eb1a62` | 003 (B-O, spoken) and 004 |
-| `005_Vibrational_spectroscopy_harmonic_oscillator__bd1d3b496879b403` | 005 |
-| `006_Vibrational_spectroscopy_anharmonic_oscillator__4fe4d43ab2b66d24` | 006 |
-| `007_Electronic_spectroscopy_Progression__6dd27636f794caa1` | 007 (part 1) |
-| `007_Electronic_spectroscopy_-_Franck-Condon_principle_Part_II__70e8e6f497126f7d` | 007 (part 2) |
-| `008_Phase_Component_Degrees_of_freedom_Statement_of_Gibb_s_phase_rule_chemical_potential__a7da1e88f96b163b` | 008 |
-| `009_Derivation_of_Gibb_s_phase_rule_Phase_diagram_of_one-component_system_-_water_-_Part_I__f611c716baed093a` | 009 (derivation) |
-| `009_Derivation_of_Gibb_s_phase_rule_Phase_diagram_of_one-component_system_-_water_-_Part_II__2a5eb65b0585fe28` | 009 (water diagram; **Clausius–Clapeyron slope reasoning is spoken here**) |
-| `010_Reduced_phase_rule_phase_diagram_of_two-component_system_-_Pb-Ag_system__8e25eaa5432159a1` | 010 and 012 (cooling curves; **desilverisation of argentiferous lead is spoken here**) |
-| `011_..._AI-enhanced_computation__0671dbe2a6d868d4` / `__5a0b9f520a3c63b3` / `__74b8d88c6bf2ef3c` | 011 (three short parts; work out their order from content) |
+| `.mp4` (1280×720, 30 fps) | **Key frames** (§6A). The video shows the slides as they were taught, often **fuller than the 2026 decks** (e.g. the full mole-fraction steps of the phase-rule derivation, which are blank in the deck 009 text extract), plus the instructor's **pen annotations** (ticks, underlines, circles), which mark emphasis. |
+| `.transcript.json` | The authoritative timeline: `segments[]` with `start`, `end`, `text`, `avg_logprob`. Use `start` to align speech with key frames. Use `avg_logprob` to find **low-confidence segments** (e.g. below −0.5) and check them against the frame on screen at that moment. |
+| `.transcript.md` | Easiest reading copy: same text, with `[hh:mm:ss.mmm]` stamps. Use these stamps for citations. |
+| `.srt` | Short subtitle-length cues. Use them for precise frame↔phrase alignment, e.g. to find the exact second a formula is spoken. |
+| `.transcript.txt` | Plain text. Use it for grepping and keyword-frequency counts (what the instructor repeats or calls "very important"). |
 
-There is no separate transcript for class 003 (Born–Oppenheimer) or class 012.
+| Video stem | Class | Length | Notes |
+|---|---|---|---|
+| `001_Interaction_of_radiation_with_matter__1eb05f6c3f230eec` | 001 | 24.8 min | |
+| `002_Electromagnetic_spectrum__d84acfbd19ed2af4` | 002 | 28.8 min | **Covers Raman, Rayleigh, Stokes and anti-Stokes, which aren't on any 2026 slide.** Check the frames for the Raman slides. |
+| `004_Rotational_spectroscopy__cda73f2030eb1a62` | 004 | 21.9 min | Full moment-of-inertia derivation |
+| `005_Vibrational_spectroscopy_harmonic_oscillator__bd1d3b496879b403` | 005 | 27.2 min | |
+| `006_Vibrational_spectroscopy_anharmonic_oscillator__4fe4d43ab2b66d24` | 006 | 22.5 min | |
+| `007_Electronic_spectroscopy_Progression__6dd27636f794caa1` | 007 | 24.2 min | Part 1 |
+| `007_Electronic_spectroscopy_-_Franck-Condon_principle_Part_II__70e8e6f497126f7d` | 007 | 18.0 min | Part 2 |
+| `008_Phase_Component_Degrees_of_freedom_Statement_of_Gibb_s_phase_rule_chemical_potential__a7da1e88f96b163b` | 008 | 25.0 min | Chemical potential μᵢ = (∂G/∂nᵢ) is spoken here |
+| `009_..._water_-_Part_I__f611c716baed093a` | 009 | 20.6 min | Derivation (mole-fraction constraints, P(C−1)+2 variables); water F-values |
+| `009_..._water_-_Part_II__2a5eb65b0585fe28` | 009 | 15.4 min | Water diagram; **Clausius–Clapeyron slope reasoning** |
+| `010_Reduced_phase_rule_phase_diagram_of_two-component_system_-_Pb-Ag_system__8e25eaa5432159a1` | 010 + 012 | 30.7 min | Cooling curves; **desilverisation of argentiferous lead**; mentions Fe–C as "next class" |
+| `011_..._AI-enhanced_computation__0671dbe2a6d868d4` | 011 | 8.3 min | **Part I** (order from the manifest) |
+| `011_..._AI-enhanced_computation__74b8d88c6bf2ef3c` | 011 | 11.2 min | **Part II** |
+| `011_..._AI-enhanced_computation__5a0b9f520a3c63b3` | 011 | 10.7 min | **Part III** |
+
+**Missing video:** the class 003 video ("B.O approx. and Introduction to Rotational Spectroscopy", Vimeo 748278627) **failed to download** (HTTP 401; see `FAILED_VIDEOS.md`). That's why class 003 has no transcript. For Born–Oppenheimer, rely on deck 003, the B-O recap in deck 007 slide 4, the class 004 video and transcript, and the 2025 PDF. Class 012 (experiential learning) never had a video. Record both gaps in `README.md` and `coverage.md`.
+
+**Slides:** for every deck, use all three formats. Render `.pptx` to images to get equations and diagrams (§3.1). Use `.slides.md` for text with slide numbers. Use `.slides.txt` as a plain fallback; diff it against `.slides.md` and keep anything that appears in only one of them.
+
+**Course-level files** (`pesuc/PESU_Materials/` and `.../UE26CY151A_Engineering_Chemistry/`):
+
+| File | Use |
+|---|---|
+| `DOWNLOAD_MANIFEST.csv` / `.json` | Class number, title, duration, page count, Vimeo source and SHA-256 for each Unit 1 item. Filter `courses == UE26CY151A` and `file` contains `/Unit_01/`. Use it to build the source index (Appendix D) and to verify that every downloaded file is complete (check SHA-256 against `SHA256SUMS.txt`). |
+| `FAILED_VIDEOS.md` / `.csv` | Documents the missing class 003 video |
+| `SUMMARY.json`, `README.md` | Provenance notes (transcripts were made by Parakeet TDT v3 with Whisper review; text was extracted by OCR where needed) |
+| `ALL_SLIDE_TEXT.md`, `ALL_VIDEO_TRANSCRIPTS.md` | Aggregates for all units. Extract the Unit 1 sections and diff them against the per-file versions to make sure nothing is missing. |
+
+`README.md` mentions `Slides.zip`, `Text_bundle.zip` and `index.html`, but **they aren't in the bucket** (checked 13 Oct 2026). Don't look for them.
 
 ### 2.3 Secondary sources
 
@@ -95,7 +120,7 @@ Base path: `pesuc/First_Year_8enterprise/Files/Chemistry/`
 | `Extra/Chem_Extra_Topics__1-HfOeZNwo.pdf` (50 pp., **password `8enterprise`**) | Computational-chemistry supplement: applications, challenges and limitations, cost considerations. |
 | `Papers/ESA Papers/2024/1..11__*.pdf`, `Papers/ESA Papers/2025/Chem-EC[2025]*.pdf`, `Chem-RR[2025]*.pdf` | **Question 1 = Unit 1.** Use for importance ranking (§5) and worked examples. |
 
-Useful aggregate files you can skip if you already have the per-class files: `.../UE26CY151A_Engineering_Chemistry/ALL_SLIDE_TEXT.md` and `ALL_VIDEO_TRANSCRIPTS.md`. These cover all units, so filter to Unit 1.
+The `First_Year_8enterprise/` folder also contains `First_Year_Materials.zip`, `DOWNLOAD_MANIFEST.csv`, `SOURCES.md` and `WEB_REFERENCES.md`. Check the manifest and the zip listing (`unzip -l -P 8enterprise`) for any **other Chemistry Unit 1 item** not already listed above, and include it if you find one.
 
 ---
 
@@ -110,7 +135,7 @@ The `.slides.md` / `.slides.txt` files leave equations out. The decks store them
 soffice --headless --convert-to pdf --outdir work/render work/sources/slides/NNN_*.pptx
 pdftoppm -r 110 -png work/render/NNN_*.pdf work/render/NNN/slide
 ```
-This was tested on deck 005. LibreOffice renders the equations legibly, for example ν_osc = (1/2π)√(k/μ) Hz and ε_v = (v+½)ν̄_osc cm⁻¹. Look at **every rendered slide image** in all 12 decks. Cross-check against `pdftotext -layout` output of the 137-page Unit-1 PDF, where equations partly survive as garbled text.
+This was tested on deck 005. LibreOffice renders the equations legibly, for example ν_osc = (1/2π)√(k/μ) Hz and ε_v = (v+½)ν̄_osc cm⁻¹. Look at **every rendered slide image** in all 12 decks. Cross-check against two other routes: (a) the **video key frames** (§6A), which show the same equations, often in a fuller older version; and (b) `pdftotext -layout` output of the 137-page Unit-1 PDF, where equations partly survive as garbled text.
 
 ### 3.2 Diagram text is OCR noise
 
@@ -131,7 +156,7 @@ Correct them silently in the output. Never quote ASR errors.
 | "Dr. Lata Pasukuleti" | Dr. Lata Pasupulety (from the slide PDF) |
 | "Frank Condon" | Franck–Condon |
 
-Transcripts are timestamped (`[hh:mm:ss.mmm]`). Keep the timestamp as the citation for anything that comes only from speech.
+Transcripts are timestamped (`[hh:mm:ss.mmm]`). Keep the timestamp as the citation for anything that comes only from speech. For any ASR passage you can't decode, including low-`avg_logprob` segments in the `.transcript.json`, look at the key frame on screen at that timestamp. The slide usually shows the term or formula being spoken.
 
 ### 3.4 Syllabus drift between 2025 and 2026
 
@@ -141,7 +166,8 @@ Transcripts are timestamped (`[hh:mm:ss.mmm]`). Keep the timestamp as the citati
 
 ### 3.5 Duplicate and partial files
 
-- Class 007 and class 009 each have two transcript parts. Class 011 has three short parts with no order in their filenames.
+- Class 007 and class 009 each have two video/transcript parts. Class 011 has three short parts with no order in their filenames; the manifest gives the order: `0671…` = Part I, `74b8…` = Part II, `5a0b…` = Part III.
+- The videos were recorded for an older course numbering: on-screen titles say e.g. "Module 3 - Phase equilibria". Map them by content to the topic IDs in §4, not by the on-screen module number.
 - Several ESA files are duplicates (papers 1, 4 and 6 are the same June 2024 set). Deduplicate before counting topic frequency.
 
 ---
@@ -244,10 +270,16 @@ If any of your worked solutions disagrees with this table by more than about 1% 
 
 Do the extraction **before** writing any HTML. Keep intermediate files under `work/`.
 
-1. **Download** everything in §2.2 and §2.3 (skip the mp4s). Save `work/sources/manifest.json` with each file's path, size and URL.
+1. **Download** everything in §2.2 and §2.3, **including all 14 mp4s**. Save `work/sources/manifest.json` with each file's path, size and URL, and verify the SHA-256 against `SHA256SUMS.txt`. Disk budget: the videos are about 1.6 GB. Process them **one at a time** (download → key frames → delete the mp4) if space is tight.
 2. **Render** the 12 `.pptx` decks to PNG (see §3.1). Also extract text from the 137-page Unit-1 PDF and the Extra Topics PDF with `pdftotext -layout`. Use `-upw 8enterprise` for the Extra Topics PDF.
-3. **Read** every source completely, class by class: rendered slide images, then the `.slides.md` text, then the transcript(s) for that class, then the matching pages of the 137-page PDF.
-4. **Record** each atomic fact in `work/kb.json` (the knowledge base) as one object per item:
+3. **Process the videos** into key frames aligned with the transcript (§6A).
+4. **Read** every source completely, class by class, in this order:
+   1. Rendered slide images of the 2026 deck
+   2. `.slides.md` and `.slides.txt` text
+   3. The video key frames for that class, side by side with the transcript segments for each frame's time window
+   4. The matching pages of the 137-page PDF
+   5. The Unit 1 section of `ALL_SLIDE_TEXT.md` / `ALL_VIDEO_TRANSCRIPTS.md`, to confirm nothing was missed
+5. **Record** each atomic fact in `work/kb.json` (the knowledge base) as one object per item:
    ```json
    {
      "id": "F-T4-03",
@@ -262,15 +294,69 @@ Do the extraction **before** writing any HTML. Keep intermediate files under `wo
      "sources": [
        {"type":"slide","deck":"004","slide":8},
        {"type":"transcript","file":"004_Rotational_spectroscopy","t":"00:12:31"},
+       {"type":"video_frame","file":"004_Rotational_spectroscopy","t":"00:12:28","frame":"work/frames/004/t00748.png"},
        {"type":"pdf","file":"Chem_Slides_Unit-1","page":24}
      ],
      "verification": "matches rendered slide 004/8 and PDF p.24",
      "flag": null
    }
    ```
-   Use `flag` for `"not-on-current-slides"`, `"transcript-only"` or `"added-for-clarity"`. The last one marks standard textbook context you added, such as the hot-band expression or the Beer–Lambert form. Keep these minimal and always label them.
-5. **Reconcile.** Where sources disagree, prefer the rendered 2026 slide, then the 2025 PDF, then the transcript. Record each conflict in `work/conflicts.md`. Known example: the triple point appears as "0.0098 °C" on the slides and as "0.0099 °C" in the diagram OCR. The textbook value is 0.0098 °C at 4.58 mm Hg; note the discrepancy.
-6. **Self-check** against the minimum-content checklists in §7. Every listed item must exist in `kb.json` before you start writing HTML.
+   Use `flag` for `"not-on-current-slides"`, `"transcript-only"`, `"video-only"` (seen in a video frame but not in the 2026 deck) or `"added-for-clarity"`. Set `"emphasised": true` when the instructor annotated it on screen (tick, underline, circle) or said "important" / "remember"; this raises its exam weight by one level (maximum ★★★). The last one marks standard textbook context you added, such as the hot-band expression or the Beer–Lambert form. Keep these minimal and always label them.
+6. **Reconcile.** Where sources disagree, prefer the rendered 2026 slide, then the video frame, then the 2025 PDF, then the transcript. Record each conflict in `work/conflicts.md`. Known example: the triple point appears as "0.0098 °C" on the slides and as "0.0099 °C" in the diagram OCR. The textbook value is 0.0098 °C at 4.58 mm Hg; note the discrepancy.
+7. **Self-check** against the minimum-content checklists in §7. Every listed item must exist in `kb.json` before you start writing HTML.
+
+---
+
+## 6A. Video processing: key frames aligned with transcripts
+
+The videos are slide presentations with the instructor in a picture-in-picture at the bottom right. A slide stays on screen for 1 to 5 minutes, and the instructor's pen annotations build up on it over that time. Don't watch every frame. Extract **one frame per slide change**, plus **the last frame before each change** (the fully annotated version).
+
+**Tested method** (run on class 009 Part I: 20.6 min → 10 slide changes → 19 frames, all legible):
+
+```python
+# build/keyframes.py   usage: python3 -I build/keyframes.py VIDEO.mp4 OUTDIR [step_s=2] [thresh=4.0]
+import subprocess, sys, os, json, numpy as np
+vid, out = sys.argv[1], sys.argv[2]
+step = float(sys.argv[3]) if len(sys.argv) > 3 else 2.0
+th   = float(sys.argv[4]) if len(sys.argv) > 4 else 4.0
+os.makedirs(out, exist_ok=True)
+W, H = 160, 90
+# crop away the presenter inset (right ~22%, bottom ~8%) so their movement isn't seen as a slide change
+p = subprocess.Popen(["ffmpeg", "-v", "error", "-i", vid, "-vf",
+     f"fps=1/{step},crop=iw*0.78:ih*0.92:0:0,scale={W}:{H},format=gray",
+     "-f", "rawvideo", "-"], stdout=subprocess.PIPE)
+last, i, starts = None, 0, []
+while True:
+    b = p.stdout.read(W * H)
+    if len(b) < W * H: break
+    f = np.frombuffer(b, np.uint8).astype(np.int16)
+    if last is None or np.abs(f - last).mean() > th:
+        starts.append(i * step); last = f
+    i += 1
+ends = [max(n - step, s) for s, n in zip(starts, starts[1:])] + [max((i - 1) * step, 0)]
+times = sorted(set(starts) | set(ends))
+for t in times:
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(t), "-i", vid,
+                    "-frames:v", "1", f"{out}/t{int(t):05d}.png"])
+json.dump([{"t": t, "file": f"t{int(t):05d}.png", "kind": "start" if t in starts else "end",
+            "reviewed": False} for t in times], open(f"{out}/frames.json", "w"), indent=1)
+print(len(starts), "slide changes,", len(times), "frames")
+```
+
+Steps for each of the 14 videos:
+1. Run the script, writing to `work/frames/<stem>/`. If a video gives fewer than about 1 change per 3 minutes, re-run with `thresh=2.5`. If it gives more than about 1 per 20 s (animation noise), use `thresh=6`.
+2. For each frame, attach the transcript segments from `.transcript.json` whose `start` falls between this frame and the next one. Save them into `frames.json` as `"speech": [...]`.
+3. **Look at every frame** (open the PNG). For each one, record in `frames.json`:
+   - `slide_title`, plus the matching 2026 deck slide (`"deck": "009", "slide": 7`) or `null` if the frame has no 2026 equivalent
+   - `equations`: written out in LaTeX
+   - `new_vs_deck`: anything visible here but missing from the 2026 deck or its text extract (extra derivation lines, Raman slides, Fe–C slides, worked examples, older wording)
+   - `annotations`: what the instructor ticked, underlined or circled. These are **emphasis signals**.
+   - `reviewed: true`
+4. Turn every `new_vs_deck` item and every emphasised item into a `kb.json` entry (with the `video_frame` source and the `video-only` flag where appropriate).
+5. Pick the clearest frame for each figure G1–G26 (§7.3) as the **reference image** to redraw from. Don't embed video frames in the final documents.
+6. Delete the mp4 once its frames are done, if disk space is tight. Keep `work/frames/`.
+
+**Spoken-emphasis pass:** grep every `.transcript.txt` for "important", "remember", "note that", "exam", "very", "must" and "never". Attach those sentences to the nearest kb item and mark it `emphasised`.
 
 ---
 
@@ -392,7 +478,7 @@ Use flowcharts, concept maps and comparison tables:
 ### 7.6 Doc 6: Master document (combined, organised by topic)
 
 Structure:
-1. Cover page: title, course code, unit, "Compiled from PESU AV summaries, class slides and past ESA papers", generation date
+1. Cover page: title, course code, unit, "Compiled from PESU AV summary videos and transcripts, class slides and past ESA papers", generation date
 2. "How to use this pack" (legend for badges, flags and source tags)
 3. Table of contents (linked)
 4. **For each topic T1 to T13**, in this fixed sub-order:
@@ -409,7 +495,7 @@ Structure:
 5. Appendix A: full symbol glossary
 6. Appendix B: constants and unit conversions
 7. Appendix C: "Possibly examinable, not in current material" (Beer–Lambert, Fe–C, CO₂ diagram), each one paragraph, clearly flagged
-8. Appendix D: source index, listing every source file used with its HF path
+8. Appendix D: source index, listing every source file used (decks, videos with durations, transcripts, PDFs, papers) with its HF path, built from `DOWNLOAD_MANIFEST.csv`, plus the known gaps (class 003 video failed; class 012 has no video)
 
 ---
 
@@ -448,7 +534,7 @@ Each module's accent colour is used on its H1 rule, its topic chips and its card
 - `.worked`: three-column *Given / Solution / Answer* block; final answer boxed
 - `.pyq`: past-paper question with year chip and marks chip
 - `.flag`: amber chip with the text "Not on current slides", "Transcript only" or "Added for clarity"
-- `.src`: tiny grey source tag such as `[S004·8]`, `[T005 12:31]`, `[PDF p.24]`, `[ESA Jun-24 Q1b]`
+- `.src`: tiny grey source tag such as `[S004·8]` (slide), `[T005 12:31]` (transcript), `[V009a 13:26]` (video frame), `[PDF p.24]`, `[ESA Jun-24 Q1b]`
 - `.badge`: ★★★ / ★★ / ★
 - Figure: `<figure>` holding inline SVG and a `<figcaption>` "Fig. G21 — Franck–Condon principle, three cases"
 
@@ -501,7 +587,7 @@ If a page includes client-side rendering (you should avoid this), wait for a `wi
 
 ## 10. Quality assurance (all must pass before finishing)
 
-1. **Coverage:** every item in the §7 minimum lists exists. Every one of the 12 decks and 14 transcripts is cited at least once. Print a coverage table to `work/coverage.md` (source file → number of kb items).
+1. **Coverage:** every item in the §7 minimum lists exists. Every one of the 12 decks, **14 videos** and 14 transcripts is cited at least once. **Every key frame has been looked at**: `work/frames/<class>/frames.json` must have `reviewed: true` for each frame. Print a coverage table to `work/coverage.md` (source file → number of kb items; video → frames extracted / reviewed / cited), and list the known gaps (class 003 video missing, class 012 has no video).
 2. **Formula fidelity:** every formula has been compared visually with its rendered slide image (§3.1). List the slide reference next to each formula in `kb.json` as `verification`.
 3. **Numerical check:** every worked example matches §5.1 within about 1%.
 4. **Dimensional check:** units shown for every formula result and every worked answer.
@@ -525,7 +611,7 @@ output/
   05_short_notes_keywords.html / .pdf
   assets/  study.css  fonts/  katex/  figures/*.svg
 work/
-  sources/  render/  kb.json  conflicts.md  coverage.md
+  sources/  render/  frames/<class>/{t*.png, frames.json}  kb.json  conflicts.md  coverage.md
 build/
   extract.py  build_html.py (or build.mjs)  figures.py  build_pdf.py
 README.md   (how to rebuild; list of sources; known gaps)
@@ -539,3 +625,4 @@ Write build scripts in `build/`, outside the download directory. Run every Pytho
 - The coverage table and the contents of `conflicts.md`
 - The list of items flagged "not on current slides" or "transcript only"
 - Any source that couldn't be read, and why
+- Per video: slide changes found, frames reviewed, and kb items that came only from video frames
