@@ -1,7 +1,7 @@
 """Question bank: every past Unit 1 ESA question (solved) + graded practice variants.
 Run: python3 build/qbank.py   (writes output/06_question_bank.html)
 All numerical answers are computed here, never typed by hand."""
-import datetime, html, json, math, os, subprocess, sys, tempfile
+import datetime, html, json, math, os, re, subprocess, sys, tempfile
 
 OUT = "/home/user/blank/output/"
 BUILD = os.path.dirname(os.path.abspath(__file__))
@@ -37,16 +37,13 @@ _math = []
 def M(tex, disp=False):
     _math.append((tex, disp)); return f"\x00M{len(_math)-1}\x00"
 def T(s):
-    """Escape text; $...$ segments are KaTeX; **bold** and newlines supported."""
+    """Escape text; $...$ segments are KaTeX; **bold** (may span maths) and newlines supported."""
+    s = re.sub(r"\*\*(.+?)\*\*", "\x01\\1\x02", s, flags=re.S)
     parts = s.split("$"); out = []
     for i, p in enumerate(parts):
         if i % 2: out.append(M(p))
-        else:
-            p = html.escape(p)
-            while "**" in p and p.count("**") >= 2:
-                p = p.replace("**", "<b>", 1).replace("**", "</b>", 1)
-            out.append(p.replace("\n", "<br>"))
-    return "".join(out)
+        else: out.append(html.escape(p).replace("\n", "<br>"))
+    return "".join(out).replace("\x01", "<b>").replace("\x02", "</b>")
 def render(doc):
     with tempfile.TemporaryDirectory() as d:
         i, o = os.path.join(d, "i.json"), os.path.join(d, "o.json")
@@ -58,7 +55,7 @@ def render(doc):
 # ------------------------------------------------------------------ data model
 CH = []     # chapters
 def chapter(cid, title, cls, topics, intro, recap, figs=()):
-    c = dict(id=cid, title=title, cls=cls, topics=topics, intro=intro, recap=recap, figs=list(figs), past=[], sets=[])
+    c = dict(id=cid, title=title, cls=cls, topics=topics, intro=intro, recap=recap, figs=list(figs), past=[], sets=[], new=[], quick=[])
     CH.append(c); return c
 def past(c, tag, marks, q, steps, ans, flag=""): c["past"].append(dict(tag=P.get(tag, tag), marks=marks, q=q, steps=steps, ans=ans, flag=flag))
 def pset(c, title, note, items): c["sets"].append(dict(title=title, note=note, items=items))
@@ -176,7 +173,7 @@ def sho_steps(k, a, b, c=C0, pi=PI):
             f"ZPE $=\\tfrac12\\bar\\nu={nu/2:.0f}$ cm$^{{-1}}$ $={nu/2*H0*c:.3g}\\ \\text{{J}}$ (×$hc$)."], nu
 st, nu = sho_steps(970, 1.008, 18.99, pi=3.14)
 past(c2, "J24a", 6, "(i) The force constant of HF (SHO) is 970 N m$^{-1}$. Calculate the oscillation frequency (cm$^{-1}$) and the zero-point energy. (ii) Why does the SHO spectrum show only one line? (c = 3×10⁸ m s⁻¹, π = 3.14, 1 amu = 1.66×10⁻²⁷ kg; H = 1.008, F = 18.99 amu)",
-     st + ["(ii) Levels $\\varepsilon_v=(v+\\tfrac12)\\bar\\nu$ are equally spaced and the selection rule is $\\Delta v=\\pm1$, so every allowed transition needs the same energy $\\bar\\nu$ — one line."], f"$\\bar\\nu\\approx{nu:.0f}$ cm$^{{-1}}$, ZPE ≈ {nu/2:.0f} cm$^{{-1}}$ ≈ {nu/2*H0*C0:.2e} J")
+     st + ["(ii) Levels $\\varepsilon_v=(v+\\tfrac12)\\bar\\nu$ are equally spaced and the selection rule is $\\Delta v=\\pm1$, so every allowed transition needs the same energy $\\bar\\nu$ — one line."], f"$\\bar\\nu\\approx{nu:.0f}$ cm$^{{-1}}$, ZPE ≈ {nu/2:.0f} cm$^{{-1}}$ ≈ ${sci(nu/2*H0*C0)}$ J")
 st, nu = sho_steps(970, 1.004, 18.998, pi=3.14)
 past(c2, "D24b", 6, "Same HF question with H = 1.004 amu, F = 18.998 amu (k = 970 N m⁻¹): (i) oscillation frequency in cm⁻¹; (ii) zero-point energy; (iii) why one line?", st + ["(iii) Equal spacing + $\\Delta v=\\pm1$."], f"$\\bar\\nu\\approx{nu:.0f}$ cm$^{{-1}}$; ZPE ≈ {nu/2:.0f} cm$^{{-1}}$")
 k = sho_k(2168, 12, 15.999, pi=3.14)
@@ -200,7 +197,7 @@ past(c2, "J25a", 7, "(i) Using the harmonic oscillator model calculate the zero-
       f"(iii) $\\varepsilon_3=3.5\\bar\\nu={3.5*nuNO:.0f}$ cm$^{{-1}}$; $\\varepsilon_4=4.5\\bar\\nu={4.5*nuNO:.0f}$ cm$^{{-1}}$."], f"ZPE ≈ {nuNO/2:.0f} cm⁻¹; ε₃ ≈ {3.5*nuNO:.0f}, ε₄ ≈ {4.5*nuNO:.0f} cm⁻¹")
 c2["theory"] = [
     ("Why does the SHO spectrum show only one line? (asked ×5)", "Levels $\\varepsilon_v=(v+\\tfrac12)\\bar\\nu$ are **equally spaced**; the selection rule $\\Delta v=\\pm1$ allows only neighbouring-level jumps. Every jump has the same energy $\\bar\\nu$, so all coincide in one line."),
-    ("Why is CO₂ IR-active though it has no permanent dipole? (asked ×3)", "IR activity needs a **change** in dipole during vibration, not a permanent dipole. CO₂'s symmetric stretch gives no change (inactive), but the asymmetric stretch and the bending mode do (active). It has no permanent dipole, so it is microwave-inactive."),
+    ("Why is CO₂ IR-active though it has no permanent dipole? (asked ×3)", "IR activity needs a change in dipole during vibration, not a permanent dipole. CO₂'s symmetric stretch gives no change (inactive), but the asymmetric stretch and the bending mode do (active). It has no permanent dipole, so it is microwave-inactive."),
     ("Why is HI IR-active but H₂ and I₂ inactive?", "HI is heteronuclear: stretching changes its dipole moment. H₂ and I₂ are homonuclear: zero dipole at every bond length, so the vibration never changes it."),
     ("Write a note on the failure of the SHO model. (asked ×1, relevant ×4)", "The SHO assumes a parabolic potential and equal spacing, so it predicts a single line and never dissociation. Real bonds break when stretched (anharmonic, Morse), levels converge, $\\Delta v=\\pm2,\\pm3$ overtones and hot bands appear, and the molecule can dissociate. The SHO therefore fails at high $v$ and cannot explain overtones.")]
 # practice
@@ -281,7 +278,7 @@ past(c4, "J24b", 4, "Justify the Franck–Condon principle by drawing the transi
 past(c4, "L23b", 6, "(i) What is the Franck–Condon principle? If a vibrational-electronic spectrum shows a continuum, what can one infer? (ii) Why is bulk aluminium stable whereas nano aluminium is combustible?", ["(i) Statement + dissociation (theory box). (ii) is a nano-materials question (Unit 4) — not covered here."], "Dissociation")
 past(c4, "M24", 6, "(i) State the Born–Oppenheimer approximation. (ii) What does the appearance of a continuum in an electronic spectrum let us conclude?", ["Statement and dissociation reasoning — see theory box."], "See theory box")
 past(c4, "D23", 4, "What do you mean by Rayleigh scattering and Raman scattering? Mention the difference between Stokes and anti-Stokes lines.", ["See theory box."], "See theory box")
-past(c4, "L23b", 2, "How is it that carbon dioxide is IR active even though it has no permanent dipole? (also Jan-24 UE22 'Why is CO₂ IR active but microwave inactive?')", ["See Q2 theory box: asymmetric stretch and bend change the dipole; symmetric stretch does not."], "Dipole *change*, not permanent dipole")
+past(c4, "L23b", 2, "How is it that carbon dioxide is IR active even though it has no permanent dipole? (also Jan-24 UE22 'Why is CO₂ IR active but microwave inactive?')", ["See Q2 theory box: asymmetric stretch and bend change the dipole; symmetric stretch does not."], "Dipole change, not permanent dipole")
 # practice: EM conversions
 its = []
 for lam_nm in (500, 250, 700, 10000, 3000):
@@ -418,7 +415,8 @@ INVENTORY = [
     ("Phase rule: count C, P, F", "Q5", 3, 12),
     ("Water diagram, F values, metastable curve, Clausius–Clapeyron", "Q5", 4, 9),
     ("Reduced phase rule and Pb–Ag diagram, cooling curves", "Q5", 4, 9),
-    ("Computational chemistry: definition, applications, methods", "Q6", 1, 10)]
+    ("Computational chemistry: definition, applications, methods", "Q6", 1, 10),
+    ("Mock Q1 papers (timed, new numbers)", "Q7", "—", 15)]
 
 # ================================================================== HTML
 e = html.escape
@@ -449,33 +447,41 @@ def chapter_html(c, ci):
         n = f"{cid}.{i}"
         tag = f'<div class="qmeta"><span class="chip">{e(p["tag"])}</span><span class="chip">{p["marks"]} marks</span>' + ('<span class="flag">Not on current slides</span>' if p["flag"] else "") + '</div>'
         pastq += f'<div class="qa">{qcard(n, p["q"], tag)}{sol(p["steps"], p["ans"])}</div>'
-    # practice sets: questions then answer key
+    # practice / new / quick sets: questions, then one answer key
+    groups = [("B", c.get("gtitle_B", "Practice · exam-style variants of past questions"), c["sets"], "P"),
+              ("C", "New question types · not yet asked, but examinable", c["new"], "N"),
+              ("D", "Quick-fire concept checks and spot-the-error", c["quick"], "Z")]
     sets = ""; key = ""
-    for si, s in enumerate(c["sets"], 1):
-        qs = "".join(f'<div class="qa pq">{qcard(f"{cid}.P{si}.{k}", it["q"])}</div>' for k, it in enumerate(s["items"], 1))
-        sets += f'<div class="pset"><h4>{e(s["title"])}</h4>{"<p class=pnote>"+e(s["note"])+"</p>" if s["note"] else ""}{qs}</div>'
-        ak = "".join(f'<div class="ak"><b>{cid}.P{si}.{k}</b><div>{sol(it["steps"], it["ans"])}</div></div>' for k, it in enumerate(s["items"], 1))
-        key += f'<div class="akset"><h4>{e(s["title"])}</h4>{ak}</div>'
-    nq = len(c["past"]) + sum(len(s["items"]) for s in c["sets"]) + len(c.get("theory", []))
+    for letter, gtitle, gsets, code in groups:
+        if not gsets: continue
+        sets += f'<h3 class="sub">{letter} · {e(gtitle)}</h3>'
+        for si, s_ in enumerate(gsets, 1):
+            qs = "".join(f'<div class="qa pq">{qcard(f"{cid}.{code}{si}.{k}", it["q"])}</div>' for k, it in enumerate(s_["items"], 1))
+            sets += f'<div class="pset"><h4>{e(s_["title"])}</h4>{"<p class=pnote>"+T(s_["note"])+"</p>" if s_["note"] else ""}{qs}</div>'
+            ak = "".join(f'<div class="ak"><b>{cid}.{code}{si}.{k}</b><div>{sol(it["steps"], it["ans"])}</div></div>' for k, it in enumerate(s_["items"], 1))
+            key += f'<div class="akset"><h4>{e(s_["title"])}</h4>{ak}</div>'
+    npr = sum(len(x["items"]) for x in c["sets"]); nnew = sum(len(x["items"]) for x in c["new"]); nq = sum(len(x["items"]) for x in c["quick"])
+    chips = "".join(f'<span class="tchip">{n} {l}</span>' for n, l in [(len(c["past"]), "solved past"), (npr, "exam-style practice"), (nnew, "new-type questions"), (nq, "quick-fire"), (len(c.get("theory", [])), "theory answers")] if n)
+    pastsec = f'<h3 class="sub">A · Past ESA questions, fully solved</h3>{pastq}' if c["past"] else ""
     return f'''<section class="chap {c["cls"]}" id="{cid}">
-<div class="mbanner {c["cls"]}"><div class="mnum">Chapter {ci} · Topics {e(c["topics"])}</div><h1>{e(c["title"])}</h1><div class="mchips"><span class="tchip">{len(c["past"])} solved past questions</span><span class="tchip">{sum(len(s["items"]) for s in c["sets"])} practice questions</span><span class="tchip">{len(c.get("theory",[]))} theory answers</span></div></div>
+<div class="mbanner {c["cls"]}"><div class="mnum">Chapter {ci} · Topics {e(c["topics"])}</div><h1>{e(c["title"])}</h1><div class="mchips">{chips}</div></div>
 <p class="intro">{e(c["intro"])}</p>
 <h3 class="sub">Recap · formulas you need</h3><div class="recap">{recap}</div>{method}{figs and f'<div class="rfigs">{figs}</div>'}{deriv}
-<h3 class="sub">A · Past ESA questions, fully solved</h3>{pastq}{th}
-<h3 class="sub">B · Practice questions (answers in the key at the end of this chapter)</h3>{sets}
-<h3 class="sub">C · Answer key</h3><div class="key">{key}</div></section>'''
+{pastsec}{th}
+{sets}
+<h3 class="sub">E · Answer key for sections B, C and D</h3><div class="key">{key}</div></section>'''
 
 def build():
     nchap = len(CH)
-    tot_past = sum(len(c["past"]) for c in CH); tot_pr = sum(len(s["items"]) for c in CH for s in c["sets"]); tot_th = sum(len(c.get("theory", [])) for c in CH)
-    toc = "".join(f'<a class="trow" href="#{c["id"]}"><span class="tid {c["cls"]}">{c["id"]}</span><span class="tname">{e(c["title"])}</span><span class="tcount">{len(c["past"])} past · {sum(len(s["items"]) for s in c["sets"])} practice</span></a>' for c in CH)
+    tot_past = sum(len(c["past"]) for c in CH); tot_pr = sum(len(s["items"]) for c in CH for g in ("sets","new","quick") for s in c[g]); tot_th = sum(len(c.get("theory", [])) for c in CH)
+    toc = "".join(f'<a class="trow" href="#{c["id"]}"><span class="tid {c["cls"]}">{c["id"]}</span><span class="tname">{e(c["title"])}</span><span class="tcount">{len(c["past"])} past · {sum(len(s["items"]) for g in ("sets","new","quick") for s in c[g])} practice</span></a>' for c in CH)
     inv = "".join(f"<tr><td>{e(a)}</td><td>{b}</td><td>{n}</td><td>{p}</td></tr>" for a, b, n, p in INVENTORY)
     cover = f'''<section class="cover"><div class="cbar"><i class="m1"></i><i class="m2"></i><i class="m3"></i></div>
 <div class="ctop"><span class="course">UE26CY151A · Engineering Chemistry</span><span class="unit">Semester 1 · Unit 1</span></div>
 <div class="cmain"><div class="cnum">06</div><div class="ckicker">Question bank</div><h1 class="ctitle">Every Unit 1 question — solved, then drilled</h1>
 <p class="cblurb">All Unit 1 questions from the past ESA papers (Question 1 of each paper, 2023–2025), each worked out step by step, followed by several practice variants of every question type so you can see the same idea from different angles.</p></div>
-<div class="cmods"><div class="cmod m1"><span>{tot_past}</span>solved past questions</div><div class="cmod m2"><span>{tot_pr}</span>practice questions with answers</div><div class="cmod m3"><span>{tot_th}</span>theory model answers</div></div>
-<div class="clegend"><div><b>How to use</b> Read the recap → study the solved past questions → attempt Section B without looking → check against the answer key.</div>
+<div class="cmods"><div class="cmod m1"><span>{tot_past}</span>solved past questions</div><div class="cmod m2"><span>{tot_pr}</span>practice, new-type and quick-fire questions with answers</div><div class="cmod m3"><span>{tot_th}</span>theory model answers</div></div>
+<div class="clegend"><div><b>How to use</b> Read the recap → study the solved past questions → do B (exam-style), then C (new types) and D (quick-fire) without looking → check the answer key.</div>
 <div><b>Papers</b> 12 distinct ESA papers (UE22, UE23, UE24 syllabi); duplicate papers removed.</div>
 <div><b>Flags</b> <span class="flag">Not on current slides</span> marks topics from older syllabi (Fe–C, CO₂ diagram, Beer–Lambert).</div></div>
 <div class="cfoot">Numerical answers are computed by script from each question's own constants, so small differences from a printed key come from rounding of constants. · {datetime.date.today():%d %B %Y}</div></section>'''

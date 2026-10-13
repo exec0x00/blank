@@ -43,3 +43,8 @@
 .tcount{font:500 8.5pt var(--sans);color:var(--muted)}
 .doc-06 .cnum{font-size:64pt}
 .doc-06 .cmod span{font-size:22pt;letter-spacing:0;color:var(--acc)}
+
+.toc td,.toc th{padding:1.1mm 3mm}
+.toc h2{margin-bottom:5mm}
+.toc .tmod{margin-bottom:4mm}
+.toc .trow{padding:1.1mm 0}
