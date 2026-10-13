@@ -38,3 +38,28 @@ docstring at the top of `patterns.py`.
 
 The work grows by a constant factor per fixed increase in n, which is
 exponential, not polynomial, on the hard families.
+
+## Second method: clause by clause with a position dictionary (`indexed.py`)
+
+Start with the first clause as the solution (one pattern per literal) and
+keep a dictionary `literal -> pattern positions`. For each next clause,
+dictionary lookups find the patterns that already contain one of its
+literals (common, kept as is) and those holding the opposite literal
+(opposite pairs, can't take that literal); every other pattern is extended
+with each allowed literal. Patterns that contain a smaller pattern are
+dropped.
+
+```
+$ python3 indexed.py "(a or not b or c or d) and (a or b or d or e)"
+patterns:  3: (a)  4: (d)  6: (b, c)  7: (c, e)  8: (!b, e)
+dictionary:  a -> [3]  b -> [6]  !b -> [8]  c -> [6, 7]  d -> [4]  e -> [7, 8]
+```
+
+The dictionary makes each lookup fast, but the number of patterns still
+grows exponentially (`python3 bench_indexed.py`, peak patterns kept):
+
+| formula family        | peak patterns                                        |
+|-----------------------|------------------------------------------------------|
+| chain, n pairs        | 16, 64, 256, 1024, 4096 for n = 4…12: exactly 2^n    |
+| random 3-SAT          | 32, 108, 953, 3203 for n = 10, 15, 20, 25            |
+| pigeonhole, n holes   | 9, 64, 625, 7776 for n = 2…5: exactly (n+1)^n        |
