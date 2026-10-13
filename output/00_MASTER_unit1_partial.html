@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Engineering Chemistry Unit 1 - Study Pack (partial)</title>
+<style>
+:root{--ink:#1b1f24;--muted:#5b6470;--rule:#d9dee5;--m1:#1f5fa8;--m2:#2e7d4f;--formula-bg:#f4f7fb;--note-bg:#fff8e6;--warn-bg:#fdecec;--flag:#b26b00}
+@page{size:A4;margin:18mm 16mm}
+body{font-family:Georgia,"Source Serif 4",serif;color:var(--ink);background:#fff;font-size:10.5pt;line-height:1.45;margin:0;padding:16px}
+h1{font-family:Inter,Arial,sans-serif;font-size:22pt;margin:0 0 4px}
+h2{font-family:Inter,Arial,sans-serif;font-size:16pt;border-bottom:2px solid var(--rule);padding-bottom:3px;margin-top:22px;break-after:avoid}
+h3{font-family:Inter,Arial,sans-serif;font-size:12.5pt;margin:14px 0 4px;break-after:avoid}
+.m1{color:var(--m1)} .m2{color:var(--m2)}
+.meta{color:var(--muted);font-size:9.5pt}
+.formula{background:var(--formula-bg);border-left:3px solid var(--m1);padding:6px 10px;margin:8px 0;break-inside:avoid;font-family:"Courier New",monospace;font-size:10pt}
+.note{background:var(--note-bg);padding:6px 10px;margin:8px 0;break-inside:avoid}
+.trap{background:var(--warn-bg);padding:6px 10px;margin:8px 0;break-inside:avoid}
+.flag{display:inline-block;background:var(--flag);color:#fff;font-size:8pt;padding:1px 6px;border-radius:3px;font-family:Arial,sans-serif}
+.src{color:var(--muted);font-size:8.5pt;font-family:Arial,sans-serif}
+table{border-collapse:collapse;width:100%;margin:6px 0;font-size:9.5pt}
+th,td{border:1px solid var(--rule);padding:4px 6px;text-align:left;vertical-align:top}
+thead{display:table-header-group}
+tr{break-inside:avoid}
+section{break-before:auto}
+.module{break-before:page}
+@media (max-width:600px){body{padding:12px}}
+</style></head>
+<body>
+<header>
+<h1>Engineering Chemistry (UE26CY151A) - Unit 1 Study Pack</h1>
+<p class="meta">Semester 1 &middot; Compiled from the 2026 class slide text (decks 003-010) and the Unit 1 video transcripts. Generated 13 Oct 2026.</p>
+<div class="note"><strong>Status: PARTIAL FIRST PASS.</strong> This version covers the content that could be verified from slide text and the brief within the time box. It does <em>not</em> yet contain: rendered equations checked against slide images (the slide text omits every equation), decks 001, 002, 004 equations, 011, 012, the Raman material, the ESA ranking, the worked numerical examples, the separate documents 01-05, or the PDF versions. Formulas below are taken from the brief and marked as <span class="flag">Not visually verified</span> where the slide text does not show them.</div>
+<p class="meta"><strong>Legend:</strong> <span class="flag">Not on current slides</span> &middot; <span class="flag">Not visually verified</span> &middot; <span class="src">[S0xx]</span> = slide deck number, <span class="src">[T0xx mm:ss]</span> = transcript time.</p>
+</header>
+
+<nav id="toc"><h3>Contents</h3>
+<ul>
+<li><a href="#T3">T3 Born-Oppenheimer approximation</a></li>
+<li><a href="#T4">T4 Rotational (microwave) spectroscopy</a></li>
+<li><a href="#T5">T5 Vibrational spectroscopy, harmonic oscillator</a></li>
+<li><a href="#T6">T6 Vibrational spectroscopy, anharmonic oscillator</a></li>
+<li><a href="#T7">T7 Electronic spectroscopy and Franck-Condon</a></li>
+<li><a href="#T8">T8 Phase, component, degrees of freedom, phase rule</a></li>
+<li><a href="#T9">T9 Derivation of the phase rule; water diagram</a></li>
+<li><a href="#T11">T11 Reduced phase rule; Pb-Ag system</a></li>
+<li><a href="#pending">Not yet extracted in this pass</a></li>
+</ul></nav>
+
+<section id="T3" class="module"><h2 class="m1">T3 Born-Oppenheimer approximation</h2>
+<h3>Key points</h3>
+<ul>
+<li>Total molecular energy = translational + rotational + vibrational + electronic energies <span class="src">[S003]</span></li>
+<li>Translational energy is negligibly small, so E = E<sub>rot</sub> + E<sub>vib</sub> + E<sub>elec</sub> <span class="src">[S003]</span></li>
+<li>Electronic, vibrational and rotational energies are treated as independent, because electronic levels are much farther apart than vibrational levels, which are much farther apart than rotational levels: E<sub>rot</sub> &laquo; E<sub>vib</sub> &laquo; E<sub>elec</sub> <span class="src">[S003]</span></li>
+<li>Transition energy map: rotational transitions are microwave, vibrational are infrared, electronic are optical or UV <span class="src">[S003, S007]</span></li>
+</ul>
+<div class="formula">E = E_trans + E_rot + E_vib + E_elec &nbsp;&nbsp;(slide 003, equation not in text; standard form)</div>
+</section>
+
+<section id="T4" class="module"><h2 class="m1">T4 Rotational (microwave) spectroscopy</h2>
+<h3>Key points</h3>
+<ul>
+<li>Gross selection rule: molecule must have a <strong>permanent dipole moment</strong>. HCl and CO are microwave active; H<sub>2</sub>, Cl<sub>2</sub> and CO<sub>2</sub> are not <span class="src">[S004 slides 3, 5]</span></li>
+<li>Model: rigid rotor for a heteronuclear diatomic, masses m<sub>1</sub>, m<sub>2</sub> joined by a rod of length r<sub>0</sub> = r<sub>1</sub> + r<sub>2</sub>, rotating about the centre of mass <span class="src">[S004 slide 6]</span></li>
+<li>Rotational quantum number J = 0, 1, 2, 3 &hellip; (integers from zero upwards) <span class="src">[S004 slide 8]</span></li>
+<li>Selection rule: <span class="formula" style="display:inline;padding:0 4px">&Delta;J = &plusmn;1</span> <span class="src">[S004 slide 10]</span></li>
+<li>Rotational energy levels in cm<sup>-1</sup>, with rotational constant B: &epsilon;<sub>J</sub> = BJ(J+1). Levels: J=0 gives 0, J=1 gives 2B, J=2 gives 6B, J=3 gives 12B <span class="src">[S004 slide 9]</span></li>
+<li>Line positions: the transition J &rarr; J+1 absorbs at &Delta;&epsilon; = 2B(J+1). The first line is at 2B; spacing between lines is constant at 2B: 2B, 4B, 6B, 8B, 10B <span class="src">[S004 slide 10-11]</span></li>
+<li>Information from the spectrum: B from the line spacing, then I = &mu;r<sub>0</sub><sup>2</sup> gives the bond length r<sub>0</sub> <span class="src">[S004 final slide]</span></li>
+<li>Higher rotational levels are already populated at room temperature (intensity pattern in the spectrum) <span class="src">[S004]</span></li>
+</ul>
+<div class="formula">&epsilon;<sub>J</sub> = BJ(J+1) cm<sup>-1</sup> &nbsp;&nbsp; <span class="flag">Not visually verified</span> (slide 8 equation missing in text)</div>
+<div class="formula">I = &mu; r<sub>0</sub><sup>2</sup>, &nbsp; &mu; = m<sub>1</sub>m<sub>2</sub>/(m<sub>1</sub>+m<sub>2</sub>) &nbsp;&nbsp; <span class="flag">Not visually verified</span> (slides 7 and final slide)</div>
+<div class="formula">&Delta;&epsilon;(J&rarr;J+1) = 2B(J+1) cm<sup>-1</sup> &nbsp;&nbsp; <span class="flag">Not visually verified</span></div>
+<div class="trap"><strong>Exam trap:</strong> the first rotational line is at 2B, not B. J starts at 0.</div>
+</section>
+
+<section id="T5" class="module"><h2 class="m1">T5 Vibrational spectroscopy: simple harmonic oscillator (SHO)</h2>
+<h3>Key points</h3>
+<ul>
+<li>Gross selection rule: the vibration must change the dipole moment (IR active) <span class="src">[S005]</span></li>
+<li>CO<sub>2</sub>: symmetric stretch is IR inactive (no dipole change); asymmetric stretch and bending are IR active <span class="src">[S005]</span></li>
+<li>Bond modelled as a spring obeying Hooke's law; the potential energy curve is parabolic <span class="src">[S005]</span></li>
+<li>Energy levels are equally spaced; zero-point energy &epsilon;<sub>0</sub> is non-zero <span class="src">[S005]</span></li>
+<li>Selection rule &Delta;v = &plusmn;1; so only <strong>one line</strong> is seen in the SHO spectrum <span class="src">[S005]</span></li>
+<li>From the spectrum the oscillation wavenumber is read, and the force constant k (bond strength) follows from it <span class="src">[S005]</span></li>
+<li>Every bond has a unique natural frequency, so each molecule's IR spectrum is unique (a fingerprint) <span class="src">[S005]</span></li>
+</ul>
+<div class="formula">&nu;<sub>osc</sub> = (1/2&pi;)&radic;(k/&mu;) Hz &nbsp;&nbsp; <span class="flag">Not visually verified</span> (slide 005 equation missing in text)</div>
+<div class="formula">&epsilon;<sub>v</sub> = (v + &frac12;) &nu;&#772;<sub>osc</sub> cm<sup>-1</sup>, &nbsp; &epsilon;<sub>0</sub> = &frac12;&nu;&#772;<sub>osc</sub> &nbsp;&nbsp; <span class="flag">Not visually verified</span></div>
+</section>
+
+<section id="T6" class="module"><h2 class="m1">T6 Vibrational spectroscopy: anharmonic oscillator</h2>
+<h3>Key points</h3>
+<ul>
+<li>Real bonds are anharmonic: stretched far enough, the bond breaks and the molecule dissociates <span class="src">[S006]</span></li>
+<li>Morse potential: PE = D<sub>e</sub>[1 &minus; exp{a(r<sub>0</sub> &minus; r)}]<sup>2</sup>, where D<sub>e</sub> is the depth of the PE curve and a is a constant <span class="src">[S006]</span></li>
+<li>Anharmonicity constant x<sub>e</sub> is small and positive for bond stretching <span class="src">[S006]</span></li>
+<li>Energy spacing decreases as v increases; levels converge toward the dissociation limit <span class="src">[S006]</span></li>
+<li>Selection rule: &Delta;v = &plusmn;1, &plusmn;2, &plusmn;3 &hellip; (overtones allowed) <span class="src">[S006]</span></li>
+<li>Most transitions start from v=0 (most populated). Fundamental: 0&rarr;1; first overtone: 0&rarr;2; second overtone: 0&rarr;3 <span class="src">[S006]</span></li>
+<li>Hot bands: at higher temperature, transitions from v=1 are also seen; the 1&rarr;2 hot band lies to the <strong>left</strong> of the fundamental <span class="src">[S006]</span></li>
+</ul>
+<div class="formula">&epsilon;<sub>v</sub> = (v+&frac12;)&omega;&#772;<sub>e</sub> &minus; (v+&frac12;)<sup>2</sup>&omega;&#772;<sub>e</sub>x<sub>e</sub> cm<sup>-1</sup> &nbsp;&nbsp; <span class="flag">Not visually verified</span></div>
+<div class="formula">Fundamental = &omega;&#772;<sub>e</sub>(1 &minus; 2x<sub>e</sub>); &nbsp; First overtone = 2&omega;&#772;<sub>e</sub>(1 &minus; 3x<sub>e</sub>) &nbsp;&nbsp; <span class="flag">Not visually verified</span> (from brief table, check against deck 006 slides 7 and 9)</div>
+</section>
+
+<section id="T7" class="module"><h2 class="m1">T7 Electronic spectroscopy and the Franck-Condon principle</h2>
+<h3>Key points</h3>
+<ul>
+<li>HOMO &rarr; LUMO transitions in the UV-Visible region: &sigma;&rarr;&sigma;*, &pi;&rarr;&pi;*, n&rarr;&pi* <span class="src">[S007]</span></li>
+<li>All molecules can undergo electronic transitions (unlike IR or microwave) <span class="src">[S007]</span></li>
+<li>Electronic transitions carry vibrational structure (coarse structure) and rotational structure (fine structure) <span class="src">[S007]</span></li>
+<li>No selection rule restricts the vibrational level reached during an electronic transition <span class="src">[S007]</span></li>
+<li>Most transitions start from v&Prime;=0 (most populated). Lines are labelled (v&prime;, v&Prime;); the set of lines is a progression; lines converge at high energy, showing anharmonicity in the excited state <span class="src">[S007]</span></li>
+<li><strong>Franck-Condon principle</strong> (slide wording): &ldquo;An electronic transition takes place so rapidly that a vibrating molecule does not change its internuclear distance appreciably during the transition.&rdquo; Electronic transitions are therefore vertical <span class="src">[S007]</span></li>
+<li>Three cases <span class="src">[S007]</span>:
+  <ul>
+  <li>r<sub>e</sub>&Prime; = r<sub>e</sub>&Prime;&Prime;: strongest line is (0,0); intensity falls for the rest</li>
+  <li>r<sub>e</sub>&Prime; &gt; r<sub>e</sub>&Prime;&Prime; (a little greater): strongest line is (v&prime;, 0)</li>
+  <li>r<sub>e</sub>&Prime; &raquo; r<sub>e</sub>&Prime;&Prime; (considerably greater): the molecule passes the dissociation energy, giving a continuum (kinetic energy of separated atoms is not quantised)</li>
+  </ul></li>
+<li>Intensity is highest from the centre of v&Prime;&Prime;=0, where the probability of finding the nuclei is maximal <span class="src">[S007]</span></li>
+</ul>
+<div class="note"><strong>Note on the transcript:</strong> the class 007 transcript spells the principle "Frank Condon"; the correct name is Franck-Condon.</div>
+</section>
+
+<section id="T8" class="module"><h2 class="m2">T8 Phase, component, degrees of freedom and the phase rule</h2>
+<h3>Definitions</h3>
+<ul>
+<li><strong>Phase:</strong> any homogeneous, physically distinct part of a system, bounded by a surface and mechanically separable. Gas: P = 1 (gases are completely miscible). Liquid: P = number of layers if immiscible, 1 if miscible. Solid: each solid is a separate phase; each polymorph is a separate phase; P = 1 for a solid solution <span class="src">[S008]</span></li>
+<li><strong>Component:</strong> the smallest number of independently varying chemical constituents needed to express the composition of every phase <span class="src">[S008]</span></li>
+<li><strong>Degrees of freedom (variance) F:</strong> the minimum number of intensive variables (T, P, concentration) that must be fixed to define the system, equivalently the number that can vary without changing the number of phases <span class="src">[S008]</span></li>
+<li>Chemical potential: phases in equilibrium have equal chemical potential for each component <span class="src">[S009]</span></li>
+</ul>
+<h3>Counting examples</h3>
+<table><thead><tr><th>System</th><th>P</th><th>C</th><th>Reason</th></tr></thead><tbody>
+<tr><td>Ice / water / vapour (one pure substance)</td><td>3</td><td>1</td><td>Ice pieces still count as one phase</td></tr>
+<tr><td>CaCO<sub>3</sub>(s) &#8652; CaO(s) + CO<sub>2</sub>(g), closed</td><td>3</td><td>2</td><td>3 species but any 2 of them define the composition</td></tr>
+<tr><td>NH<sub>4</sub>Cl(s) &#8652; NH<sub>3</sub>(g) + HCl(g), closed</td><td>2</td><td>1</td><td>Gas composition fixed by NH<sub>4</sub>Cl; C becomes 2 if extra HCl or NH<sub>3</sub> is added</td></tr>
+<tr><td>Na<sub>2</sub>SO<sub>4</sub>&middot;10H<sub>2</sub>O salt hydrate</td><td>&ndash;</td><td>2</td><td>All phases expressed through Na<sub>2</sub>SO<sub>4</sub> and H<sub>2</sub>O</td></tr>
+</tbody></table>
+<h3>Statement of the phase rule</h3>
+<div class="formula">F = C &minus; P + 2 &nbsp; (Gibbs, 1874; valid when equilibrium is not influenced by gravity, electric or magnetic fields) <span class="src">[S008]</span></div>
+</section>
+
+<section id="T9" class="module"><h2 class="m2">T9 Derivation of the phase rule; one-component water diagram</h2>
+<h3>Derivation (slide 009)</h3>
+<ul>
+<li>Variables: each of the P phases needs T, P and (C&minus;1) mole fractions, so total variables = P(C&minus;1) + 2 <span class="src">[S009]</span></li>
+<li>Equilibrium constraints: chemical potential of each component equal across the phases, giving (P&minus;1) equations per component, so C(P&minus;1) in total <span class="src">[S009]</span></li>
+<li>F = variables &minus; constraints = P(C&minus;1) + 2 &minus; C(P&minus;1) = C &minus; P + 2 <span class="src">[S009]</span></li>
+</ul>
+<h3>One-component system (water)</h3>
+<ul>
+<li>F = 3 &minus; P <span class="src">[S009]</span></li>
+<li>One phase: F = 2, an <strong>area</strong> <span class="src">[S009]</span></li>
+<li>Two phases: F = 1, a <strong>line</strong> <span class="src">[S009]</span></li>
+<li>Three phases: F = 0, a <strong>point</strong> (triple point; for water 0.0098 &deg;C and 4.58 mm Hg, as stated on slide 008) <span class="src">[S008, S009]</span></li>
+<li>High pressure, low temperature: solid. High temperature, low pressure: vapour <span class="src">[S009]</span></li>
+</ul>
+<div class="formula">F = C &minus; P + 2, &nbsp; F = 3 &minus; P (one component) &nbsp;&nbsp; <span class="flag">Not visually verified</span> for the constraint-count line</div>
+<div class="note">Curves OA (vaporisation), OB (sublimation), OC (melting, negative slope) and the metastable OA&prime; from the water diagram are <span class="flag">Not visually verified</span>: the labels are in the diagram image, which the text extraction does not give. Render deck 009 before using this section in an exam.</div>
+</section>
+
+<section id="T11" class="module"><h2 class="m2">T11 Reduced phase rule and the Pb-Ag eutectic system</h2>
+<h3>Key points (slide 010)</h3>
+<ul>
+<li>For two components with the full rule, F = 4 &minus; P; at minimum P = 1, F = 3, which needs 3-D space, so it cannot be drawn on paper <span class="src">[S010]</span></li>
+<li>Measurements are usually at constant (atmospheric) pressure, which removes one degree of freedom: <strong>F = C &minus; P + 1</strong>, the reduced (condensed) phase rule. Valid for condensed systems with no gas phase <span class="src">[S010]</span></li>
+<li>Pb&ndash;Ag: liquid miscible in all proportions; solid completely immiscible <span class="src">[S010]</span></li>
+<li>Melting points: Pb 327 &deg;C, Ag 961 &deg;C; eutectic temperature 303 &deg;C at 2.6 % Ag (97.4 % Pb) <span class="src">[S010]</span></li>
+<li>Cooling path: first solid Pb forms at the Pb freezing curve; the melt becomes richer in Ag and moves along curve BO. At point O, solid Ag also separates; three phases (solid Ag, solid Pb, melt) coexist, F = 0 <span class="src">[S010]</span></li>
+<li>Areas: above BOA liquid melt; AOD solid Ag + liquid; BOC solid Pb + liquid; below COD solid Ag + solid Pb <span class="src">[S010]</span></li>
+</ul>
+<div class="trap"><strong>Labelling conflict:</strong> the slide names A = 100 % Pb and B = 100 % Ag, but its text also describes curve BO as the freezing curve of Pb. Use the lettering your faculty uses in exams.</div>
+</section>
+
+<section id="pending" class="module"><h2>Not yet extracted in this pass</h2>
+<ul>
+<li><strong>T1</strong> EM radiation and matter, <strong>T2</strong> EM spectrum regions and Raman (deck 001, 002 equations not yet read) &mdash; use the 001 and 002 transcripts</li>
+<li><strong>T10</strong> water diagram values and Clausius&ndash;Clapeyron reasoning (needs the 009 Part II transcript)</li>
+<li><strong>T12</strong> cooling curves (deck 012, no video)</li>
+<li><strong>T13</strong> computational chemistry (deck 011 and the Extra Topics PDF)</li>
+<li>Rendered slide images for equations (brief section 3.1), ESA past-paper ranking (section 5), worked numerical examples (section 5.1), symbol glossary, figures G1&ndash;G26, flowcharts F1&ndash;F14, the five themed documents 01&ndash;05, and PDF output.</li>
+<li><strong>Not on current slides, flagged:</strong> Beer&ndash;Lambert law (A = log(I<sub>0</sub>/I) = &epsilon;cl) <span class="flag">Not on current slides</span>; Fe&ndash;C phase diagram <span class="flag">Not on current slides</span>; CO<sub>2</sub> phase diagram <span class="flag">Not on current slides</span>.</li>
+</ul>
+<p class="meta">Missing video: class 003 (Vimeo 748278627) failed to download, HTTP 401. Class 012 never had a video.</p>
+</section>
+</body></html>
