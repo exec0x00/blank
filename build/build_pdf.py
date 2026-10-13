@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright
 O = "/home/user/blank/output/"
 CHROME = next(iter(glob.glob("/opt/pw-browsers/chromium-*/chrome-linux*/chrome")), None)
 TITLES = {"00": "Complete Study Pack", "01": "Formulas & Symbols", "02": "Important Points",
-          "03": "Graphs & Diagrams", "04": "Flowcharts & Visuals", "05": "Short Notes & Keywords"}
+          "03": "Graphs & Diagrams", "04": "Flowcharts & Visuals", "05": "Short Notes & Keywords", "06": "Question Bank"}
 BAR = "font-family:Helvetica,Arial,sans-serif;font-size:7.5px;color:#5b6470;width:100%;padding:0 16mm;display:flex;justify-content:space-between;align-items:center"
 
 

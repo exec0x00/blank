@@ -1,0 +1,45 @@
+/* Question bank additions */
+.chap{break-before:page}
+.intro{font-size:10.5pt;color:var(--ink2);margin:0 0 4mm}
+.recap{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm}
+.rf{background:var(--acc-bg);border:1px solid var(--acc-soft);border-left:3px solid var(--acc);border-radius:5px;padding:1.5mm 2mm;text-align:center;overflow-x:auto;break-inside:avoid}
+.rf .katex-display{margin:.3em 0}
+.method{margin-top:3mm;border:1px solid var(--acc-soft);border-radius:6px;padding:2.5mm 4mm;break-inside:avoid}
+.mh{font:700 7.5pt var(--sans);text-transform:uppercase;letter-spacing:.12em;color:var(--acc);margin-bottom:1mm}
+.method ol{margin:0;padding-left:5mm;font-size:10pt}
+.rfigs{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-top:3mm}
+.rfig{border:1px solid var(--rule);border-radius:6px;padding:2mm;break-inside:avoid;text-align:center}
+.rfig svg{max-width:100%;height:auto;max-height:62mm}
+.rcap{font:600 8pt var(--sans);color:var(--acc)}
+.deriv{margin-top:4mm;border:1px solid var(--acc-soft);border-radius:6px;padding:3mm 4mm;break-inside:avoid}
+.chap .deriv ol{margin:0;padding-left:6mm;font-size:10pt;list-style:decimal;counter-reset:none}
+.chap .deriv li{display:list-item;grid-template-columns:none;border:0;background:none;margin:1.5mm 0;padding:0}
+.chap .deriv li::before{content:none}
+.chap .deriv li:last-child{background:var(--acc-bg);border-radius:4px;padding:1mm 2mm}
+/* question cards */
+.qa{break-inside:avoid;margin:3mm 0;border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.qa.pq{border-style:dashed}
+.q{display:flex;gap:3mm;padding:2.5mm 3mm;background:#fafbfc}
+.qn{flex:none;font:700 8pt var(--sans);color:#fff;background:var(--acc);border-radius:4px;padding:2px 6px;height:max-content;white-space:nowrap}
+.qb{flex:1;font-size:10pt}
+.qmeta{margin-top:1.2mm}
+.sol{border-top:1px solid var(--rule2);padding:2mm 3mm 2.5mm}
+.sol ol{margin:0 0 1.5mm;padding-left:5mm;font-size:9.8pt}.sol li{margin:.8mm 0}
+.fa{background:var(--acc-bg);border-radius:4px;padding:1.5mm 3mm;display:flex;gap:3mm;align-items:baseline}
+.fa>span{font:700 7pt var(--sans);text-transform:uppercase;letter-spacing:.1em;color:var(--acc)}
+.fa p{font:600 9.8pt var(--sans)}
+.tq{break-inside:avoid;border-left:3px solid var(--acc);padding:1mm 4mm;margin:3mm 0}
+.tqq{font:700 10pt var(--sans)}.tqa{font-size:10pt;margin-top:1mm}
+/* practice */
+.pset{margin-top:4mm}
+.pset h4{font:700 11pt var(--sans);color:var(--acc);margin-bottom:1mm}
+.pnote{font:italic 9.5pt var(--serif);color:var(--muted);margin-bottom:2mm}
+.key{columns:1}
+.akset{margin-bottom:3mm}
+.akset h4{font:700 9.5pt var(--sans);margin:3mm 0 1.5mm;border-bottom:1px solid var(--rule)}
+.ak{display:grid;grid-template-columns:16mm 1fr;gap:2mm;break-inside:avoid;padding:1mm 0;border-bottom:1px solid var(--rule2)}
+.ak>b{font:700 7.5pt var(--mono);color:var(--acc);padding-top:2mm}
+.ak .sol{border:0;padding:1mm 0}
+.tcount{font:500 8.5pt var(--sans);color:var(--muted)}
+.doc-06 .cnum{font-size:64pt}
+.doc-06 .cmod span{font-size:22pt;letter-spacing:0;color:var(--acc)}

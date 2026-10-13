@@ -10,3 +10,6 @@ Outputs: `output/00_MASTER…` and `01`–`05` as .html + .pdf. Sources: PESU Un
 - Flowcharts are styled HTML step boxes, not Mermaid SVG. Maths inside prose is Unicode; formula cards and derivations are KaTeX. Figures G1–G8, G11, G12, G14, G16, G18–G20, G26 not drawn.
 - Worked examples are computed in `build_html.py` and asserted against the brief's §5.1 table (all pass).
 - Not produced: kb.json, conflicts.md, coverage.md, derivations other than I = μr₀² and the phase rule, Beer-Lambert/Fe–C beyond short flagged notes.
+
+## Question bank (06)
+`python3 build/qbank.py` builds `output/06_question_bank.html`, then `python3 build/build_pdf.py`. It holds 38 solved Unit 1 questions from the 12 distinct ESA papers (Q1 of each; Q1.b of one paper was an image and was read directly), 122 practice questions with answer keys and 11 theory model answers. All numbers are computed in code from each question's own constants. Not Unit 1 anymore, so omitted: conductometry, colorimetry, α-Al₂O₃. Fe–C, CO₂ diagram and Beer–Lambert answers use standard textbook values and are flagged.
