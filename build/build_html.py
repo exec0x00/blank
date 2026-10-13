@@ -1,213 +1,332 @@
-import math, html, re, datetime
-OUT="/home/user/blank/output/"
-h,c,amu=6.626e-34,2.998e10,1.66e-27
-# ---------- worked examples (computed + checked vs brief 5.1) ----------
-def rot(line,m1,m2):
-    B=line/2; mu=m1*m2/(m1+m2)*amu; I=h/(8*math.pi**2*c*B); return B,I,math.sqrt(I/mu)*1e10
-def sho(k,m1,m2):
-    mu=m1*m2/(m1+m2)*amu; return math.sqrt(k/mu)/(2*math.pi*c)
-W=[]
-B,I,r=rot(21.18,1.008,35.45); assert abs(B-10.59)<.01 and abs(I-2.64e-47)/2.64e-47<.01 and 1.26<r<1.29
-W.append(("T4","HCl: first rotational line at 21.18 cm⁻¹ (H=1.008, Cl=35.45). Find B, I, r₀.",f"B = line/2 = {B:.2f} cm⁻¹; I = h/(8π²cB) = {I:.3g} kg m²; μ = {1.008*35.45/(36.458)*amu:.3g} kg; r₀ = √(I/μ)",f"B = {B:.2f} cm⁻¹, I = {I:.2e} kg m², r₀ = {r:.2f} Å","ESA"))
-B,I,r=rot(13.022,1.0,126.9); assert abs(I-4.30e-47)/4.3e-47<.01 and abs(r-1.62)<.02
-W.append(("T4","HI: first line 13.022 cm⁻¹ (H=1.0, I=126.9). Find I and r₀.","B = 6.511 cm⁻¹; I = h/(8π²cB); r₀ = √(I/μ)",f"I = {I:.2e} kg m², r₀ = {r:.2f} Å","ESA"))
-I2=h/(8*math.pi**2*c*10.56); assert abs(I2-2.65e-47)/2.65e-47<.01
-W.append(("T4","B = 10.56 cm⁻¹. Find I and line spacing.","I = h/(8π²cB); spacing = 2B",f"I = {I2:.2e} kg m²; spacing = {2*10.56:.2f} cm⁻¹","ESA"))
-W.append(("T4","HCl J=0→1 at 20.68 cm⁻¹. Find the J=20→21 line.","Δε = 2B(J+1) and 2B = 20.68",f"2B·21 = 21 × 20.68 = {21*20.68:.2f} cm⁻¹","ESA"))
-v=sho(970,1.008,18.99); assert abs(v-4148)<15
-W.append(("T5","HF, k = 970 N m⁻¹ (H=1.008, F=18.99). Find ν̄ and zero-point energy.","ν̄ = (1/2πc)√(k/μ); ZPE = ½ν̄ (× hc for joules)",f"ν̄ = {v:.0f} cm⁻¹; ZPE = {v/2:.0f} cm⁻¹ = {v/2*h*c:.2e} J","ESA"))
-mu=12*15.995/(27.995)*amu; k=(2*math.pi*c*2168)**2*mu; assert abs(k-1900)<40
-W.append(("T5","CO, ν̄ = 2168 cm⁻¹ (SHO). Find k and ZPE.","k = 4π²c²ν̄²μ",f"k = {k:.2e} N m⁻¹; ZPE = 1084 cm⁻¹","ESA"))
-v=sho(1530,14,16); assert abs(v-1865)<10
-W.append(("T5","NO, k = 1530 N m⁻¹ (N=14, O=16). Find ν̄, ZPE, ε₃, ε₄.","ε_v = (v+½)ν̄",f"ν̄ = {v:.0f}; ZPE = {v/2:.0f}; ε₃ = {3.5*v:.0f}; ε₄ = {4.5*v:.0f} cm⁻¹","ESA"))
-f,o=2559.08,5027.54; xe=(2*f-o)/(2*(o-3*f)*-1) if False else None
-# solve: f=we(1-2x); o=2we(1-3x) -> o/(2f)=(1-3x)/(1-2x)
-ratio=o/(2*f); x=(1-ratio)/(3-2*ratio); we=f/(1-2*x); assert abs(x-.0171)<.0005 and abs(we-2649.7)<2
-W.append(("T6","HBr: fundamental 2559.08, first overtone 5027.54 cm⁻¹. Find xₑ and ω̄ₑ.","fund = ω̄ₑ(1−2xₑ); overtone = 2ω̄ₑ(1−3xₑ)",f"xₑ = {x:.4f}; ω̄ₑ = {we:.1f} cm⁻¹","ESA"))
-W.append(("T6","CO: fundamental 2143 cm⁻¹, xₑ = 0.01. Find ω̄ₑ.","ω̄ₑ = fund/(1−2xₑ)",f"ω̄ₑ = {2143/.98:.1f} cm⁻¹","ESA"))
-W.append(("T6","CO: ω̄ₑ = 2050, xₑ = 0.017. First overtone?","2ω̄ₑ(1−3xₑ)",f"{2*2050*(1-3*.017):.1f} cm⁻¹","ESA"))
-# ---------- knowledge base ----------
-MODS=[("M1","Molecular Spectroscopy","m1",["T1","T2","T3","T3b","T4","T5","T6","T7"]),("M2","Phase Equilibria","m2",["T8","T9","T10","T11","T12"]),("M3","Computational Chemistry","m3",["T13"])]
-TN={"T1":"EM radiation & interaction with matter","T2":"Electromagnetic spectrum & regions","T3":"Born–Oppenheimer approximation","T3b":"Beer–Lambert law","T4":"Rotational (microwave) spectroscopy","T5":"Vibrational (IR) – SHO","T6":"Vibrational – anharmonic","T7":"Electronic spectroscopy & Franck–Condon","T8":"Basic terms & phase rule","T9":"Derivation of phase rule","T10":"One-component system: water","T11":"Two-component: reduced phase rule & Pb–Ag","T12":"Thermal analysis / cooling curves","T13":"Computational chemistry"}
-FL=[ # id, topic, name, latex-ish text, gives, applies, units, wt, src, flag
-("F1","T1","Photon energy","E = hν","Energy of radiation","any EM radiation","J","3","S001·5",""),
-("F2","T1","Frequency–wavelength","ν = c/λ","Frequency","vacuum/air","Hz","3","S001·5",""),
-("F3","T1","Wavenumber","ν̄ = 1/λ  ;  E = hcν̄","Wavenumber; energy","spectroscopic unit","cm⁻¹","3","S001·5",""),
-("F4","T1","Transition energy","ΔE = E₂ − E₁ = hν","Absorbed/emitted quantum","two quantised levels","J (÷hc → cm⁻¹)","3","S001",""),
-("F5","T3","Total molecular energy","E = E_trans + E_rot + E_vib + E_elec ≈ E_rot + E_vib + E_elec","Born–Oppenheimer","E_trans negligible","J","2","S003·4",""),
-("F6","T3","Ordering","E_rot ≪ E_vib ≪ E_elec","Microwave < IR < UV-Vis","","—","2","S003·4",""),
-("F7","T3","Change in energy","ΔE = ΔE_elec + ΔE_vib + ΔE_rot","Electronic transition fine structure","","J or cm⁻¹","2","S007·4",""),
-("F8","T3b","Beer–Lambert","A = log(I₀/I) = εcl","Absorbance","dilute solutions","dimensionless","1","—","Not on current slides · Added for clarity"),
-("F9","T4","Centre of mass","m₁r₁ = m₂r₂ ;  r₀ = r₁ + r₂","Positions of atoms about C","rigid diatomic","m","3","S004; PDF",""),
-("F10","T4","Distances","r₁ = m₂r₀/(m₁+m₂) ;  r₂ = m₁r₀/(m₁+m₂)","","","m","3","PDF",""),
-("F11","T4","Moment of inertia","I = m₁r₁² + m₂r₂² = μr₀²   with μ = m₁m₂/(m₁+m₂)","Moment of inertia","rigid rotor","kg m²","3","S004·7; PDF",""),
-("F12","T4","Rotational energy","E_r = ½Iω² = L²/2I","Classical rotor","","J","2","PDF",""),
-("F13","T4","Rotational levels (J)","E_J = h²J(J+1)/(8π²I)","Quantised levels","J = 0,1,2…","J","3","S004·8",""),
-("F14","T4","Rotational levels (cm⁻¹)","ε_J = BJ(J+1),  B = h/(8π²Ic)","Level energy; rotational constant","c in cm s⁻¹","cm⁻¹","3","S004·8",""),
-("F15","T4","Selection rules","ΔJ = ±1 ; permanent dipole needed","Allowed transitions","gross rule","—","3","S004·10",""),
-("F16","T4","Line positions","Δε(J→J+1) = 2B(J+1) ; spacing = 2B ; levels 0,2B,6B,12B,20B,30B,42B","Rotational spectrum","","cm⁻¹","3","S004·9-10",""),
-("F17","T5","Hooke's law","F = −kx ; PE = ½k(r − r_eq)²","Parabolic potential","SHO","N ; J","2","S005·6-7",""),
-("F18","T5","Oscillation frequency","ν_osc = (1/2π)√(k/μ)","Frequency","SHO","Hz","3","S005·8",""),
-("F19","T5","Wavenumber of vibration","ν̄_osc = (1/2πc)√(k/μ)","Line position","c in cm s⁻¹","cm⁻¹","3","S005·8",""),
-("F20","T5","SHO levels","E_v = (v+½)hν_osc ;  ε_v = (v+½)ν̄_osc","Levels","v = 0,1,2…","J ; cm⁻¹","3","S005·8-9",""),
-("F21","T5","Zero-point energy","ε₀ = ½ν̄_osc","Lowest level (≠ 0)","","cm⁻¹","3","S005·9",""),
-("F22","T5","Selection rule & spacing","Δv = ±1 ; spacing = ν̄_osc ; one line at ν̄_osc","","dipole must change","cm⁻¹","3","S005·9",""),
-("F23","T5","Force constant","k = 4π²c²ν̄²μ","Bond stiffness","μ in kg","N m⁻¹","3","derived",""),
-("F24","T6","Morse function","PE = D_eq[1 − exp{a(r_eq − r)}]²","Anharmonic potential","","J","2","S006·3",""),
-("F25","T6","Anharmonic levels","ε_v = (v+½)ω̄ₑ − (v+½)²ω̄ₑxₑ","Converging levels","xₑ small, positive","cm⁻¹","2","S006·4",""),
-("F26","T6","Transitions","Fundamental 0→1: ω̄ₑ(1−2xₑ) ; 1st overtone 0→2: 2ω̄ₑ(1−3xₑ) ; 2nd overtone 0→3: 3ω̄ₑ(1−4xₑ)","","Δv = ±1,±2,±3…","cm⁻¹","2","S006·6-7",""),
-("F27","T6","Hot band & ZPE","Hot band 1→2: ω̄ₑ(1−4xₑ) (left of fundamental) ; ε₀ = ½ω̄ₑ(1−½xₑ)","","higher T","cm⁻¹","2","S006·9; ZPE added","Added for clarity"),
-("F28","T7","Electronic spectrum","ε = ε_elec + ε_vib ; lines labelled (v′,v″)","Progression","no vibrational selection rule","cm⁻¹","2","S007·6-8",""),
-("F29","T8","Phase rule","F = C − P + 2","Degrees of freedom","no external fields","—","3","S008·12",""),
-("F30","T9","Variables & constraints","Variables = P(C−1)+2 ; constraints = C(P−1) ; F = P(C−1)+2 − C(P−1) = C−P+2","Derivation","","—","3","S009·7",""),
-("F31","T9","Equilibrium condition","μᵢ^α = μᵢ^β = μᵢ^γ = …","Equal chemical potential","each component","J mol⁻¹","3","S009·3,7",""),
-("F32","T9","Chemical potential","μᵢ = (∂G/∂nᵢ)_{T,P,nⱼ}","Partial molar Gibbs energy","","J mol⁻¹","2","T008 (S009·5 unreadable)","Transcript only"),
-("F33","T10","One-component","F = 3 − P","Area F=2, line F=1, point F=0","","—","3","S009·8",""),
-("F34","T10","Clausius–Clapeyron","dP/dT = ΔH/(TΔV)","Slope of curve","fusion, vaporisation, sublimation","Pa K⁻¹","3","S009·12-14",""),
-("F35","T11","Reduced (condensed) rule","F = C − P + 1","Constant pressure","condensed systems","—","3","S010·2-3",""),
-]
-SYM=[("λ","wavelength","m, nm, Å",""),("ν","frequency","Hz",""),("ν̄","wavenumber","cm⁻¹",""),("c","speed of light","m s⁻¹ / cm s⁻¹","3×10⁸ m s⁻¹ = 3×10¹⁰ cm s⁻¹"),("h","Planck constant","J s","6.626×10⁻³⁴ (slides also use 6.625)"),("E, ε","energy; ε = energy in cm⁻¹ (also molar absorptivity in Beer–Lambert — 3rd meaning!)","J; cm⁻¹; L mol⁻¹ cm⁻¹",""),("ΔE","energy change","J",""),("J","rotational quantum number","—","0,1,2…"),("B","rotational constant = h/8π²Ic","cm⁻¹",""),("I","moment of inertia","kg m²",""),("μ","reduced mass m₁m₂/(m₁+m₂) — ALSO chemical potential in T8–T9","kg; J mol⁻¹","1 amu = 1.66×10⁻²⁷ kg"),("m₁, m₂","atomic masses","kg",""),("r₀","bond length (rigid rotor)","m, Å","1 Å = 10⁻¹⁰ m"),("r₁, r₂","distances of atoms from centre of mass","m",""),("ω","angular velocity","rad s⁻¹",""),("L","angular momentum","kg m² s⁻¹",""),("k","force constant","N m⁻¹",""),("x","displacement","m",""),("v","vibrational quantum number","—","0,1,2…"),("ν_osc, ν̄_osc","oscillation frequency / wavenumber","Hz ; cm⁻¹",""),("ω̄ₑ","equilibrium vibrational wavenumber (anharmonic)","cm⁻¹",""),("xₑ","anharmonicity constant","—","small, positive"),("D_eq","depth of Morse well","J",""),("a","Morse constant","m⁻¹",""),("r_eq","equilibrium bond length","m",""),("r_e′, r_e″","bond length in excited / ground state","Å",""),("v′, v″","vibrational number in excited / ground state","—",""),("ε′, ε″","energy in excited / ground state","cm⁻¹",""),("F","degrees of freedom (variance)","—",""),("C","number of components","—",""),("P","number of phases — ALSO pressure (clash!)","— ; atm, mmHg",""),("T","temperature","K, °C",""),("G","Gibbs energy","J",""),("nᵢ","moles of component i","mol",""),("ΔH","enthalpy of transition","J mol⁻¹",""),("ΔV","volume change of transition","m³ mol⁻¹",""),("A","absorbance","—",""),("I₀, I","incident / transmitted intensity","—",""),("c, l","concentration, path length (Beer–Lambert)","mol L⁻¹, cm",""),("N_A","Avogadro constant","mol⁻¹","6.022×10²³")]
-PTS={ # topic -> list of (type, text, weight, src, flag)
-"T1":[("def","Molecular spectroscopy: the branch of science dealing with the interaction of electromagnetic radiation with matter (molecules).",2,"S001·3",""),("pt","Spectrophotometer: source → monochromator (entrance slit, dispersive element, exit slit) → sample → detector → recorder.",2,"S001·3",""),("pt","EM radiation has dual character (photons moving as waves); E and B fields oscillate perpendicular to each other and to the direction of propagation; all travel at the speed of light.",2,"S001·4",""),("pt","Atomic spectra: electronic transitions between atomic orbitals → line spectra. Molecular spectra: electronic (HOMO→LUMO) plus vibrational and rotational transitions → band spectra.",2,"S001·6-7",""),("pt","Absorption: molecule goes to a higher level taking ΔE = hν; emission: falls to a lower level releasing hν.",1,"S001",""),],
-"T2":[("pt","Radio (10 m–1 cm): NMR, ESR – nuclear / electron spin reversal. Microwave (1 cm–100 µm): rotational. IR (100 µm–1 µm): vibrational. UV-Vis (1 µm–10 nm): electronic, valence electrons. X-ray (10 nm–100 pm): inner electrons. γ (100–1 pm): nuclear rearrangement.",3,"S002·4-5",""),("why","Rayleigh scattering: scattered light has the same frequency as the incident light (elastic). Raman: shifted frequency — Stokes lines (lower frequency, molecule gains energy), anti-Stokes lines (higher frequency, molecule loses energy).",2,"T002",'Transcript only · Added for clarity'),],
-"T3":[("stmt","Born–Oppenheimer approximation: electronic, vibrational and rotational energies of a molecule are independent; E = E_rot + E_vib + E_elec (E_trans negligible).",2,"S003·4",""),("pt","E_rot ≪ E_vib ≪ E_elec because electronic levels are farther apart than vibrational, which are farther than rotational.",2,"S003·4",""),("trap","Mnemonic: Rot < Vib < Elec ↔ Microwave < IR < UV-Vis.",1,"study aid","Added for clarity")],
-"T3b":[("pt","Beer–Lambert law: absorbance A = log(I₀/I) = εcl — proportional to concentration c and path length l; ε is the molar absorptivity.",1,"ESA Dec-24","Not on current slides · Added for clarity")],
-"T4":[("def","Gross selection rule (rotational): molecule must have a permanent dipole moment. Specific rule: ΔJ = ±1.",3,"S004·3,10",""),("why","HCl and CO are microwave-active (permanent dipole); H₂, Cl₂ and CO₂ are not (no permanent dipole).",3,"S004·5",""),("pt","Rigid-rotor model: heteronuclear diatomic = two masses joined by a rigid massless rod; J = 0,1,2…; levels 0, 2B, 6B, 12B…",3,"S004·6-9",""),("pt","First line is at 2B (not B) and consecutive lines are 2B apart; B → I → r₀ via I = μr₀².",3,"S004·12",""),("pt","Intensity rises then falls with J because higher levels are populated at room temperature (thermal population).",2,"S004·12",""),("trap","Traps: J starts at 0; first line = 2B; use μ in kg (not amu); use c in cm s⁻¹ when B is in cm⁻¹.",3,"exam",""),],
-"T5":[("def","Gross selection rule (IR): the vibration must change the dipole moment; Δv = ±1.",3,"S005·3,9",""),("why","CO₂ has no permanent dipole (microwave-inactive) but is IR-active: asymmetric stretch and bending change the dipole; symmetric stretch does not.",3,"S005·4-5",""),("why","HI is IR-active but H₂ and I₂ are not (homonuclear: no dipole change).",2,"S005·4",""),("why","SHO shows only one line: levels are equally spaced and Δv = ±1, so every allowed transition has the same energy ν̄_osc.",3,"S005·9",""),("pt","Zero-point energy ε₀ = ½ν̄_osc ≠ 0: the molecule never rests even at v = 0. Bond treated as a spring obeying Hooke's law → parabolic PE.",3,"S005·6-9",""),("pt","Every bond has a characteristic frequency, so an IR spectrum is a molecular 'fingerprint'.",1,"S005·6",""),],
-"T6":[("why","Why SHO fails: real bonds dissociate when stretched; the true potential is anharmonic (Morse), so levels converge and overtones appear.",2,"S006·3",""),("pt","Anharmonic: Δv = ±1, ±2, ±3…; most transitions start from v = 0 → fundamental (0→1), first overtone (0→2), second overtone (0→3).",2,"S006·6",""),("pt","Hot bands: from v = 1 at higher temperature; 1→2 appears to the left of the fundamental.",2,"S006·9",""),("pt","xₑ is small and positive; line spacing decreases with increasing v.",2,"S006·4",""),],
-"T7":[("pt","Electronic transitions: HOMO→LUMO (σ→σ*, π→π*, n→π*) in the UV-Vis; all molecules show them; visible transitions give colour.",3,"S007·3",""),("pt","Vibrational changes give 'coarse structure', rotational changes give 'fine structure'. Homonuclear molecules (H₂, N₂) show vibration/rotation only through electronic spectra.",2,"S007·5",""),("pt","No vibrational selection rule during electronic transitions; most start at v″ = 0; lines labelled (v′,v″) form a progression converging at high energy (anharmonic excited state).",3,"S007·6-8",""),("stmt","Franck–Condon principle: “An electronic transition takes place so rapidly that a vibrating molecule does not change its internuclear distance appreciably during the transition.” Hence transitions are vertical.",3,"S007·13",""),("pt","Case (a) rₑ′ = rₑ″: (0,0) strongest. Case (b) rₑ′ > rₑ″: strongest line (v′,0) with v′>0. Case (c) rₑ′ ≫ rₑ″: transition goes beyond the dissociation limit → continuum.",3,"S007·15-16",""),("why","A continuum means dissociation: the atoms fly apart with unquantised kinetic energy. The excited state usually has a longer bond length because of antibonding character.",3,"S007·10,16",""),],
-"T8":[("def","Phase (P): homogeneous, physically distinct, mechanically separable part of a system bounded by a surface. Gases: P = 1; miscible liquids: P = 1; each solid / polymorph is a phase.",3,"S008·4",""),("def","Component (C): smallest number of independently variable constituents by which the composition of every phase can be expressed (zero/negative values allowed).",3,"S008·6",""),("def","Degrees of freedom (F): minimum number of intensive variables (T, P, concentration) to be fixed to define the system completely.",3,"S008·10",""),("stmt","Gibbs phase rule: provided equilibrium is not influenced by external forces (gravity, electrical, magnetic), F = C − P + 2.",3,"S008·12",""),("pt","Counting: ice/water/vapour P=3, C=1; CaCO₃ ⇌ CaO + CO₂: P=3, C=2; NH₄Cl ⇌ NH₃ + HCl: P=2, C=1 (C=2 if extra HCl/NH₃ added); Na₂SO₄·10H₂O system C=2.",2,"S008·5-9",""),("pt","Systems minimise Gibbs energy at constant T, P; at equilibrium G is equal in coexisting phases.",1,"S008·3",""),],
-"T9":[("pt","At equilibrium all phases have the same T and P and the chemical potential of each component is equal in every phase; mass flows from higher to lower μ.",3,"S009·3-4",""),("pt","Derivation: variables = P(C−1) composition terms + 2 (T,P); constraints = C(P−1); F = C−P+2.",3,"S009·7",""),],
-"T10":[("pt","Water: F = 3−P → one phase F=2 (bivariant area), two phases F=1 (univariant line), three phases F=0 (invariant point).",3,"S009·8-10",""),("pt","Triple point O: 0.0098 °C, 4.58 mmHg (F=0). Critical point A: 374 °C, 218 atm; above it water cannot be liquid.",3,"S009·15",""),("why","Fusion curve OC has negative slope: ice melts with decrease in volume (ΔV<0 → dP/dT<0), and it is steep because |ΔV| is small. Sublimation (OB) and vaporisation (OA) slopes are positive and less steep because ΔV is large.",3,"S009·12-14; T009b","Transcript-assisted"),("pt","Metastable OA′: supercooled water; its vapour pressure is higher than that of ice at the same T; disturbance returns the system to stable OB.",3,"S009·16",""),],
-"T11":[("why","General phase rule not used for 2 components: C=2 gives F=4−P, F=3 for P=1, needing 3-D; so pressure is fixed (≈1 atm) → F = C−P+1.",3,"S010·2-3",""),("def","Condensed system: gas phase absent, hardly affected by small pressure changes.",2,"S010·3",""),("pt","Pb–Ag: components miscible in all proportions in melt, immiscible as solids; plot is temperature vs composition at constant pressure.",3,"S010·4",""),("pt","Freezing-point curves: C=2, P=2 → F=1 (univariant). Eutectic point O: P=3, F=0 (invariant), lowest freezing point, definite composition and sharp melting point.",3,"S010·7-8",""),("pt","Numerical facts: Pb mp 327 °C, Ag mp 961 °C, eutectic 303 °C at 97.4 % Pb / 2.6 % Ag.",3,"S010; PDF",""),("pt","Desilverisation of argentiferous lead (Pattinson-type process) exploits this: Pb crystallises first, leaving Ag-rich melt.",1,"T010","Transcript only"),],
-"T12":[("def","Thermal analysis: study of cooling curves (temperature vs time) of various compositions during solidification; freezing and eutectic points are read from them.",2,"S012·2",""),("pt","Pure substance: smooth fall, then a flat halt at the freezing point. Mixture: a change of slope when crystallisation starts, then a halt at the eutectic temperature. Plotting break/halt temperatures against composition builds the phase diagram.",2,"S012·2-3",""),],
-"T13":[("def","Computational chemistry: techniques to solve chemical problems by simulating chemical systems, giving atomic-level information, using theoretical chemistry in efficient programs.",1,"S011·3",""),("pt","First theoretical work: Heitler and London, 1927. (Nobel 1998 Kohn & Pople; 2013 Karplus, Levitt & Warshel.)",1,"S011·3; brief","Added for clarity"),("pt","Scope: molecular properties (HOMO/LUMO, UV/IR/NMR spectra), reaction mechanism and kinetics, material design, drug discovery.",1,"S011·6",""),("pt","Classical: molecular mechanics (balls and springs, very fast) and molecular dynamics (motion of atoms). Quantum: semi-empirical, ab initio (wavefunction) and DFT (electron density; faster than ab initio, slower than semi-empirical).",1,"S011·7-12",""),("pt","Advantages: easier, cheaper, safer than experiments; complements, not replaces, experiment.",1,"S011·13",""),("pt","Ethylene: sp² C; σ + π bond; HOMO = π, LUMO = π*. Steps: geometry → basis set → method → solve → visualise.",1,"S011·14-17",""),("pt","AI-enhanced: fast screening, property prediction, reaction-pathway mapping, structure generation; speed-up from hours/days to milliseconds after training.",1,"S011·19-20",""),],
+"""Builds the six Unit 1 HTML documents. Run: python3 build/build_html.py"""
+import datetime, html, json, os, subprocess, sys, tempfile
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from content import MODS, TN, FL, SYM, PTS, FIG, FLOWS, TABLES, PYQ, SHORT, KEYS, W
+
+OUT = "/home/user/blank/output/"
+BUILD = os.path.dirname(os.path.abspath(__file__))
+KATEX = os.environ.get("KATEX_PATH", "/tmp/claude-0/npm/node_modules/katex")
+
+# ---------- LaTeX for every formula card ----------
+TEX = {
+    "F1": r"E = h\nu",
+    "F2": r"\nu = \frac{c}{\lambda}",
+    "F3": r"\bar{\nu} = \frac{1}{\lambda} \qquad E = hc\,\bar{\nu}",
+    "F4": r"\Delta E = E_2 - E_1 = h\nu",
+    "F5": r"E = E_{trans} + E_{rot} + E_{vib} + E_{elec} \;\approx\; E_{rot} + E_{vib} + E_{elec}",
+    "F6": r"E_{rot} \ll E_{vib} \ll E_{elec}",
+    "F7": r"\Delta E_{total} = \Delta E_{elec} + \Delta E_{vib} + \Delta E_{rot}",
+    "F8": r"A = \log\frac{I_0}{I} = \varepsilon c l",
+    "F9": r"m_1 r_1 = m_2 r_2 \qquad r_0 = r_1 + r_2",
+    "F10": r"r_1 = \frac{m_2\, r_0}{m_1 + m_2} \qquad r_2 = \frac{m_1\, r_0}{m_1 + m_2}",
+    "F11": r"I = m_1 r_1^2 + m_2 r_2^2 = \mu r_0^2, \qquad \mu = \frac{m_1 m_2}{m_1 + m_2}",
+    "F12": r"E_r = \tfrac{1}{2} I \omega^2 = \frac{L^2}{2I}",
+    "F13": r"E_J = \frac{h^2}{8\pi^2 I}\, J(J+1)\ \text{J}",
+    "F14": r"\varepsilon_J = \frac{h}{8\pi^2 I c}\, J(J+1) = BJ(J+1)\ \text{cm}^{-1}, \qquad B = \frac{h}{8\pi^2 I c}",
+    "F15": r"\Delta J = \pm 1",
+    "F16": r"\Delta\varepsilon_{J \to J+1} = 2B(J+1)\ \text{cm}^{-1}; \quad \text{levels } 0, 2B, 6B, 12B, 20B, 30B, 42B",
+    "F17": r"F = -kx \qquad PE = \tfrac{1}{2} k (r - r_{eq})^2",
+    "F18": r"\nu_{osc} = \frac{1}{2\pi}\sqrt{\frac{k}{\mu}}\ \text{Hz}",
+    "F19": r"\bar{\nu}_{osc} = \frac{1}{2\pi c}\sqrt{\frac{k}{\mu}}\ \text{cm}^{-1}",
+    "F20": r"E_v = \left(v + \tfrac{1}{2}\right) h\nu_{osc}\ \text{J} \qquad \varepsilon_v = \left(v + \tfrac{1}{2}\right)\bar{\nu}_{osc}\ \text{cm}^{-1}",
+    "F21": r"\varepsilon_0 = \tfrac{1}{2}\,\bar{\nu}_{osc}",
+    "F22": r"\Delta v = \pm 1; \quad \varepsilon_{v+1} - \varepsilon_v = \bar{\nu}_{osc} \;\Rightarrow\; \text{one line at } \bar{\nu}_{osc}",
+    "F23": r"k = 4\pi^2 c^2 \bar{\nu}^2 \mu",
+    "F24": r"PE = D_{eq}\left[1 - \exp\{a(r_{eq} - r)\}\right]^2",
+    "F25": r"\varepsilon_v = \left(v + \tfrac{1}{2}\right)\bar{\omega}_e - \left(v + \tfrac{1}{2}\right)^2 \bar{\omega}_e x_e\ \text{cm}^{-1}",
+    "F26": r"\begin{aligned} 0\to1 &: \ \bar{\omega}_e(1 - 2x_e) && \text{fundamental} \\ 0\to2 &: \ 2\bar{\omega}_e(1 - 3x_e) && \text{1st overtone} \\ 0\to3 &: \ 3\bar{\omega}_e(1 - 4x_e) && \text{2nd overtone} \end{aligned}",
+    "F27": r"1\to2:\ \bar{\omega}_e(1 - 4x_e) \qquad \varepsilon_0 = \tfrac{1}{2}\bar{\omega}_e\left(1 - \tfrac{1}{2}x_e\right)",
+    "F28": r"\varepsilon = \varepsilon_{elec} + \varepsilon_{vib}; \quad \text{lines labelled } (v', v'')",
+    "F29": r"F = C - P + 2",
+    "F30": r"F = \underbrace{P(C-1) + 2}_{\text{variables}} - \underbrace{C(P-1)}_{\text{constraints}} = C - P + 2",
+    "F31": r"\mu_i^{\alpha} = \mu_i^{\beta} = \mu_i^{\gamma} = \cdots",
+    "F32": r"\mu_i = \left(\frac{\partial G}{\partial n_i}\right)_{T,\,P,\,n_j}",
+    "F33": r"F = 3 - P",
+    "F34": r"\frac{dP}{dT} = \frac{\Delta H}{T\,\Delta V}",
+    "F35": r"F = C - P + 1",
 }
-FIG={"T3":[],"T4":[("G9","Rigid-rotor energy levels J=0–6 (values J(J+1)B), ΔJ=+1 arrows.","Label J, the energy in B, and the widening gaps 2B,4B,6B…"),("G10","Rotational stick spectrum.","Lines at 2B, 4B, 6B…; constant spacing 2B; intensity rises then falls.")],
-"T5":[("G13","SHO parabola with equally spaced levels.","Mark v=0…5 and ε₀=½ν̄; spectrum is a single line.")],
-"T6":[("G15","Morse curve vs harmonic parabola.","Show D_eq, convergence of levels and dissociation limit."),("G17","Anharmonic IR spectrum (schematic).","Hot band left of fundamental; overtones with decreasing spacing.")],
-"T7":[("G21","Franck–Condon, three cases (a, b, c) with spectra.","Draw vertical arrow from v″=0; (c) ends in a continuum.")],
-"T10":[("G22","Water phase diagram (schematic, not to scale).","Label OA, OB, OC, OA′, O, A, with T,P values and F in each region.")],
-"T11":[("G23","Pb–Ag eutectic diagram (schematic; Pb left, Ag right).","Eutectic O at 303 °C, 2.6 % Ag; label the four areas. Slide lettering is inconsistent (see conflicts) – follow your faculty's.")],
-"T12":[("G24","Cooling curves: pure, mixture, eutectic.","Mark break and halt.")],
-"T13":[("G25","Ethane torsion barrier ≈3.0 kcal/mol (illustrative).","Staggered minima, eclipsed maxima.")]}
-FLOWS=[("F3","Spectroscopic activity checker",["Permanent dipole? → Yes: microwave (rotational) active","Dipole changes during a vibration? → Yes: IR active","All molecules → electronic (UV-Vis) active","HCl: all three · CO: all three · H₂, Cl₂: electronic only · CO₂: IR (asym. stretch, bend) + electronic, not microwave · H₂O: all three · HI: all three"]),
-("F4","Rotational spectrum → bond length",["Read first line (or spacing) → B = line/2","I = h / (8π²cB)","μ = m₁m₂/(m₁+m₂) in kg","r₀ = √(I/μ)"]),
-("F5","IR line → force constant (and reverse)",["ν̄ → k = 4π²c²ν̄²μ","k → ν̄ = (1/2πc)√(k/μ) → ZPE = ½ν̄ → ε_v = (v+½)ν̄"]),
-("F6","Anharmonic solver",["fundamental = ω̄ₑ(1−2xₑ); overtone = 2ω̄ₑ(1−3xₑ)","ratio overtone/(2·fund) = (1−3xₑ)/(1−2xₑ) → xₑ","ω̄ₑ = fundamental/(1−2xₑ)"]),
-("F7","Franck–Condon outcome",["Compare rₑ′ with rₑ″","Equal → (0,0) strongest","Longer → (v′,0), v′>0 strongest","Much longer → continuum (dissociation)"]),
-("F8","Phase-rule derivation",["Variables = P(C−1)+2","Constraints = C(P−1)","F = variables − constraints = C−P+2"]),
-("F9","Phase-rule application",["Count P","Count C (minimum constituents)","Gas absent & constant pressure? → F=C−P+1, else F=C−P+2","Classify F=2 bivariant, 1 univariant, 0 invariant"]),
-("F10","Pb–Ag cooling path",["Melt cools → Pb separates, melt gets richer in Ag along curve to O","At O (303 °C): Pb + Ag + melt, F=0","Below O: solid Pb + solid Ag"]),
-("F11","Thermal analysis → phase diagram",["Cool melts of several compositions","Record T vs time","Read break & halt temperatures","Plot vs composition → diagram"]),
-("F12","Computational methods tree",["Classical: molecular mechanics, molecular dynamics (fast, lower accuracy)","Quantum: semi-empirical → DFT → ab initio (slower, more accurate)"]),
-("F13","Ethylene electronic structure",["Define geometry","Select basis set","Apply method","Solve equations → wavefunction/density","Visualise HOMO, LUMO"]),
-("F14","AI-enhanced workflow",["Quantum simulations","Dataset","Train ML model","Predict properties in ms"])]
-TABLES=[("Atomic vs molecular spectra",["","Atomic","Molecular"],[["Transition","between atomic orbitals","HOMO→LUMO + vib + rot"],["Appearance","line spectra","band spectra"]]),
-("Microwave vs IR vs UV-Vis",["","Microwave","IR","UV-Vis"],[["Transition","rotational","vibrational","electronic"],["Condition","permanent dipole","dipole changes","any molecule"],["Rule","ΔJ=±1","Δv=±1 (SHO)","none for v; Franck–Condon"],["Gives","B, I, r₀","k, ν̄","electronic states"]]),
-("SHO vs anharmonic",["","SHO","Anharmonic"],[["Potential","parabola","Morse"],["Levels","equal spacing","converge"],["Rule","Δv=±1","Δv=±1,±2,±3…"],["Spectrum","1 line","fundamental + overtones + hot bands"]]),
-("Rayleigh vs Raman",["","Rayleigh","Stokes","Anti-Stokes"],[["Frequency","unchanged","lower","higher"],["Molecule","unchanged","gains energy","loses energy"]]),
-("MM / MD / semi-empirical / ab initio / DFT",["Method","Basis","Speed","Accuracy"],[["MM","classical springs","fastest","lowest"],["MD","laws of motion","fast","low"],["Semi-empirical","Schrödinger, approximated","fast","medium"],["DFT","electron density","medium","high"],["Ab initio","wavefunction","slowest","highest"]])]
-PYQ=[("T4","Derive I = μr₀² for a diatomic rigid rotor; calculate bond length from first line (HCl 21.18 cm⁻¹; HI 13.022 cm⁻¹); draw levels to J=5/6 and the spectrum.","2023–25 (×4)"),("T5","Calculate ν̄ and ZPE from k (HF, NO); k from ν̄ (CO); why only one line in SHO?","2023–25"),("T6","Find xₑ and ω̄ₑ from fundamental and overtone; selection rule; failure of SHO.","2023–25"),("T7","State the Franck–Condon principle; draw the three cases with spectra; meaning of a continuum.","2023–25 (×5)"),("T9","Derive the phase rule for C components and P phases.","2023–25 (×3)"),("T10","Draw and label the water phase diagram; F in each region; metastable curve; negative slope of melting curve.","2023–25 (×4)"),("T11","Draw the Pb–Ag diagram with eutectic values; why F = C−P+1.","2023–25"),("T2","Rayleigh vs Raman; Stokes vs anti-Stokes.","(×2)"),("T3","State Born–Oppenheimer; energy-level diagram.","(×3)"),("T8","Components and phases for CaCO₃/MgCO₃ decomposition.","(×2)"),("T13","Define computational chemistry; three applications.","(×1)"),("T3b","State the Beer–Lambert law.","Dec-24 (older syllabus)")]
-SHORT={"T1":"Spectroscopy studies radiation–matter interaction. A spectrophotometer has source, monochromator, sample, detector, recorder. EM waves have E ⟂ B ⟂ direction. E = hν, ν = c/λ, ν̄ = 1/λ. Atomic spectra are lines; molecular spectra are bands.",
-"T2":"Radio→NMR/ESR; microwave→rotation; IR→vibration; UV-Vis→valence electrons; X-ray→inner electrons; γ→nuclei. Raman: Rayleigh (no shift), Stokes (lower ν), anti-Stokes (higher ν).",
-"T3":"E = E_rot + E_vib + E_elec, E_rot ≪ E_vib ≪ E_elec, components independent; translation negligible.",
-"T3b":"A = log(I₀/I) = εcl (older syllabus; not on current slides).",
-"T4":"Rigid rotor: two masses at fixed r₀. I = μr₀². ε_J = BJ(J+1). Needs permanent dipole; ΔJ=±1. Lines at 2B(J+1), spacing 2B. From B get I and r₀.",
-"T5":"SHO: spring/Hooke's law, parabolic PE. ε_v = (v+½)ν̄, ZPE = ½ν̄, equal spacing, Δv=±1 → one line at ν̄. Needs changing dipole; ν̄ = (1/2πc)√(k/μ).",
-"T6":"Morse potential: ε_v = (v+½)ω̄ₑ − (v+½)²ω̄ₑxₑ. Levels converge; Δv=±1,±2…; fundamental, overtones; hot bands left of fundamental.",
-"T7":"HOMO→LUMO transitions; vibrational coarse structure gives progressions (v′,v″); no vibrational selection rule; Franck–Condon: vertical transitions → intensity pattern by rₑ′ vs rₑ″; continuum = dissociation.",
-"T8":"Phase = homogeneous, separable part; component = min. independent constituents; F = min. intensive variables. F = C−P+2.",
-"T9":"Variables P(C−1)+2, constraints C(P−1), equal μ in all phases → F = C−P+2.",
-"T10":"F = 3−P. Areas ice/water/vapour F=2; lines OA, OB, OC F=1; triple point O F=0 (0.0098 °C, 4.58 mmHg); critical 374 °C, 218 atm; OC slope negative; OA′ metastable.",
-"T11":"Condensed system at fixed P: F = C−P+1. Pb–Ag eutectic: 303 °C, 2.6 % Ag, F=0; curves F=1.",
-"T12":"Cooling curves: halt for pure/eutectic, slope break for mixtures; plot to build phase diagram.",
-"T13":"Computational chemistry simulates molecules: MM/MD (classical), semi-empirical, ab initio, DFT (quantum). Cheap, safe; AI adds speed."}
-KEYS={"absorption spectrum":("T1","radiation absorbed as molecule moves to higher level"),"anharmonicity constant xₑ":("T6","small positive constant in Morse levels"),"anti-Stokes line":("T2","Raman line at higher frequency"),"band spectrum":("T1","molecular spectrum from electronic+vib+rot transitions"),"bivariant":("T8","F = 2"),"centre of mass":("T4","point where m₁r₁ = m₂r₂"),"chemical potential":("T9","(∂G/∂nᵢ); equal in all phases at equilibrium"),"component":("T8","min. independent constituents"),"condensed system":("T11","no gas phase"),"continuum":("T7","non-quantised dissociation absorption"),"critical point":("T10","374 °C, 218 atm"),"degrees of freedom":("T8","F"),"DFT":("T13","uses electron density"),"eutectic":("T11","lowest-melting mixture, F=0"),"force constant":("T5","k, N m⁻¹"),"fundamental":("T6","v=0→1"),"gross selection rule":("T4","dipole requirement"),"hot band":("T6","transition from v=1"),"invariant":("T8","F = 0"),"metastable":("T10","supercooled water, OA′"),"moment of inertia":("T4","I = μr₀²"),"Morse function":("T6","anharmonic PE"),"overtone":("T6","v=0→2, 3…"),"phase":("T8","homogeneous separable part"),"progression":("T7","series (v′,0) lines"),"reduced mass":("T4","μ = m₁m₂/(m₁+m₂)"),"rigid rotor":("T4","fixed-r₀ model"),"rotational constant":("T4","B = h/8π²Ic"),"triple point":("T10","0.0098 °C, 4.58 mmHg"),"univariant":("T8","F = 1"),"vertical transition":("T7","Franck–Condon"),"zero-point energy":("T5","½ν̄_osc"),"Stokes line":("T2","Raman line at lower frequency"),"Rayleigh scattering":("T2","elastic scattering"),"HOMO / LUMO":("T7","frontier orbitals"),"wavenumber":("T1","1/λ in cm⁻¹"),"Hooke's law":("T5","F = −kx"),"coarse structure":("T7","vibrational structure on electronic bands"),"fine structure":("T7","rotational structure"),"thermal analysis":("T12","cooling-curve study"),"ab initio":("T13","wavefunction-based"),"molecular mechanics":("T13","balls and springs"),"molecular dynamics":("T13","atomic motion simulation"),"semi-empirical":("T13","approximate Schrödinger"),"Gibbs phase rule":("T8","F = C−P+2"),"reduced phase rule":("T11","F = C−P+1"),"Clausius–Clapeyron":("T10","dP/dT = ΔH/TΔV")}
-# ---------- html helpers ----------
-CSS=open(OUT+"assets/study.css").read() if False else None
-def e(s): return html.escape(s)
-def stars(n): return "★"*int(n)
-def src(s): return f'<span class="src">[{e(s)}]</span>' if s else ""
-def flag(f): return "".join(f'<span class="flag">{e(x.strip())}</span>' for x in f.split("·") if x.strip()) if f else ""
-def mod_of(t): return next(m for m in MODS if t in m[3])
-def fcard(f):
-    i,t,n,eq,g,a,u,w,s,fl=f
-    return f'<div class="formula-card m-{mod_of(t)[2]}" id="{i}"><span class="badge">{stars(w)}</span><div class="fn">{i} · {e(n)} {flag(fl)}</div><div class="eq">{e(eq)}</div><div class="meta"><b>Gives</b> {e(g) or "—"} · <b>Applies</b> {e(a) or "—"} · <b>Units</b> {e(u)} · {src(s)}</div></div>'
-def pt(p):
-    k,t,w,s,fl=p; cls={"def":"def","stmt":"statement","why":"why","trap":"trap","pt":"pt"}[k]; lab={"def":"Definition","stmt":"Statement","why":"Why","trap":"Exam trap","pt":""}[k]
-    return f'<div class="{cls}"><span class="badge">{stars(w)}</span>{"<b>"+lab+": </b>" if lab else ""}{e(t)} {src(s)} {flag(fl)}</div>'
-def fig(i):
-    for t in FIG.values():
-        for f in t:
-            if f[0]==i:
-                svg=open(OUT+f"assets/figures/{i}.svg").read(); svg=svg[svg.find("<svg"):]
-                return f'<figure id="{i}">{svg}<figcaption>Fig. {i} — {e(f[1])}</figcaption><p class="how"><b>In an exam:</b> {e(f[2])}</p></figure>'
-def flow(fl):
-    i,n,steps=fl; return f'<div class="flow" id="{i}"><h4>{i} · {e(n)}</h4><ol>'+"".join(f"<li>{e(s)}</li>" for s in steps)+"</ol></div>"
-def table(t):
-    n,hd,rows=t; return f'<table><caption>{e(n)}</caption><thead><tr>'+"".join(f"<th>{e(x)}</th>" for x in hd)+"</tr></thead><tbody>"+"".join("<tr>"+"".join(f"<td>{e(x)}</td>" for x in r)+"</tr>" for r in rows)+"</tbody></table>"
+WIDE = {"F5", "F11", "F14", "F16", "F20", "F22", "F26", "F30"}
+
+DERIV = {
+    "T4": ("Moment of inertia of a diatomic rigid rotor  ·  I = μr₀²", [
+        (r"m_1 r_1 = m_2 r_2 = m_2(r_0 - r_1)", "Balance about the centre of mass C; r₀ = r₁ + r₂"),
+        (r"r_1 = \frac{m_2 r_0}{m_1 + m_2}, \qquad r_2 = \frac{m_1 r_0}{m_1 + m_2}", "Solve for each distance"),
+        (r"I = m_1 r_1^2 + m_2 r_2^2 = \frac{m_1 m_2^2 r_0^2 + m_2 m_1^2 r_0^2}{(m_1+m_2)^2}", "Substitute into the definition of I"),
+        (r"I = \frac{m_1 m_2}{m_1 + m_2}\, r_0^2 = \mu r_0^2", "Factor m₁m₂(m₁+m₂)"),
+    ]),
+    "T9": ("Gibbs phase rule for C components and P phases", [
+        (r"\text{composition variables} = P(C-1)", "Each phase needs C − 1 mole fractions (they sum to 1)"),
+        (r"\text{total variables} = P(C-1) + 2", "Add temperature and pressure (same in every phase)"),
+        (r"\mu_i^{\alpha} = \mu_i^{\beta} = \cdots \;\Rightarrow\; (P-1) \text{ equations per component}", "Equilibrium: equal chemical potential in all phases"),
+        (r"\text{total constraints} = C(P-1)", "Over all C components"),
+        (r"F = P(C-1) + 2 - C(P-1) = C - P + 2", "Degrees of freedom = variables − constraints"),
+    ]),
+}
+
+DOCS = {
+    "00": ("Unit 1 — Complete Study Pack", "Master edition", "Everything in one place: notes, formulas, figures, flowcharts, worked examples and past-paper questions, organised topic by topic."),
+    "01": ("Formulas & Symbols", "Formula sheet", "Every formula in Unit 1 as a card with conditions and units, followed by a full glossary of the symbols they use."),
+    "02": ("Important Points", "Key points", "Definitions, statements of laws, selection rules, “why” reasoning and exam traps, with past-paper questions per topic."),
+    "03": ("Graphs & Diagrams", "Figures", "Redrawn energy-level diagrams, spectra, potential curves and phase diagrams, each with what to label in an exam."),
+    "04": ("Flowcharts & Visuals", "Process maps", "Step-by-step problem-solving flows, decision paths and comparison tables."),
+    "05": ("Short Notes & Keywords", "Quick revision", "Exam-ready short notes, a keyword index and a last-ten-minutes checklist."),
+}
+
+# ---------- KaTeX: collect, render once in Node, substitute ----------
+_math = []
+def m(tex, display=False):
+    _math.append((tex, display))
+    return f"\x00M{len(_math)-1}\x00"
+
+def render_math(doc):
+    if not _math:
+        return doc
+    with tempfile.TemporaryDirectory() as d:
+        inp, out = os.path.join(d, "in.json"), os.path.join(d, "out.json")
+        json.dump(_math, open(inp, "w"))
+        subprocess.run(["node", os.path.join(BUILD, "katex_render.js"), inp, out],
+                       check=True, env={**os.environ, "KATEX_PATH": KATEX})
+        rendered = json.load(open(out))
+    for i, h_ in enumerate(rendered):
+        doc = doc.replace(f"\x00M{i}\x00", h_)
+    return doc
+
+# ---------- small helpers ----------
+import re
+_SUB = re.compile(r"(?<=[A-Za-zΑ-ωε̄])_(\{[^}]+\}|[A-Za-z0-9]+)")
+def e(x):
+    """Escape text and turn ASCII subscripts (ν̄_osc, E_rot) into <sub>."""
+    return _SUB.sub(lambda g: "<sub>" + g.group(1).strip("{}") + "</sub>", html.escape(x))
+MOD_OF = {t: mod for mod in MODS for t in mod[3]}
+def mcls(t): return MOD_OF[t][2]
+def stars(n):
+    n = int(n)
+    return f'<span class="stars" title="exam weight {n}/3">{"★"*n}<i>{"★"*(3-n)}</i></span>'
+def src(s): return f'<span class="src">{e(s)}</span>' if s and s != "—" else ""
+def flags(f): return "".join(f'<span class="flag">{e(x.strip())}</span>' for x in f.split("·") if x.strip()) if f else ""
+def topic_weight(t):
+    ws = [int(f[7]) for f in FL if f[1] == t] + [p[2] for p in PTS.get(t, [])]
+    return max(ws) if ws else 1
+
+# ---------- components ----------
+def formula_card(f):
+    i, t, name, _, gives, applies, units, w, s, fl = f
+    wide = " wide" if i in WIDE else ""
+    rows = "".join(f"<dt>{k}</dt><dd>{e(v)}</dd>" for k, v in [("Gives", gives), ("Applies", applies), ("Units", units)] if v)
+    return (f'<article class="fcard{wide}" id="{i}"><header><span class="fid">{i}</span>'
+            f'<span class="fname">{e(name)}</span>{stars(w)}</header>'
+            f'<div class="eq">{m(TEX[i], True)}</div>{flags(fl)}<dl>{rows}</dl>'
+            f'<footer>{src(s)}</footer></article>')
+
+def formula_grid(t):
+    fs = [f for f in FL if f[1] == t]
+    # a half-width card with no partner (next is wide, or it is last) spans the full row
+    col = 0
+    for k, f in enumerate(fs):
+        if f[0] in WIDE:
+            col = 0; continue
+        nxt_wide = k + 1 == len(fs) or fs[k + 1][0] in WIDE
+        if col == 0 and nxt_wide:
+            WIDE.add(f[0]); continue
+        col = 1 - col
+    cards = [formula_card(f) for f in fs]
+    return f'<div class="fgrid">{"".join(cards)}</div>' if cards else ""
+
+TAGS = {"def": ("Definition", "tag-def"), "stmt": ("Law", "tag-law"), "why": ("Why", "tag-why"),
+        "trap": ("Exam trap", "tag-trap"), "pt": ("Key point", "tag-pt")}
+def point(p):
+    k, text, w, s, fl = p
+    lab, cls = TAGS[k]
+    body = f"<blockquote>{e(text)}</blockquote>" if k == "stmt" else f"<p>{e(text)}</p>"
+    return (f'<div class="point {cls}"><div class="ptag">{lab}</div>'
+            f'<div class="pbody">{body}<div class="pmeta">{stars(w)}{src(s)}{flags(fl)}</div></div></div>')
+
+def points(t): return "".join(point(p) for p in PTS.get(t, []))
+
+def figure(fid, cap, how):
+    svg = open(OUT + f"assets/figures/{fid}.svg").read()
+    svg = svg[svg.find("<svg"):]
+    return (f'<figure id="{fid}"><div class="fig-inner">{svg}</div>'
+            f'<figcaption><span class="fignum">Fig. {fid}</span>{e(cap)}</figcaption>'
+            f'<p class="howto"><b>In the exam</b> {e(how)}</p></figure>')
+
+def figures(t): return "".join(figure(*f) for f in FIG.get(t, []))
+
+def flowchart(fl):
+    i, name, steps = fl
+    li = "".join(f'<li><span class="n">{k}</span><span>{e(s)}</span></li>' for k, s in enumerate(steps, 1))
+    return f'<div class="flow" id="{i}"><h4><span class="fid">{i}</span>{e(name)}</h4><ol>{li}</ol></div>'
+
+def table(tb):
+    name, head, rows = tb
+    th = "".join(f"<th>{e(x)}</th>" for x in head)
+    tr = "".join("<tr>" + "".join(f"<td>{e(x)}</td>" for x in r) + "</tr>" for r in rows)
+    return f'<div class="tbl"><div class="tcap">{e(name)}</div><table><thead><tr>{th}</tr></thead><tbody>{tr}</tbody></table></div>'
+
+FLOW_TOPIC = {"F3": "T4", "F4": "T4", "F5": "T5", "F6": "T6", "F7": "T7", "F8": "T9", "F9": "T8",
+              "F10": "T11", "F11": "T12", "F12": "T13", "F13": "T13", "F14": "T13"}
+TABLE_TOPIC = {0: "T1", 1: "T2", 2: "T6", 3: "T2", 4: "T13"}
+def visuals(t):
+    fl = [flowchart(f) for f in FLOWS if FLOW_TOPIC[f[0]] == t]
+    tb = [table(TABLES[i]) for i, tt in TABLE_TOPIC.items() if tt == t]
+    return (f'<div class="flows">{"".join(fl)}</div>' if fl else "") + "".join(tb)
+
 def worked(t):
-    return "".join(f'<div class="worked"><div><b>Given</b><br>{e(q)}</div><div><b>Solution</b><br>{e(s)}</div><div class="ans"><b>Answer</b><br>{e(a)}</div></div>' for (tt,q,s,a,_) in W if tt==t)
+    out = []
+    for k, (tt, q, sol, ans, _) in enumerate([w for w in W if w[0] == t], 1):
+        out.append(f'<div class="worked"><div class="wh">Worked example {t}.{k}<span class="chip">ESA</span></div>'
+                   f'<div class="wrow"><span>Given</span><p>{e(q)}</p></div>'
+                   f'<div class="wrow"><span>Method</span><p>{e(sol)}</p></div>'
+                   f'<div class="wrow ans"><span>Answer</span><p>{e(ans)}</p></div></div>')
+    return "".join(out)
+
+def derivation(t):
+    if t not in DERIV:
+        return ""
+    title, steps = DERIV[t]
+    li = "".join(f'<li><div class="dstep">{m(tex, True)}</div><div class="dnote">{e(n)}</div></li>' for tex, n in steps)
+    return f'<div class="deriv"><div class="dh">Derivation · {e(title)}</div><ol>{li}</ol></div>'
+
+def pyqs(t):
+    q = [(x, y) for tt, x, y in PYQ if tt == t]
+    if not q:
+        return ""
+    li = "".join(f'<li><span class="chip">{e(y)}</span>{e(x)}</li>' for x, y in q)
+    return f'<div class="pyq"><div class="ph">Asked in past ESA papers</div><ul>{li}</ul></div>'
+
+def shortnote(t): return f'<div class="snote"><div class="sh">Short note</div><p>{e(SHORT[t])}</p></div>'
+
 def glossary():
-    return '<table><thead><tr><th>Symbol</th><th>Meaning in this unit</th><th>Unit</th><th>Value / note</th></tr></thead><tbody>'+"".join(f"<tr><td>{e(a)}</td><td>{e(b)}</td><td>{e(c_)}</td><td>{e(d)}</td></tr>" for a,b,c_,d in SYM)+"</tbody></table>"
-CONST='<div class="note"><b>Constants:</b> h = 6.626×10⁻³⁴ J s · c = 3×10⁸ m s⁻¹ = 3×10¹⁰ cm s⁻¹ · N_A = 6.022×10²³ mol⁻¹ · 1 amu = 1.66×10⁻²⁷ kg · π = 3.14 (papers). <b>Conversions:</b> E(J) ÷ hc → cm⁻¹; ν = c·ν̄; 1 eV = 1.602×10⁻¹⁹ J = 8065.5 cm⁻¹; 1 kJ mol⁻¹ = 83.59 cm⁻¹.</div>'
-def page(title,body,toc):
-    css=open(OUT+"assets/study.css").read()
-    return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>{e(title)}</title><style>{css}</style></head><body><header class="cover"><h1>{e(title)}</h1><p>Engineering Chemistry (UE26CY151A) · Semester 1 · Unit 1 · Compiled from PESU AV-summary transcripts, class slides, the Unit-1 slide PDF and past ESA papers · {datetime.date.today():%d %b %Y}</p><p class="legend">★★★ high · ★★ medium · ★ low/conceptual weight &nbsp;|&nbsp; <span class="flag">Not on current slides</span> <span class="flag">Transcript only</span> <span class="flag">Added for clarity</span> &nbsp;|&nbsp; source tags: [S004·8] slide, [T005] transcript, [PDF] 137-page deck, [ESA] past paper</p></header><nav id="toc"><h2>Contents</h2>{toc}</nav>{body}</body></html>'
-def build(name,title,sections):  # sections: list of (modcode, topic, html)
-    body="";toc="";cur=None
-    for m,t,h_ in sections:
-        if m!=cur:
-            mm=next(x for x in MODS if x[0]==m); body+=f'<h1 class="mod {mm[2]}" id="{m}">{m} · {mm[1]}</h1>'; toc+=f'<div class="tm"><a href="#{m}">{m} · {mm[1]}</a></div>'; cur=m
-        body+=f'<section data-topic="{t}" id="{name}-{t}"><h2 class="{next(x for x in MODS if x[0]==m)[2]}">{t} · {TN[t]}</h2>{h_}</section>'; toc+=f'<div class="tt"><a href="#{name}-{t}">{t} · {TN[t]}</a></div>'
-    return body,toc
-def sec(fn): return [(mod_of(t)[0],t,fn(t)) for t in TN]
-def write(fname,title,body,toc,extra_toc=""):
-    open(OUT+fname,"w").write(page(title,body,toc+extra_toc))
-# ---------- DOC 1 ----------
-def d1(t): return "".join(fcard(f) for f in FL if f[1]==t) or '<p class="muted">No formula for this topic.</p>'
-b,tc=build("d1","",sec(d1)); b1=f'<h2 id="D1-const">Constants & conversions</h2>{CONST}'
-b2=f'<h1 class="mod" id="gloss">Symbol glossary</h1><p class="note">Clashes: <b>μ</b> (reduced mass vs chemical potential), <b>P</b> (phases vs pressure), <b>ε</b> (energy in cm⁻¹ vs molar absorptivity).</p>{glossary()}'
-write("01_formulas_and_symbols.html","Formulas & Symbol Glossary",b1+b+b2,tc+'<div class="tm"><a href="#gloss">Symbol glossary</a></div>')
-# ---------- DOC 2 ----------
-def d2(t):
-    s="".join(pt(p) for p in PTS.get(t,[]))
-    q="".join(f'<div class="pyq"><span class="chip">{e(y)}</span> {e(x)}</div>' for tt,x,y in PYQ if tt==t)
-    return s+(f'<h4>Past-paper questions</h4>{q}' if q else "")
-b,tc=build("d2","",sec(d2)); write("02_important_points.html","Important Points",b,tc)
-# ---------- DOC 3 ----------
-def d3(t): return "".join(fig(f[0]) for f in FIG.get(t,[])) or '<p class="muted">No graph for this topic (see formulas/notes).</p>'
-b,tc=build("d3","",sec(d3)); write("03_graphs_and_diagrams.html","Graphs & Diagrams",b,tc)
-# ---------- DOC 4 ----------
-FM={"F3":"T4","F4":"T4","F5":"T5","F6":"T6","F7":"T7","F8":"T9","F9":"T8","F10":"T11","F11":"T12","F12":"T13","F13":"T13","F14":"T13"}
-TM={0:"T1",1:"T2",2:"T6",3:"T2",4:"T13"}
-def d4(t):
-    s="".join(flow(f) for f in FLOWS if FM[f[0]]==t)
-    s+="".join(table(TABLES[i]) for i,tt in TM.items() if tt==t)
-    return s or '<p class="muted">—</p>'
-tcmap=[("T1",0),("T2",1)]
-b,tc=build("d4","",sec(d4)); write("04_flowcharts_and_visuals.html","Flowcharts & Visuals",b,tc)
-# ---------- DOC 5 ----------
-def d5(t): return f'<div class="note">{e(SHORT[t])}</div>'
-b,tc=build("d5","",sec(d5))
-kw="<h1 class='mod' id='kw'>Keyword index</h1><table><thead><tr><th>Keyword</th><th>Topic</th><th>Meaning</th></tr></thead><tbody>"+"".join(f"<tr><td>{e(k)}</td><td>{t}</td><td>{e(m)}</td></tr>" for k,(t,m) in sorted(KEYS.items(),key=lambda x:x[0].lower()))+"</tbody></table>"
-last="<h1 class='mod' id='last'>Last 10 minutes</h1><ol>"+"".join(f"<li>{e(x)}</li>" for x in ["E = hν, ν̄ = 1/λ","E_rot ≪ E_vib ≪ E_elec","ε_J = BJ(J+1); lines 2B(J+1); spacing 2B","I = μr₀²; r₀ = √(I/μ)","Rotational: permanent dipole, ΔJ=±1","ν̄ = (1/2πc)√(k/μ); ε_v=(v+½)ν̄; ZPE=½ν̄","IR: dipole change, Δv=±1 (SHO), one line","Anharmonic: fund ω̄ₑ(1−2xₑ), overtone 2ω̄ₑ(1−3xₑ)","Franck–Condon: vertical; 3 cases; continuum = dissociation","F = C−P+2; derivation P(C−1)+2 − C(P−1)","Water: F=3−P; triple 0.0098 °C, 4.58 mmHg; critical 374 °C, 218 atm","Pb–Ag: F=C−P+1; eutectic 303 °C, 2.6 % Ag, F=0"])+"</ol>"
-write("05_short_notes_keywords.html","Short Notes & Keywords",b+kw+last,tc+'<div class="tm"><a href="#kw">Keyword index</a></div><div class="tm"><a href="#last">Last 10 minutes</a></div>')
-# ---------- MASTER ----------
+    rows = "".join(f'<tr><td class="sym">{e(a)}</td><td>{e(b)}</td><td>{e(c)}</td><td>{e(d)}</td></tr>' for a, b, c, d in SYM)
+    return ('<div class="callout warn"><b>Same letter, different meaning.</b> μ is reduced mass (spectroscopy) and chemical potential (phase rule). '
+            'P is number of phases and pressure. ε is energy in cm⁻¹ and molar absorptivity (Beer–Lambert).</div>'
+            f'<div class="tbl"><table class="gloss"><thead><tr><th>Symbol</th><th>Meaning in this unit</th><th>Unit</th><th>Value / note</th></tr></thead><tbody>{rows}</tbody></table></div>')
+
+CONSTS = [("h", "Planck constant", "6.626 × 10⁻³⁴ J s", "slides also use 6.625"),
+          ("c", "speed of light", "3 × 10⁸ m s⁻¹ = 3 × 10¹⁰ cm s⁻¹", "use cm s⁻¹ with cm⁻¹"),
+          ("N_A", "Avogadro constant", "6.022 × 10²³ mol⁻¹", ""),
+          ("amu", "atomic mass unit", "1.66 × 10⁻²⁷ kg", "μ must be in kg"),
+          ("π", "pi", "3.14", "as used in papers")]
+CONV = [("J → cm⁻¹", "divide by hc"), ("cm⁻¹ → Hz", "multiply by c"), ("1 eV", "1.602 × 10⁻¹⁹ J = 8065.5 cm⁻¹"),
+        ("1 kJ mol⁻¹", "83.59 cm⁻¹"), ("1 Å", "10⁻¹⁰ m")]
+def constants():
+    a = "".join(f'<div class="const"><div class="cs">{e(s)}</div><div><b>{e(v)}</b><small>{e(n)}{" · " + e(x) if x else ""}</small></div></div>' for s, n, v, x in CONSTS)
+    b = "".join(f'<div class="conv"><span>{e(x)}</span><b>{e(y)}</b></div>' for x, y in CONV)
+    return f'<div class="consts">{a}</div><div class="convs">{b}</div>'
+
+# ---------- page frame ----------
+def cover(num, title, kicker, blurb):
+    mods = "".join(f'<div class="cmod {c}"><span>{mid}</span>{e(n)}<small>{len(ts)} topic{"s" if len(ts)>1 else ""}</small></div>' for mid, n, c, ts in MODS)
+    return f'''<section class="cover">
+<div class="cbar"><i class="m1"></i><i class="m2"></i><i class="m3"></i></div>
+<div class="ctop"><span class="course">UE26CY151A · Engineering Chemistry</span><span class="unit">Semester 1 · Unit 1</span></div>
+<div class="cmain"><div class="cnum">{num}</div><div class="ckicker">{e(kicker)}</div><h1 class="ctitle">{e(title)}</h1><p class="cblurb">{e(blurb)}</p></div>
+<div class="cmods">{mods}</div>
+<div class="clegend"><div><b>Exam weight</b> {stars(3)} high · {stars(2)} medium · {stars(1)} low</div>
+<div><b>Flags</b> <span class="flag">Not on current slides</span> <span class="flag">Transcript only</span> <span class="flag">Added for clarity</span></div>
+<div><b>Sources</b> <span class="src">S004·8</span> slide 8 of deck 004 · <span class="src">T009</span> class transcript · <span class="src">PDF</span> Unit-1 slide PDF · <span class="src">ESA</span> past paper</div></div>
+<div class="cfoot">Compiled from PESU AV-summary transcripts, class slides and past ESA papers · {datetime.date.today():%d %B %Y}</div>
+</section>'''
+
+def toc(prefix, extra):
+    parts = []
+    for mid, name, c, ts in MODS:
+        rows = "".join(f'<a class="trow" href="#{prefix}-{t}"><span class="tid {c}">{t}</span><span class="tname">{e(TN[t])}</span>{stars(topic_weight(t))}</a>' for t in ts)
+        parts.append(f'<div class="tmod"><a class="tmh {c}" href="#{prefix}-{mid}"><span>{mid}</span>{e(name)}</a>{rows}</div>')
+    ex = "".join(f'<a class="trow" href="#{h}"><span class="tid">+</span><span class="tname">{e(n)}</span></a>' for h, n in extra)
+    return f'<nav id="toc" class="toc"><h2>Contents</h2>{"".join(parts)}{"<div class=tmod>"+ex+"</div>" if ex else ""}</nav>'
+
+def module_banner(prefix, mid, name, c, ts):
+    chips = "".join(f'<span class="tchip">{t} · {e(TN[t])}</span>' for t in ts)
+    return f'<div class="mbanner {c}" id="{prefix}-{mid}"><div class="mnum">{mid.replace("M","Module ")}</div><h1>{e(name)}</h1><div class="mchips">{chips}</div></div>'
+
+def topic_head(t):
+    return f'<header class="thead {mcls(t)}"><span class="tid">{t}</span><h2>{e(TN[t])}</h2>{stars(topic_weight(t))}</header>'
+
+def sub(h, body): return f'<h3 class="sub">{h}</h3>{body}' if body else ""
+
+def document(num, prefix, topic_fn, appendix="", extra_toc=()):
+    title, kicker, blurb = DOCS[num]
+    body = [cover(num, title, kicker, blurb), toc(prefix, extra_toc)]
+    for mid, name, c, ts in MODS:
+        sections = []
+        for t in ts:
+            inner = topic_fn(t)
+            sections.append(f'<section class="topic {c}" id="{prefix}-{t}" data-topic="{t}">{topic_head(t)}{inner}</section>')
+        body.append(f'<div class="module">{module_banner(prefix, mid, name, c, ts)}{"".join(sections)}</div>')
+    body.append(appendix)
+    css = '<link rel="stylesheet" href="assets/katex/katex.min.css"><link rel="stylesheet" href="assets/study.css">'
+    doc = (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+           f'<title>{html.escape(title)} · Engg. Chemistry Unit 1</title>{css}</head><body class="doc-{num}">{"".join(body)}</body></html>')
+    return render_math(doc)
+
+def appendix_block(aid, title, body): return f'<section class="appendix" id="{aid}"><h1 class="ah">{e(title)}</h1>{body}</section>'
+
+def empty(msg): return f'<p class="empty">{e(msg)}</p>'
+
+FILES = {"00": "00_MASTER_unit1_complete", "01": "01_formulas_and_symbols", "02": "02_important_points",
+         "03": "03_graphs_and_diagrams", "04": "04_flowcharts_and_visuals", "05": "05_short_notes_keywords"}
+
+def write(num, html_):
+    open(OUT + FILES[num] + ".html", "w").write(html_)
+    _math.clear()
+
+# ---------- Doc 01 ----------
+def d1(t): return formula_grid(t) or empty("No formula in this topic — see the important points.")
+write("01", document("01", "d1", d1,
+      appendix_block("d1-const", "Constants & unit conversions", constants()) +
+      appendix_block("d1-gloss", "Symbol glossary", glossary()),
+      [("d1-const", "Constants & unit conversions"), ("d1-gloss", "Symbol glossary")]))
+
+# ---------- Doc 02 ----------
+def d2(t): return points(t) + pyqs(t)
+write("02", document("02", "d2", d2))
+
+# ---------- Doc 03 ----------
+def d3(t): return figures(t) or empty("No graph for this topic.")
+write("03", document("03", "d3", d3))
+
+# ---------- Doc 04 ----------
+def d4(t): return visuals(t) or empty("No flowchart for this topic.")
+write("04", document("04", "d4", d4))
+
+# ---------- Doc 05 ----------
+def d5(t):
+    kws = sorted((k, v[1]) for k, v in KEYS.items() if v[0] == t)
+    kl = "".join(f"<li><b>{e(k)}</b> — {e(v)}</li>" for k, v in kws)
+    return shortnote(t) + (f'<ul class="kwlist">{kl}</ul>' if kl else "")
+kw_rows = "".join(f'<div class="kw"><b>{e(k)}</b><span class="tid {mcls(t)}">{t}</span><p>{e(mn)}</p></div>'
+                  for k, (t, mn) in sorted(KEYS.items(), key=lambda x: x[0].lower()))
+LAST = ["E = hν,  ν = c/λ,  ν̄ = 1/λ", "E_rot ≪ E_vib ≪ E_elec  (microwave < IR < UV-Vis)",
+        "ε_J = BJ(J+1);  lines at 2B(J+1);  spacing 2B;  first line at 2B", "I = μr₀²  →  r₀ = √(I/μ), μ in kg",
+        "Microwave needs a permanent dipole, ΔJ = ±1", "ν̄ = (1/2πc)√(k/μ);  ε_v = (v+½)ν̄;  ZPE = ½ν̄",
+        "IR needs a changing dipole;  SHO gives one line (Δv = ±1)", "Fundamental ω̄ₑ(1−2xₑ);  1st overtone 2ω̄ₑ(1−3xₑ)",
+        "Franck–Condon: vertical transitions; 3 cases; continuum = dissociation", "F = C − P + 2  from  P(C−1)+2 − C(P−1)",
+        "Water: F = 3 − P;  triple point 0.0098 °C, 4.58 mmHg;  critical 374 °C, 218 atm", "OC slope negative because ice → water shrinks (ΔV < 0)",
+        "Two components at fixed P:  F = C − P + 1", "Pb–Ag eutectic 303 °C, 2.6 % Ag, F = 0;  Pb 327 °C, Ag 961 °C"]
+last = '<ol class="last">' + "".join(f"<li>{e(x)}</li>" for x in LAST) + "</ol>"
+write("05", document("05", "d5", d5,
+      appendix_block("d5-kw", "Keyword index", f'<div class="kwgrid">{kw_rows}</div>') +
+      appendix_block("d5-last", "Last 10 minutes before the exam", last),
+      [("d5-kw", "Keyword index"), ("d5-last", "Last 10 minutes before the exam")]))
+
+# ---------- Master ----------
 def dm(t):
-    s=f'<h3>Short note</h3><div class="note">{e(SHORT[t])}</div>'
-    if any(f[1]==t for f in FL): s+="<h3>Formulas</h3>"+d1(t)
-    s+="<h3>Important points</h3>"+"".join(pt(p) for p in PTS.get(t,[]))
-    if t in FIG: s+="<h3>Graphs</h3>"+d3(t)
-    x=d4(t)
-    if "muted" not in x: s+="<h3>Flowcharts & tables</h3>"+x
-    w=worked(t)
-    if w: s+="<h3>Worked examples</h3>"+w
-    q="".join(f'<div class="pyq"><span class="chip">{e(y)}</span> {e(x)}</div>' for tt,x,y in PYQ if tt==t)
-    if q: s+="<h3>Past-paper questions</h3>"+q
-    return s
-b,tc=build("m","",sec(dm))
-app=f"<h1 class='mod' id='A'>Appendix A · Symbol glossary</h1>{glossary()}<h1 class='mod' id='B'>Appendix B · Constants</h1>{CONST}<h1 class='mod' id='C'>Appendix C · Possibly examinable, not in current material</h1><div class='note'><span class='flag'>Not on current slides</span> <b>Fe–C diagram</b>: named in the 2025 module list, asked in 2024 ESAs (peritectic, eutectoid points); the class 010 transcript says it is the next class; no 2026 deck exists. <b>CO₂ phase diagram</b>: asked once (Jan 2024), not in current material.</div><h1 class='mod' id='D'>Appendix D · Sources & gaps</h1><p>Used: 12 slide decks (.pptx rendered, .slides.md, .slides.txt), 13 transcripts' text, 137-page Unit-1 PDF, course metadata. <b>Gaps:</b> class 003 video failed to download (HTTP 401) so no transcript; class 012 has no video. No videos were consulted. See README.md for what was not done.</p>"
-write("00_MASTER_unit1_complete.html","Engineering Chemistry – Unit 1 Master",b+app,tc+''.join(f'<div class="tm"><a href="#{x}">Appendix {x}</a></div>' for x in "ABCD"))
-print("built")
+    return (shortnote(t) + sub("Formulas", formula_grid(t)) + sub("Derivation", derivation(t)) +
+            sub("Key points", points(t)) + sub("Graphs &amp; diagrams", figures(t)) +
+            sub("Flowcharts &amp; comparisons", visuals(t)) + sub("Worked examples", worked(t)) + pyqs(t))
+appx = (appendix_block("A", "Appendix A · Symbol glossary", glossary()) +
+        appendix_block("B", "Appendix B · Constants & unit conversions", constants()) +
+        appendix_block("C", "Appendix C · Possibly examinable, not in current material",
+            '<div class="callout"><span class="flag">Not on current slides</span><p><b>Iron–carbon (Fe–C) phase diagram.</b> Named in the 2025 module list and asked in 2024 ESAs (peritectic and eutectoid points). The class 010 transcript says it comes “next class”, but there is no 2026 deck or transcript for it.</p></div>'
+            '<div class="callout"><span class="flag">Not on current slides</span><p><b>CO₂ phase diagram.</b> Asked once (January 2024); not in the current material.</p></div>'
+            '<div class="callout"><span class="flag">Not on current slides</span><p><b>Beer–Lambert law.</b> In the 2025 module overview and the Dec 2024 ESA; summarised under T3b.</p></div>') +
+        appendix_block("D", "Appendix D · Sources & known gaps",
+            '<div class="tbl"><table><thead><tr><th>Source</th><th>Used for</th></tr></thead><tbody>'
+            '<tr><td>12 class slide decks (2026), rendered .pptx + .slides.md/.txt</td><td>Definitions, statements, formulas, values</td></tr>'
+            '<tr><td>Unit-1 slide PDF (2025, 137 pp.)</td><td>Cross-check of derivations</td></tr>'
+            '<tr><td>ESA past papers (Q1), via the brief\'s ranking</td><td>Exam weights, worked examples</td></tr>'
+            '</tbody></table></div><div class="callout warn"><b>Known gaps.</b> The class 003 video failed to download (HTTP 401), so it has no transcript. Class 012 never had a video. No videos were consulted.</div>'))
+write("00", document("00", "m", dm, appx,
+      [("A", "Appendix A · Symbol glossary"), ("B", "Appendix B · Constants"), ("C", "Appendix C · Not in current material"), ("D", "Appendix D · Sources & gaps")]))
+print("built 6 documents")
