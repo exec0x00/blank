@@ -8,7 +8,7 @@
 
 ## 0. The task in one paragraph
 
-Use **every** Unit 1 source in the bucket for **Engineering Chemistry (UE26CY151A), Semester 1**: all the AV Summary **videos** (watched as key frames), all their **transcripts** in every format, all the per-class **slide decks** in every format, the consolidated Unit 1 slide PDF, and the course metadata files. Nothing in the Unit 1 folders may be skipped. Use the past ESA papers to rank what matters. Extract every formula, every symbol used in those formulas, every important point, every graph or plot, every flowchart or process, and every keyword or short note. Organise the results into **five themed reference documents** and **one master document** that merges everything by topic. Author each one as clean, print-ready HTML, then convert each to PDF. Do not invent content. Tag every item with its source.
+Use **every** Unit 1 source in the bucket for **Engineering Chemistry (UE26CY151A), Semester 1**: all the AV Summary **transcripts** in every format, all the per-class **slide decks** in every format, the consolidated Unit 1 slide PDF, and the course metadata files. Nothing among those may be skipped. The **videos** are available too, but consult them **only when a specific gap can't be closed otherwise**, and then grab only the frames you need (§6A). **Parallelise** the work across sub-agents where your environment allows it (§5A). Use the past ESA papers to rank what matters. Extract every formula, every symbol used in those formulas, every important point, every graph or plot, every flowchart or process, and every keyword or short note. Organise the results into **five themed reference documents** and **one master document** that merges everything by topic. Author each one as clean, print-ready HTML, then convert each to PDF. Do not invent content. Tag every item with its source.
 
 ---
 
@@ -17,7 +17,7 @@ Use **every** Unit 1 source in the bucket for **Engineering Chemistry (UE26CY151
 | In scope | Out of scope |
 |---|---|
 | Course **UE26CY151A Engineering Chemistry**, Sem-1, **Unit 1 only** | Units 2, 3 and 4 (electrochemistry, corrosion, batteries, nano, polymers, and so on) |
-| Unit 1 AV Summary **videos**: all 14 `.mp4` files (≈289 min, 1.63 GB), processed as de-duplicated key frames (§6A) | Lab record, the lab cheat sheet, and the other subjects in the bucket |
+| Unit 1 AV Summary **videos**: 14 `.mp4` files (≈289 min, 1.63 GB), **used on demand only** via targeted frame grabs (§6A) | Lab record, the lab cheat sheet, and the other subjects in the bucket |
 | Unit 1 AV Summary **transcripts**: all four formats per video (`.transcript.md`, `.transcript.json`, `.srt`, `.transcript.txt`) | |
 | Unit 1 per-class **slides**: all 12 decks in all three formats (`.pptx` rendered to images, `.slides.md`, `.slides.txt`) | |
 | Course-level files: `ALL_SLIDE_TEXT.md` and `ALL_VIDEO_TRANSCRIPTS.md` (Unit 1 sections), `DOWNLOAD_MANIFEST.csv/json`, `FAILED_VIDEOS.md`, `SUMMARY.json`, `README.md` | |
@@ -72,8 +72,8 @@ Base path: `pesuc/PESU_Materials/Sem-1/UE26CY151A_Engineering_Chemistry/Unit_01/
 
 | Format | What to use it for |
 |---|---|
-| `.mp4` (1280×720, 30 fps) | **Key frames** (§6A). The video shows the slides as they were taught, often **fuller than the 2026 decks** (e.g. the full mole-fraction steps of the phase-rule derivation, which are blank in the deck 009 text extract), plus the instructor's **pen annotations** (ticks, underlines, circles), which mark emphasis. |
-| `.transcript.json` | The authoritative timeline: `segments[]` with `start`, `end`, `text`, `avg_logprob`. Use `start` to align speech with key frames. Use `avg_logprob` to find **low-confidence segments** (e.g. below −0.5) and check them against the frame on screen at that moment. |
+| `.mp4` (1280×720, 30 fps) | **On demand only** (§6A). The video shows the slides as they were taught, sometimes in a fuller older version, plus the instructor's pen annotations. Most of this is already in the rendered decks and transcripts, so open a video only to close a logged gap, using remote single-frame grabs. |
+| `.transcript.json` | The authoritative timeline: `segments[]` with `start`, `end`, `text`, `avg_logprob`. Use `start` to find the exact second to grab a frame when a video trigger fires (§6A). Use `avg_logprob` to find **low-confidence segments** (e.g. below −0.5); resolve them from the slides first. |
 | `.transcript.md` | Easiest reading copy: same text, with `[hh:mm:ss.mmm]` stamps. Use these stamps for citations. |
 | `.srt` | Short subtitle-length cues. Use them for precise frame↔phrase alignment, e.g. to find the exact second a formula is spoken. |
 | `.transcript.txt` | Plain text. Use it for grepping and keyword-frequency counts (what the instructor repeats or calls "very important"). |
@@ -135,7 +135,7 @@ The `.slides.md` / `.slides.txt` files leave equations out. The decks store them
 soffice --headless --convert-to pdf --outdir work/render work/sources/slides/NNN_*.pptx
 pdftoppm -r 110 -png work/render/NNN_*.pdf work/render/NNN/slide
 ```
-This was tested on deck 005. LibreOffice renders the equations legibly, for example ν_osc = (1/2π)√(k/μ) Hz and ε_v = (v+½)ν̄_osc cm⁻¹. Look at **every rendered slide image** in all 12 decks. Cross-check against two other routes: (a) the **video key frames** (§6A), which show the same equations, often in a fuller older version; and (b) `pdftotext -layout` output of the 137-page Unit-1 PDF, where equations partly survive as garbled text.
+This was tested on deck 005. LibreOffice renders the equations legibly, for example ν_osc = (1/2π)√(k/μ) Hz and ε_v = (v+½)ν̄_osc cm⁻¹. Look at **every rendered slide image** in all 12 decks. Cross-check against `pdftotext -layout` output of the 137-page Unit-1 PDF, where equations partly survive as garbled text. Rendering isn't perfect: deck 009 slide 5 renders the chemical-potential equation as garbage. When neither the render nor the PDF is legible, that's a video trigger (§6A, trigger 1).
 
 ### 3.2 Diagram text is OCR noise
 
@@ -156,7 +156,7 @@ Correct them silently in the output. Never quote ASR errors.
 | "Dr. Lata Pasukuleti" | Dr. Lata Pasupulety (from the slide PDF) |
 | "Frank Condon" | Franck–Condon |
 
-Transcripts are timestamped (`[hh:mm:ss.mmm]`). Keep the timestamp as the citation for anything that comes only from speech. For any ASR passage you can't decode, including low-`avg_logprob` segments in the `.transcript.json`, look at the key frame on screen at that timestamp. The slide usually shows the term or formula being spoken.
+Transcripts are timestamped (`[hh:mm:ss.mmm]`). Keep the timestamp as the citation for anything that comes only from speech. For any ASR passage you can't decode, including low-`avg_logprob` segments in the `.transcript.json`, first check the slide being discussed at that point. If it's still unresolved and the passage covers a technical term, formula or number, it's a video trigger (§6A, trigger 3): grab the single frame at that timestamp.
 
 ### 3.4 Syllabus drift between 2025 and 2026
 
@@ -266,23 +266,49 @@ If any of your worked solutions disagrees with this table by more than about 1% 
 
 ---
 
-## 6. Extraction workflow
+## 5A. Execution model: parallel sub-agents
+
+If your environment lets you start sub-agents (Task/Agent tool, sub-sessions, or similar), you are the **orchestrator**. Split the work as below and run every lane in a phase **at the same time**. If you can't start sub-agents, do the same phases yourself, one after another. The outputs are identical either way.
+
+### Ground rules for every sub-agent
+- **Self-contained brief.** Sub-agents start with no context. Give each one: its lane task, the paths of its inputs, the exact output file(s) it owns, and the plan sections it must follow (copy them in, or point to this file at `plans/chem-unit1-study-pack-PLAN.md` and name the sections).
+- **One owner per file.** A sub-agent writes only to its own output paths (listed below). Shared inputs (`work/sources/`, `work/render/`, `output/assets/study.css`, `build/lib/`) are **read-only** for sub-agents. Only the orchestrator merges.
+- **Collision-free IDs.** Each extraction lane prefixes its kb IDs with its lane letter (e.g. `B-F-T4-03`). The orchestrator renumbers them during the merge.
+- **Structured return.** Every sub-agent finishes with a short report: files written, item counts, open questions, and (for extraction lanes) its **video-gap list** (§6A). It doesn't paste content back; the files are the deliverable.
+- **Tool contention.** LibreOffice can't run two headless instances on one profile. Give each process its own: `soffice -env:UserInstallation=file:///tmp/lo_$LANE --headless …`. Chromium/Playwright can print several PDFs in parallel (one page per document).
+- **Check before you merge.** The orchestrator validates each lane's JSON against the §6 schema before merging, and sends a lane back with specific fixes if it fails.
+
+### Phases and lanes
+
+| Phase | Who | Lanes (run concurrently) | Output (owner writes only this) |
+|---|---|---|---|
+| **P0 Setup** | Orchestrator, with shell parallelism | Download all non-video sources in parallel (`xargs -P 8`); verify SHA-256; render the 12 decks to PNG (4–6 parallel `soffice` processes with separate profiles, then `pdftoppm`); `pdftotext` the PDFs; write `build/lib/` (kb schema validator, KaTeX render helper, HTML component helpers) and `output/assets/study.css` from §8; vendor fonts and KaTeX. **Don't download videos.** | `work/sources/`, `work/render/`, `build/lib/`, `output/assets/` |
+| **P1 Extraction** | 8 sub-agents | **A** classes 001–003 (T1, T2, T3, T3b) · **B** 004 (T4) · **C** 005–006 (T5, T6) · **D** 007, both parts (T7) · **E** 008–009, all parts (T8–T10) · **F** 010 + 012 (T11, T12) · **G** 011, three parts, + Extra Topics PDF (T13) · **H** ESA papers: dedupe, map every Q1 sub-question to a T-ID, solve every numerical, check against §5.1 | `work/kb/<lane>.json`, `work/kb/<lane>_gaps.md`, `work/kb/<lane>_conflicts.md`; lane H also writes `work/pyq.json` |
+| **P1b Video gaps** | Same lane agents, only if their gap list isn't empty | Targeted frame grabs per §6A, resolve each gap, update their own kb file | `work/frames/<lane>/…` and updated `work/kb/<lane>.json` |
+| **P2 Merge** | Orchestrator | Merge lanes → `work/kb.json`: dedupe, final IDs, apply exam weights from lane H, reconcile `conflicts.md`, run the §7 minimum-content self-check. Send missing items back to the owning lane. **Freeze `kb.json`** (read-only from here on). | `work/kb.json`, `work/conflicts.md`, `work/coverage.md` |
+| **P3 Visuals** | 4 sub-agents | **V1** spectroscopy figures G1–G21 · **V2** phase and computational figures G22–G26 · **V3** flowcharts F1–F14 (Mermaid → SVG) · **V4** comparison tables, as HTML fragments built from kb | `output/assets/figures/G*.svg`, `F*.svg`, `work/fragments/tables/*.html` |
+| **P4 Documents** | 5 sub-agents, then 1 | **D1–D5** build docs 01–05 (one agent each) from frozen `kb.json`, using `build/lib/` and the P3 assets. **Then** the master (doc 00), which reuses the same per-topic fragments that D1–D5 emit to `work/fragments/<doc>/<T-ID>.html`. | `build/doc0N.py`, `output/0N_*.html`, `work/fragments/<doc>/` |
+| **P5 PDF + QA** | Orchestrator plus 6 reviewer sub-agents | Print all 6 PDFs in parallel (§9). One reviewer per document runs the §10 checks and fixes its own document's builder (not shared files). The orchestrator owns any fix to `study.css` or `build/lib/` and rebuilds everything afterwards. | `output/*.pdf`, `work/qa/<doc>.md` |
+
+**Dependencies:** P0 → P1 → (P1b) → P2 → P3 → P4 → P5. Inside a phase, the lanes don't depend on each other. The master in P4 starts only after D1–D5 have written their fragments. If you have fewer agent slots than lanes, merge neighbouring lanes (A+B, C+D, E+F, G+H) rather than run them one after another.
+
+---
+
+## 6. Extraction workflow (what each P1 lane does)
 
 Do the extraction **before** writing any HTML. Keep intermediate files under `work/`.
 
-1. **Download** everything in §2.2 and §2.3, **including all 14 mp4s**. Save `work/sources/manifest.json` with each file's path, size and URL, and verify the SHA-256 against `SHA256SUMS.txt`. Disk budget: the videos are about 1.6 GB. Process them **one at a time** (download → key frames → delete the mp4) if space is tight.
-2. **Render** the 12 `.pptx` decks to PNG (see §3.1). Also extract text from the 137-page Unit-1 PDF and the Extra Topics PDF with `pdftotext -layout`. Use `-upw 8enterprise` for the Extra Topics PDF.
-3. **Process the videos** into key frames aligned with the transcript (§6A).
-4. **Read** every source completely, class by class, in this order:
+1. **Inputs are already local** (P0): rendered slide PNGs in `work/render/<deck>/`, slide text, transcripts in all formats, and PDF text. Videos are **not** downloaded.
+2. **Read** every non-video source for your classes completely, in this order:
    1. Rendered slide images of the 2026 deck
-   2. `.slides.md` and `.slides.txt` text
-   3. The video key frames for that class, side by side with the transcript segments for each frame's time window
-   4. The matching pages of the 137-page PDF
+   2. `.slides.md` and `.slides.txt` (diff them; keep anything that appears in only one)
+   3. Transcript(s): read the `.transcript.md`; use `.transcript.json` to find low-confidence segments (`avg_logprob` < −0.5); grep `.transcript.txt` for emphasis words
+   4. The matching pages of the 137-page Unit-1 PDF (and the Extra Topics PDF for lane G)
    5. The Unit 1 section of `ALL_SLIDE_TEXT.md` / `ALL_VIDEO_TRANSCRIPTS.md`, to confirm nothing was missed
-5. **Record** each atomic fact in `work/kb.json` (the knowledge base) as one object per item:
+3. **Record** each atomic fact in `work/kb/<lane>.json` (merged later into `work/kb.json`) as one object per item:
    ```json
    {
-     "id": "F-T4-03",
+     "id": "B-F-T4-03",
      "kind": "formula | term | point | graph | flow | keyword | definition | example | pyq",
      "topic": "T4",
      "title": "Rotational energy in wavenumbers",
@@ -291,27 +317,62 @@ Do the extraction **before** writing any HTML. Keep intermediate files under `wo
      "body": "…",
      "conditions": "rigid rotor, heteronuclear diatomic",
      "exam_weight": 3,
+     "emphasised": false,
      "sources": [
        {"type":"slide","deck":"004","slide":8},
        {"type":"transcript","file":"004_Rotational_spectroscopy","t":"00:12:31"},
-       {"type":"video_frame","file":"004_Rotational_spectroscopy","t":"00:12:28","frame":"work/frames/004/t00748.png"},
-       {"type":"pdf","file":"Chem_Slides_Unit-1","page":24}
+       {"type":"pdf","file":"Chem_Slides_Unit-1","page":24},
+       {"type":"video_frame","file":"004_Rotational_spectroscopy","t":"00:12:28","frame":"work/frames/B/004_t00748.png"}
      ],
      "verification": "matches rendered slide 004/8 and PDF p.24",
      "flag": null
    }
    ```
-   Use `flag` for `"not-on-current-slides"`, `"transcript-only"`, `"video-only"` (seen in a video frame but not in the 2026 deck) or `"added-for-clarity"`. Set `"emphasised": true` when the instructor annotated it on screen (tick, underline, circle) or said "important" / "remember"; this raises its exam weight by one level (maximum ★★★). The last one marks standard textbook context you added, such as the hot-band expression or the Beer–Lambert form. Keep these minimal and always label them.
-6. **Reconcile.** Where sources disagree, prefer the rendered 2026 slide, then the video frame, then the 2025 PDF, then the transcript. Record each conflict in `work/conflicts.md`. Known example: the triple point appears as "0.0098 °C" on the slides and as "0.0099 °C" in the diagram OCR. The textbook value is 0.0098 °C at 4.58 mm Hg; note the discrepancy.
-7. **Self-check** against the minimum-content checklists in §7. Every listed item must exist in `kb.json` before you start writing HTML.
+   (The `video_frame` source appears only when a video gap was resolved; most items won't have one.)
+   - Use `flag` for `"not-on-current-slides"`, `"transcript-only"`, `"video-only"` (seen only in a video frame) or `"added-for-clarity"`. The last one marks standard textbook context you added, such as the hot-band expression or the Beer–Lambert form; keep these minimal and always label them.
+   - Set `"emphasised": true` when the instructor said "important" / "remember" / "note that", or annotated it on screen (when a frame was checked). This raises its exam weight by one level (maximum ★★★).
+4. **Log gaps.** For anything you couldn't settle from the non-video sources, add a row to `work/kb/<lane>_gaps.md` using the triggers in §6A: what is missing, the transcript timestamp where it's discussed, and which trigger applies.
+5. **Reconcile** within your lane. Where sources disagree, prefer the rendered 2026 slide, then the 2025 PDF, then a video frame (if one was checked), then the transcript. Record each conflict in `work/kb/<lane>_conflicts.md`. Known example: the triple point appears as "0.0098 °C" on the slides and as "0.0099 °C" in the diagram OCR. The textbook value is 0.0098 °C at 4.58 mm Hg; note the discrepancy.
+6. **Self-check** your lane's topics against the minimum-content checklists in §7 before reporting back.
 
 ---
 
-## 6A. Video processing: key frames aligned with transcripts
+## 6A. Videos: use only when necessary
 
-The videos are slide presentations with the instructor in a picture-in-picture at the bottom right. A slide stays on screen for 1 to 5 minutes, and the instructor's pen annotations build up on it over that time. Don't watch every frame. Extract **one frame per slide change**, plus **the last frame before each change** (the fully annotated version).
+The videos are slide presentations with the instructor in a picture-in-picture at the bottom right. Their speech is already in the transcripts, and most of their slides match the 2026 decks, which you'll have rendered. So **don't watch or download the videos by default.** Consult a video only when a specific gap can't be closed any other way, and then grab only the frames you need.
 
-**Tested method** (run on class 009 Part I: 20.6 min → 10 slide changes → 19 frames, all legible):
+### When a video is necessary (the triggers)
+Open a video only if at least one of these holds, **after** you've checked the rendered slide, both slide-text formats, the transcript and the 137-page PDF:
+
+1. **Unreadable or garbled equation.** A formula on a rendered slide is corrupted or blank and isn't legible in the PDF either. *Known case:* deck 009 slide 5, where the chemical-potential definition μᵢ = (∂G/∂nᵢ)_{T,P,nⱼ} renders as garbage in LibreOffice.
+2. **Transcript-only content.** The transcript discusses something that isn't on any 2026 slide or PDF page, and you need the formula, labels or exact wording. *Likely cases:* Raman, Rayleigh, Stokes and anti-Stokes in class 002; Clausius–Clapeyron slope analysis in class 009 Part II; desilverisation in class 010.
+3. **Undecodable speech about a technical term or number.** A low-confidence ASR segment (`avg_logprob` < −0.5) covers a formula, constant or term, and the slide doesn't settle it.
+4. **Missing diagram reference.** A required figure from §7.3 has no clear reference image in the rendered deck or the PDF.
+5. **Empty slide.** A slide is empty in all text and render forms, but the transcript shows it was being taught (e.g. deck 001 slide 10).
+
+Not triggers: wanting to check emphasis, general curiosity, or "completeness". Use the spoken-emphasis grep for emphasis instead. Classes with no logged gaps get **no video processing at all**. Record them in `coverage.md` as "video not needed: all content resolved from slides, transcript and PDF".
+
+### How to get only the frames you need (no full download)
+ffmpeg can seek inside the remote file over HTTP. Tested: one frame in about 2.7 s, with no full download.
+
+```bash
+URL="https://huggingface.co/buckets/alvin3y10/data/resolve/<url-encoded path to .mp4>"
+# one frame at the moment the transcript discusses the gap (seconds from transcript.json "start")
+ffmpeg -v error -y -ss 806 -i "$URL" -frames:v 1 work/frames/<lane>/<stem>_t00806.png
+# a short burst around it if the slide is still building (every 5 s for 60 s)
+ffmpeg -v error -y -ss 790 -t 60 -i "$URL" -vf fps=1/5 work/frames/<lane>/<stem>_burst_%02d.png
+```
+Steps:
+- Pick the timestamp from the transcript segment that talks about the gap. Take the frame **a few seconds before the next slide change**: it has the fullest annotations.
+- Open the frame image and read it.
+- Update the kb item with a `video_frame` source and set `flag` to `video-only` where appropriate.
+- Mark the gap resolved in `<lane>_gaps.md`.
+- Budget: aim for **10 or fewer frames per gap**. If a gap still isn't resolved after about 3 targeted grabs, escalate to the full-video method below **for that one video only**.
+
+### Full-video key frames (rare fallback)
+Use this only if one video holds several unresolved gaps, or if targeted grabs keep missing (for example, the slide timing can't be found from the transcript). Download that single video, run the script below, review the frames, then delete the mp4.
+
+Tested on class 009 Part I: 20.6 min gave 10 slide changes and 19 frames, all legible.
 
 ```python
 # build/keyframes.py   usage: python3 -I build/keyframes.py VIDEO.mp4 OUTDIR [step_s=2] [thresh=4.0]
@@ -343,20 +404,13 @@ json.dump([{"t": t, "file": f"t{int(t):05d}.png", "kind": "start" if t in starts
 print(len(starts), "slide changes,", len(times), "frames")
 ```
 
-Steps for each of the 14 videos:
-1. Run the script, writing to `work/frames/<stem>/`. If a video gives fewer than about 1 change per 3 minutes, re-run with `thresh=2.5`. If it gives more than about 1 per 20 s (animation noise), use `thresh=6`.
-2. For each frame, attach the transcript segments from `.transcript.json` whose `start` falls between this frame and the next one. Save them into `frames.json` as `"speech": [...]`.
-3. **Look at every frame** (open the PNG). For each one, record in `frames.json`:
-   - `slide_title`, plus the matching 2026 deck slide (`"deck": "009", "slide": 7`) or `null` if the frame has no 2026 equivalent
-   - `equations`: written out in LaTeX
-   - `new_vs_deck`: anything visible here but missing from the 2026 deck or its text extract (extra derivation lines, Raman slides, Fe–C slides, worked examples, older wording)
-   - `annotations`: what the instructor ticked, underlined or circled. These are **emphasis signals**.
-   - `reviewed: true`
-4. Turn every `new_vs_deck` item and every emphasised item into a `kb.json` entry (with the `video_frame` source and the `video-only` flag where appropriate).
-5. Pick the clearest frame for each figure G1–G26 (§7.3) as the **reference image** to redraw from. Don't embed video frames in the final documents.
-6. Delete the mp4 once its frames are done, if disk space is tight. Keep `work/frames/`.
+Fallback steps (single video):
+1. Download the one mp4, run the script into `work/frames/<lane>/<stem>/`. If it gives fewer than about 1 change per 3 minutes, re-run with `thresh=2.5`; if more than about 1 per 20 s, use `thresh=6`.
+2. Attach transcript segments (from `.transcript.json`) whose `start` falls in each frame's window, as `"speech": [...]` in `frames.json`.
+3. Review **only the frames that relate to your open gaps**, and mark those `reviewed: true`.
+4. Update kb items and `<lane>_gaps.md` as for targeted grabs. Delete the mp4.
 
-**Spoken-emphasis pass:** grep every `.transcript.txt` for "important", "remember", "note that", "exam", "very", "must" and "never". Attach those sentences to the nearest kb item and mark it `emphasised`.
+**Spoken-emphasis pass (always, no video needed):** grep every `.transcript.txt` for "important", "remember", "note that", "exam", "very", "must" and "never". Attach those sentences to the nearest kb item and mark it `emphasised`.
 
 ---
 
@@ -583,11 +637,13 @@ with sync_playwright() as p:
 ```
 If a page includes client-side rendering (you should avoid this), wait for a `window.__READY__ = true` flag before printing.
 
+To parallelise (phase P5), open one browser context per document and print them concurrently (e.g. `asyncio.gather` with the async Playwright API), or run one `build_pdf.py <doc>` process per document. Each one writes only its own PDF.
+
 ---
 
 ## 10. Quality assurance (all must pass before finishing)
 
-1. **Coverage:** every item in the §7 minimum lists exists. Every one of the 12 decks, **14 videos** and 14 transcripts is cited at least once. **Every key frame has been looked at**: `work/frames/<class>/frames.json` must have `reviewed: true` for each frame. Print a coverage table to `work/coverage.md` (source file → number of kb items; video → frames extracted / reviewed / cited), and list the known gaps (class 003 video missing, class 012 has no video).
+1. **Coverage:** every item in the §7 minimum lists exists. Every one of the 12 decks and 14 transcripts is cited at least once. Every row in every `work/kb/<lane>_gaps.md` is marked resolved, or listed as an open gap in the README. Print a coverage table to `work/coverage.md`: source file → number of kb items; and for each video, either "not needed" or the gaps it resolved and the frames grabbed. List the known gaps (class 003 video missing, class 012 has no video).
 2. **Formula fidelity:** every formula has been compared visually with its rendered slide image (§3.1). List the slide reference next to each formula in `kb.json` as `verification`.
 3. **Numerical check:** every worked example matches §5.1 within about 1%.
 4. **Dimensional check:** units shown for every formula result and every worked answer.
@@ -611,7 +667,8 @@ output/
   05_short_notes_keywords.html / .pdf
   assets/  study.css  fonts/  katex/  figures/*.svg
 work/
-  sources/  render/  frames/<class>/{t*.png, frames.json}  kb.json  conflicts.md  coverage.md
+  sources/  render/  kb/<lane>.json  kb/<lane>_gaps.md  frames/<lane>/ (only if gaps needed video)
+  fragments/<doc>/<T-ID>.html  qa/<doc>.md  pyq.json  kb.json  conflicts.md  coverage.md
 build/
   extract.py  build_html.py (or build.mjs)  figures.py  build_pdf.py
 README.md   (how to rebuild; list of sources; known gaps)
@@ -625,4 +682,5 @@ Write build scripts in `build/`, outside the download directory. Run every Pytho
 - The coverage table and the contents of `conflicts.md`
 - The list of items flagged "not on current slides" or "transcript only"
 - Any source that couldn't be read, and why
-- Per video: slide changes found, frames reviewed, and kb items that came only from video frames
+- Which videos were consulted, for which gaps (trigger number), how many frames were grabbed, and which kb items came only from video; plus which videos were skipped as unnecessary
+- How the work was parallelised: lanes run, any lanes merged or re-run, and any merge conflicts
