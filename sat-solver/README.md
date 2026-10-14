@@ -63,3 +63,18 @@ grows exponentially (`python3 bench_indexed.py`, peak patterns kept):
 | chain, n pairs        | 16, 64, 256, 1024, 4096 for n = 4…12: exactly 2^n    |
 | random 3-SAT          | 32, 108, 953, 3203 for n = 10, 15, 20, 25            |
 | pigeonhole, n holes   | 9, 64, 625, 7776 for n = 2…5: exactly (n+1)^n        |
+
+## Third method: patterns stored only as positions (`positions.py`)
+
+A position is (clause, literal number). A pattern is one position per
+clause, so all patterns are stored implicitly by a dictionary
+`literal -> positions` plus conflict edges between positions holding `x`
+and `!x`. Building this takes polynomial size (the "build size" column).
+The work moves into choosing one position per clause with no conflict edge
+between any two choices (`python3 positions.py --bench`):
+
+| formula family      | search steps                                       |
+|---------------------|----------------------------------------------------|
+| chain, n pairs      | n (linear)                                         |
+| pigeonhole, n holes | 179, 8262, > 2,000,000 for n = 3, 4, 5             |
+| random 3-SAT        | 97, 4898, 220759, 13594, 122882 for n = 20…60      |
