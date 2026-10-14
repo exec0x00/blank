@@ -172,7 +172,7 @@ WORKED = [
                "$g=4\\dfrac{\\log u}{1/u}=4u\\log u$.",
                "Second order (added for clarity): $g'=4(\\log u+1)$, so $g(g'-1)=4u\\log u\\,(4\\log u+3)$."],
      "answer": "$xu_x+yu_y=4u\\log u$", "check": "sympy: both orders give residual 0."},
-    {"id": "W4.3", "topic": "T4", "title": "Logarithm: f = e^u (slides 006·14–15)", "srcs": ["S006·14", "S006·15", "T006b 00:09:42", "T006b 00:10:59"], "stars": 3,
+    {"id": "W4.3", "topic": "T4", "title": "Logarithm: $f=e^u$ (slides 006·14–15)", "srcs": ["S006·14", "S006·15", "T006b 00:09:42", "T006b 00:10:59"], "stars": 3,
      "given": "$u=\\log\\dfrac{x^2+y^2}{x+y}$; find (i) $xu_x+yu_y$, (ii) $x^2u_{xx}+2xyu_{xy}+y^2u_{yy}$.",
      "steps": ["$f(u)=e^u=\\dfrac{x^2+y^2}{x+y}$; $f(\\lambda x,\\lambda y)=\\lambda f$: $n=1$.", "(i) $g=1\\cdot\\dfrac{e^u}{e^u}=1$.", "(ii) $g'=0$: $g(g'-1)=1\\,(0-1)$."],
      "answer": "(i) $1$, (ii) $-1$", "check": "sympy: (i) 1, (ii) $-1$ exactly."},

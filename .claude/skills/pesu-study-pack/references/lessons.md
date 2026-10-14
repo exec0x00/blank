@@ -110,3 +110,15 @@ Read this before starting. Every item cost a rebuild at least once.
 55. **Theory sessions often work no problems, but the exam asks them.** Class 007 defers every problem to class 008. Take the worked examples from CW and ESA (Taylor/Maclaurin was in 6 of 8 papers), and add any order the slides omit but the papers ask for. Here that was the third-order term, asked in 4 of 6 questions; flag it *added for clarity*.
 56. **A slide figure's hidden parameters can be recovered by algebra.** Slide 007·11 never says where $xe^y+1$ is expanded. Matching its polynomials ($1+x+y$, $1+x+xy+y^2/2$) gives $(1,0)$, and the lecture's guess ("Maclaurin") is wrong. Check every printed limit too: slide 007·3's $\lim(\sin x-x)/x^4$ does not exist.
 57. **CW answers can be wrong too.** CW P26 prints $0.6904$ for $\tan^{-1}(0.9/1.1)$; the series gives $0.6854$. Recompute every class-work answer (lesson 14), not just the slides.
+
+## Added after pack 7 (class 008: problems on Taylor's and Maclaurin's series)
+
+58. **Problem slides contain derivative slips that the final line silently corrects.** Deck 008 has two:
+    - slide 18 gives $f_{yy}(1,1)=3$, though slide 19 uses 1;
+    - slide 12 gives $f_{xy}(0,0)=0$, though slide 13 uses 1.
+
+    Recompute every intermediate value, not just the answer, and flag each slip as an exam trap.
+59. **The transcript may cover only part of the deck.** Lecture 008 stops at slide 9; slides 10–19 have no explanation. Say so in `coverage_note` and the gaps, and cite those slides alone.
+60. **"Up to n terms" ≠ "up to n-th degree".** The lecture defines "three terms" as three non-zero terms. When a slide asks for "six terms" but shows three, finish the job (sympy) and flag the addition.
+61. **Maths in titles, again.** `e^x cos y` in a title printed literally in three packs; QA did not notice because it only looked for backslashes. `qa.py` now also fails on `x^…` or `_{` outside KaTeX. Always write title maths as `$…$` (lesson 39).
+62. **Plain-text figure labels must not contain U+2212.** "(1, −1)" printed boxes. Write such labels in mathtext: `r"$(1,\,-1)$"` (lesson 16).

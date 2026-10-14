@@ -33,6 +33,7 @@ def main(pack_dir, sheets):
         body = html.unescape(re.sub(r"<[^>]+>", " ", txt))
         main_body = body.split("Known gaps, conflicts and corrections")[0]
         raw = re.findall(r"\\(?:frac|partial|alpha|beta|mathrm|text|left|right)\b|\$", body)
+        raw += re.findall(r"[A-Za-z)]\^[{\w(]|_\{", re.sub(r"<pre class=\"code\">.*?</pre>", "", body, flags=re.S))
         if raw:
             bad.append(f"{name}: {len(raw)} raw LaTeX fragments, e.g. {raw[:3]}")
         hits = [w for w in forbidden if w.lower() in main_body.lower()]
