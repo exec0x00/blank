@@ -4,7 +4,8 @@ usage: python3 -I qa.py <pack_dir> [--sheets]
 
 Hard checks: raw LaTeX left in text, broken links (same-doc and cross-doc), forbidden ASR strings
 (PACK["asr_forbidden"]) outside the corrections list, missing figure SVGs, PDFs missing / unembedded fonts,
-items with no source tag, worked examples with no answer.
+items with no source tag, worked examples with no answer, maths clipped by its box (work/qa/overflow.json,
+written by build_pdf.py).
 --sheets also renders every PDF page to contact sheets in <pack_dir>/work/qa/ for visual review —
 LOOK AT EVERY SHEET: label collisions, overflow, clipped SVGs, half-empty pages, split tables.
 """
@@ -52,6 +53,11 @@ def main(pack_dir, sheets):
     for w in K["WORKED"]:
         if not w.get("answer"):
             bad.append(f"worked {w['id']} has no answer")
+    ov = os.path.join(pack_dir, "work", "qa", "overflow.json")
+    if os.path.exists(ov):
+        for stem, hits in json.load(open(ov)).items():
+            for h in hits:
+                bad.append(f"{stem}: maths clipped by {h['over_px']} px in #{h['in']}: {h['tex']} (split it, e.g. \\begin{{gathered}}…\\\\…\\end{{gathered}})")
     meta = json.load(open(os.path.join(out, ".docs.json")))
     for stem, _ in meta["docs"]:
         pdf = os.path.join(out, stem + ".pdf")
