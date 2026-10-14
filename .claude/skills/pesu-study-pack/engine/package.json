@@ -1,0 +1,6 @@
+{
+  "name": "pesu-study-pack-engine",
+  "private": true,
+  "type": "module",
+  "dependencies": { "katex": "0.16.11" }
+}

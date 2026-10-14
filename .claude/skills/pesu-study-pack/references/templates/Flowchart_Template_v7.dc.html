@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
+<style>
+html,body{margin:0;background:#ffffff;color:#111111;font-family:'Computer Modern Serif','CMU Serif','Latin Modern Roman',Georgia,serif;-webkit-font-smoothing:antialiased}
+a{color:#111111;text-decoration:underline}a:hover{color:#555555}
+::selection{background:#e2e2e2}
+</style>
+</helmet>
+<div style="max-width:960px;margin:0 auto;padding:64px 28px 120px;display:flex;flex-direction:column;gap:80px">
+
+
+<section data-screen-label="1 Building blocks" style="display:flex;flex-direction:column;gap:28px">
+  <div style="display:flex;flex-direction:column;gap:6px;border-bottom:1px solid #111111;padding-bottom:10px">
+    <h2 style="margin:0;font-size:26px;font-weight:700;display:flex;gap:16px"><span>1</span><span>Building blocks</span></h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:40px 32px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="background:#ededed;border:1.5px solid #111111;border-radius:14px;padding:14px 18px">
+        <div style="font-variant:small-caps;letter-spacing:0.05em;font-size:15px;color:#444444">given</div>
+        <div style="font-weight:700;font-size:16px;line-height:1.3">Atomic masses</div>
+        <div style="font-size:14.5px;line-height:1.5;color:#333333;margin-top:2px">Convert <i>m</i><sub>1</sub> and <i>m</i><sub>2</sub> to kg</div>
+      </div>
+      <div style="font-size:15px;line-height:1.5"><b>Given.</b> <span style="color:#444444">Data from the question or the starting state. Grey fill, black outline.</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start">
+        <span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">2</span>
+        <div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Reduced mass</div><div style="margin-top:8px;display:inline-block;background:#efefef;border-radius:8px;padding:4px 12px 6px;font-size:19px"><i>μ</i> = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px"><i>m</i><sub>1</sub><i>m</i><sub>2</sub></span><span style="border-top:1px solid currentColor;padding:0 3px"><i>m</i><sub>1</sub> + <i>m</i><sub>2</sub></span></span></div></div>
+      </div>
+      <div style="font-size:15px;line-height:1.5"><b>Step.</b> <span style="color:#444444">One action or calculation. The circled number is the order; formulas sit on a grey strip.</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="align-self:flex-start;display:flex;align-items:center;gap:12px;background:#ffffff;border:2px solid #111111;border-radius:999px;padding:11px 22px 11px 16px">
+        <span style="flex:none;width:11px;height:11px;transform:rotate(45deg);background:#111111"></span>
+        <span style="font-style:italic;font-size:18px;line-height:1.3">Permanent dipole?</span>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#111111;color:#ffffff">yes</span>
+        <span style="font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#ffffff;border:1px solid #111111">no</span>
+      </div>
+      <div style="font-size:15px;line-height:1.5"><b>Question.</b> <span style="color:#444444">A decision. Thick outline and a diamond; every exit is labelled.</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="background:#111111;color:#ffffff;border-radius:14px;padding:14px 18px">
+        <div style="font-variant:small-caps;letter-spacing:0.05em;font-size:15px;color:#cccccc">result</div>
+        <div style="font-weight:700;font-size:16px;line-height:1.3">Bond length</div>
+        <div style="margin-top:8px;display:inline-block;background:#333333;border-radius:8px;padding:4px 12px 6px;font-size:19px"><i>r</i><sub>0</sub> = √(<i>I</i> / <i>μ</i>)</div>
+      </div>
+      <div style="font-size:15px;line-height:1.5"><b>Result.</b> <span style="color:#444444">Where the flow ends. Solid black, so it is the first thing you see.</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="border:1.5px dashed #555555;border-radius:14px;padding:12px 16px;font-size:15px;line-height:1.5"><b><i>Remark.</i></b> If <i>B</i> is in cm<sup>−1</sup>, use <i>c</i> in cm s<sup>−1</sup>.</div>
+      <div style="font-size:15px;line-height:1.5"><b>Remark.</b> <span style="color:#444444">Unit checks, exam traps and source notes. Dashed, and always off the main path.</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="border:1px solid #888888;border-radius:14px;overflow:hidden;font-size:14.5px">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;background:#ededed;font-weight:700;padding:8px 16px"><span>Molecule</span><span>Microwave</span><span>IR stretch</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:7px 16px;border-top:1px solid #dddddd"><span>HCl</span><span>active</span><span>active</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:7px 16px;border-top:1px solid #dddddd"><span>H<sub>2</sub></span><span style="color:#666666">inactive</span><span style="color:#666666">inactive</span></div>
+      </div>
+      <div style="font-size:15px;line-height:1.5"><b>Table.</b> <span style="color:#444444">Worked examples or a comparison inside a flow.</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="background:#ffffff;border:3px double #111111;border-radius:14px;padding:13px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;background:#111111;color:#ffffff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700">✓</span><div style="min-width:0"><div style="font-variant:small-caps;letter-spacing:0.05em;font-size:15px;color:#444444">check</div><div style="font-weight:700;font-size:16px;line-height:1.3">Substitute back</div><div style="font-size:14.5px;line-height:1.5;color:#444444;margin-top:3px">Both measured lines are reproduced</div></div></div>
+      <div style="font-size:15px;line-height:1.5"><b>Check.</b> <span style="color:#444444">Verify the answer: substitute back, compare both sides, or test the units. Double outline and a tick.</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:6px 0">
+        <div style="font-size:15.5px"><b>Figure F4.</b> Bond length from a rotational spectrum. <span style="color:#555555">ESA ★★★</span></div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px"><span style="font-variant:small-caps;letter-spacing:0.05em;font-size:13.5px;border:1px solid #111111;border-radius:999px;padding:0 9px 2px">added for clarity</span><span style="font-size:13px;color:#555555">S004·7 · T004 00:18:47</span></div>
+      </div>
+      <div style="font-size:15px;line-height:1.5"><b>Figure label.</b> <span style="color:#444444">Number, title and ESA priority, then the pack’s flags and source tags (S slide, T transcript, PDF page).</span></div>
+    </div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:16px 36px;font-size:15px;color:#333333;padding-top:6px">
+    <div style="display:flex;align-items:center;gap:12px"><div style="display:flex;align-items:center;width:64px"><div style="flex:1;height:2px;background:#444444"></div><div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div></div>Main path</div>
+    <div style="display:flex;align-items:center;gap:12px"><div style="display:flex;align-items:center;width:64px"><div style="flex:1;border-top:2px dashed #444444"></div><div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div></div>Optional or secondary route</div>
+    <div style="display:flex;align-items:center;gap:12px"><div style="position:relative;width:64px;height:24px"><div style="position:absolute;left:10px;right:0;top:0;bottom:0;border:2px solid #444444;border-left:none;border-radius:0 12px 12px 0"></div><div style="position:absolute;left:2px;top:-5px;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-right:8px solid #444444"></div></div>Loop back: repeat an earlier step</div>
+  </div>
+</section>
+
+<section data-screen-label="2 Layouts" style="display:flex;flex-direction:column;gap:72px">
+  <div style="border-bottom:1px solid #111111;padding-bottom:10px">
+    <h2 style="margin:0;font-size:26px;font-weight:700;display:flex;gap:16px"><span>2</span><span>Layouts</span></h2>
+  </div>
+
+  <!-- 2.1 Straight line -->
+  <div id="A" data-screen-label="2.1 Straight line" style="display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:6px;max-width:680px">
+      <h3 style="margin:0;font-size:21px;font-weight:700;display:flex;gap:14px"><span>2.1</span><span>Straight line</span></h3>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#333333">A procedure with no choices. Read top to bottom, in the order you would write it in the exam. <i>Used in F6, F10, F13, F14.</i></p>
+    </div>
+    <figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:22px">
+      <div style="width:100%;max-width:440px;display:flex;flex-direction:column">
+        <div style="background:#ededed;border:1.5px solid #111111;border-radius:14px;padding:14px 18px">
+          <div style="font-variant:small-caps;letter-spacing:0.05em;font-size:15px;color:#444444">given</div>
+          <div style="font-weight:700;font-size:16px;line-height:1.3">Ethylene, C<sub>2</sub>H<sub>4</sub></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+        <div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">1</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Define the geometry</div></div></div>
+        <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+        <div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">2</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Select a basis set</div><div style="font-size:14.5px;line-height:1.5;color:#444444;margin-top:3px">The mathematical functions used to build the orbitals</div></div></div>
+        <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+        <div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">3</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Apply a method</div><div style="font-size:14.5px;line-height:1.5;color:#444444;margin-top:3px">Calculate orbital energies and density using ab initio, DFT or semi-empirical methods</div></div></div>
+        <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+        <div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">4</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Solve the equations</div><div style="font-size:14.5px;line-height:1.5;color:#444444;margin-top:3px">Obtain the wave function or electron density</div></div></div>
+        <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+        <div style="background:#111111;color:#ffffff;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #ffffff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">5</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Visualize the electronic structure</div><div style="font-size:14.5px;line-height:1.5;color:#dddddd;margin-top:3px">Orbital diagrams, density maps, HOMO and LUMO</div></div></div>
+      </div>
+      <div style="width:100%;max-width:440px;border:1.5px dashed #555555;border-radius:14px;padding:12px 16px;font-size:15px;line-height:1.5;box-sizing:border-box"><b><i>Remark.</i></b> Keep the five steps in the printed order of deck 011, slide 17.</div>
+      <figcaption style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;max-width:640px"><div style="font-size:15.5px"><b>Figure F13.</b> Electronic structure of ethylene in five steps. <span style="color:#555555">ESA ★</span></div><div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px"><span style="font-size:13px;color:#555555">S011·17 · T011 III 00:02:20 · T011 III 00:02:35 · +2 more</span></div></figcaption>
+    </figure>
+  </div>
+
+  <!-- 2.2 Fork and rejoin -->
+  <div id="B" data-screen-label="2.2 Fork and rejoin" style="display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:6px;max-width:680px">
+      <h3 style="margin:0;font-size:21px;font-weight:700;display:flex;gap:14px"><span>2.2</span><span>Fork and rejoin</span></h3>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#333333">One question chooses the formula; both routes come back to the same final step. <i>Used in F9, F11.</i></p>
+    </div>
+    <figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:22px;overflow-x:auto">
+      <div style="width:100%;max-width:660px;min-width:520px;display:flex;flex-direction:column">
+        <div style="width:100%;max-width:440px;margin:0 auto;display:flex;flex-direction:column">
+          <div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">1</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Count the phases, <i>P</i></div><div style="font-size:14.5px;line-height:1.5;color:#444444;margin-top:3px">Each solid and each liquid layer is a separate phase; a gas mixture is one phase</div></div></div>
+          <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+          <div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">2</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Find the minimum number of components, <i>C</i></div><div style="font-size:14.5px;line-height:1.5;color:#444444;margin-top:3px">Include reaction and composition restrictions</div></div></div>
+          <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+          <div style="align-self:center;display:flex;align-items:center;gap:12px;background:#ffffff;border:2px solid #111111;border-radius:999px;padding:11px 24px 11px 16px"><span style="flex:none;width:11px;height:11px;transform:rotate(45deg);background:#111111"></span><span style="font-style:italic;font-size:18px;line-height:1.3">Is the pressure fixed?</span></div>
+        </div>
+        <div style="height:18px;display:flex;justify-content:center"><div style="width:2px;background:#444444"></div></div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+          <div style="display:flex;flex-direction:column">
+            <div style="position:relative;height:50px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+              <div style="position:absolute;top:0;left:50%;right:0;height:2px;background:#444444"></div>
+              <div style="position:absolute;top:0;bottom:8px;left:calc(50% - 1px);width:2px;background:#444444"></div>
+              <div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div>
+              <span style="position:absolute;top:12px;right:calc(50% + 10px);font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#ffffff;border:1px solid #111111">no</span>
+            </div>
+            <div style="flex:1;margin:0 12px;background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px">
+              <div style="font-weight:700;font-size:16px;line-height:1.3">Full phase rule</div>
+              <div style="margin-top:8px;display:inline-block;background:#efefef;border-radius:8px;padding:4px 12px 6px;font-size:19px"><i>F</i> = <i>C</i> − <i>P</i> + 2</div>
+              <div style="font-size:14.5px;line-height:1.5;color:#444444;margin-top:8px">Temperature and pressure both remain variables</div>
+            </div>
+            <div style="position:relative;height:26px"><div style="position:absolute;top:0;bottom:0;left:calc(50% - 1px);width:2px;background:#444444"></div><div style="position:absolute;bottom:0;left:50%;right:0;height:2px;background:#444444"></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div style="position:relative;height:50px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+              <div style="position:absolute;top:0;left:0;right:50%;height:2px;background:#444444"></div>
+              <div style="position:absolute;top:0;bottom:8px;left:calc(50% - 1px);width:2px;background:#444444"></div>
+              <div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div>
+              <span style="position:absolute;top:12px;left:calc(50% + 10px);font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#111111;color:#ffffff">yes</span>
+            </div>
+            <div style="flex:1;margin:0 12px;background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px">
+              <div style="font-weight:700;font-size:16px;line-height:1.3">Reduced phase rule</div>
+              <div style="margin-top:8px;display:inline-block;background:#efefef;border-radius:8px;padding:4px 12px 6px;font-size:19px"><i>F</i> = <i>C</i> − <i>P</i> + 1</div>
+              <div style="font-size:14.5px;line-height:1.5;color:#444444;margin-top:8px">The usual case for condensed solid–liquid systems</div>
+            </div>
+            <div style="position:relative;height:26px"><div style="position:absolute;top:0;bottom:0;left:calc(50% - 1px);width:2px;background:#444444"></div><div style="position:absolute;bottom:0;left:0;right:50%;height:2px;background:#444444"></div></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:18px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+        <div style="width:100%;max-width:500px;margin:0 auto;background:#111111;color:#ffffff;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start;box-sizing:border-box">
+          <span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #ffffff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">3</span>
+          <div style="min-width:0;flex:1"><div style="font-weight:700;font-size:16px;line-height:1.3">Substitute <i>C</i> and <i>P</i>, then name the system</div>
+            <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px;font-size:15px;text-align:center">
+              <div style="background:#333333;border-radius:8px;padding:6px 4px"><i>F</i> = 2<br><span style="color:#dddddd">bivariant</span></div>
+              <div style="background:#333333;border-radius:8px;padding:6px 4px"><i>F</i> = 1<br><span style="color:#dddddd">univariant</span></div>
+              <div style="background:#333333;border-radius:8px;padding:6px 4px"><i>F</i> = 0<br><span style="color:#dddddd">invariant</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figcaption style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;max-width:640px"><div style="font-size:15.5px"><b>Figure F9.</b> Applying the phase rule. <span style="color:#555555">ESA ★★★</span></div><div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px"><span style="font-variant:small-caps;letter-spacing:0.05em;font-size:13.5px;border:1px solid #111111;border-radius:999px;padding:0 9px 2px">added for clarity</span><span style="font-size:13px;color:#555555">S009·8 · S009·10 · S008·4 · PDF p.88 · +19 more</span></div></figcaption>
+    </figure>
+  </div>
+
+  <!-- 2.3 Pick a route -->
+  <div id="C" data-screen-label="2.3 Pick a route" style="display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:6px;max-width:680px">
+      <h3 style="margin:0;font-size:21px;font-weight:700;display:flex;gap:14px"><span>2.3</span><span>Pick a route</span></h3>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#333333">One question with several answers. The grey tag on the right is the keyword to remember for each route. <i>Used in F2.</i></p>
+    </div>
+    <figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:22px;overflow-x:auto">
+      <div style="width:100%;min-width:620px;max-width:820px;display:grid;grid-template-columns:190px minmax(0,1fr);align-items:center">
+        <div style="display:flex;align-items:center">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:10px;background:#ffffff;border:2px solid #111111;border-radius:24px;padding:18px 14px;text-align:center">
+            <span style="width:11px;height:11px;transform:rotate(45deg);background:#111111"></span>
+            <span style="font-style:italic;font-size:18px;line-height:1.3">What information is needed?</span>
+          </div>
+          <div style="width:20px;height:2px;background:#444444"></div>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <div style="display:grid;grid-template-columns:30px minmax(0,1fr)">
+            <div style="position:relative"><div style="position:absolute;left:0;width:2px;top:50%;bottom:0;background:#444444"></div><div style="position:absolute;left:0;right:8px;top:calc(50% - 1px);height:2px;background:#444444"></div><div style="position:absolute;right:0;top:calc(50% - 6px);width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div></div>
+            <div style="padding:5px 0"><div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px"><div style="min-width:0"><div style="font-weight:700;font-size:15.5px">Spin states</div><div style="font-size:14px;line-height:1.45;color:#444444">Spin reversal in a magnetic field: NMR, ESR</div></div><span style="font-style:italic;font-size:16px;background:#ededed;border-radius:999px;padding:3px 14px">radiofrequency</span></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:30px minmax(0,1fr)">
+            <div style="position:relative"><div style="position:absolute;left:0;width:2px;top:0;bottom:0;background:#444444"></div><div style="position:absolute;left:0;right:8px;top:calc(50% - 1px);height:2px;background:#444444"></div><div style="position:absolute;right:0;top:calc(50% - 6px);width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div></div>
+            <div style="padding:5px 0"><div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px"><div style="min-width:0"><div style="font-weight:700;font-size:15.5px">Rotation, molecular geometry</div><div style="font-size:14px;line-height:1.45;color:#444444">Needs a permanent dipole; gives <i>B</i>, <i>I</i> and bond length</div></div><span style="font-style:italic;font-size:16px;background:#ededed;border-radius:999px;padding:3px 14px">microwave</span></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:30px minmax(0,1fr)">
+            <div style="position:relative"><div style="position:absolute;left:0;width:2px;top:0;bottom:0;background:#444444"></div><div style="position:absolute;left:0;right:8px;top:calc(50% - 1px);height:2px;background:#444444"></div><div style="position:absolute;right:0;top:calc(50% - 6px);width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div></div>
+            <div style="padding:5px 0"><div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px"><div style="min-width:0"><div style="font-weight:700;font-size:15.5px">Vibration, bond stiffness</div><div style="font-size:14px;line-height:1.45;color:#444444">Needs a dipole change in the mode; gives frequency and <i>k</i></div></div><span style="font-style:italic;font-size:16px;background:#ededed;border-radius:999px;padding:3px 14px">infrared</span></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:30px minmax(0,1fr)">
+            <div style="position:relative"><div style="position:absolute;left:0;width:2px;top:0;bottom:0;background:#444444"></div><div style="position:absolute;left:0;right:8px;top:calc(50% - 1px);height:2px;background:#444444"></div><div style="position:absolute;right:0;top:calc(50% - 6px);width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div></div>
+            <div style="padding:5px 0"><div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px"><div style="min-width:0"><div style="font-weight:700;font-size:15.5px">Valence electrons</div><div style="font-size:14px;line-height:1.45;color:#444444"><i>σ</i> → <i>σ</i>*, <i>π</i> → <i>π</i>*, <i>n</i> → <i>π</i>*</div></div><span style="font-style:italic;font-size:16px;background:#ededed;border-radius:999px;padding:3px 14px">UV–visible</span></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:30px minmax(0,1fr)">
+            <div style="position:relative"><div style="position:absolute;left:0;width:2px;top:0;bottom:0;background:#444444"></div><div style="position:absolute;left:0;right:8px;top:calc(50% - 1px);height:2px;background:#444444"></div><div style="position:absolute;right:0;top:calc(50% - 6px);width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div></div>
+            <div style="padding:5px 0"><div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px"><div style="min-width:0"><div style="font-weight:700;font-size:15.5px">Inner electrons</div><div style="font-size:14px;line-height:1.45;color:#444444">Inner electronic transitions</div></div><span style="font-style:italic;font-size:16px;background:#ededed;border-radius:999px;padding:3px 14px">X-ray</span></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:30px minmax(0,1fr)">
+            <div style="position:relative"><div style="position:absolute;left:0;width:2px;top:0;bottom:0;background:#444444"></div><div style="position:absolute;left:0;right:8px;top:calc(50% - 1px);height:2px;background:#444444"></div><div style="position:absolute;right:0;top:calc(50% - 6px);width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div></div>
+            <div style="padding:5px 0"><div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px"><div style="min-width:0"><div style="font-weight:700;font-size:15.5px">Nuclear rearrangement</div><div style="font-size:14px;line-height:1.45;color:#444444">Nuclear transitions</div></div><span style="font-style:italic;font-size:16px;background:#ededed;border-radius:999px;padding:3px 14px"><i>γ</i>-ray</span></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:30px minmax(0,1fr)">
+            <div style="position:relative"><div style="position:absolute;left:0;width:2px;top:0;bottom:50%;background:#444444"></div><div style="position:absolute;left:0;right:8px;top:calc(50% - 1px);border-top:2px dashed #444444"></div><div style="position:absolute;right:0;top:calc(50% - 6px);width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div></div>
+            <div style="padding:5px 0"><div style="background:#ffffff;border:1.5px dashed #555555;border-radius:14px;padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px"><div style="min-width:0"><div style="font-weight:700;font-size:15.5px">Scattering instead: Raman</div><div style="font-size:14px;line-height:1.45;color:#444444">Shifted scattered wavelengths; works for homonuclear diatomics</div></div><span style="font-style:italic;font-size:16px;background:#ededed;border-radius:999px;padding:3px 14px">scattered light</span></div></div>
+          </div>
+        </div>
+      </div>
+      <figcaption style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;max-width:640px"><div style="font-size:15.5px"><b>Figure F2.</b> Choosing a spectroscopy route. The dashed route is scattering, not absorption. <span style="color:#555555">ESA ★★</span></div><div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px"><span style="font-variant:small-caps;letter-spacing:0.05em;font-size:13.5px;border:1px solid #111111;border-radius:999px;padding:0 9px 2px">added for clarity</span><span style="font-size:13px;color:#555555">S002·4 · S004·3 · PDF p.19 · T002 00:27:50 · +4 more</span></div></figcaption>
+    </figure>
+  </div>
+
+  <!-- 2.4 Two streams meet -->
+  <div id="D" data-screen-label="2.4 Two streams meet" style="display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:6px;max-width:680px">
+      <h3 style="margin:0;font-size:21px;font-weight:700;display:flex;gap:14px"><span>2.4</span><span>Two streams meet</span></h3>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#333333">Work each column on its own, then combine them. Most numericals follow this shape. <i>Used in F4, F5, F8.</i></p>
+    </div>
+    <figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:22px;overflow-x:auto">
+      <div style="width:100%;max-width:640px;min-width:520px;display:flex;flex-direction:column">
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+          <div style="display:flex;flex-direction:column">
+            <div style="margin:0 12px;background:#ededed;border:1.5px solid #111111;border-radius:14px;padding:14px 18px">
+              <div style="font-variant:small-caps;letter-spacing:0.05em;font-size:15px;color:#444444">given</div>
+              <div style="font-weight:700;font-size:16px;line-height:1.3">Rotational spectrum</div>
+              <div style="font-size:14.5px;line-height:1.5;color:#333333;margin-top:2px">First line or line spacing, both equal to 2<i>B</i></div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+            <div style="margin:0 12px;background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px">
+              <div style="font-weight:700;font-size:16px;line-height:1.3">Rotational constant</div>
+              <div style="margin-top:8px;display:inline-block;background:#efefef;border-radius:8px;padding:4px 12px 6px;font-size:19px"><i>B</i> = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px"><span style="text-decoration:overline"><i>ν</i></span><sub>0→1</sub></span><span style="border-top:1px solid currentColor;padding:0 3px">2</span></span></div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+            <div style="margin:0 12px;background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px">
+              <div style="font-weight:700;font-size:16px;line-height:1.3">Moment of inertia</div>
+              <div style="margin-top:8px;display:inline-block;background:#efefef;border-radius:8px;padding:4px 12px 6px;font-size:19px"><i>I</i> = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px"><i>h</i></span><span style="border-top:1px solid currentColor;padding:0 3px">8<i>π</i><sup>2</sup><i>cB</i></span></span></div>
+              <div style="font-size:14.5px;color:#444444;margin-top:6px">in kg m<sup>2</sup></div>
+            </div>
+            <div style="position:relative;height:30px"><div style="position:absolute;top:0;bottom:0;left:calc(50% - 1px);width:2px;background:#444444"></div><div style="position:absolute;bottom:0;left:50%;right:0;height:2px;background:#444444"></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div style="margin:0 12px;background:#ededed;border:1.5px solid #111111;border-radius:14px;padding:14px 18px">
+              <div style="font-variant:small-caps;letter-spacing:0.05em;font-size:15px;color:#444444">given</div>
+              <div style="font-weight:700;font-size:16px;line-height:1.3">Atomic masses</div>
+              <div style="font-size:14.5px;line-height:1.5;color:#333333;margin-top:2px">Convert <i>m</i><sub>1</sub> and <i>m</i><sub>2</sub> to kg</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+            <div style="margin:0 12px;background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px">
+              <div style="font-weight:700;font-size:16px;line-height:1.3">Reduced mass</div>
+              <div style="margin-top:8px;display:inline-block;background:#efefef;border-radius:8px;padding:4px 12px 6px;font-size:19px"><i>μ</i> = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px"><i>m</i><sub>1</sub><i>m</i><sub>2</sub></span><span style="border-top:1px solid currentColor;padding:0 3px"><i>m</i><sub>1</sub> + <i>m</i><sub>2</sub></span></span></div>
+            </div>
+            <div style="flex:1;position:relative;min-height:30px"><div style="position:absolute;top:0;bottom:0;left:calc(50% - 1px);width:2px;background:#444444"></div><div style="position:absolute;bottom:0;left:0;right:50%;height:2px;background:#444444"></div></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:18px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+        <div style="width:100%;max-width:320px;margin:0 auto;background:#111111;color:#ffffff;border-radius:14px;padding:14px 18px;box-sizing:border-box">
+          <div style="font-variant:small-caps;letter-spacing:0.05em;font-size:15px;color:#cccccc">result</div>
+          <div style="font-weight:700;font-size:16px;line-height:1.3">Bond length</div>
+          <div style="margin-top:8px;display:inline-block;background:#333333;border-radius:8px;padding:4px 12px 6px;font-size:20px"><i>r</i><sub>0</sub> = √(<i>I</i> / <i>μ</i>)</div>
+          <div style="font-size:14.5px;color:#dddddd;margin-top:6px">in m; convert to Å if asked</div>
+        </div>
+      </div>
+      <div style="width:100%;max-width:520px;border:1.5px dashed #555555;border-radius:14px;padding:12px 16px;font-size:15px;line-height:1.5;box-sizing:border-box"><b><i>Remark.</i></b> If <i>B</i> is in cm<sup>−1</sup>, use <i>c</i> in cm s<sup>−1</sup>. The first line is 2<i>B</i>, not <i>B</i>.</div>
+      <figcaption style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;max-width:640px"><div style="font-size:15.5px"><b>Figure F4.</b> Bond length from a rotational spectrum. <span style="color:#555555">ESA ★★★</span></div><div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px"><span style="font-variant:small-caps;letter-spacing:0.05em;font-size:13.5px;border:1px solid #111111;border-radius:999px;padding:0 9px 2px">added for clarity</span><span style="font-size:13px;color:#555555">S004·7 · S004·8 · S004·12 · T004 00:18:47 · +1 more</span></div></figcaption>
+    </figure>
+  </div>
+
+  <!-- 2.5 Decision ladder -->
+  <div id="E" data-screen-label="2.5 Decision ladder" style="display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:6px;max-width:680px">
+      <h3 style="margin:0;font-size:21px;font-weight:700;display:flex;gap:14px"><span>2.5</span><span>Decision ladder</span></h3>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#333333">Ask the questions in order and stop at the first “yes”; that row is your answer. <i>Used in F3, F7.</i></p>
+    </div>
+    <figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:22px;overflow-x:auto">
+      <div style="width:100%;min-width:640px;max-width:860px;display:grid;grid-template-columns:minmax(0,1fr) 96px minmax(0,1.15fr);align-items:center">
+        <div style="background:#ededed;border:1.5px solid #111111;border-radius:14px;padding:14px 18px">
+          <div style="font-variant:small-caps;letter-spacing:0.05em;font-size:15px;color:#444444">start</div>
+          <div style="font-weight:700;font-size:16px;line-height:1.3">From <i>v</i>″ = 0, draw a vertical transition</div>
+          <div style="font-size:14.5px;line-height:1.5;color:#333333;margin-top:2px">Electrons move much faster than nuclei, so <i>r</i> stays fixed</div>
+        </div>
+        <div></div><div></div>
+        <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+        <div></div><div></div>
+
+        <div style="display:flex;align-items:center;gap:12px;background:#ffffff;border:2px solid #111111;border-radius:999px;padding:11px 22px 11px 16px"><span style="flex:none;width:11px;height:11px;transform:rotate(45deg);background:#111111"></span><span style="font-style:italic;font-size:18px;line-height:1.3">Is <i>r</i><sub>e</sub>′ = <i>r</i><sub>e</sub>″?</span></div>
+        <div style="position:relative;display:flex;align-items:center;padding:0 4px"><div style="flex:1;height:2px;background:#444444"></div><div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div><span style="position:absolute;left:50%;transform:translateX(-55%);bottom:10px;font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#111111;color:#ffffff">yes</span></div>
+        <div style="background:#111111;color:#ffffff;border-radius:14px;padding:14px 18px"><div style="font-weight:700;font-size:16px">Equal equilibrium distances</div><div style="font-size:14.5px;line-height:1.5;margin-top:3px;color:#dddddd">Reaches <i>v</i>′ = 0; the (0,0) line is strongest</div></div>
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:30px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div><span style="position:absolute;top:7px;left:calc(50% + 12px);font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#ffffff;border:1px solid #111111">no</span></div>
+        <div></div><div></div>
+
+        <div style="display:flex;align-items:center;gap:12px;background:#ffffff;border:2px solid #111111;border-radius:999px;padding:11px 22px 11px 16px"><span style="flex:none;width:11px;height:11px;transform:rotate(45deg);background:#111111"></span><span style="font-style:italic;font-size:18px;line-height:1.3">Is <i>r</i><sub>e</sub>′ moderately larger?</span></div>
+        <div style="position:relative;display:flex;align-items:center;padding:0 4px"><div style="flex:1;height:2px;background:#444444"></div><div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div><span style="position:absolute;left:50%;transform:translateX(-55%);bottom:10px;font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#111111;color:#ffffff">yes</span></div>
+        <div style="background:#111111;color:#ffffff;border-radius:14px;padding:14px 18px"><div style="font-weight:700;font-size:16px">Moderately shifted potential</div><div style="font-size:14.5px;line-height:1.5;margin-top:3px;color:#dddddd">A higher <i>v</i>′ gives the strongest line, e.g. (2,0)</div></div>
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:30px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div><span style="position:absolute;top:7px;left:calc(50% + 12px);font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#ffffff;border:1px solid #111111">no</span></div>
+        <div></div><div></div>
+
+        <div style="display:flex;align-items:center;gap:12px;background:#ffffff;border:2px solid #111111;border-radius:26px;padding:11px 22px 11px 16px"><span style="flex:none;width:11px;height:11px;transform:rotate(45deg);background:#111111"></span><span style="font-style:italic;font-size:18px;line-height:1.3">Much larger, and above the dissociation limit?</span></div>
+        <div style="position:relative;display:flex;align-items:center;padding:0 4px"><div style="flex:1;height:2px;background:#444444"></div><div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div><span style="position:absolute;left:50%;transform:translateX(-55%);bottom:10px;font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#111111;color:#ffffff">yes</span></div>
+        <div style="background:#111111;color:#ffffff;border-radius:14px;padding:14px 18px"><div style="font-weight:700;font-size:16px">Continuum, dissociation</div><div style="font-size:14.5px;line-height:1.5;margin-top:3px;color:#dddddd">Discrete lines merge into continuous absorption</div></div>
+      </div>
+      <div style="width:100%;max-width:560px;border:1.5px dashed #555555;border-radius:14px;padding:12px 16px;font-size:15px;line-height:1.5;box-sizing:border-box"><b><i>Exam trap.</i></b> A large change in <i>r</i><sub>e</sub> alone does not mean dissociation. The vertical line must actually cross the upper dissociation limit.</div>
+      <figcaption style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;max-width:640px"><div style="font-size:15.5px"><b>Figure F7.</b> Franck–Condon principle: three outcomes. <span style="color:#555555">ESA ★★★</span></div><div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px"><span style="font-size:13px;color:#555555">S007·11 · S007·13 · S007·14 · S007·15 · +1 more</span></div></figcaption>
+    </figure>
+  </div>
+
+  <!-- 2.6 Family tree -->
+  <div id="F" data-screen-label="2.6 Family tree" style="display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:6px;max-width:680px">
+      <h3 style="margin:0;font-size:21px;font-weight:700;display:flex;gap:14px"><span>2.6</span><span>Family tree</span></h3>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#333333">A topic split into branches, each listing its members in a small table. Use it for “classify” and “compare” answers. <i>Used in F1, F12.</i></p>
+    </div>
+    <figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:22px;overflow-x:auto">
+      <div style="width:100%;max-width:780px;min-width:580px;display:flex;flex-direction:column">
+        <div style="width:100%;max-width:400px;margin:0 auto;background:#ededed;border:1.5px solid #111111;border-radius:14px;padding:14px 18px;text-align:center;box-sizing:border-box">
+          <div style="font-weight:700;font-size:18px;line-height:1.3">Computational methods</div>
+          <div style="font-size:14.5px;line-height:1.5;color:#333333;margin-top:2px">Chosen by the chemical question, the system and the model</div>
+        </div>
+        <div style="height:18px;display:flex;justify-content:center"><div style="width:2px;background:#444444"></div></div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+          <div style="display:flex;flex-direction:column">
+            <div style="position:relative;height:30px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end"><div style="position:absolute;top:0;left:50%;right:0;height:2px;background:#444444"></div><div style="position:absolute;top:0;bottom:8px;left:calc(50% - 1px);width:2px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+            <div style="flex:1;margin:0 12px;border:1px solid #888888;border-radius:14px;overflow:hidden">
+              <div style="background:#111111;color:#ffffff;padding:12px 18px"><div style="font-weight:700;font-size:16px">Classical</div><div style="font-size:14.5px;line-height:1.45;color:#dddddd">Newtonian, ball-and-spring; no explicit electrons</div></div>
+              <div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding:10px 18px;font-size:14.5px;line-height:1.45"><b>MM</b><span style="color:#333333">Force-field energy; structure and geometry optimization</span></div>
+              <div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding:10px 18px;font-size:14.5px;line-height:1.45;border-top:1px solid #dddddd"><b>MD</b><span style="color:#333333">Newton’s equations; atomic motion over time</span></div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div style="position:relative;height:30px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end"><div style="position:absolute;top:0;left:0;right:50%;height:2px;background:#444444"></div><div style="position:absolute;top:0;bottom:8px;left:calc(50% - 1px);width:2px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+            <div style="flex:1;margin:0 12px;border:1px solid #888888;border-radius:14px;overflow:hidden">
+              <div style="background:#111111;color:#ffffff;padding:12px 18px"><div style="font-weight:700;font-size:16px">Quantum</div><div style="font-size:14.5px;line-height:1.45;color:#dddddd">Electronic structure; electrons treated explicitly</div></div>
+              <div style="display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;padding:10px 18px;font-size:14.5px;line-height:1.45"><b>Semi-empirical</b><span style="color:#333333">Quantum approximations plus empirical parameters</span></div>
+              <div style="display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;padding:10px 18px;font-size:14.5px;line-height:1.45;border-top:1px solid #dddddd"><b>Ab initio</b><span style="color:#333333">From first principles; computationally heavy</span></div>
+              <div style="display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;padding:10px 18px;font-size:14.5px;line-height:1.45;border-top:1px solid #dddddd"><b>DFT</b><span style="color:#333333">Uses electron density; balances cost and accuracy</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="width:100%;max-width:560px;border:1.5px dashed #555555;border-radius:14px;padding:12px 16px;font-size:15px;line-height:1.5;box-sizing:border-box"><b><i>Remark.</i></b> No method is always most accurate. Reliability depends on the method, its approximations and the property you need.</div>
+      <figcaption style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;max-width:640px"><div style="font-size:15.5px"><b>Figure F12.</b> Families of computational methods. <span style="color:#555555">ESA ★</span></div><div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px"><span style="font-variant:small-caps;letter-spacing:0.05em;font-size:13.5px;border:1px solid #111111;border-radius:999px;padding:0 9px 2px">added for clarity</span><span style="font-size:13px;color:#555555">S011·7 · S011·8 · PDF p.127 · Extra p.12 · +30 more</span></div></figcaption>
+    </figure>
+  </div>
+
+  <!-- 2.7 Maths -->
+  <div id="G" data-screen-label="2.7 Which rule" style="display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:6px;max-width:680px">
+      <h3 style="margin:0;font-size:21px;font-weight:700;display:flex;gap:14px"><span>2.7</span><span>Decision ladder for maths</span></h3>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#333333">The same ladder used to pick a differentiation rule in Unit 1 of UE26MA141A. The tag on each answer lists the matching assignment problems.</p>
+    </div>
+    <figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:22px;overflow-x:auto">
+      <div style="width:100%;min-width:660px;max-width:900px;display:grid;grid-template-columns:minmax(0,1fr) 96px minmax(0,1.25fr);align-items:center">
+        <div style="background:#ededed;border:1.5px solid #111111;border-radius:14px;padding:14px 18px">
+          <div style="font-variant:small-caps;letter-spacing:0.05em;font-size:15px;color:#444444">given</div>
+          <div style="font-weight:700;font-size:16px;line-height:1.3"><i>z</i> = <i>f</i>(<i>x</i>, <i>y</i>), or an equation linking <i>x</i> and <i>y</i></div>
+          <div style="font-size:14.5px;line-height:1.5;color:#333333;margin-top:2px">First decide how the variables depend on each other</div>
+        </div>
+        <div></div><div></div>
+        <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+        <div></div><div></div>
+
+        <div style="display:flex;align-items:center;gap:12px;background:#ffffff;border:2px solid #111111;border-radius:26px;padding:11px 20px 11px 16px"><span style="flex:none;width:11px;height:11px;transform:rotate(45deg);background:#111111"></span><span style="font-style:italic;font-size:17.5px;line-height:1.3">Is <i>y</i> defined implicitly by <i>f</i>(<i>x</i>, <i>y</i>) = 0?</span></div>
+        <div style="position:relative;display:flex;align-items:center;padding:0 4px"><div style="flex:1;height:2px;background:#444444"></div><div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div><span style="position:absolute;left:50%;transform:translateX(-55%);bottom:10px;font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#111111;color:#ffffff">yes</span></div>
+        <div style="background:#111111;color:#ffffff;border-radius:14px;padding:14px 18px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><span style="font-weight:700;font-size:16px">Implicit differentiation</span><span style="font-size:13.5px;color:#cccccc;white-space:nowrap">Prob. 9, 10, 15</span></div>
+          <div style="margin-top:8px;display:inline-block;background:#333333;border-radius:8px;padding:4px 12px 6px;font-size:19px"><span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px"><i>dy</i></span><span style="border-top:1px solid currentColor;padding:0 3px"><i>dx</i></span></span> = − <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px"><i>f<sub>x</sub></i></span><span style="border-top:1px solid currentColor;padding:0 3px"><i>f<sub>y</sub></i></span></span></div></div>
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:30px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div><span style="position:absolute;top:7px;left:calc(50% + 12px);font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#ffffff;border:1px solid #111111">no</span></div>
+        <div></div><div></div>
+
+        <div style="display:flex;align-items:center;gap:12px;background:#ffffff;border:2px solid #111111;border-radius:26px;padding:11px 20px 11px 16px"><span style="flex:none;width:11px;height:11px;transform:rotate(45deg);background:#111111"></span><span style="font-style:italic;font-size:17.5px;line-height:1.3">Are <i>x</i> and <i>y</i> both functions of one variable <i>t</i>?</span></div>
+        <div style="position:relative;display:flex;align-items:center;padding:0 4px"><div style="flex:1;height:2px;background:#444444"></div><div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div><span style="position:absolute;left:50%;transform:translateX(-55%);bottom:10px;font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#111111;color:#ffffff">yes</span></div>
+        <div style="background:#111111;color:#ffffff;border-radius:14px;padding:14px 18px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><span style="font-weight:700;font-size:16px">Total derivative</span><span style="font-size:13.5px;color:#cccccc;white-space:nowrap">Prob. 11, 12</span></div>
+          <div style="margin-top:8px;display:inline-block;background:#333333;border-radius:8px;padding:4px 12px 6px;font-size:19px"><span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px"><i>dz</i></span><span style="border-top:1px solid currentColor;padding:0 3px"><i>dt</i></span></span> = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px">∂<i>z</i></span><span style="border-top:1px solid currentColor;padding:0 3px">∂<i>x</i></span></span><span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px"><i>dx</i></span><span style="border-top:1px solid currentColor;padding:0 3px"><i>dt</i></span></span> + <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px">∂<i>z</i></span><span style="border-top:1px solid currentColor;padding:0 3px">∂<i>y</i></span></span><span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px"><i>dy</i></span><span style="border-top:1px solid currentColor;padding:0 3px"><i>dt</i></span></span></div></div>
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:30px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div><span style="position:absolute;top:7px;left:calc(50% + 12px);font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#ffffff;border:1px solid #111111">no</span></div>
+        <div></div><div></div>
+
+        <div style="display:flex;align-items:center;gap:12px;background:#ffffff;border:2px solid #111111;border-radius:26px;padding:11px 20px 11px 16px"><span style="flex:none;width:11px;height:11px;transform:rotate(45deg);background:#111111"></span><span style="font-style:italic;font-size:17.5px;line-height:1.3">Are <i>x</i> and <i>y</i> functions of two variables <i>u</i>, <i>v</i>?</span></div>
+        <div style="position:relative;display:flex;align-items:center;padding:0 4px"><div style="flex:1;height:2px;background:#444444"></div><div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div><span style="position:absolute;left:50%;transform:translateX(-55%);bottom:10px;font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#111111;color:#ffffff">yes</span></div>
+        <div style="background:#111111;color:#ffffff;border-radius:14px;padding:14px 18px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><span style="font-weight:700;font-size:16px">Chain rule</span><span style="font-size:13.5px;color:#cccccc;white-space:nowrap">Prob. 13, 14, 16</span></div>
+          <div style="margin-top:8px;display:inline-block;background:#333333;border-radius:8px;padding:4px 12px 6px;font-size:19px"><span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px">∂<i>z</i></span><span style="border-top:1px solid currentColor;padding:0 3px">∂<i>u</i></span></span> = <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px">∂<i>z</i></span><span style="border-top:1px solid currentColor;padding:0 3px">∂<i>x</i></span></span><span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px">∂<i>x</i></span><span style="border-top:1px solid currentColor;padding:0 3px">∂<i>u</i></span></span> + <span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px">∂<i>z</i></span><span style="border-top:1px solid currentColor;padding:0 3px">∂<i>y</i></span></span><span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px">∂<i>y</i></span><span style="border-top:1px solid currentColor;padding:0 3px">∂<i>u</i></span></span></div>
+          <div style="font-size:14px;color:#dddddd;margin-top:6px">Same form for ∂<i>z</i>/∂<i>v</i></div></div>
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:30px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div><span style="position:absolute;top:7px;left:calc(50% + 12px);font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#ffffff;border:1px solid #111111">no</span></div>
+        <div></div><div></div>
+
+        <div style="display:flex;align-items:center;gap:12px;background:#ffffff;border:2px solid #111111;border-radius:26px;padding:11px 20px 11px 16px"><span style="flex:none;width:11px;height:11px;transform:rotate(45deg);background:#111111"></span><span style="font-style:italic;font-size:17.5px;line-height:1.3">Is <i>z</i> homogeneous of degree <i>n</i>?</span></div>
+        <div style="position:relative;display:flex;align-items:center;padding:0 4px"><div style="flex:1;height:2px;background:#444444"></div><div style="width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-left:8px solid #444444"></div><span style="position:absolute;left:50%;transform:translateX(-55%);bottom:10px;font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#111111;color:#ffffff">yes</span></div>
+        <div style="background:#111111;color:#ffffff;border-radius:14px;padding:14px 18px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><span style="font-weight:700;font-size:16px">Euler’s theorem</span><span style="font-size:13.5px;color:#cccccc;white-space:nowrap">Prob. 17 onward</span></div>
+          <div style="margin-top:8px;display:inline-block;background:#333333;border-radius:8px;padding:4px 12px 6px;font-size:19px"><i>x</i><span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px">∂<i>z</i></span><span style="border-top:1px solid currentColor;padding:0 3px">∂<i>x</i></span></span> + <i>y</i><span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px">∂<i>z</i></span><span style="border-top:1px solid currentColor;padding:0 3px">∂<i>y</i></span></span> = <i>nz</i></div></div>
+        <div style="position:relative;display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:30px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div><span style="position:absolute;top:7px;left:calc(50% + 12px);font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#ffffff;border:1px solid #111111">no</span></div>
+        <div></div><div></div>
+
+        <div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><span style="font-weight:700;font-size:16px">Partial derivatives directly</span><span style="font-size:13.5px;color:#555555;white-space:nowrap">Prob. 1–8</span></div><div style="font-size:14.5px;line-height:1.5;color:#444444;margin-top:3px">Hold the other variables constant and differentiate</div></div>
+        <div></div><div></div>
+      </div>
+      <div style="width:100%;max-width:560px;border:1.5px dashed #555555;border-radius:14px;padding:12px 16px;font-size:15px;line-height:1.5;box-sizing:border-box"><b><i>Remark.</i></b> For <i>d</i><sup>2</sup><i>y</i>/<i>dx</i><sup>2</sup>, differentiate <i>dy</i>/<i>dx</i> again and substitute <i>dy</i>/<i>dx</i> back in (Problem 9).</div>
+      <figcaption style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;max-width:640px"><div style="font-size:15.5px"><b>Figure G1.</b> Choosing a rule: implicit, total, chain or Euler. <span style="color:#555555">UE26MA141A, Unit 1</span></div><div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px"><span style="font-size:13px;color:#555555">UE26MA141A Assignment, Unit 1, Prob. 1–17</span></div></figcaption>
+    </figure>
+  </div>
+  <!-- 2.8 Repeat until -->
+  <div id="H" data-screen-label="2.8 Repeat until" style="display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:6px;max-width:680px">
+      <h3 style="margin:0;font-size:21px;font-weight:700;display:flex;gap:14px"><span>2.8</span><span>Repeat until</span></h3>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#333333">A cycle that runs until a condition is met. The return line on the right goes back to the step that repeats. <i>Used in F10.</i></p>
+    </div>
+    <figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:22px;overflow-x:auto">
+      <div style="width:100%;max-width:520px;min-width:420px;display:flex;flex-direction:column">
+        <div style="margin-right:64px;background:#ededed;border:1.5px solid #111111;border-radius:14px;padding:14px 18px">
+          <div style="font-variant:small-caps;letter-spacing:0.05em;font-size:15px;color:#444444">given</div>
+          <div style="font-weight:700;font-size:16px;line-height:1.3">Argentiferous lead, about 0.1% Ag</div>
+          <div style="font-size:14.5px;line-height:1.5;color:#333333;margin-top:2px">Pb-rich side of the eutectic (below 2.6% Ag)</div>
+        </div>
+        <div style="margin-right:64px"><div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div></div>
+        <div style="margin-right:64px"><div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">1</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Heat to a homogeneous melt</div><div style="font-size:14.5px;line-height:1.5;color:#444444;margin-top:3px">Above the liquidus for this composition</div></div></div></div>
+        <div style="margin-right:64px"><div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div></div>
+        <div style="position:relative;padding-right:64px;display:flex;flex-direction:column">
+          <div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">2</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Cool to the Pb liquidus, AO</div><div style="font-size:14.5px;line-height:1.5;color:#444444;margin-top:3px">Pb crystallises first</div></div></div>
+          <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+          <div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">3</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Remove the separated Pb crystals</div><div style="font-size:14.5px;line-height:1.5;color:#444444;margin-top:3px">The remaining melt becomes richer in Ag and moves along AO toward O</div></div></div>
+          <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+          <div style="display:flex;align-items:center;gap:12px;background:#ffffff;border:2px solid #111111;border-radius:26px;padding:11px 20px 11px 16px"><span style="flex:none;width:11px;height:11px;transform:rotate(45deg);background:#111111"></span><span style="font-style:italic;font-size:18px;line-height:1.3">Has the melt reached eutectic O?</span></div>
+          <div style="position:absolute;right:14px;width:50px;top:26px;bottom:24px;border:2px solid #444444;border-left:none;border-radius:0 16px 16px 0"></div>
+          <div style="position:absolute;right:56px;top:20px;width:0;height:0;border-top:6px solid transparent;border-bottom:6px solid transparent;border-right:8px solid #444444"></div>
+          <span style="position:absolute;right:0;top:50%;transform:translateY(-50%);font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#ffffff;border:1px solid #111111">no</span>
+        </div>
+        <div style="margin-right:64px;position:relative;display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:30px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div><span style="position:absolute;top:7px;left:calc(50% + 12px);font-variant:small-caps;letter-spacing:0.05em;font-size:14px;padding:1px 10px 3px;border-radius:999px;background:#111111;color:#ffffff">yes</span></div>
+        <div style="margin-right:64px;background:#111111;color:#ffffff;border-radius:14px;padding:14px 18px">
+          <div style="font-variant:small-caps;letter-spacing:0.05em;font-size:15px;color:#cccccc">result</div>
+          <div style="font-weight:700;font-size:16px;line-height:1.3">Ag-enriched melt at O</div>
+          <div style="margin-top:8px;display:inline-block;background:#333333;border-radius:8px;padding:4px 12px 6px;font-size:18px">303 °C · 2.6% Ag · 97.4% Pb</div>
+          <div style="font-size:14.5px;color:#dddddd;margin-top:6px">Silver is then recovered by further processes</div>
+        </div>
+      </div>
+      <div style="width:100%;max-width:520px;border:1.5px dashed #555555;border-radius:14px;padding:12px 16px;font-size:15px;line-height:1.5;box-sizing:border-box"><b><i>Remark.</i></b> If cooling continues through O, the remaining liquid freezes to Pb(s) + Ag(s). The pack labels A = Pb (327 °C) and B = Ag (961 °C).</div>
+      <figcaption style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;max-width:640px"><div style="font-size:15.5px"><b>Figure F10.</b> Pattinson process: Pb-rich cooling and silver enrichment. <span style="color:#555555">ESA ★★★</span></div><div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px"><span style="font-variant:small-caps;letter-spacing:0.05em;font-size:13.5px;border:1px solid #111111;border-radius:999px;padding:0 9px 2px">transcript only</span><span style="font-variant:small-caps;letter-spacing:0.05em;font-size:13.5px;border:1px solid #111111;border-radius:999px;padding:0 9px 2px">added for clarity</span><span style="font-size:13px;color:#555555">T010 00:27:33 · T010 00:28:38 · S010·5 · S010·6 · +9 more</span></div></figcaption>
+    </figure>
+  </div>
+  <!-- 2.9 Verify both sides -->
+  <div id="I" data-screen-label="2.9 Verify both sides" style="display:flex;flex-direction:column;gap:28px">
+    <div style="display:flex;flex-direction:column;gap:6px;max-width:680px">
+      <h3 style="margin:0;font-size:21px;font-weight:700;display:flex;gap:14px"><span>2.9</span><span>Verify both sides</span></h3>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#333333">For “verify” and “show that” questions. Work out each side separately, then compare them in a check block.</p>
+    </div>
+    <figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:22px;overflow-x:auto">
+      <div style="width:100%;max-width:660px;min-width:540px;display:flex;flex-direction:column">
+        <div style="width:100%;max-width:420px;margin:0 auto;background:#ededed;border:1.5px solid #111111;border-radius:14px;padding:14px 18px;text-align:center;box-sizing:border-box">
+          <div style="font-variant:small-caps;letter-spacing:0.05em;font-size:15px;color:#444444">given</div>
+          <div style="font-size:19px"><i>u</i> = <i>x</i><sup>3</sup> + <i>y</i><sup>3</sup> + 3<i>axy</i></div>
+          <div style="font-size:14.5px;line-height:1.5;color:#333333;margin-top:2px">Verify that the mixed partial derivatives are equal</div>
+        </div>
+        <div style="height:18px;display:flex;justify-content:center"><div style="width:2px;background:#444444"></div></div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+          <div style="display:flex;flex-direction:column">
+            <div style="position:relative;height:30px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end"><div style="position:absolute;top:0;left:50%;right:0;height:2px;background:#444444"></div><div style="position:absolute;top:0;bottom:8px;left:calc(50% - 1px);width:2px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+            <div style="margin:0 12px"><div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">1</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Differentiate in <i>x</i> first</div><div style="margin-top:8px;display:inline-block;background:#efefef;border-radius:8px;padding:4px 12px 6px;font-size:19px"><span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px">∂<i>u</i></span><span style="border-top:1px solid currentColor;padding:0 3px">∂<i>x</i></span></span> = 3<i>x</i><sup>2</sup> + 3<i>ay</i></div></div></div></div>
+            <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+            <div style="margin:0 12px"><div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">2</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Then in <i>y</i></div><div style="margin-top:8px;display:inline-block;background:#efefef;border-radius:8px;padding:4px 12px 6px;font-size:19px"><span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px">∂<sup>2</sup><i>u</i></span><span style="border-top:1px solid currentColor;padding:0 3px">∂<i>y</i> ∂<i>x</i></span></span> = 3<i>a</i></div></div></div></div>
+            <div style="position:relative;height:30px"><div style="position:absolute;top:0;bottom:0;left:calc(50% - 1px);width:2px;background:#444444"></div><div style="position:absolute;bottom:0;left:50%;right:0;height:2px;background:#444444"></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <div style="position:relative;height:30px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end"><div style="position:absolute;top:0;left:0;right:50%;height:2px;background:#444444"></div><div style="position:absolute;top:0;bottom:8px;left:calc(50% - 1px);width:2px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+            <div style="margin:0 12px"><div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">1</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Differentiate in <i>y</i> first</div><div style="margin-top:8px;display:inline-block;background:#efefef;border-radius:8px;padding:4px 12px 6px;font-size:19px"><span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px">∂<i>u</i></span><span style="border-top:1px solid currentColor;padding:0 3px">∂<i>y</i></span></span> = 3<i>y</i><sup>2</sup> + 3<i>ax</i></div></div></div></div>
+            <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+            <div style="margin:0 12px"><div style="background:#ffffff;border:1px solid #888888;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;border:1.5px solid #111111;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-sizing:border-box">2</span><div style="min-width:0"><div style="font-weight:700;font-size:16px;line-height:1.3">Then in <i>x</i></div><div style="margin-top:8px;display:inline-block;background:#efefef;border-radius:8px;padding:4px 12px 6px;font-size:19px"><span style="display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-size:0.82em;line-height:1.2;margin:0 2px"><span style="padding:0 3px">∂<sup>2</sup><i>u</i></span><span style="border-top:1px solid currentColor;padding:0 3px">∂<i>x</i> ∂<i>y</i></span></span> = 3<i>a</i></div></div></div></div>
+            <div style="position:relative;height:30px"><div style="position:absolute;top:0;bottom:0;left:calc(50% - 1px);width:2px;background:#444444"></div><div style="position:absolute;bottom:0;left:0;right:50%;height:2px;background:#444444"></div></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center"><div style="width:2px;height:22px;background:#444444"></div><div style="width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #444444"></div></div>
+        <div style="width:100%;max-width:420px;margin:0 auto"><div style="background:#ffffff;border:3px double #111111;border-radius:14px;padding:13px 18px;display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:28px;height:28px;border-radius:999px;background:#111111;color:#ffffff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700">✓</span><div style="min-width:0"><div style="font-variant:small-caps;letter-spacing:0.05em;font-size:15px;color:#444444">check</div><div style="font-weight:700;font-size:16px;line-height:1.3">Both sides equal 3<i>a</i></div><div style="font-size:14.5px;line-height:1.5;color:#444444;margin-top:3px">Hence the mixed partial derivatives are equal, as required.</div></div></div></div>
+      </div>
+      <figcaption style="display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;max-width:640px"><div style="font-size:15.5px"><b>Figure G2.</b> Verifying equal mixed partial derivatives.</div><div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px"><span style="font-size:13px;color:#555555">UE26MA141A Assignment, Unit 1, Prob. 3</span></div></figcaption>
+    </figure>
+  </div>
+</section>
+
+</div>
+</x-dc>
+</body>
+</html>

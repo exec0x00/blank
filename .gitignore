@@ -1,4 +1,5 @@
-build/node_modules/
-work/
+node_modules/
 __pycache__/
 *.pyc
+work/
+packs/*/work/
