@@ -85,3 +85,14 @@ Read this before starting. Every item cost a rebuild at least once.
     - **Write the gap note on the overlap** in `PACK["gaps"]`, so the reader knows the two packs agree.
     - **Fix the coverage note:** concept items keep their original slide tags, so the coverage table will show the wider deck.
 46. **Generated content files are Python.** Text patched into a single-quoted string must not contain an apostrophe. Run `ast.parse` on each generated `parts/*.py` before building.
+
+## Added after pack 4 (class 005: homogeneous functions and Euler's theorem)
+
+47. **Lecture asides contain factual errors.** Check every general claim, not just formulas. In class 005:
+    - "a degree-0 function must be constant" (false: $y/x$);
+    - "homogeneous means smooth";
+    - the intensive and extensive examples are swapped.
+
+    Correct each one as an exam trap flagged *added for clarity*, and list it in `PACK["gaps"]`. Leave out biographical anecdotes: they are not examinable and are often wrong.
+48. **The most examinable formula can live only in the slide image.** Slide 005·7 (Euler's extension $nf/f'$, $g(g'-1)$) is the title alone in `.slides.md`. Lesson 2 again: always read the rendered slides.
+49. **Don't write markdown backticks in content strings.** The engine renders HTML, so they print literally.
