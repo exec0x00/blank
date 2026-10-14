@@ -96,3 +96,10 @@ Read this before starting. Every item cost a rebuild at least once.
     Correct each one as an exam trap flagged *added for clarity*, and list it in `PACK["gaps"]`. Leave out biographical anecdotes: they are not examinable and are often wrong.
 48. **The most examinable formula can live only in the slide image.** Slide 005·7 (Euler's extension $nf/f'$, $g(g'-1)$) is the title alone in `.slides.md`. Lesson 2 again: always read the rendered slides.
 49. **Don't write markdown backticks in content strings.** The engine renders HTML, so they print literally.
+
+## Added after pack 5 (class 006: problems on Euler's theorem)
+
+50. **A problem session reuses its theory pack.** Class 006 only applies class 005. Repeat the statements verbatim, so the pack stands alone, but put the proofs and applications in a pointer in `how_to_use`. Carry over the verified past-paper worked examples (renumbered; audit references per §45).
+51. **Check what a slide verifies, not just its title.** Slide 006·3 says "verify for $\cos^{-1}(\dots)$" but verifies for $Z=\cos u$. Also simplify every example function: slide 006·5 is identically 1. Flag both in the gaps, and give the correct result for the titled function.
+52. **The lecture's vocabulary can drift from the slides.** Class 006 calls the $n(n-1)u$ corollary an "extension". Pick one meaning per word, state it in `PACK["gaps"]`, and use it consistently.
+53. **For a scaling test, plot $u(\lambda x,\lambda y)/u(x,y)$ on log–log axes.** Homogeneous functions become straight lines of slope $n$ through (1, 1); a non-homogeneous function visibly curves. Keep a function's domain in mind when choosing the base point: $\sin^{-1}(y/x)$ needs $y\le x$.
