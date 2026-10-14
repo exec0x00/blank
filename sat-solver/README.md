@@ -95,3 +95,21 @@ result: (a) or (d) or (b and c) or (c and e) or (!b and e)
 Peak patterns (`python3 fourstep.py --bench`): chain 16, 256, 4096, 65536
 for n = 4, 8, 12, 16 (2^n; n = 16 took 321 s); pigeonhole 4, 126, 2816 for
 n = 2, 3, 4, and n = 5 did not finish in 9 minutes.
+
+## Fifth method: four steps on every pair, stored by position (`pairs.py`)
+
+For every pair of clauses the four steps (common, first-only, second-only,
+opposite) are found with the dictionary and stored. The build is
+polynomial: about clauses^2 x literals per clause. Reading a full solution
+out of the stored pairs means picking one position per clause with no
+opposite pair among the picks:
+
+| formula             | build     | direct pick, no going back | search steps        |
+|---------------------|-----------|----------------------------|---------------------|
+| chain n=1600        | 21 s      | found                      | 1600                |
+| random 3-SAT n=20…80| < 0.5 s   | stuck on every one         | 97 … > 2,000,000    |
+| pigeonhole n=3…6    | < 0.03 s  | stuck on every one         | 179, 8262, > 2M, > 2M |
+
+`(a) and (b) and (not a or not b)`: every pair of clauses has a solution
+pattern, but the whole formula has none, so the pair results alone do not
+give the answer.

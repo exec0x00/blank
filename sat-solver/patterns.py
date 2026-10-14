@@ -169,7 +169,7 @@ def components(clauses):
 
 # ---- reading formulas ----
 
-def parse(text):
+def parse(text, ordered=False):
     """Parse '(a or not b or c) and (a or b)' style input.
 
     Also accepts | & ! ~ - and the words or/and/not.
@@ -197,7 +197,7 @@ def parse(text):
             neg = False
         if clause:
             clauses.append(frozenset(clause))
-    return frozenset(clauses), names
+    return (tuple(clauses) if ordered else frozenset(clauses)), names
 
 
 def read_dimacs(path):
