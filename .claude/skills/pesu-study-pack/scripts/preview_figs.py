@@ -22,7 +22,9 @@ def main(pack, cols):
         pg = b.new_page(viewport={"width": 1500, "height": 900})
         for s in range(0, len(figs), per):
             cells = "".join(f'<div><b>{os.path.basename(f)[:-4]}</b><img src="file://{os.path.abspath(f)}" style="width:100%"></div>' for f in figs[s:s + per])
-            pg.set_content(f'<body style="margin:0;font:14px sans-serif;display:grid;grid-template-columns:repeat({cols},1fr);gap:8px">{cells}</body>')
+            tmp = os.path.join(qa, "_figs.html")   # file:// images only load from a file:// page, not set_content()
+            open(tmp, "w").write(f'<body style="margin:0;font:14px sans-serif;display:grid;grid-template-columns:repeat({cols},1fr);gap:8px">{cells}</body>')
+            pg.goto("file://" + tmp)
             pg.wait_for_timeout(300)
             out = os.path.join(qa, f"figs_{s // per}.png")
             pg.screenshot(path=out, full_page=True)

@@ -280,7 +280,7 @@ def pyq(p, link_prefix=""):
 def figure(gid, g):
     cls = "chart tall" if g.get("tall") else "chart"
     howto = f'<div class="howto">{remark(g["howto"], "How to read it.")}</div>' if g.get("howto") else ""
-    return (f'<figure class="{cls}" id="{gid}"><img src="assets/figures/{gid}.svg" alt="Figure {gid}: {html.escape(g["title"])}">'
+    return (f'<figure class="{cls}" id="{gid}"><img src="assets/figures/{gid}.svg" alt="Figure {gid}">'
             f'<figcaption><div class="capt"><b>Figure {gid}.</b> {g["title"]}. {stars(g.get("stars"))}</div>'
             f'{tagline(g.get("flags"), g.get("srcs"))}</figcaption>{howto}</figure>')
 

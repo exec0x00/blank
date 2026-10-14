@@ -6,8 +6,8 @@ In a pack's figures module:
     FIGURES = {"G4.1": G4_1}
 
 Rules baked in (learned the hard way):
-- Computer Modern (CMU Serif) labels; the font has no U+2212, so unicode_minus is off and tick
-  labels use mathtext (gives a real minus).
+- Computer Modern (CMU Serif) labels; the font has no U+2212, so unicode_minus is off and the tick
+  formatter must NOT use mathtext (\mathdefault falls back to CMU Serif and prints a box).
 - svg.fonttype = "path": figures never depend on installed fonts.
 - mathtext has no \\Big, \\left|…\\right| sizing quirks; keep labels simple.
 """
@@ -38,7 +38,7 @@ plt.rcParams.update({
     "axes.edgecolor": INK, "axes.labelcolor": INK, "xtick.color": INK, "ytick.color": INK,
     "xtick.direction": "out", "ytick.direction": "out",
     "axes.spines.top": False, "axes.spines.right": False, "axes.linewidth": 1.0,
-    "axes.unicode_minus": False, "axes.formatter.use_mathtext": True,
+    "axes.unicode_minus": False, "axes.formatter.use_mathtext": False,
     "svg.fonttype": "path", "savefig.bbox": "tight", "savefig.pad_inches": 0.08,
 })
 

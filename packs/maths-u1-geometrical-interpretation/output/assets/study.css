@@ -190,3 +190,4 @@ table.t.keep{break-inside:avoid}
 .module-banner .mnum{font-variant:small-caps;letter-spacing:.06em;color:var(--muted);font-size:12pt}
 .module-banner .mtitle{font-size:26pt;font-weight:700;line-height:1.15}
 .module-banner+section.topic{break-before:auto}
+pre.code{background:var(--strip);border-radius:8px;padding:8px 12px;margin:7px 0 0;font-family:'CMU Typewriter Text','DejaVu Sans Mono',monospace;font-size:9.5pt;line-height:1.45;white-space:pre-wrap;break-inside:avoid}

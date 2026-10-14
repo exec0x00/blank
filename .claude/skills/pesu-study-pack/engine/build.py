@@ -251,16 +251,26 @@ class Pack:
         return self.page(P["title"], "".join(b))
 
     def coverage(self):
-        groups = {}
+        """One row per deck (slides listed as slide×count), one row per other source family."""
+        decks, other = {}, {}
         for tag, n in L.SRC_COUNT.items():
-            key = tag if tag.startswith("S") and "·" in tag else (tag.split(" ")[0] if " " in tag else tag)
-            groups[key] = groups.get(key, 0) + n
+            m = re.match(r"^(S[^·\s]+)·(\d+)$", tag)
+            if m:
+                decks.setdefault(m.group(1), {})
+                decks[m.group(1)][int(m.group(2))] = decks[m.group(1)].get(int(m.group(2)), 0) + n
+            else:
+                key = tag.split(" ")[0] if " " in tag else tag
+                other[key] = other.get(key, 0) + n
 
         def sk(k):
             return [int(x) if x.isdigit() else x for x in re.split(r"(\d+)", k)]
-        rows = "".join(f"<tr><td>{html.escape(k)}</td><td>{v}</td></tr>" for k, v in sorted(groups.items(), key=lambda kv: sk(kv[0])))
+        rows = "".join(f"<tr><td>{html.escape(d)}</td><td>{sum(c.values())}</td><td>"
+                       + ", ".join(f"{s}×{c[s]}" for s in sorted(c)) + "</td></tr>" for d, c in sorted(decks.items(), key=lambda kv: sk(kv[0])))
+        rows += "".join(f"<tr><td>{html.escape(k)}</td><td>{v}</td><td></td></tr>" for k, v in sorted(other.items(), key=lambda kv: sk(kv[0])))
         extra = f'<p class="small">{self.P["coverage_note"]}</p>' if self.P.get("coverage_note") else ""
-        return f'<table class="t"><thead><tr><th>Source (slide, or file prefix)</th><th>Citations</th></tr></thead><tbody>{rows}</tbody></table>{extra}'
+        keep = ' keep' if len(decks) + len(other) <= 12 else ''
+        return (f'<table class="t{keep}"><thead><tr><th>Source</th><th>Citations</th><th>Slides cited (slide × citations)</th></tr></thead>'
+                f'<tbody>{rows}</tbody></table>{extra}')
 
 
 # ------------------------------------------------------------------ math + assets

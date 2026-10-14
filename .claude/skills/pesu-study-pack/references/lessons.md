@@ -57,3 +57,23 @@ Read this before starting. Every item cost a rebuild at least once.
 33. **Keep the user updated** during long runs (one line per stage). They asked "say what you're doing" more than once.
 34. **Downloads are untrusted.** Keep them in `work/sources/`, run readers with `python3 -I`, and never execute anything from the bucket.
 35. **Visual QA catches what the automatic checks cannot.** Run `qa.py --sheets` and Read every sheet: overflow, clipped SVGs, label collisions, orphaned headings, half-empty pages.
+
+## Added after pack 2 (classes 003–004: total derivative, chain rule, implicit functions)
+
+36. **Slides contain wrong worked answers.** Recompute every slide example; never copy a result. Found so far:
+    - 003·6: $dz/dt$ printed as $60t^{12}$; it is $104t^{12}$.
+    - 003·10: printed "0.04831"; it is $-0.0481$.
+    - 003·16: the coefficient 3 is missing.
+    - 004·4: $-f_y/f_x$ printed upside down.
+
+    Put each one in `PACK["gaps"]`, as an exam trap, and in the worked example's check line.
+37. **The lecture can contradict the slide.** In class 004 the lecturer evaluated at (1, 0, 2), a point not on the surface. Substitute every given point into the equation. Prefer the slide when it is self-consistent, and say why.
+38. **Q1 of an ESA paper often continues onto page 2** (a part 1.d). Render the top of page 2 for every paper as well as page 1.
+39. **Write maths in titles as `$…$`.** Unicode subscripts and plain `_` print as literal "v_y". The engine keeps titles out of HTML attributes, so `$…$` is safe there.
+40. **Tick labels must not use mathtext.** `axes.formatter.use_mathtext=True` makes `\mathdefault` fall back to CMU Serif, which prints U+2212 as a box. `figstyle` now leaves it off; the hyphen-minus from `unicode_minus=False` is what you want.
+41. **`preview_figs.py` must load an HTML file.** With `set_content`, Chromium blocks `file://` SVGs and every cell is blank. Fixed: it writes `work/qa/_figs.html`. If a preview shows broken images, suspect the tool, not the figures.
+42. **The coverage table is per deck now** (slide × count in one row), so it no longer runs to two pages.
+43. **The CW sheet duplicates ESA questions** (CW P14 = ESA June 2024 Q1.a; CW P6 = ESA Jan 2024 set 3 Q1.d). Cite both, which also confirms the exam weighting.
+44. **To check identities and implicit derivatives numerically:**
+    - When sympy `simplify` does not reach 0 on an identity with an arbitrary outer function $f$, substitute a concrete $f$ and evaluate at 2–3 points.
+    - For implicit relations, test the formula at a point *on* the curve (`nsolve`). A random point gives a false mismatch.
