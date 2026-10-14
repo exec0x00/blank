@@ -32,4 +32,5 @@ pip install matplotlib sympy playwright
 python3 -I build/figures.py output/assets/figures
 python3 -I build/build.py
 python3 -I build/build_pdf.py
+python3 -I build/inline.py          # single-file HTML copies in output/standalone/
 ```
