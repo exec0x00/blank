@@ -77,3 +77,11 @@ Read this before starting. Every item cost a rebuild at least once.
 44. **To check identities and implicit derivatives numerically:**
     - When sympy `simplify` does not reach 0 on an identity with an arbitrary outer function $f$, substitute a concrete $f$ and evaluate at 2–3 points.
     - For implicit relations, test the formula at a point *on* the curve (`nsolve`). A random point gives a false mismatch.
+
+## Added after pack 3 (class 004 only, regrouped from pack 2)
+
+45. **A narrower pack can reuse a wider one.** When the user asks for one session already covered in a multi-session pack, regroup the verified items with a script; don't re-extract them. Then fix three things:
+    - **Audit every cross-reference** (`E…`, `G…`, `W…`) left in the text. Sequential renaming chains (E5.4 → E5.1 → E4.1). Old references can also point at items that were left out. Map IDs in a single pass and list every remaining reference with its target.
+    - **Write the gap note on the overlap** in `PACK["gaps"]`, so the reader knows the two packs agree.
+    - **Fix the coverage note:** concept items keep their original slide tags, so the coverage table will show the wider deck.
+46. **Generated content files are Python.** Text patched into a single-quoted string must not contain an apostrophe. Run `ast.parse` on each generated `parts/*.py` before building.
