@@ -113,3 +113,11 @@ opposite pair among the picks:
 `(a) and (b) and (not a or not b)`: every pair of clauses has a solution
 pattern, but the whole formula has none, so the pair results alone do not
 give the answer.
+
+## Polynomial read-outs (`readout.py`)
+
+Read-outs that never undo a choice (so polynomial time), applied to the
+pair structure: **propagate** was right on 74 of 300 random 12-variable
+formulas and stuck on the rest; **probe** was right on 26 of 40. Neither
+ever proved a formula UNSAT, and both were stuck on every pigeonhole
+formula tried. Full write-up and next steps: `RESUME.md`.
