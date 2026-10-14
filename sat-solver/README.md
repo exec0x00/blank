@@ -121,3 +121,10 @@ pair structure: **propagate** was right on 74 of 300 random 12-variable
 formulas and stuck on the rest; **probe** was right on 26 of 40. Neither
 ever proved a formula UNSAT, and both were stuck on every pigeonhole
 formula tried. Full write-up and next steps: `RESUME.md`.
+
+## polysat.py: polynomial read-out with optional complete mode
+
+A self-contained rewrite of the uploaded `readout.py`, with more polynomial
+rules and an optional CDCL search (`--complete`). On every formula the upload
+decides, it is equal or faster; it also decides most of what the upload left
+UNKNOWN. Details, bounds and measurements: `POLYSAT.md`.
