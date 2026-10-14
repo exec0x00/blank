@@ -78,3 +78,20 @@ between any two choices (`python3 positions.py --bench`):
 | chain, n pairs      | n (linear)                                         |
 | pigeonhole, n holes | 179, 8262, > 2,000,000 for n = 3, 4, 5             |
 | random 3-SAT        | 97, 4898, 220759, 13594, 122882 for n = 20…60      |
+
+## Fourth method: the four steps on whole groups (`fourstep.py`)
+
+The four steps (common, first-only x second-only, opposite-pair
+combinations, drop x/!x pairs) join two pattern lists. Clauses are joined
+in pairs like a tournament until one list is left.
+
+```
+$ python3 fourstep.py "(a or not b or c or d) and (a or b or d or e)"
+  common: (a), (d)
+  joined: (!b and e), (b and c), (c and e)
+result: (a) or (d) or (b and c) or (c and e) or (!b and e)
+```
+
+Peak patterns (`python3 fourstep.py --bench`): chain 16, 256, 4096, 65536
+for n = 4, 8, 12, 16 (2^n; n = 16 took 321 s); pigeonhole 4, 126, 2816 for
+n = 2, 3, 4, and n = 5 did not finish in 9 minutes.
