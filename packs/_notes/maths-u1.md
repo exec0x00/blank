@@ -12,7 +12,7 @@ Subject material: `pesuc/First_Year_8enterprise/Files/Math 1/` (CW sheet `Math_U
 | `maths-u1-009-maxima-minima-intro` | 009 | deck 009 (10 slides), transcript 009 (Extremas of functions), CW P31 | 19 / 3 / 6 / 5 / 3 / 5 | passed |
 | `maths-u1-010-maxima-minima-problems` | 010 | deck 010 (15 slides), transcripts 010a (Extremas continued) + 010b (Problems), CW P29, P31, P32, P34 | 24 / 3 / 5 / 6 / 4 / 5 | passed |
 | `maths-u1-011-lagrange-multipliers` | 011 | deck 011 (15 slides), transcripts 011a (theory) + 011b (problems), CW P33–P36, extra list | 21 / 3 / 5 / 4 / 3 / 5 | passed |
-| `maths-u1-unit-master` | 001–011 | merge_unit.py of the 10 packs below | see below | see below |
+| `maths-u1-unit-master` | 001–011 | merge_unit.py of the 10 packs below (44 topics, 84 formulas, 139 worked, 48 figures, 36 flowcharts, 41 PYQs) | 253 / 31 / 64 / 52 / 52 / 29 | passed |
 
 Unit master order: 001-intro, geometrical-interpretation (002), total-derivative-chain-rule-implicit (003–004),
 homogeneous-euler (005), euler-problems (006), taylor-maclaurin (007), taylor-problems (008), 009, 010, 011.
@@ -56,5 +56,10 @@ Every Unit 1 question of every paper is mapped in `esa_map.md`. Sessions built h
    answer then looks wrong. Render the page before calling a CW answer wrong (extends lesson 9).
 3. Two background sub-agents for 010 and 011 were stopped by the account's rate limit twice; the packs were finished in the
    main session. One agent had already written a correct `pack.py` for 010 (kept after re-verification).
-4. Engine: no change needed. `findfont: Failed to find font weight normal for CMU Serif` warnings appear when a figure uses
+4. **merge_unit.py:** `PACK["gaps"]` strings are not ID-remapped, so session-local references such as "W2.4" in a gap note
+   keep their old numbers in the master's Appendix B (cosmetic). Suggested engine fix: run `remap` over `gaps`, `how_to_use`,
+   `pyq_note` and `figure_note` too.
+5. **QA's ASR check is substring-based:** "parable" (for parabola) also matched "Separable" in another pack once merged.
+   Prefer distinctive forbidden strings (fixed here with " parable").
+6. Engine: no change needed. `findfont: Failed to find font weight normal for CMU Serif` warnings appear when a figure uses
    `ax.contour` labels/ticks; output is unaffected.
