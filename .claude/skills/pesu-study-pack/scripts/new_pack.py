@@ -51,7 +51,7 @@ def main():
     if os.path.exists(p):
         raise SystemExit(f"{p} exists; not overwriting")
     open(p, "w").write(TEMPLATE.format(**vars(a)))
-    open(os.path.join(a.pack_dir, ".gitignore"), "w").write("work/sources/\nwork/render/\nwork/frames/\nwork/qa/\n__pycache__/\n")
+    open(os.path.join(a.pack_dir, ".gitignore"), "w").write("work/\n__pycache__/\noutput/assets/\noutput/*.html\n!output/standalone/\n")
     print("scaffolded", a.pack_dir)
 
 

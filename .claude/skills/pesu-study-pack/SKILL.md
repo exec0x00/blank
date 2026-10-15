@@ -14,6 +14,7 @@ You turn course material into **six print-ready documents, each as HTML and PDF*
 - `references/content-schema.md`: the pack format, IDs, source tags, flowchart layouts.
 - `references/design.md`: the design system. The user's original templates are in `references/templates/`.
 - `examples/maths-u1-geometrical-interpretation/`: a complete, real pack to imitate (class 002 of Engineering Mathematics I).
+- `references/batch.md`: the protocol for building many packs in parallel sessions (one subject-unit each), and `scripts/merge_unit.py` for the unit master.
 
 ## 0. Pin down the request
 
