@@ -80,6 +80,6 @@ PACK = {
         "L'Hôpital, “Ebo” → above, “parable” → parabola, “cathode ratio” → cathode-ray tube, “dou” / “Do” → $\\partial$, "
         "“x q” / “XQ” → $x^3$, “sine 1” → $\\sin y$, “topol o topography” → topography, “extending to” → $x$ tending to.",
     ],
-    "asr_forbidden": ["Clydoid", "Lobithal", "Ebo ", "parable", "cathode ratio", "XQ", "sine 1", "topol o", "extending to"],
+    "asr_forbidden": ["Clydoid", "Lobithal", "Ebo ", " parable", "cathode ratio", "XQ", "sine 1", "topol o", "extending to"],
 }
 MODULES = []
