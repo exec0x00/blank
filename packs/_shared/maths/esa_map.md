@@ -40,10 +40,10 @@ rendered at 90 dpi, every page read). Unit 2 sits in Q2.c/2.d and Q3 of each pap
 | Jun-24 | 3.a | 6 | = Jul-23 3.c | 011 VoP |
 | Jun-24 | 3.b | 7 | Solve $(2x-1)^2\frac{d^2y}{dx^2}+(2x-1)\frac{dy}{dx}-2y=8x^2-2x+3$ | 011 Legendre |
 
-**Deduplicated count (17 distinct questions, 24 occurrences):** Legendre/Cauchy 6 distinct (8 occurrences);
-variation of parameters 4 distinct (5); PI by operator rules 6 distinct (8: Type 1/2 failure $(D-2)^2$ ×3, mixed
-Types 1–3 ×3, Type 4 ×1, "other form" $e^{e^x}$ ×1); LCR circuits 2 (2); SHM 0; homogeneous-only (CF) 0 — but every
-non-homogeneous question needs a CF, so sessions 001–002 underpin all of them.
+**Deduplicated count (19 distinct questions, 24 occurrences):** Legendre/Cauchy 6 distinct (8 occurrences);
+variation of parameters 4 distinct (5); PI by operator rules 7 distinct (9: Type 1/2 failure $(D-2)^2$ ×3, mixed
+Types 1–3 ×4 (Jul-23 3b, Jan-24 s1 2d, s2 2d, s4 2c), Type 4 ×1, "other form" $e^{e^x}$ ×1); LCR circuits 2 (2); SHM 0;
+homogeneous-only (CF) 0 — but every non-homogeneous question needs a CF, so sessions 001–002 underpin all of them.
 
 Never asked in these papers: SHM (spring) problems, a homogeneous equation on its own, the Wronskian as a separate
 question, Type 5 ($xV$) on its own.
