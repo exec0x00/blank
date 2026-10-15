@@ -1,0 +1,7 @@
+work/sources/
+work/render/
+work/frames/
+work/qa/
+__pycache__/
+output/assets/
+output/*.html
