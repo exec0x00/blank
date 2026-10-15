@@ -36,7 +36,7 @@ def main(pack_dir, sheets):
         raw += re.findall(r"[A-Za-z)]\^[{\w(]|_\{", re.sub(r"<pre class=\"code\">.*?</pre>", "", body, flags=re.S))
         if raw:
             bad.append(f"{name}: {len(raw)} raw LaTeX fragments, e.g. {raw[:3]}")
-        hits = [w for w in forbidden if w.lower() in main_body.lower()]
+        hits = [w for w in forbidden if re.search(r"(?<!\w)" + re.escape(w.lower()) + r"(?!\w)", main_body.lower())]
         if hits:
             bad.append(f"{name}: ASR artefacts {hits}")
         for target in re.findall(r'href="([^"]*#[^"]+)"', s):
