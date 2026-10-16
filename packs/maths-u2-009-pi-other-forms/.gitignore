@@ -1,0 +1,4 @@
+work/
+__pycache__/
+output/assets/
+output/*.html
