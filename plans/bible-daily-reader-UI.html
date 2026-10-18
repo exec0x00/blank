@@ -7,750 +7,733 @@
 <meta name="description" content="UI mockup for Manna, a daily Bible reading app: one random passage a day, never repeated, never longer than you choose.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,300..800;1,7..72,300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
 <style>
 /* ---------- tokens ---------- */
 :root {
-  --paper: #E7ECE4;      /* page: sage mist */
-  --app: #F5F7F2;        /* app screen */
-  --card: #FFFFFF;
-  --ink: #1B2520;        /* olive-black ink */
-  --ink-2: #4C5A51;
-  --ink-3: #78857C;
-  --rule: #D4DBD1;
-  --lapis: #2A4892;      /* manuscript ultramarine */
-  --lapis-ink: #FFFFFF;
-  --lapis-soft: #E2E8F6;
-  --gold: #B3852A;       /* gold leaf */
-  --gold-bright: #D49A1E;
-  --gold-soft: #F2E7C9;
-  --olive: #5C7041;
-  --empty: #DCE2D7;
-  --sep: #F5F7F2;
-  --frame: #171C19;
-  --shadow: 0 30px 60px -30px rgba(27, 37, 32, .45), 0 10px 24px -12px rgba(27, 37, 32, .25);
-  --serif: "Literata", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-  --sans: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --page: #ECECE8;        /* stone */
+  --panel: #F6F6F3;
+  --app: #FAFAF7;         /* porcelain */
+  --surface: #FFFFFF;
+  --ink: #14161A;
+  --ink-2: #565B63;
+  --ink-3: #8D9199;
+  --hair: #E4E4DF;
+  --hair-2: #D5D5CF;
+  --gold: #A67A2A;        /* gold leaf: progress only */
+  --gold-2: #C79B45;
+  --gold-ink: #87601A;
+  --gold-wash: #F4EEE1;
+  --empty: #EBEAE4;
+  --btn: #14161A;
+  --btn-ink: #FAFAF7;
+  --danger: #A8402E;
+  --frame: #0D0E10;
+  --frame-edge: #34353A;
+  --shadow-lg: 0 60px 90px -50px rgba(20, 22, 26, .38), 0 24px 40px -24px rgba(20, 22, 26, .22);
+  --shadow-sm: 0 1px 2px rgba(20, 22, 26, .04), 0 10px 28px -16px rgba(20, 22, 26, .16);
+  --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --sans: "Instrument Sans", "Helvetica Neue", system-ui, -apple-system, sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #0B1120; --app: #10192D; --card: #172138; --ink: #ECE8DC; --ink-2: #B4B9C5;
-    --ink-3: #848CA2; --rule: #253050; --lapis: #9DB3F3; --lapis-ink: #0B1120; --lapis-soft: #1D2948;
-    --gold: #D3A748; --gold-bright: #F2C461; --gold-soft: #3A3120; --olive: #A9BC85; --empty: #222C47;
-    --sep: #10192D; --frame: #04060C;
-    --shadow: 0 30px 60px -30px rgba(0, 0, 0, .8), 0 10px 24px -12px rgba(0, 0, 0, .6);
+    --page: #0A0B0D; --panel: #111215; --app: #0F1013; --surface: #17181C; --ink: #F1EEE7; --ink-2: #A6AAB2;
+    --ink-3: #6E737C; --hair: #222429; --hair-2: #2D2F35; --gold: #CDA45A; --gold-2: #E2BE76; --gold-ink: #DDB66C;
+    --gold-wash: #26211A; --empty: #1D1E23; --btn: #F1EEE7; --btn-ink: #0F1013; --danger: #E08A78;
+    --frame: #000000; --frame-edge: #2A2B30;
+    --shadow-lg: 0 60px 90px -50px rgba(0, 0, 0, .9), 0 24px 40px -24px rgba(0, 0, 0, .7);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 28px -16px rgba(0, 0, 0, .6);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"], .force-dark {
-  --paper: #0B1120; --app: #10192D; --card: #172138; --ink: #ECE8DC; --ink-2: #B4B9C5;
-  --ink-3: #848CA2; --rule: #253050; --lapis: #9DB3F3; --lapis-ink: #0B1120; --lapis-soft: #1D2948;
-  --gold: #D3A748; --gold-bright: #F2C461; --gold-soft: #3A3120; --olive: #A9BC85; --empty: #222C47;
-  --sep: #10192D; --frame: #04060C;
-  --shadow: 0 30px 60px -30px rgba(0, 0, 0, .8), 0 10px 24px -12px rgba(0, 0, 0, .6);
+  --page: #0A0B0D; --panel: #111215; --app: #0F1013; --surface: #17181C; --ink: #F1EEE7; --ink-2: #A6AAB2;
+  --ink-3: #6E737C; --hair: #222429; --hair-2: #2D2F35; --gold: #CDA45A; --gold-2: #E2BE76; --gold-ink: #DDB66C;
+  --gold-wash: #26211A; --empty: #1D1E23; --btn: #F1EEE7; --btn-ink: #0F1013; --danger: #E08A78;
+  --frame: #000000; --frame-edge: #2A2B30;
+  --shadow-lg: 0 60px 90px -50px rgba(0, 0, 0, .9), 0 24px 40px -24px rgba(0, 0, 0, .7);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 28px -16px rgba(0, 0, 0, .6);
   color-scheme: dark;
 }
 
 /* ---------- page ---------- */
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0; background: var(--paper); color: var(--ink);
-  font: 16px/1.5 var(--sans); overflow-x: hidden;
-}
+body { margin: 0; background: var(--page); color: var(--ink); font: 400 16px/1.55 var(--sans); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 button { font: inherit; color: inherit; }
-:focus-visible { outline: 2px solid var(--lapis); outline-offset: 2px; border-radius: 6px; }
-.wrap { max-width: 1240px; margin: 0 auto; padding: 0 16px; }
-@media (min-width: 720px) { .wrap { padding: 0 40px; } }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 8px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+@media (min-width: 760px) { .wrap { padding-left: 48px; padding-right: 48px; } }
 
-.masthead { padding-top: 28px; padding-bottom: 8px; }
-.topline { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.kicker { font: 700 12px/1.2 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); margin: 0; }
-.theme-switch { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 3px; background: var(--app); }
-.theme-switch button { border: 0; background: none; padding: 6px 12px; border-radius: 999px; font-size: 13px; cursor: pointer; color: var(--ink-2); }
-.theme-switch button[aria-pressed="true"] { background: var(--ink); color: var(--app); }
+.topbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 22px; padding-bottom: 22px; }
+.wordmark { font: italic 400 26px/1 var(--serif); font-variation-settings: "opsz" 48; letter-spacing: -.01em; margin: 0; }
+.wordmark i { font-style: normal; color: var(--gold); }
+.topbar .right { display: flex; align-items: center; gap: 14px; }
+.tag { font: 500 12px/1 var(--sans); color: var(--ink-3); letter-spacing: .02em; }
+@media (max-width: 520px) { .tag { display: none; } }
+.theme-switch { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--panel); box-shadow: inset 0 0 0 1px var(--hair); }
+.theme-switch button { border: 0; background: none; padding: 6px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 500; color: var(--ink-3); cursor: pointer; }
+.theme-switch button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .1), inset 0 0 0 1px var(--hair); }
 
-.title-row { display: grid; gap: 12px 48px; margin-top: 28px; align-items: end; }
-@media (min-width: 900px) { .title-row { grid-template-columns: auto 1fr; } }
-.brand {
-  font: italic 300 clamp(72px, 13vw, 156px)/.82 var(--serif); font-variation-settings: "opsz" 72;
-  letter-spacing: -.035em; margin: 0; color: var(--ink);
-}
-.brand .dot { color: var(--gold); font-style: normal; }
-.lede { font: 400 clamp(19px, 2.2vw, 24px)/1.4 var(--serif); font-variation-settings: "opsz" 24; margin: 0; max-width: 34ch; color: var(--ink); }
-.lede em { color: var(--ink-2); }
+.hero { padding-top: clamp(40px, 8vw, 96px); text-align: center; }
+.hero h1 { margin: 0 auto; max-width: 14ch; font: 300 clamp(46px, 7.4vw, 96px)/1.02 var(--serif); font-variation-settings: "opsz" 72; letter-spacing: -.025em; }
+.hero h1 em { font-style: italic; color: var(--ink-2); }
+.hero .sub { margin: 26px auto 0; max-width: 50ch; color: var(--ink-2); font-size: clamp(16px, 1.6vw, 18px); }
 
-.hero-map { margin: 40px 0 0; }
-.hero-map .canon { position: relative; }
-.hero-cap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; margin-top: 14px; color: var(--ink-2); font-size: 14px; }
-.hero-cap p { margin: 0; max-width: 62ch; }
-.legend { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; font-size: 13px; }
-.legend i { display: inline-block; width: 18px; height: 10px; border-radius: 2px; vertical-align: -1px; margin-right: 6px; }
+.map-panel { margin-top: clamp(40px, 6vw, 72px); background: var(--panel); border-radius: 28px; padding: clamp(18px, 3.4vw, 40px); box-shadow: var(--shadow-sm), inset 0 0 0 1px var(--hair); --sep: var(--panel); text-align: left; }
+.map-panel .canon { position: relative; }
+.map-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 40px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--hair); }
+.map-foot p { margin: 0; max-width: 64ch; font-size: 14px; color: var(--ink-2); }
+.map-foot b { color: var(--ink); font-weight: 600; }
+.legend { display: flex; gap: 18px; font-size: 12.5px; color: var(--ink-3); }
+.legend i { display: inline-block; width: 14px; height: 8px; border-radius: 4px; margin-right: 6px; vertical-align: 0; }
 .legend .l-read { background: var(--gold); }
-.legend .l-unread { background: var(--empty); }
+.legend .l-unread { background: var(--empty); box-shadow: inset 0 0 0 1px var(--hair-2); }
 
-.epigraph { margin: 56px 0 0; padding-top: 18px; border-top: 1px solid var(--rule); display: grid; gap: 6px 40px; }
-@media (min-width: 900px) { .epigraph { grid-template-columns: 1fr 1fr; } }
-.epigraph blockquote { margin: 0; font: italic 400 18px/1.5 var(--serif); color: var(--ink); }
-.epigraph blockquote cite { display: block; font: 700 12px/1.6 var(--sans); font-style: normal; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin-top: 4px; }
-.epigraph .howto { margin: 0; font-size: 14px; color: var(--ink-2); }
+.epigraph { text-align: center; padding-top: clamp(56px, 8vw, 104px); }
+.epigraph blockquote { margin: 0 auto; max-width: 30ch; font: italic 300 clamp(22px, 2.6vw, 30px)/1.35 var(--serif); font-variation-settings: "opsz" 36; }
+.epigraph cite { display: block; margin-top: 14px; font: 500 12px/1 var(--sans); font-style: normal; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.epigraph .howto { margin: 28px auto 0; max-width: 62ch; font-size: 14px; color: var(--ink-3); }
 
-/* ---------- gallery ---------- */
-.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 72px 40px; padding: 64px 0 40px; }
-.shot { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 22px; }
-.shot figcaption { width: 100%; max-width: 330px; }
-.shot h2 { font: 600 24px/1.2 var(--serif); font-variation-settings: "opsz" 24; margin: 0 0 6px; }
-.shot h2 small { font: 700 11px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-left: 8px; vertical-align: 3px; }
-.shot figcaption > p { margin: 0 0 10px; color: var(--ink-2); font-size: 15px; }
-.shot ul { margin: 0; padding: 0; list-style: none; font-size: 14px; color: var(--ink-2); }
-.shot li { padding: 7px 0 7px 18px; border-top: 1px solid var(--rule); position: relative; }
-.shot li::before { content: ""; position: absolute; left: 2px; top: 14px; width: 6px; height: 6px; border-radius: 1px; background: var(--gold); transform: rotate(45deg); }
+.section { padding-top: clamp(72px, 9vw, 128px); }
+.section-head { display: grid; gap: 8px 48px; padding-bottom: 40px; border-bottom: 1px solid var(--hair); margin-bottom: 56px; }
+@media (min-width: 900px) { .section-head { grid-template-columns: 1fr 1fr; align-items: end; } }
+.section-head h2 { margin: 0; font: 300 clamp(34px, 4vw, 48px)/1.05 var(--serif); font-variation-settings: "opsz" 60; letter-spacing: -.02em; }
+.section-head p { margin: 0; color: var(--ink-2); max-width: 52ch; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 64px 40px; }
+.shot { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 28px; }
+.shot figcaption { width: 100%; max-width: 300px; }
+.shot h3 { margin: 0 0 6px; font: 600 15px/1.3 var(--sans); letter-spacing: -.005em; }
+.shot figcaption p { margin: 0; font-size: 14px; color: var(--ink-2); }
+.shot figcaption .note { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--hair); font-size: 13px; color: var(--ink-3); }
 
 /* ---------- phone ---------- */
-.phone {
-  width: 320px; max-width: 100%; aspect-ratio: 320 / 680; background: var(--frame);
-  border-radius: 48px; padding: 10px; box-shadow: var(--shadow); position: relative;
-}
-.screen {
-  height: 100%; border-radius: 38px; overflow: hidden; background: var(--app); color: var(--ink);
-  position: relative; display: flex; flex-direction: column; font-size: 14px; line-height: 1.45;
-}
-.status { flex: none; height: 38px; display: flex; align-items: center; justify-content: space-between; padding: 6px 26px 0; font: 700 13px/1 var(--sans); }
-.status svg { display: block; }
+.phone { width: 300px; max-width: 100%; aspect-ratio: 300 / 640; border-radius: 52px; padding: 9px; background: var(--frame); position: relative;
+  box-shadow: inset 0 0 0 1.5px var(--frame-edge), 0 0 0 1px rgba(0, 0, 0, .12), var(--shadow-lg); }
+.screen { height: 100%; border-radius: 43px; overflow: hidden; background: var(--app); color: var(--ink); position: relative; display: flex; flex-direction: column; font-size: 13.5px; line-height: 1.45; --sep: var(--app); }
+.island { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 86px; height: 25px; border-radius: 13px; background: #000; z-index: 6; }
+.status { flex: none; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 2px 24px 0 30px; font: 600 13px/1 var(--sans); position: relative; z-index: 5; }
 .status .icons { display: flex; gap: 5px; align-items: center; }
-.content { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 6px 18px 20px; scrollbar-width: thin; scrollbar-color: var(--rule) transparent; }
-.tabbar { flex: none; display: flex; border-top: 1px solid var(--rule); background: var(--app); padding: 6px 8px 14px; }
-.tabbar span { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 10.5px; color: var(--ink-3); }
-.tabbar span[aria-current="page"] { color: var(--lapis); font-weight: 700; }
-.tabbar svg { width: 22px; height: 22px; }
+.status svg { display: block; }
+.content { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 8px 22px 96px; scrollbar-width: none; }
+.content::-webkit-scrollbar { display: none; }
 
-.eyebrow { font: 700 10.5px/1.3 var(--sans); letter-spacing: .13em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
-.display { font: italic 400 30px/1.05 var(--serif); font-variation-settings: "opsz" 60; letter-spacing: -.01em; margin: 0; }
-.btn { display: flex; width: 100%; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 14px; padding: 13px 16px; font: 700 15px/1 var(--sans); cursor: pointer; }
-.btn.primary { background: var(--lapis); color: var(--lapis-ink); }
-.btn.quiet { background: transparent; color: var(--lapis); border: 1px solid var(--rule); }
-.btn.text { background: none; color: var(--lapis); padding: 10px; }
-.chip { display: inline-flex; align-items: center; gap: 5px; font: 700 11.5px/1 var(--sans); padding: 6px 9px; border-radius: 999px; background: var(--gold-soft); color: var(--ink); white-space: nowrap; }
-.chip .fleck { width: 7px; height: 7px; background: var(--gold); border-radius: 1px; transform: rotate(45deg); }
+.screen.float::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 104px; z-index: 4; pointer-events: none; background: linear-gradient(to bottom, color-mix(in srgb, var(--app) 0%, transparent), var(--app) 62%); }
+.screen.float-tall::after { height: 150px; }
+.tabbar { position: absolute; left: 16px; right: 16px; bottom: 14px; height: 56px; border-radius: 28px; display: flex; align-items: center; z-index: 5;
+  background: var(--surface); background: color-mix(in srgb, var(--surface) 94%, transparent); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: inset 0 0 0 1px var(--hair), 0 12px 30px -14px rgba(0, 0, 0, .3); }
+.tabbar span { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; font: 500 10px/1.2 var(--sans); color: var(--ink-3); }
+.tabbar span[aria-current="page"] { color: var(--ink); }
+.tabbar svg { width: 21px; height: 21px; }
+
+.eyebrow { margin: 0; font: 600 10.5px/1.3 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); }
+.screen-title { margin: 6px 0 22px; font: 300 32px/1.05 var(--serif); font-variation-settings: "opsz" 60; letter-spacing: -.015em; }
+.btn { display: flex; width: 100%; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 16px; height: 50px; padding: 0 18px; font: 600 14.5px/1 var(--sans); cursor: pointer; background: var(--btn); color: var(--btn-ink); letter-spacing: -.005em; }
+.btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--hair-2); }
+.btn.link { background: none; color: var(--ink-2); height: 40px; font-weight: 500; }
+.rule { height: 1px; background: var(--hair); margin: 26px 0; }
+.num { font-variant-numeric: lining-nums tabular-nums; }
 
 /* today */
-.today-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 8px; margin: 4px 0 16px; }
-.portion {
-  background: var(--card); border-radius: 22px; padding: 18px 18px 16px;
-  box-shadow: 0 1px 0 var(--rule), 0 12px 28px -18px rgba(27, 37, 32, .35);
-}
-.portion .ref { font: 600 28px/1.1 var(--serif); font-variation-settings: "opsz" 36; margin: 0; letter-spacing: -.01em; }
-.portion .meta { margin: 6px 0 0; color: var(--ink-2); font-size: 13px; }
-.where { margin: 14px 0 12px; }
-.where .track { position: relative; height: 4px; border-radius: 2px; background: var(--empty); }
-.where .track .nt { position: absolute; top: -3px; bottom: -3px; width: 1.5px; background: var(--ink-3); opacity: .5; }
-.where .track .pin { position: absolute; top: -5px; width: 3px; height: 14px; border-radius: 2px; background: var(--lapis); }
-.where .labels { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--ink-3); margin-top: 6px; }
-.portion .preview { font: italic 400 15px/1.55 var(--serif); color: var(--ink-2); margin: 0 0 16px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.portion .fine { margin: 10px 0 0; text-align: center; font-size: 12px; color: var(--ink-3); }
-.portion .warn { display: none; margin: 10px 0 0; font-size: 12px; color: var(--ink); background: var(--gold-soft); border-radius: 10px; padding: 8px 10px; }
-.over-limit .portion .warn { display: block; }
-.over-limit .portion .fine { display: none; }
-
-.mini-progress { margin: 22px 2px 0; }
-.mini-progress p { margin: 8px 0 0; font-size: 13px; color: var(--ink-2); }
-.mini-progress b { color: var(--ink); font: 700 15px var(--sans); }
-.votd { margin-top: 22px; padding: 16px 0 4px; border-top: 1px solid var(--rule); }
-.votd blockquote { margin: 8px 0 6px; font: 400 16px/1.55 var(--serif); font-variation-settings: "opsz" 18; }
-.cite { font: 700 12px/1.3 var(--sans); color: var(--gold); letter-spacing: .02em; margin: 0; }
+.topmeta { display: flex; justify-content: space-between; align-items: center; margin: 2px 0 34px; font-size: 12.5px; color: var(--ink-2); }
+.streak { display: inline-flex; align-items: center; gap: 6px; }
+.streak i { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+.streak b { font-weight: 600; color: var(--ink); }
+.ref-xl { margin: 10px 0 0; white-space: nowrap; font: 300 34px/1.05 var(--serif); font-variation-settings: "opsz" 72; letter-spacing: -.02em; }
+.meta { margin: 10px 0 0; font-size: 12.5px; color: var(--ink-3); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.meta i { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-3); opacity: .7; }
+.excerpt { margin: 22px 0 26px; font: italic 400 16px/1.6 var(--serif); font-variation-settings: "opsz" 16; color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.fine { margin: 12px 0 0; text-align: center; font-size: 11.5px; color: var(--ink-3); }
+.warn { display: none; margin: 12px 0 0; padding: 10px 12px; border-radius: 12px; background: var(--gold-wash); font-size: 12px; color: var(--ink); }
+.over-limit .warn, .over-limit .limit-warn { display: block; }
+.over-limit .fine { display: none; }
+.prog-line { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+.prog-line .big { font: 400 24px/1 var(--serif); font-variation-settings: "opsz" 36; }
+.prog-line .lbl { font-size: 12px; color: var(--ink-3); }
+.mini-legend { display: flex; gap: 14px; margin-top: 10px; font-size: 10.5px; color: var(--ink-3); }
+.mini-legend i { display: inline-block; width: 8px; height: 4px; border-radius: 2px; background: var(--gold); margin-right: 5px; vertical-align: 2px; }
+.mini-legend i.mark { width: 2px; height: 9px; border-radius: 1px; background: var(--ink); vertical-align: -1px; }
+.votd { margin: 12px 0 10px; font: 400 17px/1.55 var(--serif); font-variation-settings: "opsz" 18; }
+.ref-sm { margin: 0; font: 600 11.5px/1.2 var(--sans); letter-spacing: .02em; color: var(--gold-ink); }
 
 /* reader */
-.navbar { flex: none; display: grid; grid-template-columns: 64px 1fr 64px; align-items: center; padding: 2px 10px 8px; border-bottom: 1px solid var(--rule); }
-.navbar .back { color: var(--lapis); font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 2px; }
-.navbar .title { text-align: center; font: 700 14px/1.2 var(--sans); }
-.navbar .more { justify-self: end; color: var(--ink-2); }
-.bookcard { padding: 14px 0 12px; border-bottom: 1px solid var(--rule); }
-.bookcard p { margin: 4px 0 0; font: italic 400 14px/1.5 var(--serif); color: var(--ink-2); }
-.before { display: flex; gap: 8px; align-items: baseline; margin: 12px 0 0; font-size: 12.5px; color: var(--ink-3); }
-.before svg { flex: none; transform: translateY(2px); }
-.scripture { font: 400 17px/1.72 var(--serif); font-variation-settings: "opsz" 16; margin-top: 14px; hyphens: manual; }
-.scripture p { margin: 0 0 14px; }
-.scripture sup { font: 700 10px/0 var(--sans); color: var(--lapis); margin: 0 3px 0 1px; vertical-align: .65em; }
-.endmark { display: flex; align-items: center; gap: 10px; margin: 6px 0 12px; color: var(--gold); }
-.endmark::before, .endmark::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
-.endmark i { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); }
-.next-note { background: var(--lapis-soft); border-radius: 14px; padding: 12px 14px; font-size: 13px; color: var(--ink); }
-.next-note b { display: block; margin-bottom: 2px; }
-.readbar { flex: none; padding: 10px 16px 16px; border-top: 1px solid var(--rule); background: var(--app); }
-.readbar .count { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-3); margin-bottom: 8px; }
-.meter { height: 4px; background: var(--empty); border-radius: 2px; margin-bottom: 10px; overflow: hidden; }
+.navbar { flex: none; display: flex; justify-content: space-between; align-items: center; padding: 0 16px 6px; position: relative; z-index: 5; }
+.circle { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--surface); box-shadow: inset 0 0 0 1px var(--hair); color: var(--ink); }
+.nav-title { font: 600 13px/1 var(--sans); }
+.reader { padding-bottom: 150px; }
+.ref-lg { margin: 8px 0 0; font: 300 34px/1.05 var(--serif); font-variation-settings: "opsz" 60; letter-spacing: -.02em; }
+.intro { margin: 14px 0 0; font: italic 400 14.5px/1.55 var(--serif); color: var(--ink-2); }
+.context { margin: 14px 0 0; display: flex; gap: 8px; align-items: center; font-size: 11.5px; color: var(--ink-3); }
+.context::before { content: ""; width: 14px; height: 1px; background: var(--ink-3); }
+.scripture { margin-top: 26px; font: 400 16.5px/1.78 var(--serif); font-variation-settings: "opsz" 16; }
+.scripture p { margin: 0 0 16px; }
+.scripture sup { font: 600 9px/0 var(--sans); color: var(--gold-ink); margin: 0 3px 0 1px; vertical-align: .75em; letter-spacing: .02em; }
+.fin { display: flex; justify-content: center; margin: 10px 0 24px; }
+.fin i { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
+.next { padding: 16px; border-radius: 18px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--hair); }
+.next b { display: block; margin: 6px 0 4px; font: 400 19px/1.2 var(--serif); font-variation-settings: "opsz" 24; }
+.next span { font-size: 12px; color: var(--ink-3); }
+.action { position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 12px; border-radius: 26px; z-index: 5;
+  background: var(--surface); background: color-mix(in srgb, var(--surface) 95%, transparent); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: inset 0 0 0 1px var(--hair), 0 12px 30px -14px rgba(0, 0, 0, .3); }
+.action .count { display: flex; justify-content: space-between; padding: 0 4px; font-size: 11.5px; color: var(--ink-3); }
+.meter { height: 3px; border-radius: 2px; background: var(--empty); margin: 8px 4px 12px; overflow: hidden; }
 .meter span { display: block; height: 100%; background: var(--gold); border-radius: 2px; }
 
 /* done */
-.done-hero { text-align: center; padding: 20px 4px 4px; }
-.seal { width: 64px; height: 64px; margin: 0 auto 14px; border-radius: 50%; background: var(--gold-soft); display: grid; place-items: center; color: var(--gold); }
-.done-hero h3 { margin: 0; }
-.done-hero p { margin: 8px 0 0; color: var(--ink-2); font-size: 13.5px; }
-.bigstat { display: flex; align-items: baseline; justify-content: center; gap: 8px; margin: 18px 0 2px; }
-.bigstat b { font: 500 40px/1 var(--serif); font-variation-settings: "opsz" 72; }
-.bigstat span { color: var(--olive); font-weight: 700; font-size: 13px; }
-.center-note { text-align: center; color: var(--ink-2); font-size: 12.5px; margin: 0 0 14px; }
-.legend-sm { display: flex; justify-content: center; gap: 14px; font-size: 11px; color: var(--ink-3); margin: 8px 0 16px; }
-.legend-sm i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--gold-bright); vertical-align: -1px; margin-right: 4px; }
-.legend-sm i.sq { border: 0; border-radius: 1px; background: var(--gold); }
-.row-card { background: var(--card); border-radius: 16px; padding: 14px; display: flex; gap: 12px; align-items: center; box-shadow: 0 1px 0 var(--rule); margin-bottom: 12px; }
-.row-card .txt { flex: 1; min-width: 0; }
-.row-card .txt b { display: block; font: 600 16px/1.25 var(--serif); }
-.row-card .txt span { font-size: 12.5px; color: var(--ink-2); }
-.streak-row { display: flex; justify-content: space-between; align-items: center; margin: 2px 2px 14px; font-size: 13px; color: var(--ink-2); }
-.dots { display: flex; gap: 4px; }
-.dots i { width: 10px; height: 10px; border-radius: 3px; background: var(--olive); opacity: .85; }
-.dots i.off { background: var(--empty); opacity: 1; }
-.dots i.now { background: var(--gold-bright); opacity: 1; }
+.done-top { text-align: center; padding-top: 26px; }
+.seal { width: 54px; height: 54px; margin: 0 auto 22px; border-radius: 50%; display: grid; place-items: center; color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+.done-top h4 { margin: 0; font: italic 300 32px/1.05 var(--serif); font-variation-settings: "opsz" 60; letter-spacing: -.015em; }
+.done-top p { margin: 10px 0 0; font-size: 12.5px; color: var(--ink-3); }
+.done-stat { text-align: center; margin: 30px 0 22px; }
+.done-stat b { font: 300 52px/1 var(--serif); font-variation-settings: "opsz" 72; letter-spacing: -.02em; }
+.done-stat .delta { display: inline-block; margin-left: 6px; font-size: 12px; font-weight: 600; color: var(--gold-ink); vertical-align: 24px; }
+.done-stat p { margin: 6px 0 0; font-size: 12px; color: var(--ink-3); }
+.legend-sm { display: flex; justify-content: center; gap: 16px; margin: 12px 0 0; font-size: 10.5px; color: var(--ink-3); }
+.legend-sm i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--gold-2); margin-right: 5px; vertical-align: -1px; }
+.legend-sm i.sq { width: 8px; height: 4px; border-radius: 2px; background: var(--gold); box-shadow: none; vertical-align: 1px; }
+.streak-line { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--ink-2); }
+.dots { display: flex; gap: 5px; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--ink); opacity: .8; }
+.dots i.now { background: var(--gold); opacity: 1; box-shadow: 0 0 0 3px var(--gold-wash); }
+.tomorrow { margin: 18px 0 14px; }
 
 /* progress */
-.p-head { display: flex; justify-content: space-between; align-items: baseline; margin: 4px 0 6px; }
-.pct { font: 300 72px/.95 var(--serif); font-variation-settings: "opsz" 72; letter-spacing: -.03em; margin: 8px 0 0; }
-.pct small { font-size: 32px; letter-spacing: 0; vertical-align: 28px; margin-left: 2px; color: var(--ink-2); }
-.pct-sub { margin: 4px 0 18px; color: var(--ink-2); font-size: 13px; }
-.mapcard { background: var(--card); border-radius: 18px; padding: 14px 12px 12px; box-shadow: 0 1px 0 var(--rule); }
-.mapcard .cap { display: flex; justify-content: space-between; gap: 8px; font-size: 11px; color: var(--ink-3); margin-top: 8px; }
-.bars { margin: 18px 0 6px; display: grid; gap: 12px; }
-.bar-row .lab { display: flex; justify-content: space-between; font-size: 12.5px; margin-bottom: 5px; }
-.bar-row .lab span:last-child { font-weight: 700; }
-.bar { height: 8px; background: var(--empty); border-radius: 4px; overflow: hidden; }
-.bar i { display: block; height: 100%; background: var(--gold); border-radius: 4px; }
-.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border-radius: 16px; overflow: hidden; margin: 18px 0; }
-.stats div { background: var(--card); padding: 12px 12px 11px; }
-.stats b { display: block; font: 500 22px/1.1 var(--serif); font-variation-settings: "opsz" 36; }
-.stats span { font-size: 11.5px; color: var(--ink-3); }
+.pct { margin: 0; font: 200 84px/.9 var(--serif); font-variation-settings: "opsz" 72; letter-spacing: -.035em; }
+.pct small { font-size: 28px; font-weight: 300; letter-spacing: 0; vertical-align: 34px; margin-left: 2px; color: var(--ink-3); }
+.pct-sub { margin: 10px 0 26px; font-size: 12.5px; color: var(--ink-3); }
+.mapcard { padding: 16px 14px 14px; border-radius: 20px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--hair); --sep: var(--surface); position: relative; }
+.mapcard .cap { display: flex; justify-content: space-between; margin-top: 12px; font-size: 10.5px; color: var(--ink-3); }
+.testaments { display: grid; gap: 14px; margin: 26px 0 0; }
+.t-row .lab { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 7px; color: var(--ink-2); }
+.t-row .lab span:last-child { color: var(--ink); font-weight: 600; }
+.track { height: 3px; border-radius: 2px; background: var(--empty); overflow: hidden; }
+.track i { display: block; height: 100%; border-radius: 2px; background: var(--gold); }
+.stats { display: grid; grid-template-columns: 1fr 1fr; margin: 26px 0 0; border-top: 1px solid var(--hair); }
+.stats div { padding: 14px 0; border-bottom: 1px solid var(--hair); }
+.stats div:nth-child(odd):not(.wide) { padding-right: 12px; border-right: 1px solid var(--hair); }
+.stats div:nth-child(even) { padding-left: 14px; }
+.stats b { display: block; font: 300 26px/1.1 var(--serif); font-variation-settings: "opsz" 48; letter-spacing: -.01em; }
+.stats span { font-size: 11px; color: var(--ink-3); }
 .stats .wide { grid-column: span 2; }
-.booklist { margin: 4px 0 0; padding: 0; list-style: none; }
-.booklist li { display: grid; grid-template-columns: 92px 1fr 40px; gap: 10px; align-items: center; padding: 8px 0; border-top: 1px solid var(--rule); font-size: 13px; }
-.booklist li span:last-child { text-align: right; font-weight: 700; font-size: 12px; }
-.link { color: var(--lapis); font-weight: 700; font-size: 13px; display: block; padding: 12px 0 4px; }
-.sect-h { font: 700 10.5px/1.3 var(--sans); letter-spacing: .13em; text-transform: uppercase; color: var(--ink-3); margin: 22px 0 8px; }
+.booklist { margin: 12px 0 0; padding: 0; list-style: none; }
+.booklist li { display: grid; grid-template-columns: 86px 1fr 34px; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--hair); font-size: 12.5px; }
+.booklist li span:last-child { text-align: right; font-weight: 600; font-size: 11.5px; }
+.more-link { display: block; padding: 14px 0 0; font-size: 12.5px; font-weight: 600; }
+.label-sm { margin: 30px 0 0; font: 600 10.5px/1.3 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); }
 
 /* settings */
-.group { background: var(--card); border-radius: 16px; box-shadow: 0 1px 0 var(--rule); overflow: hidden; }
-.item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-top: 1px solid var(--rule); width: 100%; background: none; border-left: 0; border-right: 0; border-bottom: 0; text-align: left; }
-.item:first-child { border-top: 0; }
+.group-label { margin: 26px 4px 8px; font: 600 10.5px/1.3 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); }
+.group-label.first { margin-top: 0; }
+.group { border-radius: 18px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--hair); overflow: hidden; }
+.item { display: flex; align-items: center; gap: 12px; width: 100%; padding: 13px 16px; border: 0; background: none; text-align: left; position: relative; }
+.item + .item::before, .length + .item::before { content: ""; position: absolute; top: 0; left: 16px; right: 0; height: 1px; background: var(--hair); }
 .item .txt { flex: 1; min-width: 0; }
-.item .txt b { display: block; font-weight: 700; font-size: 14px; }
-.item .txt span { display: block; font-size: 12px; color: var(--ink-3); margin-top: 1px; }
-.item .val { color: var(--ink-3); font-size: 13px; }
+.item .txt b { display: block; font-weight: 500; font-size: 13.5px; }
+.item .txt span { display: block; margin-top: 2px; font-size: 11.5px; color: var(--ink-3); }
+.item .val { font-size: 12.5px; color: var(--ink-3); }
+.item svg { color: var(--ink-3); flex: none; }
 button.item { cursor: pointer; }
-button.item .txt b { color: var(--lapis); }
-.length { padding: 14px; }
-.length .top { display: flex; justify-content: space-between; align-items: baseline; }
-.length .top b { font-size: 14px; }
-.length output { font: 500 26px/1 var(--serif); font-variation-settings: "opsz" 36; }
-.length output small { font: 400 13px var(--sans); color: var(--ink-3); margin-left: 3px; }
-.length .est { font-size: 12.5px; color: var(--ink-2); margin: 4px 0 12px; }
-input[type="range"] { width: 100%; margin: 0; -webkit-appearance: none; appearance: none; height: 28px; background: transparent; cursor: pointer; --pct: 14%; }
-input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--gold) var(--pct), var(--empty) var(--pct)); }
-input[type="range"]::-moz-range-track { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--gold) var(--pct), var(--empty) var(--pct)); }
-input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; margin-top: -9px; border-radius: 50%; background: var(--card); border: 2px solid var(--gold); box-shadow: 0 2px 6px rgba(0, 0, 0, .18); }
-input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--card); border: 2px solid var(--gold); }
-.ticks { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--ink-3); margin-top: 2px; }
-.presets { display: flex; gap: 6px; margin: 12px 0 10px; }
-.presets button { flex: 1; border: 1px solid var(--rule); background: none; border-radius: 10px; padding: 7px 4px; font-size: 12px; cursor: pointer; color: var(--ink-2); }
-.presets button[aria-pressed="true"] { background: var(--ink); color: var(--app); border-color: var(--ink); }
-.presets button b { display: block; font-size: 12.5px; }
-.helper { font-size: 12px; color: var(--ink-2); margin: 0; }
-.limit-warn { display: none; font-size: 12px; background: var(--gold-soft); border-radius: 10px; padding: 8px 10px; margin: 10px 0 0; }
-.over-limit .limit-warn { display: block; }
-.switch { flex: none; width: 44px; height: 26px; border-radius: 13px; background: var(--empty); border: 0; position: relative; cursor: pointer; transition: background .2s; }
-.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .25); transition: transform .2s; }
-.switch[aria-checked="true"] { background: var(--olive); }
-.switch[aria-checked="true"]::after { transform: translateX(18px); }
-.toast { position: absolute; left: 14px; right: 14px; bottom: 74px; background: var(--ink); color: var(--app); border-radius: 14px; padding: 11px 14px; font-size: 12.5px; opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; pointer-events: none; }
-.toast b { display: block; font-size: 13px; }
+.length { padding: 16px; }
+.length .head { display: flex; justify-content: space-between; align-items: baseline; }
+.length .head label { font-weight: 500; font-size: 13.5px; }
+.length output { font: 300 30px/1 var(--serif); font-variation-settings: "opsz" 48; letter-spacing: -.01em; }
+.length output small { font: 400 12px var(--sans); color: var(--ink-3); margin-left: 4px; letter-spacing: 0; }
+input[type="range"] { width: 100%; margin: 14px 0 0; -webkit-appearance: none; appearance: none; height: 28px; background: transparent; cursor: pointer; --pct: 14%; }
+input[type="range"]::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--gold) var(--pct), var(--empty) var(--pct)); }
+input[type="range"]::-moz-range-track { height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--gold) var(--pct), var(--empty) var(--pct)); }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; margin-top: -11.5px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .12), 0 3px 8px rgba(0, 0, 0, .18); }
+input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .12), 0 3px 8px rgba(0, 0, 0, .18); }
+.ticks { display: flex; justify-content: space-between; font-size: 10px; color: var(--ink-3); margin-top: 2px; }
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); padding: 3px; margin: 16px 0 14px; border-radius: 12px; background: var(--app); box-shadow: inset 0 0 0 1px var(--hair); }
+.seg button { border: 0; background: none; border-radius: 9px; padding: 7px 4px; font-size: 11.5px; color: var(--ink-3); cursor: pointer; line-height: 1.25; }
+.seg button b { display: block; font-weight: 600; font-size: 12px; color: var(--ink-2); }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink-2); box-shadow: 0 1px 3px rgba(0, 0, 0, .1), inset 0 0 0 1px var(--hair); }
+.seg button[aria-pressed="true"] b { color: var(--ink); }
+.est { margin: 0; font-size: 12px; color: var(--ink); }
+.helper { margin: 6px 0 0; font-size: 11.5px; color: var(--ink-3); }
+.limit-warn { display: none; margin: 12px 0 0; padding: 10px 12px; border-radius: 12px; background: var(--gold-wash); font-size: 11.5px; color: var(--ink); }
+.switch { flex: none; width: 42px; height: 25px; border-radius: 13px; border: 0; background: var(--hair-2); position: relative; cursor: pointer; transition: background .2s; }
+.switch::after { content: ""; position: absolute; top: 2.5px; left: 2.5px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .25); transition: transform .2s; }
+.switch[aria-checked="true"] { background: var(--ink); }
+.switch[aria-checked="true"]::after { transform: translateX(17px); background: var(--app); }
+.toast { position: absolute; left: 16px; right: 16px; bottom: 82px; z-index: 7; padding: 12px 14px; border-radius: 16px; background: var(--ink); color: var(--app); font-size: 11.5px; opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; pointer-events: none; }
+.toast b { display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 1px; }
 .toast.show { opacity: 1; transform: none; }
-.fineprint { font-size: 11.5px; color: var(--ink-3); margin: 12px 4px 0; }
+.fineprint { margin: 10px 4px 0; font-size: 11px; color: var(--ink-3); }
 
 /* import sheet */
-.dim { position: absolute; inset: 0; background: rgba(8, 12, 10, .45); }
-.sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--app); border-radius: 26px 26px 0 0; padding: 10px 18px 18px; max-height: 88%; overflow-y: auto; }
-.grabber { width: 38px; height: 5px; border-radius: 3px; background: var(--rule); margin: 0 auto 14px; }
-.sheet h3 { font: 600 22px/1.2 var(--serif); margin: 0 0 4px; }
-.file { display: flex; gap: 10px; align-items: center; font-size: 12.5px; color: var(--ink-2); margin-bottom: 14px; }
-.file svg { flex: none; color: var(--lapis); }
-.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
-.compare div { background: var(--card); border-radius: 14px; padding: 10px 12px; box-shadow: 0 1px 0 var(--rule); }
-.compare .eyebrow { font-size: 9.5px; }
-.compare b { display: block; font: 500 24px/1.15 var(--serif); margin-top: 4px; }
-.compare span { display: block; font-size: 11.5px; color: var(--ink-3); }
-.choice { display: flex; gap: 10px; width: 100%; text-align: left; padding: 11px 12px; border-radius: 14px; border: 1.5px solid var(--rule); background: var(--card); margin-bottom: 8px; cursor: pointer; }
-.choice[aria-checked="true"] { border-color: var(--lapis); }
-.choice .radio { flex: none; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--ink-3); margin-top: 1px; position: relative; }
-.choice[aria-checked="true"] .radio { border-color: var(--lapis); }
-.choice[aria-checked="true"] .radio::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--lapis); }
-.choice b { display: block; font-size: 13.5px; }
-.choice span { display: block; font-size: 12px; color: var(--ink-2); }
+.backdrop { position: absolute; inset: 0; background: rgba(10, 11, 13, .38); z-index: 6; }
+.sheet { position: absolute; left: 8px; right: 8px; bottom: 8px; z-index: 7; padding: 10px 18px 14px; border-radius: 34px; background: var(--app); max-height: 90%; overflow-y: auto; scrollbar-width: none; box-shadow: 0 -10px 40px -10px rgba(0, 0, 0, .3); }
+.grabber { width: 36px; height: 4px; border-radius: 2px; background: var(--hair-2); margin: 0 auto 18px; }
+.sheet h4 { margin: 0; font: 300 26px/1.1 var(--serif); font-variation-settings: "opsz" 48; letter-spacing: -.015em; }
+.file { display: flex; gap: 10px; align-items: center; margin: 12px 0 18px; font-size: 11.5px; color: var(--ink-3); line-height: 1.4; }
+.file b { display: block; font-weight: 500; color: var(--ink-2); }
+.file svg { flex: none; color: var(--ink-2); }
+.compare { display: grid; grid-template-columns: 1fr 1fr; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--hair); margin-bottom: 14px; }
+.compare div { padding: 12px 14px; }
+.compare div + div { border-left: 1px solid var(--hair); }
+.compare b { display: block; margin: 6px 0 2px; font: 300 26px/1 var(--serif); font-variation-settings: "opsz" 48; }
+.compare span { display: block; font-size: 11px; color: var(--ink-3); }
+.compare span span, .choice span span span { display: inline; margin: 0; }
+.choice { display: flex; gap: 12px; width: 100%; padding: 12px 14px; margin-bottom: 8px; border: 0; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--hair); text-align: left; cursor: pointer; }
+.choice[aria-checked="true"] { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.choice .radio { flex: none; width: 18px; height: 18px; margin-top: 1px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--hair-2); position: relative; }
+.choice[aria-checked="true"] .radio { box-shadow: inset 0 0 0 5.5px var(--ink); }
+.choice b { display: block; font-weight: 600; font-size: 12.5px; color: var(--ink); }
+.choice span { display: block; font-size: 11.5px; color: var(--ink-3); margin-top: 2px; }
 
 /* home screens + widgets */
-.home { flex: 1; display: flex; flex-direction: column; padding: 4px 14px 14px; color: #fff; }
-.screen.wall { background:
-  radial-gradient(120% 60% at 20% 0%, rgba(255, 255, 255, .16), transparent 60%),
-  linear-gradient(165deg, #2B4A93 0%, #36507E 40%, #50663F 100%); color: #fff; }
-.screen.wall-night { background:
-  radial-gradient(90% 50% at 80% 10%, rgba(211, 167, 72, .18), transparent 60%),
-  linear-gradient(170deg, #0E1630 0%, #121C38 55%, #1B2A26 100%); color: #fff; }
-.widget { border-radius: 22px; background: rgba(245, 247, 242, .94); color: #1B2520; padding: 14px 15px; box-shadow: 0 10px 24px -14px rgba(0, 0, 0, .5); }
-.force-dark .widget, .widget.dark { background: rgba(23, 33, 56, .92); color: #ECE8DC; }
-.widget .w-eyebrow { display: flex; align-items: center; gap: 6px; font: 700 9.5px/1 var(--sans); letter-spacing: .13em; text-transform: uppercase; color: #78857C; }
-.widget.dark .w-eyebrow { color: #A6AEC2; }
-.widget .w-eyebrow i { width: 6px; height: 6px; background: #B3852A; transform: rotate(45deg); }
-.widget.dark .w-eyebrow i { background: #D3A748; }
-.widget .w-text { font-family: var(--serif); margin: 8px 0 6px; }
-.widget .w-ref { font: 700 11.5px/1.2 var(--sans); color: #8E6518; margin: 0; }
-.widget.dark .w-ref { color: #F2C461; }
+.screen.wall { color: #fff; background:
+  radial-gradient(130% 70% at 50% 108%, rgba(222, 176, 104, .75), transparent 60%),
+  radial-gradient(80% 40% at 15% 0%, rgba(255, 255, 255, .12), transparent 70%),
+  linear-gradient(180deg, #1E2433 0%, #2E3446 46%, #6E6355 82%, #A88559 100%); }
+.screen.wall-night { color: #fff; background:
+  radial-gradient(120% 60% at 50% 110%, rgba(205, 164, 90, .32), transparent 60%),
+  linear-gradient(180deg, #07080B 0%, #0E1118 55%, #1E1C1A 100%); }
+.home { flex: 1; display: flex; flex-direction: column; padding: 10px 16px 14px; }
+.widget { border-radius: 24px; padding: 15px 16px; color: #14161A; background: rgba(250, 250, 247, .9); -webkit-backdrop-filter: blur(20px) saturate(1.5); backdrop-filter: blur(20px) saturate(1.5); box-shadow: 0 12px 30px -16px rgba(0, 0, 0, .55); }
+.widget.dark { color: #F1EEE7; background: rgba(23, 24, 28, .82); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06), 0 12px 30px -16px rgba(0, 0, 0, .7); }
+.w-eyebrow { display: flex; align-items: center; gap: 6px; font: 600 9px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: #8D9199; }
+.widget.dark .w-eyebrow { color: #7F848D; }
+.w-eyebrow i { width: 5px; height: 5px; border-radius: 50%; background: #A67A2A; }
+.widget.dark .w-eyebrow i { background: #CDA45A; }
+.w-text { margin: 10px 0 8px; font-family: var(--serif); }
+.w-ref { margin: 0; font: 600 10.5px/1.2 var(--sans); letter-spacing: .02em; color: #87601A; }
+.widget.dark .w-ref { color: #DDB66C; }
 .w-medium .w-text { font-size: 13px; line-height: 1.45; font-variation-settings: "opsz" 14; }
-.w-medium .w-foot { display: flex; justify-content: space-between; align-items: center; }
-.w-medium .w-foot span { font-size: 10.5px; color: #78857C; }
-.home-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
-.w-small { aspect-ratio: 1; display: flex; flex-direction: column; padding: 13px; }
-.w-small .w-text { font-size: 13.5px; line-height: 1.38; flex: 1; margin: 7px 0 4px; font-variation-settings: "opsz" 14; }
-.apps { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 8px; align-content: space-between; }
-.app { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 10px; color: rgba(255, 255, 255, .92); }
-.app i { width: 46px; height: 46px; border-radius: 13px; background: rgba(255, 255, 255, .2); display: block; }
-.app i.c1 { background: #E9E2CF; } .app i.c2 { background: #8FA88A; } .app i.c3 { background: #C9D3E8; } .app i.c4 { background: #D9B46A; }
-.app i.c5 { background: #A9B7C9; } .app i.c6 { background: #6E8BA8; } .app i.c7 { background: #EDEFEA; } .app i.c8 { background: #B88B77; }
-.app-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 18px; }
-.dock { margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 10px; border-radius: 26px; background: rgba(255, 255, 255, .16); }
+.w-foot { display: flex; justify-content: space-between; align-items: center; }
+.w-foot span { font-size: 10px; color: #8D9199; }
+.home-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+.w-small { aspect-ratio: 1; display: flex; flex-direction: column; padding: 14px; }
+.w-small .w-text { flex: 1; margin: 8px 0 4px; font-size: 14px; line-height: 1.36; font-variation-settings: "opsz" 16; }
+.w-large { padding: 20px 20px 18px; }
+.w-large .w-text { margin: 14px 0 12px; font-size: 18.5px; line-height: 1.42; font-weight: 300; font-variation-settings: "opsz" 24; }
+.w-large .w-ref { font-size: 11.5px; }
+.w-today { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, .1); }
+.w-today .k { display: block; font: 600 9px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: #7F848D; }
+.w-today b { display: block; margin-top: 5px; font: 400 16px/1.2 var(--serif); }
+.w-today em { font-style: normal; font-size: 11px; color: #7F848D; }
+.w-today .go { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: #F1EEE7; color: #0F1013; }
+.apps { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 10px; align-content: center; }
+.app { display: flex; flex-direction: column; align-items: center; gap: 5px; font: 500 9.5px/1 var(--sans); color: rgba(255, 255, 255, .88); }
+.app i { display: block; width: 46px; height: 46px; border-radius: 13px; background: rgba(255, 255, 255, .16); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .25); }
+.app-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 20px; }
+.dock { margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 11px 10px; border-radius: 30px; background: rgba(255, 255, 255, .14); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .2); }
 .dock .app > span:last-child { display: none; }
-.manna-icon { width: 46px; height: 46px; border-radius: 13px; background: #2A4892; position: relative; overflow: hidden; display: block; }
-.manna-icon b { position: absolute; width: 6px; height: 6px; background: #E8B64A; transform: rotate(45deg); border-radius: 1px; }
-.w-large { padding: 18px 18px 16px; }
-.w-large .w-text { font-size: 18px; line-height: 1.45; margin: 12px 0 10px; font-variation-settings: "opsz" 24; }
-.w-large .w-ref { font-size: 12.5px; }
-.w-large .w-today { margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, .12); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-.w-large .w-today span { display: block; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #A6AEC2; font-weight: 700; }
-.w-large .w-today b { display: block; font: 600 15px/1.3 var(--serif); margin-top: 2px; }
-.w-large .w-today em { font-style: normal; font-size: 12px; color: #A6AEC2; }
-.w-large .go { width: 34px; height: 34px; border-radius: 50%; background: #9DB3F3; color: #0B1120; display: grid; place-items: center; flex: none; }
-.wtag { font: 700 9px/1 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .7); margin: 12px 0 6px 4px; }
+.manna-icon { display: block; width: 46px; height: 46px; border-radius: 13px; background: linear-gradient(160deg, #1D2026, #0D0E11); position: relative; overflow: hidden; box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .18); }
+.manna-icon b { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: #D5AC5E; }
+.wtag { margin: 14px 2px 8px; font: 600 9px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .62); }
+.wtag.first { margin-top: 4px; }
 
-/* canon map (signature) */
+/* canon map */
 .canon svg { display: block; width: 100%; height: auto; overflow: visible; }
 .c-empty { fill: var(--empty); }
 .c-fleck { fill: var(--gold); }
 .c-sep { stroke: var(--sep); }
-.c-label { fill: var(--ink-2); font-family: var(--sans); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; pointer-events: none; paint-order: stroke; stroke: var(--empty); stroke-width: 3px; stroke-linejoin: round; }
-.c-sect { fill: var(--ink-2); font-family: var(--sans); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.c-today { fill: var(--gold-bright); }
-.c-ring { fill: none; stroke: var(--gold-bright); stroke-width: 1.6; transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-out infinite; }
-.c-ring-still { fill: none; stroke: var(--gold-bright); stroke-width: 1.4; }
+.c-label { fill: var(--ink-3); font-family: var(--sans); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; pointer-events: none; paint-order: stroke; stroke: var(--empty); stroke-width: 3px; stroke-linejoin: round; }
+.c-sect { fill: var(--ink-3); font-family: var(--sans); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.c-today { fill: var(--gold-2); }
+.c-mark { fill: var(--ink); }
+.c-ring-still { fill: none; stroke: var(--gold-2); stroke-width: 1.2; }
+.c-ring { fill: none; stroke: var(--gold-2); stroke-width: 1.2; transform-box: fill-box; transform-origin: center; animation: pulse 2.6s ease-out infinite; }
 .c-hover { fill: none; stroke: var(--ink); stroke-width: 1; pointer-events: none; }
-.hero-map .c-sep { stroke: var(--paper); }
-.hero-map .c-label { stroke-width: 4px; }
-@keyframes pulse { 0% { transform: scale(.6); opacity: 1; } 80%, 100% { transform: scale(1.5); opacity: 0; } }
-.tip { position: absolute; z-index: 5; pointer-events: none; background: var(--ink); color: var(--app); font-size: 12px; line-height: 1.3; padding: 7px 9px; border-radius: 8px; white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); opacity: 0; transition: opacity .12s; }
-.tip b { display: block; font-size: 12.5px; }
+@keyframes pulse { 0% { transform: scale(.8); opacity: .9; } 80%, 100% { transform: scale(1.8); opacity: 0; } }
+.tip { position: absolute; z-index: 8; pointer-events: none; padding: 8px 10px; border-radius: 10px; background: var(--ink); color: var(--app); font-size: 11.5px; line-height: 1.35; white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); opacity: 0; transition: opacity .12s; }
+.tip b { display: block; font-size: 12px; font-weight: 600; }
 .tip.show { opacity: 1; }
 
-.footer { border-top: 1px solid var(--rule); padding-top: 24px; padding-bottom: 48px; color: var(--ink-3); font-size: 13px; display: grid; gap: 8px; }
-.footer p { margin: 0; max-width: 90ch; }
+.footer { margin-top: clamp(80px, 10vw, 140px); padding-top: 28px; padding-bottom: 56px; border-top: 1px solid var(--hair); display: grid; gap: 8px; font-size: 12.5px; color: var(--ink-3); }
+.footer p { margin: 0; max-width: 92ch; }
 
 @media (prefers-reduced-motion: reduce) {
-  .c-ring { animation: none; }
+  .c-ring { animation: none; opacity: 0; }
   .switch, .switch::after, .toast { transition: none; }
 }
 </style>
 </head>
 <body>
 
-<header class="masthead wrap">
-  <div class="topline">
-    <p class="kicker">UI concept · daily Bible reading app · not a working build</p>
+<header class="wrap topbar">
+  <p class="wordmark">Manna<i>.</i></p>
+  <div class="right">
+    <span class="tag">UI concept · not a working build</span>
     <div class="theme-switch" role="group" aria-label="Colour theme">
-      <button type="button" data-theme-btn="system" aria-pressed="true">System</button>
+      <button type="button" data-theme-btn="system" aria-pressed="true">Auto</button>
       <button type="button" data-theme-btn="light" aria-pressed="false">Light</button>
       <button type="button" data-theme-btn="dark" aria-pressed="false">Dark</button>
     </div>
   </div>
+</header>
 
-  <div class="title-row">
-    <h1 class="brand">Manna<span class="dot">.</span></h1>
-    <p class="lede">One short passage a day, picked at random from what you haven’t read. <em>Never repeated, never longer than you choose, and always ending at the end of a sentence.</em></p>
-  </div>
+<section class="wrap hero">
+  <h1>One passage a day. <em>Never the same twice.</em></h1>
+  <p class="sub">Manna picks a short reading at random from the parts of the Bible you haven’t read yet. It stays within the length you choose and always ends at the end of a sentence.</p>
 
-  <section class="hero-map" aria-label="Canon map">
+  <div class="map-panel" aria-label="Canon map">
     <div class="canon" data-variant="hero"></div>
-    <div class="hero-cap">
-      <p>This is the whole Bible, drawn to scale: each book is as wide as it is long. The gold flecks are the <b data-bind="readings">297</b> passages a sample reader has finished, scattered at random and never overlapping. The reader is <b data-bind="pctAfter">9.6%</b> of the way through. Hover or tap a book to see its progress.</p>
-      <div class="legend"><span><i class="l-read"></i>Read</span><span><i class="l-unread"></i>Not read yet</span></div>
+    <div class="map-foot">
+      <p>The whole Bible, drawn to scale. Each book is as wide as it is long. The gold marks are the <b data-bind="readings">330</b> passages one sample reader has finished: scattered at random, never overlapping, <b data-bind="pctAfter">9.6%</b> of the way through. Hover or tap a book to see its progress.</p>
+      <div class="legend"><span><i class="l-read"></i>Read</span><span><i class="l-unread"></i>Not yet read</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap epigraph">
+  <blockquote>“…the people shall go out and gather a day’s portion every day…”</blockquote>
+  <cite>Exodus 16:4 · World English Bible</cite>
+  <p class="howto">Scroll inside each phone. Drag the length slider in Settings and the other screens update with it. All Scripture shown is World English Bible text. Progress figures come from a simulated reader.</p>
+</section>
+
+<main>
+  <!-- ===================== READING ===================== -->
+  <section class="wrap section">
+    <div class="section-head">
+      <h2>Reading</h2>
+      <p>One reading a day, chosen when the day starts. It begins where an earlier reading left off or at the top of a chapter, and it ends at the end of a sentence, usually at a paragraph break.</p>
+    </div>
+    <div class="shots">
+
+      <figure class="shot">
+        <div class="phone"><div class="screen float" data-limit-scope>
+          <div class="island"></div>
+          <div class="status"><span>7:42</span><span class="icons" data-status></span></div>
+          <div class="content">
+            <div class="topmeta"><span>Sunday, 18 October</span><span class="streak"><i></i><span><b data-bind="streakBefore">12</b> days</span></span></div>
+            <p class="eyebrow">Today’s reading</p>
+            <h4 class="ref-xl">Luke 15:11–21</h4>
+            <p class="meta"><span>244 words</span><i></i><span>about 2 min</span></p>
+            <p class="excerpt">He said, “A certain man had two sons. The younger of them said to his father, ‘Father, give me my share of your property.’ So he divided his livelihood between them.</p>
+            <button class="btn" type="button">Begin reading</button>
+            <p class="fine">Within your <span data-bind="limit">300</span>-word limit</p>
+            <p class="warn">Longer than your new <span data-bind="limit">300</span>-word limit, so it will be rebuilt to fit before you begin.</p>
+
+            <div class="rule"></div>
+            <div class="prog-line"><span><span class="big num" data-bind="pctBefore">9.6%</span> <span class="lbl">of the Bible</span></span><span class="lbl"><span data-bind="readingsBefore">329</span> readings</span></div>
+            <div class="canon" data-variant="mini"></div>
+            <div class="mini-legend"><span><i></i>Read</span><span><i class="mark"></i>Today’s passage</span></div>
+
+            <div class="rule"></div>
+            <p class="eyebrow">Verse of the day</p>
+            <p class="votd">Don’t you be afraid, for I am with you. Don’t be dismayed, for I am your God. I will strengthen you. Yes, I will help you. Yes, I will uphold you with the right hand of my righteousness.</p>
+            <p class="ref-sm">Isaiah 41:10</p>
+          </div>
+          <nav class="tabbar" aria-label="Tabs" data-tabs="today"></nav>
+        </div></div>
+        <figcaption>
+          <h3>Today</h3>
+          <p>One passage, kept for the whole day until you finish it.</p>
+          <p class="note">The small map marks where today’s passage sits. Miss a day and the same reading waits for you, so nothing piles up.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="phone"><div class="screen float float-tall" data-limit-scope>
+          <div class="island"></div>
+          <div class="status"><span>7:43</span><span class="icons" data-status></span></div>
+          <div class="navbar">
+            <span class="circle" aria-label="Back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></span>
+            <span class="nav-title">Luke 15</span>
+            <span class="circle" aria-label="More options"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg></span>
+          </div>
+          <div class="content reader">
+            <p class="eyebrow">Luke · Chapter 15 of 24</p>
+            <h4 class="ref-lg">Verses 11–21</h4>
+            <p class="intro">Luke’s orderly account of Jesus’ life, written so a reader could be sure of what they had been taught.</p>
+            <p class="context">Before this: Luke 15:1–10, read 3 Sep</p>
+            <div class="scripture">
+              <p><sup>11</sup>He said, “A certain man had two sons. <sup>12</sup>The younger of them said to his father, ‘Father, give me my share of your property.’ So he divided his livelihood between them. <sup>13</sup>Not many days after, the younger son gathered all of this together and traveled into a far country. There he wasted his property with riotous living. <sup>14</sup>When he had spent all of it, there arose a severe famine in that country, and he began to be in need. <sup>15</sup>He went and joined himself to one of the citizens of that country, and he sent him into his fields to feed pigs. <sup>16</sup>He wanted to fill his belly with the pods that the pigs ate, but no one gave him any. <sup>17</sup>But when he came to himself, he said, ‘How many hired servants of my father’s have bread enough to spare, and I’m dying with hunger! <sup>18</sup>I will get up and go to my father, and will tell him, “Father, I have sinned against heaven and in your sight. <sup>19</sup>I am no more worthy to be called your son. Make me as one of your hired servants.”’</p>
+              <p><sup>20</sup>“He arose and came to his father. But while he was still far off, his father saw him and was moved with compassion, and ran, fell on his neck, and kissed him. <sup>21</sup>The son said to him, ‘Father, I have sinned against heaven and in your sight. I am no longer worthy to be called your son.’</p>
+            </div>
+            <div class="fin" aria-hidden="true"><i></i></div>
+            <div class="next">
+              <p class="eyebrow">Continues tomorrow</p>
+              <b>Luke 15:22–32</b>
+              <span>Today stops at a paragraph break to stay within your limit. Tomorrow finishes the parable.</span>
+            </div>
+          </div>
+          <div class="action">
+            <div class="count"><span>244 of <span data-bind="limit">300</span> words</span><span>about 2 min</span></div>
+            <div class="meter"><span data-bind-width="fill"></span></div>
+            <button class="btn" type="button">Mark as read</button>
+          </div>
+        </div></div>
+        <figcaption>
+          <h3>Reader</h3>
+          <p>Whole sentences only, starting exactly where your last reading of this chapter ended.</p>
+          <p class="note">Running on to verse 24 would make 304 words, so the reading stops at the paragraph break after verse 21 (244 words). Tomorrow picks up the rest.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="phone"><div class="screen float">
+          <div class="island"></div>
+          <div class="status"><span>7:46</span><span class="icons" data-status></span></div>
+          <div class="content">
+            <div class="done-top">
+              <div class="seal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+              <h4>Read for today.</h4>
+              <p>Luke 15:11–21 · 244 words</p>
+            </div>
+            <div class="done-stat"><b class="num" data-bind="pctAfter">9.6%</b><span class="delta">+<span data-bind="deltaPct">0.03</span>%</span><p>of the Bible read</p></div>
+            <div class="canon" data-variant="done"></div>
+            <div class="legend-sm"><span><i></i>Today</span><span><i class="sq"></i>Read before</span></div>
+            <div class="rule"></div>
+            <div class="streak-line"><span><b data-bind="streakAfter">13</b>-day streak</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i class="now"></i></span></div>
+            <div class="next tomorrow">
+              <p class="eyebrow">Tomorrow</p>
+              <b>Luke 15:22–32</b>
+              <span>233 words · finishes this parable</span>
+            </div>
+            <button class="btn ghost" type="button">Read another passage</button>
+            <p class="fine">Optional. It counts toward your progress, not your streak.</p>
+          </div>
+          <nav class="tabbar" aria-label="Tabs" data-tabs="today"></nav>
+        </div></div>
+        <figcaption>
+          <h3>Done</h3>
+          <p>What you added, where it sits, and what comes next.</p>
+          <p class="note">Only “Mark as read” changes progress. Reading more is offered once and never pushed.</p>
+        </figcaption>
+      </figure>
+
     </div>
   </section>
 
-  <div class="epigraph">
-    <blockquote>“…the people shall go out and gather a day’s portion every day…”<cite>Exodus 16:4 · World English Bible</cite></blockquote>
-    <p class="howto">Below are the main screens, in the order a reader meets them. Scroll inside each phone. In Settings, drag the length slider and every screen updates. Try a length under 244 words to see today’s reading flagged for rebuilding. All Scripture shown is real World English Bible text. Progress figures come from a simulated reader.</p>
-  </div>
-</header>
+  <!-- ===================== PROGRESS + SETTINGS ===================== -->
+  <section class="wrap section">
+    <div class="section-head">
+      <h2>Progress and settings</h2>
+      <p>Progress is counted in words, so a short book and a long one each count for what they are. In Settings you set the length and move your progress to another device.</p>
+    </div>
+    <div class="shots">
 
-<main class="wrap">
-  <div class="gallery">
-
-    <!-- ===================== TODAY ===================== -->
-    <figure class="shot">
-      <div class="phone"><div class="screen" data-limit-scope>
-        <div class="status"><span>7:42</span><span class="icons" data-status></span></div>
-        <div class="content">
-          <p class="eyebrow">Sunday, 18 October</p>
-          <div class="today-head">
-            <h3 class="display">Today’s portion</h3>
-            <span class="chip"><span class="fleck"></span><span><span data-bind="streakBefore">12</span>-day streak</span></span>
-          </div>
-          <article class="portion">
-            <p class="ref">Luke 15:11–21</p>
-            <p class="meta">244 words · about 2 min</p>
-            <div class="where" aria-label="Where this passage is in the Bible: Luke, in the New Testament">
-              <div class="track"><span class="nt" data-pos="nt"></span><span class="pin" data-pos="today"></span></div>
-              <div class="labels"><span>Genesis</span><span>Luke 15 · New Testament</span><span>Revelation</span></div>
+      <figure class="shot">
+        <div class="phone"><div class="screen float">
+          <div class="island"></div>
+          <div class="status"><span>7:47</span><span class="icons" data-status></span></div>
+          <div class="content">
+            <h4 class="screen-title">Progress</h4>
+            <p class="pct num" data-bind-html="pctBig">9.6<small>%</small></p>
+            <p class="pct-sub">of the Bible read · <span data-bind="wordsAfter">72,639</span> of <span data-bind="total">756,233</span> words</p>
+            <div class="mapcard">
+              <div class="canon" data-variant="progress"></div>
+              <div class="cap"><span>Widths match book length</span><span>Tap a book</span></div>
             </div>
-            <p class="preview">He said, “A certain man had two sons. The younger of them said to his father, ‘Father, give me my share of your property.’</p>
-            <button class="btn primary" type="button">Start reading</button>
-            <p class="fine">Within your <span data-bind="limit">300</span>-word limit</p>
-            <p class="warn">Longer than your new <span data-bind="limit">300</span>-word limit, so it will be rebuilt to fit before you start.</p>
-          </article>
-
-          <section class="mini-progress" aria-label="Progress">
-            <div class="canon" data-variant="mini"></div>
-            <p><b data-bind="pctBefore">9.6%</b> of the Bible read · <span data-bind="readingsBefore">296</span> readings</p>
-          </section>
-
-          <article class="votd">
-            <p class="eyebrow">Verse of the day</p>
-            <blockquote>Don’t you be afraid, for I am with you. Don’t be dismayed, for I am your God. I will strengthen you. Yes, I will help you. Yes, I will uphold you with the right hand of my righteousness.</blockquote>
-            <p class="cite">Isaiah 41:10</p>
-          </article>
-        </div>
-        <nav class="tabbar" aria-label="Tabs" data-tabs="today"></nav>
-      </div></div>
-      <figcaption>
-        <h2>Today</h2>
-        <p>One reading a day, picked when the day starts and kept until you finish it.</p>
-        <ul>
-          <li>A small track shows where in the Bible the passage sits, since every day lands somewhere new.</li>
-          <li>Missed a day? The same reading waits for you. Nothing piles up.</li>
-          <li>The verse of the day matches the home-screen widget.</li>
-        </ul>
-      </figcaption>
-    </figure>
-
-    <!-- ===================== READER ===================== -->
-    <figure class="shot">
-      <div class="phone"><div class="screen" data-limit-scope>
-        <div class="status"><span>7:43</span><span class="icons" data-status></span></div>
-        <div class="navbar">
-          <span class="back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>Today</span>
-          <span class="title">Luke 15:11–21</span>
-          <span class="more" aria-label="More options"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg></span>
-        </div>
-        <div class="content">
-          <div class="bookcard">
-            <p class="eyebrow">Luke · chapter 15 of 24</p>
-            <p>Luke’s orderly account of Jesus’ life, written so a reader could be sure of what they had been taught.</p>
-            <div class="before">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 3v18M5 14l7 7 7-7" transform="rotate(180 12 12)"/></svg>
-              <span>Just before this, you read Luke 15:1–10 on 3 September.</span>
+            <div class="testaments">
+              <div class="t-row"><div class="lab"><span>Old Testament</span><span data-bind="otPct">9.1%</span></div><div class="track"><i data-bind-width="ot"></i></div></div>
+              <div class="t-row"><div class="lab"><span>New Testament</span><span data-bind="ntPct">11.4%</span></div><div class="track"><i data-bind-width="nt"></i></div></div>
             </div>
+            <div class="stats">
+              <div><b class="num" data-bind="readings">330</b><span>readings</span></div>
+              <div><b class="num" data-bind="chaptersTouched">392</b><span>of 1,189 chapters started</span></div>
+              <div><b class="num"><span data-bind="streakAfter">13</span> days</b><span>current streak</span></div>
+              <div><b class="num">41 days</b><span>longest streak</span></div>
+              <div class="wide"><b data-bind="finish">about 7.6 years</b><span>to finish at <span data-bind="limit">300</span> words a day</span></div>
+            </div>
+            <p class="label-sm">Closest to finished</p>
+            <ul class="booklist" data-list="closest"></ul>
+            <span class="more-link">All 66 books</span>
           </div>
-          <div class="scripture">
-            <p><sup>11</sup>He said, “A certain man had two sons. <sup>12</sup>The younger of them said to his father, ‘Father, give me my share of your property.’ So he divided his livelihood between them. <sup>13</sup>Not many days after, the younger son gathered all of this together and traveled into a far country. There he wasted his property with riotous living. <sup>14</sup>When he had spent all of it, there arose a severe famine in that country, and he began to be in need. <sup>15</sup>He went and joined himself to one of the citizens of that country, and he sent him into his fields to feed pigs. <sup>16</sup>He wanted to fill his belly with the pods that the pigs ate, but no one gave him any. <sup>17</sup>But when he came to himself, he said, ‘How many hired servants of my father’s have bread enough to spare, and I’m dying with hunger! <sup>18</sup>I will get up and go to my father, and will tell him, “Father, I have sinned against heaven and in your sight. <sup>19</sup>I am no more worthy to be called your son. Make me as one of your hired servants.”’</p>
-            <p><sup>20</sup>“He arose and came to his father. But while he was still far off, his father saw him and was moved with compassion, and ran, fell on his neck, and kissed him. <sup>21</sup>The son said to him, ‘Father, I have sinned against heaven and in your sight. I am no longer worthy to be called your son.’</p>
-          </div>
-          <div class="endmark" aria-hidden="true"><i></i></div>
-          <div class="next-note">
-            <b>Continues tomorrow: Luke 15:22–32</b>
-            Today’s reading stops at a paragraph break to stay within your limit. Tomorrow finishes the parable.
-          </div>
-        </div>
-        <div class="readbar">
-          <div class="count"><span>244 of <span data-bind="limit">300</span> words</span><span>about 2 min</span></div>
-          <div class="meter"><span data-bind-width="fill"></span></div>
-          <button class="btn primary" type="button">Mark as read</button>
-        </div>
-      </div></div>
-      <figcaption>
-        <h2>Reader</h2>
-        <p>Whole sentences only. The passage begins exactly where your last reading of this chapter ended, and stops at a paragraph break.</p>
-        <ul>
-          <li>The book card and the “just before this” line give context for a random drop-in.</li>
-          <li>Here the passage was 304 words through verse 24, so it steps back to the paragraph end at verse 21 (244 words) instead of breaking off mid-story.</li>
-          <li>Menu: Choose a different passage, Read the whole chapter (doesn’t count as progress), text size.</li>
-        </ul>
-      </figcaption>
-    </figure>
+          <nav class="tabbar" aria-label="Tabs" data-tabs="progress"></nav>
+        </div></div>
+        <figcaption>
+          <h3>Progress</h3>
+          <p>The same map as at the top of this page, sized for a phone.</p>
+          <p class="note">Tap a book for its figures. The finish estimate is honest, and it updates when you change the length.</p>
+        </figcaption>
+      </figure>
 
-    <!-- ===================== DONE ===================== -->
-    <figure class="shot">
-      <div class="phone"><div class="screen">
-        <div class="status"><span>7:46</span><span class="icons" data-status></span></div>
-        <div class="content">
-          <div class="done-hero">
-            <div class="seal"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-            <h3 class="display">Read for today.</h3>
-            <p>Luke 15:11–21 · 244 words added</p>
-          </div>
-          <div class="bigstat"><b data-bind="pctAfter">9.6%</b><span>+<span data-bind="deltaPct">0.03</span>%</span></div>
-          <p class="center-note">of the Bible read</p>
-          <div class="canon" data-variant="done"></div>
-          <div class="legend-sm"><span><i></i>Today’s passage</span><span><i class="sq"></i>Read before</span></div>
-          <div class="streak-row"><span><b data-bind="streakAfter">13</b>-day streak</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i class="now"></i></span></div>
-          <div class="row-card">
-            <div class="txt"><span>Tomorrow</span><b>Luke 15:22–32</b><span>233 words · finishes this parable</span></div>
-          </div>
-          <button class="btn quiet" type="button">Read another passage</button>
-          <p class="center-note" style="margin-top:8px">Optional. It counts toward your progress, not your streak.</p>
-        </div>
-        <nav class="tabbar" aria-label="Tabs" data-tabs="today"></nav>
-      </div></div>
-      <figcaption>
-        <h2>Done</h2>
-        <p>A calm finish: what you added, where it sits, and what comes next.</p>
-        <ul>
-          <li>Only “Mark as read” changes progress. Opening a passage never does.</li>
-          <li>Tomorrow’s reading is shown because today’s ended mid-story.</li>
-          <li>Reading more is offered once and never pushed.</li>
-        </ul>
-      </figcaption>
-    </figure>
+      <figure class="shot">
+        <div class="phone"><div class="screen float" data-limit-scope>
+          <div class="island"></div>
+          <div class="status"><span>7:48</span><span class="icons" data-status></span></div>
+          <div class="content">
+            <h4 class="screen-title">Settings</h4>
 
-    <!-- ===================== PROGRESS ===================== -->
-    <figure class="shot">
-      <div class="phone"><div class="screen">
-        <div class="status"><span>7:47</span><span class="icons" data-status></span></div>
-        <div class="content">
-          <div class="p-head"><h3 class="display">Progress</h3><span class="chip">Round 1</span></div>
-          <p class="pct" data-bind-html="pctBig">9.6<small>%</small></p>
-          <p class="pct-sub">of the Bible read · <span data-bind="wordsAfter">72,414</span> of <span data-bind="total">756,233</span> words</p>
-          <div class="mapcard">
-            <div class="canon" data-variant="progress"></div>
-            <div class="cap"><span>Book widths match their length</span><span>Tap a book</span></div>
-          </div>
-          <div class="bars">
-            <div class="bar-row"><div class="lab"><span>Old Testament</span><span data-bind="otPct">9.4%</span></div><div class="bar"><i data-bind-width="ot"></i></div></div>
-            <div class="bar-row"><div class="lab"><span>New Testament</span><span data-bind="ntPct">10.2%</span></div><div class="bar"><i data-bind-width="nt"></i></div></div>
-          </div>
-          <div class="stats">
-            <div><b data-bind="readings">297</b><span>readings finished</span></div>
-            <div><b data-bind="chaptersTouched">500</b><span>of 1,189 chapters started</span></div>
-            <div><b><span data-bind="streakAfter">13</span> days</b><span>current streak</span></div>
-            <div><b>41 days</b><span>longest streak</span></div>
-            <div class="wide"><b data-bind="finish">about 7.6 years</b><span>to finish at <span data-bind="limit">300</span> words a day, at your usual pace</span></div>
-          </div>
-          <p class="sect-h">Closest to finished</p>
-          <ul class="booklist" data-list="closest"></ul>
-          <span class="link">See all 66 books ›</span>
-        </div>
-        <nav class="tabbar" aria-label="Tabs" data-tabs="progress"></nav>
-      </div></div>
-      <figcaption>
-        <h2>Progress <small>signature</small></h2>
-        <p>The headline number is counted in words, so Obadiah and Psalms count for what they’re worth.</p>
-        <ul>
-          <li>The canon map is the same drawing as at the top of this page, scaled to phone width.</li>
-          <li>The finish estimate is honest: the whole Bible at 300 words a day takes years. It updates when you change the length.</li>
-          <li>Tapping a book opens Book detail, which shows its chapters with read and unread portions.</li>
-        </ul>
-      </figcaption>
-    </figure>
-
-    <!-- ===================== SETTINGS ===================== -->
-    <figure class="shot">
-      <div class="phone"><div class="screen" id="settings-screen" data-limit-scope>
-        <div class="status"><span>7:48</span><span class="icons" data-status></span></div>
-        <div class="content">
-          <h3 class="display" style="margin:4px 0 16px">Settings</h3>
-
-          <p class="sect-h" style="margin-top:0">Reading</p>
-          <div class="group">
-            <div class="length">
-              <div class="top"><b><label for="len">Daily length</label></b><output for="len" id="len-out">300<small>words</small></output></div>
-              <p class="est" id="len-est">About 2 min a day · finish in about 7.6 years</p>
-              <input type="range" id="len" min="100" max="1500" step="25" value="300" aria-describedby="len-est">
-              <div class="ticks"><span>100</span><span>500</span><span>1,000</span><span>1,500</span></div>
-              <div class="presets" role="group" aria-label="Length presets">
-                <button type="button" data-preset="150" aria-pressed="false"><b>Short</b>150</button>
-                <button type="button" data-preset="300" aria-pressed="true"><b>Standard</b>300</button>
-                <button type="button" data-preset="600" aria-pressed="false"><b>Long</b>600</button>
+            <p class="group-label first">Daily reading</p>
+            <div class="group">
+              <div class="length">
+                <div class="head"><label for="len">Length</label><output for="len" id="len-out">300<small>words</small></output></div>
+                <input type="range" id="len" min="100" max="1500" step="25" value="300" aria-describedby="len-est">
+                <div class="ticks"><span>100</span><span>500</span><span>1,000</span><span>1,500</span></div>
+                <div class="seg" role="group" aria-label="Length presets">
+                  <button type="button" data-preset="150" aria-pressed="false"><b>Short</b>150</button>
+                  <button type="button" data-preset="300" aria-pressed="true"><b>Standard</b>300</button>
+                  <button type="button" data-preset="600" aria-pressed="false"><b>Long</b>600</button>
+                </div>
+                <p class="est" id="len-est">About 2 min a day · finish in about 7.6 years</p>
+                <p class="helper">Readings end at the end of a sentence, usually at a paragraph break, and never go over this length.</p>
+                <p class="limit-warn">Today’s reading (244 words) is longer than this, so it will be rebuilt to fit.</p>
               </div>
-              <p class="helper">Readings end at the end of a sentence, usually at a paragraph break, and never go over this length.</p>
-              <p class="limit-warn">Today’s reading (244 words) is longer than this, so it will be rebuilt to fit.</p>
+              <div class="item"><div class="txt"><b>Finish a passage first</b><span>If a reading stops mid-story, tomorrow continues it</span></div><button class="switch" type="button" role="switch" aria-checked="true" aria-label="Finish a passage first"></button></div>
+              <div class="item"><div class="txt"><b>Verse numbers</b></div><button class="switch" type="button" role="switch" aria-checked="true" aria-label="Verse numbers"></button></div>
             </div>
-            <div class="item"><div class="txt"><b>Finish a passage before starting a new one</b><span>If a reading stops mid-story, tomorrow continues it</span></div><button class="switch" type="button" role="switch" aria-checked="true" aria-label="Finish a passage before starting a new one"></button></div>
-            <div class="item"><div class="txt"><b>Show verse numbers</b></div><button class="switch" type="button" role="switch" aria-checked="true" aria-label="Show verse numbers"></button></div>
-          </div>
 
-          <p class="sect-h">Reminder and appearance</p>
-          <div class="group">
-            <div class="item"><div class="txt"><b>Daily reminder</b><span>7:30 AM</span></div><button class="switch" type="button" role="switch" aria-checked="false" aria-label="Daily reminder"></button></div>
-            <div class="item"><div class="txt"><b>Text size</b></div><span class="val">100%</span></div>
-            <div class="item"><div class="txt"><b>Theme</b></div><span class="val">System</span></div>
-          </div>
+            <p class="group-label">Reminder and appearance</p>
+            <div class="group">
+              <div class="item"><div class="txt"><b>Daily reminder</b><span>7:30 AM</span></div><button class="switch" type="button" role="switch" aria-checked="false" aria-label="Daily reminder"></button></div>
+              <div class="item"><div class="txt"><b>Text size</b></div><span class="val">100%</span></div>
+              <div class="item"><div class="txt"><b>Theme</b></div><span class="val">Automatic</span></div>
+            </div>
 
-          <p class="sect-h">Progress and backup</p>
-          <div class="group">
-            <button class="item" type="button" id="export-btn"><div class="txt"><b>Export progress</b><span>Save a file you can open on another device</span></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--ink-3)"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/></svg></button>
-            <button class="item" type="button"><div class="txt"><b>Import progress</b><span>Combine with, or replace, this device’s progress</span></div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--ink-3)"><path d="M12 3v12M7 10l5 5 5-5M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/></svg></button>
-          </div>
-          <p class="fineprint">Last exported 4 October 2026</p>
+            <p class="group-label">Progress and backup</p>
+            <div class="group">
+              <button class="item" type="button" id="export-btn"><div class="txt"><b>Export progress</b><span>Save a file to open on another device</span></div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/></svg></button>
+              <button class="item" type="button"><div class="txt"><b>Import progress</b><span>Combine with or replace this device’s progress</span></div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/></svg></button>
+            </div>
+            <p class="fineprint">Last exported 4 October 2026</p>
 
-          <p class="sect-h">Verse widget</p>
-          <div class="group">
-            <div class="item"><div class="txt"><b>Verse library</b><span>366 verses · updated October 2026</span></div></div>
-            <div class="item"><div class="txt"><b>How to add the widget</b></div><span class="val">›</span></div>
-          </div>
+            <p class="group-label">Widget</p>
+            <div class="group">
+              <div class="item"><div class="txt"><b>Verse library</b><span>366 verses · updated October 2026</span></div></div>
+              <div class="item"><div class="txt"><b>How to add the widget</b></div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></div>
+            </div>
 
-          <p class="sect-h">About</p>
-          <div class="group">
-            <div class="item"><div class="txt"><b>Sources and licenses</b><span>World English Bible (public domain) · OpenBible.info (CC BY 4.0)</span></div></div>
-            <div class="item"><div class="txt"><b style="color:#B4442F">Reset progress</b><span>Asks twice and saves a backup first</span></div></div>
+            <p class="group-label">About</p>
+            <div class="group">
+              <div class="item"><div class="txt"><b>Sources and licenses</b><span>World English Bible (public domain) · OpenBible.info (CC BY 4.0)</span></div></div>
+              <div class="item"><div class="txt"><b style="color:var(--danger)">Reset progress</b><span>Asks twice and saves a backup first</span></div></div>
+            </div>
           </div>
-        </div>
-        <div class="toast" id="toast" role="status" aria-live="polite"><b>Progress exported</b>manna-progress-2026-10-18.json</div>
-        <nav class="tabbar" aria-label="Tabs" data-tabs="settings"></nav>
-      </div></div>
-      <figcaption>
-        <h2>Settings</h2>
-        <p>The daily length is the main control. Everything else is a plain on/off switch or a single tap.</p>
-        <ul>
-          <li>Drag the slider: the minutes and the finish estimate update live. So do the limits shown on the other screens.</li>
-          <li>Lowering the limit below today’s reading rebuilds that reading, so it can never be longer than the setting.</li>
-          <li>Tap “Export progress” to see the confirmation. The file goes through the system share sheet.</li>
-        </ul>
-      </figcaption>
-    </figure>
+          <div class="toast" id="toast" role="status" aria-live="polite"><b>Progress exported</b>manna-progress-2026-10-18.json</div>
+          <nav class="tabbar" aria-label="Tabs" data-tabs="settings"></nav>
+        </div></div>
+        <figcaption>
+          <h3>Settings</h3>
+          <p>Length is the main control, from 100 to 1,500 words.</p>
+          <p class="note">Drag the slider and the other screens update. Go below 244 words and today’s reading is flagged for rebuilding. Tap Export progress to see the confirmation.</p>
+        </figcaption>
+      </figure>
 
-    <!-- ===================== IMPORT ===================== -->
-    <figure class="shot">
-      <div class="phone"><div class="screen">
-        <div class="status"><span>9:05</span><span class="icons" data-status></span></div>
-        <div class="content" aria-hidden="true">
-          <h3 class="display" style="margin:4px 0 16px">Settings</h3>
-          <p class="sect-h" style="margin-top:0">Progress and backup</p>
-          <div class="group"><div class="item"><div class="txt"><b>Export progress</b></div></div><div class="item"><div class="txt"><b>Import progress</b></div></div></div>
-        </div>
-        <div class="dim"></div>
-        <div class="sheet" role="dialog" aria-label="Import progress">
-          <div class="grabber"></div>
-          <h3>Import progress?</h3>
-          <div class="file">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.8h8l4.5 4.5v13.9H6z"/><path d="M14 2.8v4.5h4.5"/></svg>
-            <span>manna-progress-2026-10-18.json<br>Exported from Pixel 8 on 18 October</span>
+      <figure class="shot">
+        <div class="phone"><div class="screen">
+          <div class="island"></div>
+          <div class="status"><span>9:05</span><span class="icons" data-status></span></div>
+          <div class="content" aria-hidden="true">
+            <h4 class="screen-title">Settings</h4>
+            <p class="group-label first">Progress and backup</p>
+            <div class="group"><div class="item"><div class="txt"><b>Export progress</b></div></div><div class="item"><div class="txt"><b>Import progress</b></div></div></div>
           </div>
-          <div class="compare">
-            <div><p class="eyebrow">In the file</p><b data-bind="pctAfter">9.6%</b><span><span data-bind="readings">297</span> readings</span><span>Last read 18 Oct</span></div>
-            <div><p class="eyebrow">On this iPhone</p><b>0.4%</b><span>11 readings</span><span>Last read 2 Oct</span></div>
+          <div class="backdrop"></div>
+          <div class="sheet" role="dialog" aria-label="Import progress">
+            <div class="grabber"></div>
+            <h4>Import progress?</h4>
+            <div class="file">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.8h8l4.5 4.5v13.9H6z"/><path d="M14 2.8v4.5h4.5"/></svg>
+              <span><b>manna-progress-2026-10-18.json</b>From Pixel 8 · 18 October</span>
+            </div>
+            <div class="compare">
+              <div><p class="eyebrow">In the file</p><b class="num" data-bind="pctAfter">9.6%</b><span><span data-bind="readings">330</span> readings</span><span>Last read 18 Oct</span></div>
+              <div><p class="eyebrow">This iPhone</p><b class="num">0.4%</b><span>11 readings</span><span>Last read 2 Oct</span></div>
+            </div>
+            <div role="radiogroup" aria-label="How to import">
+              <button class="choice" type="button" role="radio" aria-checked="true" data-choice="combine"><span class="radio"></span><span><b>Combine both</b><span>Keeps everything read on either device. You’ll be at <span data-bind="combinedPct">9.9%</span>.</span></span></button>
+              <button class="choice" type="button" role="radio" aria-checked="false" data-choice="replace"><span class="radio"></span><span><b>Replace this iPhone’s progress</b><span>Uses only the file. Current progress is saved, so you can undo.</span></span></button>
+            </div>
+            <button class="btn" type="button" style="margin-top:8px">Import progress</button>
+            <button class="btn link" type="button">Cancel</button>
           </div>
-          <div role="radiogroup" aria-label="How to import">
-            <button class="choice" type="button" role="radio" aria-checked="true" data-choice="combine"><span class="radio"></span><span><b>Combine both (recommended)</b><span>Keeps everything read on either device. You’ll be at <span data-bind="combinedPct">9.9%</span>.</span></span></button>
-            <button class="choice" type="button" role="radio" aria-checked="false" data-choice="replace"><span class="radio"></span><span><b>Replace this iPhone’s progress</b><span>Uses only the file. Your current progress is saved, so you can undo.</span></span></button>
-          </div>
-          <button class="btn primary" type="button" style="margin-top:6px">Import progress</button>
-          <button class="btn text" type="button">Cancel</button>
-        </div>
-      </div></div>
-      <figcaption>
-        <h2>Import preview</h2>
-        <p>Moving to a new phone: export on the old one, open the file on the new one. Android and iPhone both work.</p>
-        <ul>
-          <li>You see both sides before anything changes.</li>
-          <li>Combine keeps the union of read verses, so nothing is ever read twice.</li>
-          <li>A wrong file gets a clear message: “This file isn’t a Manna progress file. Choose a file you made with Export progress.”</li>
-        </ul>
-      </figcaption>
-    </figure>
+        </div></div>
+        <figcaption>
+          <h3>Import</h3>
+          <p>Moving phones: export on one, import on the other. Android and iPhone both work.</p>
+          <p class="note">You see both sides before anything changes. Combine keeps every verse read on either device, so nothing is repeated.</p>
+        </figcaption>
+      </figure>
 
-    <!-- ===================== WIDGETS (LIGHT) ===================== -->
-    <figure class="shot">
-      <div class="phone"><div class="screen wall">
-        <div class="status"><span>7:41</span><span class="icons" data-status data-light></span></div>
-        <div class="home">
-          <p class="wtag">Medium · 4 × 2</p>
-          <div class="widget w-medium">
-            <div class="w-eyebrow"><i></i>Verse of the day</div>
-            <p class="w-text">Don’t you be afraid, for I am with you. Don’t be dismayed, for I am your God. I will strengthen you. Yes, I will help you. Yes, I will uphold you with the right hand of my righteousness.</p>
-            <div class="w-foot"><p class="w-ref">Isaiah 41:10</p><span>Sun 18 Oct</span></div>
-          </div>
-          <div class="home-row">
-            <div>
-              <p class="wtag" style="margin-top:0">Small · 2 × 2</p>
-              <div class="widget w-small">
-                <div class="w-eyebrow"><i></i>Today</div>
-                <p class="w-text">Don’t you be afraid, for I am with you. …</p>
-                <p class="w-ref">Isaiah 41:10</p>
+    </div>
+  </section>
+
+  <!-- ===================== WIDGETS ===================== -->
+  <section class="wrap section">
+    <div class="section-head">
+      <h2>Widgets</h2>
+      <p>A verse of the day on the home screen, chosen from about 366 well-loved verses. The app and every widget show the same verse on the same day, even offline.</p>
+    </div>
+    <div class="shots">
+
+      <figure class="shot">
+        <div class="phone"><div class="screen wall">
+          <div class="island"></div>
+          <div class="status"><span>7:41</span><span class="icons" data-status></span></div>
+          <div class="home">
+            <p class="wtag first">Medium</p>
+            <div class="widget w-medium">
+              <div class="w-eyebrow"><i></i>Verse of the day</div>
+              <p class="w-text">Don’t you be afraid, for I am with you. Don’t be dismayed, for I am your God. I will strengthen you. Yes, I will help you. Yes, I will uphold you with the right hand of my righteousness.</p>
+              <div class="w-foot"><p class="w-ref">Isaiah 41:10</p><span>Sun 18 Oct</span></div>
+            </div>
+            <div class="home-row">
+              <div>
+                <p class="wtag first">Small</p>
+                <div class="widget w-small">
+                  <div class="w-eyebrow"><i></i>Today</div>
+                  <p class="w-text">Don’t you be afraid, for I am with you. …</p>
+                  <p class="w-ref">Isaiah 41:10</p>
+                </div>
+              </div>
+              <div class="apps" style="padding-top:20px">
+                <span class="app"><i></i>Photos</span><span class="app"><i></i>Maps</span>
+                <span class="app"><i></i>Weather</span><span class="app"><i></i>Notes</span>
               </div>
             </div>
-            <div class="apps" style="padding-top:22px">
-              <span class="app"><i class="c1"></i>Photos</span><span class="app"><i class="c2"></i>Maps</span>
-              <span class="app"><i class="c3"></i>Weather</span><span class="app"><i class="c4"></i>Notes</span>
+            <div class="app-row"><span class="app"><i></i>Clock</span><span class="app"><i></i>Mail</span><span class="app"><i></i>Calendar</span><span class="app"><i></i>Music</span></div>
+            <div class="dock">
+              <span class="app"><i></i><span>Phone</span></span>
+              <span class="app"><span class="manna-icon" aria-label="Manna app icon"><b style="left:13px;top:15px"></b><b style="left:27px;top:12px"></b><b style="left:20px;top:25px"></b><b style="left:31px;top:28px"></b><b style="left:11px;top:31px"></b></span><span>Manna</span></span>
+              <span class="app"><i></i><span>Messages</span></span>
+              <span class="app"><i></i><span>Camera</span></span>
             </div>
           </div>
-          <div class="app-row">
-            <span class="app"><i class="c5"></i>Clock</span><span class="app"><i class="c6"></i>Mail</span><span class="app"><i class="c7"></i>Calendar</span><span class="app"><i class="c8"></i>Music</span>
-          </div>
-          <div class="dock">
-            <span class="app"><i class="c3"></i><span>Phone</span></span>
-            <span class="app"><span class="manna-icon" aria-label="Manna app icon"><b style="left:12px;top:14px"></b><b style="left:26px;top:11px"></b><b style="left:19px;top:24px"></b><b style="left:31px;top:27px"></b><b style="left:10px;top:30px"></b></span><span>Manna</span></span>
-            <span class="app"><i class="c2"></i><span>Messages</span></span>
-            <span class="app"><i class="c7"></i><span>Camera</span></span>
-          </div>
-        </div>
-      </div></div>
-      <figcaption>
-        <h2>Widgets: small and medium</h2>
-        <p>The same verse everywhere on a given day, chosen from about 366 well-loved verses.</p>
-        <ul>
-          <li>The library is built from OpenBible.info’s public verse votes, downloaded at build time, filtered to encouraging topics and complete sentences, then reviewed by hand.</li>
-          <li>When a verse is too long for the small widget, it shows the first whole sentence and “…”. It never cuts a sentence in the middle.</li>
-          <li>Tap to open the verse with “Read the whole chapter”, Share and Copy.</li>
-        </ul>
-      </figcaption>
-    </figure>
+        </div></div>
+        <figcaption>
+          <h3>Small and medium</h3>
+          <p>The verse library comes from OpenBible.info’s public verse votes, filtered to complete, encouraging verses and checked by hand.</p>
+          <p class="note">If a verse is too long for the small size, it shows the first whole sentence and “…”. It never cuts a sentence in the middle.</p>
+        </figcaption>
+      </figure>
 
-    <!-- ===================== WIDGET (LARGE, DARK) ===================== -->
-    <figure class="shot">
-      <div class="phone force-dark"><div class="screen wall-night">
-        <div class="status"><span>21:10</span><span class="icons" data-status data-light></span></div>
-        <div class="home">
-          <p class="wtag">Large · 4 × 4 · dark mode</p>
-          <div class="widget dark w-large">
-            <div class="w-eyebrow"><i></i>Verse of the day · Sun 18 Oct</div>
-            <p class="w-text">Don’t you be afraid, for I am with you. Don’t be dismayed, for I am your God. I will strengthen you. Yes, I will help you. Yes, I will uphold you with the right hand of my righteousness.</p>
-            <p class="w-ref">Isaiah 41:10</p>
-            <div class="w-today">
-              <div><span>Today’s reading</span><b>Luke 15:11–21</b><em>244 words · about 2 min</em></div>
-              <span class="go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span>
+      <figure class="shot">
+        <div class="phone force-dark"><div class="screen wall-night">
+          <div class="island"></div>
+          <div class="status"><span>21:10</span><span class="icons" data-status></span></div>
+          <div class="home">
+            <p class="wtag first">Large · dark mode</p>
+            <div class="widget dark w-large">
+              <div class="w-eyebrow"><i></i>Verse of the day · Sun 18 Oct</div>
+              <p class="w-text">Don’t you be afraid, for I am with you. Don’t be dismayed, for I am your God. I will strengthen you. Yes, I will help you. Yes, I will uphold you with the right hand of my righteousness.</p>
+              <p class="w-ref">Isaiah 41:10</p>
+              <div class="w-today">
+                <div><span class="k">Today’s reading</span><b>Luke 15:11–21</b><em>244 words · about 2 min</em></div>
+                <span class="go" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span>
+              </div>
+            </div>
+            <div class="app-row"><span class="app"><i></i>Clock</span><span class="app"><i></i>Mail</span><span class="app"><i></i>Weather</span><span class="app"><i></i>Music</span></div>
+            <div class="dock">
+              <span class="app"><i></i><span>Phone</span></span>
+              <span class="app"><span class="manna-icon" aria-label="Manna app icon"><b style="left:13px;top:15px"></b><b style="left:27px;top:12px"></b><b style="left:20px;top:25px"></b><b style="left:31px;top:28px"></b><b style="left:11px;top:31px"></b></span><span>Manna</span></span>
+              <span class="app"><i></i><span>Messages</span></span>
+              <span class="app"><i></i><span>Camera</span></span>
             </div>
           </div>
-          <div class="app-row">
-            <span class="app"><i class="c5"></i>Clock</span><span class="app"><i class="c6"></i>Mail</span><span class="app"><i class="c3"></i>Weather</span><span class="app"><i class="c8"></i>Music</span>
-          </div>
-          <div class="dock">
-            <span class="app"><i class="c3"></i><span>Phone</span></span>
-            <span class="app"><span class="manna-icon" aria-label="Manna app icon"><b style="left:12px;top:14px"></b><b style="left:26px;top:11px"></b><b style="left:19px;top:24px"></b><b style="left:31px;top:27px"></b><b style="left:10px;top:30px"></b></span><span>Manna</span></span>
-            <span class="app"><i class="c2"></i><span>Messages</span></span>
-            <span class="app"><i class="c7"></i><span>Camera</span></span>
-          </div>
-        </div>
-      </div></div>
-      <figcaption>
-        <h2>Widget: large</h2>
-        <p>The large size adds today’s reading, so the widget doubles as a gentle reminder.</p>
-        <ul>
-          <li>It follows the system light or dark setting, using the app’s colours.</li>
-          <li>It updates just after midnight. The verse is worked out from the date, so it is right even if the app hasn’t been opened for weeks.</li>
-          <li>Works offline: the whole library ships inside the app.</li>
-        </ul>
-      </figcaption>
-    </figure>
+        </div></div>
+        <figcaption>
+          <h3>Large</h3>
+          <p>The large size adds today’s reading, so the widget doubles as a quiet reminder.</p>
+          <p class="note">It follows light and dark mode and updates just after midnight. The verse is worked out from the date, so it’s right even if the app hasn’t been opened for weeks.</p>
+        </figcaption>
+      </figure>
 
-  </div>
+    </div>
+  </section>
 </main>
 
 <footer class="wrap footer">
-  <p>Design mockup only. This page shows what the app would look like and how it behaves; nothing here is a working app. Full details are in the build plan that accompanies this file.</p>
-  <p>Scripture: World English Bible (public domain). Verse popularity data for the widget library: OpenBible.info Topical Bible (CC BY 4.0). Fonts: Literata and Atkinson Hyperlegible (SIL Open Font License).</p>
+  <p>Design mockup only. Nothing here is a working app. Full details are in the build plan that accompanies this file.</p>
+  <p>Scripture: World English Bible (public domain). Widget verse library: OpenBible.info Topical Bible (CC BY 4.0). Fonts: Newsreader and Instrument Sans (SIL Open Font License).</p>
 </footer>
 
 <script>
@@ -782,9 +765,7 @@ input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-radius
   const books = CHAPTERS.map(([code, chs], i) => {
     const start = offset, chStarts = [];
     for (const w of chs) { chStarts.push(offset); offset += w; }
-    const name = NAMES[code];
-    const abbr = ABBR[code];
-    return { code, name, abbr, nt: i >= 39, start, end: offset, words: offset - start, chs, chStarts, read: 0 };
+    return { code, name: NAMES[code], abbr: ABBR[code], nt: i >= 39, start, end: offset, words: offset - start, chs, chStarts, read: 0 };
   });
   const TOTAL = offset;
   const NT_START = books[39].start;
@@ -841,41 +822,43 @@ input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-radius
   document.querySelectorAll('[data-bind-html="pctBig"]').forEach(el => { el.innerHTML = pct(wordsAfter, TOTAL) + '<small>%</small>'; });
   const setWidth = (key, v) => document.querySelectorAll(`[data-bind-width="${key}"]`).forEach(el => el.style.width = v);
   setWidth('ot', state.otPct); setWidth('nt', state.ntPct); setWidth('fill', (244 / 300 * 100) + '%');
-  document.querySelectorAll('[data-pos="nt"]').forEach(el => el.style.left = (NT_START / TOTAL * 100) + '%');
-  document.querySelectorAll('[data-pos="today"]').forEach(el => el.style.left = (TODAY[0] / TOTAL * 100) + '%');
 
   const closest = [...books].sort((a, b) => b.read / b.words - a.read / a.words).slice(0, 4);
   document.querySelectorAll('[data-list="closest"]').forEach(ul => {
-    ul.innerHTML = closest.map(b => `<li><span>${b.name}</span><span class="bar"><i style="width:${pct(b.read, b.words)}%"></i></span><span>${Math.round(b.read / b.words * 100)}%</span></li>`).join('');
+    ul.innerHTML = closest.map(b => `<li><span>${b.name}</span><span class="track"><i style="width:${pct(b.read, b.words)}%"></i></span><span>${Math.round(b.read / b.words * 100)}%</span></li>`).join('');
   });
 
   // ---------- canon map ----------
   const NS = 'http://www.w3.org/2000/svg';
   const VARIANTS = {
-    hero:     { W: 1000, rows: 7.2, rowH: 24, gap: 6, labelH: 24, sectGap: 16, labels: 'full', font: 10.5, sect: 11, minW: 1.6 },
-    progress: { W: 300,  rows: 14.5, rowH: 13, gap: 4, labelH: 14, sectGap: 8, labels: 'abbr', font: 6.4, sect: 6.8, minW: 1.1 },
-    done:     { W: 300,  rows: 14.5, rowH: 9,  gap: 3, labelH: 0,  sectGap: 7, labels: 'none', minW: 1.1, today: true },
-    mini:     { W: 300,  rows: 4,    rowH: 4,  gap: 2, labelH: 0,  sectGap: 0, labels: 'none', minW: .45, single: true }
+    hero:     { W: 1000, rows: 7.2,  rowH: 18, gap: 10, labelH: 28, sectGap: 22, labels: 'full', font: 9.5, sect: 10, minW: 1.6, minLabelW: 0 },
+    progress: { W: 300,  rows: 14.5, rowH: 9,  gap: 4,  labelH: 15, sectGap: 8,  labels: 'none', font: 6,   sect: 6.4, minW: 1.1 },
+    done:     { W: 300,  rows: 14.5, rowH: 7,  gap: 4,  labelH: 0,  sectGap: 8,  labels: 'none', minW: 1.1, today: true },
+    mini:     { W: 300,  rows: 3,    rowH: 4,  gap: 4,  labelH: 0,  sectGap: 0,  labels: 'none', minW: .45, single: true, marker: true }
   };
+  let uid = 0;
   const el = (name, attrs, parent) => { const n = document.createElementNS(NS, name);
     for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
 
   function drawCanon(host) {
     // On narrow screens the hero uses the phone-sized layout so labels stay readable.
     const narrowHero = host.dataset.variant === 'hero' && host.clientWidth < 640;
-    const o = narrowHero ? { ...VARIANTS.progress, font: 6.8 } : VARIANTS[host.dataset.variant];
-    const wpr = o.single ? TOTAL : TOTAL / o.rows;
+    const o = narrowHero ? { ...VARIANTS.progress, labels: 'abbr', font: 6.6, minLabelW: 16, rowH: 10 } : VARIANTS[host.dataset.variant];
+    const wpr = o.single ? TOTAL / o.rows : TOTAL / o.rows;
     const rows = [];
     let y = 0;
     const svg = el('svg', { role: 'img' });
-    const gBg = el('g', {}, svg), gSep = el('g', {}, svg), gFl = el('g', {}, svg), gLab = el('g', {}, svg), gTop = el('g', {}, svg);
-    const sections = o.single ? [[0, TOTAL, '']] : [[0, NT_START, 'Old Testament · 39 books'], [NT_START, TOTAL, 'New Testament · 27 books']];
+    const clipId = 'cm' + (++uid);
+    const defs = el('defs', {}, svg), clip = el('clipPath', { id: clipId }, defs);
+    const gBg = el('g', {}, svg), gIn = el('g', { 'clip-path': `url(#${clipId})` }, svg), gLab = el('g', {}, svg), gTop = el('g', {}, svg);
+    const sections = o.single ? [[0, TOTAL, '']] : [[0, NT_START, 'Old Testament'], [NT_START, TOTAL, 'New Testament']];
     for (const [s0, s1, title] of sections) {
-      if (o.labelH) { const t = el('text', { x: 0, y: y + o.labelH - 7, class: 'c-sect', 'font-size': o.sect }, gLab); t.textContent = title; y += o.labelH; }
+      if (o.labelH) { const t = el('text', { x: 0, y: y + o.labelH - 9, class: 'c-sect', 'font-size': o.sect }, gLab); t.textContent = title; y += o.labelH; }
       const n = Math.ceil((s1 - s0) / wpr - 1e-9);
       for (let r = 0; r < n; r++) {
         const off = s0 + r * wpr, len = Math.min(wpr, s1 - off);
-        el('rect', { x: 0, y, width: len / wpr * o.W, height: o.rowH, rx: o.rowH > 12 ? 2 : 1, class: 'c-empty' }, gBg);
+        const attrs = { x: 0, y, width: len / wpr * o.W, height: o.rowH, rx: o.rowH / 2 };
+        el('rect', { ...attrs, class: 'c-empty' }, gBg); el('rect', attrs, clip);
         rows.push({ y, off, len }); y += o.rowH + o.gap;
       }
       y += o.sectGap;
@@ -888,30 +871,32 @@ input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-radius
         out.push({ r, x: (p - r.off) / wpr * o.W, w: (q - p) / wpr * o.W }); if (q <= p) break; p = q; }
       return out; };
 
+    // read passages
+    for (const sp of spans) {
+      const t = sp === TODAY && o.today;
+      for (const pc of pieces(sp[0], sp[1])) el('rect', { x: pc.x, y: pc.r.y, width: Math.max(o.minW, pc.w), height: o.rowH, class: t ? 'c-today' : 'c-fleck' }, gIn);
+    }
     // book separators and labels
-    books.forEach((b, i) => {
-      if (o.single) { if (i === 39) { const r = rowAt(b.start); el('line', { x1: (b.start - r.off) / wpr * o.W, x2: (b.start - r.off) / wpr * o.W, y1: r.y - 2, y2: r.y + o.rowH + 2, class: 'c-sep', 'stroke-width': 2 }, gSep); } return; }
+    books.forEach(b => {
+      if (o.single) return;
       if (b.start > 0 && b.start !== NT_START) { const r = rowAt(b.start); const x = (b.start - r.off) / wpr * o.W;
-        el('line', { x1: x, x2: x, y1: r.y, y2: r.y + o.rowH, class: 'c-sep', 'stroke-width': o.W > 500 ? 2 : 1 }, gSep); }
+        el('line', { x1: x, x2: x, y1: r.y - 1, y2: r.y + o.rowH + 1, class: 'c-sep', 'stroke-width': o.W > 500 ? 2.5 : 1.2 }, gIn); }
       if (o.labels !== 'none') {
         const best = pieces(b.start, b.end).sort((a, c) => c.w - a.w)[0];
-        const cw = o.font * 0.62;
-        const label = o.labels === 'full' && best.w > (b.name.length * cw + 8) ? b.name : (best.w > b.abbr.length * cw + 4 ? b.abbr : '');
-        if (label) { const t = el('text', { x: best.x + (o.W > 500 ? 5 : 2), y: best.r.y + o.rowH / 2 + o.font * 0.36, class: 'c-label', 'font-size': o.font }, gLab); t.textContent = label; }
+        if (!best || best.w < o.minLabelW) return;
+        const cw = o.font * 0.66;
+        const label = o.labels === 'full' && best.w > (b.name.length * cw + 12) ? b.name : (best.w > b.abbr.length * cw + 6 ? b.abbr : '');
+        if (label) { const t = el('text', { x: best.x + (o.W > 500 ? 7 : 3), y: best.r.y + o.rowH / 2 + o.font * 0.36, class: 'c-label', 'font-size': o.font }, gLab); t.textContent = label; }
       }
     });
-    // read passages as gold flecks
-    for (const sp of spans) {
-      const isToday = sp === TODAY;
-      for (const pc of pieces(sp[0], sp[1])) {
-        const t = isToday && o.today;
-        el('rect', { x: pc.x - (t ? .6 : 0), y: pc.r.y - (t ? 2 : 0), width: Math.max(o.minW, pc.w) + (t ? 1.2 : 0), height: o.rowH + (t ? 4 : 0), rx: t ? .8 : 0, class: t ? 'c-today' : 'c-fleck' }, gFl);
-      }
-    }
     if (o.today) {
+      const pc = pieces(TODAY[0], TODAY[1])[0], cx = pc.x + pc.w / 2, cy = pc.r.y + o.rowH / 2;
+      el('circle', { cx, cy, r: o.rowH * 1.05, class: 'c-ring-still' }, gTop);
+      el('circle', { cx, cy, r: o.rowH * 1.05, class: 'c-ring' }, gTop);
+    }
+    if (o.marker) {
       const pc = pieces(TODAY[0], TODAY[1])[0];
-      el('circle', { cx: pc.x + pc.w / 2, cy: pc.r.y + o.rowH / 2, r: o.rowH * 0.9, class: 'c-ring-still' }, gTop);
-      el('circle', { cx: pc.x + pc.w / 2, cy: pc.r.y + o.rowH / 2, r: o.rowH * 0.9, class: 'c-ring' }, gTop);
+      el('rect', { x: pc.x - .6, y: pc.r.y - 3, width: 1.6, height: o.rowH + 6, rx: .8, class: 'c-mark' }, gTop);
     }
     svg.setAttribute('aria-label', `Canon map: ${state.pctAfter} of the Bible read in ${state.readings} passages. Closest to finished: ${closest.map(b => b.name + ' ' + Math.round(b.read / b.words * 100) + '%').join(', ')}.`);
     host.appendChild(svg);
@@ -919,24 +904,25 @@ input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-radius
     if (host.dataset.variant === 'hero' || host.dataset.variant === 'progress') {
       host.style.position = 'relative';
       const tip = document.createElement('div'); tip.className = 'tip'; host.appendChild(tip);
-      const hover = el('rect', { class: 'c-hover', height: o.rowH, rx: 2 }, gTop); hover.style.display = 'none';
+      const hover = el('rect', { class: 'c-hover', height: o.rowH, rx: o.rowH / 2 }, gTop); hover.style.display = 'none';
+      const hide = () => { tip.classList.remove('show'); hover.style.display = 'none'; };
       const show = ev => {
         const box = svg.getBoundingClientRect();
         const x = (ev.clientX - box.left) * o.W / box.width, yy = (ev.clientY - box.top) * H / box.height;
         const r = rows.find(r => yy >= r.y - o.gap / 2 && yy < r.y + o.rowH + o.gap / 2);
-        if (!r || x < 0 || x > r.len / wpr * o.W) { tip.classList.remove('show'); hover.style.display = 'none'; return; }
-        const p = r.off + x / o.W * wpr; const b = books.find(b => p >= b.start && p < b.end); if (!b) return;
+        if (!r || x < 0 || x > r.len / wpr * o.W) return hide();
+        const p = r.off + x / o.W * wpr; const b = books.find(b => p >= b.start && p < b.end); if (!b) return hide();
         const pc = pieces(b.start, b.end).find(q => q.r === r);
-        hover.setAttribute('x', pc.x); hover.setAttribute('y', r.y); hover.setAttribute('width', Math.max(1, pc.w)); hover.style.display = '';
+        hover.setAttribute('x', pc.x); hover.setAttribute('y', r.y); hover.setAttribute('width', Math.max(2, pc.w)); hover.style.display = '';
         tip.innerHTML = `<b>${b.name}</b>${pct(b.read, b.words)}% read · ${fmt(b.words)} words`;
         const hb = host.getBoundingClientRect();
-        tip.style.left = Math.min(Math.max(ev.clientX - hb.left, 70), hb.width - 70) + 'px';
+        tip.style.left = Math.min(Math.max(ev.clientX - hb.left, 80), hb.width - 80) + 'px';
         tip.style.top = (r.y * box.height / H) + (box.top - hb.top) + 'px';
         tip.classList.add('show');
       };
       svg.addEventListener('pointermove', show);
       svg.addEventListener('pointerdown', show);
-      svg.addEventListener('pointerleave', () => { tip.classList.remove('show'); hover.style.display = 'none'; });
+      svg.addEventListener('pointerleave', hide);
     }
   }
   document.querySelectorAll('.canon[data-variant]').forEach(drawCanon);
@@ -947,17 +933,17 @@ input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-radius
   }, 150); });
 
   // ---------- chrome: status bars and tab bars ----------
-  const statusSVG = `<svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor" aria-hidden="true"><rect x="0" y="7" width="3" height="4" rx=".7"/><rect x="4.5" y="5" width="3" height="6" rx=".7"/><rect x="9" y="2.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="0" width="3" height="11" rx=".7"/></svg>
-    <svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor" aria-hidden="true"><path d="M7.5 2.2c2.2 0 4.2.8 5.7 2.2l1.1-1.1A9.6 9.6 0 007.5.6 9.6 9.6 0 00.7 3.3l1.1 1.1a8 8 0 015.7-2.2zm0 3.1c1.3 0 2.5.5 3.5 1.3l1.1-1.1a6.6 6.6 0 00-9.2 0l1.1 1.1c1-.8 2.2-1.3 3.5-1.3zm0 3.1c.5 0 .9.2 1.2.5L7.5 10.1 6.3 8.9c.3-.3.7-.5 1.2-.5z"/></svg>
-    <svg width="25" height="12" viewBox="0 0 25 12" fill="none" aria-hidden="true"><rect x=".5" y=".5" width="21" height="11" rx="3" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="15" height="8" rx="1.6" fill="currentColor"/><rect x="22.5" y="4" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".45"/></svg>`;
+  const statusSVG = `<svg width="16" height="10" viewBox="0 0 17 11" fill="currentColor" aria-hidden="true"><rect x="0" y="7" width="3" height="4" rx=".7"/><rect x="4.5" y="5" width="3" height="6" rx=".7"/><rect x="9" y="2.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="0" width="3" height="11" rx=".7"/></svg>
+    <svg width="14" height="10" viewBox="0 0 15 11" fill="currentColor" aria-hidden="true"><path d="M7.5 2.2c2.2 0 4.2.8 5.7 2.2l1.1-1.1A9.6 9.6 0 007.5.6 9.6 9.6 0 00.7 3.3l1.1 1.1a8 8 0 015.7-2.2zm0 3.1c1.3 0 2.5.5 3.5 1.3l1.1-1.1a6.6 6.6 0 00-9.2 0l1.1 1.1c1-.8 2.2-1.3 3.5-1.3zm0 3.1c.5 0 .9.2 1.2.5L7.5 10.1 6.3 8.9c.3-.3.7-.5 1.2-.5z"/></svg>
+    <svg width="24" height="11" viewBox="0 0 25 12" fill="none" aria-hidden="true"><rect x=".5" y=".5" width="21" height="11" rx="3.2" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="15" height="8" rx="1.8" fill="currentColor"/><rect x="22.5" y="4" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".4"/></svg>`;
   document.querySelectorAll('[data-status]').forEach(s => s.innerHTML = statusSVG);
   const TABS = [
-    ['today', 'Today', '<path d="M3 5.5c2.6-1.1 5.6-1 8 .6 2.4-1.6 5.4-1.7 8-.6V19c-2.6-1.1-5.6-1-8 .6-2.4-1.6-5.4-1.7-8-.6z"/><path d="M11 6.1v13.4"/>'],
-    ['progress', 'Progress', '<rect x="3" y="5" width="18" height="3.2" rx="1"/><rect x="3" y="10.4" width="18" height="3.2" rx="1"/><rect x="3" y="15.8" width="11" height="3.2" rx="1"/><path d="M8 5v3.2M15 10.4v3.2M6 15.8v3.2" stroke-width="2.2"/>'],
-    ['settings', 'Settings', '<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/>']
+    ['today', 'Today', '<path d="M3.5 5.5c2.5-1 5.4-.9 7.5.6 2.1-1.5 5-1.6 7.5-.6V19c-2.5-1-5.4-.9-7.5.6-2.1-1.5-5-1.6-7.5-.6z"/><path d="M11 6.1v13.4"/>'],
+    ['progress', 'Progress', '<path d="M4 7h16M4 12h16M4 17h10"/><path d="M8 5.5v3M15 10.5v3M7 15.5v3" stroke-width="2.4"/>'],
+    ['settings', 'Settings', '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>']
   ];
   document.querySelectorAll('[data-tabs]').forEach(nav => {
-    nav.innerHTML = TABS.map(([k, label, path]) => `<span ${nav.dataset.tabs === k ? 'aria-current="page"' : ''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>${label}</span>`).join('');
+    nav.innerHTML = TABS.map(([k, label, path]) => `<span ${nav.dataset.tabs === k ? 'aria-current="page"' : ''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>${label}</span>`).join('');
   });
 
   // ---------- settings interactions ----------
@@ -967,8 +953,7 @@ input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-radius
     const v = +len.value;
     len.style.setProperty('--pct', ((v - 100) / 1400 * 100) + '%');
     out.innerHTML = `${fmt(v)}<small>words</small>`;
-    const mins = Math.max(1, Math.round(v / 150));
-    est.textContent = `About ${mins} min a day · finish in ${finishText(v)}`;
+    est.textContent = `About ${Math.max(1, Math.round(v / 150))} min a day · finish in ${finishText(v)}`;
     state.limit = fmt(v); state.finish = finishText(v); bind();
     setWidth('fill', Math.min(100, 244 / v * 100) + '%');
     presets.forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.preset === v)));

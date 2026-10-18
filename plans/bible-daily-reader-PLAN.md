@@ -128,7 +128,7 @@ Each day Manna gives you one short passage of the Bible, picked at random from t
 | Picking a file to import | `file_picker` |
 | Daily reminder | `flutter_local_notifications` (+ `timezone`) |
 | Dates and number formatting | `intl` |
-| Fonts bundled in the app (no network) | Literata (scripture) and Atkinson Hyperlegible (interface), both under the SIL Open Font License |
+| Fonts bundled in the app (no network) | Newsreader (scripture and headings) and Instrument Sans (interface), both under the SIL Open Font License |
 
 ---
 
@@ -423,6 +423,14 @@ The mockup shows Today, Reader, Done, Progress, Settings, Import preview and the
 | **Import preview** | Safe import | §11.3 |
 | **Verse detail** | Opened from the widget | Verse, reference, Read the whole chapter, Share, Copy |
 
+**Visual design (matches the mockup):**
+
+- **Feel:** premium and quiet. Use plenty of white space and hairline dividers instead of boxes. One idea per screen.
+- **Colour:** porcelain backgrounds and near-black ink. **Gold appears only for progress**: read passages, bars, the streak dot and verse numbers. Primary buttons are solid ink with light text. Dark mode uses deep charcoal, warm off-white text and the same gold.
+- **Type:** Newsreader at light weights for references, big numbers and scripture (optical sizes: large for headings, text size for reading). Instrument Sans for interface labels. Small uppercase labels are used sparingly.
+- **Components:** a floating, slightly translucent tab bar; a floating "Mark as read" panel in the reader; round icon buttons in the reader's top bar; iOS-style grouped settings lists; a segmented control for length presets; a thin gold slider track.
+- **The canon map** is the one signature visual (§10). Everything around it stays plain.
+
 **Interface copy rules:** sentence case; buttons say exactly what happens ("Mark as read", "Export progress", "Import progress"), and the confirmation uses the same verb ("Marked as read", "Progress exported", "Progress imported"). No guilt messages about missed days.
 
 ---
@@ -529,7 +537,7 @@ The mockup shows Today, Reader, Done, Progress, Settings, Import preview and the
 
 > Scripture: World English Bible (WEB), public domain. "World English Bible" is a trademark of eBible.org.
 > Verse of the day selection uses data from OpenBible.info (Topical Bible), licensed under CC BY 4.0.
-> Fonts: Literata and Atkinson Hyperlegible, SIL Open Font License.
+> Fonts: Newsreader and Instrument Sans, SIL Open Font License.
 
 ---
 
