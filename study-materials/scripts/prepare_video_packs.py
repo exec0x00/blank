@@ -25,7 +25,7 @@ def slug(value: str) -> str:
     return (value[:90].rstrip("-") or "video")
 
 
-def build_one(row: dict, video: dict) -> dict:
+def build_one(row: dict, video: dict, lesson_number: int) -> dict:
     unit_project = ROOT / pathlib.Path(row["pack_path"]).parent
     source_pack = json.loads((unit_project / "pack.json").read_text(encoding="utf-8"))
     topic_id = video["topic_id"]
@@ -78,7 +78,7 @@ def build_one(row: dict, video: dict) -> dict:
         "title": f"{row['course_code']} · {unit_name} · {video_title}",
         "subtitle": "Standalone video lesson · source transcript and assigned slide pages",
         "slug": slug(f"{row['course_code']}-{row['unit_id']}-{video['video_id']}-{video_title}"),
-        "header": f"{row['course_code']} · {row['unit_id']} · {video['video_id']}",
+        "header": f"{row['course_code']} · {row['unit_id']} · Lesson {lesson_number:02d}",
         "scope": f"Standalone source record for video {video_title} in {row['course_code']}, {unit_name}. The timestamped transcript and any assigned slide pages come from the complete unit master.",
         "how_to_use": "Read the transcript in timestamp order. Compare any included slide pages with the original page render. Transcript confidence and video-to-slide match caveats are retained from the unit master.",
         "coverage_note": "This video study document is a DRAFT pending human transcript/audio and page-level semantic and visual review.",
@@ -105,15 +105,15 @@ def build_one(row: dict, video: dict) -> dict:
         encoding="utf-8",
     )
     (dest / "pack.json").write_text(json.dumps(pack, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
-    return {"video_id": video["video_id"], "title": video_title, "course_code": row["course_code"], "unit_id": row["unit_id"], "topic_id": topic_id, "project": str(dest.relative_to(ROOT)), "sources": len(source_rows), "notes": len(selected["NOTES"]), "points": len(selected["POINTS"]), "figures": len(selected["FIGS"])}
+    return {"video_id": video["video_id"], "lesson_number": lesson_number, "title": video_title, "course_code": row["course_code"], "unit_id": row["unit_id"], "topic_id": topic_id, "project": str(dest.relative_to(ROOT)), "sources": len(source_rows), "notes": len(selected["NOTES"]), "points": len(selected["POINTS"]), "figures": len(selected["FIGS"])}
 
 
 def main() -> None:
     rows = json.loads(INDEX.read_text(encoding="utf-8"))["packs"]
     outputs = []
     for row in rows:
-        for video in row.get("video_topics", []):
-            outputs.append(build_one(row, video))
+        for lesson_number, video in enumerate(row.get("video_topics", []), 1):
+            outputs.append(build_one(row, video, lesson_number))
             if len(outputs) % 10 == 0:
                 print(f"Prepared {len(outputs)} standalone video projects", flush=True)
     report = ROOT / "study-materials/work/video-pack-index.json"
