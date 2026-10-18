@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bible App UI Concept</title>
+<meta name="description" content="UI mockup for Bible, a daily Bible reading app: one random passage a day, never repeated, never longer than you choose.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+<style>
+/* ---------- tokens ---------- */
+:root {
+  --page: #ECECE8;        /* stone */
+  --panel: #F6F6F3;
+  --app: #FAFAF7;         /* porcelain */
+  --surface: #FFFFFF;
+  --ink: #14161A;
+  --ink-2: #565B63;
+  --ink-3: #8D9199;
+  --hair: #E4E4DF;
+  --hair-2: #D5D5CF;
+  --gold: #A67A2A;        /* gold leaf: progress only */
+  --gold-2: #C79B45;
+  --gold-ink: #87601A;
+  --gold-wash: #F4EEE1;
+  --empty: #EBEAE4;
+  --btn: #14161A;
+  --btn-ink: #FAFAF7;
+  --danger: #A8402E;
+  --frame: #0D0E10;
+  --frame-edge: #34353A;
+  --shadow-lg: 0 60px 90px -50px rgba(20, 22, 26, .38), 0 24px 40px -24px rgba(20, 22, 26, .22);
+  --shadow-sm: 0 1px 2px rgba(20, 22, 26, .04), 0 10px 28px -16px rgba(20, 22, 26, .16);
+  --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --sans: "Instrument Sans", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --page: #0A0B0D; --panel: #111215; --app: #0F1013; --surface: #17181C; --ink: #F1EEE7; --ink-2: #A6AAB2;
+    --ink-3: #6E737C; --hair: #222429; --hair-2: #2D2F35; --gold: #CDA45A; --gold-2: #E2BE76; --gold-ink: #DDB66C;
+    --gold-wash: #26211A; --empty: #1D1E23; --btn: #F1EEE7; --btn-ink: #0F1013; --danger: #E08A78;
+    --frame: #000000; --frame-edge: #2A2B30;
+    --shadow-lg: 0 60px 90px -50px rgba(0, 0, 0, .9), 0 24px 40px -24px rgba(0, 0, 0, .7);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 28px -16px rgba(0, 0, 0, .6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"], .force-dark {
+  --page: #0A0B0D; --panel: #111215; --app: #0F1013; --surface: #17181C; --ink: #F1EEE7; --ink-2: #A6AAB2;
+  --ink-3: #6E737C; --hair: #222429; --hair-2: #2D2F35; --gold: #CDA45A; --gold-2: #E2BE76; --gold-ink: #DDB66C;
+  --gold-wash: #26211A; --empty: #1D1E23; --btn: #F1EEE7; --btn-ink: #0F1013; --danger: #E08A78;
+  --frame: #000000; --frame-edge: #2A2B30;
+  --shadow-lg: 0 60px 90px -50px rgba(0, 0, 0, .9), 0 24px 40px -24px rgba(0, 0, 0, .7);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 28px -16px rgba(0, 0, 0, .6);
+  color-scheme: dark;
+}
+
+/* ---------- page ---------- */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 400 16px/1.55 var(--sans); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 8px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: 16px; padding-right: 16px; }
+@media (min-width: 760px) { .wrap { padding-left: 48px; padding-right: 48px; } }
+
+.topbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 22px; padding-bottom: 22px; }
+.wordmark { display: flex; align-items: center; gap: 11px; margin: 0; font: italic 400 26px/1 var(--serif); font-variation-settings: "opsz" 48; letter-spacing: -.01em; }
+.wordmark .ico { width: 30px; height: 30px; box-shadow: 0 1px 3px rgba(0, 0, 0, .2); }
+.ico { display: block; flex: none; overflow: hidden; border-radius: 22.37%; }
+.ico svg { display: block; width: 100%; height: 100%; }
+.topbar .right { display: flex; align-items: center; gap: 14px; }
+.tag { font: 500 12px/1 var(--sans); color: var(--ink-3); letter-spacing: .02em; }
+@media (max-width: 520px) { .tag { display: none; } }
+.theme-switch { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--panel); box-shadow: inset 0 0 0 1px var(--hair); }
+.theme-switch button { border: 0; background: none; padding: 6px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 500; color: var(--ink-3); cursor: pointer; }
+.theme-switch button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .1), inset 0 0 0 1px var(--hair); }
+
+.hero { padding-top: clamp(40px, 8vw, 96px); text-align: center; }
+.hero h1 { margin: 0 auto; max-width: 14ch; font: 300 clamp(46px, 7.4vw, 96px)/1.02 var(--serif); font-variation-settings: "opsz" 72; letter-spacing: -.025em; }
+.hero h1 em { font-style: italic; color: var(--ink-2); }
+.hero .sub { margin: 26px auto 0; max-width: 50ch; color: var(--ink-2); font-size: clamp(16px, 1.6vw, 18px); }
+
+.map-panel { margin-top: clamp(40px, 6vw, 72px); background: var(--panel); border-radius: 28px; padding: clamp(18px, 3.4vw, 40px); box-shadow: var(--shadow-sm), inset 0 0 0 1px var(--hair); --sep: var(--panel); text-align: left; }
+.map-panel .canon { position: relative; }
+.map-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 40px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--hair); }
+.map-foot p { margin: 0; max-width: 64ch; font-size: 14px; color: var(--ink-2); }
+.map-foot b { color: var(--ink); font-weight: 600; }
+.legend { display: flex; gap: 18px; font-size: 12.5px; color: var(--ink-3); }
+.legend i { display: inline-block; width: 14px; height: 8px; border-radius: 4px; margin-right: 6px; vertical-align: 0; }
+.legend .l-read { background: var(--gold); }
+.legend .l-unread { background: var(--empty); box-shadow: inset 0 0 0 1px var(--hair-2); }
+
+.epigraph { text-align: center; padding-top: clamp(56px, 8vw, 104px); }
+.epigraph blockquote { margin: 0 auto; max-width: 30ch; font: italic 300 clamp(22px, 2.6vw, 30px)/1.35 var(--serif); font-variation-settings: "opsz" 36; }
+.epigraph cite { display: block; margin-top: 14px; font: 500 12px/1 var(--sans); font-style: normal; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.epigraph .howto { margin: 28px auto 0; max-width: 62ch; font-size: 14px; color: var(--ink-3); }
+
+.section { padding-top: clamp(72px, 9vw, 128px); }
+.section-head { display: grid; gap: 8px 48px; padding-bottom: 40px; border-bottom: 1px solid var(--hair); margin-bottom: 56px; }
+@media (min-width: 900px) { .section-head { grid-template-columns: 1fr 1fr; align-items: end; } }
+.section-head h2 { margin: 0; font: 300 clamp(34px, 4vw, 48px)/1.05 var(--serif); font-variation-settings: "opsz" 60; letter-spacing: -.02em; }
+.section-head p { margin: 0; color: var(--ink-2); max-width: 52ch; }
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 64px 40px; }
+.shot { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 28px; }
+.shot figcaption { width: 100%; max-width: 300px; }
+.shot h3 { margin: 0 0 6px; font: 600 15px/1.3 var(--sans); letter-spacing: -.005em; }
+.shot figcaption p { margin: 0; font-size: 14px; color: var(--ink-2); }
+.shot figcaption .note { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--hair); font-size: 13px; color: var(--ink-3); }
+
+/* ---------- phone ---------- */
+.phone { width: 300px; max-width: 100%; aspect-ratio: 300 / 640; border-radius: 52px; padding: 9px; background: var(--frame); position: relative;
+  box-shadow: inset 0 0 0 1.5px var(--frame-edge), 0 0 0 1px rgba(0, 0, 0, .12), var(--shadow-lg); }
+.screen { height: 100%; border-radius: 43px; overflow: hidden; background: var(--app); color: var(--ink); position: relative; display: flex; flex-direction: column; font-size: 13.5px; line-height: 1.45; --sep: var(--app); }
+.island { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 86px; height: 25px; border-radius: 13px; background: #000; z-index: 6; }
+.status { flex: none; height: 46px; display: flex; align-items: center; justify-content: space-between; padding: 2px 24px 0 30px; font: 600 13px/1 var(--sans); position: relative; z-index: 5; }
+.status .icons { display: flex; gap: 5px; align-items: center; }
+.status svg { display: block; }
+.content { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 8px 22px 96px; scrollbar-width: none; }
+.content::-webkit-scrollbar { display: none; }
+
+.screen.float::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 104px; z-index: 4; pointer-events: none; background: linear-gradient(to bottom, color-mix(in srgb, var(--app) 0%, transparent), var(--app) 62%); }
+.screen.float-tall::after { height: 150px; }
+.tabbar { position: absolute; left: 16px; right: 16px; bottom: 14px; height: 56px; border-radius: 28px; display: flex; align-items: center; z-index: 5;
+  background: var(--surface); background: color-mix(in srgb, var(--surface) 94%, transparent); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: inset 0 0 0 1px var(--hair), 0 12px 30px -14px rgba(0, 0, 0, .3); }
+.tabbar span { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; font: 500 10px/1.2 var(--sans); color: var(--ink-3); }
+.tabbar span[aria-current="page"] { color: var(--ink); }
+.tabbar svg { width: 21px; height: 21px; }
+
+.eyebrow { margin: 0; font: 600 10.5px/1.3 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); }
+.screen-title { margin: 6px 0 22px; font: 300 32px/1.05 var(--serif); font-variation-settings: "opsz" 60; letter-spacing: -.015em; }
+.btn { display: flex; width: 100%; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 16px; height: 50px; padding: 0 18px; font: 600 14.5px/1 var(--sans); cursor: pointer; background: var(--btn); color: var(--btn-ink); letter-spacing: -.005em; }
+.btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--hair-2); }
+.btn.link { background: none; color: var(--ink-2); height: 40px; font-weight: 500; }
+.rule { height: 1px; background: var(--hair); margin: 26px 0; }
+.num { font-variant-numeric: lining-nums tabular-nums; }
+
+/* today */
+.topmeta { display: flex; justify-content: space-between; align-items: center; margin: 2px 0 34px; font-size: 12.5px; color: var(--ink-2); }
+.streak { display: inline-flex; align-items: center; gap: 6px; }
+.streak i { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+.streak b { font-weight: 600; color: var(--ink); }
+.ref-xl { margin: 10px 0 0; white-space: nowrap; font: 300 34px/1.05 var(--serif); font-variation-settings: "opsz" 72; letter-spacing: -.02em; }
+.meta { margin: 10px 0 0; font-size: 12.5px; color: var(--ink-3); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.meta i { width: 3px; height: 3px; border-radius: 50%; background: var(--ink-3); opacity: .7; }
+.excerpt { margin: 22px 0 26px; font: italic 400 16px/1.6 var(--serif); font-variation-settings: "opsz" 16; color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.fine { margin: 12px 0 0; text-align: center; font-size: 11.5px; color: var(--ink-3); }
+.warn { display: none; margin: 12px 0 0; padding: 10px 12px; border-radius: 12px; background: var(--gold-wash); font-size: 12px; color: var(--ink); }
+.over-limit .warn, .over-limit .limit-warn { display: block; }
+.over-limit .fine { display: none; }
+.prog-line { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+.prog-line .big { font: 400 24px/1 var(--serif); font-variation-settings: "opsz" 36; }
+.prog-line .lbl { font-size: 12px; color: var(--ink-3); }
+.mini-legend { display: flex; gap: 14px; margin-top: 10px; font-size: 10.5px; color: var(--ink-3); }
+.mini-legend i { display: inline-block; width: 8px; height: 4px; border-radius: 2px; background: var(--gold); margin-right: 5px; vertical-align: 2px; }
+.mini-legend i.mark { width: 2px; height: 9px; border-radius: 1px; background: var(--ink); vertical-align: -1px; }
+.votd { margin: 12px 0 10px; font: 400 17px/1.55 var(--serif); font-variation-settings: "opsz" 18; }
+.ref-sm { margin: 0; font: 600 11.5px/1.2 var(--sans); letter-spacing: .02em; color: var(--gold-ink); }
+
+/* reader */
+.navbar { flex: none; display: flex; justify-content: space-between; align-items: center; padding: 0 16px 6px; position: relative; z-index: 5; }
+.circle { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--surface); box-shadow: inset 0 0 0 1px var(--hair); color: var(--ink); }
+.nav-title { font: 600 13px/1 var(--sans); }
+.reader { padding-bottom: 150px; }
+.ref-lg { margin: 8px 0 0; font: 300 34px/1.05 var(--serif); font-variation-settings: "opsz" 60; letter-spacing: -.02em; }
+.intro { margin: 14px 0 0; font: italic 400 14.5px/1.55 var(--serif); color: var(--ink-2); }
+.context { margin: 14px 0 0; display: flex; gap: 8px; align-items: center; font-size: 11.5px; color: var(--ink-3); }
+.context::before { content: ""; width: 14px; height: 1px; background: var(--ink-3); }
+.scripture { margin-top: 26px; font: 400 16.5px/1.78 var(--serif); font-variation-settings: "opsz" 16; }
+.scripture p { margin: 0 0 16px; }
+.scripture sup { font: 600 9px/0 var(--sans); color: var(--gold-ink); margin: 0 3px 0 1px; vertical-align: .75em; letter-spacing: .02em; }
+.fin { display: flex; justify-content: center; margin: 10px 0 24px; }
+.fin i { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); }
+.next { padding: 16px; border-radius: 18px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--hair); }
+.next b { display: block; margin: 6px 0 4px; font: 400 19px/1.2 var(--serif); font-variation-settings: "opsz" 24; }
+.next span { font-size: 12px; color: var(--ink-3); }
+.action { position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 12px; border-radius: 26px; z-index: 5;
+  background: var(--surface); background: color-mix(in srgb, var(--surface) 95%, transparent); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: inset 0 0 0 1px var(--hair), 0 12px 30px -14px rgba(0, 0, 0, .3); }
+.action .count { display: flex; justify-content: space-between; padding: 0 4px; font-size: 11.5px; color: var(--ink-3); }
+.meter { height: 3px; border-radius: 2px; background: var(--empty); margin: 8px 4px 12px; overflow: hidden; }
+.meter span { display: block; height: 100%; background: var(--gold); border-radius: 2px; }
+
+/* done */
+.done-top { text-align: center; padding-top: 26px; }
+.seal { width: 54px; height: 54px; margin: 0 auto 22px; border-radius: 50%; display: grid; place-items: center; color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+.done-top h4 { margin: 0; font: italic 300 32px/1.05 var(--serif); font-variation-settings: "opsz" 60; letter-spacing: -.015em; }
+.done-top p { margin: 10px 0 0; font-size: 12.5px; color: var(--ink-3); }
+.done-stat { text-align: center; margin: 30px 0 22px; }
+.done-stat b { font: 300 52px/1 var(--serif); font-variation-settings: "opsz" 72; letter-spacing: -.02em; }
+.done-stat .delta { display: inline-block; margin-left: 6px; font-size: 12px; font-weight: 600; color: var(--gold-ink); vertical-align: 24px; }
+.done-stat p { margin: 6px 0 0; font-size: 12px; color: var(--ink-3); }
+.legend-sm { display: flex; justify-content: center; gap: 16px; margin: 12px 0 0; font-size: 10.5px; color: var(--ink-3); }
+.legend-sm i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--gold-2); margin-right: 5px; vertical-align: -1px; }
+.legend-sm i.sq { width: 8px; height: 4px; border-radius: 2px; background: var(--gold); box-shadow: none; vertical-align: 1px; }
+.streak-line { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--ink-2); }
+.dots { display: flex; gap: 5px; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--ink); opacity: .8; }
+.dots i.now { background: var(--gold); opacity: 1; box-shadow: 0 0 0 3px var(--gold-wash); }
+.tomorrow { margin: 18px 0 14px; }
+
+/* progress */
+.pct { margin: 0; font: 200 84px/.9 var(--serif); font-variation-settings: "opsz" 72; letter-spacing: -.035em; }
+.pct small { font-size: 28px; font-weight: 300; letter-spacing: 0; vertical-align: 34px; margin-left: 2px; color: var(--ink-3); }
+.pct-sub { margin: 10px 0 26px; font-size: 12.5px; color: var(--ink-3); }
+.mapcard { padding: 16px 14px 14px; border-radius: 20px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--hair); --sep: var(--surface); position: relative; }
+.mapcard .cap { display: flex; justify-content: space-between; margin-top: 12px; font-size: 10.5px; color: var(--ink-3); }
+.testaments { display: grid; gap: 14px; margin: 26px 0 0; }
+.t-row .lab { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 7px; color: var(--ink-2); }
+.t-row .lab span:last-child { color: var(--ink); font-weight: 600; }
+.track { height: 3px; border-radius: 2px; background: var(--empty); overflow: hidden; }
+.track i { display: block; height: 100%; border-radius: 2px; background: var(--gold); }
+.stats { display: grid; grid-template-columns: 1fr 1fr; margin: 26px 0 0; border-top: 1px solid var(--hair); }
+.stats div { padding: 14px 0; border-bottom: 1px solid var(--hair); }
+.stats div:nth-child(odd):not(.wide) { padding-right: 12px; border-right: 1px solid var(--hair); }
+.stats div:nth-child(even) { padding-left: 14px; }
+.stats b { display: block; font: 300 26px/1.1 var(--serif); font-variation-settings: "opsz" 48; letter-spacing: -.01em; }
+.stats span { font-size: 11px; color: var(--ink-3); }
+.stats .wide { grid-column: span 2; }
+.booklist { margin: 12px 0 0; padding: 0; list-style: none; }
+.booklist li { display: grid; grid-template-columns: 86px 1fr 34px; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--hair); font-size: 12.5px; }
+.booklist li span:last-child { text-align: right; font-weight: 600; font-size: 11.5px; }
+.more-link { display: block; padding: 14px 0 0; font-size: 12.5px; font-weight: 600; }
+.label-sm { margin: 30px 0 0; font: 600 10.5px/1.3 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); }
+
+/* settings */
+.group-label { margin: 26px 4px 8px; font: 600 10.5px/1.3 var(--sans); letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); }
+.group-label.first { margin-top: 0; }
+.group { border-radius: 18px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--hair); overflow: hidden; }
+.item { display: flex; align-items: center; gap: 12px; width: 100%; padding: 13px 16px; border: 0; background: none; text-align: left; position: relative; }
+.item + .item::before, .length + .item::before { content: ""; position: absolute; top: 0; left: 16px; right: 0; height: 1px; background: var(--hair); }
+.item .txt { flex: 1; min-width: 0; }
+.item .txt b { display: block; font-weight: 500; font-size: 13.5px; }
+.item .txt span { display: block; margin-top: 2px; font-size: 11.5px; color: var(--ink-3); }
+.item .val { font-size: 12.5px; color: var(--ink-3); }
+.item svg { color: var(--ink-3); flex: none; }
+button.item { cursor: pointer; }
+.length { padding: 16px; }
+.length .head { display: flex; justify-content: space-between; align-items: baseline; }
+.length .head label { font-weight: 500; font-size: 13.5px; }
+.length output { font: 300 30px/1 var(--serif); font-variation-settings: "opsz" 48; letter-spacing: -.01em; }
+.length output small { font: 400 12px var(--sans); color: var(--ink-3); margin-left: 4px; letter-spacing: 0; }
+input[type="range"] { width: 100%; margin: 14px 0 0; -webkit-appearance: none; appearance: none; height: 28px; background: transparent; cursor: pointer; --pct: 14%; }
+input[type="range"]::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--gold) var(--pct), var(--empty) var(--pct)); }
+input[type="range"]::-moz-range-track { height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--gold) var(--pct), var(--empty) var(--pct)); }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; margin-top: -11.5px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .12), 0 3px 8px rgba(0, 0, 0, .18); }
+input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .12), 0 3px 8px rgba(0, 0, 0, .18); }
+.ticks { display: flex; justify-content: space-between; font-size: 10px; color: var(--ink-3); margin-top: 2px; }
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); padding: 3px; margin: 16px 0 14px; border-radius: 12px; background: var(--app); box-shadow: inset 0 0 0 1px var(--hair); }
+.seg button { border: 0; background: none; border-radius: 9px; padding: 7px 4px; font-size: 11.5px; color: var(--ink-3); cursor: pointer; line-height: 1.25; }
+.seg button b { display: block; font-weight: 600; font-size: 12px; color: var(--ink-2); }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink-2); box-shadow: 0 1px 3px rgba(0, 0, 0, .1), inset 0 0 0 1px var(--hair); }
+.seg button[aria-pressed="true"] b { color: var(--ink); }
+.est { margin: 0; font-size: 12px; color: var(--ink); }
+.helper { margin: 6px 0 0; font-size: 11.5px; color: var(--ink-3); }
+.limit-warn { display: none; margin: 12px 0 0; padding: 10px 12px; border-radius: 12px; background: var(--gold-wash); font-size: 11.5px; color: var(--ink); }
+.switch { flex: none; width: 42px; height: 25px; border-radius: 13px; border: 0; background: var(--hair-2); position: relative; cursor: pointer; transition: background .2s; }
+.switch::after { content: ""; position: absolute; top: 2.5px; left: 2.5px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .25); transition: transform .2s; }
+.switch[aria-checked="true"] { background: var(--ink); }
+.switch[aria-checked="true"]::after { transform: translateX(17px); background: var(--app); }
+.toast { position: absolute; left: 16px; right: 16px; bottom: 82px; z-index: 7; padding: 12px 14px; border-radius: 16px; background: var(--ink); color: var(--app); font-size: 11.5px; opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; pointer-events: none; }
+.toast b { display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 1px; }
+.toast.show { opacity: 1; transform: none; }
+.fineprint { margin: 10px 4px 0; font-size: 11px; color: var(--ink-3); }
+
+/* import sheet */
+.backdrop { position: absolute; inset: 0; background: rgba(10, 11, 13, .38); z-index: 6; }
+.sheet { position: absolute; left: 8px; right: 8px; bottom: 8px; z-index: 7; padding: 10px 18px 14px; border-radius: 34px; background: var(--app); max-height: 90%; overflow-y: auto; scrollbar-width: none; box-shadow: 0 -10px 40px -10px rgba(0, 0, 0, .3); }
+.grabber { width: 36px; height: 4px; border-radius: 2px; background: var(--hair-2); margin: 0 auto 18px; }
+.sheet h4 { margin: 0; font: 300 26px/1.1 var(--serif); font-variation-settings: "opsz" 48; letter-spacing: -.015em; }
+.file { display: flex; gap: 10px; align-items: center; margin: 12px 0 18px; font-size: 11.5px; color: var(--ink-3); line-height: 1.4; }
+.file b { display: block; font-weight: 500; color: var(--ink-2); }
+.file svg { flex: none; color: var(--ink-2); }
+.compare { display: grid; grid-template-columns: 1fr 1fr; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--hair); margin-bottom: 14px; }
+.compare div { padding: 12px 14px; }
+.compare div + div { border-left: 1px solid var(--hair); }
+.compare b { display: block; margin: 6px 0 2px; font: 300 26px/1 var(--serif); font-variation-settings: "opsz" 48; }
+.compare span { display: block; font-size: 11px; color: var(--ink-3); }
+.compare span span, .choice span span span { display: inline; margin: 0; }
+.choice { display: flex; gap: 12px; width: 100%; padding: 12px 14px; margin-bottom: 8px; border: 0; border-radius: 16px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--hair); text-align: left; cursor: pointer; }
+.choice[aria-checked="true"] { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.choice .radio { flex: none; width: 18px; height: 18px; margin-top: 1px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--hair-2); position: relative; }
+.choice[aria-checked="true"] .radio { box-shadow: inset 0 0 0 5.5px var(--ink); }
+.choice b { display: block; font-weight: 600; font-size: 12.5px; color: var(--ink); }
+.choice span { display: block; font-size: 11.5px; color: var(--ink-3); margin-top: 2px; }
+
+/* home screens + widgets */
+.screen.wall { color: #fff; background:
+  radial-gradient(130% 70% at 50% 108%, rgba(222, 176, 104, .75), transparent 60%),
+  radial-gradient(80% 40% at 15% 0%, rgba(255, 255, 255, .12), transparent 70%),
+  linear-gradient(180deg, #1E2433 0%, #2E3446 46%, #6E6355 82%, #A88559 100%); }
+.screen.wall-night { color: #fff; background:
+  radial-gradient(120% 60% at 50% 110%, rgba(205, 164, 90, .32), transparent 60%),
+  linear-gradient(180deg, #07080B 0%, #0E1118 55%, #1E1C1A 100%); }
+.home { flex: 1; display: flex; flex-direction: column; padding: 10px 16px 14px; }
+.widget { border-radius: 24px; padding: 15px 16px; color: #14161A; background: rgba(250, 250, 247, .9); -webkit-backdrop-filter: blur(20px) saturate(1.5); backdrop-filter: blur(20px) saturate(1.5); box-shadow: 0 12px 30px -16px rgba(0, 0, 0, .55); }
+.widget.dark { color: #F1EEE7; background: rgba(23, 24, 28, .82); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06), 0 12px 30px -16px rgba(0, 0, 0, .7); }
+.w-eyebrow { display: flex; align-items: center; gap: 6px; font: 600 9px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: #8D9199; }
+.widget.dark .w-eyebrow { color: #7F848D; }
+.w-eyebrow i { width: 5px; height: 5px; border-radius: 50%; background: #A67A2A; }
+.widget.dark .w-eyebrow i { background: #CDA45A; }
+.w-text { margin: 10px 0 8px; font-family: var(--serif); }
+.w-ref { margin: 0; font: 600 10.5px/1.2 var(--sans); letter-spacing: .02em; color: #87601A; }
+.widget.dark .w-ref { color: #DDB66C; }
+.w-medium .w-text { font-size: 13px; line-height: 1.45; font-variation-settings: "opsz" 14; }
+.w-foot { display: flex; justify-content: space-between; align-items: center; }
+.w-foot span { font-size: 10px; color: #8D9199; }
+.home-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+.w-small { aspect-ratio: 1; display: flex; flex-direction: column; padding: 14px; }
+.w-small .w-text { flex: 1; margin: 8px 0 4px; font-size: 14px; line-height: 1.36; font-variation-settings: "opsz" 16; }
+.w-large { padding: 20px 20px 18px; }
+.w-large .w-text { margin: 14px 0 12px; font-size: 18.5px; line-height: 1.42; font-weight: 300; font-variation-settings: "opsz" 24; }
+.w-large .w-ref { font-size: 11.5px; }
+.w-today { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, .1); }
+.w-today .k { display: block; font: 600 9px/1 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: #7F848D; }
+.w-today b { display: block; margin-top: 5px; font: 400 16px/1.2 var(--serif); }
+.w-today em { font-style: normal; font-size: 11px; color: #7F848D; }
+.w-today .go { flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: #F1EEE7; color: #0F1013; }
+.apps { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 10px; align-content: center; }
+.app { display: flex; flex-direction: column; align-items: center; gap: 5px; font: 500 9.5px/1 var(--sans); color: rgba(255, 255, 255, .88); }
+.app i { display: block; width: 46px; height: 46px; border-radius: 13px; background: rgba(255, 255, 255, .16); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .25); }
+.app-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 20px; }
+.dock { margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 11px 10px; border-radius: 30px; background: rgba(255, 255, 255, .14); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .2); }
+.dock .app > span:last-child { display: none; }
+.app-ico { width: 46px; height: 46px; box-shadow: 0 0 0 .5px rgba(255, 255, 255, .18); }
+
+/* app icon section */
+.icon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 40px; }
+.icon-card { margin: 0; }
+.icon-stage { height: 340px; border-radius: 28px; display: grid; place-items: center; background: var(--panel); box-shadow: var(--shadow-sm), inset 0 0 0 1px var(--hair); }
+.icon-stage.alt { background: var(--page); }
+.icon-xl { width: 196px; height: 196px; box-shadow: 0 30px 50px -24px rgba(0, 0, 0, .45), 0 0 0 .5px rgba(0, 0, 0, .1); }
+.icon-stage.wall { color: #fff; background: radial-gradient(130% 70% at 50% 108%, rgba(222, 176, 104, .75), transparent 60%), linear-gradient(180deg, #1E2433 0%, #2E3446 46%, #6E6355 82%, #A88559 100%); box-shadow: var(--shadow-sm); }
+.sizes { display: flex; align-items: flex-end; gap: 26px; }
+.sizes .app { gap: 7px; font-size: 10.5px; }
+.sizes .s76 { width: 76px; height: 76px; } .sizes .s60 { width: 60px; height: 60px; }
+.sizes .s40 { width: 40px; height: 40px; } .sizes .s29 { width: 29px; height: 29px; }
+.icon-card figcaption { margin-top: 22px; max-width: 340px; }
+.icon-card h3 { margin: 0 0 6px; font: 600 15px/1.3 var(--sans); }
+.icon-card figcaption p { margin: 0; font-size: 14px; color: var(--ink-2); }
+.wtag { margin: 14px 2px 8px; font: 600 9px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .62); }
+.wtag.first { margin-top: 4px; }
+
+/* canon map */
+.canon svg { display: block; width: 100%; height: auto; overflow: visible; }
+.c-empty { fill: var(--empty); }
+.c-fleck { fill: var(--gold); }
+.c-sep { stroke: var(--sep); }
+.c-label { fill: var(--ink-3); font-family: var(--sans); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; pointer-events: none; paint-order: stroke; stroke: var(--empty); stroke-width: 3px; stroke-linejoin: round; }
+.c-sect { fill: var(--ink-3); font-family: var(--sans); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.c-today { fill: var(--gold-2); }
+.c-mark { fill: var(--ink); }
+.c-ring-still { fill: none; stroke: var(--gold-2); stroke-width: 1.2; }
+.c-ring { fill: none; stroke: var(--gold-2); stroke-width: 1.2; transform-box: fill-box; transform-origin: center; animation: pulse 2.6s ease-out infinite; }
+.c-hover { fill: none; stroke: var(--ink); stroke-width: 1; pointer-events: none; }
+@keyframes pulse { 0% { transform: scale(.8); opacity: .9; } 80%, 100% { transform: scale(1.8); opacity: 0; } }
+.tip { position: absolute; z-index: 8; pointer-events: none; padding: 8px 10px; border-radius: 10px; background: var(--ink); color: var(--app); font-size: 11.5px; line-height: 1.35; white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); opacity: 0; transition: opacity .12s; }
+.tip b { display: block; font-size: 12px; font-weight: 600; }
+.tip.show { opacity: 1; }
+
+.footer { margin-top: clamp(80px, 10vw, 140px); padding-top: 28px; padding-bottom: 56px; border-top: 1px solid var(--hair); display: grid; gap: 8px; font-size: 12.5px; color: var(--ink-3); }
+.footer p { margin: 0; max-width: 92ch; }
+
+@media (prefers-reduced-motion: reduce) {
+  .c-ring { animation: none; opacity: 0; }
+  .switch, .switch::after, .toast { transition: none; }
+}
+</style>
+</head>
+<body>
+<!-- App icon artwork (same as bible-app-icon.svg and bible-app-icon-light.svg) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<symbol id="icon-dark" viewBox="0 0 1024 1024">
+<defs>
+    <linearGradient id="d-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#262930"/>
+      <stop offset="1" stop-color="#0C0D10"/>
+    </linearGradient>
+    <radialGradient id="d-sheen" cx="0.3" cy="0.05" r="0.8">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.09"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="d-ribbon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C99A44"/>
+      <stop offset="0.5" stop-color="#E6C47E"/>
+      <stop offset="1" stop-color="#B78935"/>
+    </linearGradient>
+    <linearGradient id="d-line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B98C3A"/>
+      <stop offset="0.5" stop-color="#D9B46C"/>
+      <stop offset="1" stop-color="#B98C3A"/>
+    </linearGradient>
+    <linearGradient id="d-ribbonFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000000" stop-opacity="0.28"/>
+      <stop offset="0.18" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="d-lift" x="-40%" y="-10%" width="180%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#d-bg)"/>
+  <rect width="1024" height="1024" fill="url(#d-sheen)"/>
+  <rect x="232" y="356" width="560" height="44" rx="22" fill="url(#d-line)"/>
+  <g fill="#3A3D45">
+    <rect x="232" y="444" width="560" height="44" rx="22"/>
+    <rect x="232" y="532" width="560" height="44" rx="22"/>
+    <rect x="232" y="620" width="336" height="44" rx="22"/>
+  </g>
+  <g filter="url(#d-lift)">
+    <path d="M452 -20 H572 V752 L512 694 L452 752 Z" fill="url(#d-ribbon)"/>
+  </g>
+  <path d="M452 -20 H572 V752 L512 694 L452 752 Z" fill="url(#d-ribbonFade)"/>
+</symbol>
+<symbol id="icon-light" viewBox="0 0 1024 1024">
+<defs>
+    <linearGradient id="l-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FCFCFA"/>
+      <stop offset="1" stop-color="#E6E6E0"/>
+    </linearGradient>
+    <radialGradient id="l-sheen" cx="0.3" cy="0.05" r="0.8">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="l-ribbon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C99A44"/>
+      <stop offset="0.5" stop-color="#E6C47E"/>
+      <stop offset="1" stop-color="#B78935"/>
+    </linearGradient>
+    <linearGradient id="l-line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B98C3A"/>
+      <stop offset="0.5" stop-color="#D9B46C"/>
+      <stop offset="1" stop-color="#B98C3A"/>
+    </linearGradient>
+    <linearGradient id="l-ribbonFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000000" stop-opacity="0.12"/>
+      <stop offset="0.18" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="l-lift" x="-40%" y="-10%" width="180%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000000" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#l-bg)"/>
+  <rect width="1024" height="1024" fill="url(#l-sheen)"/>
+  <rect x="232" y="356" width="560" height="44" rx="22" fill="url(#l-line)"/>
+  <g fill="#D6D6CF">
+    <rect x="232" y="444" width="560" height="44" rx="22"/>
+    <rect x="232" y="532" width="560" height="44" rx="22"/>
+    <rect x="232" y="620" width="336" height="44" rx="22"/>
+  </g>
+  <g filter="url(#l-lift)">
+    <path d="M452 -20 H572 V752 L512 694 L452 752 Z" fill="url(#l-ribbon)"/>
+  </g>
+  <path d="M452 -20 H572 V752 L512 694 L452 752 Z" fill="url(#l-ribbonFade)"/>
+</symbol>
+</svg>
+
+<header class="wrap topbar">
+  <p class="wordmark"><span class="ico " aria-hidden="true"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span>Bible</p>
+  <div class="right">
+    <span class="tag">UI concept · not a working build</span>
+    <div class="theme-switch" role="group" aria-label="Colour theme">
+      <button type="button" data-theme-btn="system" aria-pressed="true">Auto</button>
+      <button type="button" data-theme-btn="light" aria-pressed="false">Light</button>
+      <button type="button" data-theme-btn="dark" aria-pressed="false">Dark</button>
+    </div>
+  </div>
+</header>
+
+<section class="wrap hero">
+  <h1>One passage a day. <em>Never the same twice.</em></h1>
+  <p class="sub">Each day the app picks a short reading at random from the parts of Scripture you haven’t read yet. It stays within the length you choose and always ends at the end of a sentence.</p>
+
+  <div class="map-panel" aria-label="Canon map">
+    <div class="canon" data-variant="hero"></div>
+    <div class="map-foot">
+      <p>The whole Bible, drawn to scale. Each book is as wide as it is long. The gold marks are the <b data-bind="readings">330</b> passages one sample reader has finished: scattered at random, never overlapping, <b data-bind="pctAfter">9.6%</b> of the way through. Hover or tap a book to see its progress.</p>
+      <div class="legend"><span><i class="l-read"></i>Read</span><span><i class="l-unread"></i>Not yet read</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap epigraph">
+  <blockquote>“…the people shall go out and gather a day’s portion every day…”</blockquote>
+  <cite>Exodus 16:4 · World English Bible</cite>
+  <p class="howto">Scroll inside each phone. Drag the length slider in Settings and the other screens update with it. All Scripture shown is World English Bible text. Progress figures come from a simulated reader.</p>
+</section>
+
+<main>
+  <!-- ===================== READING ===================== -->
+  <section class="wrap section">
+    <div class="section-head">
+      <h2>Reading</h2>
+      <p>One reading a day, chosen when the day starts. It begins where an earlier reading left off or at the top of a chapter, and it ends at the end of a sentence, usually at a paragraph break.</p>
+    </div>
+    <div class="shots">
+
+      <figure class="shot">
+        <div class="phone"><div class="screen float" data-limit-scope>
+          <div class="island"></div>
+          <div class="status"><span>7:42</span><span class="icons" data-status></span></div>
+          <div class="content">
+            <div class="topmeta"><span>Sunday, 18 October</span><span class="streak"><i></i><span><b data-bind="streakBefore">12</b> days</span></span></div>
+            <p class="eyebrow">Today’s reading</p>
+            <h4 class="ref-xl">Luke 15:11–21</h4>
+            <p class="meta"><span>244 words</span><i></i><span>about 2 min</span></p>
+            <p class="excerpt">He said, “A certain man had two sons. The younger of them said to his father, ‘Father, give me my share of your property.’ So he divided his livelihood between them.</p>
+            <button class="btn" type="button">Begin reading</button>
+            <p class="fine">Within your <span data-bind="limit">300</span>-word limit</p>
+            <p class="warn">Longer than your new <span data-bind="limit">300</span>-word limit, so it will be rebuilt to fit before you begin.</p>
+
+            <div class="rule"></div>
+            <div class="prog-line"><span><span class="big num" data-bind="pctBefore">9.6%</span> <span class="lbl">of the Bible</span></span><span class="lbl"><span data-bind="readingsBefore">329</span> readings</span></div>
+            <div class="canon" data-variant="mini"></div>
+            <div class="mini-legend"><span><i></i>Read</span><span><i class="mark"></i>Today’s passage</span></div>
+
+            <div class="rule"></div>
+            <p class="eyebrow">Verse of the day</p>
+            <p class="votd">Don’t you be afraid, for I am with you. Don’t be dismayed, for I am your God. I will strengthen you. Yes, I will help you. Yes, I will uphold you with the right hand of my righteousness.</p>
+            <p class="ref-sm">Isaiah 41:10</p>
+          </div>
+          <nav class="tabbar" aria-label="Tabs" data-tabs="today"></nav>
+        </div></div>
+        <figcaption>
+          <h3>Today</h3>
+          <p>One passage, kept for the whole day until you finish it.</p>
+          <p class="note">The small map marks where today’s passage sits. Miss a day and the same reading waits for you, so nothing piles up.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="phone"><div class="screen float float-tall" data-limit-scope>
+          <div class="island"></div>
+          <div class="status"><span>7:43</span><span class="icons" data-status></span></div>
+          <div class="navbar">
+            <span class="circle" aria-label="Back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></span>
+            <span class="nav-title">Luke 15</span>
+            <span class="circle" aria-label="More options"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg></span>
+          </div>
+          <div class="content reader">
+            <p class="eyebrow">Luke · Chapter 15 of 24</p>
+            <h4 class="ref-lg">Verses 11–21</h4>
+            <p class="intro">Luke’s orderly account of Jesus’ life, written so a reader could be sure of what they had been taught.</p>
+            <p class="context">Before this: Luke 15:1–10, read 3 Sep</p>
+            <div class="scripture">
+              <p><sup>11</sup>He said, “A certain man had two sons. <sup>12</sup>The younger of them said to his father, ‘Father, give me my share of your property.’ So he divided his livelihood between them. <sup>13</sup>Not many days after, the younger son gathered all of this together and traveled into a far country. There he wasted his property with riotous living. <sup>14</sup>When he had spent all of it, there arose a severe famine in that country, and he began to be in need. <sup>15</sup>He went and joined himself to one of the citizens of that country, and he sent him into his fields to feed pigs. <sup>16</sup>He wanted to fill his belly with the pods that the pigs ate, but no one gave him any. <sup>17</sup>But when he came to himself, he said, ‘How many hired servants of my father’s have bread enough to spare, and I’m dying with hunger! <sup>18</sup>I will get up and go to my father, and will tell him, “Father, I have sinned against heaven and in your sight. <sup>19</sup>I am no more worthy to be called your son. Make me as one of your hired servants.”’</p>
+              <p><sup>20</sup>“He arose and came to his father. But while he was still far off, his father saw him and was moved with compassion, and ran, fell on his neck, and kissed him. <sup>21</sup>The son said to him, ‘Father, I have sinned against heaven and in your sight. I am no longer worthy to be called your son.’</p>
+            </div>
+            <div class="fin" aria-hidden="true"><i></i></div>
+            <div class="next">
+              <p class="eyebrow">Continues tomorrow</p>
+              <b>Luke 15:22–32</b>
+              <span>Today stops at a paragraph break to stay within your limit. Tomorrow finishes the parable.</span>
+            </div>
+          </div>
+          <div class="action">
+            <div class="count"><span>244 of <span data-bind="limit">300</span> words</span><span>about 2 min</span></div>
+            <div class="meter"><span data-bind-width="fill"></span></div>
+            <button class="btn" type="button">Mark as read</button>
+          </div>
+        </div></div>
+        <figcaption>
+          <h3>Reader</h3>
+          <p>Whole sentences only, starting exactly where your last reading of this chapter ended.</p>
+          <p class="note">Running on to verse 24 would make 304 words, so the reading stops at the paragraph break after verse 21 (244 words). Tomorrow picks up the rest.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="phone"><div class="screen float">
+          <div class="island"></div>
+          <div class="status"><span>7:46</span><span class="icons" data-status></span></div>
+          <div class="content">
+            <div class="done-top">
+              <div class="seal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+              <h4>Read for today.</h4>
+              <p>Luke 15:11–21 · 244 words</p>
+            </div>
+            <div class="done-stat"><b class="num" data-bind="pctAfter">9.6%</b><span class="delta">+<span data-bind="deltaPct">0.03</span>%</span><p>of the Bible read</p></div>
+            <div class="canon" data-variant="done"></div>
+            <div class="legend-sm"><span><i></i>Today</span><span><i class="sq"></i>Read before</span></div>
+            <div class="rule"></div>
+            <div class="streak-line"><span><b data-bind="streakAfter">13</b>-day streak</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i class="now"></i></span></div>
+            <div class="next tomorrow">
+              <p class="eyebrow">Tomorrow</p>
+              <b>Luke 15:22–32</b>
+              <span>233 words · finishes this parable</span>
+            </div>
+            <button class="btn ghost" type="button">Read another passage</button>
+            <p class="fine">Optional. It counts toward your progress, not your streak.</p>
+          </div>
+          <nav class="tabbar" aria-label="Tabs" data-tabs="today"></nav>
+        </div></div>
+        <figcaption>
+          <h3>Done</h3>
+          <p>What you added, where it sits, and what comes next.</p>
+          <p class="note">Only “Mark as read” changes progress. Reading more is offered once and never pushed.</p>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- ===================== PROGRESS + SETTINGS ===================== -->
+  <section class="wrap section">
+    <div class="section-head">
+      <h2>Progress and settings</h2>
+      <p>Progress is counted in words, so a short book and a long one each count for what they are. In Settings you set the length and move your progress to another device.</p>
+    </div>
+    <div class="shots">
+
+      <figure class="shot">
+        <div class="phone"><div class="screen float">
+          <div class="island"></div>
+          <div class="status"><span>7:47</span><span class="icons" data-status></span></div>
+          <div class="content">
+            <h4 class="screen-title">Progress</h4>
+            <p class="pct num" data-bind-html="pctBig">9.6<small>%</small></p>
+            <p class="pct-sub">of the Bible read · <span data-bind="wordsAfter">72,639</span> of <span data-bind="total">756,233</span> words</p>
+            <div class="mapcard">
+              <div class="canon" data-variant="progress"></div>
+              <div class="cap"><span>Widths match book length</span><span>Tap a book</span></div>
+            </div>
+            <div class="testaments">
+              <div class="t-row"><div class="lab"><span>Old Testament</span><span data-bind="otPct">9.1%</span></div><div class="track"><i data-bind-width="ot"></i></div></div>
+              <div class="t-row"><div class="lab"><span>New Testament</span><span data-bind="ntPct">11.4%</span></div><div class="track"><i data-bind-width="nt"></i></div></div>
+            </div>
+            <div class="stats">
+              <div><b class="num" data-bind="readings">330</b><span>readings</span></div>
+              <div><b class="num" data-bind="chaptersTouched">392</b><span>of 1,189 chapters started</span></div>
+              <div><b class="num"><span data-bind="streakAfter">13</span> days</b><span>current streak</span></div>
+              <div><b class="num">41 days</b><span>longest streak</span></div>
+              <div class="wide"><b data-bind="finish">about 7.6 years</b><span>to finish at <span data-bind="limit">300</span> words a day</span></div>
+            </div>
+            <p class="label-sm">Closest to finished</p>
+            <ul class="booklist" data-list="closest"></ul>
+            <span class="more-link">All 66 books</span>
+          </div>
+          <nav class="tabbar" aria-label="Tabs" data-tabs="progress"></nav>
+        </div></div>
+        <figcaption>
+          <h3>Progress</h3>
+          <p>The same map as at the top of this page, sized for a phone.</p>
+          <p class="note">Tap a book for its figures. The finish estimate is honest, and it updates when you change the length.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="phone"><div class="screen float" data-limit-scope>
+          <div class="island"></div>
+          <div class="status"><span>7:48</span><span class="icons" data-status></span></div>
+          <div class="content">
+            <h4 class="screen-title">Settings</h4>
+
+            <p class="group-label first">Daily reading</p>
+            <div class="group">
+              <div class="length">
+                <div class="head"><label for="len">Length</label><output for="len" id="len-out">300<small>words</small></output></div>
+                <input type="range" id="len" min="100" max="1500" step="25" value="300" aria-describedby="len-est">
+                <div class="ticks"><span>100</span><span>500</span><span>1,000</span><span>1,500</span></div>
+                <div class="seg" role="group" aria-label="Length presets">
+                  <button type="button" data-preset="150" aria-pressed="false"><b>Short</b>150</button>
+                  <button type="button" data-preset="300" aria-pressed="true"><b>Standard</b>300</button>
+                  <button type="button" data-preset="600" aria-pressed="false"><b>Long</b>600</button>
+                </div>
+                <p class="est" id="len-est">About 2 min a day · finish in about 7.6 years</p>
+                <p class="helper">Readings end at the end of a sentence, usually at a paragraph break, and never go over this length.</p>
+                <p class="limit-warn">Today’s reading (244 words) is longer than this, so it will be rebuilt to fit.</p>
+              </div>
+              <div class="item"><div class="txt"><b>Finish a passage first</b><span>If a reading stops mid-story, tomorrow continues it</span></div><button class="switch" type="button" role="switch" aria-checked="true" aria-label="Finish a passage first"></button></div>
+              <div class="item"><div class="txt"><b>Verse numbers</b></div><button class="switch" type="button" role="switch" aria-checked="true" aria-label="Verse numbers"></button></div>
+            </div>
+
+            <p class="group-label">Reminder and appearance</p>
+            <div class="group">
+              <div class="item"><div class="txt"><b>Daily reminder</b><span>7:30 AM</span></div><button class="switch" type="button" role="switch" aria-checked="false" aria-label="Daily reminder"></button></div>
+              <div class="item"><div class="txt"><b>Text size</b></div><span class="val">100%</span></div>
+              <div class="item"><div class="txt"><b>Theme</b></div><span class="val">Automatic</span></div>
+            </div>
+
+            <p class="group-label">Progress and backup</p>
+            <div class="group">
+              <button class="item" type="button" id="export-btn"><div class="txt"><b>Export progress</b><span>Save a file to open on another device</span></div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/></svg></button>
+              <button class="item" type="button"><div class="txt"><b>Import progress</b><span>Combine with or replace this device’s progress</span></div><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 13v6a2 2 0 002 2h10a2 2 0 002-2v-6"/></svg></button>
+            </div>
+            <p class="fineprint">Last exported 4 October 2026</p>
+
+            <p class="group-label">Widget</p>
+            <div class="group">
+              <div class="item"><div class="txt"><b>Verse library</b><span>366 verses · updated October 2026</span></div></div>
+              <div class="item"><div class="txt"><b>How to add the widget</b></div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></div>
+            </div>
+
+            <p class="group-label">About</p>
+            <div class="group">
+              <div class="item"><div class="txt"><b>Sources and licenses</b><span>World English Bible (public domain) · OpenBible.info (CC BY 4.0)</span></div></div>
+              <div class="item"><div class="txt"><b style="color:var(--danger)">Reset progress</b><span>Asks twice and saves a backup first</span></div></div>
+            </div>
+          </div>
+          <div class="toast" id="toast" role="status" aria-live="polite"><b>Progress exported</b>bible-progress-2026-10-18.json</div>
+          <nav class="tabbar" aria-label="Tabs" data-tabs="settings"></nav>
+        </div></div>
+        <figcaption>
+          <h3>Settings</h3>
+          <p>Length is the main control, from 100 to 1,500 words.</p>
+          <p class="note">Drag the slider and the other screens update. Go below 244 words and today’s reading is flagged for rebuilding. Tap Export progress to see the confirmation.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="phone"><div class="screen">
+          <div class="island"></div>
+          <div class="status"><span>9:05</span><span class="icons" data-status></span></div>
+          <div class="content" aria-hidden="true">
+            <h4 class="screen-title">Settings</h4>
+            <p class="group-label first">Progress and backup</p>
+            <div class="group"><div class="item"><div class="txt"><b>Export progress</b></div></div><div class="item"><div class="txt"><b>Import progress</b></div></div></div>
+          </div>
+          <div class="backdrop"></div>
+          <div class="sheet" role="dialog" aria-label="Import progress">
+            <div class="grabber"></div>
+            <h4>Import progress?</h4>
+            <div class="file">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.8h8l4.5 4.5v13.9H6z"/><path d="M14 2.8v4.5h4.5"/></svg>
+              <span><b>bible-progress-2026-10-18.json</b>From Pixel 8 · 18 October</span>
+            </div>
+            <div class="compare">
+              <div><p class="eyebrow">In the file</p><b class="num" data-bind="pctAfter">9.6%</b><span><span data-bind="readings">330</span> readings</span><span>Last read 18 Oct</span></div>
+              <div><p class="eyebrow">This iPhone</p><b class="num">0.4%</b><span>11 readings</span><span>Last read 2 Oct</span></div>
+            </div>
+            <div role="radiogroup" aria-label="How to import">
+              <button class="choice" type="button" role="radio" aria-checked="true" data-choice="combine"><span class="radio"></span><span><b>Combine both</b><span>Keeps everything read on either device. You’ll be at <span data-bind="combinedPct">9.9%</span>.</span></span></button>
+              <button class="choice" type="button" role="radio" aria-checked="false" data-choice="replace"><span class="radio"></span><span><b>Replace this iPhone’s progress</b><span>Uses only the file. Current progress is saved, so you can undo.</span></span></button>
+            </div>
+            <button class="btn" type="button" style="margin-top:8px">Import progress</button>
+            <button class="btn link" type="button">Cancel</button>
+          </div>
+        </div></div>
+        <figcaption>
+          <h3>Import</h3>
+          <p>Moving phones: export on one, import on the other. Android and iPhone both work.</p>
+          <p class="note">You see both sides before anything changes. Combine keeps every verse read on either device, so nothing is repeated.</p>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <!-- ===================== WIDGETS ===================== -->
+  <section class="wrap section">
+    <div class="section-head">
+      <h2>Widgets</h2>
+      <p>A verse of the day on the home screen, chosen from about 366 well-loved verses. The app and every widget show the same verse on the same day, even offline.</p>
+    </div>
+    <div class="shots">
+
+      <figure class="shot">
+        <div class="phone"><div class="screen wall">
+          <div class="island"></div>
+          <div class="status"><span>7:41</span><span class="icons" data-status></span></div>
+          <div class="home">
+            <p class="wtag first">Medium</p>
+            <div class="widget w-medium">
+              <div class="w-eyebrow"><i></i>Verse of the day</div>
+              <p class="w-text">Don’t you be afraid, for I am with you. Don’t be dismayed, for I am your God. I will strengthen you. Yes, I will help you. Yes, I will uphold you with the right hand of my righteousness.</p>
+              <div class="w-foot"><p class="w-ref">Isaiah 41:10</p><span>Sun 18 Oct</span></div>
+            </div>
+            <div class="home-row">
+              <div>
+                <p class="wtag first">Small</p>
+                <div class="widget w-small">
+                  <div class="w-eyebrow"><i></i>Today</div>
+                  <p class="w-text">Don’t you be afraid, for I am with you. …</p>
+                  <p class="w-ref">Isaiah 41:10</p>
+                </div>
+              </div>
+              <div class="apps" style="padding-top:20px">
+                <span class="app"><i></i>Photos</span><span class="app"><i></i>Maps</span>
+                <span class="app"><i></i>Weather</span><span class="app"><i></i>Notes</span>
+              </div>
+            </div>
+            <div class="app-row"><span class="app"><i></i>Clock</span><span class="app"><i></i>Mail</span><span class="app"><i></i>Calendar</span><span class="app"><i></i>Music</span></div>
+            <div class="dock">
+              <span class="app"><i></i><span>Phone</span></span>
+              <span class="app"><span class="ico app-ico" role="img" aria-label="Bible app icon"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span><span>Bible</span></span>
+              <span class="app"><i></i><span>Messages</span></span>
+              <span class="app"><i></i><span>Camera</span></span>
+            </div>
+          </div>
+        </div></div>
+        <figcaption>
+          <h3>Small and medium</h3>
+          <p>The verse library comes from OpenBible.info’s public verse votes, filtered to complete, encouraging verses and checked by hand.</p>
+          <p class="note">If a verse is too long for the small size, it shows the first whole sentence and “…”. It never cuts a sentence in the middle.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="shot">
+        <div class="phone force-dark"><div class="screen wall-night">
+          <div class="island"></div>
+          <div class="status"><span>21:10</span><span class="icons" data-status></span></div>
+          <div class="home">
+            <p class="wtag first">Large · dark mode</p>
+            <div class="widget dark w-large">
+              <div class="w-eyebrow"><i></i>Verse of the day · Sun 18 Oct</div>
+              <p class="w-text">Don’t you be afraid, for I am with you. Don’t be dismayed, for I am your God. I will strengthen you. Yes, I will help you. Yes, I will uphold you with the right hand of my righteousness.</p>
+              <p class="w-ref">Isaiah 41:10</p>
+              <div class="w-today">
+                <div><span class="k">Today’s reading</span><b>Luke 15:11–21</b><em>244 words · about 2 min</em></div>
+                <span class="go" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span>
+              </div>
+            </div>
+            <div class="app-row"><span class="app"><i></i>Clock</span><span class="app"><i></i>Mail</span><span class="app"><i></i>Weather</span><span class="app"><i></i>Music</span></div>
+            <div class="dock">
+              <span class="app"><i></i><span>Phone</span></span>
+              <span class="app"><span class="ico app-ico" role="img" aria-label="Bible app icon"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span><span>Bible</span></span>
+              <span class="app"><i></i><span>Messages</span></span>
+              <span class="app"><i></i><span>Camera</span></span>
+            </div>
+          </div>
+        </div></div>
+        <figcaption>
+          <h3>Large</h3>
+          <p>The large size adds today’s reading, so the widget doubles as a quiet reminder.</p>
+          <p class="note">It follows light and dark mode and updates just after midnight. The verse is worked out from the date, so it’s right even if the app hasn’t been opened for weeks.</p>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+  <!-- ===================== APP ICON ===================== -->
+  <section class="wrap section">
+    <div class="section-head">
+      <h2>App icon</h2>
+      <p>A gold ribbon bookmark crossing today’s line of text. Up close it’s a bookmark marking your place; at a glance it’s a cross. The grey lines echo the rows of the canon map.</p>
+    </div>
+    <div class="icon-grid">
+      <figure class="icon-card">
+        <div class="icon-stage"><span class="ico icon-xl" role="img" aria-label="Bible app icon, default"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span></div>
+        <figcaption><h3>Default</h3><p>Ink and gold. It stands out on both light and dark wallpapers.</p></figcaption>
+      </figure>
+      <figure class="icon-card">
+        <div class="icon-stage alt"><span class="ico icon-xl" role="img" aria-label="Bible app icon, light alternate"><svg viewBox="0 0 1024 1024"><use href="#icon-light"/></svg></span></div>
+        <figcaption><h3>Light alternate</h3><p>An optional alternate icon, chosen in Settings under Appearance.</p></figcaption>
+      </figure>
+      <figure class="icon-card">
+        <div class="icon-stage wall">
+          <div class="sizes">
+            <span class="app"><span class="ico s76" role="img" aria-label="Bible app icon, 76 points"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span><span>Bible</span></span>
+            <span class="app"><span class="ico s60" role="img" aria-label="Bible app icon, 60 points"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span><span>Bible</span></span>
+            <span class="app"><span class="ico s40" role="img" aria-label="Bible app icon, 40 points"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span><span>&nbsp;</span></span>
+            <span class="app"><span class="ico s29" role="img" aria-label="Bible app icon, 29 points"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span><span>&nbsp;</span></span>
+          </div>
+        </div>
+        <figcaption><h3>At real sizes</h3><p>The cross and the ribbon stay readable from the home screen down to the smallest Settings and notification sizes.</p></figcaption>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap footer">
+  <p>Design mockup only. Nothing here is a working app. Full details are in the build plan that accompanies this file. The icon artwork is also supplied as separate SVG and 1024-pixel PNG files.</p>
+  <p>Scripture: World English Bible (public domain). Widget verse library: OpenBible.info Topical Bible (CC BY 4.0). Fonts: Newsreader and Instrument Sans (SIL Open Font License).</p>
+</footer>
+
+<script>
+(() => {
+  // Words per chapter for every book, measured from the World English Bible (66 books).
+  const CHAPTERS = [["GEN",[734,617,664,586,531,529,504,526,611,443,629,488,424,571,434,388,653,813,1029,478,738,565,511,1682,633,822,1164,591,764,934,1323,769,477,751,610,813,885,728,587,538,1325,936,865,832,687,698,937,606,725,639]],["EXO",[426,603,728,825,580,707,649,899,943,867,309,1422,648,872,670,983,423,701,656,559,865,770,814,450,864,894,529,1173,1275,916,414,1037,658,969,761,871,672,778,964,769]],["LEV",[493,458,481,1090,690,853,997,934,587,627,1024,238,1750,1640,872,1095,531,647,892,810,580,875,1207,513,1479,1203,926]],["NUM",[1225,734,1179,1279,893,720,1920,680,673,818,976,366,725,1156,1051,1233,294,1081,663,738,870,1118,708,587,433,1375,577,754,905,500,1118,988,881,577,941,427]],["DEU",[1226,1003,803,1463,893,627,826,546,927,574,907,1028,585,675,678,684,698,587,592,618,702,879,674,662,555,644,550,2020,824,635,972,1256,727,307]],["JOS",[549,731,532,674,505,854,886,1130,748,1317,671,467,798,463,922,256,634,705,857,303,1032,1263,559,975]],["JDG",[909,645,800,718,719,1229,918,941,1581,447,1175,379,693,647,602,1039,379,998,1028,1368,704]],["RUT",[601,711,484,640]],["1SA",[718,1064,496,677,406,721,479,525,935,816,459,750,654,1538,917,637,1628,761,648,1203,476,719,793,629,1340,815,372,787,414,921,339]],["2SA",[660,841,1085,409,569,623,810,420,371,581,741,959,1076,1071,1037,698,886,1061,1402,823,757,907,841,819]],["1KI",[1402,1410,807,674,507,957,1363,2067,772,790,1203,993,1059,929,916,984,629,1275,682,1375,847,1412]],["2KI",[622,762,811,1257,939,946,784,898,1144,1140,694,667,732,838,1034,628,1224,1155,1062,625,726,654,1407,552,923]],["1CH",[604,850,315,791,612,1361,712,440,922,352,928,939,352,322,634,804,738,386,590,260,869,587,638,511,496,675,746,801,957]],["2CH",[497,618,451,541,454,1362,706,503,831,541,454,452,607,431,495,452,424,968,344,1075,581,417,714,866,920,694,232,866,1093,852,726,1048,748,1135,887,693]],["EZR",[350,903,536,732,557,753,840,939,599,850]],["NEH",[380,680,870,643,625,561,1064,658,1293,639,731,927,924]],["EST",[664,757,552,495,465,455,340,631,956,90]],["JOB",[629,376,428,319,432,478,384,322,527,389,323,392,396,396,554,367,254,325,453,504,499,463,276,467,83,203,376,437,391,506,692,375,519,594,257,491,399,625,495,350,498,426]],["PSA",[122,213,150,162,251,167,329,175,350,334,142,151,106,153,106,206,330,887,263,156,240,558,118,172,330,177,326,208,176,228,490,231,364,335,540,223,682,342,256,400,240,265,132,455,320,202,144,229,326,393,334,174,177,120,428,245,241,231,372,209,142,234,203,174,249,322,117,656,639,89,429,346,403,402,184,196,315,1171,280,314,281,121,263,231,195,307,135,296,836,294,295,232,82,327,178,218,190,175,155,87,182,446,340,566,607,730,673,204,513,140,164,163,127,103,263,277,27,451,2337,93,116,122,94,125,105,98,111,104,123,111,63,279,70,42,304,347,158,183,397,237,211,152,245,278,330,173,290,195,139,79]],["PRO",[507,310,529,407,335,537,402,522,282,525,515,464,380,574,524,524,464,356,484,481,488,461,552,540,501,463,437,480,424,619,448]],["ECC",[375,723,513,372,526,300,612,485,549,397,272,357]],["SNG",[309,342,277,362,383,286,274,348]],["ISA",[714,542,536,195,823,335,648,537,595,889,485,135,549,821,246,399,413,253,691,169,398,634,448,563,364,516,399,763,728,1003,306,407,561,486,266,660,1065,564,254,766,778,657,703,862,780,339,451,608,834,365,741,387,375,476,386,341,556,504,576,642,365,337,531,300,731,792]],["JER",[503,1015,786,845,842,792,958,674,741,660,721,536,721,667,676,675,806,622,526,575,473,795,1146,344,1096,759,734,511,949,690,1235,1382,814,798,638,1040,573,935,519,671,636,741,437,1209,143,792,207,1150,1147,1431,1782,1007]],["LAM",[756,872,887,580,294]],["EZK",[825,263,778,496,601,450,736,628,380,627,685,768,705,716,198,1746,732,892,346,1536,913,805,1272,728,497,688,856,751,674,716,645,1026,1038,921,392,1135,823,736,913,1417,762,557,856,992,839,856,750,994]],["DAN",[567,1451,962,1252,978,889,912,837,930,612,1497,391]],["HOS",[330,671,144,461,361,247,387,320,473,408,307,298,415,227]],["JOL",[486,904,543]],["AMO",[439,413,381,412,648,382,443,398,531]],["OBA",[619]],["JON",[500,202,243,326]],["MIC",[432,350,331,460,402,406,575]],["NAM",[378,338,485]],["HAB",[388,542,444]],["ZEP",[533,445,575]],["HAG",[434,616]],["ZEC",[575,303,281,349,331,383,356,651,497,375,481,433,319,716]],["MAL",[466,540,534,170]],["MAT",[540,580,377,509,1062,770,592,720,795,869,642,1108,1309,692,738,644,594,843,685,760,1076,798,815,1042,976,1573,1307,413]],["MRK",[873,658,614,857,900,1241,769,784,1113,1134,716,983,782,1534,865,439]],["LUK",[1490,1047,843,973,883,1171,1127,1352,1373,939,1290,1312,815,780,687,760,729,822,969,893,764,1359,1050,977]],["JHN",[970,483,734,1074,980,1487,982,1273,819,800,1139,1058,822,716,604,782,619,933,986,733,700]],["ACT",[625,972,622,839,965,335,1371,818,953,1058,635,627,1189,607,890,918,824,660,927,852,1009,729,861,593,718,749,1011,781]],["ROM",[712,601,577,566,468,495,603,891,705,449,807,405,359,601,752,442]],["1CO",[641,367,440,492,322,452,964,292,671,659,714,586,276,883,1149,434]],["2CO",[595,409,377,413,498,339,435,545,372,433,723,611,320]],["GAL",[483,574,631,628,437,364]],["EPH",[513,446,427,626,562,508]],["PHP",[651,600,495,473]],["COL",[662,505,461,362]],["1TH",[250,463,310,401,409]],["2TH",[294,381,361]],["1TI",[430,246,299,327,486,479]],["2TI",[416,495,292,408]],["TIT",[348,268,288]],["PHM",[444]],["HEB",[336,448,360,401,309,426,610,394,693,769,927,687,513]],["JAS",[541,510,367,358,473]],["1PE",[604,516,525,473,298]],["2PE",[478,557,481]],["1JN",[246,711,520,486,490]],["2JN",[296]],["3JN",[292]],["JUD",[604]],["REV",[541,780,645,328,403,497,456,366,538,325,549,482,528,625,228,536,521,712,613,464,684,548]]];
+  const NAMES = {
+    GEN:'Genesis',EXO:'Exodus',LEV:'Leviticus',NUM:'Numbers',DEU:'Deuteronomy',JOS:'Joshua',JDG:'Judges',RUT:'Ruth',
+    '1SA':'1 Samuel','2SA':'2 Samuel','1KI':'1 Kings','2KI':'2 Kings','1CH':'1 Chronicles','2CH':'2 Chronicles',EZR:'Ezra',
+    NEH:'Nehemiah',EST:'Esther',JOB:'Job',PSA:'Psalms',PRO:'Proverbs',ECC:'Ecclesiastes',SNG:'Song of Songs',ISA:'Isaiah',
+    JER:'Jeremiah',LAM:'Lamentations',EZK:'Ezekiel',DAN:'Daniel',HOS:'Hosea',JOL:'Joel',AMO:'Amos',OBA:'Obadiah',JON:'Jonah',
+    MIC:'Micah',NAM:'Nahum',HAB:'Habakkuk',ZEP:'Zephaniah',HAG:'Haggai',ZEC:'Zechariah',MAL:'Malachi',MAT:'Matthew',MRK:'Mark',
+    LUK:'Luke',JHN:'John',ACT:'Acts',ROM:'Romans','1CO':'1 Corinthians','2CO':'2 Corinthians',GAL:'Galatians',EPH:'Ephesians',
+    PHP:'Philippians',COL:'Colossians','1TH':'1 Thessalonians','2TH':'2 Thessalonians','1TI':'1 Timothy','2TI':'2 Timothy',
+    TIT:'Titus',PHM:'Philemon',HEB:'Hebrews',JAS:'James','1PE':'1 Peter','2PE':'2 Peter','1JN':'1 John','2JN':'2 John',
+    '3JN':'3 John',JUD:'Jude',REV:'Revelation'
+  };
+  const ABBR = {
+    GEN:'Gen',EXO:'Exod',LEV:'Lev',NUM:'Num',DEU:'Deut',JOS:'Josh',JDG:'Judg',RUT:'Ruth','1SA':'1Sam','2SA':'2Sam','1KI':'1Kgs',
+    '2KI':'2Kgs','1CH':'1Chr','2CH':'2Chr',EZR:'Ezra',NEH:'Neh',EST:'Esth',JOB:'Job',PSA:'Ps',PRO:'Prov',ECC:'Eccl',SNG:'Song',
+    ISA:'Isa',JER:'Jer',LAM:'Lam',EZK:'Ezek',DAN:'Dan',HOS:'Hos',JOL:'Joel',AMO:'Amos',OBA:'Obad',JON:'Jonah',MIC:'Mic',NAM:'Nah',
+    HAB:'Hab',ZEP:'Zeph',HAG:'Hag',ZEC:'Zech',MAL:'Mal',MAT:'Matt',MRK:'Mark',LUK:'Luke',JHN:'John',ACT:'Acts',ROM:'Rom',
+    '1CO':'1Cor','2CO':'2Cor',GAL:'Gal',EPH:'Eph',PHP:'Phil',COL:'Col','1TH':'1Th','2TH':'2Th','1TI':'1Tim','2TI':'2Tim',
+    TIT:'Titus',PHM:'Phlm',HEB:'Heb',JAS:'Jas','1PE':'1Pet','2PE':'2Pet','1JN':'1Jn','2JN':'2Jn','3JN':'3Jn',JUD:'Jude',REV:'Rev'
+  };
+
+  // ---------- book geometry ----------
+  let offset = 0;
+  const books = CHAPTERS.map(([code, chs], i) => {
+    const start = offset, chStarts = [];
+    for (const w of chs) { chStarts.push(offset); offset += w; }
+    return { code, name: NAMES[code], abbr: ABBR[code], nt: i >= 39, start, end: offset, words: offset - start, chs, chStarts, read: 0 };
+  });
+  const TOTAL = offset;
+  const NT_START = books[39].start;
+  const luke = books.find(b => b.code === 'LUK');
+  // Luke 15:11 sits 210 words into chapter 15 (verses 1-10). Today's reading is 244 words.
+  const TODAY = [luke.chStarts[14] + 210, luke.chStarts[14] + 210 + 244];
+  const LUKE15A = [luke.chStarts[14], luke.chStarts[14] + 210];
+
+  // ---------- a simulated reader: random passages, never overlapping ----------
+  let seed = 20261018;
+  const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  const spans = [LUKE15A];
+  const overlaps = (a, b) => spans.some(([s, e]) => a < e + 40 && b > s - 40) || (a < TODAY[1] && b > TODAY[0]);
+  let wordsBefore = 210, guard = 0;
+  while (wordsBefore < 72170 && guard++ < 20000) {
+    const p = Math.floor(rnd() * TOTAL);
+    const b = books.find(x => p >= x.start && p < x.end);
+    const len = 150 + Math.floor(rnd() * 150);
+    const s = p, e = Math.min(p + len, b.end);
+    if (e - s < 60 || overlaps(s, e)) continue;
+    spans.push([s, e]); wordsBefore += e - s;
+  }
+  spans.push(TODAY);
+  const wordsAfter = wordsBefore + 244;
+  for (const [s, e] of spans) for (const b of books) b.read += Math.max(0, Math.min(e, b.end) - Math.max(s, b.start));
+  let chaptersTouched = 0;
+  for (const b of books) b.chStarts.forEach((cs, i) => {
+    const ce = cs + b.chs[i]; if (spans.some(([s, e]) => s < ce && e > cs)) chaptersTouched++;
+  });
+  const sumRead = f => books.filter(f).reduce((a, b) => a + b.read, 0);
+  const sumWords = f => books.filter(f).reduce((a, b) => a + b.words, 0);
+  const pct = (a, b, d = 1) => (a / b * 100).toFixed(d);
+  const fmt = n => n.toLocaleString('en-US');
+  const FILL = 0.82;
+  const finishText = limit => {
+    const days = (TOTAL - wordsAfter) / (limit * FILL);
+    if (days < 60) return `about ${Math.round(days / 7)} weeks`;
+    if (days < 730) return `about ${Math.round(days / 30.4)} months`;
+    return `about ${(days / 365.25).toFixed(1)} years`;
+  };
+
+  const state = {
+    pctBefore: pct(wordsBefore, TOTAL) + '%', pctAfter: pct(wordsAfter, TOTAL) + '%',
+    deltaPct: pct(244, TOTAL, 2), readings: fmt(spans.length), readingsBefore: fmt(spans.length - 1),
+    wordsAfter: fmt(wordsAfter), total: fmt(TOTAL), streakBefore: '12', streakAfter: '13',
+    otPct: pct(sumRead(b => !b.nt), sumWords(b => !b.nt)) + '%', ntPct: pct(sumRead(b => b.nt), sumWords(b => b.nt)) + '%',
+    chaptersTouched: fmt(chaptersTouched), combinedPct: pct(wordsAfter + 2100, TOTAL) + '%', limit: '300', finish: finishText(300)
+  };
+  const bind = () => {
+    document.querySelectorAll('[data-bind]').forEach(el => { const v = state[el.dataset.bind]; if (v != null) el.textContent = v; });
+  };
+  bind();
+  document.querySelectorAll('[data-bind-html="pctBig"]').forEach(el => { el.innerHTML = pct(wordsAfter, TOTAL) + '<small>%</small>'; });
+  const setWidth = (key, v) => document.querySelectorAll(`[data-bind-width="${key}"]`).forEach(el => el.style.width = v);
+  setWidth('ot', state.otPct); setWidth('nt', state.ntPct); setWidth('fill', (244 / 300 * 100) + '%');
+
+  const closest = [...books].sort((a, b) => b.read / b.words - a.read / a.words).slice(0, 4);
+  document.querySelectorAll('[data-list="closest"]').forEach(ul => {
+    ul.innerHTML = closest.map(b => `<li><span>${b.name}</span><span class="track"><i style="width:${pct(b.read, b.words)}%"></i></span><span>${Math.round(b.read / b.words * 100)}%</span></li>`).join('');
+  });
+
+  // ---------- canon map ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  const VARIANTS = {
+    hero:     { W: 1000, rows: 7.2,  rowH: 18, gap: 10, labelH: 28, sectGap: 22, labels: 'full', font: 9.5, sect: 10, minW: 1.6, minLabelW: 0 },
+    progress: { W: 300,  rows: 14.5, rowH: 9,  gap: 4,  labelH: 15, sectGap: 8,  labels: 'none', font: 6,   sect: 6.4, minW: 1.1 },
+    done:     { W: 300,  rows: 14.5, rowH: 7,  gap: 4,  labelH: 0,  sectGap: 8,  labels: 'none', minW: 1.1, today: true },
+    mini:     { W: 300,  rows: 3,    rowH: 4,  gap: 4,  labelH: 0,  sectGap: 0,  labels: 'none', minW: .45, single: true, marker: true }
+  };
+  let uid = 0;
+  const el = (name, attrs, parent) => { const n = document.createElementNS(NS, name);
+    for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
+
+  function drawCanon(host) {
+    // On narrow screens the hero uses the phone-sized layout so labels stay readable.
+    const narrowHero = host.dataset.variant === 'hero' && host.clientWidth < 640;
+    const o = narrowHero ? { ...VARIANTS.progress, labels: 'abbr', font: 6.6, minLabelW: 16, rowH: 10 } : VARIANTS[host.dataset.variant];
+    const wpr = o.single ? TOTAL / o.rows : TOTAL / o.rows;
+    const rows = [];
+    let y = 0;
+    const svg = el('svg', { role: 'img' });
+    const clipId = 'cm' + (++uid);
+    const defs = el('defs', {}, svg), clip = el('clipPath', { id: clipId }, defs);
+    const gBg = el('g', {}, svg), gIn = el('g', { 'clip-path': `url(#${clipId})` }, svg), gLab = el('g', {}, svg), gTop = el('g', {}, svg);
+    const sections = o.single ? [[0, TOTAL, '']] : [[0, NT_START, 'Old Testament'], [NT_START, TOTAL, 'New Testament']];
+    for (const [s0, s1, title] of sections) {
+      if (o.labelH) { const t = el('text', { x: 0, y: y + o.labelH - 9, class: 'c-sect', 'font-size': o.sect }, gLab); t.textContent = title; y += o.labelH; }
+      const n = Math.ceil((s1 - s0) / wpr - 1e-9);
+      for (let r = 0; r < n; r++) {
+        const off = s0 + r * wpr, len = Math.min(wpr, s1 - off);
+        const attrs = { x: 0, y, width: len / wpr * o.W, height: o.rowH, rx: o.rowH / 2 };
+        el('rect', { ...attrs, class: 'c-empty' }, gBg); el('rect', attrs, clip);
+        rows.push({ y, off, len }); y += o.rowH + o.gap;
+      }
+      y += o.sectGap;
+    }
+    const H = y - o.gap - o.sectGap;
+    svg.setAttribute('viewBox', `0 0 ${o.W} ${H}`);
+    const rowAt = p => rows.find(r => p >= r.off - 1e-6 && p < r.off + r.len - 1e-6) || rows[rows.length - 1];
+    const pieces = (s, e) => { const out = []; let p = s;
+      while (p < e) { const r = rowAt(p); if (!r) break; const q = Math.min(e, r.off + r.len);
+        out.push({ r, x: (p - r.off) / wpr * o.W, w: (q - p) / wpr * o.W }); if (q <= p) break; p = q; }
+      return out; };
+
+    // read passages
+    for (const sp of spans) {
+      const t = sp === TODAY && o.today;
+      for (const pc of pieces(sp[0], sp[1])) el('rect', { x: pc.x, y: pc.r.y, width: Math.max(o.minW, pc.w), height: o.rowH, class: t ? 'c-today' : 'c-fleck' }, gIn);
+    }
+    // book separators and labels
+    books.forEach(b => {
+      if (o.single) return;
+      if (b.start > 0 && b.start !== NT_START) { const r = rowAt(b.start); const x = (b.start - r.off) / wpr * o.W;
+        el('line', { x1: x, x2: x, y1: r.y - 1, y2: r.y + o.rowH + 1, class: 'c-sep', 'stroke-width': o.W > 500 ? 2.5 : 1.2 }, gIn); }
+      if (o.labels !== 'none') {
+        const best = pieces(b.start, b.end).sort((a, c) => c.w - a.w)[0];
+        if (!best || best.w < o.minLabelW) return;
+        const cw = o.font * 0.66;
+        const label = o.labels === 'full' && best.w > (b.name.length * cw + 12) ? b.name : (best.w > b.abbr.length * cw + 6 ? b.abbr : '');
+        if (label) { const t = el('text', { x: best.x + (o.W > 500 ? 7 : 3), y: best.r.y + o.rowH / 2 + o.font * 0.36, class: 'c-label', 'font-size': o.font }, gLab); t.textContent = label; }
+      }
+    });
+    if (o.today) {
+      const pc = pieces(TODAY[0], TODAY[1])[0], cx = pc.x + pc.w / 2, cy = pc.r.y + o.rowH / 2;
+      el('circle', { cx, cy, r: o.rowH * 1.05, class: 'c-ring-still' }, gTop);
+      el('circle', { cx, cy, r: o.rowH * 1.05, class: 'c-ring' }, gTop);
+    }
+    if (o.marker) {
+      const pc = pieces(TODAY[0], TODAY[1])[0];
+      el('rect', { x: pc.x - .6, y: pc.r.y - 3, width: 1.6, height: o.rowH + 6, rx: .8, class: 'c-mark' }, gTop);
+    }
+    svg.setAttribute('aria-label', `Canon map: ${state.pctAfter} of the Bible read in ${state.readings} passages. Closest to finished: ${closest.map(b => b.name + ' ' + Math.round(b.read / b.words * 100) + '%').join(', ')}.`);
+    host.appendChild(svg);
+
+    if (host.dataset.variant === 'hero' || host.dataset.variant === 'progress') {
+      host.style.position = 'relative';
+      const tip = document.createElement('div'); tip.className = 'tip'; host.appendChild(tip);
+      const hover = el('rect', { class: 'c-hover', height: o.rowH, rx: o.rowH / 2 }, gTop); hover.style.display = 'none';
+      const hide = () => { tip.classList.remove('show'); hover.style.display = 'none'; };
+      const show = ev => {
+        const box = svg.getBoundingClientRect();
+        const x = (ev.clientX - box.left) * o.W / box.width, yy = (ev.clientY - box.top) * H / box.height;
+        const r = rows.find(r => yy >= r.y - o.gap / 2 && yy < r.y + o.rowH + o.gap / 2);
+        if (!r || x < 0 || x > r.len / wpr * o.W) return hide();
+        const p = r.off + x / o.W * wpr; const b = books.find(b => p >= b.start && p < b.end); if (!b) return hide();
+        const pc = pieces(b.start, b.end).find(q => q.r === r);
+        hover.setAttribute('x', pc.x); hover.setAttribute('y', r.y); hover.setAttribute('width', Math.max(2, pc.w)); hover.style.display = '';
+        tip.innerHTML = `<b>${b.name}</b>${pct(b.read, b.words)}% read · ${fmt(b.words)} words`;
+        const hb = host.getBoundingClientRect();
+        tip.style.left = Math.min(Math.max(ev.clientX - hb.left, 80), hb.width - 80) + 'px';
+        tip.style.top = (r.y * box.height / H) + (box.top - hb.top) + 'px';
+        tip.classList.add('show');
+      };
+      svg.addEventListener('pointermove', show);
+      svg.addEventListener('pointerdown', show);
+      svg.addEventListener('pointerleave', hide);
+    }
+  }
+  document.querySelectorAll('.canon[data-variant]').forEach(drawCanon);
+  const hero = document.querySelector('.canon[data-variant="hero"]');
+  let heroNarrow = hero.clientWidth < 640, rt;
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => {
+    if ((hero.clientWidth < 640) !== heroNarrow) { heroNarrow = !heroNarrow; hero.innerHTML = ''; drawCanon(hero); }
+  }, 150); });
+
+  // ---------- chrome: status bars and tab bars ----------
+  const statusSVG = `<svg width="16" height="10" viewBox="0 0 17 11" fill="currentColor" aria-hidden="true"><rect x="0" y="7" width="3" height="4" rx=".7"/><rect x="4.5" y="5" width="3" height="6" rx=".7"/><rect x="9" y="2.5" width="3" height="8.5" rx=".7"/><rect x="13.5" y="0" width="3" height="11" rx=".7"/></svg>
+    <svg width="14" height="10" viewBox="0 0 15 11" fill="currentColor" aria-hidden="true"><path d="M7.5 2.2c2.2 0 4.2.8 5.7 2.2l1.1-1.1A9.6 9.6 0 007.5.6 9.6 9.6 0 00.7 3.3l1.1 1.1a8 8 0 015.7-2.2zm0 3.1c1.3 0 2.5.5 3.5 1.3l1.1-1.1a6.6 6.6 0 00-9.2 0l1.1 1.1c1-.8 2.2-1.3 3.5-1.3zm0 3.1c.5 0 .9.2 1.2.5L7.5 10.1 6.3 8.9c.3-.3.7-.5 1.2-.5z"/></svg>
+    <svg width="24" height="11" viewBox="0 0 25 12" fill="none" aria-hidden="true"><rect x=".5" y=".5" width="21" height="11" rx="3.2" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="15" height="8" rx="1.8" fill="currentColor"/><rect x="22.5" y="4" width="1.6" height="4" rx=".8" fill="currentColor" opacity=".4"/></svg>`;
+  document.querySelectorAll('[data-status]').forEach(s => s.innerHTML = statusSVG);
+  const TABS = [
+    ['today', 'Today', '<path d="M3.5 5.5c2.5-1 5.4-.9 7.5.6 2.1-1.5 5-1.6 7.5-.6V19c-2.5-1-5.4-.9-7.5.6-2.1-1.5-5-1.6-7.5-.6z"/><path d="M11 6.1v13.4"/>'],
+    ['progress', 'Progress', '<path d="M4 7h16M4 12h16M4 17h10"/><path d="M8 5.5v3M15 10.5v3M7 15.5v3" stroke-width="2.4"/>'],
+    ['settings', 'Settings', '<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>']
+  ];
+  document.querySelectorAll('[data-tabs]').forEach(nav => {
+    nav.innerHTML = TABS.map(([k, label, path]) => `<span ${nav.dataset.tabs === k ? 'aria-current="page"' : ''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>${label}</span>`).join('');
+  });
+
+  // ---------- settings interactions ----------
+  const len = document.getElementById('len'), out = document.getElementById('len-out'), est = document.getElementById('len-est');
+  const presets = document.querySelectorAll('[data-preset]');
+  const applyLimit = () => {
+    const v = +len.value;
+    len.style.setProperty('--pct', ((v - 100) / 1400 * 100) + '%');
+    out.innerHTML = `${fmt(v)}<small>words</small>`;
+    est.textContent = `About ${Math.max(1, Math.round(v / 150))} min a day · finish in ${finishText(v)}`;
+    state.limit = fmt(v); state.finish = finishText(v); bind();
+    setWidth('fill', Math.min(100, 244 / v * 100) + '%');
+    presets.forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.preset === v)));
+    document.querySelectorAll('[data-limit-scope]').forEach(s => s.classList.toggle('over-limit', v < 244));
+  };
+  len.addEventListener('input', applyLimit);
+  presets.forEach(b => b.addEventListener('click', () => { len.value = b.dataset.preset; applyLimit(); }));
+  applyLimit();
+
+  document.querySelectorAll('.switch').forEach(sw => sw.addEventListener('click', () => sw.setAttribute('aria-checked', String(sw.getAttribute('aria-checked') !== 'true'))));
+  const toast = document.getElementById('toast'); let tt;
+  document.getElementById('export-btn').addEventListener('click', () => { toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('show'), 2600); });
+  document.querySelectorAll('[data-choice]').forEach(c => c.addEventListener('click', () => {
+    document.querySelectorAll('[data-choice]').forEach(o => o.setAttribute('aria-checked', String(o === c)));
+  }));
+
+  // ---------- theme ----------
+  const root = document.documentElement;
+  const setTheme = t => {
+    if (t === 'system') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', t);
+    document.querySelectorAll('[data-theme-btn]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themeBtn === t)));
+    try { localStorage.setItem('bible-mock-theme', t); } catch (e) {}
+  };
+  document.querySelectorAll('[data-theme-btn]').forEach(b => b.addEventListener('click', () => setTheme(b.dataset.themeBtn)));
+  try { const saved = localStorage.getItem('bible-mock-theme'); if (saved) setTheme(saved); } catch (e) {}
+})();
+</script>
+</body>
+</html>

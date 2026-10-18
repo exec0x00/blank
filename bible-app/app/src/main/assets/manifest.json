@@ -1,0 +1,24 @@
+{
+ "textVersion": "2026-10",
+ "translation": "WEB",
+ "edition": "engwebp",
+ "sources": {
+  "web": {
+   "url": "https://ebible.org/Scriptures/engwebp_usfm.zip",
+   "sha256": "ab1cb2891d47cdc7379fb104dfdf14c632e6f757ded94aea63f2ced49f8212ee"
+  },
+  "openbible": {
+   "url": "https://a.openbible.info/data/topic-votes.txt",
+   "sha256": "44c4f72921f48074452611883b373dbb52b093e12c1ab567edfdf0bd5e0429b2"
+  }
+ },
+ "counts": {
+  "books": 66,
+  "chapters": 1189,
+  "verses": 31103,
+  "words": 755097,
+  "units": 26993,
+  "paragraphStarts": 8579,
+  "library": 366
+ }
+}

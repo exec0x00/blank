@@ -1,0 +1,66 @@
+1	GEN	Genesis	Gen	OT	The book of beginnings: creation, the first families, and the stories of Abraham, Isaac, Jacob and Joseph.
+2	EXO	Exodus	Exod	OT	How God frees Israel from slavery in Egypt, gives the law at Sinai and comes to live among his people.
+3	LEV	Leviticus	Lev	OT	Instructions for worship, offerings and holy living, given to Israel at Sinai.
+4	NUM	Numbers	Num	OT	Israel's forty years in the wilderness, from the census at Sinai to the edge of the promised land.
+5	DEU	Deuteronomy	Deut	OT	Moses' farewell speeches, calling Israel to remember the covenant before entering the land.
+6	JOS	Joshua	Josh	OT	Joshua leads Israel into the promised land and divides it among the tribes.
+7	JDG	Judges	Judg	OT	A cycle of failure and rescue as Israel is led by judges like Deborah, Gideon and Samson.
+8	RUT	Ruth	Ruth	OT	A short story of loyalty and redemption, set in the days of the judges.
+9	1SA	1 Samuel	1Sam	OT	The prophet Samuel anoints Israel's first kings, Saul and then David.
+10	2SA	2 Samuel	2Sam	OT	David's reign as king of Israel, with its triumphs and its failures.
+11	1KI	1 Kings	1Kgs	OT	Solomon builds the temple, then the kingdom divides and Elijah confronts its kings.
+12	2KI	2 Kings	2Kgs	OT	The kings of Israel and Judah decline until both kingdoms are taken into exile.
+13	1CH	1 Chronicles	1Chr	OT	A retelling of Israel's story from Adam to David, centred on the temple and worship.
+14	2CH	2 Chronicles	2Chr	OT	From Solomon's temple to the exile and the call to return, told through the kings of Judah.
+15	EZR	Ezra	Ezra	OT	The exiles return from Babylon to rebuild the temple and renew the law.
+16	NEH	Nehemiah	Neh	OT	Nehemiah rebuilds the walls of Jerusalem and leads the people in renewing the covenant.
+17	EST	Esther	Esth	OT	A Jewish queen in Persia risks her life to save her people.
+18	JOB	Job	Job	OT	A righteous man suffers terribly, and he and his friends wrestle with why.
+19	PSA	Psalms	Ps	OT	Israel's songbook of 150 prayers and praises: lament, thanks, trust and worship.
+20	PRO	Proverbs	Prov	OT	Short sayings of wisdom about how to live well.
+21	ECC	Ecclesiastes	Eccl	OT	A teacher reflects on work, pleasure and death, and asks what makes life meaningful.
+22	SNG	Song of Songs	Song	OT	A series of love poems celebrating devotion between a bride and groom.
+23	ISA	Isaiah	Isa	OT	The prophet Isaiah speaks of judgment and comfort, and of a coming servant and king.
+24	JER	Jeremiah	Jer	OT	Jeremiah warns Judah of coming exile and promises a new covenant.
+25	LAM	Lamentations	Lam	OT	Five poems of grief over the fall of Jerusalem.
+26	EZK	Ezekiel	Ezek	OT	Ezekiel's visions among the exiles in Babylon: judgment first, then hope of restoration.
+27	DAN	Daniel	Dan	OT	Stories of faithfulness in exile in Babylon, and visions of the future.
+28	HOS	Hosea	Hos	OT	Hosea's own marriage pictures God's faithful love for an unfaithful Israel.
+29	JOL	Joel	Joel	OT	A locust plague becomes a call to return to God, with a promise of his Spirit.
+30	AMO	Amos	Amos	OT	A shepherd-prophet calls Israel to justice and honest worship.
+31	OBA	Obadiah	Obad	OT	A short prophecy against Edom for its pride and cruelty.
+32	JON	Jonah	Jonah	OT	A reluctant prophet is sent to Nineveh and learns about God's mercy.
+33	MIC	Micah	Mic	OT	Micah calls for justice and mercy and promises a ruler from Bethlehem.
+34	NAM	Nahum	Nah	OT	A prophecy about the fall of Nineveh.
+35	HAB	Habakkuk	Hab	OT	Habakkuk questions God about injustice and learns to trust him.
+36	ZEP	Zephaniah	Zeph	OT	A warning of the day of the LORD, with a promise to restore a humble remnant.
+37	HAG	Haggai	Hag	OT	Haggai urges the returned exiles to finish rebuilding the temple.
+38	ZEC	Zechariah	Zech	OT	Visions and promises that encourage the rebuilding of the temple and look to a coming king.
+39	MAL	Malachi	Mal	OT	The last prophet of the Old Testament calls the people back to faithful worship.
+40	MAT	Matthew	Matt	NT	The life and teaching of Jesus, written to show him as Israel's promised king.
+41	MRK	Mark	Mark	NT	The shortest and fastest-moving account of Jesus' life and ministry.
+42	LUK	Luke	Luke	NT	Luke's orderly account of Jesus' life, written so a reader could be sure of what they had been taught.
+43	JHN	John	John	NT	An account of Jesus' life written so that readers will believe and have life.
+44	ACT	Acts	Acts	NT	How the good news spreads from Jerusalem across the Roman world.
+45	ROM	Romans	Rom	NT	Paul explains the gospel and how it changes the way we live.
+46	1CO	1 Corinthians	1Cor	NT	Paul answers questions and problems in the divided church in Corinth.
+47	2CO	2 Corinthians	2Cor	NT	Paul defends his ministry and writes about weakness, comfort and generosity.
+48	GAL	Galatians	Gal	NT	Paul insists that we are made right with God by faith, not by keeping the law.
+49	EPH	Ephesians	Eph	NT	Paul describes the church as one family in Christ, and how to live as one.
+50	PHP	Philippians	Phil	NT	A warm letter of joy, written by Paul from prison.
+51	COL	Colossians	Col	NT	Paul shows that Christ is supreme over everything.
+52	1TH	1 Thessalonians	1Th	NT	Paul encourages a young church to stand firm and hope in Christ's return.
+53	2TH	2 Thessalonians	2Th	NT	Paul corrects confusion about Christ's return and urges steady work.
+54	1TI	1 Timothy	1Tim	NT	Paul advises Timothy on leading and caring for the church.
+55	2TI	2 Timothy	2Tim	NT	Paul's last letter, urging Timothy to stay faithful.
+56	TIT	Titus	Titus	NT	Paul tells Titus how to order the church in Crete and teach good living.
+57	PHM	Philemon	Phlm	NT	A personal appeal to welcome back a runaway slave as a brother.
+58	HEB	Hebrews	Heb	NT	Shows that Jesus is greater than the prophets, the angels and the old priesthood.
+59	JAS	James	Jas	NT	Practical advice on living out faith through action.
+60	1PE	1 Peter	1Pet	NT	Peter encourages Christians who are suffering for their faith.
+61	2PE	2 Peter	2Pet	NT	Peter warns against false teachers and urges growth in faith.
+62	1JN	1 John	1Jn	NT	John writes about love, truth and knowing that we have eternal life.
+63	2JN	2 John	2Jn	NT	A short letter urging truth and love, and caution about false teachers.
+64	3JN	3 John	3Jn	NT	A short letter praising hospitality to traveling teachers.
+65	JUD	Jude	Jude	NT	A short warning to defend the faith against false teachers.
+66	REV	Revelation	Rev	NT	John's visions of Christ's victory and of a new heaven and a new earth.
