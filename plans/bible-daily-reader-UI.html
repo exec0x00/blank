@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Manna UI Concept</title>
-<meta name="description" content="UI mockup for Manna, a daily Bible reading app: one random passage a day, never repeated, never longer than you choose.">
+<title>Bible App UI Concept</title>
+<meta name="description" content="UI mockup for Bible, a daily Bible reading app: one random passage a day, never repeated, never longer than you choose.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
@@ -67,8 +67,10 @@ button { font: inherit; color: inherit; }
 @media (min-width: 760px) { .wrap { padding-left: 48px; padding-right: 48px; } }
 
 .topbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-top: 22px; padding-bottom: 22px; }
-.wordmark { font: italic 400 26px/1 var(--serif); font-variation-settings: "opsz" 48; letter-spacing: -.01em; margin: 0; }
-.wordmark i { font-style: normal; color: var(--gold); }
+.wordmark { display: flex; align-items: center; gap: 11px; margin: 0; font: italic 400 26px/1 var(--serif); font-variation-settings: "opsz" 48; letter-spacing: -.01em; }
+.wordmark .ico { width: 30px; height: 30px; box-shadow: 0 1px 3px rgba(0, 0, 0, .2); }
+.ico { display: block; flex: none; overflow: hidden; border-radius: 22.37%; }
+.ico svg { display: block; width: 100%; height: 100%; }
 .topbar .right { display: flex; align-items: center; gap: 14px; }
 .tag { font: 500 12px/1 var(--sans); color: var(--ink-3); letter-spacing: .02em; }
 @media (max-width: 520px) { .tag { display: none; } }
@@ -323,8 +325,22 @@ input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border: 0; bo
 .app-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 20px; }
 .dock { margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 11px 10px; border-radius: 30px; background: rgba(255, 255, 255, .14); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .2); }
 .dock .app > span:last-child { display: none; }
-.manna-icon { display: block; width: 46px; height: 46px; border-radius: 13px; background: linear-gradient(160deg, #1D2026, #0D0E11); position: relative; overflow: hidden; box-shadow: inset 0 0 0 .5px rgba(255, 255, 255, .18); }
-.manna-icon b { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: #D5AC5E; }
+.app-ico { width: 46px; height: 46px; box-shadow: 0 0 0 .5px rgba(255, 255, 255, .18); }
+
+/* app icon section */
+.icon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 40px; }
+.icon-card { margin: 0; }
+.icon-stage { height: 340px; border-radius: 28px; display: grid; place-items: center; background: var(--panel); box-shadow: var(--shadow-sm), inset 0 0 0 1px var(--hair); }
+.icon-stage.alt { background: var(--page); }
+.icon-xl { width: 196px; height: 196px; box-shadow: 0 30px 50px -24px rgba(0, 0, 0, .45), 0 0 0 .5px rgba(0, 0, 0, .1); }
+.icon-stage.wall { color: #fff; background: radial-gradient(130% 70% at 50% 108%, rgba(222, 176, 104, .75), transparent 60%), linear-gradient(180deg, #1E2433 0%, #2E3446 46%, #6E6355 82%, #A88559 100%); box-shadow: var(--shadow-sm); }
+.sizes { display: flex; align-items: flex-end; gap: 26px; }
+.sizes .app { gap: 7px; font-size: 10.5px; }
+.sizes .s76 { width: 76px; height: 76px; } .sizes .s60 { width: 60px; height: 60px; }
+.sizes .s40 { width: 40px; height: 40px; } .sizes .s29 { width: 29px; height: 29px; }
+.icon-card figcaption { margin-top: 22px; max-width: 340px; }
+.icon-card h3 { margin: 0 0 6px; font: 600 15px/1.3 var(--sans); }
+.icon-card figcaption p { margin: 0; font-size: 14px; color: var(--ink-2); }
 .wtag { margin: 14px 2px 8px; font: 600 9px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .62); }
 .wtag.first { margin-top: 4px; }
 
@@ -355,9 +371,94 @@ input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border: 0; bo
 </style>
 </head>
 <body>
+<!-- App icon artwork (same as bible-app-icon.svg and bible-app-icon-light.svg) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<symbol id="icon-dark" viewBox="0 0 1024 1024">
+<defs>
+    <linearGradient id="d-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#262930"/>
+      <stop offset="1" stop-color="#0C0D10"/>
+    </linearGradient>
+    <radialGradient id="d-sheen" cx="0.3" cy="0.05" r="0.8">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.09"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="d-ribbon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C99A44"/>
+      <stop offset="0.5" stop-color="#E6C47E"/>
+      <stop offset="1" stop-color="#B78935"/>
+    </linearGradient>
+    <linearGradient id="d-line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B98C3A"/>
+      <stop offset="0.5" stop-color="#D9B46C"/>
+      <stop offset="1" stop-color="#B98C3A"/>
+    </linearGradient>
+    <linearGradient id="d-ribbonFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000000" stop-opacity="0.28"/>
+      <stop offset="0.18" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="d-lift" x="-40%" y="-10%" width="180%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#d-bg)"/>
+  <rect width="1024" height="1024" fill="url(#d-sheen)"/>
+  <rect x="232" y="356" width="560" height="44" rx="22" fill="url(#d-line)"/>
+  <g fill="#3A3D45">
+    <rect x="232" y="444" width="560" height="44" rx="22"/>
+    <rect x="232" y="532" width="560" height="44" rx="22"/>
+    <rect x="232" y="620" width="336" height="44" rx="22"/>
+  </g>
+  <g filter="url(#d-lift)">
+    <path d="M452 -20 H572 V752 L512 694 L452 752 Z" fill="url(#d-ribbon)"/>
+  </g>
+  <path d="M452 -20 H572 V752 L512 694 L452 752 Z" fill="url(#d-ribbonFade)"/>
+</symbol>
+<symbol id="icon-light" viewBox="0 0 1024 1024">
+<defs>
+    <linearGradient id="l-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FCFCFA"/>
+      <stop offset="1" stop-color="#E6E6E0"/>
+    </linearGradient>
+    <radialGradient id="l-sheen" cx="0.3" cy="0.05" r="0.8">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="l-ribbon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C99A44"/>
+      <stop offset="0.5" stop-color="#E6C47E"/>
+      <stop offset="1" stop-color="#B78935"/>
+    </linearGradient>
+    <linearGradient id="l-line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B98C3A"/>
+      <stop offset="0.5" stop-color="#D9B46C"/>
+      <stop offset="1" stop-color="#B98C3A"/>
+    </linearGradient>
+    <linearGradient id="l-ribbonFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000000" stop-opacity="0.12"/>
+      <stop offset="0.18" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="l-lift" x="-40%" y="-10%" width="180%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000000" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#l-bg)"/>
+  <rect width="1024" height="1024" fill="url(#l-sheen)"/>
+  <rect x="232" y="356" width="560" height="44" rx="22" fill="url(#l-line)"/>
+  <g fill="#D6D6CF">
+    <rect x="232" y="444" width="560" height="44" rx="22"/>
+    <rect x="232" y="532" width="560" height="44" rx="22"/>
+    <rect x="232" y="620" width="336" height="44" rx="22"/>
+  </g>
+  <g filter="url(#l-lift)">
+    <path d="M452 -20 H572 V752 L512 694 L452 752 Z" fill="url(#l-ribbon)"/>
+  </g>
+  <path d="M452 -20 H572 V752 L512 694 L452 752 Z" fill="url(#l-ribbonFade)"/>
+</symbol>
+</svg>
 
 <header class="wrap topbar">
-  <p class="wordmark">Manna<i>.</i></p>
+  <p class="wordmark"><span class="ico " aria-hidden="true"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span>Bible</p>
   <div class="right">
     <span class="tag">UI concept · not a working build</span>
     <div class="theme-switch" role="group" aria-label="Colour theme">
@@ -370,7 +471,7 @@ input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border: 0; bo
 
 <section class="wrap hero">
   <h1>One passage a day. <em>Never the same twice.</em></h1>
-  <p class="sub">Manna picks a short reading at random from the parts of the Bible you haven’t read yet. It stays within the length you choose and always ends at the end of a sentence.</p>
+  <p class="sub">Each day the app picks a short reading at random from the parts of Scripture you haven’t read yet. It stays within the length you choose and always ends at the end of a sentence.</p>
 
   <div class="map-panel" aria-label="Canon map">
     <div class="canon" data-variant="hero"></div>
@@ -598,7 +699,7 @@ input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border: 0; bo
               <div class="item"><div class="txt"><b style="color:var(--danger)">Reset progress</b><span>Asks twice and saves a backup first</span></div></div>
             </div>
           </div>
-          <div class="toast" id="toast" role="status" aria-live="polite"><b>Progress exported</b>manna-progress-2026-10-18.json</div>
+          <div class="toast" id="toast" role="status" aria-live="polite"><b>Progress exported</b>bible-progress-2026-10-18.json</div>
           <nav class="tabbar" aria-label="Tabs" data-tabs="settings"></nav>
         </div></div>
         <figcaption>
@@ -623,7 +724,7 @@ input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border: 0; bo
             <h4>Import progress?</h4>
             <div class="file">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.8h8l4.5 4.5v13.9H6z"/><path d="M14 2.8v4.5h4.5"/></svg>
-              <span><b>manna-progress-2026-10-18.json</b>From Pixel 8 · 18 October</span>
+              <span><b>bible-progress-2026-10-18.json</b>From Pixel 8 · 18 October</span>
             </div>
             <div class="compare">
               <div><p class="eyebrow">In the file</p><b class="num" data-bind="pctAfter">9.6%</b><span><span data-bind="readings">330</span> readings</span><span>Last read 18 Oct</span></div>
@@ -683,7 +784,7 @@ input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border: 0; bo
             <div class="app-row"><span class="app"><i></i>Clock</span><span class="app"><i></i>Mail</span><span class="app"><i></i>Calendar</span><span class="app"><i></i>Music</span></div>
             <div class="dock">
               <span class="app"><i></i><span>Phone</span></span>
-              <span class="app"><span class="manna-icon" aria-label="Manna app icon"><b style="left:13px;top:15px"></b><b style="left:27px;top:12px"></b><b style="left:20px;top:25px"></b><b style="left:31px;top:28px"></b><b style="left:11px;top:31px"></b></span><span>Manna</span></span>
+              <span class="app"><span class="ico app-ico" role="img" aria-label="Bible app icon"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span><span>Bible</span></span>
               <span class="app"><i></i><span>Messages</span></span>
               <span class="app"><i></i><span>Camera</span></span>
             </div>
@@ -714,7 +815,7 @@ input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border: 0; bo
             <div class="app-row"><span class="app"><i></i>Clock</span><span class="app"><i></i>Mail</span><span class="app"><i></i>Weather</span><span class="app"><i></i>Music</span></div>
             <div class="dock">
               <span class="app"><i></i><span>Phone</span></span>
-              <span class="app"><span class="manna-icon" aria-label="Manna app icon"><b style="left:13px;top:15px"></b><b style="left:27px;top:12px"></b><b style="left:20px;top:25px"></b><b style="left:31px;top:28px"></b><b style="left:11px;top:31px"></b></span><span>Manna</span></span>
+              <span class="app"><span class="ico app-ico" role="img" aria-label="Bible app icon"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span><span>Bible</span></span>
               <span class="app"><i></i><span>Messages</span></span>
               <span class="app"><i></i><span>Camera</span></span>
             </div>
@@ -729,10 +830,38 @@ input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border: 0; bo
 
     </div>
   </section>
+  <!-- ===================== APP ICON ===================== -->
+  <section class="wrap section">
+    <div class="section-head">
+      <h2>App icon</h2>
+      <p>A gold ribbon bookmark crossing today’s line of text. Up close it’s a bookmark marking your place; at a glance it’s a cross. The grey lines echo the rows of the canon map.</p>
+    </div>
+    <div class="icon-grid">
+      <figure class="icon-card">
+        <div class="icon-stage"><span class="ico icon-xl" role="img" aria-label="Bible app icon, default"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span></div>
+        <figcaption><h3>Default</h3><p>Ink and gold. It stands out on both light and dark wallpapers.</p></figcaption>
+      </figure>
+      <figure class="icon-card">
+        <div class="icon-stage alt"><span class="ico icon-xl" role="img" aria-label="Bible app icon, light alternate"><svg viewBox="0 0 1024 1024"><use href="#icon-light"/></svg></span></div>
+        <figcaption><h3>Light alternate</h3><p>An optional alternate icon, chosen in Settings under Appearance.</p></figcaption>
+      </figure>
+      <figure class="icon-card">
+        <div class="icon-stage wall">
+          <div class="sizes">
+            <span class="app"><span class="ico s76" role="img" aria-label="Bible app icon, 76 points"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span><span>Bible</span></span>
+            <span class="app"><span class="ico s60" role="img" aria-label="Bible app icon, 60 points"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span><span>Bible</span></span>
+            <span class="app"><span class="ico s40" role="img" aria-label="Bible app icon, 40 points"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span><span>&nbsp;</span></span>
+            <span class="app"><span class="ico s29" role="img" aria-label="Bible app icon, 29 points"><svg viewBox="0 0 1024 1024"><use href="#icon-dark"/></svg></span><span>&nbsp;</span></span>
+          </div>
+        </div>
+        <figcaption><h3>At real sizes</h3><p>The cross and the ribbon stay readable from the home screen down to the smallest Settings and notification sizes.</p></figcaption>
+      </figure>
+    </div>
+  </section>
 </main>
 
 <footer class="wrap footer">
-  <p>Design mockup only. Nothing here is a working app. Full details are in the build plan that accompanies this file.</p>
+  <p>Design mockup only. Nothing here is a working app. Full details are in the build plan that accompanies this file. The icon artwork is also supplied as separate SVG and 1024-pixel PNG files.</p>
   <p>Scripture: World English Bible (public domain). Widget verse library: OpenBible.info Topical Bible (CC BY 4.0). Fonts: Newsreader and Instrument Sans (SIL Open Font License).</p>
 </footer>
 
@@ -975,10 +1104,10 @@ input[type="range"]::-moz-range-thumb { width: 26px; height: 26px; border: 0; bo
   const setTheme = t => {
     if (t === 'system') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', t);
     document.querySelectorAll('[data-theme-btn]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themeBtn === t)));
-    try { localStorage.setItem('manna-mock-theme', t); } catch (e) {}
+    try { localStorage.setItem('bible-mock-theme', t); } catch (e) {}
   };
   document.querySelectorAll('[data-theme-btn]').forEach(b => b.addEventListener('click', () => setTheme(b.dataset.themeBtn)));
-  try { const saved = localStorage.getItem('manna-mock-theme'); if (saved) setTheme(saved); } catch (e) {}
+  try { const saved = localStorage.getItem('bible-mock-theme'); if (saved) setTheme(saved); } catch (e) {}
 })();
 </script>
 </body>

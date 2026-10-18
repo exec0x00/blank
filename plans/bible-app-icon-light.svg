@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <title>Bible app icon (light)</title>
+  <!-- A gold ribbon bookmark crossing today's line of text: a bookmark, and a cross.
+       Full-bleed square: iOS and Android apply their own corner mask. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FCFCFA"/>
+      <stop offset="1" stop-color="#E6E6E0"/>
+    </linearGradient>
+    <radialGradient id="sheen" cx="0.3" cy="0.05" r="0.8">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C99A44"/>
+      <stop offset="0.5" stop-color="#E6C47E"/>
+      <stop offset="1" stop-color="#B78935"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B98C3A"/>
+      <stop offset="0.5" stop-color="#D9B46C"/>
+      <stop offset="1" stop-color="#B98C3A"/>
+    </linearGradient>
+    <linearGradient id="ribbonFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000000" stop-opacity="0.12"/>
+      <stop offset="0.18" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="lift" x="-40%" y="-10%" width="180%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000000" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <rect width="1024" height="1024" fill="url(#sheen)"/>
+
+  <!-- today's line, in gold -->
+  <rect x="232" y="356" width="560" height="44" rx="22" fill="url(#line)"/>
+  <!-- the rest of the page (these echo the rows of the canon map) -->
+  <g fill="#D6D6CF">
+    <rect x="232" y="444" width="560" height="44" rx="22"/>
+    <rect x="232" y="532" width="560" height="44" rx="22"/>
+    <rect x="232" y="620" width="336" height="44" rx="22"/>
+  </g>
+
+  <!-- the ribbon bookmark -->
+  <g filter="url(#lift)">
+    <path d="M452 -20 H572 V752 L512 694 L452 752 Z" fill="url(#ribbon)"/>
+  </g>
+  <path d="M452 -20 H572 V752 L512 694 L452 752 Z" fill="url(#ribbonFade)"/>
+</svg>

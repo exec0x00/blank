@@ -1,21 +1,24 @@
-# Build plan: "Manna", a daily random Bible reading app
+# Build plan: "Bible", a daily random Bible reading app
 
 > **Status:** plan only. Nothing is built yet.
-> **Companion file:** `bible-daily-reader-UI.html` sits next to this plan. Open it in any browser to see the main screens and both widget layouts, using real Bible text and realistic numbers.
-> **Name:** "Manna" is a working title. In Exodus 16 the people gather *"a day's portion every day"*, and *"he who gathered much had nothing over, and he who gathered little had no lack."* That matches the brief: a set amount each day, never too much. Rename it if you like.
+> **Companion files** (next to this plan):
+> - `bible-daily-reader-UI.html`, the UI mockup. Open it in any browser to see the main screens, both widget layouts and the app icon, with real Bible text and realistic numbers.
+> - `bible-app-icon.svg` and `bible-app-icon-light.svg`, the app icon artwork, plus 1024-pixel PNG copies (`bible-app-icon-1024.png`, `bible-app-icon-light-1024.png`).
+>
+> **Name:** the app is called **Bible**. That is the name under the icon on the home screen. The store listing may need a longer name (see Q7).
 > **Portability:** the plan names no folders or machine-specific locations. Wherever it mentions a file, it means a file inside the project or the app, by its name only.
 
 ---
 
 ## 1. The app in one paragraph
 
-Each day Manna gives you one short passage of the Bible, picked at random from the parts you haven't read yet. It never repeats anything you have already read. A reading is never longer than the word limit you set in Settings (default 300 words, about 2 minutes). It is built from whole sentences, usually ends at a paragraph break, and starts at the beginning of a chapter or exactly where an earlier reading stopped. A Progress screen shows how much of the Bible you have read: an overall percentage, a map of all 66 books, per-book figures, your streak and an estimated finish date. In Settings you can export your progress to a file and import it on another device. A home-screen widget shows a verse of the day, taken from a library of well-loved verses built from public popularity data downloaded from the internet. Everything works offline.
+Each day the app gives you one short passage of the Bible, picked at random from the parts you haven't read yet. It never repeats anything you have already read. A reading is never longer than the word limit you set in Settings (default 300 words, about 2 minutes). It is built from whole sentences, usually ends at a paragraph break, and starts at the beginning of a chapter or exactly where an earlier reading stopped. A Progress screen shows how much of the Bible you have read: an overall percentage, a map of all 66 books, per-book figures, your streak and an estimated finish date. In Settings you can export your progress to a file and import it on another device. A home-screen widget shows a verse of the day, taken from a library of well-loved verses built from public popularity data downloaded from the internet. Everything works offline.
 
 ---
 
 ## 2. Your requirements and how the plan meets them
 
-| # | You asked for | How Manna does it | Where |
+| # | You asked for | How the app does it | Where |
 |---|---|---|---|
 | R1 | A random part of the Bible to read every day | One reading per calendar day, picked at random from unread text. It is saved when picked, so it stays the same all day. | §8 |
 | R2 | See my progress: how much of the Bible I've completed | The percentage is counted by words, so it reflects reading effort. Also shown: the canon map, per-book and Old/New Testament bars, streak, readings done, estimated finish. | §10 |
@@ -353,11 +356,11 @@ Settings → **Update verse library** downloads a newer curated library JSON fro
 
 ### 11.1 File format
 
-Plain JSON, human-readable and small (a few KB, about 20 KB after years of use). The file is named `manna-progress-YYYY-MM-DD.json` (no folder; the user chooses where it goes).
+Plain JSON, human-readable and small (a few KB, about 20 KB after years of use). The file is named `bible-progress-YYYY-MM-DD.json` (no folder; the user chooses where it goes).
 
 ```json
 {
-  "app": "manna",
+  "app": "bible",
   "format": 1,
   "exportedAt": "2026-10-18T07:42:10+05:30",
   "deviceLabel": "Pixel 8",
@@ -387,7 +390,7 @@ Tap **Export progress** to build the file and open the system share sheet (Files
 ### 11.3 Import
 
 1. Tap **Import progress** and pick the file.
-2. **Validate:** is it a Manna file, a supported format, intact and well-formed, with every verse ID valid?
+2. **Validate:** is it a Bible progress file, a supported format, intact and well-formed, with every verse ID valid?
 3. **Preview** both sides: the file (date, device label, % read, readings, last reading) and this device (the same figures).
 4. Choose **Combine both** (recommended) or **Replace this device's progress**.
 5. Tap **Import progress**. An automatic snapshot of the current progress is saved first. Show "Progress imported" with **Undo**, and keep **Restore previous progress** in Settings for 30 days.
@@ -400,8 +403,8 @@ Tap **Export progress** to build the file and open the system share sheet (Files
 
 | Case | Message |
 |---|---|
-| Wrong file | "This file isn't a Manna progress file. Choose a file you made with Export progress." |
-| Newer format | "This file was made by a newer version of Manna. Update the app on this device, then import again." |
+| Wrong file | "This file isn't a Bible progress file. Choose a file you made with Export progress." |
+| Newer format | "This file was made by a newer version of the app. Update the app on this device, then import again." |
 | Damaged | "This file is incomplete or damaged. Export it again on the other device and import the new file." |
 | Empty progress | "This file has no readings in it. Nothing was changed." |
 
@@ -430,6 +433,14 @@ The mockup shows Today, Reader, Done, Progress, Settings, Import preview and the
 - **Type:** Newsreader at light weights for references, big numbers and scripture (optical sizes: large for headings, text size for reading). Instrument Sans for interface labels. Small uppercase labels are used sparingly.
 - **Components:** a floating, slightly translucent tab bar; a floating "Mark as read" panel in the reader; round icon buttons in the reader's top bar; iOS-style grouped settings lists; a segmented control for length presets; a thin gold slider track.
 - **The canon map** is the one signature visual (§10). Everything around it stays plain.
+
+**App icon:**
+
+- **Design:** a gold ribbon bookmark hangs from the top edge and crosses a gold line of text, with three grey lines below on an ink background. Up close it's a bookmark marking today's place; at a glance the ribbon and the gold line form a cross. The grey lines echo the rows of the canon map.
+- **Artwork:** `bible-app-icon.svg` is the default (ink) and `bible-app-icon-light.svg` is the light alternate. Both are 1024 × 1024 full-bleed squares with no transparency and no rounded corners, because iOS and Android apply their own mask. The lines and the cross fit inside Android's 66 dp safe circle, so round and squircle masks don't clip them. Only the top of the ribbon runs off the edge, on purpose.
+- **iOS:** one 1024-pixel PNG in the asset catalog for the default icon. Add a dark variant (the same art) and a tinted variant (the ribbon and lines in one tone on a transparent background) for iOS 18 and later. The light version ships as an alternate icon chosen in Settings → Appearance.
+- **Android:** an adaptive icon with a background layer (the ink gradient) and a foreground layer (the ribbon and lines) on a 108 dp canvas with a 72 dp safe zone. Add a monochrome layer for themed icons (Android 13 and later), and a 512-pixel PNG for the Play Store listing.
+- **Check:** look at it at 29, 40, 60 and 180 points and on light, dark and photo wallpapers before release. The mockup shows these sizes.
 
 **Interface copy rules:** sentence case; buttons say exactly what happens ("Mark as read", "Export progress", "Import progress"), and the confirmation uses the same verb ("Marked as read", "Progress exported", "Progress imported"). No guilt messages about missed days.
 
@@ -501,7 +512,7 @@ The mockup shows Today, Reader, Done, Progress, Settings, Import preview and the
 | M5 | Settings, length changes, export and import | Round-trip and combine tests pass; Android to iOS file transfer works by hand |
 | M6 | Verse library and widgets (Android and iOS) | Widgets show the same verse as the app for 400 simulated days; three sizes, both themes |
 | M7 | Onboarding, reminder, accessibility, polish | The §14 checklist and §15 manual checklist pass |
-| M8 | Release prep | Store listings, privacy statement ("no data collected"), attribution screen |
+| M8 | Release prep | Store listings, app icon exported for every platform size and variant (§12), privacy statement ("no data collected"), attribution screen |
 | Later | Optional: library update, extra translations, reading audio | — |
 
 ---
@@ -516,6 +527,7 @@ The mockup shows Today, Reader, Done, Progress, Settings, Import preview and the
 | Popularity data includes odd or negative verses | Topic allowlist, completeness rules, review by hand, reserve list |
 | Users lose a phone and their progress | Remind them to export after every 30 readings (one small dismissable card) |
 | WEB text update changes verse wording | Progress is stored by verse ID, so it's unaffected; `textVersion` is recorded for support |
+| The store name "Bible" is very likely taken | Keep "Bible" as the home-screen name and use a distinct store name (Q7) |
 | Widget refresh limits on Android | Compute from date + seed, so even a late refresh shows the right verse when it runs; midnight work plus a backup update period |
 
 ---
@@ -530,6 +542,7 @@ The mockup shows Today, Reader, Done, Progress, Settings, Import preview and the
 | Q4 | Should "Read another passage" exist, given "must not be too much"? | Yes, opt-in and never prompted |
 | Q5 | Daily reminder on by default? | Off; offered during onboarding |
 | Q6 | Optional cloud sync instead of files? | Out of scope for v1; files only |
+| Q7 | Store listing name? App Store names must be unique, and "Bible" alone is almost certainly in use. | Home-screen name "Bible"; store name "Bible: One Passage a Day" |
 
 ---
 
