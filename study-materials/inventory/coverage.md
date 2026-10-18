@@ -15,6 +15,16 @@ Total: 2,437 files (21.39 GiB); 215 videos (19.26 GiB).
 | UE26MA141A Engineering Mathematics - I | 484 | 58 | Unit_01 (17 videos), Unit_02 (16 videos), Unit_03 (13 videos), Unit_04 (6 videos), Unit_05 (6 videos) | .json: 58, .md: 124, .mp4: 58, .pdf: 22, .pptx: 42, .srt: 58, .txt: 122 |
 | UE26ME142A Engineering Mechanics 1 | 509 | 55 | Unit_01 (16 videos), Unit_02 (15 videos), Unit_03 (12 videos), Unit_04 (12 videos) | .json: 55, .md: 120, .mp4: 55, .pdf: 63, .ppt: 43, .srt: 55, .txt: 118 |
 
+## Official unit catalogue
+
+The bucket's `units.json` lists 26 official units. Source folders are present for 20. Six units have no folder in the current course tree and will be represented as explicit source gaps in the deliverables:
+
+- UC26CE121A: Unit 03, Cyber Law and IP Regime; Unit 04, Introduction to E-Commerce and Professional Ethics.
+- UE26CY151A: Unit 05, Engineering Chemistry - Lab Component.
+- UE26EC141A: Unit 02, Diode applications; Unit 03, Transistors and Operational Amplifier; Unit 04, Digital Electronics.
+
+Historical question material from the older archive is used only where the source topic supports it. A paper with no reliable unit-level mapping remains a course-level reference.
+
 ## Video sidecar checks
 
 | Subject | Unit | Videos | JSON | Markdown | SRT | Plain text |

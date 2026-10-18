@@ -1,0 +1,26 @@
+{
+  "coverage": {
+    "video_count": 215,
+    "course_count": 6,
+    "unit_count": 20,
+    "nonvideo_sources_downloaded": 1784,
+    "transcript_sidecars_checked": 860,
+    "legacy_related_question_sources": 63
+  },
+  "transcript_similarity": {
+    "count": 860,
+    "below_0_985": 0,
+    "below_0_9": 0
+  },
+  "video_slide_matches": {
+    "count": 215,
+    "likely": 199,
+    "review": 16,
+    "unmatched": 0
+  },
+  "low_confidence_segments": 50,
+  "pdfs": {
+    "count": 61,
+    "sparse_pages": 16
+  }
+}
