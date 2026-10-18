@@ -1,0 +1,1619 @@
+{
+  "schema_version": "1.0",
+  "unit_count": 26,
+  "packs": [
+    {
+      "course_code": "UC26CE121A",
+      "unit_id": "Unit_01",
+      "official_title": "Introduction to Constitution of India",
+      "bucket_folder_present": true,
+      "videos": 0,
+      "slide_decks": 11,
+      "slide_text_pages": 431,
+      "slide_figures": 431,
+      "topics": 12,
+      "notes": 12,
+      "points": 431,
+      "formula_candidates_in_course_unit": 15,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 1294,
+      "sources": 34,
+      "pack_path": "study-materials/packs/UC26CE121A/Unit_01/pack.json",
+      "gap_count": 4,
+      "video_topics": []
+    },
+    {
+      "course_code": "UC26CE121A",
+      "unit_id": "Unit_02",
+      "official_title": "Federal System Legislature, Executive and Judiciary",
+      "bucket_folder_present": true,
+      "videos": 0,
+      "slide_decks": 11,
+      "slide_text_pages": 565,
+      "slide_figures": 565,
+      "topics": 12,
+      "notes": 12,
+      "points": 565,
+      "formula_candidates_in_course_unit": 30,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 1696,
+      "sources": 34,
+      "pack_path": "study-materials/packs/UC26CE121A/Unit_02/pack.json",
+      "gap_count": 4,
+      "video_topics": []
+    },
+    {
+      "course_code": "UC26CE121A",
+      "unit_id": "Unit_03",
+      "official_title": "Cyber Law and IP Regime",
+      "bucket_folder_present": false,
+      "videos": 0,
+      "slide_decks": 0,
+      "slide_text_pages": 0,
+      "slide_figures": 0,
+      "topics": 2,
+      "notes": 2,
+      "points": 7,
+      "formula_candidates_in_course_unit": 0,
+      "question_pages_candidate_mapped": 7,
+      "evidence_units": 8,
+      "sources": 2,
+      "pack_path": "study-materials/packs/UC26CE121A/Unit_03/pack.json",
+      "gap_count": 5,
+      "video_topics": []
+    },
+    {
+      "course_code": "UC26CE121A",
+      "unit_id": "Unit_04",
+      "official_title": "Introduction to E-Commerce and Professional Ethics",
+      "bucket_folder_present": false,
+      "videos": 0,
+      "slide_decks": 0,
+      "slide_text_pages": 0,
+      "slide_figures": 0,
+      "topics": 2,
+      "notes": 2,
+      "points": 1,
+      "formula_candidates_in_course_unit": 15,
+      "question_pages_candidate_mapped": 1,
+      "evidence_units": 2,
+      "sources": 2,
+      "pack_path": "study-materials/packs/UC26CE121A/Unit_04/pack.json",
+      "gap_count": 5,
+      "video_topics": []
+    },
+    {
+      "course_code": "UE26CS151A",
+      "unit_id": "Unit_01",
+      "official_title": "Unit 1: Introduction",
+      "bucket_folder_present": true,
+      "videos": 21,
+      "slide_decks": 20,
+      "slide_text_pages": 300,
+      "slide_figures": 300,
+      "topics": 33,
+      "notes": 115,
+      "points": 358,
+      "formula_candidates_in_course_unit": 758,
+      "question_pages_candidate_mapped": 58,
+      "evidence_units": 1287,
+      "sources": 158,
+      "pack_path": "study-materials/packs/UE26CS151A/Unit_01/pack.json",
+      "gap_count": 5,
+      "video_topics": [
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_001_Introduction_ca07fd2e558c8a7c",
+          "topic_id": "T0002",
+          "title": "Introduction"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_001_Man_Cabbage_Goat_Wolf_Problem_1ef4a632cd03282d",
+          "topic_id": "T0003",
+          "title": "Man Cabbage Goat Wolf Problem"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_003_Process_of_Computation_Problem_Solving_Analysis_Design_Implementation_Testing_2849d807580cb7ae",
+          "topic_id": "T0004",
+          "title": "Process of Computation Problem Solving - Analysis, Design, Implementation, Testing"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_003_Process_of_Computation_Problem_Solving_Analysis_Design_Implementation_Testing_c5451c431739faf6",
+          "topic_id": "T0005",
+          "title": "Process of Computation Problem Solving - Analysis, Design, Implementation, Testing"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_004_Computer_Hardware_and_software_d0cc7ac4df04ef9f",
+          "topic_id": "T0006",
+          "title": "Computer Hardware and software"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_004_Computer_hardware_845ddeaeeec94ce6",
+          "topic_id": "T0007",
+          "title": "Computer hardware"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_008_Program_Structure_c33bde9f45f13d1b",
+          "topic_id": "T0008",
+          "title": "Program Structure"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_008_Program_structure_141e953573b7fab3",
+          "topic_id": "T0009",
+          "title": "Program structure"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_008_Program_structure_c191b948fb0cbd98",
+          "topic_id": "T0010",
+          "title": "Program structure"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_009_print_function_fa29381f8beff681",
+          "topic_id": "T0011",
+          "title": "print function"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_010_Variable_video_1_6a17ee49c6f79e16",
+          "topic_id": "T0012",
+          "title": "Variable video 1"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_010_variable_and_id_function_92e3df0e8b11255d",
+          "topic_id": "T0013",
+          "title": "variable and id function"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_011_input_function_729751eddd0f266f",
+          "topic_id": "T0014",
+          "title": "input function"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_011_input_function_c33256eff090b5ec",
+          "topic_id": "T0015",
+          "title": "input function"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_012_Arithmetic_membership_and_relational_operators_ff38db0dde601b27",
+          "topic_id": "T0016",
+          "title": "Arithmetic, membership and relational operators"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_012_Bitwise_operators_45d6586e889881f1",
+          "topic_id": "T0017",
+          "title": "Bitwise operators"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_012_logical_operators_and_short_circuit_evaluation_7ee47e67d3dc874f",
+          "topic_id": "T0018",
+          "title": "logical operators and short circuit evaluation"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_012_operators_and_expressions_c32527d44167ebb9",
+          "topic_id": "T0019",
+          "title": "operators and expressions"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_015_sequential_selection_control_3c385369aff92ed0",
+          "topic_id": "T0020",
+          "title": "sequential, selection control"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_016_iterative_control_structure_f5f1a1d31c8dff99",
+          "topic_id": "T0021",
+          "title": "iterative control structure"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_01_041_String_Operations_8206ac9c8ddf207b",
+          "topic_id": "T0022",
+          "title": "String Operations"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26CS151A",
+      "unit_id": "Unit_02",
+      "official_title": "Unit 2: Collections & Functions",
+      "bucket_folder_present": true,
+      "videos": 4,
+      "slide_decks": 8,
+      "slide_text_pages": 132,
+      "slide_figures": 132,
+      "topics": 9,
+      "notes": 28,
+      "points": 132,
+      "formula_candidates_in_course_unit": 450,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 473,
+      "sources": 41,
+      "pack_path": "study-materials/packs/UE26CS151A/Unit_02/pack.json",
+      "gap_count": 5,
+      "video_topics": [
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_02_029_Lists_and_Tuples_c3dbcf69ee3f547f",
+          "topic_id": "T0002",
+          "title": "Lists and Tuples"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_02_034_Dictionary_9c4cb33a65041296",
+          "topic_id": "T0003",
+          "title": "Dictionary"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_02_046_Files_6b7a6928ed4ec68a",
+          "topic_id": "T0004",
+          "title": "Files"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_02_051_Function_Call_Definition_Variable_arguments_33f527b86ff6abf2",
+          "topic_id": "T0005",
+          "title": "Function_Call_Definition_Variable_arguments"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26CS151A",
+      "unit_id": "Unit_03",
+      "official_title": "Unit 3: Functions, Functional Programming and Modules",
+      "bucket_folder_present": true,
+      "videos": 11,
+      "slide_decks": 18,
+      "slide_text_pages": 238,
+      "slide_figures": 238,
+      "topics": 21,
+      "notes": 50,
+      "points": 241,
+      "formula_candidates_in_course_unit": 780,
+      "question_pages_candidate_mapped": 3,
+      "evidence_units": 834,
+      "sources": 102,
+      "pack_path": "study-materials/packs/UE26CS151A/Unit_03/pack.json",
+      "gap_count": 5,
+      "video_topics": [
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_03_001_Recursion_57028129e466db02",
+          "topic_id": "T0002",
+          "title": "Recursion"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_03_003_Callback_da5d1859294b2983",
+          "topic_id": "T0003",
+          "title": "Callback"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_03_007_Functional_and_object_oriented_programming_8545ef40cb22fe08",
+          "topic_id": "T0004",
+          "title": "Functional and object oriented programming"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_03_008_Lambda_Function_4c5d893e819615b4",
+          "topic_id": "T0005",
+          "title": "Lambda Function"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_03_009_List_Comprehension_27fdb808f3d32a2b",
+          "topic_id": "T0006",
+          "title": "List Comprehension"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_03_010_Closure_193f0d4e9567775c",
+          "topic_id": "T0007",
+          "title": "Closure"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_03_011_Decorators_6b4052527d795156",
+          "topic_id": "T0008",
+          "title": "Decorators"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_03_012_Generators_c5a09f63b1677476",
+          "topic_id": "T0009",
+          "title": "Generators"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_03_013_module_3e602706ded0701e",
+          "topic_id": "T0010",
+          "title": "module"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_03_014_Numpy_7d37477e1600226d",
+          "topic_id": "T0011",
+          "title": "Numpy"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_03_015_PIL_b612657fcad391f3",
+          "topic_id": "T0012",
+          "title": "PIL"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26CS151A",
+      "unit_id": "Unit_04",
+      "official_title": "UNIT 4: Testing ,Debugging and Object Oriented Programming",
+      "bucket_folder_present": true,
+      "videos": 5,
+      "slide_decks": 7,
+      "slide_text_pages": 147,
+      "slide_figures": 147,
+      "topics": 10,
+      "notes": 35,
+      "points": 147,
+      "formula_candidates_in_course_unit": 308,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 542,
+      "sources": 42,
+      "pack_path": "study-materials/packs/UE26CS151A/Unit_04/pack.json",
+      "gap_count": 6,
+      "video_topics": [
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_04_001_Pytest_doctest_pdb_9c2a04e725b61a85",
+          "topic_id": "T0002",
+          "title": "Pytest, doctest, pdb"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_04_001_Pytest_doctest_pdb_b3f1d7a13157fe7e",
+          "topic_id": "T0003",
+          "title": "Pytest, doctest, pdb"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_04_008_Python_Classes_and_Objects_67559daa97bde626",
+          "topic_id": "T0004",
+          "title": "Python Classes and Objects"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_04_010_Inheritance_a6ea033571f65071",
+          "topic_id": "T0005",
+          "title": "Inheritance"
+        },
+        {
+          "video_id": "UE26CS151A_Python_for_computational_Problem_Solving_Unit_04_015_Exceptions_524460b511d1f7c5",
+          "topic_id": "T0006",
+          "title": "Exceptions"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26CY151A",
+      "unit_id": "Unit_01",
+      "official_title": "Molecular spectroscopy, phase equilibria, and computational chemistry",
+      "bucket_folder_present": true,
+      "videos": 14,
+      "slide_decks": 12,
+      "slide_text_pages": 139,
+      "slide_figures": 139,
+      "topics": 18,
+      "notes": 82,
+      "points": 152,
+      "formula_candidates_in_course_unit": 538,
+      "question_pages_candidate_mapped": 13,
+      "evidence_units": 687,
+      "sources": 104,
+      "pack_path": "study-materials/packs/UE26CY151A/Unit_01/pack.json",
+      "gap_count": 4,
+      "video_topics": [
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_001_Interaction_of_radiation_with_matter_1eb05f6c3f230eec",
+          "topic_id": "T0002",
+          "title": "Interaction of radiation with matter"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_002_Electromagnetic_spectrum_d84acfbd19ed2af4",
+          "topic_id": "T0003",
+          "title": "Electromagnetic spectrum"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_004_Rotational_spectroscopy_cda73f2030eb1a62",
+          "topic_id": "T0004",
+          "title": "Rotational spectroscopy"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_005_Vibrational_spectroscopy_harmonic_oscillator_bd1d3b496879b403",
+          "topic_id": "T0005",
+          "title": "Vibrational spectroscopy(harmonic oscillator)"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_006_Vibrational_spectroscopy_anharmonic_oscillator_4fe4d43ab2b66d24",
+          "topic_id": "T0006",
+          "title": "Vibrational spectroscopy(anharmonic oscillator)"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_007_Electronic_spectroscopy_Franck_Condon_principle_Part_II_70e8e6f497126f7d",
+          "topic_id": "T0007",
+          "title": "Electronic spectroscopy - Franck-Condon principle (Part II)"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_007_Electronic_spectroscopy_Progression_6dd27636f794caa1",
+          "topic_id": "T0008",
+          "title": "Electronic spectroscopy(Progression)"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_008_Phase_Component_Degrees_of_freedom_Statement_of_Gibb_s_phase_rule_chemical_potential_a7da1e88f96b163b",
+          "topic_id": "T0009",
+          "title": "Phase, Component, Degrees of freedom, Statement of Gibb’s phase rule, chemical potential"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_009_Derivation_of_Gibb_s_phase_rule_Phase_diagram_of_one_component_system_water_Part_II_2a5eb65b0585fe28",
+          "topic_id": "T0010",
+          "title": "Derivation of Gibb’s phase rule, Phase diagram of one-component system - water - Part II"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_009_Derivation_of_Gibb_s_phase_rule_Phase_diagram_of_one_component_system_water_Part_I_f611c716baed093a",
+          "topic_id": "T0011",
+          "title": "Derivation of Gibb’s phase rule, Phase diagram of one-component system - water - Part I"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_010_Reduced_phase_rule_phase_diagram_of_two_component_system_Pb_Ag_system_8e25eaa5432159a1",
+          "topic_id": "T0012",
+          "title": "Reduced phase rule, phase diagram of two-component system - Pb-Ag system"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_011_Computational_chemistry_Scope_computational_methods_electronic_structure_determination_AI_enhanced_computation_0671dbe2a6d868d4",
+          "topic_id": "T0013",
+          "title": "Computational chemistry: Scope, computational methods, electronic structure determination, AI-enhanced computational chemistry - Part I"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_011_Computational_chemistry_Scope_computational_methods_electronic_structure_determination_AI_enhanced_computation_5a0b9f520a3c63b3",
+          "topic_id": "T0014",
+          "title": "Computational chemistry: Scope, computational methods, electronic structure determination, AI-enhanced computational chemistry - Part III"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_01_011_Computational_chemistry_Scope_computational_methods_electronic_structure_determination_AI_enhanced_computation_74b8d88c6bf2ef3c",
+          "topic_id": "T0015",
+          "title": "Computational chemistry: Scope, computational methods, electronic structure determination, AI-enhanced computational chemistry - Part II"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26CY151A",
+      "unit_id": "Unit_02",
+      "official_title": "Electrochemistry and corrosion",
+      "bucket_folder_present": true,
+      "videos": 14,
+      "slide_decks": 12,
+      "slide_text_pages": 146,
+      "slide_figures": 146,
+      "topics": 18,
+      "notes": 84,
+      "points": 164,
+      "formula_candidates_in_course_unit": 332,
+      "question_pages_candidate_mapped": 18,
+      "evidence_units": 721,
+      "sources": 105,
+      "pack_path": "study-materials/packs/UE26CY151A/Unit_02/pack.json",
+      "gap_count": 4,
+      "video_topics": [
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_001_Origin_of_electrode_potential_cell_potential_3e2916789bf0cc7b",
+          "topic_id": "T0002",
+          "title": "Origin of electrode potential, cell potential"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_003_Types_of_electrodes_5665b6defd1e742e",
+          "topic_id": "T0003",
+          "title": "Types of electrodes"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_004_Reference_electrodes_calomel_electrode_66094e14ed140bda",
+          "topic_id": "T0004",
+          "title": "Reference electrodes, calomel electrode"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_005_Concentration_cells_types_of_concentration_cells_4982c0baa14e93c6",
+          "topic_id": "T0005",
+          "title": "Concentration cells, types of concentration cells"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_006_Electrochemical_theory_of_corrosion_b61af161e6bad4a4",
+          "topic_id": "T0006",
+          "title": "Electrochemical theory of corrosion"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_006_Numerical_problems_based_on_electrode_and_cell_potential_determination_8150689d77526239",
+          "topic_id": "T0007",
+          "title": "Numerical problems based on electrode and cell potential determination"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_008_Types_of_corrosion_differential_metal_differential_aeration_pitting_corrosion_stress_corrosion_Part_1_75f77ebe6da9e6f8",
+          "topic_id": "T0008",
+          "title": "Types of corrosion - differential metal, differential aeration, pitting corrosion, stress corrosion - Part 1"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_008_Types_of_corrosion_differential_metal_mention_of_sacrificial_anode_corrosion_protection_differential_aeratio_eca6ea3854aa0e67",
+          "topic_id": "T0009",
+          "title": "Types of corrosion - differential metal (mention of sacrificial anode corrosion protection), differential aeration, pitting corrosion, stress corrosion - Part II"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_008_Types_of_corrosion_stress_corrosion_Part_III_5da0c5dd14cf8164",
+          "topic_id": "T0010",
+          "title": "Types of corrosion - stress corrosion - Part III"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_009_Factors_affecting_rate_of_corrosion_nature_of_metal_nature_of_corrosion_product_polarization_overvoltage_fdef40981a54d818",
+          "topic_id": "T0011",
+          "title": "Factors affecting rate of corrosion (nature of metal, nature of corrosion product, polarization, overvoltage)"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_010_Corrosion_control_metal_coating_galvanizing_inorganic_coating_anodizing_Part_II_bf6644019910a8af",
+          "topic_id": "T0012",
+          "title": "Corrosion control - metal coating (galvanizing), inorganic coating (anodizing) - Part II"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_010_Corrosion_control_metal_coating_galvanizing_inorganic_coating_anodizing_Part_I_426c13eca70a4fd6",
+          "topic_id": "T0013",
+          "title": "Corrosion control - metal coating (galvanizing), inorganic coating (anodizing) - Part I"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_011_Corrosion_inhibitors_cathodic_protection_impressed_current_method_Use_of_AI_tools_in_corrosion_detection_and_c_54f68b4b385cdc3b",
+          "topic_id": "T0014",
+          "title": "Corrosion inhibitors, cathodic protection –impressed current method, Use of AI tools in corrosion detection and control - Part II"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_02_011_Corrosion_inhibitors_cathodic_protection_impressed_current_method_Use_of_AI_tools_in_corrosion_detection_and_c_9d98be19f2c4ea84",
+          "topic_id": "T0015",
+          "title": "Corrosion inhibitors, cathodic protection –impressed current method, Use of AI tools in corrosion detection and control - Part I"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26CY151A",
+      "unit_id": "Unit_03",
+      "official_title": "Energy storage devices, hydrogen energy, and sensors",
+      "bucket_folder_present": true,
+      "videos": 10,
+      "slide_decks": 12,
+      "slide_text_pages": 153,
+      "slide_figures": 154,
+      "topics": 16,
+      "notes": 62,
+      "points": 173,
+      "formula_candidates_in_course_unit": 153,
+      "question_pages_candidate_mapped": 19,
+      "evidence_units": 664,
+      "sources": 90,
+      "pack_path": "study-materials/packs/UE26CY151A/Unit_03/pack.json",
+      "gap_count": 4,
+      "video_topics": [
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_03_027_Batteries_Components_and_working_of_a_battery_classification_of_batteries_primary_secondary_and_reserve_batter_46f678f584cf1e30",
+          "topic_id": "T0002",
+          "title": "Batteries: Components and working of a battery, classification of batteries – primary, secondary, and reserve batteries (Part I)"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_03_027_Batteries_Components_and_working_of_a_battery_classification_of_batteries_primary_secondary_and_reserve_batter_fdb0b572df73e22f",
+          "topic_id": "T0003",
+          "title": "Batteries: Components and working of a battery, classification of batteries – primary, secondary, and reserve batteries (Part II))"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_03_028_Numericals_Energy_storage_devices_e2ecdc69f7d2645d",
+          "topic_id": "T0004",
+          "title": "Numericals_Energy storage devices"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_03_029_Zinc_air_battery_50608371ec91d5a3",
+          "topic_id": "T0005",
+          "title": "Zinc -air battery"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_03_031_Fuel_cells_Principle_and_working_H2_O2_alkaline_fuel_cell_Part_1_b31208265c8084c7",
+          "topic_id": "T0006",
+          "title": "Fuel cells: Principle and working, H2-O2 alkaline fuel cell (Part 1)"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_03_031_Fuel_cells_Principle_and_working_H2_O2_alkaline_fuel_cell_Part_2_7423df6b25117f2d",
+          "topic_id": "T0007",
+          "title": "Fuel cells: Principle and working, H2-O2 alkaline fuel cell (Part 2)"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_03_032_CH3OH_O2_polymer_electrolyte_fuel_cell_efficiency_of_fuel_cells_numerical_problems_based_on_efficiency_of_fuel_0efd131a5b8eae34",
+          "topic_id": "T0008",
+          "title": "CH3OH-O2 polymer electrolyte fuel cell, efficiency of fuel cells, numerical problems based on efficiency of fuel cells"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_03_033_Supercapacitors_Ragone_plot_d04b49e0a94293ee",
+          "topic_id": "T0009",
+          "title": "Supercapacitors , Ragone plot"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_03_036_Types_of_electrochemical_sensors_pH_sensor_ion_selective_electrode_glass_electrode_Part_2_070afd1335845586",
+          "topic_id": "T0010",
+          "title": "Types of electrochemical sensors, pH sensor – ion-selective electrode - glass electrode (Part 2))"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_03_037_Gas_sensor_O2_sensor_in_automobile_exhaust_stream_Biosensors_Blood_glucose_sensor_Part_1_58334f2a4af3fdff",
+          "topic_id": "T0011",
+          "title": "Gas sensor - O2 sensor in automobile exhaust stream, Biosensors – Blood glucose sensor (Part 1)"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26CY151A",
+      "unit_id": "Unit_04",
+      "official_title": "Functional materials and green chemistry",
+      "bucket_folder_present": true,
+      "videos": 12,
+      "slide_decks": 12,
+      "slide_text_pages": 169,
+      "slide_figures": 169,
+      "topics": 16,
+      "notes": 64,
+      "points": 189,
+      "formula_candidates_in_course_unit": 135,
+      "question_pages_candidate_mapped": 20,
+      "evidence_units": 720,
+      "sources": 99,
+      "pack_path": "study-materials/packs/UE26CY151A/Unit_04/pack.json",
+      "gap_count": 4,
+      "video_topics": [
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_04_040_Nanomaterials_Introduction_classification_size_dependent_properties_surface_area_adsorption_surface_energy_rea_2c483373ae696940",
+          "topic_id": "T0002",
+          "title": "Nanomaterials: Introduction, classification, size-dependent properties: surface area (adsorption), surface energy (reactivity), optical properties -blue shift (Part 2)"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_04_040_Nanomaterials_Introduction_classification_size_dependent_properties_surface_area_adsorption_surface_energy_rea_2d33abc42be29800",
+          "topic_id": "T0003",
+          "title": "Nanomaterials: Introduction, classification, size-dependent properties: surface area (adsorption), surface energy (reactivity), optical properties -blue shift (Part 1)"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_04_041_Thermal_properties_melting_point_electrical_properties_and_magnetic_properties_superparamagnetism_Graphene_s_3ce99088727d358f",
+          "topic_id": "T0004",
+          "title": "Thermal properties (melting point), electrical properties, and magnetic properties (superparamagnetism), Graphene - structure and synthesis; applications of nanomaterials"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_04_042_Polymers_Introduction_types_of_polymerizations_definition_of_glass_transition_temperature_6749a5eae673dbbc",
+          "topic_id": "T0005",
+          "title": "Polymers: Introduction, types of polymerizations, definition of glass transition temperature"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_04_043_Structure_property_relationship_e79c2e83734020ae",
+          "topic_id": "T0006",
+          "title": "Structure-property relationship"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_04_045_Synthesis_and_properties_of_epoxy_resin_7c6d59e1128dc6e8",
+          "topic_id": "T0007",
+          "title": "Synthesis and properties of epoxy resin"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_04_046_Polymer_composites_synthesis_properties_of_Kevlar_and_Carbon_fibers_Part_1_3d41b078ed8e32dd",
+          "topic_id": "T0008",
+          "title": "Polymer composites - synthesis, properties of Kevlar and Carbon fibers (Part 1)"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_04_046_Polymer_composites_synthesis_properties_of_Kevlar_and_Carbon_fibers_Part_2_73d1b9e68bb92928",
+          "topic_id": "T0009",
+          "title": "Polymer composites - synthesis, properties of Kevlar and Carbon fibers (Part 2))"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_04_047_Average_molecular_weight_of_polymers_number_average_weight_average_and_viscosity_average_molecular_weight_nu_9f6f7b970d3fb69d",
+          "topic_id": "T0010",
+          "title": "Average molecular weight of polymers - number average, weight average, and viscosity average molecular weight; numerical problems based on the same"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_04_048_Conducting_polymers_examples_types_of_doping_64decc463863d8a0",
+          "topic_id": "T0011",
+          "title": "Conducting polymers - examples, types of doping"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_04_049_Organic_light_emitting_diodes_OLEDs_Construction_working_principle_and_light_emission_mechanism_d329dc2c82435f24",
+          "topic_id": "T0012",
+          "title": "Organic light-emitting diodes (OLEDs): Construction, working principle, and light emission mechanism"
+        },
+        {
+          "video_id": "UE26CY151A_Engineering_Chemistry_Unit_04_050_Green_chemistry_Introduction_twelve_principles_of_green_chemistry_with_examples_65cb11f75f072aae",
+          "topic_id": "T0013",
+          "title": "Green chemistry: Introduction, twelve principles of green chemistry with examples"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26CY151A",
+      "unit_id": "Unit_05",
+      "official_title": "Engineering Chemistry - Lab Component",
+      "bucket_folder_present": false,
+      "videos": 0,
+      "slide_decks": 0,
+      "slide_text_pages": 0,
+      "slide_figures": 0,
+      "topics": 2,
+      "notes": 2,
+      "points": 29,
+      "formula_candidates_in_course_unit": 11,
+      "question_pages_candidate_mapped": 29,
+      "evidence_units": 30,
+      "sources": 3,
+      "pack_path": "study-materials/packs/UE26CY151A/Unit_05/pack.json",
+      "gap_count": 5,
+      "video_topics": []
+    },
+    {
+      "course_code": "UE26EC141A",
+      "unit_id": "Unit_01",
+      "official_title": "Unit-1 Semiconductor Diode",
+      "bucket_folder_present": true,
+      "videos": 11,
+      "slide_decks": 13,
+      "slide_text_pages": 151,
+      "slide_figures": 151,
+      "topics": 15,
+      "notes": 40,
+      "points": 153,
+      "formula_candidates_in_course_unit": 368,
+      "question_pages_candidate_mapped": 2,
+      "evidence_units": 556,
+      "sources": 86,
+      "pack_path": "study-materials/packs/UE26EC141A/Unit_01/pack.json",
+      "gap_count": 3,
+      "video_topics": [
+        {
+          "video_id": "UE26EC141A_Electronic_Principles_and_Devices_Unit_01_001_Introduction_to_semiconductors_intrinsic_and_extrinsic_semiconductors_183ac314557f22c2",
+          "topic_id": "T0002",
+          "title": "Introduction to semiconductors, intrinsic and extrinsic semiconductors"
+        },
+        {
+          "video_id": "UE26EC141A_Electronic_Principles_and_Devices_Unit_01_002_Semiconductor_diode_under_no_bias_forward_bias_and_reverse_bias_conditions_1070a788810cfac7",
+          "topic_id": "T0003",
+          "title": "Semiconductor diode under no bias, forward bias and reverse bias conditions"
+        },
+        {
+          "video_id": "UE26EC141A_Electronic_Principles_and_Devices_Unit_01_003_Diode_characteristics_Shockley_s_equation_09b9cf730275f786",
+          "topic_id": "T0004",
+          "title": "Diode characteristics, Shockley’s equation"
+        },
+        {
+          "video_id": "UE26EC141A_Electronic_Principles_and_Devices_Unit_01_004_Zener_and_Avalanche_breakdown_Temperature_effects_83cce28872db58b1",
+          "topic_id": "T0005",
+          "title": "Zener and Avalanche breakdown, Temperature effects"
+        },
+        {
+          "video_id": "UE26EC141A_Electronic_Principles_and_Devices_Unit_01_005_Ideal_versus_Practical_diode_Diode_resistances_3b08a07358669379",
+          "topic_id": "T0006",
+          "title": "Ideal versus Practical diode, Diode resistances"
+        },
+        {
+          "video_id": "UE26EC141A_Electronic_Principles_and_Devices_Unit_01_006_Diode_equivalent_circuits_Series_diode_configurations_91f64c479cb44c60",
+          "topic_id": "T0007",
+          "title": "Diode equivalent circuits Series diode configurations"
+        },
+        {
+          "video_id": "UE26EC141A_Electronic_Principles_and_Devices_Unit_01_007_Parallel_and_Series_Parallel_configurations_f6ab675a2f96218e",
+          "topic_id": "T0008",
+          "title": "Parallel and Series- Parallel configurations"
+        },
+        {
+          "video_id": "UE26EC141A_Electronic_Principles_and_Devices_Unit_01_008_Logical_Operations_using_diode_a5ae846222c4060c",
+          "topic_id": "T0009",
+          "title": "Logical Operations using diode"
+        },
+        {
+          "video_id": "UE26EC141A_Electronic_Principles_and_Devices_Unit_01_009_Diode_Clippers_Series_using_Ideal_diode_bd9b40ddcbd2d089",
+          "topic_id": "T0010",
+          "title": "Diode Clippers : Series using Ideal diode"
+        },
+        {
+          "video_id": "UE26EC141A_Electronic_Principles_and_Devices_Unit_01_010_Diode_Clippers_Parallel_using_Ideal_diode_b4558739e39a139a",
+          "topic_id": "T0011",
+          "title": "Diode Clippers : Parallel using Ideal diode"
+        },
+        {
+          "video_id": "UE26EC141A_Electronic_Principles_and_Devices_Unit_01_011_Clampers_using_Ideal_diode_a50c9b8c3f829f04",
+          "topic_id": "T0012",
+          "title": "Clampers using Ideal diode"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26EC141A",
+      "unit_id": "Unit_02",
+      "official_title": "Unit- 2 Diode applications:",
+      "bucket_folder_present": false,
+      "videos": 0,
+      "slide_decks": 0,
+      "slide_text_pages": 0,
+      "slide_figures": 0,
+      "topics": 1,
+      "notes": 1,
+      "points": 0,
+      "formula_candidates_in_course_unit": 4,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 1,
+      "sources": 1,
+      "pack_path": "study-materials/packs/UE26EC141A/Unit_02/pack.json",
+      "gap_count": 6,
+      "video_topics": []
+    },
+    {
+      "course_code": "UE26EC141A",
+      "unit_id": "Unit_03",
+      "official_title": "Unit 3: Transistors and Operational Amplifier:",
+      "bucket_folder_present": false,
+      "videos": 0,
+      "slide_decks": 0,
+      "slide_text_pages": 0,
+      "slide_figures": 0,
+      "topics": 1,
+      "notes": 1,
+      "points": 0,
+      "formula_candidates_in_course_unit": 3,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 1,
+      "sources": 1,
+      "pack_path": "study-materials/packs/UE26EC141A/Unit_03/pack.json",
+      "gap_count": 6,
+      "video_topics": []
+    },
+    {
+      "course_code": "UE26EC141A",
+      "unit_id": "Unit_04",
+      "official_title": "Unit 4: Digital Electronics:",
+      "bucket_folder_present": false,
+      "videos": 0,
+      "slide_decks": 0,
+      "slide_text_pages": 0,
+      "slide_figures": 0,
+      "topics": 1,
+      "notes": 1,
+      "points": 0,
+      "formula_candidates_in_course_unit": 0,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 1,
+      "sources": 1,
+      "pack_path": "study-materials/packs/UE26EC141A/Unit_04/pack.json",
+      "gap_count": 6,
+      "video_topics": []
+    },
+    {
+      "course_code": "UE26MA141A",
+      "unit_id": "Unit_01",
+      "official_title": "Unit 1",
+      "bucket_folder_present": true,
+      "videos": 17,
+      "slide_decks": 11,
+      "slide_text_pages": 174,
+      "slide_figures": 174,
+      "topics": 19,
+      "notes": 83,
+      "points": 174,
+      "formula_candidates_in_course_unit": 1370,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 779,
+      "sources": 102,
+      "pack_path": "study-materials/packs/UE26MA141A/Unit_01/pack.json",
+      "gap_count": 6,
+      "video_topics": [
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_001_Continuity_and_differentiability_of_a_function_of_two_independent_variable_543f4d65e9b6ed52",
+          "topic_id": "T0002",
+          "title": "Continuity and differentiability of a function of two independent variable"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_001_Introduction_to_Partial_Differentiation_7d6d5767ec830adb",
+          "topic_id": "T0003",
+          "title": "Introduction to Partial Differentiation"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_002_Geometrical_interpretation_of_Partial_derivatives_374c7bb76e445af3",
+          "topic_id": "T0004",
+          "title": "Geometrical interpretation of Partial derivatives"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_003_Problems_on_Total_derivatives_Chain_rule_4d669ee31cdd4a30",
+          "topic_id": "T0005",
+          "title": "Problems on Total derivatives, Chain rule"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_003_Total_derivative_Chain_rule_and_Implicit_functions_d194dd0f27d571b2",
+          "topic_id": "T0006",
+          "title": "Total derivative, Chain rule and Implicit functions"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_004_Implicit_functions_and_problems_28ebf6864cd576d3",
+          "topic_id": "T0007",
+          "title": "Implicit functions and problems"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_004_Problems_on_Composite_and_Implicit_functions_d1ea652fce3206d2",
+          "topic_id": "T0008",
+          "title": "Problems on Composite and Implicit functions"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_005_Homogeneous_functions_and_Euler_s_theorem_a0c2c43d28f6ec69",
+          "topic_id": "T0009",
+          "title": "Homogeneous functions and Euler's theorem"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_006_Problems_on_Euler_s_Theorem_6c4797f9ed9a5b61",
+          "topic_id": "T0010",
+          "title": "Problems on Euler's Theorem"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_006_Problems_on_Euler_s_theorem_0d726228252093d7",
+          "topic_id": "T0011",
+          "title": "Problems on Euler's theorem"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_007_Taylor_s_and_Maclaurin_s_expansion_ff2506f0c8105451",
+          "topic_id": "T0012",
+          "title": "Taylor's and Maclaurin's expansion"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_008_Problems_on_Taylor_s_and_Maclaurin_s_series_4b73a1bc5fc83388",
+          "topic_id": "T0013",
+          "title": "Problems on Taylor's and Maclaurin's series"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_009_Extremas_of_functions_5ebc2dd46f817380",
+          "topic_id": "T0014",
+          "title": "Extremas of functions"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_010_Extremas_of_functions_continued_5cf502cc80940c87",
+          "topic_id": "T0015",
+          "title": "Extremas of functions continued"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_010_Problems_on_Maxima_and_Minima_for_a_function_of_two_variables_e276ddb59439e6ec",
+          "topic_id": "T0016",
+          "title": "Problems on Maxima and Minima for a function of two variables"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_011_Lagrange_s_method_of_undetermined_coefficient_6812c905c391978e",
+          "topic_id": "T0017",
+          "title": "Lagrange's method of undetermined coefficient"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_01_011_Problems_on_Lagrange_s_method_of_undetermined_multipliers_94e58d0103d5b799",
+          "topic_id": "T0018",
+          "title": "Problems on Lagrange's method of undetermined multipliers"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26MA141A",
+      "unit_id": "Unit_02",
+      "official_title": "Unit 2",
+      "bucket_folder_present": true,
+      "videos": 16,
+      "slide_decks": 11,
+      "slide_text_pages": 186,
+      "slide_figures": 186,
+      "topics": 19,
+      "notes": 85,
+      "points": 188,
+      "formula_candidates_in_course_unit": 981,
+      "question_pages_candidate_mapped": 2,
+      "evidence_units": 825,
+      "sources": 100,
+      "pack_path": "study-materials/packs/UE26MA141A/Unit_02/pack.json",
+      "gap_count": 5,
+      "video_topics": [
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_001_Introduction_to_higher_order_differential_equations_complementary_function_and_particular_integral_069274588a013075",
+          "topic_id": "T0002",
+          "title": "Introduction to higher order differential equations, complementary function and particular integral"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_002_Rules_for_finding_the_Complementary_Function_Problems_4a39dee530243163",
+          "topic_id": "T0003",
+          "title": "Rules for finding the Complementary Function, Problems"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_003_Particular_integral_of_standard_functions_Type_1_22d81006814d93bf",
+          "topic_id": "T0004",
+          "title": "Particular integral of standard functions - Type 1"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_004_Particular_integral_Type_1_and_Type_2_54bec5745a32a447",
+          "topic_id": "T0005",
+          "title": "Particular integral_Type 1 and Type 2"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_004_Particular_integral_of_standard_functions_Type_2_d25d020162de0016",
+          "topic_id": "T0006",
+          "title": "Particular integral of standard functions - Type 2"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_005_Particular_integral_of_standard_functions_Type_3_1f8ea5ed4d7e088f",
+          "topic_id": "T0007",
+          "title": "Particular integral of standard functions - Type 3"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_006_Particular_integral_Type_3_and_Type_4_fb358573adb09195",
+          "topic_id": "T0008",
+          "title": "Particular integral -Type 3 and Type 4"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_006_Particular_integral_of_standard_functions_Type_4_603379d034480436",
+          "topic_id": "T0009",
+          "title": "Particular integral of standard functions - Type 4"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_009_Particular_Integral_when_X_is_any_other_form_653ae8f75a03fb1e",
+          "topic_id": "T0010",
+          "title": "Particular Integral when X is any other form"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_009_Particular_integral_when_X_is_any_other_form_Continued_5c24666421028690",
+          "topic_id": "T0011",
+          "title": "Particular integral when X is any other form_Continued"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_011_Legendre_differential_equation_04e8c1e6bb4bea05",
+          "topic_id": "T0012",
+          "title": "Legendre differential equation"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_011_Legendre_differential_equations_Continued_e286e5075a9d86f4",
+          "topic_id": "T0013",
+          "title": "Legendre differential equations_Continued"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_011_Variation_of_Parameters_method_Continued_97963caf81f64a9c",
+          "topic_id": "T0014",
+          "title": "Variation of Parameters method_Continued"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_011_Variation_of_Parameters_method_f1407a459331b120",
+          "topic_id": "T0015",
+          "title": "Variation of Parameters method"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_014_Applications_of_higher_order_linear_differential_equations_RLC_Circuits_2d0217a8ab77a9c8",
+          "topic_id": "T0016",
+          "title": "Applications of higher-order linear differential equations - RLC Circuits"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_02_015_Application_problems_on_Linear_differential_equations_Simple_harmonic_oscillation_9f24b70546186809",
+          "topic_id": "T0017",
+          "title": "Application problems on Linear differential equations - Simple harmonic oscillation"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26MA141A",
+      "unit_id": "Unit_03",
+      "official_title": "Unit 3",
+      "bucket_folder_present": true,
+      "videos": 13,
+      "slide_decks": 18,
+      "slide_text_pages": 176,
+      "slide_figures": 176,
+      "topics": 21,
+      "notes": 64,
+      "points": 176,
+      "formula_candidates_in_course_unit": 1577,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 701,
+      "sources": 107,
+      "pack_path": "study-materials/packs/UE26MA141A/Unit_03/pack.json",
+      "gap_count": 6,
+      "video_topics": [
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_03_001_Formation_of_PDE_d6967667ca1ebee8",
+          "topic_id": "T0002",
+          "title": "Formation of PDE"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_03_001_Introduction_9ffc6e5f7e376549",
+          "topic_id": "T0003",
+          "title": "Introduction"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_03_001_Problems_on_formation_of_PDE_by_eliminating_arbitrary_functions_9ce94de93a3b3017",
+          "topic_id": "T0004",
+          "title": "Problems on formation of PDE by eliminating arbitrary functions"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_03_002_Session_3_9680cfc6ed04da14",
+          "topic_id": "T0005",
+          "title": "Session-3"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_03_003_Lagranges_Linear_equation_continued_dba217df524461e2",
+          "topic_id": "T0006",
+          "title": "Lagranges Linear equation_continued"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_03_004_Lagranges_Linear_equation_continued_7d0c7f14ab47b67a",
+          "topic_id": "T0007",
+          "title": "Lagranges Linear equation_continued"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_03_005_Method_of_separation_of_variables_40649d5bab207a80",
+          "topic_id": "T0008",
+          "title": "Method of separation of variables"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_03_006_Modeling_of_One_dimensional_Heat_equation_32959d21562f5943",
+          "topic_id": "T0009",
+          "title": "Modeling of One dimensional Heat equation"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_03_006_Solution_of_one_dimensional_heat_equation_77df3e42fb2d3295",
+          "topic_id": "T0010",
+          "title": "Solution of one dimensional heat equation"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_03_007_Higher_order_PDE_d750329ea5ff8f74",
+          "topic_id": "T0011",
+          "title": "Higher order PDE"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_03_007_Particular_integral_of_type_1_and_2_265cba67cfcb2e18",
+          "topic_id": "T0012",
+          "title": "Particular integral of type 1 and 2"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_03_007_Problems_on_finding_the_solution_when_RHS_0_0bbcd9c646bfb2ec",
+          "topic_id": "T0013",
+          "title": "Problems on finding the solution when RHS=0"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_03_010_Particular_integral_Type_3_and_Type_4_8bacb290bb4f1c00",
+          "topic_id": "T0014",
+          "title": "Particular integral -Type 3 and Type 4"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26MA141A",
+      "unit_id": "Unit_04",
+      "official_title": "Unit 4",
+      "bucket_folder_present": true,
+      "videos": 6,
+      "slide_decks": 11,
+      "slide_text_pages": 138,
+      "slide_figures": 138,
+      "topics": 13,
+      "notes": 36,
+      "points": 151,
+      "formula_candidates_in_course_unit": 1038,
+      "question_pages_candidate_mapped": 13,
+      "evidence_units": 520,
+      "sources": 59,
+      "pack_path": "study-materials/packs/UE26MA141A/Unit_04/pack.json",
+      "gap_count": 3,
+      "video_topics": [
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_04_001_Gamma_functions_definition_graph_and_properties_c183e86bfc3ac0a2",
+          "topic_id": "T0002",
+          "title": "Gamma functions - definition, graph and properties"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_04_002_Definition_of_Beta_function_and_its_properties_c1ec05b61754baa1",
+          "topic_id": "T0003",
+          "title": "Definition of Beta function and its properties"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_04_003_Relation_between_Beta_and_Gamma_functions_Duplication_formula_982d3dde7e270fc7",
+          "topic_id": "T0004",
+          "title": "Relation between Beta and Gamma functions, Duplication formula"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_04_004_Problems_on_Beta_an_Gamma_functions_ccd478a3bed2d97a",
+          "topic_id": "T0005",
+          "title": "Problems on Beta an Gamma functions"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_04_005_Problems_on_Beta_and_Gamma_Function_continued_5f7e0c86ddf2398a",
+          "topic_id": "T0006",
+          "title": "Problems on Beta and Gamma Function_continued"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_04_010_Series_solution_of_Bessel_s_differential_equation_Bessel_functions_0b6c9f8e6bffd10d",
+          "topic_id": "T0007",
+          "title": "Series solution of Besselâ??s differential equation, Bessel functions"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26MA141A",
+      "unit_id": "Unit_05",
+      "official_title": "MATLAB",
+      "bucket_folder_present": true,
+      "videos": 6,
+      "slide_decks": 13,
+      "slide_text_pages": 321,
+      "slide_figures": 329,
+      "topics": 16,
+      "notes": 43,
+      "points": 329,
+      "formula_candidates_in_course_unit": 1549,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 1080,
+      "sources": 64,
+      "pack_path": "study-materials/packs/UE26MA141A/Unit_05/pack.json",
+      "gap_count": 10,
+      "video_topics": [
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_05_001_Introduction_to_MATLAB_Software_60472b361e5bb782",
+          "topic_id": "T0002",
+          "title": "Introduction to MATLAB Software"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_05_002_Data_types_relational_operators_logical_operators_915d8f716427b954",
+          "topic_id": "T0003",
+          "title": "Data types; relational operators; logical operators"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_05_003_M_Files_Loop_Control_Statements_Conditional_Statements_d8fc5a0a5b8f6dbe",
+          "topic_id": "T0004",
+          "title": "M-Files; Loop Control Statements; Conditional Statements"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_05_004_Plotting_of_Curves_2D_and_3D_Plot_Labeling_Curve_Labeling_e96c8141e2597d5f",
+          "topic_id": "T0005",
+          "title": "Plotting of Curves (2D and 3D), Plot Labeling, Curve Labeling"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_05_006_Video_bb969ddbec162496",
+          "topic_id": "T0006",
+          "title": "Video"
+        },
+        {
+          "video_id": "UE26MA141A_Engineering_Mathematics_I_Unit_05_008_Video_c789c482b6a9141a",
+          "topic_id": "T0007",
+          "title": "Video"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26ME142A",
+      "unit_id": "Unit_01",
+      "official_title": "UNIT 1",
+      "bucket_folder_present": true,
+      "videos": 16,
+      "slide_decks": 16,
+      "slide_text_pages": 82,
+      "slide_figures": 120,
+      "topics": 18,
+      "notes": 90,
+      "points": 120,
+      "formula_candidates_in_course_unit": 474,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 573,
+      "sources": 113,
+      "pack_path": "study-materials/packs/UE26ME142A/Unit_01/pack.json",
+      "gap_count": 20,
+      "video_topics": [
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_001_UE26ME142A_Unit_1_Class_1_1_AVSummary_bea4975b08967ab4",
+          "topic_id": "T0002",
+          "title": "UE26ME142A_Unit 1_Class 1.1_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_001_UE26ME142A_Unit_1_Class_1_AVSummary_1ad410489823544f",
+          "topic_id": "T0003",
+          "title": "UE26ME142A_Unit 1_Class 1_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_002_UE26ME142A_Unit_1_Class_2_0_AVSummary_254d366ff7b73c45",
+          "topic_id": "T0004",
+          "title": "UE26ME142A_Unit 1_Class 2.0_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_002_UE26ME142A_Unit_1_Class_2_1_AVSummary_3c66109b736f8c89",
+          "topic_id": "T0005",
+          "title": "UE26ME142A_Unit 1_Class 2.1_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_002_UE26ME142A_Unit_1_Class_2_2_AVSummary_80ec6ef9f2cc872e",
+          "topic_id": "T0006",
+          "title": "UE26ME142A_Unit 1_Class 2.2_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_003_UE26ME142A_Unit_1_Class_3_AVSummary_eee232e254abeb39",
+          "topic_id": "T0007",
+          "title": "UE26ME142A_Unit 1_Class 3_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_004_UE26ME142A_Unit_1_Class_4_AVSummary_93feea637b67e79c",
+          "topic_id": "T0008",
+          "title": "UE26ME142A_Unit 1_Class 4_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_005_UE26ME142A_Unit_1_Class_5_AVSummary_86fffcdbe06dbb6b",
+          "topic_id": "T0009",
+          "title": "UE26ME142A_Unit 1_Class 5_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_006_UE26ME142A_Unit_1_Class_6_AVSummary_f35d743d3b761113",
+          "topic_id": "T0010",
+          "title": "UE26ME142A_Unit 1_Class 6_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_008_UE26ME142A_Unit_1_Class_8_AVSummary_f49bcc7a576db09d",
+          "topic_id": "T0011",
+          "title": "UE26ME142A_Unit 1_Class 8_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_009_UE26ME142A_Unit_1_Class_9_AVSummary_866a19feaac2a3bf",
+          "topic_id": "T0012",
+          "title": "UE26ME142A_Unit 1_Class 9_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_010_UE26ME142A_Unit_1_Class_10_0_AVSummary_4d79e3bc52cb3c4f",
+          "topic_id": "T0013",
+          "title": "UE26ME142A_Unit 1_Class 10.0_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_010_UE26ME142A_Unit_1_Class_10_1_AVSummary_c39186c34db5b2f5",
+          "topic_id": "T0014",
+          "title": "UE26ME142A_Unit 1_Class 10.1_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_011_UE26ME142A_Unit_1_Class_11_AVSummary_3d8f98864b87c9b2",
+          "topic_id": "T0015",
+          "title": "UE26ME142A_Unit 1_Class 11_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_012_UE26ME142A_Unit_1_Class_12_0_AVSummary_ff48ce3f9a237d73",
+          "topic_id": "T0016",
+          "title": "UE26ME142A_Unit 1_Class 12.0_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_01_012_UE26ME142A_Unit_1_Class_12_1_AVSummary_4e48a92aba0ceae0",
+          "topic_id": "T0017",
+          "title": "UE26ME142A_Unit 1_Class 12.1_AVSummary"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26ME142A",
+      "unit_id": "Unit_02",
+      "official_title": "UNIT 2",
+      "bucket_folder_present": true,
+      "videos": 15,
+      "slide_decks": 18,
+      "slide_text_pages": 109,
+      "slide_figures": 150,
+      "topics": 19,
+      "notes": 83,
+      "points": 150,
+      "formula_candidates_in_course_unit": 492,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 625,
+      "sources": 115,
+      "pack_path": "study-materials/packs/UE26ME142A/Unit_02/pack.json",
+      "gap_count": 19,
+      "video_topics": [
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_014_UE26ME142A_Unit_2_Class_14_AVSummary_d028b1de67591979",
+          "topic_id": "T0002",
+          "title": "UE26ME142A_Unit 2_Class 14_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_015_UE26ME142A_Unit_2_Class_15_AVSummary_29e4398836d93577",
+          "topic_id": "T0003",
+          "title": "UE26ME142A_Unit 2_Class 15_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_016_UE26ME142A_Unit_2_Class_16_AVSummary_12354184f0f96c13",
+          "topic_id": "T0004",
+          "title": "UE26ME142A_Unit 2_Class 16_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_017_UE26ME142A_Unit_2_Class_17_AVSummary_25ac1a3b8349a649",
+          "topic_id": "T0005",
+          "title": "UE26ME142A_Unit 2_Class 17_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_018_UE26ME142A_Unit_2_Class_18_AVSummary_dafbae985b8a08a6",
+          "topic_id": "T0006",
+          "title": "UE26ME142A_Unit 2_Class 18_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_019_UE26ME142A_Unit_2_Class_19_0_AVSummary_bd8cd9929f8bd715",
+          "topic_id": "T0007",
+          "title": "UE26ME142A_Unit 2_Class 19.0_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_019_UE26ME142A_Unit_2_Class_19_1_AVSummary_877d29f4ad0c369d",
+          "topic_id": "T0008",
+          "title": "UE26ME142A_Unit 2_Class 19.1_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_019_UE26ME142A_Unit_2_Class_19_2_AVSummary_ee992a99bb75e05b",
+          "topic_id": "T0009",
+          "title": "UE26ME142A_Unit 2_Class 19.2_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_019_UE26ME142A_Unit_2_Class_19_3_AV_Summary_d60756405f7bf7e2",
+          "topic_id": "T0010",
+          "title": "UE26ME142A_Unit 2_Class 19.3_AV Summary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_019_UE26ME142A_Unit_2_Class_19_4_AV_Summary_5e4cbdbb6d761857",
+          "topic_id": "T0011",
+          "title": "UE26ME142A_Unit 2_Class 19.4_AV Summary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_019_UE26ME142A_Unit_2_Class_19_5_AV_Summary_145da9b4503db2ea",
+          "topic_id": "T0012",
+          "title": "UE26ME142A_Unit 2_Class 19.5_AV Summary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_021_UE26ME142A_Unit_2_Class_21_AV_Summary_e2f3aefd30dcda28",
+          "topic_id": "T0013",
+          "title": "UE26ME142A_Unit 2_Class 21_AV Summary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_022_UE26ME142A_Unit_2_Class_22_AV_Summary_ebcc1256b1d0786a",
+          "topic_id": "T0014",
+          "title": "UE26ME142A_Unit 2_Class 22_AV Summary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_023_UE26ME142A_Unit_2_Class_23_AV_Summary_d2db844898691c1a",
+          "topic_id": "T0015",
+          "title": "UE26ME142A_Unit 2_Class 23_AV Summary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_02_024_UE26ME142A_Unit_2_Class_24_AV_Summary_ddeae52719c2a16c",
+          "topic_id": "T0016",
+          "title": "UE26ME142A_Unit 2_Class 24_AV Summary"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26ME142A",
+      "unit_id": "Unit_03",
+      "official_title": "UNIT 3",
+      "bucket_folder_present": true,
+      "videos": 12,
+      "slide_decks": 14,
+      "slide_text_pages": 96,
+      "slide_figures": 137,
+      "topics": 21,
+      "notes": 71,
+      "points": 137,
+      "formula_candidates_in_course_unit": 582,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 530,
+      "sources": 91,
+      "pack_path": "study-materials/packs/UE26ME142A/Unit_03/pack.json",
+      "gap_count": 14,
+      "video_topics": [
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_03_033_CLASS_33_Introduction_to_Centroid_67dd96fa80cc7e7c",
+          "topic_id": "T0002",
+          "title": "CLASS 33 Introduction to Centroid"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_03_034_CLASS_34_Location_of_the_Centroid_of_a_Sector_Semicircular_Lamina_3bf50905d5d6aee5",
+          "topic_id": "T0003",
+          "title": "CLASS 34 Location of the Centroid of a Sector & Semicircular Lamina"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_03_035_CLASS_36_Centroid_Numerical_8d2e6c9175d9d883",
+          "topic_id": "T0004",
+          "title": "CLASS 36 Centroid_ Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_03_036_CLASS_35_Centroid_Numerical_6bf222208dbdadf5",
+          "topic_id": "T0005",
+          "title": "CLASS 35 Centroid_ Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_03_039_CLASS_29_Introduction_to_Beams_719328349228b241",
+          "topic_id": "T0006",
+          "title": "CLASS 29 Introduction to Beams"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_03_040_CLASS_30_Beams_Numerical_eba902d8efe49ef0",
+          "topic_id": "T0007",
+          "title": "CLASS 30 Beams_Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_03_041_CLASS_31_Beams_Numerical_2ddd1ae1ec9c2c35",
+          "topic_id": "T0008",
+          "title": "CLASS 31 Beams_Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_03_041_CLASS_41_1_Beams_Numerical_147becf694d21417",
+          "topic_id": "T0009",
+          "title": "CLASS 41.1 Beams_Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_03_042_UE25CV141A_Unit_3_Class_53_AVSummary_fb2a14ea9c91ccb3",
+          "topic_id": "T0010",
+          "title": "UE25CV141A_Unit 3_Class 53_AVSummary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_03_043_UE25CV141A_Unit_3_Class_54_AV_Summary_912c9dc62b19aae7",
+          "topic_id": "T0011",
+          "title": "UE25CV141A_Unit 3_Class 54_AV Summary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_03_044_UE25CV141A_Unit_3_Class_55_AV_Summary_292b04ba1e28ea04",
+          "topic_id": "T0012",
+          "title": "UE25CV141A_Unit 3_Class 55_AV Summary"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_03_044_UE26ME142A_Unit_3_Class_44_1_AV_Summary_02d4870a880196ad",
+          "topic_id": "T0013",
+          "title": "UE26ME142A_Unit 3_Class 44.1_AV Summary"
+        }
+      ]
+    },
+    {
+      "course_code": "UE26ME142A",
+      "unit_id": "Unit_04",
+      "official_title": "UNIT 4",
+      "bucket_folder_present": true,
+      "videos": 12,
+      "slide_decks": 15,
+      "slide_text_pages": 148,
+      "slide_figures": 152,
+      "topics": 21,
+      "notes": 68,
+      "points": 152,
+      "formula_candidates_in_course_unit": 767,
+      "question_pages_candidate_mapped": 0,
+      "evidence_units": 637,
+      "sources": 94,
+      "pack_path": "study-materials/packs/UE26ME142A/Unit_04/pack.json",
+      "gap_count": 7,
+      "video_topics": [
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_04_046_CLASS_46_Introduction_to_Moment_of_Inertia_f7841a68b028a2d1",
+          "topic_id": "T0002",
+          "title": "CLASS 46 Introduction to Moment of Inertia"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_04_048_CLASS_38_Moment_of_Inertia_Numerical_77ab2c76fcd84290",
+          "topic_id": "T0003",
+          "title": "CLASS 38 Moment of Inertia_ Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_04_049_CLASS_39_Moment_of_Inertia_Numerical_b51a45df3dcf2238",
+          "topic_id": "T0004",
+          "title": "CLASS 39 Moment of Inertia_ Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_04_050_CLASS_40_Moment_of_Inertia_Numerical_0e23de7b877dd375",
+          "topic_id": "T0005",
+          "title": "CLASS 40 Moment of Inertia_ Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_04_051_CLASS_41_Moment_of_Inertia_Numerical_465b60d43e569bb9",
+          "topic_id": "T0006",
+          "title": "CLASS 41 Moment of Inertia_ Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_04_051_CLASS_51_1_Moment_of_Inertia_Numerical_5c991feecd17a895",
+          "topic_id": "T0007",
+          "title": "CLASS 51.1 Moment of Inertia_ Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_04_051_CLASS_51_2_Moment_of_Inertia_Numerical_662a876b25afb423",
+          "topic_id": "T0008",
+          "title": "CLASS 51.2 Moment of Inertia_ Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_04_051_CLASS_51_2_Moment_of_Inertia_Numerical_91dc2d538980f355",
+          "topic_id": "T0009",
+          "title": "CLASS 51.2 Moment of Inertia_ Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_04_055_CLASS_47_Friction_Numerical_f6035152d6e2eca8",
+          "topic_id": "T0010",
+          "title": "CLASS 47 Friction_ Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_04_056_CLASS_48_Friction_Numerical_6985dd7e23b106ba",
+          "topic_id": "T0011",
+          "title": "CLASS 48 Friction_ Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_04_056_CLASS_56_1_Friction_Numerical_816881a9ab73e7db",
+          "topic_id": "T0012",
+          "title": "CLASS 56.1 Friction_ Numerical"
+        },
+        {
+          "video_id": "UE26ME142A_Engineering_Mechanics_1_Unit_04_056_CLASS_56_2_Friction_Numerical_59b393edf5066db5",
+          "topic_id": "T0013",
+          "title": "CLASS 56.2 Friction_ Numerical"
+        }
+      ]
+    }
+  ]
+}

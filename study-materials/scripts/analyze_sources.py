@@ -10,8 +10,21 @@ TREE=json.loads((REPO/'study-materials/inventory/hf-bucket-tree.json').read_text
 MAN=json.loads((REPO/'study-materials/work/download-manifest.json').read_text(encoding='utf-8'))
 MAN_BY={x['path']:x for x in MAN['files']}
 SRC=REPO/'study-materials/sources'
+PASSWORD_FILE=SRC/'First_Year_8enterprise/PASSWORD.txt'
+PDF_PASSWORDS=[line.strip() for line in PASSWORD_FILE.read_text(encoding='utf-8').splitlines() if line.strip() and ':' not in line] if PASSWORD_FILE.is_file() else []
 VID_EXT={'.mp4','.mkv','.webm'}
 VIDEO_ITEMS=[x for x in TREE if x.get('type')=='file' and pathlib.PurePosixPath(x['path']).suffix.lower() in VID_EXT]
+
+def open_pdf(path):
+    doc=fitz.open(path)
+    authenticated=not doc.needs_pass
+    for password in PDF_PASSWORDS:
+        if not authenticated and doc.authenticate(password):
+            authenticated=True
+    if not authenticated:
+        doc.close()
+        raise ValueError('password authentication failed; password contents are withheld')
+    return doc
 
 def local(remote):
     rel=pathlib.PurePosixPath(remote)
@@ -64,6 +77,14 @@ def extract_pages(markdown):
         end=matches[i+1].start() if i+1<len(matches) else len(markdown)
         body=markdown[m.end():end].strip()
         pages.append({'page':int(m.group(1)),'text':body})
+    return pages
+
+def extract_text_variant_pages(text):
+    matches=list(re.finditer(r'(?mi)^Page / slide (\d+)\s*$',text))
+    pages=[]
+    for i,m in enumerate(matches):
+        end=matches[i+1].start() if i+1<len(matches) else len(text)
+        pages.append({'page':int(m.group(1)),'text':text[m.end():end].strip()})
     return pages
 
 def title_from_stem(name):
@@ -158,7 +179,9 @@ for key,records in slides_by_unit.items():
         candidates=[stem+'.pptx',stem+'.ppt',stem+'.pdf']
         deck=next((c for c in candidates if c in {x['path'] for x in files}),None)
         txtpath=stem+'.slides.txt'
-        slide_decks.append({**{k:v for k,v in md.items() if k!='body'},'deck_path':deck,'text_variant_path':txtpath if txtpath in {x['path'] for x in files} else None})
+        txttext=read_text(txtpath) if txtpath in {x['path'] for x in files} else None
+        txtpages=extract_text_variant_pages(txttext or '') if txttext is not None else []
+        slide_decks.append({**{k:v for k,v in md.items() if k!='body'},'deck_path':deck,'text_variant_path':txtpath if txttext is not None else None,'text_variant_pages':txtpages})
 
 courses=[]; variant_rows=[]; match_rows=[]; coverage=collections.Counter()
 for c in INV['courses']:
@@ -183,7 +206,7 @@ for c in INV['courses']:
                     p=local(x['path']); pdf={'source':source_record(x['path']),'pages':[],'password_protected':False}
                     if p.is_file():
                         try:
-                            with fitz.open(p) as doc:
+                            with open_pdf(p) as doc:
                                 for n,page in enumerate(doc,1):
                                     txt=page.get_text('text')
                                     pdf['pages'].append({'page':n,'text':txt,'text_chars':len(txt.strip()),'sparse':len(txt.strip())<40})
@@ -248,7 +271,7 @@ for x in files:
     if pathlib.PurePosixPath(x['path']).suffix.lower()=='.pdf' and p.is_file():
         record['pages']=[]
         try:
-            with fitz.open(p) as doc:
+            with open_pdf(p) as doc:
                 for n,page in enumerate(doc,1):
                     t=page.get_text('text');record['pages'].append({'page':n,'text':t,'text_chars':len(t.strip()),'sparse':len(t.strip())<40})
         except Exception as exc:record['error']=type(exc).__name__

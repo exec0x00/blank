@@ -7,11 +7,14 @@ CORPUS=REPO/'study-materials/datasets/lecture-corpus.json'
 SRC=REPO/'study-materials/sources'
 DATA=json.loads(CORPUS.read_text(encoding='utf-8'))
 PW_FILE=SRC/'First_Year_8enterprise/PASSWORD.txt'
-PASSWORD=PW_FILE.read_text(encoding='utf-8').strip() if PW_FILE.exists() else ''
+PASSWORDS=[line.strip() for line in PW_FILE.read_text(encoding='utf-8').splitlines() if line.strip() and ':' not in line] if PW_FILE.exists() else []
 
 def ocr_page(path, n):
     with fitz.open(path) as doc:
-        if doc.needs_pass and not doc.authenticate(PASSWORD):
+        authenticated=not doc.needs_pass
+        for password in PASSWORDS:
+            if not authenticated and doc.authenticate(password):authenticated=True
+        if not authenticated:
             raise RuntimeError('password required but the supplied bucket password did not unlock this PDF')
         pix=doc[n-1].get_pixmap(dpi=240,alpha=False)
         result=subprocess.run(['tesseract','stdin','stdout','--psm','6'],input=pix.tobytes('png'),stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True,timeout=90)

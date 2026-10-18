@@ -1,6 +1,42 @@
 {
-  "sparse_pages_reviewed": 16,
+  "sparse_pages_reviewed": 53,
   "results": [
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Chemistry/Extra/Chem_Extra_Topics__1-HfOeZNwo.pdf",
+      "page": 21,
+      "status": "ocr_text_found",
+      "chars": 36
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Chemistry/Extra/Chem_Extra_Topics__1-HfOeZNwo.pdf",
+      "page": 37,
+      "status": "ocr_text_found",
+      "chars": 40
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Chemistry/Extra/Chem_Extra_Topics__1-HfOeZNwo.pdf",
+      "page": 38,
+      "status": "ocr_text_found",
+      "chars": 27
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Chemistry/Extra/Chem_Extra_Topics__1-HfOeZNwo.pdf",
+      "page": 45,
+      "status": "ocr_text_found",
+      "chars": 1518
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Chemistry/Extra/Chem_Extra_Topics__1-HfOeZNwo.pdf",
+      "page": 46,
+      "status": "ocr_text_found",
+      "chars": 1217
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Chemistry/Extra/Chem_Extra_Topics__1-HfOeZNwo.pdf",
+      "page": 50,
+      "status": "ocr_text_found",
+      "chars": 1800
+    },
     {
       "source": "pesuc/First_Year_8enterprise/Files/Constitution/Question Bank/Consti_[isa-1]__1Yrj2UM-xT.pdf",
       "page": 24,
@@ -90,6 +126,192 @@
       "page": 13,
       "status": "ocr_text_found",
       "chars": 1124
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 1,
+      "status": "ocr_text_found",
+      "chars": 29
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 2,
+      "status": "ocr_text_found",
+      "chars": 43
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 3,
+      "status": "ocr_text_found",
+      "chars": 373
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 4,
+      "status": "ocr_text_found",
+      "chars": 318
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 7,
+      "status": "ocr_text_found",
+      "chars": 235
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 8,
+      "status": "ocr_text_found",
+      "chars": 609
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 9,
+      "status": "ocr_text_found",
+      "chars": 647
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 10,
+      "status": "ocr_text_found",
+      "chars": 1134
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 11,
+      "status": "ocr_text_found",
+      "chars": 1016
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 12,
+      "status": "ocr_text_found",
+      "chars": 22
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 13,
+      "status": "ocr_text_found",
+      "chars": 565
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 14,
+      "status": "ocr_text_found",
+      "chars": 589
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 15,
+      "status": "ocr_text_found",
+      "chars": 450
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 16,
+      "status": "ocr_text_found",
+      "chars": 454
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 17,
+      "status": "ocr_text_found",
+      "chars": 495
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 18,
+      "status": "ocr_text_found",
+      "chars": 664
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit1+Unit2__1IqAVw_yhi.pdf",
+      "page": 19,
+      "status": "ocr_text_found",
+      "chars": 697
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 2,
+      "status": "ocr_text_found",
+      "chars": 772
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 4,
+      "status": "ocr_text_found",
+      "chars": 35
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 6,
+      "status": "ocr_text_found",
+      "chars": 869
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 7,
+      "status": "ocr_text_found",
+      "chars": 1460
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 8,
+      "status": "ocr_text_found",
+      "chars": 535
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 9,
+      "status": "ocr_text_found",
+      "chars": 657
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 10,
+      "status": "ocr_text_found",
+      "chars": 728
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 12,
+      "status": "ocr_text_found",
+      "chars": 143
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 13,
+      "status": "ocr_text_found",
+      "chars": 486
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 16,
+      "status": "ocr_text_found",
+      "chars": 936
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 20,
+      "status": "ocr_text_found",
+      "chars": 799
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 21,
+      "status": "ocr_text_found",
+      "chars": 739
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 22,
+      "status": "ocr_text_found",
+      "chars": 1180
+    },
+    {
+      "source": "pesuc/First_Year_8enterprise/Files/Math 1/Extra/Revision Notes/Math_Unit2+Unit3+Unit4__1w-kU1CiDL.pdf",
+      "page": 23,
+      "status": "ocr_text_found",
+      "chars": 1488
     },
     {
       "source": "pesuc/First_Year_8enterprise/Files/Math 1/Papers/ESA Papers/UE23MA141A/June__16Tf0gNvuF.pdf",

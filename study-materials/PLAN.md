@@ -15,7 +15,7 @@ Create searchable, print-ready HTML and PDF study materials from all video lesso
 ## Deliverables
 - A complete source inventory and per-video transcript coverage manifest.
 - Structured JSON dataset(s) organized by course, unit, video, transcript segment, slide, formula, diagram, and question-paper source where evidence supports it.
-- One complete master HTML and searchable PDF for each of the 26 official course units. Each unit master contains all available videos, subtopics, notes, formulas, figures, question evidence, and transcript-derived detail; units without current source folders are labelled with their source gaps.
+- One standalone HTML and searchable PDF per video (215 video lessons), plus one complete master HTML/PDF for each of the 26 official course units. Unit masters combine every available video, transcript, slide page, question-source reference and subtopic; units without current source folders are labelled with their source gaps.
 - A final ZIP of all generated HTML, PDFs, datasets, build instructions, provenance and QA reports.
 - Reproducible scripts and skill installation under `.codex/skills/pdf-study-forge/`.
 
@@ -26,6 +26,6 @@ Create searchable, print-ready HTML and PDF study materials from all video lesso
 - Validate schemas, links, source hashes, output PDFs and page previews before release. Do not report a source as reviewed just because it was downloaded or rendered.
 
 ## Working assumptions
-- Group outputs by course and unit rather than generating one PDF per raw MP4; each lesson remains individually indexed and searchable within its unit output and dataset. Complete and publish a unit master as soon as that unit is finished.
+- Generate one source-grounded document per video as well as one master per official unit. Each video remains grouped under its course and unit; the unit master includes every lesson and available page source.
 - Keep the original 19.26 GiB video files hosted at Hugging Face rather than copying them into GitHub. Retain their bucket paths, sizes, hashes and transcript links in the source manifests.
 - Publish incremental commits on `allsubjects` so the inventory, source processing, and generated outputs remain recoverable.
