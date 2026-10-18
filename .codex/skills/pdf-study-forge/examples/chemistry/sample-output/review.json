@@ -1,0 +1,87 @@
+{
+  "reviewer": "Codex authoring agent; no external expert approval claimed",
+  "input_sha256": "7fbb3a1b3afb3ab9655ea52e10be44006d44f2dede9bebf17fc9b55150e96510",
+  "engine_sha256": "108c9e3ffdd690ecccad626ec078969ce0ce04d4ea4eff593cf8ee756727feb1",
+  "content_review": {
+    "source_fidelity": true,
+    "scope_complete": true,
+    "calculations_checked": true,
+    "notes": "Read the complete supplied authored lesson; checked Beer-Lambert assumptions, species/wavelength dependence, dimensional cancellation, A=0.2, T=10^-0.2 and the percentage conversion. Inspected every page, enlarged the chemical notation and worked answer. The calibration is explicitly ideal/illustrative, not measured data. Six glossary entries define the actual symbols."
+  },
+  "pdfs": [
+    {
+      "file": "00_MASTER_chemistry.pdf",
+      "sha256": "b113ebf8e43dc7dd292ec12e469cfe2c4303ed5aa169d9dd73fa7aedecf84820",
+      "pages_reviewed": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "layout_ok": true,
+      "notes": "Inspected every page in the final contact sheets; equations, text, tables, diagrams and final lines remain readable and within margins. Short practice solutions remain together. White space around covers, intact figures and the separate question-bank answer section is intentional."
+    },
+    {
+      "file": "01_formulas_and_symbols.pdf",
+      "sha256": "376c51348dfb00b29e051924378de55a4ab8557809211369d417aa3d39196728",
+      "pages_reviewed": [
+        1,
+        2
+      ],
+      "layout_ok": true,
+      "notes": "Inspected every page in the final contact sheets; equations, text, tables, diagrams and final lines remain readable and within margins. Short practice solutions remain together. White space around covers, intact figures and the separate question-bank answer section is intentional."
+    },
+    {
+      "file": "02_important_points.pdf",
+      "sha256": "c6372cb3f24990146412087053505e50e601b487bb4cb183a6c25fc821db913d",
+      "pages_reviewed": [
+        1
+      ],
+      "layout_ok": true,
+      "notes": "Inspected every page in the final contact sheets; equations, text, tables, diagrams and final lines remain readable and within margins. Short practice solutions remain together. White space around covers, intact figures and the separate question-bank answer section is intentional."
+    },
+    {
+      "file": "03_graphs_and_diagrams.pdf",
+      "sha256": "350a0fa4298d7e4ed0708d75f3b13a01a0b18b5afdcbe507bf0e9a1a340195ce",
+      "pages_reviewed": [
+        1
+      ],
+      "layout_ok": true,
+      "notes": "Inspected every page in the final contact sheets; equations, text, tables, diagrams and final lines remain readable and within margins. Short practice solutions remain together. White space around covers, intact figures and the separate question-bank answer section is intentional."
+    },
+    {
+      "file": "04_flowcharts_and_visuals.pdf",
+      "sha256": "9e7bfb68baaa47ceb3d48811c0ebc4e8e33a5400a195a25e866db7c67670116e",
+      "pages_reviewed": [
+        1
+      ],
+      "layout_ok": true,
+      "notes": "Inspected every page in the final contact sheets; equations, text, tables, diagrams and final lines remain readable and within margins. Short practice solutions remain together. White space around covers, intact figures and the separate question-bank answer section is intentional."
+    },
+    {
+      "file": "05_short_notes_keywords.pdf",
+      "sha256": "9c877a91ebe8b61626b689d2c8526497903925521929716ddb230d3b64c0acfc",
+      "pages_reviewed": [
+        1,
+        2
+      ],
+      "layout_ok": true,
+      "notes": "Inspected every page in the final contact sheets; equations, text, tables, diagrams and final lines remain readable and within margins. Short practice solutions remain together. White space around covers, intact figures and the separate question-bank answer section is intentional."
+    },
+    {
+      "file": "06_question_bank.pdf",
+      "sha256": "537d6dea4397a7fee8fd7793e2526ea8b7d9ccbdf7c8863b17888c7e5cf7ca82",
+      "pages_reviewed": [
+        1,
+        2
+      ],
+      "layout_ok": true,
+      "notes": "Inspected every page in the final contact sheets; equations, text, tables, diagrams and final lines remain readable and within margins. Short practice solutions remain together. White space around covers, intact figures and the separate question-bank answer section is intentional."
+    }
+  ],
+  "warning_resolutions": [],
+  "open_findings": []
+}

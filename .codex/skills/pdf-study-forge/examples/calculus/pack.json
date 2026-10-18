@@ -1,0 +1,1341 @@
+{
+  "MODULES": [],
+  "TOPICS": [
+    {
+      "id": "T1",
+      "title": "Partial derivatives and directional slopes",
+      "overview": "Holding one input fixed gives a slope through a surface. This section distinguishes that coordinate slope from the change in an arbitrary unit direction, and explains when mixed derivatives agree.",
+      "srcs": [
+        "S1"
+      ],
+      "requirements": {
+        "DEFS": 1,
+        "FORMULAS": 1,
+        "WORKED": 1,
+        "FIGS": 1,
+        "FLOWS": 1,
+        "NOTES": 1,
+        "DERIVATIONS": {
+          "not_applicable": "The formulas are demonstrated through worked differentiation rather than a separate proof."
+        },
+        "PRACTICE": 1
+      }
+    },
+    {
+      "id": "T2",
+      "title": "Total change and the chain rule",
+      "overview": "When both inputs change, their contributions combine. The total differential estimates a small finite change, while the chain rule gives the exact derivative of the composed function along a differentiable path.",
+      "srcs": [
+        "S2"
+      ],
+      "requirements": {
+        "DEFS": 1,
+        "FORMULAS": 1,
+        "WORKED": 1,
+        "FIGS": 1,
+        "FLOWS": 1,
+        "NOTES": 1,
+        "DERIVATIONS": {
+          "not_applicable": "The formulas are demonstrated through worked differentiation rather than a separate proof."
+        },
+        "PRACTICE": 1
+      }
+    },
+    {
+      "id": "T3",
+      "title": "Implicit curves and valid tangent formulas",
+      "overview": "An equation can define a curve without giving y explicitly. Differentiate the relation, check that the point lies on the curve, and confirm the denominator is nonzero before evaluating a slope.",
+      "srcs": [
+        "S3"
+      ],
+      "requirements": {
+        "DEFS": 1,
+        "FORMULAS": 1,
+        "WORKED": 1,
+        "FIGS": 1,
+        "FLOWS": 1,
+        "NOTES": 1,
+        "DERIVATIONS": 1,
+        "PRACTICE": 1
+      }
+    }
+  ],
+  "DEFS": [
+    {
+      "id": "D1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "term": "Partial derivative",
+      "text": "The derivative with respect to one coordinate while all other independent coordinates remain fixed."
+    },
+    {
+      "id": "D1.2",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "term": "Unit direction",
+      "text": "A vector of length one. Normalise a supplied direction before using $D_{\\mathbf u}f=\\nabla f\\cdot\\mathbf u$."
+    },
+    {
+      "id": "D2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "term": "Total differential",
+      "text": "The linear part of the change in a differentiable function, $df=f_x\\,dx+f_y\\,dy$."
+    },
+    {
+      "id": "D2.2",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "term": "Composed function",
+      "text": "The one-variable function obtained after replacing every changing input by its path expression."
+    },
+    {
+      "id": "D3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "term": "Implicit relation",
+      "text": "An equation $F(x,y)=0$ that describes admissible pairs $(x,y)$."
+    },
+    {
+      "id": "D3.2",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "term": "Regular branch",
+      "text": "A local representation of the curve as a differentiable function $y(x)$, justified here by $F_y\\ne0$."
+    }
+  ],
+  "STATEMENTS": [],
+  "POINTS": [
+    {
+      "id": "P1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "text": "Differentiate before substituting the evaluation point. Substitution too early can erase the variable that must change."
+    },
+    {
+      "id": "P2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "text": "A path can change several inputs at once; include one chain-rule term for each changing input."
+    },
+    {
+      "id": "P3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "text": "Verify the point belongs to the relation and the chosen denominator is nonzero before evaluating an implicit derivative."
+    }
+  ],
+  "WHY": [
+    {
+      "id": "Y1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "q": "Why can the same surface have two coordinate slopes?",
+      "a": "An x-section and a y-section follow different curves through the same point, so their slopes need not agree."
+    },
+    {
+      "id": "Y2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "q": "Why does a differential differ from a finite change?",
+      "a": "The differential keeps the linear part. Nonlinear terms remain in the exact finite increment."
+    },
+    {
+      "id": "Y3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "q": "Why does a zero denominator require a new analysis?",
+      "a": "It prevents division in the chosen formula. The curve may instead have a vertical tangent or fail to be regular; examine the defining equation."
+    }
+  ],
+  "TRAPS": [
+    {
+      "id": "X1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "text": "The gradient is a vector. A directional slope is the dot product of that vector with a unit direction."
+    },
+    {
+      "id": "X2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "text": "Do not write a finite-change approximation as an exact equality. State the base point and the increments."
+    },
+    {
+      "id": "X3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "text": "Do not evaluate a tangent at a point that is not on the curve. Do not turn division by zero into a slope of zero."
+    }
+  ],
+  "FORMULAS": [
+    {
+      "id": "E1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Coordinate derivatives",
+      "tex": "f_x=2xy,\\qquad f_y=x^2+\\cos y",
+      "gives": "Coordinate slopes for $f=x^2y+\\sin y$.",
+      "when": "Hold the other independent coordinate fixed.",
+      "units": "Output/input; dimensionless in this example."
+    },
+    {
+      "id": "E1.2",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Directional slope",
+      "tex": "D_{\\mathbf u}f=\\nabla f\\cdot\\mathbf u",
+      "gives": "Slope in a selected direction.",
+      "when": "$f$ differentiable and $\\|\\mathbf u\\|=1$.",
+      "units": "Output per unit distance."
+    },
+    {
+      "id": "E1.3",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Second partials",
+      "tex": "\\begin{gathered}f_{xx}=2y,\\quad f_{xy}=f_{yx}=2x\\\\ f_{yy}=-\\sin y\\end{gathered}",
+      "gives": "Variation of coordinate slopes; these are second partial derivatives.",
+      "when": "For the stated smooth function.",
+      "units": "Output/input squared."
+    },
+    {
+      "id": "E2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "title": "Differential",
+      "tex": "df=f_x\\,dx+f_y\\,dy",
+      "gives": "First-order change.",
+      "when": "The function is differentiable at the base point. A finite increment is approximated by this differential.",
+      "units": "Same as the output."
+    },
+    {
+      "id": "E2.2",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "title": "Chain rule",
+      "tex": "\\frac{dz}{dt}=f_x\\frac{dx}{dt}+f_y\\frac{dy}{dt}",
+      "gives": "Change along a parameterised path.",
+      "when": "Differentiate every changing input. Evaluate partials on the path.",
+      "units": "Output per parameter unit."
+    },
+    {
+      "id": "E3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "title": "Implicit first derivative",
+      "tex": "\\frac{dy}{dx}=-\\frac{F_x}{F_y}",
+      "gives": "Slope of a regular implicit branch.",
+      "when": "$F=0$ at the point and $F_y\\ne0$.",
+      "units": "Units of y divided by units of x."
+    },
+    {
+      "id": "E3.2",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "title": "Circle second derivative",
+      "tex": "y^{\\prime\\prime}=-\\frac{25}{y^3}",
+      "gives": "Second derivative of a branch of $x^2+y^2=25$.",
+      "when": "$y\\ne0$; this formula is specific to the radius-five circle.",
+      "units": "Dimensionless coordinates."
+    }
+  ],
+  "SYMBOLS": [
+    {
+      "id": "B1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "$f_x$",
+      "name": "Partial derivative in x",
+      "meaning": "Change in f per change in x while y stays fixed.",
+      "unit": "output/x",
+      "where": "E1.1"
+    },
+    {
+      "id": "B1.2",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "$\\mathbf u$",
+      "name": "Unit direction",
+      "meaning": "Chosen vector of length one.",
+      "unit": "dimensionless",
+      "where": "E1.2"
+    },
+    {
+      "id": "B2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "sym": "$df$",
+      "name": "Differential",
+      "meaning": "Linear part of output change.",
+      "unit": "output",
+      "where": "E2.1"
+    },
+    {
+      "id": "B2.2",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "sym": "$t$",
+      "name": "Path parameter",
+      "meaning": "Independent variable along a path.",
+      "unit": "parameter unit",
+      "where": "E2.2"
+    },
+    {
+      "id": "B3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "sym": "$F$",
+      "name": "Defining function",
+      "meaning": "The relation is the level set F=0.",
+      "unit": "context-dependent",
+      "where": "E3.1"
+    },
+    {
+      "id": "B1.20",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "$x,y$",
+      "name": "Independent coordinates",
+      "meaning": "The two real input coordinates of $f$.",
+      "unit": "Dimensionless",
+      "where": "E1.1"
+    },
+    {
+      "id": "B1.30",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "$f$",
+      "name": "Scalar function",
+      "meaning": "In this lesson, $f(x,y)=x^2y+\\sin y$.",
+      "unit": "Dimensionless",
+      "where": "E1.1"
+    },
+    {
+      "id": "B1.40",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "$\\nabla f$",
+      "name": "Gradient",
+      "meaning": "The vector $(f_x,f_y)$; its dot product with a unit vector gives the directional derivative.",
+      "unit": "Output per input",
+      "where": "E1.2"
+    },
+    {
+      "id": "B1.50",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "$D_{\\mathbf u}f$",
+      "name": "Directional derivative",
+      "meaning": "The rate of change per unit displacement in the unit direction $\\mathbf u$.",
+      "unit": "Output per input",
+      "where": "E1.2"
+    },
+    {
+      "id": "B3.20",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "sym": "$y',y''$",
+      "name": "Implicit derivatives",
+      "meaning": "First and second derivatives of a local branch $y(x)$, where that branch exists.",
+      "unit": "Output per input; output per input squared",
+      "where": "E3.1, E3.2"
+    }
+  ],
+  "WORKED": [
+    {
+      "id": "W1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Read two coordinate slopes",
+      "given": "$f=x^2y+\\sin y$ at $(1,0)$.",
+      "steps": [
+        "Hold $y$ fixed to get $f_x=2xy$. Hold $x$ fixed to get $f_y=x^2+\\cos y$.",
+        "Substitute the point only after differentiating: $f_x(1,0)=0$ and $f_y(1,0)=1+1$."
+      ],
+      "answer": "$f_x(1,0)=0$, $f_y(1,0)=2$.",
+      "check": "The x-section at y=0 is identically zero. The y-section has slope 2 at the point.",
+      "units": "Dimensionless coordinates.",
+      "method": "Coordinate differentiation"
+    },
+    {
+      "id": "W1.2",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Choose an oblique direction",
+      "given": "Use $\\nabla f(1,0)=(0,2)$ and $\\mathbf u=(3/5,4/5)$.",
+      "steps": [
+        "Check the direction length: $(3/5)^2+(4/5)^2=1$.",
+        "Take the dot product: $(0,2)\\cdot(3/5,4/5)=0+8/5$."
+      ],
+      "answer": "$D_{\\mathbf u}f=8/5$.",
+      "check": "The direction is a unit vector; no further scaling is needed.",
+      "units": "Dimensionless coordinates.",
+      "method": "Directional derivative"
+    },
+    {
+      "id": "W2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "title": "Differentiate along a moving path",
+      "given": "$z=x^2y$, $x=t^2$, $y=1+t$; evaluate at $t=1$.",
+      "steps": [
+        "Compute $z_x=2xy$, $z_y=x^2$, $x^{\\prime}=2t$ and $y^{\\prime}=1$.",
+        "Use both paths: $z^{\\prime}=2xy(2t)+x^2$.",
+        "At $t=1$, $(x,y)=(1,2)$, so $z^{\\prime}=2(1)(2)(2)+1$."
+      ],
+      "answer": "$z^{\\prime}(1)=9$.",
+      "check": "Direct substitution gives $z=t^4+t^5$ and $z^{\\prime}(1)=4+5=9$.",
+      "units": "Dimensionless coordinates.",
+      "method": "Two-path chain rule"
+    },
+    {
+      "id": "W2.2",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "title": "Estimate a finite change",
+      "given": "$f=x^2y+\\sin y$ at $(1,0)$ with $dx=0.02$, $dy=-0.01$.",
+      "steps": [
+        "The gradient at the base point is $(0,2)$.",
+        "The differential is $df=0(0.02)+2(-0.01)$.",
+        "Direct evaluation gives $\\Delta f\\approx-0.0204038333$; compare it with the linear estimate."
+      ],
+      "answer": "$df=-0.02$.",
+      "check": "The absolute discrepancy is about 0.0004038333, which is a higher-order remainder.",
+      "units": "Dimensionless coordinates.",
+      "method": "First-order approximation"
+    },
+    {
+      "id": "W3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "title": "Find the tangent to a circle",
+      "given": "$x^2+y^2=25$ at $(3,4)$.",
+      "steps": [
+        "Validate the point: $3^2+4^2=25$.",
+        "Differentiate: $2x+2y\\,y^{\\prime}=0$. Since $2y=8\\ne0$, divide safely.",
+        "Evaluate $y^{\\prime}=-x/y=-3/4$ and use the point-slope equation."
+      ],
+      "answer": "$y-4=-\\tfrac34(x-3)$.",
+      "check": "The radius vector $(3,4)$ is perpendicular to tangent direction $(4,-3)$ because their dot product is zero.",
+      "units": "Dimensionless coordinates.",
+      "method": "Implicit differentiation"
+    },
+    {
+      "id": "W3.2",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "title": "Recognise a vertical tangent",
+      "given": "$x^2+y^2=25$ at $(5,0)$.",
+      "steps": [
+        "Check $5^2+0^2=25$, so the point lies on the curve.",
+        "The denominator $F_y=2y$ is zero; the formula for $dy/dx$ cannot be evaluated.",
+        "Instead use $dx/dy=-y/x=0$, since $F_x=10\\ne0$."
+      ],
+      "answer": "The tangent is the vertical line $x=5$.",
+      "check": "Changing the dependent variable gives a regular local description; a zero denominator is not a zero slope.",
+      "units": "Dimensionless coordinates.",
+      "method": "Domain and regularity check"
+    }
+  ],
+  "PYQS": [],
+  "NOTES": [
+    {
+      "id": "N1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "text": "A partial derivative changes one coordinate while holding the others fixed. It is the slope of the corresponding surface section. The gradient collects these coordinate slopes, and its dot product with a unit vector gives the directional derivative. Mixed partials agree under suitable continuity assumptions."
+    },
+    {
+      "id": "N2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "text": "For a differentiable function, the total differential combines the coordinate contributions to first-order change. Along a differentiable path, the chain rule gives the exact derivative of the composition. Check the result by direct substitution when that route is practical."
+    },
+    {
+      "id": "N3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "text": "Implicit differentiation applies the chain rule to a relation. For a regular branch with nonzero F_y, the slope is minus F_x divided by F_y. The equation itself validates the evaluation point. A zero denominator may indicate that x should be treated as a function of y instead."
+    }
+  ],
+  "KEYWORDS": [
+    {
+      "id": "K1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "term": "Gradient",
+      "meaning": "Vector of coordinate partial derivatives."
+    },
+    {
+      "id": "K1.2",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "term": "Directional derivative",
+      "meaning": "Rate along a specified unit direction."
+    },
+    {
+      "id": "K1.3",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "term": "Mixed partial",
+      "meaning": "Derivative taken with respect to different coordinates."
+    },
+    {
+      "id": "K2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "term": "Differential",
+      "meaning": "Linear change at a specified base point."
+    },
+    {
+      "id": "K2.2",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "term": "Chain rule",
+      "meaning": "Derivative of a composition through all changing inputs."
+    },
+    {
+      "id": "K2.3",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "term": "Remainder",
+      "meaning": "Difference between an exact increment and a chosen approximation."
+    },
+    {
+      "id": "K3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "term": "Implicit function",
+      "meaning": "Local function represented by a relation."
+    },
+    {
+      "id": "K3.2",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "term": "Regular point",
+      "meaning": "Here, a point where the gradient of the relation is nonzero."
+    },
+    {
+      "id": "K3.3",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "term": "Vertical tangent",
+      "meaning": "Tangent parallel to the y-axis."
+    }
+  ],
+  "RAPID": [
+    {
+      "id": "R1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "q": "Why can the same surface have two coordinate slopes?",
+      "a": "An x-section and a y-section follow different curves through the same point, so their slopes need not agree."
+    },
+    {
+      "id": "R2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "q": "Why does a differential differ from a finite change?",
+      "a": "The differential keeps the linear part. Nonlinear terms remain in the exact finite increment."
+    },
+    {
+      "id": "R3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "q": "Why does a zero denominator require a new analysis?",
+      "a": "It prevents division in the chosen formula. The curve may instead have a vertical tangent or fail to be regular; examine the defining equation."
+    }
+  ],
+  "TOP_FACTS": [
+    {
+      "id": "A1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "text": "Differentiate before substituting the evaluation point. Substitution too early can erase the variable that must change."
+    },
+    {
+      "id": "A2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "text": "A path can change several inputs at once; include one chain-rule term for each changing input."
+    },
+    {
+      "id": "A3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "text": "Verify the point belongs to the relation and the chosen denominator is nonzero before evaluating an implicit derivative."
+    }
+  ],
+  "TOP_FORMULAS": [
+    "E1.1",
+    "E2.2",
+    "E3.1"
+  ],
+  "FIGS": [
+    {
+      "id": "G1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "A coordinate section and its tangent",
+      "file": "figures/G1.1.svg",
+      "alt": "Parabolic section f(x,1), with a dashed tangent of slope 2 at x=1.",
+      "howto": "Hold y=1 throughout the plot. The derivative with respect to x at x=1 is the slope of the dashed line."
+    },
+    {
+      "id": "G2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "title": "A changing path and its local rate",
+      "file": "figures/G2.1.svg",
+      "alt": "The curve t to the fourth plus t to the fifth, with a dashed tangent of slope 9 at t=1.",
+      "howto": "The slope 9 belongs to change along the specified path, with both original inputs varying."
+    },
+    {
+      "id": "G3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "title": "A circle branch and its tangent",
+      "file": "figures/G3.1.svg",
+      "alt": "Upper semicircle of radius five, with a dashed tangent of slope minus three quarters at the point (3,4).",
+      "howto": "The tangent is perpendicular to the radius at the contact point. Its downward slope agrees with the implicit derivative."
+    }
+  ],
+  "FLOWS": [
+    {
+      "id": "F1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Evaluate a coordinate partial",
+      "layout": "straight",
+      "spec": {
+        "nodes": [
+          {
+            "kind": "given",
+            "title": "Choose the coordinate",
+            "sub": "State the function and evaluation point."
+          },
+          {
+            "kind": "step",
+            "title": "Hold the other input fixed",
+            "sub": "Differentiate symbolically before substitution.",
+            "n": 2
+          },
+          {
+            "kind": "step",
+            "title": "Evaluate at the point",
+            "sub": "Substitute every coordinate consistently.",
+            "n": 3
+          },
+          {
+            "kind": "check",
+            "title": "Compare with a section",
+            "sub": "A one-variable section gives the same slope."
+          }
+        ]
+      }
+    },
+    {
+      "id": "F2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "title": "Account for both changing inputs",
+      "layout": "straight",
+      "spec": {
+        "nodes": [
+          {
+            "kind": "given",
+            "title": "Write the path",
+            "sub": "Express every changing input in terms of t."
+          },
+          {
+            "kind": "step",
+            "title": "Compute the partials",
+            "sub": "Find f_x and f_y before substitution.",
+            "n": 2
+          },
+          {
+            "kind": "step",
+            "title": "Combine contributions",
+            "sub": "$z^{\\prime}=f_xx^{\\prime}+f_yy^{\\prime}$",
+            "n": 3
+          },
+          {
+            "kind": "check",
+            "title": "Verify by substitution",
+            "sub": "Differentiate the composed one-variable function."
+          }
+        ]
+      }
+    },
+    {
+      "id": "F3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "title": "Check the implicit-derivative denominator",
+      "layout": "fork",
+      "spec": {
+        "before": [
+          {
+            "kind": "given",
+            "title": "Validate the point",
+            "sub": "Substitute it into $F(x,y)=0$."
+          }
+        ],
+        "question": "Is $F_y\\ne0$?",
+        "no": {
+          "kind": "step",
+          "title": "Inspect another description",
+          "sub": "If $F_x\\ne0$, use $dx/dy=-F_y/F_x$."
+        },
+        "yes": {
+          "kind": "result",
+          "title": "Use the slope formula",
+          "fx": "$dy/dx=-F_x/F_y$"
+        },
+        "after": [
+          {
+            "kind": "check",
+            "title": "Check the geometry",
+            "sub": "Compare the tangent with the curve and any symmetry."
+          }
+        ]
+      }
+    }
+  ],
+  "COMPARISONS": [
+    {
+      "id": "C2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "title": "Three related operations",
+      "head": [
+        "Operation",
+        "What changes",
+        "What it returns"
+      ],
+      "rows": [
+        [
+          "Partial derivative",
+          "One input; others fixed",
+          "Coordinate slope"
+        ],
+        [
+          "Total differential",
+          "Small coordinate increments",
+          "Linear output change"
+        ],
+        [
+          "Derivative along a path",
+          "All inputs specified by a parameter",
+          "Exact rate of the composition"
+        ]
+      ]
+    }
+  ],
+  "MNEMONICS": [],
+  "DERIVATIONS": [
+    {
+      "id": "H3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "title": "Derive the second derivative on the circle",
+      "given": "$x^2+y^2=25$, with $y\\ne0$.",
+      "steps": [
+        "Differentiate once: $2x+2yy^{\\prime}=0$, so $y^{\\prime}=-x/y$.",
+        "Differentiate again using the product rule: $2+2(y^{\\prime})^2+2yy^{\\prime\\prime}=0$.",
+        "Solve for $y^{\\prime\\prime}=-(1+(y^{\\prime})^2)/y$.",
+        "Substitute $y^{\\prime}=-x/y$ and use $x^2+y^2=25$."
+      ],
+      "answer": "$y^{\\prime\\prime}=-25/y^3$; at $(3,4)$ it is $-25/64$.",
+      "check": "On the upper semicircle y is positive, so the second derivative is negative, as its concave-down shape requires."
+    }
+  ],
+  "PRACTICE": [
+    {
+      "id": "Q1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "A claim about gradients",
+      "kind": "true_false",
+      "prompt": "True or false: the gradient itself is the scalar slope in every direction.",
+      "steps": [
+        "A gradient contains one component per independent coordinate.",
+        "Choose a unit direction and take a dot product to obtain its scalar slope."
+      ],
+      "answer": "False. Use the directional derivative.",
+      "check": "Compare the x and y slopes in W1.1."
+    },
+    {
+      "id": "Q2.1",
+      "topic": "T2",
+      "srcs": [
+        "S2"
+      ],
+      "title": "A missing chain-rule path",
+      "kind": "spot_error",
+      "prompt": "A student differentiates $z=x^2y$ along $x=t^2$, $y=1+t$ and writes $z^{\\prime}=2xy(2t)$. Find and repair the omission.",
+      "steps": [
+        "The student included the x path but omitted the y path.",
+        "Add $z_yy^{\\prime}=x^2$. Then substitute the path."
+      ],
+      "answer": "$z^{\\prime}=4t^3+5t^4$; at $t=1$, the rate is $9$.",
+      "check": "Direct substitution gives z=t^4+t^5."
+    },
+    {
+      "id": "Q3.1",
+      "topic": "T3",
+      "srcs": [
+        "S3"
+      ],
+      "title": "Circle second derivative",
+      "kind": "numeric",
+      "prompt": "Find $y^{\\prime\\prime}$ on $x^2+y^2=25$ at $(3,4)$.",
+      "steps": [
+        "Use the circle formula $y^{\\prime\\prime}=-25/y^3$.",
+        "Substitute $y=4$ after checking the point and denominator."
+      ],
+      "answer": "$-25/64$.",
+      "check": "The negative second derivative agrees with the concave-down upper semicircle."
+    }
+  ],
+  "schema_version": "1.0",
+  "EVIDENCE": [
+    {
+      "id": "S1",
+      "source": "SRC1",
+      "unit": "partial",
+      "status": "covered",
+      "summary": "Read the full partial section; mapped its definitions, equations, conditions, examples, pitfalls and geometry.",
+      "items": [
+        "T1",
+        "D1.1",
+        "D1.2",
+        "P1.1",
+        "Y1.1",
+        "X1.1",
+        "E1.1",
+        "E1.2",
+        "E1.3",
+        "B1.1",
+        "W1.1",
+        "W1.2",
+        "N1.1",
+        "K1.1",
+        "K1.2",
+        "K1.3",
+        "R1.1",
+        "A1.1",
+        "G1.1",
+        "F1.1",
+        "Q1.1",
+        "B1.2",
+        "B1.20",
+        "B1.30",
+        "B1.40",
+        "B1.50"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "S2",
+      "source": "SRC1",
+      "unit": "total",
+      "status": "covered",
+      "summary": "Read the full total section; mapped its definitions, equations, conditions, examples, pitfalls and geometry.",
+      "items": [
+        "T2",
+        "D2.1",
+        "D2.2",
+        "P2.1",
+        "Y2.1",
+        "X2.1",
+        "E2.1",
+        "E2.2",
+        "B2.1",
+        "B2.2",
+        "W2.1",
+        "W2.2",
+        "N2.1",
+        "K2.1",
+        "K2.2",
+        "K2.3",
+        "R2.1",
+        "A2.1",
+        "G2.1",
+        "F2.1",
+        "C2.1",
+        "Q2.1"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "S3",
+      "source": "SRC1",
+      "unit": "implicit",
+      "status": "covered",
+      "summary": "Read the full implicit section; mapped its definitions, equations, conditions, examples, pitfalls and geometry.",
+      "items": [
+        "T3",
+        "D3.1",
+        "D3.2",
+        "P3.1",
+        "Y3.1",
+        "X3.1",
+        "E3.1",
+        "E3.2",
+        "B3.1",
+        "W3.1",
+        "W3.2",
+        "N3.1",
+        "K3.1",
+        "K3.2",
+        "K3.3",
+        "R3.1",
+        "A3.1",
+        "G3.1",
+        "F3.1",
+        "H3.1",
+        "Q3.1",
+        "B3.20"
+      ],
+      "reviewed": true
+    }
+  ],
+  "CHECKS": [
+    {
+      "id": "K1",
+      "item": "E1.1",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "diff(x**2*y+sin(y),x)",
+      "rhs": "2*x*y",
+      "symbols": {
+        "x": {
+          "real": true
+        },
+        "y": {
+          "real": true
+        },
+        "t": {
+          "real": true
+        }
+      }
+    },
+    {
+      "id": "K2",
+      "item": "E1.1",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "diff(x**2*y+sin(y),y)",
+      "rhs": "x**2+cos(y)",
+      "symbols": {
+        "x": {
+          "real": true
+        },
+        "y": {
+          "real": true
+        },
+        "t": {
+          "real": true
+        }
+      }
+    },
+    {
+      "id": "K3",
+      "item": "E1.2",
+      "method": "manual",
+      "note": "Reviewed directional derivative definition: differentiability and unit-vector conditions explicitly stated.",
+      "reviewed": true
+    },
+    {
+      "id": "K4",
+      "item": "E1.3",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "diff(x**2*y+sin(y),x,y)",
+      "rhs": "2*x",
+      "symbols": {
+        "x": {
+          "real": true
+        },
+        "y": {
+          "real": true
+        },
+        "t": {
+          "real": true
+        }
+      }
+    },
+    {
+      "id": "K5",
+      "item": "E1.3",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "diff(x**2*y+sin(y),y,2)",
+      "rhs": "-sin(y)",
+      "symbols": {
+        "x": {
+          "real": true
+        },
+        "y": {
+          "real": true
+        },
+        "t": {
+          "real": true
+        }
+      }
+    },
+    {
+      "id": "K6",
+      "item": "E2.1",
+      "method": "manual",
+      "note": "Reviewed definition of the differential and distinguished it from a finite increment.",
+      "reviewed": true
+    },
+    {
+      "id": "K7",
+      "item": "E2.2",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "diff(t**4+t**5,t)",
+      "rhs": "2*(t**2)*(1+t)*(2*t)+(t**2)**2",
+      "symbols": {
+        "x": {
+          "real": true
+        },
+        "y": {
+          "real": true
+        },
+        "t": {
+          "real": true
+        }
+      }
+    },
+    {
+      "id": "K8",
+      "item": "E3.1",
+      "method": "manual",
+      "note": "Derived by differentiating F(x,y(x))=0. Division requires nonzero F_y.",
+      "reviewed": true
+    },
+    {
+      "id": "K9",
+      "item": "E3.2",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "-(1+(x/y)**2)/y",
+      "rhs": "-(x**2+y**2)/y**3",
+      "symbols": {
+        "x": {
+          "real": true
+        },
+        "y": {
+          "real": true
+        },
+        "t": {
+          "real": true
+        }
+      }
+    },
+    {
+      "id": "K10",
+      "item": "W1.1",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "0",
+      "rhs": "2*1*0",
+      "symbols": {}
+    },
+    {
+      "id": "K11",
+      "item": "W1.2",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "0*(3/5)+2*(4/5)",
+      "rhs": "8/5",
+      "symbols": {}
+    },
+    {
+      "id": "K12",
+      "item": "W2.1",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "2*1*2*2+1",
+      "rhs": "9",
+      "symbols": {}
+    },
+    {
+      "id": "K13",
+      "item": "W2.2",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "0*0.02+2*(-0.01)",
+      "rhs": "-0.02",
+      "symbols": {}
+    },
+    {
+      "id": "K14",
+      "item": "W3.1",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "3*4+4*(-3)",
+      "rhs": "0",
+      "symbols": {}
+    },
+    {
+      "id": "K15",
+      "item": "W3.2",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "-0/5",
+      "rhs": "0",
+      "symbols": {}
+    },
+    {
+      "id": "K16",
+      "item": "H3.1",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "-(1+(-3/4)**2)/4",
+      "rhs": "-25/64",
+      "symbols": {}
+    },
+    {
+      "id": "K17",
+      "item": "Q1.1",
+      "method": "manual",
+      "note": "Reviewed the distinction between a vector gradient and a scalar directional slope.",
+      "reviewed": true
+    },
+    {
+      "id": "K18",
+      "item": "Q2.1",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "diff(t**4+t**5,t)",
+      "rhs": "4*t**3+5*t**4",
+      "symbols": {
+        "x": {
+          "real": true
+        },
+        "y": {
+          "real": true
+        },
+        "t": {
+          "real": true
+        }
+      }
+    },
+    {
+      "id": "K19",
+      "item": "Q3.1",
+      "method": "symbolic",
+      "note": "Recomputed independently from the stated definition and checked for the stated domain.",
+      "reviewed": true,
+      "lhs": "-25/(4**3)",
+      "rhs": "-25/64",
+      "symbols": {}
+    }
+  ],
+  "PACK": {
+    "course": "Multivariable calculus",
+    "unit": "Differentiation in two variables",
+    "scope": "Partial derivatives, changes along a path, and a circle defined implicitly",
+    "title": "From Partial Derivatives to Implicit Curves",
+    "subtitle": "A complete worked lesson with diagrams, derivations and retrieval practice",
+    "slug": "derivatives",
+    "header": "Calculus · Differentiation",
+    "date": "17 October 2026",
+    "compiled_from": "Original instructional source included as sources/lesson.md. This is a demonstration, not an examination-frequency claim.",
+    "how_to_use": "Read each idea, follow the worked example, and reproduce the method without looking. Use the three graphs to connect symbols with slopes. Attempt the question bank before opening its worked answers.",
+    "pyq_note": "No past papers supplied. All practice questions are authored examples. No ESA ranking is asserted.",
+    "figure_note": "Illustrative graphs computed from the stated equations, with dimensionless axes. Dashed lines denote tangents.",
+    "symbols_remark": "The symbols x and y denote independent coordinates except when a specific path or implicit branch is stated.",
+    "sources": [
+      {
+        "id": "SRC1",
+        "name": "Original derivative lesson",
+        "path": "sources/lesson.md",
+        "local_path": "sources/lesson.md",
+        "sha256": "7872d2c0702a702759d583313ee3df96e79c8602723a4c7622118a5edaae5e53",
+        "kind": "authored",
+        "units": [
+          "partial",
+          "total",
+          "implicit"
+        ],
+        "use": "Theory, examples and all illustrative plots",
+        "availability": "available"
+      }
+    ],
+    "gaps": [],
+    "documents": [
+      "master",
+      "formulas",
+      "points",
+      "figures",
+      "flows",
+      "recall",
+      "questions"
+    ],
+    "tag_legend": [
+      [
+        "S1",
+        "Lesson: partial derivatives"
+      ],
+      [
+        "S2",
+        "Lesson: total derivative"
+      ],
+      [
+        "S3",
+        "Lesson: implicit curves"
+      ]
+    ]
+  }
+}

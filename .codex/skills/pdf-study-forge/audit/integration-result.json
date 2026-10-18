@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "checks": [
+    "all eight flow layouts rendered",
+    "long worked solution retained its last line",
+    "45-row table retained last row",
+    "cross-PDF solution link is relative",
+    "all generated PDFs passed automatic QA",
+    "changed figure asset blocked at finalize",
+    "overwide formula rejected",
+    "prior output preserved on failed build",
+    "stale review blocked"
+  ],
+  "pages": {
+    "00_MASTER_derivatives.pdf": 28,
+    "02_important_points.pdf": 4,
+    "04_flowcharts_and_visuals.pdf": 9
+  },
+  "warning_count": 2
+}

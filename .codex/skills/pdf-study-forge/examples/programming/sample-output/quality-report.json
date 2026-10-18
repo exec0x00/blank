@@ -1,0 +1,329 @@
+{
+  "schema_version": "1.0",
+  "status": "RELEASED",
+  "draft": false,
+  "input_sha256": "f6b653493b89d46fe2cea62bcdfe2de1846dadfcdfe9f8c8f4935f14f9bf80de",
+  "input_assets": {
+    "sources/lesson.md": "c359e52292f7855b6340be3aa4ab8191e81cc130fdbfbf7e1a08580cc6c5e234"
+  },
+  "engine_sha256": "108c9e3ffdd690ecccad626ec078969ce0ce04d4ea4eff593cf8ee756727feb1",
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "checks": [
+      {
+        "id": "VE1.1",
+        "item": "E1.1",
+        "ok": true,
+        "method": "manual",
+        "result": "manual record only; no mathematical proof by software"
+      },
+      {
+        "id": "VW1.1",
+        "item": "W1.1",
+        "ok": true,
+        "method": "manual",
+        "result": "manual record only; no mathematical proof by software"
+      },
+      {
+        "id": "VQ1.1",
+        "item": "Q1.1",
+        "ok": true,
+        "method": "manual",
+        "result": "manual record only; no mathematical proof by software"
+      }
+    ],
+    "counts": {
+      "MODULES": 0,
+      "TOPICS": 1,
+      "DEFS": 2,
+      "STATEMENTS": 0,
+      "POINTS": 1,
+      "WHY": 1,
+      "TRAPS": 0,
+      "FORMULAS": 1,
+      "SYMBOLS": 4,
+      "WORKED": 1,
+      "PYQS": 0,
+      "NOTES": 1,
+      "KEYWORDS": 2,
+      "RAPID": 1,
+      "TOP_FACTS": 1,
+      "TOP_FORMULAS": 1,
+      "FIGS": 0,
+      "FLOWS": 1,
+      "COMPARISONS": 0,
+      "MNEMONICS": 0,
+      "DERIVATIONS": 0,
+      "PRACTICE": 1
+    },
+    "coverage": {
+      "covered": 1
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "pdfs": [
+    {
+      "file": "00_MASTER_programming.pdf",
+      "pages": 6,
+      "outlines": 20,
+      "fonts": 6,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 220,
+          "ink_ratio": 0.0246
+        },
+        {
+          "page": 2,
+          "body_characters": 1413,
+          "ink_ratio": 0.1514
+        },
+        {
+          "page": 3,
+          "body_characters": 640,
+          "ink_ratio": 0.2886
+        },
+        {
+          "page": 4,
+          "body_characters": 1324,
+          "ink_ratio": 0.251
+        },
+        {
+          "page": 5,
+          "body_characters": 835,
+          "ink_ratio": 0.1328
+        },
+        {
+          "page": 6,
+          "body_characters": 745,
+          "ink_ratio": 0.1053
+        }
+      ],
+      "sheets": [
+        "00_MASTER_programming-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "01_formulas_and_symbols.pdf",
+      "pages": 2,
+      "outlines": 5,
+      "fonts": 5,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 918,
+          "ink_ratio": 0.1525
+        },
+        {
+          "page": 2,
+          "body_characters": 270,
+          "ink_ratio": 0.047
+        }
+      ],
+      "sheets": [
+        "01_formulas_and_symbols-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "02_important_points.pdf",
+      "pages": 1,
+      "outlines": 5,
+      "fonts": 4,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 932,
+          "ink_ratio": 0.1561
+        }
+      ],
+      "sheets": [
+        "02_important_points-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "03_graphs_and_diagrams.pdf",
+      "pages": 1,
+      "outlines": 2,
+      "fonts": 3,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 462,
+          "ink_ratio": 0.0318
+        }
+      ],
+      "sheets": [
+        "03_graphs_and_diagrams-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "04_flowcharts_and_visuals.pdf",
+      "pages": 1,
+      "outlines": 3,
+      "fonts": 4,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 634,
+          "ink_ratio": 0.2053
+        }
+      ],
+      "sheets": [
+        "04_flowcharts_and_visuals-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "05_short_notes_keywords.pdf",
+      "pages": 2,
+      "outlines": 8,
+      "fonts": 4,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 1276,
+          "ink_ratio": 0.1034
+        },
+        {
+          "page": 2,
+          "body_characters": 261,
+          "ink_ratio": 0.0675
+        }
+      ],
+      "sheets": [
+        "05_short_notes_keywords-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "06_question_bank.pdf",
+      "pages": 2,
+      "outlines": 7,
+      "fonts": 3,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 471,
+          "ink_ratio": 0.0436
+        },
+        {
+          "page": 2,
+          "body_characters": 404,
+          "ink_ratio": 0.0385
+        }
+      ],
+      "sheets": [
+        "06_question_bank-sheet001.jpg"
+      ]
+    }
+  ],
+  "portable_links_repaired": 0,
+  "artifacts": {
+    ".docs.json": "a3df37a169adf6e93a5ffdf0708270d06b7568c1c86b616f941264e86bf0bcd6",
+    "00_MASTER_programming.html": "f28ff0b0aecf17d68654ad387e8ed4441a6f02d921269b1d96337178190101d4",
+    "00_MASTER_programming.pdf": "b090bfc3c5e3ba7d6e8f4e8f4a93efe419fafb90b0f214618cce865d667669f3",
+    "01_formulas_and_symbols.html": "c8cee4360507a474b80710494df20a8efa86b9fe3fc8b73559dc7f5ab3edf50c",
+    "01_formulas_and_symbols.pdf": "93f03516ccc34b5272ee7a96dca5b36723e7f9c49326501017d1f4806187de8e",
+    "02_important_points.html": "48f8143d4b26c858b58da56117ef07447e02ced65872548cf35189b18f4b1ec3",
+    "02_important_points.pdf": "4031e6404ac992076dbeb1c9c70a854b3c7df9a02510ee9ba26c141d811d4489",
+    "03_graphs_and_diagrams.html": "b637689f79ee698b00eef2de17aa114a14c1fb1a59d5089c49a13b28b34a203d",
+    "03_graphs_and_diagrams.pdf": "a14aa578db6c22f79de8a1ab9b1562e3969c215b919810c7699e8f940ea60d25",
+    "04_flowcharts_and_visuals.html": "377f3342a7a4b09f87571100f1bef3ed7c4dab025c435678e24d33e858b60814",
+    "04_flowcharts_and_visuals.pdf": "31af0a77bf45a215f438583ac9e4ff5323f60398c9593405dd910a87056d8d02",
+    "05_short_notes_keywords.html": "5aa3259f2232abb748f8b28f7b01b6827c02276557ea48d3473a535fc4b97794",
+    "05_short_notes_keywords.pdf": "aa528b90ff1b6add437643444b08a32e0cb44f0e3fa99468e3193684ae3f22a5",
+    "06_question_bank.html": "c14a55f70c1463b577e06ae2a9aab5a8904f5df31e11a22a1297977699742bef",
+    "06_question_bank.pdf": "f2bfe23f4f847f3d889e49481e593f3d6030fc2372e0a048705d28742c37d224",
+    "assets/fonts/DejaVuSans.ttf": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e",
+    "assets/fonts/DejaVuSansMono.ttf": "54bf827eb99404e8f430c330ad30f063334f637eba0109b6a18d4f566a8e9dd8",
+    "assets/fonts/cmunbi.woff": "c91f3defd696023069b9953de078bf0f27a32218e08405ebfbf50c29d10004ab",
+    "assets/fonts/cmunbx.woff": "3226e8a7068df32b96f2a80f7ad2ca306c8dfcc494ab2b337019cbb7d098db24",
+    "assets/fonts/cmunrm.woff": "32115abbbfb231586813333bfa5a234f4dc7f28b27df7260f42f81146ccd9097",
+    "assets/fonts/cmunti.woff": "d9a02b7b67874c62f47f9c9a0914c115972ab77d43e82a163baf0888eb5d4a2d",
+    "assets/katex/fonts/KaTeX_AMS-Regular.ttf": "68534840bcfdd2bffb6f0e8deb48684dd01e7f04ea2813267577afb906de1d13",
+    "assets/katex/fonts/KaTeX_AMS-Regular.woff": "30da91e84c893f875e252689faebdc590b2871145e8adc7f9a9d4dbd8ce0b251",
+    "assets/katex/fonts/KaTeX_AMS-Regular.woff2": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308",
+    "assets/katex/fonts/KaTeX_Caligraphic-Bold.ttf": "07d8e303ce4fc12b4bb54f1004170dd190a1f3db45d400fe68060df3e0897268",
+    "assets/katex/fonts/KaTeX_Caligraphic-Bold.woff": "1ae6bd7475590e97e7f145a89e09ccde322f7a6bc0b91607b1c8b8ee28290fed",
+    "assets/katex/fonts/KaTeX_Caligraphic-Bold.woff2": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c",
+    "assets/katex/fonts/KaTeX_Caligraphic-Regular.ttf": "ed0b74372feefcbb9c0666b2e210da37b7e49fa7fbbf3eeb11db5f693dacfbb7",
+    "assets/katex/fonts/KaTeX_Caligraphic-Regular.woff": "3398dd02302557a793f2863f88e02d96ce10df2abffa07c8e9fa90775116e65c",
+    "assets/katex/fonts/KaTeX_Caligraphic-Regular.woff2": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b",
+    "assets/katex/fonts/KaTeX_Fraktur-Bold.ttf": "9163df9c7122432e6495b4229fa9071cf9ae86a758ae5efc4924ec2e1a6dbce1",
+    "assets/katex/fonts/KaTeX_Fraktur-Bold.woff": "9be7ceb88004ab8ad124082246fbfcca4091e36385d4ec6ed1df67375dad50fb",
+    "assets/katex/fonts/KaTeX_Fraktur-Bold.woff2": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f",
+    "assets/katex/fonts/KaTeX_Fraktur-Regular.ttf": "1e6f9579e90e2cac37f8f60a597c436e075c114385652b7cbeb0dec0421291b3",
+    "assets/katex/fonts/KaTeX_Fraktur-Regular.woff": "5e28753be717dac97f559f49bc10be9cf3c124ddcabda6659d11cb68febc6463",
+    "assets/katex/fonts/KaTeX_Fraktur-Regular.woff2": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc",
+    "assets/katex/fonts/KaTeX_Main-Bold.ttf": "138ac28d1663b3037e9c5f52371fa5c63d8324f4a38d22cd573e6ea3a3fd0cf8",
+    "assets/katex/fonts/KaTeX_Main-Bold.woff": "c76c5d696297d51b9cb1639c7da4334f0e7dec81b42b11213b5e25ef671bb822",
+    "assets/katex/fonts/KaTeX_Main-Bold.woff2": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021",
+    "assets/katex/fonts/KaTeX_Main-BoldItalic.ttf": "70ee1f64a20f2048c21940ef46d0144fd215baa953ca69afd1e31e98544f708f",
+    "assets/katex/fonts/KaTeX_Main-BoldItalic.woff": "a6f7ec0d846ac7ad975adb8959c37ed49b94acbc4ae436db9ce9e20287e4a64c",
+    "assets/katex/fonts/KaTeX_Main-BoldItalic.woff2": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b",
+    "assets/katex/fonts/KaTeX_Main-Italic.ttf": "0d85ae7cc30f23790a7f1a58c4a112fdca8aae769b6ba11429af1d98b1b6cb3a",
+    "assets/katex/fonts/KaTeX_Main-Italic.woff": "f1d6ef86f3b11a528bd5185199bd2443ecb2b0dead96d88674b5a2c12be24bdf",
+    "assets/katex/fonts/KaTeX_Main-Italic.woff2": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267",
+    "assets/katex/fonts/KaTeX_Main-Regular.ttf": "d0332f52868370fd83ae7fa46470f90c8f2eab2fcf12bc4f88080b340c95a830",
+    "assets/katex/fonts/KaTeX_Main-Regular.woff": "c6368d87e8a1a3a5d337623d83d8dc4b868f242a9ad476237d6f8d1e0f168cdc",
+    "assets/katex/fonts/KaTeX_Main-Regular.woff2": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866",
+    "assets/katex/fonts/KaTeX_Math-BoldItalic.ttf": "f9377ab0271cda59af24bcffbd46a4d0c8a3572ffafdbb38de2ad5ea7b0d5ee5",
+    "assets/katex/fonts/KaTeX_Math-BoldItalic.woff": "850c0af5c2238497febaf5e461d880bf458c341f42f4f330f1b1ab5698b1998e",
+    "assets/katex/fonts/KaTeX_Math-BoldItalic.woff2": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1",
+    "assets/katex/fonts/KaTeX_Math-Italic.ttf": "08ce98e51b04d58945a301e639e02b6998af29fdfd61a7b8afdd07bbfc479d4a",
+    "assets/katex/fonts/KaTeX_Math-Italic.woff": "8a8d244581371912b8f3f5a23e2437cb2a59cd9bcaebb0346e722c05737a2571",
+    "assets/katex/fonts/KaTeX_Math-Italic.woff2": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264",
+    "assets/katex/fonts/KaTeX_SansSerif-Bold.ttf": "1ece03f79f95277d57dc7f6b435a74e1379b0d46104a8530286b60ff49369ea0",
+    "assets/katex/fonts/KaTeX_SansSerif-Bold.woff": "ece03cfd83e22c212cdef66feb8442d25a083beb988db3f1883f3f9738d750ba",
+    "assets/katex/fonts/KaTeX_SansSerif-Bold.woff2": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62",
+    "assets/katex/fonts/KaTeX_SansSerif-Italic.ttf": "3931dd81faed86ba021bb2bbdc36f5bed9a38d6b4f4077aca59b265aa1b02083",
+    "assets/katex/fonts/KaTeX_SansSerif-Italic.woff": "91ee67500cc0129aa0ace3ac5c61ff1692102f0f31d02b69347fba35dcb75bf2",
+    "assets/katex/fonts/KaTeX_SansSerif-Italic.woff2": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a",
+    "assets/katex/fonts/KaTeX_SansSerif-Regular.ttf": "f36ea897e19f4a2e571d1e900e4e3710e438deb05a842486045ba0a3e616a4ad",
+    "assets/katex/fonts/KaTeX_SansSerif-Regular.woff": "11e4dc8a6471ff6d6ee561d53d10fde8f7489e798257ff449c5d37c197435605",
+    "assets/katex/fonts/KaTeX_SansSerif-Regular.woff2": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342",
+    "assets/katex/fonts/KaTeX_Script-Regular.ttf": "1c67f068fea8bb09bf099c088b1cf64bd27516a6e07f4684344873564bb66a67",
+    "assets/katex/fonts/KaTeX_Script-Regular.woff": "d96cdf2b3bdd4d64a8fd5f74a4c467f123a8a73931cd435889f08ffaf9bf947a",
+    "assets/katex/fonts/KaTeX_Script-Regular.woff2": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b",
+    "assets/katex/fonts/KaTeX_Size1-Regular.ttf": "95b6d2f1a50173bfedb8c63e1d1c99b10427d0a4df4201cb44513b226951a22b",
+    "assets/katex/fonts/KaTeX_Size1-Regular.woff": "c943cc986384f59e86bea5fd7dc50a9c4dfe567a7c05eb40d6790720dead97c9",
+    "assets/katex/fonts/KaTeX_Size1-Regular.woff2": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe",
+    "assets/katex/fonts/KaTeX_Size2-Regular.ttf": "a6b2099fb555c60e3a0db3a08842ebf1d732c6eb4e4bf44913613bed4fc4e39b",
+    "assets/katex/fonts/KaTeX_Size2-Regular.woff": "2014c523c3210bcc166648c4d4cc57f05b747df07a24277bf71c51e67dc79e3d",
+    "assets/katex/fonts/KaTeX_Size2-Regular.woff2": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd",
+    "assets/katex/fonts/KaTeX_Size3-Regular.ttf": "500e04d54f0d51666332c9d2089aa803be22aa878eca539e59fa53c6e522b082",
+    "assets/katex/fonts/KaTeX_Size3-Regular.woff": "6ab6b62e9b62dae2c00dd90f791bd10950be0ecc3490d7d6045f51c2e8fe0949",
+    "assets/katex/fonts/KaTeX_Size3-Regular.woff2": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995",
+    "assets/katex/fonts/KaTeX_Size4-Regular.ttf": "c647367d1dd4e162468717d020e1fc0f1dc5c26ebfdffbe55261713bf88c5877",
+    "assets/katex/fonts/KaTeX_Size4-Regular.woff": "99f9c6750b489c9462bf04900bd3f939df9b829339daaaaa99ef5495cdddea58",
+    "assets/katex/fonts/KaTeX_Size4-Regular.woff2": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0",
+    "assets/katex/fonts/KaTeX_Typewriter-Regular.ttf": "f01f3e87d9c6a61c0c081ceb577abd864eb00a612f7ac1620dd6915fad2ef5aa",
+    "assets/katex/fonts/KaTeX_Typewriter-Regular.woff": "e14fed02b1aba7ce9f5afd5844b5d0321b22351febc720e0de8b8723527609f7",
+    "assets/katex/fonts/KaTeX_Typewriter-Regular.woff2": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b",
+    "assets/katex/katex.min.css": "717bc9ae7853b61f0f76455dddf0ecd4f527a783f42de2ac24684899c1c46258",
+    "assets/study.css": "e668eeb425f80309e18350f3f945d08726166a800806d6f14be226fbc75127d9",
+    "dom-report.json": "f5a23bdb41325091a1613f42c9202f93812ef0ea715aa81dc22ab3ccd6fdb6f1",
+    "standalone/00_MASTER_programming.html": "ea970756f34c305c36f1133296fb02f40cabe70b0fd81a3dd48d821ec4345e6f",
+    "standalone/01_formulas_and_symbols.html": "1739775b8f65fd4a775c688773677e7ef78cd1d802878595e869c2250636097f",
+    "standalone/02_important_points.html": "534442d457f4517ed737f4f0bff02920f2bc65261b707ca9710d26f2ea3e934b",
+    "standalone/03_graphs_and_diagrams.html": "52cf151f3b80a0949e6b8e3eb292c9f218136b82efdc464dfa2fd25977b66b26",
+    "standalone/04_flowcharts_and_visuals.html": "9a41f4f6e501a9e80e1e240ec5952ceb9960eb9bf794e2b2c1333427ada08993",
+    "standalone/05_short_notes_keywords.html": "7632c9a2fadb183a1837bcf4b63db32a407467e8cc8a299930e225fb5c330af7",
+    "standalone/06_question_bank.html": "066efdff1ee8c058a604ea9e0173f21f4061f711647691582ee3cc03b14c9b02"
+  }
+}

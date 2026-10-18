@@ -1,0 +1,3913 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/pdf-study-forge/pack.schema.json",
+  "title": "PDF Study Forge pack",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "PACK": {
+      "type": "object",
+      "properties": {
+        "course": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9_-]*$"
+        },
+        "header": {
+          "type": "string",
+          "minLength": 1
+        },
+        "date": {
+          "type": "string",
+          "minLength": 1
+        },
+        "compiled_from": {
+          "type": "string",
+          "minLength": 1
+        },
+        "how_to_use": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pyq_note": {
+          "type": "string"
+        },
+        "figure_note": {
+          "type": "string"
+        },
+        "symbols_remark": {
+          "type": "string"
+        },
+        "coverage_note": {
+          "type": "string"
+        },
+        "tag_legend": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "local_path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "kind": {
+                "enum": [
+                  "pdf",
+                  "slides",
+                  "transcript",
+                  "text",
+                  "video",
+                  "image",
+                  "authored"
+                ]
+              },
+              "units": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "use": {
+                "type": "string",
+                "minLength": 1
+              },
+              "availability": {
+                "enum": [
+                  "available",
+                  "missing"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "path",
+              "kind",
+              "units",
+              "use",
+              "availability"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "asr_forbidden": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "topic_order": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "documents": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "master",
+              "formulas",
+              "points",
+              "figures",
+              "flows",
+              "recall",
+              "questions"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "not_applicable": {
+          "type": "object",
+          "properties": {
+            "formulas": {
+              "type": "string"
+            },
+            "figures": {
+              "type": "string"
+            },
+            "flows": {
+              "type": "string"
+            },
+            "questions": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "notation_table": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1
+            },
+            "head": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "rows": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "row_heads": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "title",
+            "head",
+            "rows"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "course",
+        "unit",
+        "scope",
+        "title",
+        "slug",
+        "header",
+        "date",
+        "compiled_from",
+        "how_to_use",
+        "sources",
+        "gaps",
+        "documents"
+      ],
+      "additionalProperties": false
+    },
+    "MODULES": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "topics"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "TOPICS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "overview": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "requirements": {
+            "type": "object",
+            "properties": {
+              "DEFS": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "not_applicable": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "not_applicable"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "FORMULAS": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "not_applicable": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "not_applicable"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "WORKED": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "not_applicable": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "not_applicable"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "FIGS": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "not_applicable": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "not_applicable"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "FLOWS": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "not_applicable": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "not_applicable"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "NOTES": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "not_applicable": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "not_applicable"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "DERIVATIONS": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "not_applicable": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "not_applicable"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "PRACTICE": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "not_applicable": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    },
+                    "required": [
+                      "not_applicable"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            },
+            "required": [
+              "DEFS",
+              "FORMULAS",
+              "WORKED",
+              "FIGS",
+              "FLOWS",
+              "NOTES",
+              "DERIVATIONS",
+              "PRACTICE"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "overview",
+          "srcs",
+          "requirements"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "DEFS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "term": {
+            "type": "string",
+            "minLength": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "term",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "STATEMENTS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "POINTS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "WHY": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "q": {
+            "type": "string",
+            "minLength": 1
+          },
+          "a": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "q",
+          "a"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "TRAPS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "FORMULAS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tex": {
+            "type": "string",
+            "minLength": 1
+          },
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "gives": {
+            "type": "string",
+            "minLength": 1
+          },
+          "when": {
+            "type": "string",
+            "minLength": 1
+          },
+          "units": {
+            "type": "string",
+            "minLength": 1
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "title",
+          "gives",
+          "when",
+          "units"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "SYMBOLS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "sym": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "meaning": {
+            "type": "string",
+            "minLength": 1
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "where": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "sym",
+          "name",
+          "meaning",
+          "unit",
+          "where"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "WORKED": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "given": {
+            "type": "string",
+            "minLength": 1
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 2
+          },
+          "answer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "check": {
+            "type": "string",
+            "minLength": 1
+          },
+          "units": {
+            "type": "string",
+            "minLength": 1
+          },
+          "method": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "title",
+          "given",
+          "steps",
+          "answer",
+          "check",
+          "units",
+          "method"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "PYQS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "paper": {
+            "type": "string",
+            "minLength": 1
+          },
+          "q": {
+            "type": "string",
+            "minLength": 1
+          },
+          "marks": {
+            "type": "number",
+            "minimum": 0
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "worked": {
+            "type": "string",
+            "minLength": 1
+          },
+          "paper_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "paper",
+          "q",
+          "marks",
+          "text",
+          "worked",
+          "paper_id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "NOTES": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "KEYWORDS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "term": {
+            "type": "string",
+            "minLength": 1
+          },
+          "meaning": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "term",
+          "meaning"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "RAPID": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "q": {
+            "type": "string",
+            "minLength": 1
+          },
+          "a": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "q",
+          "a"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "TOP_FACTS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "TOP_FORMULAS": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "MNEMONICS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "FIGS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "file": {
+            "type": "string",
+            "minLength": 1
+          },
+          "alt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "howto": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tall": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "title",
+          "file",
+          "alt",
+          "howto"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "COMPARISONS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "head": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 2
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "minItems": 1
+          },
+          "row_heads": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "title",
+          "head",
+          "rows"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "FLOWS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "layout": {
+            "enum": [
+              "straight",
+              "fork",
+              "route",
+              "streams",
+              "ladder",
+              "tree",
+              "loop",
+              "verify"
+            ]
+          },
+          "spec": {
+            "type": "object"
+          },
+          "remark": {
+            "type": "string"
+          },
+          "trap": {
+            "type": "string"
+          },
+          "maxw": {
+            "type": "string",
+            "pattern": "^(1[0-7][0-9]|[8-9][0-9])mm$"
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "title",
+          "layout",
+          "spec"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "layout": {
+                  "const": "straight"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "spec": {
+                  "type": "object",
+                  "properties": {
+                    "nodes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "enum": [
+                              "given",
+                              "step",
+                              "result",
+                              "question",
+                              "check",
+                              "table"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "fx": {
+                            "type": "string"
+                          },
+                          "lab": {
+                            "type": "string"
+                          },
+                          "n": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "head": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "rows": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "kind"
+                        ],
+                        "additionalProperties": false,
+                        "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "kind": {
+                                  "const": "table"
+                                }
+                              }
+                            },
+                            "then": {
+                              "required": [
+                                "head",
+                                "rows"
+                              ],
+                              "properties": {
+                                "head": {
+                                  "minItems": 1
+                                },
+                                "rows": {
+                                  "minItems": 1
+                                }
+                              }
+                            },
+                            "else": {
+                              "required": [
+                                "title"
+                              ],
+                              "properties": {
+                                "title": {
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "minItems": 1
+                    }
+                  },
+                  "required": [
+                    "nodes"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "layout": {
+                  "const": "fork"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "spec": {
+                  "type": "object",
+                  "properties": {
+                    "before": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "enum": [
+                              "given",
+                              "step",
+                              "result",
+                              "question",
+                              "check",
+                              "table"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "fx": {
+                            "type": "string"
+                          },
+                          "lab": {
+                            "type": "string"
+                          },
+                          "n": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "head": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "rows": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "kind"
+                        ],
+                        "additionalProperties": false,
+                        "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "kind": {
+                                  "const": "table"
+                                }
+                              }
+                            },
+                            "then": {
+                              "required": [
+                                "head",
+                                "rows"
+                              ],
+                              "properties": {
+                                "head": {
+                                  "minItems": 1
+                                },
+                                "rows": {
+                                  "minItems": 1
+                                }
+                              }
+                            },
+                            "else": {
+                              "required": [
+                                "title"
+                              ],
+                              "properties": {
+                                "title": {
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "question": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "no": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "enum": [
+                            "given",
+                            "step",
+                            "result",
+                            "question",
+                            "check",
+                            "table"
+                          ]
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "sub": {
+                          "type": "string"
+                        },
+                        "fx": {
+                          "type": "string"
+                        },
+                        "lab": {
+                          "type": "string"
+                        },
+                        "n": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "head": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "kind"
+                      ],
+                      "additionalProperties": false,
+                      "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "kind": {
+                                "const": "table"
+                              }
+                            }
+                          },
+                          "then": {
+                            "required": [
+                              "head",
+                              "rows"
+                            ],
+                            "properties": {
+                              "head": {
+                                "minItems": 1
+                              },
+                              "rows": {
+                                "minItems": 1
+                              }
+                            }
+                          },
+                          "else": {
+                            "required": [
+                              "title"
+                            ],
+                            "properties": {
+                              "title": {
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "yes": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "enum": [
+                            "given",
+                            "step",
+                            "result",
+                            "question",
+                            "check",
+                            "table"
+                          ]
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "sub": {
+                          "type": "string"
+                        },
+                        "fx": {
+                          "type": "string"
+                        },
+                        "lab": {
+                          "type": "string"
+                        },
+                        "n": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "head": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "kind"
+                      ],
+                      "additionalProperties": false,
+                      "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "kind": {
+                                "const": "table"
+                              }
+                            }
+                          },
+                          "then": {
+                            "required": [
+                              "head",
+                              "rows"
+                            ],
+                            "properties": {
+                              "head": {
+                                "minItems": 1
+                              },
+                              "rows": {
+                                "minItems": 1
+                              }
+                            }
+                          },
+                          "else": {
+                            "required": [
+                              "title"
+                            ],
+                            "properties": {
+                              "title": {
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "after": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "enum": [
+                              "given",
+                              "step",
+                              "result",
+                              "question",
+                              "check",
+                              "table"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "fx": {
+                            "type": "string"
+                          },
+                          "lab": {
+                            "type": "string"
+                          },
+                          "n": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "head": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "rows": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "kind"
+                        ],
+                        "additionalProperties": false,
+                        "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "kind": {
+                                  "const": "table"
+                                }
+                              }
+                            },
+                            "then": {
+                              "required": [
+                                "head",
+                                "rows"
+                              ],
+                              "properties": {
+                                "head": {
+                                  "minItems": 1
+                                },
+                                "rows": {
+                                  "minItems": 1
+                                }
+                              }
+                            },
+                            "else": {
+                              "required": [
+                                "title"
+                              ],
+                              "properties": {
+                                "title": {
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "question",
+                    "no",
+                    "yes"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "layout": {
+                  "const": "route"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "spec": {
+                  "type": "object",
+                  "properties": {
+                    "question": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "rows": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "kw": {
+                            "type": "string"
+                          },
+                          "dashed": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "title"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 1
+                    }
+                  },
+                  "required": [
+                    "question",
+                    "rows"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "layout": {
+                  "const": "streams"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "spec": {
+                  "type": "object",
+                  "properties": {
+                    "left": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "enum": [
+                              "given",
+                              "step",
+                              "result",
+                              "question",
+                              "check",
+                              "table"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "fx": {
+                            "type": "string"
+                          },
+                          "lab": {
+                            "type": "string"
+                          },
+                          "n": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "head": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "rows": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "kind"
+                        ],
+                        "additionalProperties": false,
+                        "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "kind": {
+                                  "const": "table"
+                                }
+                              }
+                            },
+                            "then": {
+                              "required": [
+                                "head",
+                                "rows"
+                              ],
+                              "properties": {
+                                "head": {
+                                  "minItems": 1
+                                },
+                                "rows": {
+                                  "minItems": 1
+                                }
+                              }
+                            },
+                            "else": {
+                              "required": [
+                                "title"
+                              ],
+                              "properties": {
+                                "title": {
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "minItems": 1
+                    },
+                    "right": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "enum": [
+                              "given",
+                              "step",
+                              "result",
+                              "question",
+                              "check",
+                              "table"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "fx": {
+                            "type": "string"
+                          },
+                          "lab": {
+                            "type": "string"
+                          },
+                          "n": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "head": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "rows": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "kind"
+                        ],
+                        "additionalProperties": false,
+                        "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "kind": {
+                                  "const": "table"
+                                }
+                              }
+                            },
+                            "then": {
+                              "required": [
+                                "head",
+                                "rows"
+                              ],
+                              "properties": {
+                                "head": {
+                                  "minItems": 1
+                                },
+                                "rows": {
+                                  "minItems": 1
+                                }
+                              }
+                            },
+                            "else": {
+                              "required": [
+                                "title"
+                              ],
+                              "properties": {
+                                "title": {
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "minItems": 1
+                    },
+                    "then": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "enum": [
+                              "given",
+                              "step",
+                              "result",
+                              "question",
+                              "check",
+                              "table"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "fx": {
+                            "type": "string"
+                          },
+                          "lab": {
+                            "type": "string"
+                          },
+                          "n": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "head": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "rows": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "kind"
+                        ],
+                        "additionalProperties": false,
+                        "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "kind": {
+                                  "const": "table"
+                                }
+                              }
+                            },
+                            "then": {
+                              "required": [
+                                "head",
+                                "rows"
+                              ],
+                              "properties": {
+                                "head": {
+                                  "minItems": 1
+                                },
+                                "rows": {
+                                  "minItems": 1
+                                }
+                              }
+                            },
+                            "else": {
+                              "required": [
+                                "title"
+                              ],
+                              "properties": {
+                                "title": {
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "minItems": 1
+                    }
+                  },
+                  "required": [
+                    "left",
+                    "right",
+                    "then"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "layout": {
+                  "const": "ladder"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "spec": {
+                  "type": "object",
+                  "properties": {
+                    "start": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "enum": [
+                            "given",
+                            "step",
+                            "result",
+                            "question",
+                            "check",
+                            "table"
+                          ]
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "sub": {
+                          "type": "string"
+                        },
+                        "fx": {
+                          "type": "string"
+                        },
+                        "lab": {
+                          "type": "string"
+                        },
+                        "n": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "head": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "kind"
+                      ],
+                      "additionalProperties": false,
+                      "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "kind": {
+                                "const": "table"
+                              }
+                            }
+                          },
+                          "then": {
+                            "required": [
+                              "head",
+                              "rows"
+                            ],
+                            "properties": {
+                              "head": {
+                                "minItems": 1
+                              },
+                              "rows": {
+                                "minItems": 1
+                              }
+                            }
+                          },
+                          "else": {
+                            "required": [
+                              "title"
+                            ],
+                            "properties": {
+                              "title": {
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "rungs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "q": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "yes": {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "enum": [
+                                  "given",
+                                  "step",
+                                  "result",
+                                  "question",
+                                  "check",
+                                  "table"
+                                ]
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "sub": {
+                                "type": "string"
+                              },
+                              "fx": {
+                                "type": "string"
+                              },
+                              "lab": {
+                                "type": "string"
+                              },
+                              "n": {
+                                "type": "integer",
+                                "minimum": 1
+                              },
+                              "head": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1
+                                }
+                              },
+                              "rows": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string",
+                                    "minLength": 1
+                                  }
+                                }
+                              }
+                            },
+                            "required": [
+                              "kind"
+                            ],
+                            "additionalProperties": false,
+                            "allOf": [
+                              {
+                                "if": {
+                                  "properties": {
+                                    "kind": {
+                                      "const": "table"
+                                    }
+                                  }
+                                },
+                                "then": {
+                                  "required": [
+                                    "head",
+                                    "rows"
+                                  ],
+                                  "properties": {
+                                    "head": {
+                                      "minItems": 1
+                                    },
+                                    "rows": {
+                                      "minItems": 1
+                                    }
+                                  }
+                                },
+                                "else": {
+                                  "required": [
+                                    "title"
+                                  ],
+                                  "properties": {
+                                    "title": {
+                                      "minLength": 1
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        "required": [
+                          "q",
+                          "yes"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 1
+                    },
+                    "last": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "enum": [
+                            "given",
+                            "step",
+                            "result",
+                            "question",
+                            "check",
+                            "table"
+                          ]
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "sub": {
+                          "type": "string"
+                        },
+                        "fx": {
+                          "type": "string"
+                        },
+                        "lab": {
+                          "type": "string"
+                        },
+                        "n": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "head": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "kind"
+                      ],
+                      "additionalProperties": false,
+                      "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "kind": {
+                                "const": "table"
+                              }
+                            }
+                          },
+                          "then": {
+                            "required": [
+                              "head",
+                              "rows"
+                            ],
+                            "properties": {
+                              "head": {
+                                "minItems": 1
+                              },
+                              "rows": {
+                                "minItems": 1
+                              }
+                            }
+                          },
+                          "else": {
+                            "required": [
+                              "title"
+                            ],
+                            "properties": {
+                              "title": {
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "start",
+                    "rungs",
+                    "last"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "layout": {
+                  "const": "tree"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "spec": {
+                  "type": "object",
+                  "properties": {
+                    "root": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "enum": [
+                            "given",
+                            "step",
+                            "result",
+                            "question",
+                            "check",
+                            "table"
+                          ]
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "sub": {
+                          "type": "string"
+                        },
+                        "fx": {
+                          "type": "string"
+                        },
+                        "lab": {
+                          "type": "string"
+                        },
+                        "n": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "head": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "kind"
+                      ],
+                      "additionalProperties": false,
+                      "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "kind": {
+                                "const": "table"
+                              }
+                            }
+                          },
+                          "then": {
+                            "required": [
+                              "head",
+                              "rows"
+                            ],
+                            "properties": {
+                              "head": {
+                                "minItems": 1
+                              },
+                              "rows": {
+                                "minItems": 1
+                              }
+                            }
+                          },
+                          "else": {
+                            "required": [
+                              "title"
+                            ],
+                            "properties": {
+                              "title": {
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "branches": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "title": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "rows": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "minItems": 2,
+                              "maxItems": 2
+                            }
+                          }
+                        },
+                        "required": [
+                          "title",
+                          "rows"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "minItems": 2,
+                      "maxItems": 4
+                    }
+                  },
+                  "required": [
+                    "root",
+                    "branches"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "layout": {
+                  "const": "loop"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "spec": {
+                  "type": "object",
+                  "properties": {
+                    "before": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "enum": [
+                              "given",
+                              "step",
+                              "result",
+                              "question",
+                              "check",
+                              "table"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "fx": {
+                            "type": "string"
+                          },
+                          "lab": {
+                            "type": "string"
+                          },
+                          "n": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "head": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "rows": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "kind"
+                        ],
+                        "additionalProperties": false,
+                        "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "kind": {
+                                  "const": "table"
+                                }
+                              }
+                            },
+                            "then": {
+                              "required": [
+                                "head",
+                                "rows"
+                              ],
+                              "properties": {
+                                "head": {
+                                  "minItems": 1
+                                },
+                                "rows": {
+                                  "minItems": 1
+                                }
+                              }
+                            },
+                            "else": {
+                              "required": [
+                                "title"
+                              ],
+                              "properties": {
+                                "title": {
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "loop": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "enum": [
+                              "given",
+                              "step",
+                              "result",
+                              "question",
+                              "check",
+                              "table"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "fx": {
+                            "type": "string"
+                          },
+                          "lab": {
+                            "type": "string"
+                          },
+                          "n": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "head": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "rows": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "kind"
+                        ],
+                        "additionalProperties": false,
+                        "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "kind": {
+                                  "const": "table"
+                                }
+                              }
+                            },
+                            "then": {
+                              "required": [
+                                "head",
+                                "rows"
+                              ],
+                              "properties": {
+                                "head": {
+                                  "minItems": 1
+                                },
+                                "rows": {
+                                  "minItems": 1
+                                }
+                              }
+                            },
+                            "else": {
+                              "required": [
+                                "title"
+                              ],
+                              "properties": {
+                                "title": {
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "minItems": 2
+                    },
+                    "after": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "enum": [
+                              "given",
+                              "step",
+                              "result",
+                              "question",
+                              "check",
+                              "table"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "fx": {
+                            "type": "string"
+                          },
+                          "lab": {
+                            "type": "string"
+                          },
+                          "n": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "head": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "rows": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "kind"
+                        ],
+                        "additionalProperties": false,
+                        "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "kind": {
+                                  "const": "table"
+                                }
+                              }
+                            },
+                            "then": {
+                              "required": [
+                                "head",
+                                "rows"
+                              ],
+                              "properties": {
+                                "head": {
+                                  "minItems": 1
+                                },
+                                "rows": {
+                                  "minItems": 1
+                                }
+                              }
+                            },
+                            "else": {
+                              "required": [
+                                "title"
+                              ],
+                              "properties": {
+                                "title": {
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "loop"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "layout": {
+                  "const": "verify"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "spec": {
+                  "type": "object",
+                  "properties": {
+                    "given": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "enum": [
+                            "given",
+                            "step",
+                            "result",
+                            "question",
+                            "check",
+                            "table"
+                          ]
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "sub": {
+                          "type": "string"
+                        },
+                        "fx": {
+                          "type": "string"
+                        },
+                        "lab": {
+                          "type": "string"
+                        },
+                        "n": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "head": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "kind"
+                      ],
+                      "additionalProperties": false,
+                      "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "kind": {
+                                "const": "table"
+                              }
+                            }
+                          },
+                          "then": {
+                            "required": [
+                              "head",
+                              "rows"
+                            ],
+                            "properties": {
+                              "head": {
+                                "minItems": 1
+                              },
+                              "rows": {
+                                "minItems": 1
+                              }
+                            }
+                          },
+                          "else": {
+                            "required": [
+                              "title"
+                            ],
+                            "properties": {
+                              "title": {
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "left": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "enum": [
+                              "given",
+                              "step",
+                              "result",
+                              "question",
+                              "check",
+                              "table"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "fx": {
+                            "type": "string"
+                          },
+                          "lab": {
+                            "type": "string"
+                          },
+                          "n": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "head": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "rows": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "kind"
+                        ],
+                        "additionalProperties": false,
+                        "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "kind": {
+                                  "const": "table"
+                                }
+                              }
+                            },
+                            "then": {
+                              "required": [
+                                "head",
+                                "rows"
+                              ],
+                              "properties": {
+                                "head": {
+                                  "minItems": 1
+                                },
+                                "rows": {
+                                  "minItems": 1
+                                }
+                              }
+                            },
+                            "else": {
+                              "required": [
+                                "title"
+                              ],
+                              "properties": {
+                                "title": {
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "minItems": 1
+                    },
+                    "right": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "enum": [
+                              "given",
+                              "step",
+                              "result",
+                              "question",
+                              "check",
+                              "table"
+                            ]
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "sub": {
+                            "type": "string"
+                          },
+                          "fx": {
+                            "type": "string"
+                          },
+                          "lab": {
+                            "type": "string"
+                          },
+                          "n": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "head": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          },
+                          "rows": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "kind"
+                        ],
+                        "additionalProperties": false,
+                        "allOf": [
+                          {
+                            "if": {
+                              "properties": {
+                                "kind": {
+                                  "const": "table"
+                                }
+                              }
+                            },
+                            "then": {
+                              "required": [
+                                "head",
+                                "rows"
+                              ],
+                              "properties": {
+                                "head": {
+                                  "minItems": 1
+                                },
+                                "rows": {
+                                  "minItems": 1
+                                }
+                              }
+                            },
+                            "else": {
+                              "required": [
+                                "title"
+                              ],
+                              "properties": {
+                                "title": {
+                                  "minLength": 1
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      "minItems": 1
+                    },
+                    "check": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "enum": [
+                            "given",
+                            "step",
+                            "result",
+                            "question",
+                            "check",
+                            "table"
+                          ]
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "sub": {
+                          "type": "string"
+                        },
+                        "fx": {
+                          "type": "string"
+                        },
+                        "lab": {
+                          "type": "string"
+                        },
+                        "n": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "head": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "minLength": 1
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "kind"
+                      ],
+                      "additionalProperties": false,
+                      "allOf": [
+                        {
+                          "if": {
+                            "properties": {
+                              "kind": {
+                                "const": "table"
+                              }
+                            }
+                          },
+                          "then": {
+                            "required": [
+                              "head",
+                              "rows"
+                            ],
+                            "properties": {
+                              "head": {
+                                "minItems": 1
+                              },
+                              "rows": {
+                                "minItems": 1
+                              }
+                            }
+                          },
+                          "else": {
+                            "required": [
+                              "title"
+                            ],
+                            "properties": {
+                              "title": {
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "given",
+                    "left",
+                    "right",
+                    "check"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "DERIVATIONS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "given": {
+            "type": "string",
+            "minLength": 1
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 2
+          },
+          "answer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "check": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "title",
+          "given",
+          "steps",
+          "answer",
+          "check"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "PRACTICE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Za-z0-9_.-]*$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1
+          },
+          "srcs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "stars": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "rank_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "numeric",
+              "theory",
+              "true_false",
+              "spot_error",
+              "code",
+              "mock"
+            ]
+          },
+          "prompt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "answer": {
+            "type": "string",
+            "minLength": 1
+          },
+          "check": {
+            "type": "string",
+            "minLength": 1
+          },
+          "marks": {
+            "type": "number",
+            "minimum": 0
+          },
+          "group": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "topic",
+          "srcs",
+          "title",
+          "kind",
+          "prompt",
+          "steps",
+          "answer",
+          "check"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "EVIDENCE": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "covered",
+              "excluded",
+              "gap"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "reason": {
+            "type": "string"
+          },
+          "reviewed": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "unit",
+          "status",
+          "summary",
+          "items",
+          "reviewed"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "CHECKS": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "item": {
+            "type": "string",
+            "minLength": 1
+          },
+          "method": {
+            "enum": [
+              "symbolic",
+              "numeric",
+              "manual"
+            ]
+          },
+          "lhs": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rhs": {
+            "type": "string",
+            "minLength": 1
+          },
+          "symbols": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "boolean"
+              }
+            }
+          },
+          "atol": {
+            "type": "number",
+            "minimum": 0
+          },
+          "rtol": {
+            "type": "number",
+            "minimum": 0
+          },
+          "note": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reviewed": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "item",
+          "method",
+          "note",
+          "reviewed"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "PACK",
+    "TOPICS",
+    "EVIDENCE",
+    "CHECKS"
+  ],
+  "additionalProperties": false
+}

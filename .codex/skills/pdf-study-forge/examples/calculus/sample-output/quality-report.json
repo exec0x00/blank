@@ -1,0 +1,555 @@
+{
+  "schema_version": "1.0",
+  "status": "RELEASED",
+  "draft": false,
+  "input_sha256": "63ce529940fd8d9d3af0fb0b15d6c38917cf9581736195b06bb99baefde39c33",
+  "input_assets": {
+    "figures/G1.1.svg": "d9e6fbe7d522c3c7fb88b7d229cf2b6224a30f438ac73eb5dd6e12a240bd37f8",
+    "figures/G2.1.svg": "51d37f46a0b5fe937a923677553e3f4f7a53ed40f0378487fa8aa308b87afefc",
+    "figures/G3.1.svg": "e5e4e1dc1b5ba8d68373fe627208eded424e6dce986a885d12a0d3606b93b0ec",
+    "sources/lesson.md": "7872d2c0702a702759d583313ee3df96e79c8602723a4c7622118a5edaae5e53"
+  },
+  "engine_sha256": "108c9e3ffdd690ecccad626ec078969ce0ce04d4ea4eff593cf8ee756727feb1",
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "checks": [
+      {
+        "id": "K1",
+        "item": "E1.1",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K2",
+        "item": "E1.1",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K3",
+        "item": "E1.2",
+        "ok": true,
+        "method": "manual",
+        "result": "manual record only; no mathematical proof by software"
+      },
+      {
+        "id": "K4",
+        "item": "E1.3",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K5",
+        "item": "E1.3",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K6",
+        "item": "E2.1",
+        "ok": true,
+        "method": "manual",
+        "result": "manual record only; no mathematical proof by software"
+      },
+      {
+        "id": "K7",
+        "item": "E2.2",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K8",
+        "item": "E3.1",
+        "ok": true,
+        "method": "manual",
+        "result": "manual record only; no mathematical proof by software"
+      },
+      {
+        "id": "K9",
+        "item": "E3.2",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K10",
+        "item": "W1.1",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K11",
+        "item": "W1.2",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K12",
+        "item": "W2.1",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K13",
+        "item": "W2.2",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K14",
+        "item": "W3.1",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K15",
+        "item": "W3.2",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K16",
+        "item": "H3.1",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K17",
+        "item": "Q1.1",
+        "ok": true,
+        "method": "manual",
+        "result": "manual record only; no mathematical proof by software"
+      },
+      {
+        "id": "K18",
+        "item": "Q2.1",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      },
+      {
+        "id": "K19",
+        "item": "Q3.1",
+        "ok": true,
+        "method": "symbolic",
+        "result": "residual = 0"
+      }
+    ],
+    "counts": {
+      "MODULES": 0,
+      "TOPICS": 3,
+      "DEFS": 6,
+      "STATEMENTS": 0,
+      "POINTS": 3,
+      "WHY": 3,
+      "TRAPS": 3,
+      "FORMULAS": 7,
+      "SYMBOLS": 10,
+      "WORKED": 6,
+      "PYQS": 0,
+      "NOTES": 3,
+      "KEYWORDS": 9,
+      "RAPID": 3,
+      "TOP_FACTS": 3,
+      "TOP_FORMULAS": 3,
+      "FIGS": 3,
+      "FLOWS": 3,
+      "COMPARISONS": 1,
+      "MNEMONICS": 0,
+      "DERIVATIONS": 1,
+      "PRACTICE": 3
+    },
+    "coverage": {
+      "covered": 3
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "pdfs": [
+    {
+      "file": "00_MASTER_derivatives.pdf",
+      "pages": 19,
+      "outlines": 43,
+      "fonts": 9,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 326,
+          "ink_ratio": 0.0331
+        },
+        {
+          "page": 2,
+          "body_characters": 1411,
+          "ink_ratio": 0.1011
+        },
+        {
+          "page": 3,
+          "body_characters": 602,
+          "ink_ratio": 0.1682
+        },
+        {
+          "page": 4,
+          "body_characters": 193,
+          "ink_ratio": 0.0295
+        },
+        {
+          "page": 5,
+          "body_characters": 778,
+          "ink_ratio": 0.235
+        },
+        {
+          "page": 6,
+          "body_characters": 1236,
+          "ink_ratio": 0.1633
+        },
+        {
+          "page": 7,
+          "body_characters": 1266,
+          "ink_ratio": 0.2974
+        },
+        {
+          "page": 8,
+          "body_characters": 179,
+          "ink_ratio": 0.0281
+        },
+        {
+          "page": 9,
+          "body_characters": 878,
+          "ink_ratio": 0.2585
+        },
+        {
+          "page": 10,
+          "body_characters": 1050,
+          "ink_ratio": 0.141
+        },
+        {
+          "page": 11,
+          "body_characters": 1199,
+          "ink_ratio": 0.203
+        },
+        {
+          "page": 12,
+          "body_characters": 925,
+          "ink_ratio": 0.1976
+        },
+        {
+          "page": 13,
+          "body_characters": 206,
+          "ink_ratio": 0.0314
+        },
+        {
+          "page": 14,
+          "body_characters": 834,
+          "ink_ratio": 0.2537
+        },
+        {
+          "page": 15,
+          "body_characters": 1011,
+          "ink_ratio": 0.1402
+        },
+        {
+          "page": 16,
+          "body_characters": 992,
+          "ink_ratio": 0.219
+        },
+        {
+          "page": 17,
+          "body_characters": 948,
+          "ink_ratio": 0.1277
+        },
+        {
+          "page": 18,
+          "body_characters": 635,
+          "ink_ratio": 0.0942
+        },
+        {
+          "page": 19,
+          "body_characters": 1532,
+          "ink_ratio": 0.1028
+        }
+      ],
+      "sheets": [
+        "00_MASTER_derivatives-sheet001.jpg",
+        "00_MASTER_derivatives-sheet002.jpg",
+        "00_MASTER_derivatives-sheet003.jpg",
+        "00_MASTER_derivatives-sheet004.jpg"
+      ]
+    },
+    {
+      "file": "01_formulas_and_symbols.pdf",
+      "pages": 4,
+      "outlines": 7,
+      "fonts": 7,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 963,
+          "ink_ratio": 0.1472
+        },
+        {
+          "page": 2,
+          "body_characters": 914,
+          "ink_ratio": 0.2579
+        },
+        {
+          "page": 3,
+          "body_characters": 816,
+          "ink_ratio": 0.1381
+        },
+        {
+          "page": 4,
+          "body_characters": 579,
+          "ink_ratio": 0.0657
+        }
+      ],
+      "sheets": [
+        "01_formulas_and_symbols-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "02_important_points.pdf",
+      "pages": 2,
+      "outlines": 16,
+      "fonts": 7,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 1341,
+          "ink_ratio": 0.191
+        },
+        {
+          "page": 2,
+          "body_characters": 1263,
+          "ink_ratio": 0.2457
+        }
+      ],
+      "sheets": [
+        "02_important_points-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "03_graphs_and_diagrams.pdf",
+      "pages": 3,
+      "outlines": 5,
+      "fonts": 4,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 826,
+          "ink_ratio": 0.0823
+        },
+        {
+          "page": 2,
+          "body_characters": 193,
+          "ink_ratio": 0.0324
+        },
+        {
+          "page": 3,
+          "body_characters": 231,
+          "ink_ratio": 0.0353
+        }
+      ],
+      "sheets": [
+        "03_graphs_and_diagrams-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "04_flowcharts_and_visuals.pdf",
+      "pages": 3,
+      "outlines": 6,
+      "fonts": 7,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 900,
+          "ink_ratio": 0.1635
+        },
+        {
+          "page": 2,
+          "body_characters": 625,
+          "ink_ratio": 0.1711
+        },
+        {
+          "page": 3,
+          "body_characters": 389,
+          "ink_ratio": 0.1478
+        }
+      ],
+      "sheets": [
+        "04_flowcharts_and_visuals-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "05_short_notes_keywords.pdf",
+      "pages": 3,
+      "outlines": 8,
+      "fonts": 5,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 1552,
+          "ink_ratio": 0.1282
+        },
+        {
+          "page": 2,
+          "body_characters": 1665,
+          "ink_ratio": 0.1409
+        },
+        {
+          "page": 3,
+          "body_characters": 398,
+          "ink_ratio": 0.1217
+        }
+      ],
+      "sheets": [
+        "05_short_notes_keywords-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "06_question_bank.pdf",
+      "pages": 2,
+      "outlines": 15,
+      "fonts": 5,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 862,
+          "ink_ratio": 0.0899
+        },
+        {
+          "page": 2,
+          "body_characters": 853,
+          "ink_ratio": 0.0796
+        }
+      ],
+      "sheets": [
+        "06_question_bank-sheet001.jpg"
+      ]
+    }
+  ],
+  "portable_links_repaired": 0,
+  "artifacts": {
+    ".docs.json": "c7595625d63726a30bfa9bfad3b4a9752216cc46397a467b5f635b095b956daf",
+    "00_MASTER_derivatives.html": "d3fc04163cb4ff56ed0815f15ec1dc47352d14c6c52e62d2949ab79b015b27b3",
+    "00_MASTER_derivatives.pdf": "3c860abdd2930526420d033ae20a705d2033aaf19ac3720b6577f474ce041ebb",
+    "01_formulas_and_symbols.html": "2af032945634870364c250ce10bb50444d7fe840f6565893caaa43f6be65423b",
+    "01_formulas_and_symbols.pdf": "751bd2e8d48570dbe7018f37d85b912ee9a8d36beb00123f65419a9d0aee2949",
+    "02_important_points.html": "32050ce2314afb507c8a0253b5ad5878cb34f18dcb42571138e8c049a11754f2",
+    "02_important_points.pdf": "b996fc400fb2f8f3545da8a8f92006b6ad901ab44d24cf79223dbc405cccdf63",
+    "03_graphs_and_diagrams.html": "90f0e33474e880d8848998c47cb92021fddd6185254dc7f076e18bae6fb27f5e",
+    "03_graphs_and_diagrams.pdf": "251512a41dbcb1e74b13af8ec04c703ac6d4ef7028bec1e91b5519a2f05b2f27",
+    "04_flowcharts_and_visuals.html": "d875e2db88dd54add1012819e26c554073aa13b774b69366404f7cbc55097654",
+    "04_flowcharts_and_visuals.pdf": "ad377f21f2bbf4a05fcfaa9fb2810fb81e4d8a77c91033c3f90316a4533efc5d",
+    "05_short_notes_keywords.html": "fd1d8eb1bc487865b477935c12eb8e8d4c103e9230089280a307db0b5a0c96d2",
+    "05_short_notes_keywords.pdf": "1a30158f504728210cf68a0da781d8eccb5d9cecfdb9bd801bd59c4127e5a8af",
+    "06_question_bank.html": "93ae4d0df58c459a8cea0019a8ed1888185fe8e534365bc740275f16ccdad6e2",
+    "06_question_bank.pdf": "83d23261677dea78f596ebc5bca5d2b5ef8d78a83e071424d62fc3d8e8f10b5d",
+    "assets/figures/G1.1.svg": "d9e6fbe7d522c3c7fb88b7d229cf2b6224a30f438ac73eb5dd6e12a240bd37f8",
+    "assets/figures/G2.1.svg": "51d37f46a0b5fe937a923677553e3f4f7a53ed40f0378487fa8aa308b87afefc",
+    "assets/figures/G3.1.svg": "e5e4e1dc1b5ba8d68373fe627208eded424e6dce986a885d12a0d3606b93b0ec",
+    "assets/fonts/DejaVuSans.ttf": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e",
+    "assets/fonts/DejaVuSansMono.ttf": "54bf827eb99404e8f430c330ad30f063334f637eba0109b6a18d4f566a8e9dd8",
+    "assets/fonts/cmunbi.woff": "c91f3defd696023069b9953de078bf0f27a32218e08405ebfbf50c29d10004ab",
+    "assets/fonts/cmunbx.woff": "3226e8a7068df32b96f2a80f7ad2ca306c8dfcc494ab2b337019cbb7d098db24",
+    "assets/fonts/cmunrm.woff": "32115abbbfb231586813333bfa5a234f4dc7f28b27df7260f42f81146ccd9097",
+    "assets/fonts/cmunti.woff": "d9a02b7b67874c62f47f9c9a0914c115972ab77d43e82a163baf0888eb5d4a2d",
+    "assets/katex/fonts/KaTeX_AMS-Regular.ttf": "68534840bcfdd2bffb6f0e8deb48684dd01e7f04ea2813267577afb906de1d13",
+    "assets/katex/fonts/KaTeX_AMS-Regular.woff": "30da91e84c893f875e252689faebdc590b2871145e8adc7f9a9d4dbd8ce0b251",
+    "assets/katex/fonts/KaTeX_AMS-Regular.woff2": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308",
+    "assets/katex/fonts/KaTeX_Caligraphic-Bold.ttf": "07d8e303ce4fc12b4bb54f1004170dd190a1f3db45d400fe68060df3e0897268",
+    "assets/katex/fonts/KaTeX_Caligraphic-Bold.woff": "1ae6bd7475590e97e7f145a89e09ccde322f7a6bc0b91607b1c8b8ee28290fed",
+    "assets/katex/fonts/KaTeX_Caligraphic-Bold.woff2": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c",
+    "assets/katex/fonts/KaTeX_Caligraphic-Regular.ttf": "ed0b74372feefcbb9c0666b2e210da37b7e49fa7fbbf3eeb11db5f693dacfbb7",
+    "assets/katex/fonts/KaTeX_Caligraphic-Regular.woff": "3398dd02302557a793f2863f88e02d96ce10df2abffa07c8e9fa90775116e65c",
+    "assets/katex/fonts/KaTeX_Caligraphic-Regular.woff2": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b",
+    "assets/katex/fonts/KaTeX_Fraktur-Bold.ttf": "9163df9c7122432e6495b4229fa9071cf9ae86a758ae5efc4924ec2e1a6dbce1",
+    "assets/katex/fonts/KaTeX_Fraktur-Bold.woff": "9be7ceb88004ab8ad124082246fbfcca4091e36385d4ec6ed1df67375dad50fb",
+    "assets/katex/fonts/KaTeX_Fraktur-Bold.woff2": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f",
+    "assets/katex/fonts/KaTeX_Fraktur-Regular.ttf": "1e6f9579e90e2cac37f8f60a597c436e075c114385652b7cbeb0dec0421291b3",
+    "assets/katex/fonts/KaTeX_Fraktur-Regular.woff": "5e28753be717dac97f559f49bc10be9cf3c124ddcabda6659d11cb68febc6463",
+    "assets/katex/fonts/KaTeX_Fraktur-Regular.woff2": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc",
+    "assets/katex/fonts/KaTeX_Main-Bold.ttf": "138ac28d1663b3037e9c5f52371fa5c63d8324f4a38d22cd573e6ea3a3fd0cf8",
+    "assets/katex/fonts/KaTeX_Main-Bold.woff": "c76c5d696297d51b9cb1639c7da4334f0e7dec81b42b11213b5e25ef671bb822",
+    "assets/katex/fonts/KaTeX_Main-Bold.woff2": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021",
+    "assets/katex/fonts/KaTeX_Main-BoldItalic.ttf": "70ee1f64a20f2048c21940ef46d0144fd215baa953ca69afd1e31e98544f708f",
+    "assets/katex/fonts/KaTeX_Main-BoldItalic.woff": "a6f7ec0d846ac7ad975adb8959c37ed49b94acbc4ae436db9ce9e20287e4a64c",
+    "assets/katex/fonts/KaTeX_Main-BoldItalic.woff2": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b",
+    "assets/katex/fonts/KaTeX_Main-Italic.ttf": "0d85ae7cc30f23790a7f1a58c4a112fdca8aae769b6ba11429af1d98b1b6cb3a",
+    "assets/katex/fonts/KaTeX_Main-Italic.woff": "f1d6ef86f3b11a528bd5185199bd2443ecb2b0dead96d88674b5a2c12be24bdf",
+    "assets/katex/fonts/KaTeX_Main-Italic.woff2": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267",
+    "assets/katex/fonts/KaTeX_Main-Regular.ttf": "d0332f52868370fd83ae7fa46470f90c8f2eab2fcf12bc4f88080b340c95a830",
+    "assets/katex/fonts/KaTeX_Main-Regular.woff": "c6368d87e8a1a3a5d337623d83d8dc4b868f242a9ad476237d6f8d1e0f168cdc",
+    "assets/katex/fonts/KaTeX_Main-Regular.woff2": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866",
+    "assets/katex/fonts/KaTeX_Math-BoldItalic.ttf": "f9377ab0271cda59af24bcffbd46a4d0c8a3572ffafdbb38de2ad5ea7b0d5ee5",
+    "assets/katex/fonts/KaTeX_Math-BoldItalic.woff": "850c0af5c2238497febaf5e461d880bf458c341f42f4f330f1b1ab5698b1998e",
+    "assets/katex/fonts/KaTeX_Math-BoldItalic.woff2": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1",
+    "assets/katex/fonts/KaTeX_Math-Italic.ttf": "08ce98e51b04d58945a301e639e02b6998af29fdfd61a7b8afdd07bbfc479d4a",
+    "assets/katex/fonts/KaTeX_Math-Italic.woff": "8a8d244581371912b8f3f5a23e2437cb2a59cd9bcaebb0346e722c05737a2571",
+    "assets/katex/fonts/KaTeX_Math-Italic.woff2": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264",
+    "assets/katex/fonts/KaTeX_SansSerif-Bold.ttf": "1ece03f79f95277d57dc7f6b435a74e1379b0d46104a8530286b60ff49369ea0",
+    "assets/katex/fonts/KaTeX_SansSerif-Bold.woff": "ece03cfd83e22c212cdef66feb8442d25a083beb988db3f1883f3f9738d750ba",
+    "assets/katex/fonts/KaTeX_SansSerif-Bold.woff2": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62",
+    "assets/katex/fonts/KaTeX_SansSerif-Italic.ttf": "3931dd81faed86ba021bb2bbdc36f5bed9a38d6b4f4077aca59b265aa1b02083",
+    "assets/katex/fonts/KaTeX_SansSerif-Italic.woff": "91ee67500cc0129aa0ace3ac5c61ff1692102f0f31d02b69347fba35dcb75bf2",
+    "assets/katex/fonts/KaTeX_SansSerif-Italic.woff2": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a",
+    "assets/katex/fonts/KaTeX_SansSerif-Regular.ttf": "f36ea897e19f4a2e571d1e900e4e3710e438deb05a842486045ba0a3e616a4ad",
+    "assets/katex/fonts/KaTeX_SansSerif-Regular.woff": "11e4dc8a6471ff6d6ee561d53d10fde8f7489e798257ff449c5d37c197435605",
+    "assets/katex/fonts/KaTeX_SansSerif-Regular.woff2": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342",
+    "assets/katex/fonts/KaTeX_Script-Regular.ttf": "1c67f068fea8bb09bf099c088b1cf64bd27516a6e07f4684344873564bb66a67",
+    "assets/katex/fonts/KaTeX_Script-Regular.woff": "d96cdf2b3bdd4d64a8fd5f74a4c467f123a8a73931cd435889f08ffaf9bf947a",
+    "assets/katex/fonts/KaTeX_Script-Regular.woff2": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b",
+    "assets/katex/fonts/KaTeX_Size1-Regular.ttf": "95b6d2f1a50173bfedb8c63e1d1c99b10427d0a4df4201cb44513b226951a22b",
+    "assets/katex/fonts/KaTeX_Size1-Regular.woff": "c943cc986384f59e86bea5fd7dc50a9c4dfe567a7c05eb40d6790720dead97c9",
+    "assets/katex/fonts/KaTeX_Size1-Regular.woff2": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe",
+    "assets/katex/fonts/KaTeX_Size2-Regular.ttf": "a6b2099fb555c60e3a0db3a08842ebf1d732c6eb4e4bf44913613bed4fc4e39b",
+    "assets/katex/fonts/KaTeX_Size2-Regular.woff": "2014c523c3210bcc166648c4d4cc57f05b747df07a24277bf71c51e67dc79e3d",
+    "assets/katex/fonts/KaTeX_Size2-Regular.woff2": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd",
+    "assets/katex/fonts/KaTeX_Size3-Regular.ttf": "500e04d54f0d51666332c9d2089aa803be22aa878eca539e59fa53c6e522b082",
+    "assets/katex/fonts/KaTeX_Size3-Regular.woff": "6ab6b62e9b62dae2c00dd90f791bd10950be0ecc3490d7d6045f51c2e8fe0949",
+    "assets/katex/fonts/KaTeX_Size3-Regular.woff2": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995",
+    "assets/katex/fonts/KaTeX_Size4-Regular.ttf": "c647367d1dd4e162468717d020e1fc0f1dc5c26ebfdffbe55261713bf88c5877",
+    "assets/katex/fonts/KaTeX_Size4-Regular.woff": "99f9c6750b489c9462bf04900bd3f939df9b829339daaaaa99ef5495cdddea58",
+    "assets/katex/fonts/KaTeX_Size4-Regular.woff2": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0",
+    "assets/katex/fonts/KaTeX_Typewriter-Regular.ttf": "f01f3e87d9c6a61c0c081ceb577abd864eb00a612f7ac1620dd6915fad2ef5aa",
+    "assets/katex/fonts/KaTeX_Typewriter-Regular.woff": "e14fed02b1aba7ce9f5afd5844b5d0321b22351febc720e0de8b8723527609f7",
+    "assets/katex/fonts/KaTeX_Typewriter-Regular.woff2": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b",
+    "assets/katex/katex.min.css": "717bc9ae7853b61f0f76455dddf0ecd4f527a783f42de2ac24684899c1c46258",
+    "assets/study.css": "e668eeb425f80309e18350f3f945d08726166a800806d6f14be226fbc75127d9",
+    "dom-report.json": "22cce7a865b6f1fa07f384b253d7020ff94033eac0fc386a24368c45a4db23f5",
+    "standalone/00_MASTER_derivatives.html": "dbe0a005873016ef9cd61076f01940b8536b3b4a506c3f99530993c33ff2f1f6",
+    "standalone/01_formulas_and_symbols.html": "8474494fea32e19c69d4f6afb17178219dca0b3cff3fc379a2077302a375d4a5",
+    "standalone/02_important_points.html": "85d90ec94137be70e8d01a4285a2eda1b54090af2c6840741da3f38e1a63e385",
+    "standalone/03_graphs_and_diagrams.html": "0bd64f9ef8880be1f2db1df292e2a183c096455031879eac22ec02c0e97b259b",
+    "standalone/04_flowcharts_and_visuals.html": "5d16c92deadf73115cba9179aa2015598095573c841e40623659f5efd491ed90",
+    "standalone/05_short_notes_keywords.html": "aadee6b77ef0865378a654717f76326329126a7c4469baeada50cc01ee129853",
+    "standalone/06_question_bank.html": "88e7b0fdbc83718554191b32a3992b9d2c834dbbaf8badb55e2cff736b9062b5"
+  }
+}

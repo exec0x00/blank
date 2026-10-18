@@ -1,0 +1,1583 @@
+60f93ddbe4e7cb6809256e3fb94077c74fcbb7f7 2026-10-17 07:16:21 +0000 Maths Unit 2: class 011 pack (Legendre's and Cauchy's linear DEs)
+
+ packs/maths-u2-011-legendre-cauchy/.gitignore      |    4 +
+ packs/maths-u2-011-legendre-cauchy/figs/a_main.py  |   89 +
+ .../maths-u2-011-legendre-cauchy/output/.docs.json |    1 +
+ .../output/00_MASTER_legendre_cauchy.pdf           |  Bin 0 -> 1388352 bytes
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 241548 bytes
+ .../output/02_important_points.pdf                 |  Bin 0 -> 557791 bytes
+ .../output/03_graphs_and_diagrams.pdf              | 4692 +++++++++++++
+ .../output/04_flowcharts_and_visuals.pdf           | 7399 ++++++++++++++++++++
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 239862 bytes
+ .../standalone/00_MASTER_legendre_cauchy.html      |  214 +
+ .../output/standalone/01_formulas_and_symbols.html |  195 +
+ .../output/standalone/02_important_points.html     |  195 +
+ .../output/standalone/03_graphs_and_diagrams.html  |  195 +
+ .../standalone/04_flowcharts_and_visuals.html      |  195 +
+ .../output/standalone/05_short_notes_keywords.html |  195 +
+ packs/maths-u2-011-legendre-cauchy/pack.py         |  110 +
+ packs/maths-u2-011-legendre-cauchy/parts/a_main.py |  535 ++
+ 17 files changed, 14019 insertions(+)
+ada0f3f31bc338bb3eb3848067bed92e57aeee08 2026-10-16 02:06:00 +0000 Maths Unit 2: class 011 pack (method of variation of parameters)
+
+ .../.gitignore                                     |    4 +
+ .../figs/a_main.py                                 |  117 +
+ .../output/.docs.json                              |    1 +
+ .../output/00_MASTER_variation_of_parameters.pdf   |  Bin 0 -> 1434147 bytes
+ .../output/01_formulas_and_symbols.pdf             | 6947 ++++++++++++++++
+ .../output/02_important_points.pdf                 | 8689 ++++++++++++++++++++
+ .../output/03_graphs_and_diagrams.pdf              | 5683 +++++++++++++
+ .../output/04_flowcharts_and_visuals.pdf           | 8560 +++++++++++++++++++
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 238928 bytes
+ .../00_MASTER_variation_of_parameters.html         |  207 +
+ .../output/standalone/01_formulas_and_symbols.html |  199 +
+ .../output/standalone/02_important_points.html     |  203 +
+ .../output/standalone/03_graphs_and_diagrams.html  |  195 +
+ .../standalone/04_flowcharts_and_visuals.html      |  195 +
+ .../output/standalone/05_short_notes_keywords.html |  199 +
+ packs/maths-u2-011-variation-of-parameters/pack.py |  108 +
+ .../parts/a_main.py                                |  528 ++
+ 17 files changed, 31835 insertions(+)
+f4c1889ae87d243c705fda0a7355dd735706fb42 2026-10-16 01:53:40 +0000 Maths Unit 2: class 009 pack (particular integral when X is any other form)
+
+ packs/maths-u2-009-pi-other-forms/.gitignore       |    4 +
+ packs/maths-u2-009-pi-other-forms/figs/a_main.py   |   79 +
+ .../maths-u2-009-pi-other-forms/output/.docs.json  |    1 +
+ .../output/00_MASTER_pi_other_forms.pdf            |  Bin 0 -> 1197117 bytes
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 249828 bytes
+ .../output/02_important_points.pdf                 |  Bin 0 -> 491087 bytes
+ .../output/03_graphs_and_diagrams.pdf              | 4650 +++++++++++++
+ .../output/04_flowcharts_and_visuals.pdf           | 7281 ++++++++++++++++++++
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 218492 bytes
+ .../standalone/00_MASTER_pi_other_forms.html       |  195 +
+ .../output/standalone/01_formulas_and_symbols.html |  195 +
+ .../output/standalone/02_important_points.html     |  195 +
+ .../output/standalone/03_graphs_and_diagrams.html  |  195 +
+ .../standalone/04_flowcharts_and_visuals.html      |  195 +
+ .../output/standalone/05_short_notes_keywords.html |  195 +
+ packs/maths-u2-009-pi-other-forms/pack.py          |   98 +
+ packs/maths-u2-009-pi-other-forms/parts/a_main.py  |  425 ++
+ 17 files changed, 13708 insertions(+)
+0dd11eabd33d0d8fbb2b2585684989f149e8dbed 2026-10-16 01:44:31 +0000 Maths Unit 2: class 006 pack (particular integral Types 4 and 5, e^{ax}V and xV)
+
+ .../.gitignore                                     |    4 +
+ .../figs/a_main.py                                 |   68 +
+ .../output/.docs.json                              |    1 +
+ .../output/00_MASTER_pi_type4.pdf                  |  Bin 0 -> 1322675 bytes
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 243760 bytes
+ .../output/02_important_points.pdf                 |  Bin 0 -> 514251 bytes
+ .../output/03_graphs_and_diagrams.pdf              | 3967 +++++++++
+ .../output/04_flowcharts_and_visuals.pdf           | 9190 ++++++++++++++++++++
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 232185 bytes
+ .../output/standalone/00_MASTER_pi_type4.html      |  446 +
+ .../output/standalone/01_formulas_and_symbols.html |  204 +
+ .../output/standalone/02_important_points.html     |  239 +
+ .../output/standalone/03_graphs_and_diagrams.html  |  195 +
+ .../standalone/04_flowcharts_and_visuals.html      |  195 +
+ .../output/standalone/05_short_notes_keywords.html |  215 +
+ .../pack.py                                        |  105 +
+ .../parts/a_main.py                                |  470 +
+ 17 files changed, 15299 insertions(+)
+86193c2a86285ba91fccbbef22bf3df6609fac23 2026-10-16 01:34:08 +0000 Maths Unit 2: class 005 pack (particular integral Type 3, polynomials; mixed RHS)
+
+ packs/maths-u2-005-pi-type3-polynomial/.gitignore  |     4 +
+ .../figs/a_main.py                                 |    88 +
+ .../output/.docs.json                              |     1 +
+ .../output/00_MASTER_pi_type3.pdf                  |   Bin 0 -> 1408919 bytes
+ .../output/01_formulas_and_symbols.pdf             |   Bin 0 -> 229421 bytes
+ .../output/02_important_points.pdf                 |   Bin 0 -> 511888 bytes
+ .../output/03_graphs_and_diagrams.pdf              |   Bin 0 -> 338503 bytes
+ .../output/04_flowcharts_and_visuals.pdf           | 11974 +++++++++++++++++++
+ .../output/05_short_notes_keywords.pdf             |   Bin 0 -> 232384 bytes
+ .../output/standalone/00_MASTER_pi_type3.html      |   426 +
+ .../output/standalone/01_formulas_and_symbols.html |   195 +
+ .../output/standalone/02_important_points.html     |   217 +
+ .../output/standalone/03_graphs_and_diagrams.html  |   195 +
+ .../standalone/04_flowcharts_and_visuals.html      |   195 +
+ .../output/standalone/05_short_notes_keywords.html |   228 +
+ packs/maths-u2-005-pi-type3-polynomial/pack.py     |    97 +
+ .../parts/a_main.py                                |   535 +
+ 17 files changed, 14155 insertions(+)
+96fe8f3ec637c0a9f09266cfda23754e434aeb5f 2026-10-16 01:21:34 +0000 Maths Unit 2: class 004 pack (particular integral Type 2, sin/cos)
+
+ .../maths-u2-004-pi-type2-trigonometric/.gitignore |    4 +
+ .../figs/a_main.py                                 |   86 +
+ .../output/.docs.json                              |    1 +
+ .../output/00_MASTER_pi_type2.pdf                  |  Bin 0 -> 1267464 bytes
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 224518 bytes
+ .../output/02_important_points.pdf                 |  Bin 0 -> 483159 bytes
+ .../output/03_graphs_and_diagrams.pdf              | 4307 ++++++++++++++++++++
+ .../output/04_flowcharts_and_visuals.pdf           |  Bin 0 -> 360958 bytes
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 232823 bytes
+ .../output/standalone/00_MASTER_pi_type2.html      |  602 +++
+ .../output/standalone/01_formulas_and_symbols.html |  195 +
+ .../output/standalone/02_important_points.html     |  261 ++
+ .../output/standalone/03_graphs_and_diagrams.html  |  217 +
+ .../standalone/04_flowcharts_and_visuals.html      |  195 +
+ .../output/standalone/05_short_notes_keywords.html |  261 ++
+ packs/maths-u2-004-pi-type2-trigonometric/pack.py  |  105 +
+ .../parts/a_main.py                                |  437 ++
+ 17 files changed, 6671 insertions(+)
+86ba191d4aa1d12f63c3e71c64d753442c14ee57 2026-10-15 16:08:15 +0000 Maths Unit 2: class 003 pack (particular integral Type 1, e^{ax})
+
+ packs/maths-u2-003-pi-type1-exponential/.gitignore |    4 +
+ .../figs/a_main.py                                 |   76 +
+ .../output/.docs.json                              |    1 +
+ .../output/00_MASTER_pi_type1.pdf                  |  Bin 0 -> 1358932 bytes
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 267338 bytes
+ .../output/02_important_points.pdf                 |  Bin 0 -> 580528 bytes
+ .../output/03_graphs_and_diagrams.pdf              | 4396 ++++++++++++++++++++
+ .../output/04_flowcharts_and_visuals.pdf           |  Bin 0 -> 366745 bytes
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 274612 bytes
+ .../output/standalone/00_MASTER_pi_type1.html      |  195 +
+ .../output/standalone/01_formulas_and_symbols.html |  195 +
+ .../output/standalone/02_important_points.html     |  195 +
+ .../output/standalone/03_graphs_and_diagrams.html  |  195 +
+ .../standalone/04_flowcharts_and_visuals.html      |  195 +
+ .../output/standalone/05_short_notes_keywords.html |  195 +
+ packs/maths-u2-003-pi-type1-exponential/pack.py    |   92 +
+ .../parts/a_main.py                                |  502 +++
+ 17 files changed, 6241 insertions(+)
+c6fc8f59d141fa04e7fa251fee09eb6b846d8e08 2026-10-15 15:55:51 +0000 Maths Unit 2: class 001 pack (introduction to higher-order linear DEs)
+
+ .../.gitignore                                     |   4 +
+ .../figs/a_main.py                                 |  64 +++
+ .../output/.docs.json                              |   1 +
+ .../output/00_MASTER_higher_order_intro.pdf        | Bin 0 -> 1198867 bytes
+ .../output/01_formulas_and_symbols.pdf             | Bin 0 -> 254679 bytes
+ .../output/02_important_points.pdf                 | Bin 0 -> 536828 bytes
+ .../output/03_graphs_and_diagrams.pdf              | Bin 0 -> 274159 bytes
+ .../output/04_flowcharts_and_visuals.pdf           | Bin 0 -> 319308 bytes
+ .../output/05_short_notes_keywords.pdf             | Bin 0 -> 253572 bytes
+ .../standalone/00_MASTER_higher_order_intro.html   | 221 ++++++++++
+ .../output/standalone/01_formulas_and_symbols.html | 199 +++++++++
+ .../output/standalone/02_important_points.html     | 195 +++++++++
+ .../output/standalone/03_graphs_and_diagrams.html  | 195 +++++++++
+ .../standalone/04_flowcharts_and_visuals.html      | 195 +++++++++
+ .../output/standalone/05_short_notes_keywords.html | 195 +++++++++
+ .../pack.py                                        |  97 +++++
+ .../parts/a_main.py                                | 466 +++++++++++++++++++++
+ 17 files changed, 1832 insertions(+)
+2d615302f476241a3626ee6e8c6d251dd9152207 2026-10-15 15:47:19 +0000 Maths Unit 2: class 002 pack (complementary functions); fix ESA map counts
+
+ packs/_shared/maths/esa_map.md                     |   8 +-
+ .../maths-u2-002-complementary-function/.gitignore |   4 +
+ .../figs/a_main.py                                 | 109 +++++
+ .../output/.docs.json                              |   1 +
+ .../output/00_MASTER_complementary_function.pdf    | Bin 0 -> 1369701 bytes
+ .../output/01_formulas_and_symbols.pdf             | Bin 0 -> 226018 bytes
+ .../output/02_important_points.pdf                 | Bin 0 -> 563036 bytes
+ .../output/03_graphs_and_diagrams.pdf              | Bin 0 -> 398832 bytes
+ .../output/04_flowcharts_and_visuals.pdf           | Bin 0 -> 355824 bytes
+ .../output/05_short_notes_keywords.pdf             | Bin 0 -> 260406 bytes
+ .../00_MASTER_complementary_function.html          | 249 +++++++++++
+ .../output/standalone/01_formulas_and_symbols.html | 216 ++++++++++
+ .../output/standalone/02_important_points.html     | 195 +++++++++
+ .../output/standalone/03_graphs_and_diagrams.html  | 195 +++++++++
+ .../standalone/04_flowcharts_and_visuals.html      | 206 +++++++++
+ .../output/standalone/05_short_notes_keywords.html | 195 +++++++++
+ packs/maths-u2-002-complementary-function/pack.py  |  82 ++++
+ .../parts/a_main.py                                | 472 +++++++++++++++++++++
+ 18 files changed, 1928 insertions(+), 4 deletions(-)
+adc8008e25aed6b6a84175c8add5d219ef91a0ee 2026-10-15 15:37:06 +0000 qa.py: match forbidden transcript strings as whole words
+
+ .claude/skills/pesu-study-pack/scripts/qa.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+e26bcc3f2244e6f2d34e54d924fa7ffe70e05f18 2026-10-15 15:36:36 +0000 Merge Maths Unit 1 batch (001, 009, 010, 011 + unit master)
+9ced7270fd307ae19ef2526e773249a8e3e9a1b8 2026-10-15 15:35:55 +0000 Add Maths Unit 1 master (classes 001-011) and final notes
+
+ packs/_notes/maths-u1.md                           |    9 +-
+ packs/maths-u1-unit-master/.gitignore              |    7 +
+ packs/maths-u1-unit-master/figs/s01_0.py           |    7 +
+ packs/maths-u1-unit-master/figs/s02_0.py           |    7 +
+ packs/maths-u1-unit-master/figs/s03_0.py           |    7 +
+ packs/maths-u1-unit-master/figs/s04_0.py           |    7 +
+ packs/maths-u1-unit-master/figs/s05_0.py           |    7 +
+ packs/maths-u1-unit-master/figs/s06_0.py           |    7 +
+ packs/maths-u1-unit-master/figs/s07_0.py           |    7 +
+ packs/maths-u1-unit-master/figs/s08_0.py           |    7 +
+ packs/maths-u1-unit-master/figs/s09_0.py           |    7 +
+ packs/maths-u1-unit-master/figs/s10_0.py           |    7 +
+ packs/maths-u1-unit-master/output/.docs.json       |    1 +
+ .../output/00_MASTER_maths_unit1.pdf               |  Bin 0 -> 9674134 bytes
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 820321 bytes
+ .../output/02_important_points.pdf                 |  Bin 0 -> 2843722 bytes
+ .../output/03_graphs_and_diagrams.pdf              |  Bin 0 -> 3771411 bytes
+ .../output/04_flowcharts_and_visuals.pdf           |  Bin 0 -> 1322779 bytes
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 1079749 bytes
+ .../output/standalone/00_MASTER_maths_unit1.html   | 2894 ++++++++
+ .../output/standalone/01_formulas_and_symbols.html |  373 +
+ .../output/standalone/02_important_points.html     |  434 ++
+ .../output/standalone/03_graphs_and_diagrams.html  |  316 +
+ .../standalone/04_flowcharts_and_visuals.html      |  261 +
+ .../output/standalone/05_short_notes_keywords.html |  703 ++
+ packs/maths-u1-unit-master/pack.py                 |  742 ++
+ packs/maths-u1-unit-master/parts/merged.py         | 7189 ++++++++++++++++++++
+ 27 files changed, 12997 insertions(+), 2 deletions(-)
+c1580cca4bec7ee6b5ea62e7e0cdb06f32005bab 2026-10-15 15:32:04 +0000 Maths U1 class 001: narrow an ASR check that matched 'separable'
+
+ .../00_MASTER_intro_partial_differentiation.pdf    | Bin 1292373 -> 1292373 bytes
+ .../output/01_formulas_and_symbols.pdf             | Bin 197385 -> 197385 bytes
+ .../output/02_important_points.pdf                 | Bin 418081 -> 418081 bytes
+ .../output/03_graphs_and_diagrams.pdf              |   4 ++--
+ .../output/04_flowcharts_and_visuals.pdf           | Bin 286590 -> 286590 bytes
+ .../output/05_short_notes_keywords.pdf             | Bin 225262 -> 225262 bytes
+ .../00_MASTER_intro_partial_differentiation.html   |   4 ++--
+ .../output/standalone/03_graphs_and_diagrams.html  |   4 ++--
+ .../pack.py                                        |   2 +-
+ 9 files changed, 7 insertions(+), 7 deletions(-)
+398fa3e5d8aaf267f24b7f07eb76b74d0c8eb875 2026-10-15 15:22:00 +0000 Add Maths Unit 1 batch notes
+
+ packs/_notes/maths-u1.md | 60 ++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+253112aacfc0aabf553dea2e43c3c2a8ab8df378 2026-10-15 15:19:07 +0000 Add Maths Unit 1 class 011 pack: Lagrange's method of undetermined multipliers
+
+ packs/maths-u1-011-lagrange-multipliers/.gitignore |   7 +
+ packs/maths-u1-011-lagrange-multipliers/figures.py |  74 +++
+ .../output/.docs.json                              |   1 +
+ .../output/00_MASTER_lagrange_multipliers.pdf      | Bin 0 -> 913416 bytes
+ .../output/01_formulas_and_symbols.pdf             | Bin 0 -> 182911 bytes
+ .../output/02_important_points.pdf                 | Bin 0 -> 352707 bytes
+ .../output/03_graphs_and_diagrams.pdf              | Bin 0 -> 302281 bytes
+ .../output/04_flowcharts_and_visuals.pdf           | Bin 0 -> 193045 bytes
+ .../output/05_short_notes_keywords.pdf             | Bin 0 -> 209254 bytes
+ .../standalone/00_MASTER_lagrange_multipliers.html | 624 +++++++++++++++++++++
+ .../output/standalone/01_formulas_and_symbols.html | 261 +++++++++
+ .../output/standalone/02_important_points.html     | 228 ++++++++
+ .../output/standalone/03_graphs_and_diagrams.html  | 239 ++++++++
+ .../standalone/04_flowcharts_and_visuals.html      | 195 +++++++
+ .../output/standalone/05_short_notes_keywords.html | 327 +++++++++++
+ packs/maths-u1-011-lagrange-multipliers/pack.py    |  83 +++
+ .../parts/a_main.py                                | 304 ++++++++++
+ 17 files changed, 2343 insertions(+)
+5551638d443e94ddb2c63614c079dccaba0790c0 2026-10-15 15:11:41 +0000 Add Maths Unit 1 class 010 pack: problems on maxima and minima
+
+ .../maths-u1-010-maxima-minima-problems/.gitignore |    7 +
+ .../maths-u1-010-maxima-minima-problems/figures.py |   82 +
+ .../output/.docs.json                              |    1 +
+ .../output/00_MASTER_maxima_minima_problems.pdf    |  Bin 0 -> 1395795 bytes
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 186972 bytes
+ .../output/02_important_points.pdf                 |  Bin 0 -> 399137 bytes
+ .../output/03_graphs_and_diagrams.pdf              | 6545 ++++++++++++++++++++
+ .../output/04_flowcharts_and_visuals.pdf           |  Bin 0 -> 233790 bytes
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 208575 bytes
+ .../00_MASTER_maxima_minima_problems.html          |  679 ++
+ .../output/standalone/01_formulas_and_symbols.html |  206 +
+ .../output/standalone/02_important_points.html     |  250 +
+ .../output/standalone/03_graphs_and_diagrams.html  |  239 +
+ .../standalone/04_flowcharts_and_visuals.html      |  195 +
+ .../output/standalone/05_short_notes_keywords.html |  316 +
+ packs/maths-u1-010-maxima-minima-problems/pack.py  |   90 +
+ .../parts/a_main.py                                |  301 +
+ 17 files changed, 8911 insertions(+)
+e9c81651cf9c061124d74a770493bcc848890f53 2026-10-15 15:08:15 +0000 Add Maths Unit 1 class 009 pack: introduction to maxima and minima
+
+ packs/maths-u1-009-maxima-minima-intro/.gitignore  |   7 +
+ packs/maths-u1-009-maxima-minima-intro/figures.py  |  70 ++++++
+ .../output/.docs.json                              |   1 +
+ .../output/00_MASTER_maxima_minima_intro.pdf       | Bin 0 -> 962547 bytes
+ .../output/01_formulas_and_symbols.pdf             | Bin 0 -> 176654 bytes
+ .../output/02_important_points.pdf                 | Bin 0 -> 352611 bytes
+ .../output/03_graphs_and_diagrams.pdf              | Bin 0 -> 445975 bytes
+ .../output/04_flowcharts_and_visuals.pdf           | Bin 0 -> 209106 bytes
+ .../output/05_short_notes_keywords.pdf             | Bin 0 -> 195122 bytes
+ .../standalone/00_MASTER_maxima_minima_intro.html  | 207 +++++++++++++++++
+ .../output/standalone/01_formulas_and_symbols.html | 199 +++++++++++++++++
+ .../output/standalone/02_important_points.html     | 203 +++++++++++++++++
+ .../output/standalone/03_graphs_and_diagrams.html  | 195 ++++++++++++++++
+ .../standalone/04_flowcharts_and_visuals.html      | 195 ++++++++++++++++
+ .../output/standalone/05_short_notes_keywords.html | 207 +++++++++++++++++
+ packs/maths-u1-009-maxima-minima-intro/pack.py     |  63 ++++++
+ .../parts/a_main.py                                | 247 +++++++++++++++++++++
+ 17 files changed, 1594 insertions(+)
+01dbbb79afd2d3ef9d93d19f3bbc71ddac0262b0 2026-10-15 15:04:04 +0000 Add Maths Unit 1 class 001 pack: introduction to partial differentiation
+
+ packs/_shared/maths/esa_map.md                     |   45 +
+ .../.gitignore                                     |    7 +
+ .../figures.py                                     |  103 +
+ .../output/.docs.json                              |    1 +
+ .../00_MASTER_intro_partial_differentiation.pdf    |  Bin 0 -> 1292373 bytes
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 197385 bytes
+ .../output/02_important_points.pdf                 |  Bin 0 -> 418081 bytes
+ .../output/03_graphs_and_diagrams.pdf              | 6455 ++++++++++++++++++++
+ .../output/04_flowcharts_and_visuals.pdf           |  Bin 0 -> 286590 bytes
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 225262 bytes
+ .../00_MASTER_intro_partial_differentiation.html   |  217 +
+ .../output/standalone/01_formulas_and_symbols.html |  195 +
+ .../output/standalone/02_important_points.html     |  195 +
+ .../output/standalone/03_graphs_and_diagrams.html  |  217 +
+ .../standalone/04_flowcharts_and_visuals.html      |  195 +
+ .../output/standalone/05_short_notes_keywords.html |  195 +
+ .../pack.py                                        |   85 +
+ .../parts/a_main.py                                |  376 ++
+ 18 files changed, 8286 insertions(+)
+c50931da378cc6ccb21d2089a26000890f8cafd7 2026-10-15 10:03:53 +0000 chem-u2: ESA map for Unit 2 (electrochemistry and corrosion)
+
+ packs/_shared/chem/esa_map.md | 185 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 185 insertions(+)
+d80d30edf1f40fb8bba156b9607604044e5f7393 2026-10-15 04:55:32 +0000 mech u1: ESA / theory-bank map for Engineering Mechanics Unit 1
+
+ packs/_shared/mech/esa_map.md | 64 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 64 insertions(+)
+a136fb80a3b403b34d19c45a4f722db225e11f37 2026-10-15 04:55:22 +0000 EPD Unit 1/2: ESA question map
+
+ packs/_shared/ec/esa_map.md | 39 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
+385466d88ea1f51c4fc9a69c52c3255e0caa286d 2026-10-15 04:55:14 +0000 Add Chemistry Unit 1 ESA question map
+
+ packs/_shared/chem/.gitignore |  3 ++
+ packs/_shared/chem/esa_map.md | 95 +++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 98 insertions(+)
+90979ddcddc0e84cadc1e68d5d599ad9d944e290 2026-10-15 04:55:04 +0000 Maths Unit 2: ESA and CW question map
+
+ packs/_shared/maths/.gitignore |  3 ++
+ packs/_shared/maths/esa_map.md | 79 ++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 82 insertions(+)
+fbbd14928eec2fffebf671c39d0de4a417925e23 2026-10-15 04:52:14 +0000 Record batch child sessions
+
+ packs/_notes/children.tsv | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+0bac4e24100e3876ebb879ff91211d921d70b529 2026-10-15 04:49:29 +0000 Add batch protocol and unit-master merge script to pesu-study-pack
+
+ .claude/skills/pesu-study-pack/SKILL.md            |   1 +
+ .claude/skills/pesu-study-pack/references/batch.md |  63 ++++++++++
+ .../skills/pesu-study-pack/scripts/merge_unit.py   | 139 +++++++++++++++++++++
+ .claude/skills/pesu-study-pack/scripts/new_pack.py |   2 +-
+ packs/_notes/README.md                             |   1 +
+ packs/_shared/.gitignore                           |   4 +
+ 6 files changed, 209 insertions(+), 1 deletion(-)
+d860b63e7250149d9326da9ea9a6d891d47155ad 2026-10-14 16:36:03 +0000 Add Scilab graph for conductometric titration (HCl + CH3COOH vs NaOH)
+
+ lab2/conductometric_titration.pdf    |  Bin 0 -> 15449 bytes
+ lab2/conductometric_titration.png    |  Bin 0 -> 19209 bytes
+ lab2/conductometric_titration.sce    |   41 +
+ lab2/conductometric_titration_A4.pdf | 4098 ++++++++++++++++++++++++++++++++++
+ 4 files changed, 4139 insertions(+)
+615d3cda7082c665e543b615d899c7ed13b56730 2026-10-14 16:27:48 +0000 Add A4 version of copper graph sized like the reference printout
+
+ lab1/copper_colorimetry_A4.pdf | 4148 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 4148 insertions(+)
+e813c80bf6e2fd32c3c5cdd7eb3eb17e76c79ad2 2026-10-14 16:25:40 +0000 Add Scilab plot for copper estimation (colorimetry)
+
+ lab1/copper_colorimetry.pdf | Bin 0 -> 16172 bytes
+ lab1/copper_colorimetry.png | Bin 0 -> 19090 bytes
+ lab1/copper_colorimetry.sce |  31 +++++++++++++++++++++++++++++++
+ 3 files changed, 31 insertions(+)
+33e94b70f5fdb1ff765a7eb82f393bfb7e5ab95b 2026-10-14 14:24:02 +0000 Add class 008 study pack: problems on Taylor's and Maclaurin's series
+
+ .../skills/pesu-study-pack/references/lessons.md   |   12 +
+ .claude/skills/pesu-study-pack/scripts/qa.py       |    1 +
+ .../output/00_MASTER_euler_problems.html           |    2 +-
+ .../output/00_MASTER_euler_problems.pdf            |  Bin 902157 -> 902255 bytes
+ .../output/01_formulas_and_symbols.pdf             |  Bin 204431 -> 204431 bytes
+ .../output/02_important_points.pdf                 |  Bin 360080 -> 360080 bytes
+ .../output/03_graphs_and_diagrams.pdf              |  Bin 221918 -> 221918 bytes
+ .../output/04_flowcharts_and_visuals.pdf           |  Bin 241762 -> 241762 bytes
+ .../output/05_short_notes_keywords.pdf             |  Bin 227241 -> 227241 bytes
+ .../output/assets/figures/G1.1.svg                 |   40 +-
+ .../output/assets/figures/G4.1.svg                 |   44 +-
+ .../standalone/00_MASTER_euler_problems.html       |    6 +-
+ .../output/standalone/03_graphs_and_diagrams.html  |    2 +-
+ packs/maths-u1-euler-problems/parts/a_main.py      |    2 +-
+ .../output/00_MASTER_taylor_maclaurin.html         |    4 +-
+ .../output/00_MASTER_taylor_maclaurin.pdf          |  Bin 1092843 -> 1092711 bytes
+ .../output/01_formulas_and_symbols.pdf             |  Bin 215186 -> 215186 bytes
+ .../output/02_important_points.pdf                 |  Bin 434686 -> 434686 bytes
+ .../output/03_graphs_and_diagrams.pdf              |  Bin 371107 -> 371107 bytes
+ .../output/04_flowcharts_and_visuals.pdf           |  Bin 208414 -> 208414 bytes
+ .../output/05_short_notes_keywords.pdf             |  Bin 229583 -> 229583 bytes
+ .../output/assets/figures/G1.1.svg                 |   40 +-
+ .../output/assets/figures/G2.1.svg                 |   50 +-
+ .../output/assets/figures/G3.1.svg                 | 2522 +++++++-------
+ .../output/assets/figures/G3.2.svg                 |   46 +-
+ .../standalone/00_MASTER_taylor_maclaurin.html     |    6 +-
+ .../output/standalone/03_graphs_and_diagrams.html  |    2 +-
+ packs/maths-u1-taylor-maclaurin/parts/a_main.py    |    8 +-
+ packs/maths-u1-taylor-problems/.gitignore          |    5 +
+ packs/maths-u1-taylor-problems/figures.py          |   63 +
+ packs/maths-u1-taylor-problems/output/.docs.json   |    1 +
+ .../output/00_MASTER_taylor_problems.html          |  296 ++
+ .../output/00_MASTER_taylor_problems.pdf           |  Bin 0 -> 911889 bytes
+ .../output/01_formulas_and_symbols.html            |    1 +
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 177555 bytes
+ .../output/02_important_points.html                |   34 +
+ .../output/02_important_points.pdf                 |  Bin 0 -> 382095 bytes
+ .../output/03_graphs_and_diagrams.html             |    1 +
+ .../output/03_graphs_and_diagrams.pdf              | 3494 ++++++++++++++++++++
+ .../output/04_flowcharts_and_visuals.html          |   12 +
+ .../output/04_flowcharts_and_visuals.pdf           |  Bin 0 -> 194384 bytes
+ .../output/05_short_notes_keywords.html            |   56 +
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 219549 bytes
+ .../output/assets/figures/G1.1.svg                 | 1541 +++++++++
+ .../output/assets/figures/G2.1.svg                 | 1114 +++++++
+ .../output/assets/figures/G3.1.svg                 | 2090 ++++++++++++
+ .../output/assets/fonts/cmunbi.woff                |  Bin 0 -> 155676 bytes
+ .../output/assets/fonts/cmunbx.woff                |  Bin 0 -> 120936 bytes
+ .../output/assets/fonts/cmunrm.woff                |  Bin 0 -> 123340 bytes
+ .../output/assets/fonts/cmunti.woff                |  Bin 0 -> 158668 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.ttf       |  Bin 0 -> 63632 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff      |  Bin 0 -> 33516 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff2     |  Bin 0 -> 28076 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.ttf  |  Bin 0 -> 12368 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.woff |  Bin 0 -> 7716 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Bold.woff2       |  Bin 0 -> 6912 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.ttf      |  Bin 0 -> 12344 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff     |  Bin 0 -> 7656 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff2    |  Bin 0 -> 6908 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.ttf      |  Bin 0 -> 19584 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff     |  Bin 0 -> 13296 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff2    |  Bin 0 -> 11348 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.ttf   |  Bin 0 -> 19572 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff  |  Bin 0 -> 13208 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff2 |  Bin 0 -> 11316 bytes
+ .../output/assets/katex/fonts/KaTeX_Main-Bold.ttf  |  Bin 0 -> 51336 bytes
+ .../output/assets/katex/fonts/KaTeX_Main-Bold.woff |  Bin 0 -> 29912 bytes
+ .../assets/katex/fonts/KaTeX_Main-Bold.woff2       |  Bin 0 -> 25324 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.ttf   |  Bin 0 -> 32968 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff  |  Bin 0 -> 19412 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff2 |  Bin 0 -> 16780 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.ttf       |  Bin 0 -> 33580 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff      |  Bin 0 -> 19676 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff2     |  Bin 0 -> 16988 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.ttf      |  Bin 0 -> 53580 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff     |  Bin 0 -> 30772 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff2    |  Bin 0 -> 26272 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.ttf   |  Bin 0 -> 31196 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff  |  Bin 0 -> 18668 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff2 |  Bin 0 -> 16400 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.ttf       |  Bin 0 -> 31308 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff      |  Bin 0 -> 18748 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff2     |  Bin 0 -> 16440 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.ttf    |  Bin 0 -> 24504 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff   |  Bin 0 -> 14408 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff2  |  Bin 0 -> 12216 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.ttf  |  Bin 0 -> 22364 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.woff |  Bin 0 -> 14112 bytes
+ .../katex/fonts/KaTeX_SansSerif-Italic.woff2       |  Bin 0 -> 12028 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Regular.ttf |  Bin 0 -> 19436 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff       |  Bin 0 -> 12316 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff2      |  Bin 0 -> 10344 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.ttf    |  Bin 0 -> 16648 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff   |  Bin 0 -> 10588 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff2  |  Bin 0 -> 9644 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.ttf     |  Bin 0 -> 12228 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff    |  Bin 0 -> 6496 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff2   |  Bin 0 -> 5468 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.ttf     |  Bin 0 -> 11508 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff    |  Bin 0 -> 6188 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff2   |  Bin 0 -> 5208 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.ttf     |  Bin 0 -> 7588 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff    |  Bin 0 -> 4420 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff2   |  Bin 0 -> 3624 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.ttf     |  Bin 0 -> 10364 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff    |  Bin 0 -> 5980 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff2   |  Bin 0 -> 4928 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.ttf       |  Bin 0 -> 27556 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff      |  Bin 0 -> 16028 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff2     |  Bin 0 -> 13568 bytes
+ .../output/assets/katex/katex.min.css              |    1 +
+ .../output/assets/study.css                        |  193 ++
+ .../standalone/00_MASTER_taylor_problems.html      |  490 +++
+ .../output/standalone/01_formulas_and_symbols.html |  195 ++
+ .../output/standalone/02_important_points.html     |  228 ++
+ .../output/standalone/03_graphs_and_diagrams.html  |  195 ++
+ .../standalone/04_flowcharts_and_visuals.html      |  206 ++
+ .../output/standalone/05_short_notes_keywords.html |  250 ++
+ packs/maths-u1-taylor-problems/pack.py             |   75 +
+ packs/maths-u1-taylor-problems/parts/a_main.py     |  303 ++
+ 120 files changed, 12244 insertions(+), 1387 deletions(-)
+12483ae7bbd3d06def90cc804a501a15def20a5c 2026-10-14 14:08:48 +0000 Add class 007 study pack: Taylor's and Maclaurin's expansion
+
+ .claude/skills/pesu-study-pack/engine/build_pdf.py |   38 +-
+ .../skills/pesu-study-pack/references/lessons.md   |    7 +
+ .claude/skills/pesu-study-pack/scripts/qa.py       |    8 +-
+ packs/maths-u1-taylor-maclaurin/.gitignore         |    5 +
+ packs/maths-u1-taylor-maclaurin/figures.py         |   77 +
+ packs/maths-u1-taylor-maclaurin/output/.docs.json  |    1 +
+ .../output/00_MASTER_taylor_maclaurin.html         |  209 +
+ .../output/00_MASTER_taylor_maclaurin.pdf          |  Bin 0 -> 1092843 bytes
+ .../output/01_formulas_and_symbols.html            |    1 +
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 215186 bytes
+ .../output/02_important_points.html                |   12 +
+ .../output/02_important_points.pdf                 |  Bin 0 -> 434686 bytes
+ .../output/03_graphs_and_diagrams.html             |    1 +
+ .../output/03_graphs_and_diagrams.pdf              |  Bin 0 -> 371107 bytes
+ .../output/04_flowcharts_and_visuals.html          |    1 +
+ .../output/04_flowcharts_and_visuals.pdf           |  Bin 0 -> 208414 bytes
+ .../output/05_short_notes_keywords.html            |   12 +
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 229583 bytes
+ .../output/assets/figures/G1.1.svg                 | 1464 ++++
+ .../output/assets/figures/G2.1.svg                 | 1544 ++++
+ .../output/assets/figures/G3.1.svg                 | 8902 ++++++++++++++++++++
+ .../output/assets/figures/G3.2.svg                 | 1665 ++++
+ .../output/assets/fonts/cmunbi.woff                |  Bin 0 -> 155676 bytes
+ .../output/assets/fonts/cmunbx.woff                |  Bin 0 -> 120936 bytes
+ .../output/assets/fonts/cmunrm.woff                |  Bin 0 -> 123340 bytes
+ .../output/assets/fonts/cmunti.woff                |  Bin 0 -> 158668 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.ttf       |  Bin 0 -> 63632 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff      |  Bin 0 -> 33516 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff2     |  Bin 0 -> 28076 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.ttf  |  Bin 0 -> 12368 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.woff |  Bin 0 -> 7716 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Bold.woff2       |  Bin 0 -> 6912 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.ttf      |  Bin 0 -> 12344 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff     |  Bin 0 -> 7656 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff2    |  Bin 0 -> 6908 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.ttf      |  Bin 0 -> 19584 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff     |  Bin 0 -> 13296 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff2    |  Bin 0 -> 11348 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.ttf   |  Bin 0 -> 19572 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff  |  Bin 0 -> 13208 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff2 |  Bin 0 -> 11316 bytes
+ .../output/assets/katex/fonts/KaTeX_Main-Bold.ttf  |  Bin 0 -> 51336 bytes
+ .../output/assets/katex/fonts/KaTeX_Main-Bold.woff |  Bin 0 -> 29912 bytes
+ .../assets/katex/fonts/KaTeX_Main-Bold.woff2       |  Bin 0 -> 25324 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.ttf   |  Bin 0 -> 32968 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff  |  Bin 0 -> 19412 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff2 |  Bin 0 -> 16780 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.ttf       |  Bin 0 -> 33580 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff      |  Bin 0 -> 19676 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff2     |  Bin 0 -> 16988 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.ttf      |  Bin 0 -> 53580 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff     |  Bin 0 -> 30772 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff2    |  Bin 0 -> 26272 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.ttf   |  Bin 0 -> 31196 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff  |  Bin 0 -> 18668 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff2 |  Bin 0 -> 16400 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.ttf       |  Bin 0 -> 31308 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff      |  Bin 0 -> 18748 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff2     |  Bin 0 -> 16440 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.ttf    |  Bin 0 -> 24504 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff   |  Bin 0 -> 14408 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff2  |  Bin 0 -> 12216 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.ttf  |  Bin 0 -> 22364 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.woff |  Bin 0 -> 14112 bytes
+ .../katex/fonts/KaTeX_SansSerif-Italic.woff2       |  Bin 0 -> 12028 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Regular.ttf |  Bin 0 -> 19436 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff       |  Bin 0 -> 12316 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff2      |  Bin 0 -> 10344 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.ttf    |  Bin 0 -> 16648 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff   |  Bin 0 -> 10588 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff2  |  Bin 0 -> 9644 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.ttf     |  Bin 0 -> 12228 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff    |  Bin 0 -> 6496 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff2   |  Bin 0 -> 5468 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.ttf     |  Bin 0 -> 11508 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff    |  Bin 0 -> 6188 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff2   |  Bin 0 -> 5208 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.ttf     |  Bin 0 -> 7588 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff    |  Bin 0 -> 4420 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff2   |  Bin 0 -> 3624 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.ttf     |  Bin 0 -> 10364 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff    |  Bin 0 -> 5980 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff2   |  Bin 0 -> 4928 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.ttf       |  Bin 0 -> 27556 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff      |  Bin 0 -> 16028 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff2     |  Bin 0 -> 13568 bytes
+ .../output/assets/katex/katex.min.css              |    1 +
+ .../output/assets/study.css                        |  193 +
+ .../standalone/00_MASTER_taylor_maclaurin.html     |  403 +
+ .../output/standalone/01_formulas_and_symbols.html |  195 +
+ .../output/standalone/02_important_points.html     |  206 +
+ .../output/standalone/03_graphs_and_diagrams.html  |  195 +
+ .../standalone/04_flowcharts_and_visuals.html      |  195 +
+ .../output/standalone/05_short_notes_keywords.html |  206 +
+ packs/maths-u1-taylor-maclaurin/pack.py            |   81 +
+ packs/maths-u1-taylor-maclaurin/parts/a_main.py    |  343 +
+ 96 files changed, 15963 insertions(+), 2 deletions(-)
+9bf4cea78c4143d403f13062357a77680bb124b0 2026-10-14 13:30:41 +0000 Add class 006 study pack: problems on Euler's theorem
+
+ .../skills/pesu-study-pack/references/lessons.md   |    7 +
+ packs/maths-u1-euler-problems/.gitignore           |    5 +
+ packs/maths-u1-euler-problems/figures.py           |   58 +
+ packs/maths-u1-euler-problems/output/.docs.json    |    1 +
+ .../output/00_MASTER_euler_problems.html           |  793 +++++++++
+ .../output/00_MASTER_euler_problems.pdf            |  Bin 0 -> 902157 bytes
+ .../output/01_formulas_and_symbols.html            |   34 +
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 204431 bytes
+ .../output/02_important_points.html                |   45 +
+ .../output/02_important_points.pdf                 |  Bin 0 -> 360080 bytes
+ .../output/03_graphs_and_diagrams.html             |    1 +
+ .../output/03_graphs_and_diagrams.pdf              |  Bin 0 -> 221918 bytes
+ .../output/04_flowcharts_and_visuals.html          |   45 +
+ .../output/04_flowcharts_and_visuals.pdf           |  Bin 0 -> 241762 bytes
+ .../output/05_short_notes_keywords.html            |  177 ++
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 227241 bytes
+ .../output/assets/figures/G1.1.svg                 | 1860 ++++++++++++++++++++
+ .../output/assets/figures/G4.1.svg                 | 1480 ++++++++++++++++
+ .../output/assets/fonts/cmunbi.woff                |  Bin 0 -> 155676 bytes
+ .../output/assets/fonts/cmunbx.woff                |  Bin 0 -> 120936 bytes
+ .../output/assets/fonts/cmunrm.woff                |  Bin 0 -> 123340 bytes
+ .../output/assets/fonts/cmunti.woff                |  Bin 0 -> 158668 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.ttf       |  Bin 0 -> 63632 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff      |  Bin 0 -> 33516 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff2     |  Bin 0 -> 28076 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.ttf  |  Bin 0 -> 12368 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.woff |  Bin 0 -> 7716 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Bold.woff2       |  Bin 0 -> 6912 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.ttf      |  Bin 0 -> 12344 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff     |  Bin 0 -> 7656 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff2    |  Bin 0 -> 6908 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.ttf      |  Bin 0 -> 19584 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff     |  Bin 0 -> 13296 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff2    |  Bin 0 -> 11348 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.ttf   |  Bin 0 -> 19572 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff  |  Bin 0 -> 13208 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff2 |  Bin 0 -> 11316 bytes
+ .../output/assets/katex/fonts/KaTeX_Main-Bold.ttf  |  Bin 0 -> 51336 bytes
+ .../output/assets/katex/fonts/KaTeX_Main-Bold.woff |  Bin 0 -> 29912 bytes
+ .../assets/katex/fonts/KaTeX_Main-Bold.woff2       |  Bin 0 -> 25324 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.ttf   |  Bin 0 -> 32968 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff  |  Bin 0 -> 19412 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff2 |  Bin 0 -> 16780 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.ttf       |  Bin 0 -> 33580 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff      |  Bin 0 -> 19676 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff2     |  Bin 0 -> 16988 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.ttf      |  Bin 0 -> 53580 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff     |  Bin 0 -> 30772 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff2    |  Bin 0 -> 26272 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.ttf   |  Bin 0 -> 31196 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff  |  Bin 0 -> 18668 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff2 |  Bin 0 -> 16400 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.ttf       |  Bin 0 -> 31308 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff      |  Bin 0 -> 18748 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff2     |  Bin 0 -> 16440 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.ttf    |  Bin 0 -> 24504 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff   |  Bin 0 -> 14408 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff2  |  Bin 0 -> 12216 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.ttf  |  Bin 0 -> 22364 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.woff |  Bin 0 -> 14112 bytes
+ .../katex/fonts/KaTeX_SansSerif-Italic.woff2       |  Bin 0 -> 12028 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Regular.ttf |  Bin 0 -> 19436 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff       |  Bin 0 -> 12316 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff2      |  Bin 0 -> 10344 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.ttf    |  Bin 0 -> 16648 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff   |  Bin 0 -> 10588 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff2  |  Bin 0 -> 9644 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.ttf     |  Bin 0 -> 12228 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff    |  Bin 0 -> 6496 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff2   |  Bin 0 -> 5468 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.ttf     |  Bin 0 -> 11508 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff    |  Bin 0 -> 6188 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff2   |  Bin 0 -> 5208 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.ttf     |  Bin 0 -> 7588 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff    |  Bin 0 -> 4420 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff2   |  Bin 0 -> 3624 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.ttf     |  Bin 0 -> 10364 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff    |  Bin 0 -> 5980 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff2   |  Bin 0 -> 4928 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.ttf       |  Bin 0 -> 27556 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff      |  Bin 0 -> 16028 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff2     |  Bin 0 -> 13568 bytes
+ .../output/assets/katex/katex.min.css              |    1 +
+ .../output/assets/study.css                        |  193 ++
+ .../standalone/00_MASTER_euler_problems.html       |  987 +++++++++++
+ .../output/standalone/01_formulas_and_symbols.html |  228 +++
+ .../output/standalone/02_important_points.html     |  239 +++
+ .../output/standalone/03_graphs_and_diagrams.html  |  195 ++
+ .../standalone/04_flowcharts_and_visuals.html      |  239 +++
+ .../output/standalone/05_short_notes_keywords.html |  371 ++++
+ packs/maths-u1-euler-problems/pack.py              |   73 +
+ packs/maths-u1-euler-problems/parts/a_main.py      |  341 ++++
+ 92 files changed, 7373 insertions(+)
+dce5707dd644d00093cdb28fb0a28d88ebc0da82 2026-10-14 13:18:56 +0000 Add Maths Unit 1 class 005 pack: homogeneous functions and Euler's theorem
+
+ .../skills/pesu-study-pack/references/lessons.md   |   11 +
+ packs/maths-u1-homogeneous-euler/.gitignore        |    5 +
+ packs/maths-u1-homogeneous-euler/figures.py        |   40 +
+ packs/maths-u1-homogeneous-euler/output/.docs.json |    1 +
+ .../output/00_MASTER_homogeneous_euler.html        |  151 +
+ .../output/00_MASTER_homogeneous_euler.pdf         |  Bin 0 -> 890692 bytes
+ .../output/01_formulas_and_symbols.html            |   23 +
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 212186 bytes
+ .../output/02_important_points.html                |   23 +
+ .../output/02_important_points.pdf                 |  Bin 0 -> 368081 bytes
+ .../output/03_graphs_and_diagrams.html             |   12 +
+ .../output/03_graphs_and_diagrams.pdf              |  Bin 0 -> 248547 bytes
+ .../output/04_flowcharts_and_visuals.html          |    1 +
+ .../output/04_flowcharts_and_visuals.pdf           |  Bin 0 -> 242949 bytes
+ .../output/05_short_notes_keywords.html            |   45 +
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 239365 bytes
+ .../output/assets/figures/G1.1.svg                 | 1612 +++++++
+ .../output/assets/figures/G2.1.svg                 | 5061 ++++++++++++++++++++
+ .../output/assets/fonts/cmunbi.woff                |  Bin 0 -> 155676 bytes
+ .../output/assets/fonts/cmunbx.woff                |  Bin 0 -> 120936 bytes
+ .../output/assets/fonts/cmunrm.woff                |  Bin 0 -> 123340 bytes
+ .../output/assets/fonts/cmunti.woff                |  Bin 0 -> 158668 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.ttf       |  Bin 0 -> 63632 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff      |  Bin 0 -> 33516 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff2     |  Bin 0 -> 28076 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.ttf  |  Bin 0 -> 12368 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.woff |  Bin 0 -> 7716 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Bold.woff2       |  Bin 0 -> 6912 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.ttf      |  Bin 0 -> 12344 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff     |  Bin 0 -> 7656 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff2    |  Bin 0 -> 6908 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.ttf      |  Bin 0 -> 19584 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff     |  Bin 0 -> 13296 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff2    |  Bin 0 -> 11348 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.ttf   |  Bin 0 -> 19572 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff  |  Bin 0 -> 13208 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff2 |  Bin 0 -> 11316 bytes
+ .../output/assets/katex/fonts/KaTeX_Main-Bold.ttf  |  Bin 0 -> 51336 bytes
+ .../output/assets/katex/fonts/KaTeX_Main-Bold.woff |  Bin 0 -> 29912 bytes
+ .../assets/katex/fonts/KaTeX_Main-Bold.woff2       |  Bin 0 -> 25324 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.ttf   |  Bin 0 -> 32968 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff  |  Bin 0 -> 19412 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff2 |  Bin 0 -> 16780 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.ttf       |  Bin 0 -> 33580 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff      |  Bin 0 -> 19676 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff2     |  Bin 0 -> 16988 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.ttf      |  Bin 0 -> 53580 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff     |  Bin 0 -> 30772 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff2    |  Bin 0 -> 26272 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.ttf   |  Bin 0 -> 31196 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff  |  Bin 0 -> 18668 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff2 |  Bin 0 -> 16400 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.ttf       |  Bin 0 -> 31308 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff      |  Bin 0 -> 18748 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff2     |  Bin 0 -> 16440 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.ttf    |  Bin 0 -> 24504 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff   |  Bin 0 -> 14408 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff2  |  Bin 0 -> 12216 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.ttf  |  Bin 0 -> 22364 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.woff |  Bin 0 -> 14112 bytes
+ .../katex/fonts/KaTeX_SansSerif-Italic.woff2       |  Bin 0 -> 12028 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Regular.ttf |  Bin 0 -> 19436 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff       |  Bin 0 -> 12316 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff2      |  Bin 0 -> 10344 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.ttf    |  Bin 0 -> 16648 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff   |  Bin 0 -> 10588 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff2  |  Bin 0 -> 9644 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.ttf     |  Bin 0 -> 12228 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff    |  Bin 0 -> 6496 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff2   |  Bin 0 -> 5468 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.ttf     |  Bin 0 -> 11508 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff    |  Bin 0 -> 6188 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff2   |  Bin 0 -> 5208 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.ttf     |  Bin 0 -> 7588 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff    |  Bin 0 -> 4420 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff2   |  Bin 0 -> 3624 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.ttf     |  Bin 0 -> 10364 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff    |  Bin 0 -> 5980 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff2   |  Bin 0 -> 4928 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.ttf       |  Bin 0 -> 27556 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff      |  Bin 0 -> 16028 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff2     |  Bin 0 -> 13568 bytes
+ .../output/assets/katex/katex.min.css              |    1 +
+ .../output/assets/study.css                        |  193 +
+ .../standalone/00_MASTER_homogeneous_euler.html    |  345 ++
+ .../output/standalone/01_formulas_and_symbols.html |  217 +
+ .../output/standalone/02_important_points.html     |  217 +
+ .../output/standalone/03_graphs_and_diagrams.html  |  206 +
+ .../standalone/04_flowcharts_and_visuals.html      |  195 +
+ .../output/standalone/05_short_notes_keywords.html |  239 +
+ packs/maths-u1-homogeneous-euler/pack.py           |   55 +
+ packs/maths-u1-homogeneous-euler/parts/a_main.py   |  336 ++
+ 92 files changed, 8989 insertions(+)
+d69e40effcb1d9d89bb7ecf3ce5fb668132b5934 2026-10-14 13:10:11 +0000 Add Maths Unit 1 class 004 pack: implicit and composite functions
+
+ .../skills/pesu-study-pack/references/lessons.md   |     8 +
+ .../.gitignore                                     |     5 +
+ .../figures.py                                     |   121 +
+ .../output/.docs.json                              |     1 +
+ .../00_MASTER_implicit_composite_functions.html    |   115 +
+ .../00_MASTER_implicit_composite_functions.pdf     |   Bin 0 -> 1307142 bytes
+ .../output/01_formulas_and_symbols.html            |    53 +
+ .../output/01_formulas_and_symbols.pdf             |   Bin 0 -> 230350 bytes
+ .../output/02_important_points.html                |    12 +
+ .../output/02_important_points.pdf                 |   Bin 0 -> 391312 bytes
+ .../output/03_graphs_and_diagrams.html             |     1 +
+ .../output/03_graphs_and_diagrams.pdf              |  5160 ++++++++
+ .../output/04_flowcharts_and_visuals.html          |     1 +
+ .../output/04_flowcharts_and_visuals.pdf           |  6201 ++++++++++
+ .../output/05_short_notes_keywords.html            |    41 +
+ .../output/05_short_notes_keywords.pdf             |   Bin 0 -> 276943 bytes
+ .../output/assets/figures/G1.1.svg                 | 11642 +++++++++++++++++++
+ .../output/assets/figures/G1.2.svg                 |  1858 +++
+ .../output/assets/figures/G2.1.svg                 |   942 ++
+ .../output/assets/figures/G2.2.svg                 |  1213 ++
+ .../output/assets/figures/G4.1.svg                 |  1098 ++
+ .../output/assets/figures/G5.1.svg                 |  1128 ++
+ .../output/assets/fonts/cmunbi.woff                |   Bin 0 -> 155676 bytes
+ .../output/assets/fonts/cmunbx.woff                |   Bin 0 -> 120936 bytes
+ .../output/assets/fonts/cmunrm.woff                |   Bin 0 -> 123340 bytes
+ .../output/assets/fonts/cmunti.woff                |   Bin 0 -> 158668 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.ttf       |   Bin 0 -> 63632 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff      |   Bin 0 -> 33516 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff2     |   Bin 0 -> 28076 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.ttf  |   Bin 0 -> 12368 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.woff |   Bin 0 -> 7716 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Bold.woff2       |   Bin 0 -> 6912 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.ttf      |   Bin 0 -> 12344 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff     |   Bin 0 -> 7656 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff2    |   Bin 0 -> 6908 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.ttf      |   Bin 0 -> 19584 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff     |   Bin 0 -> 13296 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff2    |   Bin 0 -> 11348 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.ttf   |   Bin 0 -> 19572 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff  |   Bin 0 -> 13208 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff2 |   Bin 0 -> 11316 bytes
+ .../output/assets/katex/fonts/KaTeX_Main-Bold.ttf  |   Bin 0 -> 51336 bytes
+ .../output/assets/katex/fonts/KaTeX_Main-Bold.woff |   Bin 0 -> 29912 bytes
+ .../assets/katex/fonts/KaTeX_Main-Bold.woff2       |   Bin 0 -> 25324 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.ttf   |   Bin 0 -> 32968 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff  |   Bin 0 -> 19412 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff2 |   Bin 0 -> 16780 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.ttf       |   Bin 0 -> 33580 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff      |   Bin 0 -> 19676 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff2     |   Bin 0 -> 16988 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.ttf      |   Bin 0 -> 53580 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff     |   Bin 0 -> 30772 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff2    |   Bin 0 -> 26272 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.ttf   |   Bin 0 -> 31196 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff  |   Bin 0 -> 18668 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff2 |   Bin 0 -> 16400 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.ttf       |   Bin 0 -> 31308 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff      |   Bin 0 -> 18748 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff2     |   Bin 0 -> 16440 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.ttf    |   Bin 0 -> 24504 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff   |   Bin 0 -> 14408 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff2  |   Bin 0 -> 12216 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.ttf  |   Bin 0 -> 22364 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.woff |   Bin 0 -> 14112 bytes
+ .../katex/fonts/KaTeX_SansSerif-Italic.woff2       |   Bin 0 -> 12028 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Regular.ttf |   Bin 0 -> 19436 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff       |   Bin 0 -> 12316 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff2      |   Bin 0 -> 10344 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.ttf    |   Bin 0 -> 16648 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff   |   Bin 0 -> 10588 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff2  |   Bin 0 -> 9644 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.ttf     |   Bin 0 -> 12228 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff    |   Bin 0 -> 6496 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff2   |   Bin 0 -> 5468 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.ttf     |   Bin 0 -> 11508 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff    |   Bin 0 -> 6188 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff2   |   Bin 0 -> 5208 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.ttf     |   Bin 0 -> 7588 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff    |   Bin 0 -> 4420 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff2   |   Bin 0 -> 3624 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.ttf     |   Bin 0 -> 10364 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff    |   Bin 0 -> 5980 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff2   |   Bin 0 -> 4928 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.ttf       |   Bin 0 -> 27556 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff      |   Bin 0 -> 16028 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff2     |   Bin 0 -> 13568 bytes
+ .../output/assets/katex/katex.min.css              |     1 +
+ .../output/assets/study.css                        |   193 +
+ .../00_MASTER_implicit_composite_functions.html    |   309 +
+ .../output/standalone/01_formulas_and_symbols.html |   247 +
+ .../output/standalone/02_important_points.html     |   206 +
+ .../output/standalone/03_graphs_and_diagrams.html  |   195 +
+ .../standalone/04_flowcharts_and_visuals.html      |   195 +
+ .../output/standalone/05_short_notes_keywords.html |   235 +
+ .../maths-u1-implicit-composite-functions/pack.py  |    75 +
+ .../parts/a_main.py                                |   739 ++
+ .../parts/b_extra.py                               |   143 +
+ 97 files changed, 32138 insertions(+)
+ec6c3315fbe78bedf5b2996d598332245cba4ff8 2026-10-14 12:33:24 +0000 Add Maths Unit 1 pack: total derivative, chain rule and implicit functions; skill fixes
+
+ .claude/skills/pesu-study-pack/engine/build.py     |   20 +-
+ .claude/skills/pesu-study-pack/engine/figstyle.py  |    6 +-
+ .claude/skills/pesu-study-pack/engine/lib.py       |    2 +-
+ .../skills/pesu-study-pack/references/lessons.md   |   20 +
+ .../skills/pesu-study-pack/scripts/preview_figs.py |    4 +-
+ .../00_MASTER_geometrical_interpretation.html      |    8 +-
+ .../00_MASTER_geometrical_interpretation.pdf       |  Bin 1596719 -> 1591790 bytes
+ .../output/01_formulas_and_symbols.pdf             |  Bin 265470 -> 265470 bytes
+ .../output/02_important_points.pdf                 |  Bin 403390 -> 403390 bytes
+ .../output/03_graphs_and_diagrams.html             |    2 +-
+ .../output/03_graphs_and_diagrams.pdf              |  Bin 793233 -> 791593 bytes
+ .../output/04_flowcharts_and_visuals.pdf           |  Bin 374561 -> 374561 bytes
+ .../output/05_short_notes_keywords.pdf             |  Bin 252587 -> 252587 bytes
+ .../output/assets/figures/G2.1.svg                 |   20 +-
+ .../output/assets/figures/G3.1.svg                 |  102 +-
+ .../output/assets/figures/G3.2.svg                 |  102 +-
+ .../output/assets/figures/G4.1.svg                 | 2050 +++---
+ .../output/assets/figures/G4.2.svg                 | 2044 +++---
+ .../output/assets/figures/G4.3.svg                 | 2044 +++---
+ .../output/assets/figures/G4.4.svg                 |  518 +-
+ .../output/assets/figures/G5.1.svg                 |   34 +-
+ .../output/assets/figures/G6.1.svg                 | 1594 ++---
+ .../output/assets/figures/G6.2.svg                 |  114 +-
+ .../output/assets/study.css                        |    1 +
+ .../00_MASTER_geometrical_interpretation.html      |    9 +-
+ .../output/standalone/01_formulas_and_symbols.html |    1 +
+ .../output/standalone/02_important_points.html     |    1 +
+ .../output/standalone/03_graphs_and_diagrams.html  |    3 +-
+ .../standalone/04_flowcharts_and_visuals.html      |    1 +
+ .../output/standalone/05_short_notes_keywords.html |    1 +
+ .../.gitignore                                     |    5 +
+ .../figures.py                                     |  194 +
+ .../output/.docs.json                              |    1 +
+ ...ASTER_total_derivative_chain_rule_implicit.html |  199 +
+ ...MASTER_total_derivative_chain_rule_implicit.pdf |  Bin 0 -> 1900530 bytes
+ .../output/01_formulas_and_symbols.html            |   33 +
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 268024 bytes
+ .../output/02_important_points.html                |   34 +
+ .../output/02_important_points.pdf                 |  Bin 0 -> 635451 bytes
+ .../output/03_graphs_and_diagrams.html             |    1 +
+ .../output/03_graphs_and_diagrams.pdf              |  Bin 0 -> 628361 bytes
+ .../output/04_flowcharts_and_visuals.html          |    1 +
+ .../output/04_flowcharts_and_visuals.pdf           | 7372 ++++++++++++++++++++
+ .../output/05_short_notes_keywords.html            |   31 +
+ .../output/05_short_notes_keywords.pdf             |  Bin 0 -> 285915 bytes
+ .../output/assets/figures/G2.1.svg                 |  813 +++
+ .../output/assets/figures/G2.2.svg                 | 4514 ++++++++++++
+ .../output/assets/figures/G3.1.svg                 | 1077 +++
+ .../output/assets/figures/G4.1.svg                 | 6195 ++++++++++++++++
+ .../output/assets/figures/G4.2.svg                 | 1243 ++++
+ .../output/assets/figures/G5.1.svg                 | 1098 +++
+ .../output/assets/figures/G6.1.svg                 |  942 +++
+ .../output/assets/figures/G6.2.svg                 | 1213 ++++
+ .../output/assets/figures/G6.3.svg                 | 1858 +++++
+ .../output/assets/fonts/cmunbi.woff                |  Bin 0 -> 155676 bytes
+ .../output/assets/fonts/cmunbx.woff                |  Bin 0 -> 120936 bytes
+ .../output/assets/fonts/cmunrm.woff                |  Bin 0 -> 123340 bytes
+ .../output/assets/fonts/cmunti.woff                |  Bin 0 -> 158668 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.ttf       |  Bin 0 -> 63632 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff      |  Bin 0 -> 33516 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff2     |  Bin 0 -> 28076 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.ttf  |  Bin 0 -> 12368 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.woff |  Bin 0 -> 7716 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Bold.woff2       |  Bin 0 -> 6912 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.ttf      |  Bin 0 -> 12344 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff     |  Bin 0 -> 7656 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff2    |  Bin 0 -> 6908 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.ttf      |  Bin 0 -> 19584 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff     |  Bin 0 -> 13296 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff2    |  Bin 0 -> 11348 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.ttf   |  Bin 0 -> 19572 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff  |  Bin 0 -> 13208 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff2 |  Bin 0 -> 11316 bytes
+ .../output/assets/katex/fonts/KaTeX_Main-Bold.ttf  |  Bin 0 -> 51336 bytes
+ .../output/assets/katex/fonts/KaTeX_Main-Bold.woff |  Bin 0 -> 29912 bytes
+ .../assets/katex/fonts/KaTeX_Main-Bold.woff2       |  Bin 0 -> 25324 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.ttf   |  Bin 0 -> 32968 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff  |  Bin 0 -> 19412 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff2 |  Bin 0 -> 16780 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.ttf       |  Bin 0 -> 33580 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff      |  Bin 0 -> 19676 bytes
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff2     |  Bin 0 -> 16988 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.ttf      |  Bin 0 -> 53580 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff     |  Bin 0 -> 30772 bytes
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff2    |  Bin 0 -> 26272 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.ttf   |  Bin 0 -> 31196 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff  |  Bin 0 -> 18668 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff2 |  Bin 0 -> 16400 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.ttf       |  Bin 0 -> 31308 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff      |  Bin 0 -> 18748 bytes
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff2     |  Bin 0 -> 16440 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.ttf    |  Bin 0 -> 24504 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff   |  Bin 0 -> 14408 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff2  |  Bin 0 -> 12216 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.ttf  |  Bin 0 -> 22364 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.woff |  Bin 0 -> 14112 bytes
+ .../katex/fonts/KaTeX_SansSerif-Italic.woff2       |  Bin 0 -> 12028 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Regular.ttf |  Bin 0 -> 19436 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff       |  Bin 0 -> 12316 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff2      |  Bin 0 -> 10344 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.ttf    |  Bin 0 -> 16648 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff   |  Bin 0 -> 10588 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff2  |  Bin 0 -> 9644 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.ttf     |  Bin 0 -> 12228 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff    |  Bin 0 -> 6496 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff2   |  Bin 0 -> 5468 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.ttf     |  Bin 0 -> 11508 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff    |  Bin 0 -> 6188 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff2   |  Bin 0 -> 5208 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.ttf     |  Bin 0 -> 7588 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff    |  Bin 0 -> 4420 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff2   |  Bin 0 -> 3624 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.ttf     |  Bin 0 -> 10364 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff    |  Bin 0 -> 5980 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff2   |  Bin 0 -> 4928 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.ttf       |  Bin 0 -> 27556 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff      |  Bin 0 -> 16028 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff2     |  Bin 0 -> 13568 bytes
+ .../output/assets/katex/katex.min.css              |    1 +
+ .../output/assets/study.css                        |  193 +
+ ...ASTER_total_derivative_chain_rule_implicit.html |  393 ++
+ .../output/standalone/01_formulas_and_symbols.html |  227 +
+ .../output/standalone/02_important_points.html     |  228 +
+ .../output/standalone/03_graphs_and_diagrams.html  |  195 +
+ .../standalone/04_flowcharts_and_visuals.html      |  195 +
+ .../output/standalone/05_short_notes_keywords.html |  225 +
+ .../pack.py                                        |   82 +
+ .../parts/a_total.py                               |  259 +
+ .../parts/b_chain.py                               |  221 +
+ .../parts/c_implicit.py                            |  176 +
+ .../parts/zz_summary.py                            |  102 +
+ 131 files changed, 33678 insertions(+), 4344 deletions(-)
+a2393ec2ed35177e4458d581db861f110648f86e 2026-10-14 12:13:45 +0000 Add pesu-study-pack skill and study-pack workflow; rebuild maths pack with the engine
+
+ .claude/skills/pesu-study-pack/SKILL.md            |  142 ++
+ .claude/skills/pesu-study-pack/engine/build.py     |  339 ++++
+ .claude/skills/pesu-study-pack/engine/build_pdf.py |   42 +
+ .claude/skills/pesu-study-pack/engine/figstyle.py  |   95 +
+ .../skills/pesu-study-pack/engine/figures_run.py   |   43 +
+ .../pesu-study-pack/engine}/fonts/cmunbi.ttf       |  Bin
+ .../pesu-study-pack/engine}/fonts/cmunbi.woff      |  Bin
+ .../pesu-study-pack/engine}/fonts/cmunbx.ttf       |  Bin
+ .../pesu-study-pack/engine}/fonts/cmunbx.woff      |  Bin
+ .../pesu-study-pack/engine}/fonts/cmunrm.ttf       |  Bin
+ .../pesu-study-pack/engine}/fonts/cmunrm.woff      |  Bin
+ .../pesu-study-pack/engine}/fonts/cmunti.ttf       |  Bin
+ .../pesu-study-pack/engine}/fonts/cmunti.woff      |  Bin
+ .claude/skills/pesu-study-pack/engine/inline.py    |   49 +
+ .../pesu-study-pack/engine}/katex_render.mjs       |    0
+ .claude/skills/pesu-study-pack/engine/lib.py       |  298 +++
+ .../pesu-study-pack/engine}/package-lock.json      |    9 +-
+ .claude/skills/pesu-study-pack/engine/package.json |    6 +
+ .claude/skills/pesu-study-pack/engine/study.css    |  193 ++
+ .../figures.py                                     |  129 +-
+ .../maths-u1-geometrical-interpretation/pack.py    |   64 +
+ .../parts/c002.py                                  |  832 ++++++++
+ .../parts/c002_flows.py                            |   88 +
+ .../pesu-study-pack/references/content-schema.md   |  129 ++
+ .../skills/pesu-study-pack/references/design.md    |  100 +
+ .../skills/pesu-study-pack/references/lessons.md   |   59 +
+ .../skills/pesu-study-pack/references/sources.md   |   73 +
+ .../templates/Flowchart_Template_v7.dc.html        |  499 +++++
+ .../templates/Graph_Style_Guide_v2.dc.html         |  112 ++
+ .../skills/pesu-study-pack/scripts/grab_frame.sh   |   19 +
+ .claude/skills/pesu-study-pack/scripts/hf_get.py   |   47 +
+ .claude/skills/pesu-study-pack/scripts/hf_ls.py    |   48 +
+ .claude/skills/pesu-study-pack/scripts/make.sh     |   11 +
+ .claude/skills/pesu-study-pack/scripts/new_pack.py |   59 +
+ .../skills/pesu-study-pack/scripts/preview_figs.py |   34 +
+ .claude/skills/pesu-study-pack/scripts/qa.py       |   78 +
+ .../pesu-study-pack/scripts/render_slides.sh       |   24 +
+ .claude/skills/pesu-study-pack/scripts/setup.sh    |   12 +
+ .claude/skills/pesu-study-pack/scripts/sheet.py    |   59 +
+ .claude/workflows/study-pack.js                    |  128 ++
+ .gitignore                                         |    5 +-
+ README.md                                          |   49 +-
+ build/build.py                                     |  489 -----
+ build/build_pdf.py                                 |   47 -
+ build/content.py                                   |  510 -----
+ build/inline.py                                    |   48 -
+ build/package.json                                 |   15 -
+ output/00_MASTER_geometrical_interpretation.pdf    |  Bin 1593522 -> 0 bytes
+ output/01_formulas_and_symbols.html                |   11 -
+ output/01_formulas_and_symbols.pdf                 |  Bin 303558 -> 0 bytes
+ output/02_important_points.html                    |    1 -
+ output/03_graphs_and_diagrams.html                 |    1 -
+ output/03_graphs_and_diagrams.pdf                  |  Bin 790256 -> 0 bytes
+ output/04_flowcharts_and_visuals.html              |   12 -
+ output/04_flowcharts_and_visuals.pdf               |  Bin 368578 -> 0 bytes
+ output/05_short_notes_keywords.html                |    9 -
+ .../00_MASTER_geometrical_interpretation.html      |  280 ---
+ .../maths-u1-geometrical-interpretation/.gitignore |    5 +
+ .../maths-u1-geometrical-interpretation/figures.py |  218 +++
+ .../output/.docs.json                              |    1 +
+ .../00_MASTER_geometrical_interpretation.html      |   14 +-
+ .../00_MASTER_geometrical_interpretation.pdf       |  Bin 0 -> 1596719 bytes
+ .../output/01_formulas_and_symbols.html            |   11 +
+ .../output/01_formulas_and_symbols.pdf             |  Bin 0 -> 265470 bytes
+ .../output/02_important_points.html                |    1 +
+ .../output}/02_important_points.pdf                |  Bin 400632 -> 403390 bytes
+ .../output/03_graphs_and_diagrams.html             |    1 +
+ .../output/03_graphs_and_diagrams.pdf              |  Bin 0 -> 793233 bytes
+ .../output/04_flowcharts_and_visuals.html          |   12 +
+ .../output/04_flowcharts_and_visuals.pdf           |  Bin 0 -> 374561 bytes
+ .../output/05_short_notes_keywords.html            |    9 +
+ .../output}/05_short_notes_keywords.pdf            |  Bin 250727 -> 252587 bytes
+ .../output/assets/figures/G2.1.svg                 |   20 +-
+ .../output/assets/figures/G3.1.svg                 |  104 +-
+ .../output/assets/figures/G3.2.svg                 |  104 +-
+ .../output/assets/figures/G4.1.svg                 | 2052 ++++++++++----------
+ .../output/assets/figures/G4.2.svg                 | 2046 +++++++++----------
+ .../output/assets/figures/G4.3.svg                 | 2046 +++++++++----------
+ .../output/assets/figures/G4.4.svg                 |   72 +-
+ .../output/assets/figures/G5.1.svg                 |   34 +-
+ .../output/assets/figures/G6.1.svg                 | 1596 +++++++--------
+ .../output/assets/figures/G6.2.svg                 |   54 +-
+ .../output/assets/fonts/cmunbi.woff                |  Bin 0 -> 155676 bytes
+ .../output/assets/fonts/cmunbx.woff                |  Bin 0 -> 120936 bytes
+ .../output/assets/fonts/cmunrm.woff                |  Bin 0 -> 123340 bytes
+ .../output/assets/fonts/cmunti.woff                |  Bin 0 -> 158668 bytes
+ .../assets/katex/fonts/KaTeX_AMS-Regular.ttf       |  Bin
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff      |  Bin
+ .../assets/katex/fonts/KaTeX_AMS-Regular.woff2     |  Bin
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.ttf  |  Bin
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.woff |  Bin
+ .../katex/fonts/KaTeX_Caligraphic-Bold.woff2       |  Bin
+ .../katex/fonts/KaTeX_Caligraphic-Regular.ttf      |  Bin
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff     |  Bin
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff2    |  Bin
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.ttf      |  Bin
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff     |  Bin
+ .../assets/katex/fonts/KaTeX_Fraktur-Bold.woff2    |  Bin
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.ttf   |  Bin
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff  |  Bin
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff2 |  Bin
+ .../output}/assets/katex/fonts/KaTeX_Main-Bold.ttf |  Bin
+ .../assets/katex/fonts/KaTeX_Main-Bold.woff        |  Bin
+ .../assets/katex/fonts/KaTeX_Main-Bold.woff2       |  Bin
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.ttf   |  Bin
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff  |  Bin
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff2 |  Bin
+ .../assets/katex/fonts/KaTeX_Main-Italic.ttf       |  Bin
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff      |  Bin
+ .../assets/katex/fonts/KaTeX_Main-Italic.woff2     |  Bin
+ .../assets/katex/fonts/KaTeX_Main-Regular.ttf      |  Bin
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff     |  Bin
+ .../assets/katex/fonts/KaTeX_Main-Regular.woff2    |  Bin
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.ttf   |  Bin
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff  |  Bin
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff2 |  Bin
+ .../assets/katex/fonts/KaTeX_Math-Italic.ttf       |  Bin
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff      |  Bin
+ .../assets/katex/fonts/KaTeX_Math-Italic.woff2     |  Bin
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.ttf    |  Bin
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff   |  Bin
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff2  |  Bin
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.ttf  |  Bin
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.woff |  Bin
+ .../katex/fonts/KaTeX_SansSerif-Italic.woff2       |  Bin
+ .../assets/katex/fonts/KaTeX_SansSerif-Regular.ttf |  Bin
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff       |  Bin
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff2      |  Bin
+ .../assets/katex/fonts/KaTeX_Script-Regular.ttf    |  Bin
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff   |  Bin
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff2  |  Bin
+ .../assets/katex/fonts/KaTeX_Size1-Regular.ttf     |  Bin
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff    |  Bin
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff2   |  Bin
+ .../assets/katex/fonts/KaTeX_Size2-Regular.ttf     |  Bin
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff    |  Bin
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff2   |  Bin
+ .../assets/katex/fonts/KaTeX_Size3-Regular.ttf     |  Bin
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff    |  Bin
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff2   |  Bin
+ .../assets/katex/fonts/KaTeX_Size4-Regular.ttf     |  Bin
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff    |  Bin
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff2   |  Bin
+ .../katex/fonts/KaTeX_Typewriter-Regular.ttf       |  Bin
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff      |  Bin
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff2     |  Bin
+ .../output}/assets/katex/katex.min.css             |    0
+ .../output}/assets/study.css                       |   23 +
+ .../00_MASTER_geometrical_interpretation.html      |  303 +++
+ .../standalone/01_formulas_and_symbols.html        |   31 +-
+ .../output}/standalone/02_important_points.html    |   25 +-
+ .../output}/standalone/03_graphs_and_diagrams.html |   25 +-
+ .../standalone/04_flowcharts_and_visuals.html      |   29 +-
+ .../standalone/05_short_notes_keywords.html        |   29 +-
+ packs/maths-u1-geometrical-interpretation/pack.py  |   64 +
+ .../parts/c002.py                                  |  832 ++++++++
+ .../parts/c002_flows.py                            |   88 +
+ 157 files changed, 9514 insertions(+), 5632 deletions(-)
+57d01e598b3cd75dd373da13569c6f19bb1d4bf8 2026-10-14 11:44:20 +0000 Add standalone single-file HTML copies of the six documents
+
+ README.md                                          |   1 +
+ build/inline.py                                    |  48 ++++
+ .../00_MASTER_geometrical_interpretation.html      | 280 +++++++++++++++++++++
+ output/standalone/01_formulas_and_symbols.html     | 181 +++++++++++++
+ output/standalone/02_important_points.html         | 171 +++++++++++++
+ output/standalone/03_graphs_and_diagrams.html      | 171 +++++++++++++
+ output/standalone/04_flowcharts_and_visuals.html   | 182 ++++++++++++++
+ output/standalone/05_short_notes_keywords.html     | 179 +++++++++++++
+ 8 files changed, 1213 insertions(+)
+bfc6ece3a2204db049f15715eda39ed15a251c4a 2026-10-14 11:40:56 +0000 Add Maths Unit 1 study pack: geometrical interpretation of partial derivatives
+
+ .gitignore                                         |    4 +
+ README.md                                          |   35 +
+ build/build.py                                     |  489 ++
+ build/build_pdf.py                                 |   47 +
+ build/content.py                                   |  510 ++
+ build/figures.py                                   |  277 +
+ build/katex_render.mjs                             |   10 +
+ build/package-lock.json                            |   41 +
+ build/package.json                                 |   15 +
+ output/00_MASTER_geometrical_interpretation.html   |  110 +
+ output/00_MASTER_geometrical_interpretation.pdf    |  Bin 0 -> 1593522 bytes
+ output/01_formulas_and_symbols.html                |   11 +
+ output/01_formulas_and_symbols.pdf                 |  Bin 0 -> 303558 bytes
+ output/02_important_points.html                    |    1 +
+ output/02_important_points.pdf                     |  Bin 0 -> 400632 bytes
+ output/03_graphs_and_diagrams.html                 |    1 +
+ output/03_graphs_and_diagrams.pdf                  |  Bin 0 -> 790256 bytes
+ output/04_flowcharts_and_visuals.html              |   12 +
+ output/04_flowcharts_and_visuals.pdf               |  Bin 0 -> 368578 bytes
+ output/05_short_notes_keywords.html                |    9 +
+ output/05_short_notes_keywords.pdf                 |  Bin 0 -> 250727 bytes
+ output/assets/figures/G1.svg                       |  979 +++
+ output/assets/figures/G10.svg                      | 1719 +++++
+ output/assets/figures/G2.svg                       | 1666 +++++
+ output/assets/figures/G3.svg                       | 1568 +++++
+ output/assets/figures/G4.svg                       | 7297 ++++++++++++++++++++
+ output/assets/figures/G5.svg                       | 7256 +++++++++++++++++++
+ output/assets/figures/G6.svg                       | 7256 +++++++++++++++++++
+ output/assets/figures/G7.svg                       | 1929 ++++++
+ output/assets/figures/G8.svg                       | 1116 +++
+ output/assets/figures/G9.svg                       | 5934 ++++++++++++++++
+ output/assets/fonts/cmunbi.ttf                     |  Bin 0 -> 285096 bytes
+ output/assets/fonts/cmunbi.woff                    |  Bin 0 -> 155676 bytes
+ output/assets/fonts/cmunbx.ttf                     |  Bin 0 -> 221904 bytes
+ output/assets/fonts/cmunbx.woff                    |  Bin 0 -> 120936 bytes
+ output/assets/fonts/cmunrm.ttf                     |  Bin 0 -> 235656 bytes
+ output/assets/fonts/cmunrm.woff                    |  Bin 0 -> 123340 bytes
+ output/assets/fonts/cmunti.ttf                     |  Bin 0 -> 289276 bytes
+ output/assets/fonts/cmunti.woff                    |  Bin 0 -> 158668 bytes
+ output/assets/katex/fonts/KaTeX_AMS-Regular.ttf    |  Bin 0 -> 63632 bytes
+ output/assets/katex/fonts/KaTeX_AMS-Regular.woff   |  Bin 0 -> 33516 bytes
+ output/assets/katex/fonts/KaTeX_AMS-Regular.woff2  |  Bin 0 -> 28076 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.ttf  |  Bin 0 -> 12368 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.woff |  Bin 0 -> 7716 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Bold.woff2       |  Bin 0 -> 6912 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.ttf      |  Bin 0 -> 12344 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff     |  Bin 0 -> 7656 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff2    |  Bin 0 -> 6908 bytes
+ output/assets/katex/fonts/KaTeX_Fraktur-Bold.ttf   |  Bin 0 -> 19584 bytes
+ output/assets/katex/fonts/KaTeX_Fraktur-Bold.woff  |  Bin 0 -> 13296 bytes
+ output/assets/katex/fonts/KaTeX_Fraktur-Bold.woff2 |  Bin 0 -> 11348 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.ttf   |  Bin 0 -> 19572 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff  |  Bin 0 -> 13208 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff2 |  Bin 0 -> 11316 bytes
+ output/assets/katex/fonts/KaTeX_Main-Bold.ttf      |  Bin 0 -> 51336 bytes
+ output/assets/katex/fonts/KaTeX_Main-Bold.woff     |  Bin 0 -> 29912 bytes
+ output/assets/katex/fonts/KaTeX_Main-Bold.woff2    |  Bin 0 -> 25324 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.ttf   |  Bin 0 -> 32968 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff  |  Bin 0 -> 19412 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff2 |  Bin 0 -> 16780 bytes
+ output/assets/katex/fonts/KaTeX_Main-Italic.ttf    |  Bin 0 -> 33580 bytes
+ output/assets/katex/fonts/KaTeX_Main-Italic.woff   |  Bin 0 -> 19676 bytes
+ output/assets/katex/fonts/KaTeX_Main-Italic.woff2  |  Bin 0 -> 16988 bytes
+ output/assets/katex/fonts/KaTeX_Main-Regular.ttf   |  Bin 0 -> 53580 bytes
+ output/assets/katex/fonts/KaTeX_Main-Regular.woff  |  Bin 0 -> 30772 bytes
+ output/assets/katex/fonts/KaTeX_Main-Regular.woff2 |  Bin 0 -> 26272 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.ttf   |  Bin 0 -> 31196 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff  |  Bin 0 -> 18668 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff2 |  Bin 0 -> 16400 bytes
+ output/assets/katex/fonts/KaTeX_Math-Italic.ttf    |  Bin 0 -> 31308 bytes
+ output/assets/katex/fonts/KaTeX_Math-Italic.woff   |  Bin 0 -> 18748 bytes
+ output/assets/katex/fonts/KaTeX_Math-Italic.woff2  |  Bin 0 -> 16440 bytes
+ output/assets/katex/fonts/KaTeX_SansSerif-Bold.ttf |  Bin 0 -> 24504 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff   |  Bin 0 -> 14408 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff2  |  Bin 0 -> 12216 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.ttf  |  Bin 0 -> 22364 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.woff |  Bin 0 -> 14112 bytes
+ .../katex/fonts/KaTeX_SansSerif-Italic.woff2       |  Bin 0 -> 12028 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Regular.ttf |  Bin 0 -> 19436 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff       |  Bin 0 -> 12316 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff2      |  Bin 0 -> 10344 bytes
+ output/assets/katex/fonts/KaTeX_Script-Regular.ttf |  Bin 0 -> 16648 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff   |  Bin 0 -> 10588 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff2  |  Bin 0 -> 9644 bytes
+ output/assets/katex/fonts/KaTeX_Size1-Regular.ttf  |  Bin 0 -> 12228 bytes
+ output/assets/katex/fonts/KaTeX_Size1-Regular.woff |  Bin 0 -> 6496 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff2   |  Bin 0 -> 5468 bytes
+ output/assets/katex/fonts/KaTeX_Size2-Regular.ttf  |  Bin 0 -> 11508 bytes
+ output/assets/katex/fonts/KaTeX_Size2-Regular.woff |  Bin 0 -> 6188 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff2   |  Bin 0 -> 5208 bytes
+ output/assets/katex/fonts/KaTeX_Size3-Regular.ttf  |  Bin 0 -> 7588 bytes
+ output/assets/katex/fonts/KaTeX_Size3-Regular.woff |  Bin 0 -> 4420 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff2   |  Bin 0 -> 3624 bytes
+ output/assets/katex/fonts/KaTeX_Size4-Regular.ttf  |  Bin 0 -> 10364 bytes
+ output/assets/katex/fonts/KaTeX_Size4-Regular.woff |  Bin 0 -> 5980 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff2   |  Bin 0 -> 4928 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.ttf       |  Bin 0 -> 27556 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff      |  Bin 0 -> 16028 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff2     |  Bin 0 -> 13568 bytes
+ output/assets/katex/katex.min.css                  |    1 +
+ output/assets/study.css                            |  169 +
+ .../maths-unit1-geometrical-interpretation-PLAN.md |  107 +
+ 102 files changed, 38569 insertions(+)
+bd7b0052ca4a2471f1ab065d42a76aa21a134308 2026-10-14 05:28:34 +0000 Remove committed Python cache files
+
+ sat-solver/__pycache__/bench.cpython-313.pyc         | Bin 4515 -> 0 bytes
+ sat-solver/__pycache__/fourstep.cpython-313.pyc      | Bin 7230 -> 0 bytes
+ sat-solver/__pycache__/indexed.cpython-313.pyc       | Bin 8607 -> 0 bytes
+ sat-solver/__pycache__/pairs.cpython-313.pyc         | Bin 7794 -> 0 bytes
+ sat-solver/__pycache__/patterns.cpython-313.pyc      | Bin 18485 -> 0 bytes
+ sat-solver/__pycache__/positions.cpython-313.pyc     | Bin 8919 -> 0 bytes
+ sat-solver/__pycache__/test_patterns.cpython-313.pyc | Bin 4615 -> 0 bytes
+ 7 files changed, 0 insertions(+), 0 deletions(-)
+23b4961b6ec4ee4b87308d976eb9d65625a43e31 2026-10-14 05:28:26 +0000 Add polysat: polynomial read-out with more rules and optional CDCL
+
+ sat-solver/.gitignore      |   1 +
+ sat-solver/POLYSAT.md      | 127 ++++++
+ sat-solver/README.md       |   7 +
+ sat-solver/compare.py      | 117 ++++++
+ sat-solver/polysat.py      | 962 +++++++++++++++++++++++++++++++++++++++++++++
+ sat-solver/test_polysat.py |  93 +++++
+ 6 files changed, 1307 insertions(+)
+69fbb7518de5e8bb5d4290b3c73567e27778afd5 2026-10-14 01:34:57 +0000 Add polynomial read-out tests and resume notes
+
+ sat-solver/README.md                         |   8 +
+ sat-solver/RESUME.md                         | 245 +++++++++++++++++++++++++++
+ sat-solver/__pycache__/pairs.cpython-313.pyc | Bin 0 -> 7794 bytes
+ sat-solver/readout.py                        | 109 ++++++++++++
+ 4 files changed, 362 insertions(+)
+dbfc194e757c6ae2a573f23eb7832d5861287dc2 2026-10-14 01:18:12 +0000 Add pairwise four-step solver on the position structure
+
+ sat-solver/README.md                             |  18 ++++
+ sat-solver/__pycache__/patterns.cpython-313.pyc  | Bin 18404 -> 18485 bytes
+ sat-solver/__pycache__/positions.cpython-313.pyc | Bin 8686 -> 8919 bytes
+ sat-solver/pairs.py                              | 118 +++++++++++++++++++++++
+ sat-solver/patterns.py                           |   4 +-
+ 5 files changed, 138 insertions(+), 2 deletions(-)
+3baa1f1651285e75e77be9281b825d06fe58206b 2026-10-14 01:12:39 +0000 Add four-step tournament solver
+
+ sat-solver/README.md                            |  17 ++++
+ sat-solver/__pycache__/fourstep.cpython-313.pyc | Bin 0 -> 7230 bytes
+ sat-solver/fourstep.py                          |  99 ++++++++++++++++++++++++
+ 3 files changed, 116 insertions(+)
+b6f35bea4cb33a777407890531dbfccfac3867ee 2026-10-14 01:00:08 +0000 Add position-graph solver that stores patterns implicitly
+
+ sat-solver/README.md                             |  15 +++
+ sat-solver/__pycache__/positions.cpython-313.pyc | Bin 0 -> 8686 bytes
+ sat-solver/positions.py                          | 123 +++++++++++++++++++++++
+ 3 files changed, 138 insertions(+)
+0be364a624136d3294421e404d61d1f3e5ddc482 2026-10-13 18:55:08 +0000 Add clause-by-clause solver with literal position dictionary
+
+ sat-solver/README.md                               |  25 ++++
+ sat-solver/__pycache__/indexed.cpython-313.pyc     | Bin 0 -> 8607 bytes
+ .../__pycache__/test_patterns.cpython-313.pyc      | Bin 0 -> 4615 bytes
+ sat-solver/bench_indexed.py                        |  27 +++++
+ sat-solver/indexed.py                              | 133 +++++++++++++++++++++
+ 5 files changed, 185 insertions(+)
+5f9d06d0ce3e76b82754921439ba20424959066b 2026-10-13 18:23:58 +0000 Add solution-pattern SAT solver with tests and benchmark
+
+ sat-solver/README.md                            |  40 +++
+ sat-solver/__pycache__/bench.cpython-313.pyc    | Bin 0 -> 4515 bytes
+ sat-solver/__pycache__/patterns.cpython-313.pyc | Bin 0 -> 18404 bytes
+ sat-solver/bench.py                             |  56 ++++
+ sat-solver/patterns.py                          | 347 ++++++++++++++++++++++++
+ sat-solver/test_patterns.py                     |  65 +++++
+ 6 files changed, 508 insertions(+)
+9d7cb197d79dfb9605e9099cf60031771fcbf60f 2026-10-13 05:26:53 +0000 Question bank: classic LaTeX-assignment layout
+
+ README.md                                      |   4 +-
+ build/__pycache__/qbank.cpython-313.pyc        | Bin 91814 -> 91863 bytes
+ build/__pycache__/qbank_new.cpython-313.pyc    | Bin 0 -> 91182 bytes
+ build/build_pdf.py                             |  14 +-
+ build/qbank.py                                 |   6 +-
+ build/qbank_classic.py                         | 141 ++++++
+ output/00_MASTER_unit1_complete.pdf            | Bin 1133779 -> 1133779 bytes
+ output/01_formulas_and_symbols.pdf             | Bin 381686 -> 381686 bytes
+ output/02_important_points.pdf                 | Bin 599258 -> 599258 bytes
+ output/03_graphs_and_diagrams.pdf              | Bin 295923 -> 295923 bytes
+ output/04_flowcharts_and_visuals.pdf           | Bin 266491 -> 266491 bytes
+ output/05_short_notes_keywords.pdf             | Bin 304385 -> 304385 bytes
+ output/06_question_bank.html                   | 618 ++++++++++++-------------
+ output/06_question_bank.pdf                    | Bin 13504277 -> 690458 bytes
+ output/assets/classic.css                      | 102 ++++
+ output/assets/fonts/CMU-OFL.txt                | 103 +++++
+ output/assets/fonts/cmu-serif-500-italic.woff2 | Bin 0 -> 170068 bytes
+ output/assets/fonts/cmu-serif-500-roman.woff2  | Bin 0 -> 222840 bytes
+ output/assets/fonts/cmu-serif-700-italic.woff2 | Bin 0 -> 161180 bytes
+ output/assets/fonts/cmu-serif-700-roman.woff2  | Bin 0 -> 213616 bytes
+ 20 files changed, 654 insertions(+), 334 deletions(-)
+4a3efd93ef6e2d511ba8ba5f73e421c31a2de13e 2026-10-13 05:18:59 +0000 Question bank: add new question types, quick-fire checks, spot-the-error and mock papers
+
+ README.md                               |   4 +-
+ build/__pycache__/qbank.cpython-313.pyc | Bin 90755 -> 91814 bytes
+ build/qbank.py                          |  62 ++--
+ build/qbank_new.py                      | 540 ++++++++++++++++++++++++++++++++
+ output/00_MASTER_unit1_complete.pdf     | Bin 1133779 -> 1133779 bytes
+ output/01_formulas_and_symbols.pdf      | Bin 381686 -> 381686 bytes
+ output/02_important_points.pdf          | Bin 599258 -> 599258 bytes
+ output/03_graphs_and_diagrams.pdf       | Bin 295923 -> 295923 bytes
+ output/04_flowcharts_and_visuals.pdf    | Bin 266491 -> 266491 bytes
+ output/05_short_notes_keywords.pdf      | Bin 304385 -> 304385 bytes
+ output/06_question_bank.html            | 268 ++++++++++++++--
+ output/06_question_bank.pdf             | Bin 3791079 -> 13504277 bytes
+ output/assets/qbank.css                 |   5 +
+ 13 files changed, 822 insertions(+), 57 deletions(-)
+cc76852bcdff0981481ba4f729ba6ff2377eff11 2026-10-13 05:08:44 +0000 Add beginner-friendly explanations for Unit 1 assignment
+
+ UE26MA141A_Unit1_Explained_Simply.pdf | Bin 0 -> 541705 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+88a31999b8386e2a5dba92e53fe372655e587c08 2026-10-13 05:08:31 +0000 Add question bank: solved past ESA questions and practice variants
+
+ README.md                               |    3 +
+ build/__pycache__/qbank.cpython-313.pyc |  Bin 0 -> 90755 bytes
+ build/build_pdf.py                      |    2 +-
+ build/qbank.py                          |  492 +++++
+ output/00_MASTER_unit1_complete.pdf     |  Bin 1133779 -> 1133779 bytes
+ output/01_formulas_and_symbols.pdf      |  Bin 381686 -> 381686 bytes
+ output/02_important_points.pdf          |  Bin 599258 -> 599258 bytes
+ output/03_graphs_and_diagrams.pdf       |  Bin 295923 -> 295923 bytes
+ output/04_flowcharts_and_visuals.pdf    |  Bin 266491 -> 266491 bytes
+ output/05_short_notes_keywords.pdf      |  Bin 304385 -> 304385 bytes
+ output/06_question_bank.html            | 3160 +++++++++++++++++++++++++++++++
+ output/06_question_bank.pdf             |  Bin 0 -> 3791079 bytes
+ output/assets/qbank.css                 |   45 +
+ 13 files changed, 3701 insertions(+), 1 deletion(-)
+1fbb487ebfb5c0581660ad609a5c9c856a4f95ff 2026-10-13 05:01:54 +0000 Add step-by-step solutions for UE26MA141A Unit 1 assignment
+
+ UE26MA141A_Unit1_Solutions.pdf | Bin 0 -> 248445 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+973fc6914571dbb46beca1f70f36a89262a8946a 2026-10-13 03:33:18 +0000 Redesign study pack: KaTeX maths, self-hosted fonts, new layout
+
+ README.md                                          |    7 +-
+ build/__pycache__/content.cpython-313.pyc          |  Bin 0 -> 36645 bytes
+ build/build_html.py                                |  537 ++-
+ build/build_pdf.py                                 |   36 +-
+ build/content.py                                   |  126 +
+ build/figures.py                                   |  275 +-
+ build/katex_render.js                              |    7 +
+ output/00_MASTER_unit1_complete.html               | 4473 ++++++++++----------
+ output/00_MASTER_unit1_complete.pdf                |  Bin 569361 -> 1133779 bytes
+ output/01_formulas_and_symbols.html                |   66 +-
+ output/01_formulas_and_symbols.pdf                 |  Bin 365503 -> 381686 bytes
+ output/02_important_points.html                    |   34 +-
+ output/02_important_points.pdf                     |  Bin 309456 -> 599258 bytes
+ output/03_graphs_and_diagrams.html                 | 4441 +++++++++----------
+ output/03_graphs_and_diagrams.pdf                  |  Bin 260579 -> 295923 bytes
+ output/04_flowcharts_and_visuals.html              |   34 +-
+ output/04_flowcharts_and_visuals.pdf               |  Bin 238820 -> 266491 bytes
+ output/05_short_notes_keywords.html                |   34 +-
+ output/05_short_notes_keywords.pdf                 |  Bin 244717 -> 304385 bytes
+ output/assets/figures/G10.svg                      |  187 +-
+ output/assets/figures/G13.svg                      |  253 +-
+ output/assets/figures/G15.svg                      |  389 +-
+ output/assets/figures/G17.svg                      |  173 +-
+ output/assets/figures/G21.svg                      | 1287 +++---
+ output/assets/figures/G22.svg                      |  614 ++-
+ output/assets/figures/G23.svg                      |  244 +-
+ output/assets/figures/G24.svg                      |  493 +--
+ output/assets/figures/G25.svg                      |  437 +-
+ output/assets/figures/G9.svg                       |  310 +-
+ output/assets/fonts/inter-greek-400-normal.woff2   |  Bin 0 -> 8412 bytes
+ output/assets/fonts/inter-greek-500-normal.woff2   |  Bin 0 -> 8836 bytes
+ output/assets/fonts/inter-greek-600-normal.woff2   |  Bin 0 -> 8948 bytes
+ output/assets/fonts/inter-greek-700-normal.woff2   |  Bin 0 -> 8884 bytes
+ output/assets/fonts/inter-greek-800-normal.woff2   |  Bin 0 -> 8932 bytes
+ output/assets/fonts/inter-latin-400-normal.woff2   |  Bin 0 -> 21564 bytes
+ output/assets/fonts/inter-latin-500-normal.woff2   |  Bin 0 -> 22760 bytes
+ output/assets/fonts/inter-latin-600-normal.woff2   |  Bin 0 -> 22820 bytes
+ output/assets/fonts/inter-latin-700-normal.woff2   |  Bin 0 -> 22904 bytes
+ output/assets/fonts/inter-latin-800-normal.woff2   |  Bin 0 -> 22792 bytes
+ .../assets/fonts/inter-latin-ext-400-normal.woff2  |  Bin 0 -> 29268 bytes
+ .../assets/fonts/inter-latin-ext-500-normal.woff2  |  Bin 0 -> 32232 bytes
+ .../assets/fonts/inter-latin-ext-600-normal.woff2  |  Bin 0 -> 32548 bytes
+ .../assets/fonts/inter-latin-ext-700-normal.woff2  |  Bin 0 -> 32728 bytes
+ .../assets/fonts/inter-latin-ext-800-normal.woff2  |  Bin 0 -> 32872 bytes
+ .../fonts/jetbrains-mono-latin-400-normal.woff2    |  Bin 0 -> 21088 bytes
+ .../fonts/jetbrains-mono-latin-600-normal.woff2    |  Bin 0 -> 21936 bytes
+ .../fonts/source-serif-4-greek-400-italic.woff2    |  Bin 0 -> 8176 bytes
+ .../fonts/source-serif-4-greek-400-normal.woff2    |  Bin 0 -> 7892 bytes
+ .../fonts/source-serif-4-greek-600-italic.woff2    |  Bin 0 -> 8472 bytes
+ .../fonts/source-serif-4-greek-600-normal.woff2    |  Bin 0 -> 8112 bytes
+ .../fonts/source-serif-4-latin-400-italic.woff2    |  Bin 0 -> 20132 bytes
+ .../fonts/source-serif-4-latin-400-normal.woff2    |  Bin 0 -> 20044 bytes
+ .../fonts/source-serif-4-latin-600-italic.woff2    |  Bin 0 -> 21620 bytes
+ .../fonts/source-serif-4-latin-600-normal.woff2    |  Bin 0 -> 21484 bytes
+ .../source-serif-4-latin-ext-400-italic.woff2      |  Bin 0 -> 15592 bytes
+ .../source-serif-4-latin-ext-400-normal.woff2      |  Bin 0 -> 15556 bytes
+ .../source-serif-4-latin-ext-600-italic.woff2      |  Bin 0 -> 16036 bytes
+ .../source-serif-4-latin-ext-600-normal.woff2      |  Bin 0 -> 15980 bytes
+ output/assets/katex/fonts/KaTeX_AMS-Regular.ttf    |  Bin 0 -> 63632 bytes
+ output/assets/katex/fonts/KaTeX_AMS-Regular.woff   |  Bin 0 -> 33516 bytes
+ output/assets/katex/fonts/KaTeX_AMS-Regular.woff2  |  Bin 0 -> 28076 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.ttf  |  Bin 0 -> 12368 bytes
+ .../assets/katex/fonts/KaTeX_Caligraphic-Bold.woff |  Bin 0 -> 7716 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Bold.woff2       |  Bin 0 -> 6912 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.ttf      |  Bin 0 -> 12344 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff     |  Bin 0 -> 7656 bytes
+ .../katex/fonts/KaTeX_Caligraphic-Regular.woff2    |  Bin 0 -> 6908 bytes
+ output/assets/katex/fonts/KaTeX_Fraktur-Bold.ttf   |  Bin 0 -> 19584 bytes
+ output/assets/katex/fonts/KaTeX_Fraktur-Bold.woff  |  Bin 0 -> 13296 bytes
+ output/assets/katex/fonts/KaTeX_Fraktur-Bold.woff2 |  Bin 0 -> 11348 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.ttf   |  Bin 0 -> 19572 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff  |  Bin 0 -> 13208 bytes
+ .../assets/katex/fonts/KaTeX_Fraktur-Regular.woff2 |  Bin 0 -> 11316 bytes
+ output/assets/katex/fonts/KaTeX_Main-Bold.ttf      |  Bin 0 -> 51336 bytes
+ output/assets/katex/fonts/KaTeX_Main-Bold.woff     |  Bin 0 -> 29912 bytes
+ output/assets/katex/fonts/KaTeX_Main-Bold.woff2    |  Bin 0 -> 25324 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.ttf   |  Bin 0 -> 32968 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff  |  Bin 0 -> 19412 bytes
+ .../assets/katex/fonts/KaTeX_Main-BoldItalic.woff2 |  Bin 0 -> 16780 bytes
+ output/assets/katex/fonts/KaTeX_Main-Italic.ttf    |  Bin 0 -> 33580 bytes
+ output/assets/katex/fonts/KaTeX_Main-Italic.woff   |  Bin 0 -> 19676 bytes
+ output/assets/katex/fonts/KaTeX_Main-Italic.woff2  |  Bin 0 -> 16988 bytes
+ output/assets/katex/fonts/KaTeX_Main-Regular.ttf   |  Bin 0 -> 53580 bytes
+ output/assets/katex/fonts/KaTeX_Main-Regular.woff  |  Bin 0 -> 30772 bytes
+ output/assets/katex/fonts/KaTeX_Main-Regular.woff2 |  Bin 0 -> 26272 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.ttf   |  Bin 0 -> 31196 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff  |  Bin 0 -> 18668 bytes
+ .../assets/katex/fonts/KaTeX_Math-BoldItalic.woff2 |  Bin 0 -> 16400 bytes
+ output/assets/katex/fonts/KaTeX_Math-Italic.ttf    |  Bin 0 -> 31308 bytes
+ output/assets/katex/fonts/KaTeX_Math-Italic.woff   |  Bin 0 -> 18748 bytes
+ output/assets/katex/fonts/KaTeX_Math-Italic.woff2  |  Bin 0 -> 16440 bytes
+ output/assets/katex/fonts/KaTeX_SansSerif-Bold.ttf |  Bin 0 -> 24504 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff   |  Bin 0 -> 14408 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Bold.woff2  |  Bin 0 -> 12216 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.ttf  |  Bin 0 -> 22364 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Italic.woff |  Bin 0 -> 14112 bytes
+ .../katex/fonts/KaTeX_SansSerif-Italic.woff2       |  Bin 0 -> 12028 bytes
+ .../assets/katex/fonts/KaTeX_SansSerif-Regular.ttf |  Bin 0 -> 19436 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff       |  Bin 0 -> 12316 bytes
+ .../katex/fonts/KaTeX_SansSerif-Regular.woff2      |  Bin 0 -> 10344 bytes
+ output/assets/katex/fonts/KaTeX_Script-Regular.ttf |  Bin 0 -> 16648 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff   |  Bin 0 -> 10588 bytes
+ .../assets/katex/fonts/KaTeX_Script-Regular.woff2  |  Bin 0 -> 9644 bytes
+ output/assets/katex/fonts/KaTeX_Size1-Regular.ttf  |  Bin 0 -> 12228 bytes
+ output/assets/katex/fonts/KaTeX_Size1-Regular.woff |  Bin 0 -> 6496 bytes
+ .../assets/katex/fonts/KaTeX_Size1-Regular.woff2   |  Bin 0 -> 5468 bytes
+ output/assets/katex/fonts/KaTeX_Size2-Regular.ttf  |  Bin 0 -> 11508 bytes
+ output/assets/katex/fonts/KaTeX_Size2-Regular.woff |  Bin 0 -> 6188 bytes
+ .../assets/katex/fonts/KaTeX_Size2-Regular.woff2   |  Bin 0 -> 5208 bytes
+ output/assets/katex/fonts/KaTeX_Size3-Regular.ttf  |  Bin 0 -> 7588 bytes
+ output/assets/katex/fonts/KaTeX_Size3-Regular.woff |  Bin 0 -> 4420 bytes
+ .../assets/katex/fonts/KaTeX_Size3-Regular.woff2   |  Bin 0 -> 3624 bytes
+ output/assets/katex/fonts/KaTeX_Size4-Regular.ttf  |  Bin 0 -> 10364 bytes
+ output/assets/katex/fonts/KaTeX_Size4-Regular.woff |  Bin 0 -> 5980 bytes
+ .../assets/katex/fonts/KaTeX_Size4-Regular.woff2   |  Bin 0 -> 4928 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.ttf       |  Bin 0 -> 27556 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff      |  Bin 0 -> 16028 bytes
+ .../katex/fonts/KaTeX_Typewriter-Regular.woff2     |  Bin 0 -> 13568 bytes
+ output/assets/katex/katex.min.css                  |    1 +
+ output/assets/study.css                            |  245 +-
+ 120 files changed, 7850 insertions(+), 6853 deletions(-)
+04ba6b2a054ac6f837dfc8fe22cfbb449d583dc4 2026-10-13 03:21:39 +0000 Add Unit 1 study pack: builders, HTML and PDF outputs
+
+ README.md                             |   11 +
+ build/build_html.py                   |  213 +++
+ build/build_pdf.py                    |   11 +
+ build/figures.py                      |   80 +
+ output/00_MASTER_unit1_complete.html  | 3092 +++++++++++++++++++++++++++++++++
+ output/00_MASTER_unit1_complete.pdf   |  Bin 0 -> 569361 bytes
+ output/01_formulas_and_symbols.html   |   24 +
+ output/01_formulas_and_symbols.pdf    |  Bin 0 -> 365503 bytes
+ output/02_important_points.html       |   24 +
+ output/02_important_points.pdf        |  Bin 0 -> 309456 bytes
+ output/03_graphs_and_diagrams.html    | 3092 +++++++++++++++++++++++++++++++++
+ output/03_graphs_and_diagrams.pdf     |  Bin 0 -> 260579 bytes
+ output/04_flowcharts_and_visuals.html |   24 +
+ output/04_flowcharts_and_visuals.pdf  |  Bin 0 -> 238820 bytes
+ output/05_short_notes_keywords.html   |   24 +
+ output/05_short_notes_keywords.pdf    |  Bin 0 -> 244717 bytes
+ output/assets/figures/G10.svg         |  203 +++
+ output/assets/figures/G13.svg         |  169 ++
+ output/assets/figures/G15.svg         |  259 +++
+ output/assets/figures/G17.svg         |  183 ++
+ output/assets/figures/G21.svg         |  628 +++++++
+ output/assets/figures/G22.svg         |  386 ++++
+ output/assets/figures/G23.svg         |  240 +++
+ output/assets/figures/G24.svg         |  443 +++++
+ output/assets/figures/G25.svg         |  356 ++++
+ output/assets/figures/G9.svg          |  231 +++
+ output/assets/study.css               |   23 +
+ 27 files changed, 9716 insertions(+)
+ab76e6cea8db2c67126e70bde64a89ac4e76b218 2026-10-13 03:14:36 +0000 Add partial Engineering Chemistry Unit 1 study pack (master, first pass)
+
+ output/00_MASTER_unit1_partial.html | 189 ++++++++++++++++++++++++++++++++++++
+ output/00_MASTER_unit1_partial.pdf  | Bin 0 -> 295781 bytes
+ 2 files changed, 189 insertions(+)
+1286fd06da8d5e82e8a937b12bfe4e6a94df0639 2026-10-13 02:20:40 +0000 Plan: parallel sub-agent execution and on-demand video use
+
+ plans/chem-unit1-study-pack-PLAN.md | 140 +++++++++++++++++++++++++-----------
+ 1 file changed, 99 insertions(+), 41 deletions(-)
+32794578d81f5d36df14bf6ae8deec8047c74690 2026-10-13 02:15:24 +0000 Plan: use all Unit 1 bucket sources incl. videos and every format
+
+ plans/chem-unit1-study-pack-PLAN.md | 157 ++++++++++++++++++++++++++++--------
+ 1 file changed, 122 insertions(+), 35 deletions(-)
+2712ad782a7406dcc90ac3453c397da75b19ecb2 2026-10-13 02:07:40 +0000 Add agent brief for Engineering Chemistry Unit 1 study pack
+
+ plans/chem-unit1-study-pack-PLAN.md | 541 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 541 insertions(+)

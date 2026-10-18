@@ -1,0 +1,397 @@
+{
+  "MODULES": [],
+  "TOPICS": [
+    {
+      "id": "T1",
+      "title": "Absorbance and Concentration",
+      "overview": "Absorbance measures attenuation on a logarithmic scale. In the linear Beer–Lambert range it is proportional to concentration and path length. This lesson keeps fractions, percentages and physical units distinct so that the algebra matches the measurement.",
+      "srcs": [
+        "S1"
+      ],
+      "requirements": {
+        "DEFS": 1,
+        "FORMULAS": 1,
+        "WORKED": 1,
+        "FIGS": 1,
+        "FLOWS": 1,
+        "NOTES": 1,
+        "DERIVATIONS": {
+          "not_applicable": "This introductory topic uses an explicit definition and a worked check; no additional derivation or quantitative figure is required."
+        },
+        "PRACTICE": 1
+      }
+    }
+  ],
+  "DEFS": [
+    {
+      "id": "D1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "term": "Absorbance",
+      "text": "Negative base-ten logarithm of fractional transmittance."
+    },
+    {
+      "id": "D1.2",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "term": "Molar absorption coefficient",
+      "text": "Wavelength- and species-dependent proportionality coefficient."
+    }
+  ],
+  "STATEMENTS": [],
+  "POINTS": [
+    {
+      "id": "P1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "text": "Use the fractional transmittance in the logarithm. The illustrative coefficient is not a universal value for copper(II)."
+    }
+  ],
+  "WHY": [
+    {
+      "id": "Y1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "q": "Why must fractional transmittance be used in the logarithm?",
+      "a": "The definition uses I divided by I0. A percentage is one hundred times that ratio and would shift the logarithm by two."
+    }
+  ],
+  "TRAPS": [],
+  "FORMULAS": [
+    {
+      "id": "E1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Beer–Lambert relation",
+      "tex": "A=\\varepsilon\\,l\\,c=-\\log_{10}T",
+      "gives": "Absorbance of a dilute absorbing species, such as illustrative $\\ce{Cu^2+}$ in solution.",
+      "when": "Monochromatic measurement in the linear range with a suitable blank and consistent units.",
+      "units": "$A$: dimensionless; $\\varepsilon$: $\\mathrm{L\\,mol^{-1}\\,cm^{-1}}$; $l$: cm; $c$: $\\mathrm{mol\\,L^{-1}}$."
+    }
+  ],
+  "SYMBOLS": [
+    {
+      "id": "B1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "$A$",
+      "name": "Absorbance",
+      "meaning": "Negative base-ten logarithm of fractional transmittance.",
+      "unit": "Dimensionless",
+      "where": "E1.1"
+    },
+    {
+      "id": "B1.2",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "$\\varepsilon$",
+      "name": "Molar absorption coefficient",
+      "meaning": "Proportionality coefficient at the specified species, wavelength and conditions.",
+      "unit": "$\\mathrm{L\\,mol^{-1}\\,cm^{-1}}$",
+      "where": "E1.1"
+    },
+    {
+      "id": "B1.3",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "$l$",
+      "name": "Optical path length",
+      "meaning": "Distance light travels through the sample.",
+      "unit": "cm",
+      "where": "E1.1"
+    },
+    {
+      "id": "B1.4",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "$c$",
+      "name": "Concentration",
+      "meaning": "Amount of absorbing species per unit solution volume.",
+      "unit": "$\\mathrm{mol\\,L^{-1}}$",
+      "where": "E1.1"
+    },
+    {
+      "id": "B1.5",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "$T$",
+      "name": "Fractional transmittance",
+      "meaning": "Ratio $I/I_0$; use the fraction, not its percentage.",
+      "unit": "Dimensionless",
+      "where": "E1.1, W1.1"
+    },
+    {
+      "id": "B1.6",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "$I, I_0$",
+      "name": "Transmitted and incident intensities",
+      "meaning": "Both intensities use the same wavelength, geometry and units; their ratio is dimensionless.",
+      "unit": "Same intensity unit",
+      "where": "E1.1"
+    }
+  ],
+  "WORKED": [
+    {
+      "id": "W1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Convert absorbance to transmitted fraction",
+      "given": "$\\varepsilon=100\\ \\mathrm{L\\,mol^{-1}\\,cm^{-1}}$, $l=1\\ \\mathrm{cm}$, $c=0.002\\ \\mathrm{mol\\,L^{-1}}$.",
+      "steps": [
+        "$A=100(1)(0.002)=0.2$.",
+        "$T=10^{-A}=10^{-0.2}\\approx0.630957$.",
+        "Multiply the fraction by 100 to express a percentage."
+      ],
+      "answer": "$A=0.2$ and transmittance $\\approx63.0957\\%$.",
+      "check": "Use the fractional transmittance in the logarithm. The illustrative coefficient is not a universal value for copper(II).",
+      "units": "Absorbance and fractional transmittance are dimensionless.",
+      "method": "Beer–Lambert calculation, then invert the base-ten logarithm."
+    }
+  ],
+  "PYQS": [],
+  "NOTES": [
+    {
+      "id": "N1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "text": "Absorbance measures attenuation on a logarithmic scale. In the linear Beer–Lambert range it is proportional to concentration and path length. This lesson keeps fractions, percentages and physical units distinct so that the algebra matches the measurement."
+    }
+  ],
+  "KEYWORDS": [
+    {
+      "id": "K1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "term": "Absorbance",
+      "meaning": "Negative base-ten logarithm of fractional transmittance."
+    },
+    {
+      "id": "K1.2",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "term": "Molar absorption coefficient",
+      "meaning": "Wavelength- and species-dependent proportionality coefficient."
+    }
+  ],
+  "RAPID": [
+    {
+      "id": "R1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "q": "Why must fractional transmittance be used in the logarithm?",
+      "a": "The definition uses I divided by I0. A percentage is one hundred times that ratio and would shift the logarithm by two."
+    }
+  ],
+  "TOP_FACTS": [
+    {
+      "id": "A1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "text": "Use the fractional transmittance in the logarithm. The illustrative coefficient is not a universal value for copper(II)."
+    }
+  ],
+  "TOP_FORMULAS": [
+    "E1.1"
+  ],
+  "FIGS": [
+    {
+      "id": "G1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Absorbance increases linearly with concentration",
+      "file": "figures/G1.1.svg",
+      "alt": "Straight line through the origin with slope one hundred; concentration is measured in mol per litre and absorbance is dimensionless.",
+      "howto": "Read concentration on the horizontal axis and absorbance on the vertical axis. This is an ideal illustrative model in the stated linear range."
+    }
+  ],
+  "FLOWS": [
+    {
+      "id": "F1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Apply and check the method",
+      "layout": "straight",
+      "spec": {
+        "nodes": [
+          {
+            "kind": "given",
+            "title": "Record conditions",
+            "sub": "State wavelength, path length, coefficient and concentration."
+          },
+          {
+            "kind": "step",
+            "n": 1,
+            "title": "Compute absorbance",
+            "fx": "$A=\\varepsilon lc$"
+          },
+          {
+            "kind": "step",
+            "n": 2,
+            "title": "Recover transmitted fraction",
+            "fx": "$T=10^{-A}$"
+          },
+          {
+            "kind": "check",
+            "title": "Check units and representation",
+            "sub": "Use a fraction in the logarithm and percent only for reporting."
+          }
+        ]
+      }
+    }
+  ],
+  "COMPARISONS": [],
+  "MNEMONICS": [],
+  "DERIVATIONS": [],
+  "PRACTICE": [
+    {
+      "id": "Q1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Explain a condition before computing",
+      "kind": "theory",
+      "prompt": "Why must fractional transmittance be used in the logarithm?",
+      "steps": [
+        "The definition uses I divided by I0. A percentage is one hundred times that ratio and would shift the logarithm by two."
+      ],
+      "answer": "The definition uses I divided by I0. A percentage is one hundred times that ratio and would shift the logarithm by two.",
+      "check": "Check the answer against the explicit assumption in the included lesson."
+    }
+  ],
+  "schema_version": "1.0",
+  "EVIDENCE": [
+    {
+      "id": "S1",
+      "source": "SRC1",
+      "unit": "lesson",
+      "status": "covered",
+      "reviewed": true,
+      "summary": "Read the entire original lesson and mapped definitions, assumptions, examples, limitations and output checks.",
+      "items": [
+        "T1",
+        "D1.1",
+        "D1.2",
+        "P1.1",
+        "Y1.1",
+        "E1.1",
+        "W1.1",
+        "N1.1",
+        "K1.1",
+        "K1.2",
+        "R1.1",
+        "A1.1",
+        "G1.1",
+        "F1.1",
+        "Q1.1",
+        "B1.1",
+        "B1.2",
+        "B1.3",
+        "B1.4",
+        "B1.5",
+        "B1.6"
+      ]
+    }
+  ],
+  "CHECKS": [
+    {
+      "id": "VE1.1",
+      "item": "E1.1",
+      "method": "manual",
+      "reviewed": true,
+      "note": "Reviewed against the authored lesson and its domain/units; the worked output is independently verified below."
+    },
+    {
+      "id": "VW1.1",
+      "item": "W1.1",
+      "method": "numeric",
+      "reviewed": true,
+      "note": "Computed the transmitted fraction independently with the inverse logarithm.",
+      "lhs": "10**(-0.2)",
+      "rhs": "0.6309573444801932"
+    },
+    {
+      "id": "VQ1.1",
+      "item": "Q1.1",
+      "method": "manual",
+      "reviewed": true,
+      "note": "Reviewed against the authored lesson and its domain/units; the worked output is independently verified below."
+    }
+  ],
+  "PACK": {
+    "course": "Absorbance and Concentration",
+    "unit": "One complete topic",
+    "scope": "Exactly the definitions, procedure, numerical or code example and limitations in the included lesson",
+    "title": "Absorbance and Concentration",
+    "slug": "chemistry",
+    "header": "Absorbance and Concentration",
+    "date": "17 October 2026",
+    "compiled_from": "Original instructional fixture in sources/lesson.md. No course or past-paper provenance is claimed.",
+    "how_to_use": "Read the definition and applicable conditions. Follow the worked solution, reproduce its check, and attempt the practice question before reading the answer.",
+    "pyq_note": "No past papers supplied; practice is authored and unranked.",
+    "sources": [
+      {
+        "id": "SRC1",
+        "name": "Original lesson",
+        "path": "sources/lesson.md",
+        "local_path": "sources/lesson.md",
+        "sha256": "cfbe318abd7c0463feace943b7286d12b4d22f7f3bd8a763807b9e40fe5568c7",
+        "kind": "authored",
+        "units": [
+          "lesson"
+        ],
+        "availability": "available",
+        "use": "All concepts and examples"
+      }
+    ],
+    "gaps": [],
+    "documents": [
+      "master",
+      "formulas",
+      "points",
+      "figures",
+      "flows",
+      "recall",
+      "questions"
+    ]
+  }
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css">
+<style>
+html,body{margin:0;background:#ffffff;color:#1a1a1a;font-family:'Computer Modern Serif','CMU Serif','Latin Modern Roman',Georgia,serif;-webkit-font-smoothing:antialiased}
+a{color:#0072B2}a:hover{color:#1a1a1a}
+svg text{font-family:'Computer Modern Serif','CMU Serif','Latin Modern Roman',Georgia,serif}
+</style>
+</helmet>
+<div style="max-width:1120px;margin:0 auto;padding:64px 28px 120px;display:flex;flex-direction:column;gap:72px">
+
+<section data-screen-label="1 Style rules" style="display:flex;flex-direction:column;gap:36px">
+  <div style="border-bottom:1px solid #1a1a1a;padding-bottom:10px"><h2 style="margin:0;font-size:28px;font-weight:700;display:flex;gap:16px"><span>1</span><span>Style rules for graphs and diagrams</span></h2></div>
+  <p style="margin:0;max-width:760px;font-size:17px;line-height:1.6;color:#333333;text-wrap:pretty">Restyle a figure without changing its data: every curve, point, axis range, label and annotation stays. Only colour, line weight, spacing and type change. Figures are drawn large, one per row, so labels read at text size.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px 56px">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <h3 style="margin:0;font-size:20px;font-weight:700;display:flex;gap:12px"><span>1.1</span><span>Colour</span></h3>
+      <p style="margin:0;font-size:15px;line-height:1.55;color:#444444">Okabe–Ito palette: distinct for colour-blind readers and on white paper. Use colours in this order.</p>
+      <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:34px;height:34px;border-radius:10px;background:#0072B2"></span><div><div style="font-weight:700;font-size:15px">Blue <span style="font-weight:400;color:#666666;font-size:13.5px">#0072B2</span></div><div style="font-size:14px;color:#444444">Series 1: the main curve, ground state, absorption</div></div></div>
+      <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:34px;height:34px;border-radius:10px;background:#D55E00"></span><div><div style="font-weight:700;font-size:15px">Vermilion <span style="font-weight:400;color:#666666;font-size:13.5px">#D55E00</span></div><div style="font-size:14px;color:#444444">Series 2: comparison curve, excited state, emission, forces</div></div></div>
+      <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:34px;height:34px;border-radius:10px;background:#009E73"></span><div><div style="font-weight:700;font-size:15px">Green <span style="font-weight:400;color:#666666;font-size:13.5px">#009E73</span></div><div style="font-size:14px;color:#444444">Series 3: fundamental transitions, “active” results</div></div></div>
+      <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:34px;height:34px;border-radius:10px;background:#A0557F"></span><div><div style="font-weight:700;font-size:15px">Purple <span style="font-weight:400;color:#666666;font-size:13.5px">#A0557F</span></div><div style="font-size:14px;color:#444444">Series 4: electronic transitions, second boundaries</div></div></div>
+      <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:34px;height:34px;border-radius:10px;background:#E69F00"></span><div><div style="font-weight:700;font-size:15px">Orange <span style="font-weight:400;color:#666666;font-size:13.5px">#E69F00</span></div><div style="font-size:14px;color:#444444">Highlights: beams, the vertical Franck–Condon arrow</div></div></div>
+      <div style="display:flex;align-items:center;gap:12px"><span style="flex:none;width:34px;height:34px;border-radius:10px;background:#E4F0F8;border:1px solid #b9d3e6;box-sizing:border-box"></span><div><div style="font-weight:700;font-size:15px">Tints</div><div style="font-size:14px;color:#444444">Fills for atoms, lobes and regions: the series colour at about 10%</div></div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <h3 style="margin:0;font-size:20px;font-weight:700;display:flex;gap:12px"><span>1.2</span><span>Lines and neutrals</span></h3>
+      <div style="display:flex;align-items:center;gap:14px"><svg width="72" height="14" style="flex:none"><line x1="2" y1="7" x2="70" y2="7" stroke="#0072B2" stroke-width="2.6"></line></svg><div style="font-size:14.5px"><b>Data curve</b> 2.4–2.6 px, solid</div></div>
+      <div style="display:flex;align-items:center;gap:14px"><svg width="72" height="14" style="flex:none"><line x1="2" y1="7" x2="70" y2="7" stroke="#D55E00" stroke-width="2.4" stroke-dasharray="8 5"></line></svg><div style="font-size:14.5px"><b>Model or approximation</b> dashed (harmonic, excited state)</div></div>
+      <div style="display:flex;align-items:center;gap:14px"><svg width="72" height="14" style="flex:none"><line x1="2" y1="7" x2="70" y2="7" stroke="#5f6368" stroke-width="1.4" stroke-dasharray="6 4"></line></svg><div style="font-size:14.5px"><b>Limit or reference</b> grey dashed (dissociation, 1 atm)</div></div>
+      <div style="display:flex;align-items:center;gap:14px"><svg width="72" height="14" style="flex:none"><line x1="2" y1="7" x2="70" y2="7" stroke="#d5d8dd" stroke-width="1"></line></svg><div style="font-size:14.5px"><b>Guide</b> #d5d8dd, 1 px</div></div>
+      <div style="display:flex;align-items:center;gap:14px"><svg width="72" height="14" style="flex:none"><line x1="2" y1="7" x2="60" y2="7" stroke="#1a1a1a" stroke-width="1.2"></line><polygon points="70,7 60,2 60,12" fill="#1a1a1a"></polygon></svg><div style="font-size:14.5px"><b>Axes and text</b> ink #1a1a1a; muted notes #5f6368</div></div>
+      <p style="margin:4px 0 0;font-size:14.5px;line-height:1.55;color:#444444">Never rely on colour alone: every series also has a direct label in its own colour, and models are dashed.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <h3 style="margin:0;font-size:20px;font-weight:700;display:flex;gap:12px"><span>1.3</span><span>Type and size</span></h3>
+      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:15.5px;line-height:1.6">
+        <li>Computer Modern Serif for every label, as in the course PDFs.</li>
+        <li>Variables italic (<i>E</i>, <i>B</i>, <i>λ</i>, <i>r</i><sub>e</sub>); units upright (cm<sup>−1</sup>, °C, atm).</li>
+        <li>Draw on a 700-unit-wide canvas with 12–15 unit text; display at full column width (about 1000 px), so text reads at 17–21 px.</li>
+        <li>Leave at least 16 units between any two labels; move a label and add a thin leader line rather than overlap.</li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <h3 style="margin:0;font-size:20px;font-weight:700;display:flex;gap:12px"><span>1.4</span><span>Layout</span></h3>
+      <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:15.5px;line-height:1.6">
+        <li>One figure per row, full width. Never shrink a figure to sit beside another.</li>
+        <li>Keep each figure’s own proportions; tall figures (phase diagrams, potential curves) stay tall.</li>
+        <li>Left and bottom axes only; ticks outward; keep the original ranges and tick values.</li>
+        <li>Multi-panel figures stack panels vertically when side-by-side would make them narrow.</li>
+        <li>Caption: “Figure G<i>n</i>.” title, ESA stars, then ID and source tags.</li>
+        <li>Tables and remarks are not drawn inside the graphic. Use the Table and Remark blocks from the flowchart template, placed under the figure.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="2 Figures" style="display:flex;flex-direction:column;gap:64px">
+  <div style="border-bottom:1px solid #1a1a1a;padding-bottom:10px"><h2 style="margin:0;font-size:28px;font-weight:700;display:flex;gap:16px"><span>2</span><span>Restyled figures</span></h2></div>
+  <sc-for list="{{ figs }}" as="fg" hint-placeholder-count="4">
+    <figure id="{{ fg.id }}" style="margin:0;display:flex;flex-direction:column;gap:14px">
+      <div data-fig="{{ fg.id }}" style="width:100%;max-width:1040px;margin:0 auto;min-height:200px"></div>
+      <figcaption style="display:flex;flex-direction:column;gap:5px;max-width:1040px;width:100%;margin:0 auto;border-top:1px solid #e3e3e3;padding-top:12px">
+        <div style="font-size:16.5px;line-height:1.4"><b>Figure {{ fg.id }}.</b> {{ fg.title }}. <span style="color:#5f6368">ESA {{ fg.stars }}</span></div>
+        <div style="font-size:13.5px;color:#5f6368;line-height:1.5">{{ fg.meta }}</div>
+      </figcaption>
+    </figure>
+  </sc-for>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { figs: [] };
+  async componentDidMount() {
+    const [idx, mod] = await Promise.all([fetch('graphs/index.json').then(r => r.json()), import('./figures.js?v=' + Date.now())]);
+    this.mod = mod;
+    const by = Object.fromEntries(idx.map(o => [o.id, o]));
+    const figs = mod.ORDER.map(id => {
+      const o = by[id] || { id, title: '', stars: '', meta: '', srcs: [] };
+      const t = o.title ? o.title.charAt(0).toUpperCase() + o.title.slice(1) : id;
+      const src = o.srcs.length ? ' · ' + o.srcs.slice(0, 3).join(' · ') + (o.srcs.length > 3 ? ` · +${o.srcs.length - 3} more` : '') : '';
+      return { id, title: t, stars: o.stars, meta: (o.meta || '') + src };
+    });
+    this.setState({ figs });
+  }
+  componentDidUpdate() { this.paint(); }
+  paint() {
+    if (!this.mod) return;
+    document.querySelectorAll('[data-fig]').forEach(el => {
+      const id = el.getAttribute('data-fig');
+      if (el.getAttribute('data-done') === id) return;
+      el.innerHTML = this.mod.render(id);
+      el.style.minHeight = '0';
+      el.setAttribute('data-done', id);
+    });
+  }
+  renderVals() { return { figs: this.state.figs }; }
+}
+</script>
+</body>
+</html>

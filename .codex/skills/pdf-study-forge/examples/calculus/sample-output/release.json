@@ -1,0 +1,16 @@
+{
+  "status": "RELEASED",
+  "reviewer": "Codex authoring agent; no external expert approval claimed",
+  "pages": {
+    "00_MASTER_derivatives.pdf": 19,
+    "01_formulas_and_symbols.pdf": 4,
+    "02_important_points.pdf": 2,
+    "03_graphs_and_diagrams.pdf": 3,
+    "04_flowcharts_and_visuals.pdf": 3,
+    "05_short_notes_keywords.pdf": 3,
+    "06_question_bank.pdf": 2
+  },
+  "input_sha256": "63ce529940fd8d9d3af0fb0b15d6c38917cf9581736195b06bb99baefde39c33",
+  "engine_sha256": "108c9e3ffdd690ecccad626ec078969ce0ce04d4ea4eff593cf8ee756727feb1",
+  "limitations": "Automated checks and recorded review are evidence, not a guarantee of subject accuracy or PDF/UA certification."
+}

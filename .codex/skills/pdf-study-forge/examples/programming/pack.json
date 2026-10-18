@@ -1,0 +1,359 @@
+{
+  "MODULES": [],
+  "TOPICS": [
+    {
+      "id": "T1",
+      "title": "Format and Verify a Currency String",
+      "overview": "Formatting converts a value into a chosen textual representation. This example separates a literal currency symbol from an interpolated value, verifies the exact printed result, and states the limits of a display operation.",
+      "srcs": [
+        "S1"
+      ],
+      "requirements": {
+        "DEFS": 1,
+        "FORMULAS": 1,
+        "WORKED": 1,
+        "FIGS": {
+          "not_applicable": "This introductory topic uses an explicit definition and a worked check; no additional derivation or quantitative figure is required."
+        },
+        "FLOWS": 1,
+        "NOTES": 1,
+        "DERIVATIONS": {
+          "not_applicable": "This introductory topic uses an explicit definition and a worked check; no additional derivation or quantitative figure is required."
+        },
+        "PRACTICE": 1
+      }
+    }
+  ],
+  "DEFS": [
+    {
+      "id": "D1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "term": "F-string",
+      "text": "A formatted string literal that evaluates expressions inside braces."
+    },
+    {
+      "id": "D1.2",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "term": "Format specification",
+      "text": "Text after a colon in a replacement field that controls presentation."
+    }
+  ],
+  "STATEMENTS": [],
+  "POINTS": [
+    {
+      "id": "P1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "text": "The example formats the integer exactly; it does not claim that floating-point arithmetic is suitable for all financial calculations."
+    }
+  ],
+  "WHY": [
+    {
+      "id": "Y1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "q": "Does adding a dollar sign convert a number into another currency?",
+      "a": "No. The symbol is a display label. Conversion requires an explicitly supplied exchange rate and a defined calculation."
+    }
+  ],
+  "TRAPS": [],
+  "FORMULAS": [
+    {
+      "id": "E1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Format two decimal places",
+      "code": "price = 12\nprint(f\"${price:.2f}\")",
+      "gives": "A currency-labelled display string.",
+      "when": "Python 3; this is display formatting and no exchange-rate conversion is implied.",
+      "units": "Display text, not a currency conversion."
+    }
+  ],
+  "SYMBOLS": [
+    {
+      "id": "B1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "<code>price</code>",
+      "name": "Input variable",
+      "meaning": "The integer 12 in this example.",
+      "unit": "No conversion is performed",
+      "where": "E1.1"
+    },
+    {
+      "id": "B1.2",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "<code>f</code> prefix",
+      "name": "Formatted string literal",
+      "meaning": "Evaluates expressions placed inside braces.",
+      "unit": "Python syntax",
+      "where": "E1.1"
+    },
+    {
+      "id": "B1.3",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "<code>.2f</code>",
+      "name": "Format specification",
+      "meaning": "Displays two digits after the decimal point.",
+      "unit": "Python syntax",
+      "where": "E1.1"
+    },
+    {
+      "id": "B1.4",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "sym": "&#36;",
+      "name": "Literal currency label",
+      "meaning": "An ordinary character outside the expression braces; it does not perform a currency conversion.",
+      "unit": "Display text",
+      "where": "E1.1"
+    }
+  ],
+  "WORKED": [
+    {
+      "id": "W1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Predict and verify the exact output",
+      "given": "The integer price is 12. Execute the two-line example in Python 3.",
+      "steps": [
+        "The expression in braces evaluates the integer price.",
+        "The format specification .2f renders two fractional digits. The preceding dollar sign remains literal text."
+      ],
+      "answer": "The output is <code>&#36;12.00</code>, followed by a newline.",
+      "check": "The example formats the integer exactly; it does not claim that floating-point arithmetic is suitable for all financial calculations.",
+      "units": "A text string.",
+      "method": "Execute the authored example and compare exact stdout."
+    }
+  ],
+  "PYQS": [],
+  "NOTES": [
+    {
+      "id": "N1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "text": "Formatting converts a value into a chosen textual representation. This example separates a literal currency symbol from an interpolated value, verifies the exact printed result, and states the limits of a display operation."
+    }
+  ],
+  "KEYWORDS": [
+    {
+      "id": "K1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "term": "F-string",
+      "meaning": "A formatted string literal that evaluates expressions inside braces."
+    },
+    {
+      "id": "K1.2",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "term": "Format specification",
+      "meaning": "Text after a colon in a replacement field that controls presentation."
+    }
+  ],
+  "RAPID": [
+    {
+      "id": "R1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "q": "Does adding a dollar sign convert a number into another currency?",
+      "a": "No. The symbol is a display label. Conversion requires an explicitly supplied exchange rate and a defined calculation."
+    }
+  ],
+  "TOP_FACTS": [
+    {
+      "id": "A1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "text": "The example formats the integer exactly; it does not claim that floating-point arithmetic is suitable for all financial calculations."
+    }
+  ],
+  "TOP_FORMULAS": [
+    "E1.1"
+  ],
+  "FIGS": [],
+  "FLOWS": [
+    {
+      "id": "F1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Apply and check the method",
+      "layout": "straight",
+      "spec": {
+        "nodes": [
+          {
+            "kind": "given",
+            "title": "Start with the value",
+            "sub": "Use the integer price = 12."
+          },
+          {
+            "kind": "step",
+            "n": 1,
+            "title": "Apply the format",
+            "sub": "Render two digits after the decimal point."
+          },
+          {
+            "kind": "result",
+            "title": "Read the output",
+            "sub": "The text is &#36;12.00."
+          },
+          {
+            "kind": "check",
+            "title": "Compare exact stdout",
+            "sub": "Account for the newline printed at the end."
+          }
+        ]
+      }
+    }
+  ],
+  "COMPARISONS": [],
+  "MNEMONICS": [],
+  "DERIVATIONS": [],
+  "PRACTICE": [
+    {
+      "id": "Q1.1",
+      "topic": "T1",
+      "srcs": [
+        "S1"
+      ],
+      "title": "Explain a condition before computing",
+      "kind": "theory",
+      "prompt": "Does adding a dollar sign convert a number into another currency?",
+      "steps": [
+        "No. The symbol is a display label. Conversion requires an explicitly supplied exchange rate and a defined calculation."
+      ],
+      "answer": "No. The symbol is a display label. Conversion requires an explicitly supplied exchange rate and a defined calculation.",
+      "check": "Check the answer against the explicit assumption in the included lesson."
+    }
+  ],
+  "schema_version": "1.0",
+  "EVIDENCE": [
+    {
+      "id": "S1",
+      "source": "SRC1",
+      "unit": "lesson",
+      "status": "covered",
+      "reviewed": true,
+      "summary": "Read the entire original lesson and mapped definitions, assumptions, examples, limitations and output checks.",
+      "items": [
+        "T1",
+        "D1.1",
+        "D1.2",
+        "P1.1",
+        "Y1.1",
+        "E1.1",
+        "W1.1",
+        "N1.1",
+        "K1.1",
+        "K1.2",
+        "R1.1",
+        "A1.1",
+        "F1.1",
+        "Q1.1",
+        "B1.1",
+        "B1.2",
+        "B1.3",
+        "B1.4"
+      ]
+    }
+  ],
+  "CHECKS": [
+    {
+      "id": "VE1.1",
+      "item": "E1.1",
+      "method": "manual",
+      "reviewed": true,
+      "note": "Reviewed against the authored lesson and its domain/units; the worked output is independently verified below."
+    },
+    {
+      "id": "VW1.1",
+      "item": "W1.1",
+      "method": "manual",
+      "reviewed": true,
+      "note": "Executed the two-line Python example in a separate interpreter and observed stdout \"$12.00\\n\" exactly."
+    },
+    {
+      "id": "VQ1.1",
+      "item": "Q1.1",
+      "method": "manual",
+      "reviewed": true,
+      "note": "Reviewed against the authored lesson and its domain/units; the worked output is independently verified below."
+    }
+  ],
+  "PACK": {
+    "course": "Format and Verify a Currency String",
+    "unit": "One complete topic",
+    "scope": "Exactly the definitions, procedure, numerical or code example and limitations in the included lesson",
+    "title": "Format and Verify a Currency String",
+    "slug": "programming",
+    "header": "Format and Verify a Currency String",
+    "date": "17 October 2026",
+    "compiled_from": "Original instructional fixture in sources/lesson.md. No course or past-paper provenance is claimed.",
+    "how_to_use": "Read the definition and applicable conditions. Follow the worked solution, reproduce its check, and attempt the practice question before reading the answer.",
+    "pyq_note": "No past papers supplied; practice is authored and unranked.",
+    "sources": [
+      {
+        "id": "SRC1",
+        "name": "Original lesson",
+        "path": "sources/lesson.md",
+        "local_path": "sources/lesson.md",
+        "sha256": "c359e52292f7855b6340be3aa4ab8191e81cc130fdbfbf7e1a08580cc6c5e234",
+        "kind": "authored",
+        "units": [
+          "lesson"
+        ],
+        "availability": "available",
+        "use": "All concepts and examples"
+      }
+    ],
+    "gaps": [],
+    "documents": [
+      "master",
+      "formulas",
+      "points",
+      "figures",
+      "flows",
+      "recall",
+      "questions"
+    ],
+    "not_applicable": {
+      "figures": "The source teaches a short text-formatting operation. Its control flow is shown in the flowchart document; a quantitative graph would add no evidence."
+    }
+  }
+}

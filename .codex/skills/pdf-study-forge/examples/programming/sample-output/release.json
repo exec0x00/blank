@@ -1,0 +1,16 @@
+{
+  "status": "RELEASED",
+  "reviewer": "Codex authoring agent; no external expert approval claimed",
+  "pages": {
+    "00_MASTER_programming.pdf": 6,
+    "01_formulas_and_symbols.pdf": 2,
+    "02_important_points.pdf": 1,
+    "03_graphs_and_diagrams.pdf": 1,
+    "04_flowcharts_and_visuals.pdf": 1,
+    "05_short_notes_keywords.pdf": 2,
+    "06_question_bank.pdf": 2
+  },
+  "input_sha256": "f6b653493b89d46fe2cea62bcdfe2de1846dadfcdfe9f8c8f4935f14f9bf80de",
+  "engine_sha256": "108c9e3ffdd690ecccad626ec078969ce0ce04d4ea4eff593cf8ee756727feb1",
+  "limitations": "Automated checks and recorded review are evidence, not a guarantee of subject accuracy or PDF/UA certification."
+}

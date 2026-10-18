@@ -1,0 +1,337 @@
+{
+  "schema_version": "1.0",
+  "status": "RELEASED",
+  "draft": false,
+  "input_sha256": "7fbb3a1b3afb3ab9655ea52e10be44006d44f2dede9bebf17fc9b55150e96510",
+  "input_assets": {
+    "figures/G1.1.svg": "bc32f2b8575fba240a74abe3e8e0e449aa41490fb5b1e4c6578cba09a122fe6f",
+    "sources/lesson.md": "cfbe318abd7c0463feace943b7286d12b4d22f7f3bd8a763807b9e40fe5568c7"
+  },
+  "engine_sha256": "108c9e3ffdd690ecccad626ec078969ce0ce04d4ea4eff593cf8ee756727feb1",
+  "validation": {
+    "ok": true,
+    "errors": [],
+    "warnings": [],
+    "checks": [
+      {
+        "id": "VE1.1",
+        "item": "E1.1",
+        "ok": true,
+        "method": "manual",
+        "result": "manual record only; no mathematical proof by software"
+      },
+      {
+        "id": "VW1.1",
+        "item": "W1.1",
+        "ok": true,
+        "method": "numeric",
+        "result": "absolute residual = 0; tolerance = 6.41e-09"
+      },
+      {
+        "id": "VQ1.1",
+        "item": "Q1.1",
+        "ok": true,
+        "method": "manual",
+        "result": "manual record only; no mathematical proof by software"
+      }
+    ],
+    "counts": {
+      "MODULES": 0,
+      "TOPICS": 1,
+      "DEFS": 2,
+      "STATEMENTS": 0,
+      "POINTS": 1,
+      "WHY": 1,
+      "TRAPS": 0,
+      "FORMULAS": 1,
+      "SYMBOLS": 6,
+      "WORKED": 1,
+      "PYQS": 0,
+      "NOTES": 1,
+      "KEYWORDS": 2,
+      "RAPID": 1,
+      "TOP_FACTS": 1,
+      "TOP_FORMULAS": 1,
+      "FIGS": 1,
+      "FLOWS": 1,
+      "COMPARISONS": 0,
+      "MNEMONICS": 0,
+      "DERIVATIONS": 0,
+      "PRACTICE": 1
+    },
+    "coverage": {
+      "covered": 1
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "pdfs": [
+    {
+      "file": "00_MASTER_chemistry.pdf",
+      "pages": 7,
+      "outlines": 21,
+      "fonts": 7,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 206,
+          "ink_ratio": 0.0222
+        },
+        {
+          "page": 2,
+          "body_characters": 1489,
+          "ink_ratio": 0.143
+        },
+        {
+          "page": 3,
+          "body_characters": 245,
+          "ink_ratio": 0.0356
+        },
+        {
+          "page": 4,
+          "body_characters": 647,
+          "ink_ratio": 0.2306
+        },
+        {
+          "page": 5,
+          "body_characters": 1341,
+          "ink_ratio": 0.252
+        },
+        {
+          "page": 6,
+          "body_characters": 822,
+          "ink_ratio": 0.1393
+        },
+        {
+          "page": 7,
+          "body_characters": 972,
+          "ink_ratio": 0.1252
+        }
+      ],
+      "sheets": [
+        "00_MASTER_chemistry-sheet001.jpg",
+        "00_MASTER_chemistry-sheet002.jpg"
+      ]
+    },
+    {
+      "file": "01_formulas_and_symbols.pdf",
+      "pages": 2,
+      "outlines": 5,
+      "fonts": 5,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 1003,
+          "ink_ratio": 0.1434
+        },
+        {
+          "page": 2,
+          "body_characters": 472,
+          "ink_ratio": 0.0602
+        }
+      ],
+      "sheets": [
+        "01_formulas_and_symbols-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "02_important_points.pdf",
+      "pages": 1,
+      "outlines": 5,
+      "fonts": 4,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 891,
+          "ink_ratio": 0.154
+        }
+      ],
+      "sheets": [
+        "02_important_points-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "03_graphs_and_diagrams.pdf",
+      "pages": 1,
+      "outlines": 3,
+      "fonts": 4,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 596,
+          "ink_ratio": 0.0652
+        }
+      ],
+      "sheets": [
+        "03_graphs_and_diagrams-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "04_flowcharts_and_visuals.pdf",
+      "pages": 1,
+      "outlines": 3,
+      "fonts": 6,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 645,
+          "ink_ratio": 0.149
+        }
+      ],
+      "sheets": [
+        "04_flowcharts_and_visuals-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "05_short_notes_keywords.pdf",
+      "pages": 2,
+      "outlines": 8,
+      "fonts": 5,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 1267,
+          "ink_ratio": 0.105
+        },
+        {
+          "page": 2,
+          "body_characters": 328,
+          "ink_ratio": 0.0547
+        }
+      ],
+      "sheets": [
+        "05_short_notes_keywords-sheet001.jpg"
+      ]
+    },
+    {
+      "file": "06_question_bank.pdf",
+      "pages": 2,
+      "outlines": 7,
+      "fonts": 3,
+      "errors": [],
+      "warnings": [],
+      "page_metrics": [
+        {
+          "page": 1,
+          "body_characters": 444,
+          "ink_ratio": 0.0417
+        },
+        {
+          "page": 2,
+          "body_characters": 399,
+          "ink_ratio": 0.0377
+        }
+      ],
+      "sheets": [
+        "06_question_bank-sheet001.jpg"
+      ]
+    }
+  ],
+  "portable_links_repaired": 0,
+  "artifacts": {
+    ".docs.json": "62462ec87e98fe9f5273a6913a81197dea5e6880e0ad6e7fc54be1bbacd10132",
+    "00_MASTER_chemistry.html": "612f30190bc620c5f3aca569c15b2518e6f0585cdb11f73e3ce9ab6360ffd76e",
+    "00_MASTER_chemistry.pdf": "b113ebf8e43dc7dd292ec12e469cfe2c4303ed5aa169d9dd73fa7aedecf84820",
+    "01_formulas_and_symbols.html": "02a0d00313446cfc93856e846161e23bae7754c1778ff789bba2a75c47450e2a",
+    "01_formulas_and_symbols.pdf": "376c51348dfb00b29e051924378de55a4ab8557809211369d417aa3d39196728",
+    "02_important_points.html": "408ddc8d8f37a7e4a873590c6adc332d3a8893493f74253a78f83b1ccb5e7744",
+    "02_important_points.pdf": "c6372cb3f24990146412087053505e50e601b487bb4cb183a6c25fc821db913d",
+    "03_graphs_and_diagrams.html": "fa3fde3b24d62c384a82b21456f54dc67af225f639f10490afde7ed0fe669a26",
+    "03_graphs_and_diagrams.pdf": "350a0fa4298d7e4ed0708d75f3b13a01a0b18b5afdcbe507bf0e9a1a340195ce",
+    "04_flowcharts_and_visuals.html": "57087b99b2d662f78f0ff7169ee5a942cc68a09b2b5e84688755f6f9aaa59c3f",
+    "04_flowcharts_and_visuals.pdf": "9e7bfb68baaa47ceb3d48811c0ebc4e8e33a5400a195a25e866db7c67670116e",
+    "05_short_notes_keywords.html": "d33ccdc7ed5199fcf922f7806136ff0ae0c6d90bdd84682572cf208092fe0a4d",
+    "05_short_notes_keywords.pdf": "9c877a91ebe8b61626b689d2c8526497903925521929716ddb230d3b64c0acfc",
+    "06_question_bank.html": "3a4a18c717ddf0ca3b6bb5a309d5925251f0ca6cacb1e7b6cc42695d2b80b2c9",
+    "06_question_bank.pdf": "537d6dea4397a7fee8fd7793e2526ea8b7d9ccbdf7c8863b17888c7e5cf7ca82",
+    "assets/figures/G1.1.svg": "bc32f2b8575fba240a74abe3e8e0e449aa41490fb5b1e4c6578cba09a122fe6f",
+    "assets/fonts/DejaVuSans.ttf": "57f73e11f51999432bf7ab22ce55b6f945d5eca1bf824404cfa9ec2e3718c84e",
+    "assets/fonts/DejaVuSansMono.ttf": "54bf827eb99404e8f430c330ad30f063334f637eba0109b6a18d4f566a8e9dd8",
+    "assets/fonts/cmunbi.woff": "c91f3defd696023069b9953de078bf0f27a32218e08405ebfbf50c29d10004ab",
+    "assets/fonts/cmunbx.woff": "3226e8a7068df32b96f2a80f7ad2ca306c8dfcc494ab2b337019cbb7d098db24",
+    "assets/fonts/cmunrm.woff": "32115abbbfb231586813333bfa5a234f4dc7f28b27df7260f42f81146ccd9097",
+    "assets/fonts/cmunti.woff": "d9a02b7b67874c62f47f9c9a0914c115972ab77d43e82a163baf0888eb5d4a2d",
+    "assets/katex/fonts/KaTeX_AMS-Regular.ttf": "68534840bcfdd2bffb6f0e8deb48684dd01e7f04ea2813267577afb906de1d13",
+    "assets/katex/fonts/KaTeX_AMS-Regular.woff": "30da91e84c893f875e252689faebdc590b2871145e8adc7f9a9d4dbd8ce0b251",
+    "assets/katex/fonts/KaTeX_AMS-Regular.woff2": "0cdd387c9590a1a9f9794560022dbb59654a7d86f187aa0c81495ad42d3a7308",
+    "assets/katex/fonts/KaTeX_Caligraphic-Bold.ttf": "07d8e303ce4fc12b4bb54f1004170dd190a1f3db45d400fe68060df3e0897268",
+    "assets/katex/fonts/KaTeX_Caligraphic-Bold.woff": "1ae6bd7475590e97e7f145a89e09ccde322f7a6bc0b91607b1c8b8ee28290fed",
+    "assets/katex/fonts/KaTeX_Caligraphic-Bold.woff2": "de7701e42cf1f4cf0b766c03fb27977207eee2f4fd5d76fa82188406da43ea4c",
+    "assets/katex/fonts/KaTeX_Caligraphic-Regular.ttf": "ed0b74372feefcbb9c0666b2e210da37b7e49fa7fbbf3eeb11db5f693dacfbb7",
+    "assets/katex/fonts/KaTeX_Caligraphic-Regular.woff": "3398dd02302557a793f2863f88e02d96ce10df2abffa07c8e9fa90775116e65c",
+    "assets/katex/fonts/KaTeX_Caligraphic-Regular.woff2": "5d53e70ad607c2352162dec9e0923fb54ecdafaccbf604cd8dcf7d00facb989b",
+    "assets/katex/fonts/KaTeX_Fraktur-Bold.ttf": "9163df9c7122432e6495b4229fa9071cf9ae86a758ae5efc4924ec2e1a6dbce1",
+    "assets/katex/fonts/KaTeX_Fraktur-Bold.woff": "9be7ceb88004ab8ad124082246fbfcca4091e36385d4ec6ed1df67375dad50fb",
+    "assets/katex/fonts/KaTeX_Fraktur-Bold.woff2": "74444efd593c005e3f4573b44524704c0af0a937fe911cca9e94068d0d140d3f",
+    "assets/katex/fonts/KaTeX_Fraktur-Regular.ttf": "1e6f9579e90e2cac37f8f60a597c436e075c114385652b7cbeb0dec0421291b3",
+    "assets/katex/fonts/KaTeX_Fraktur-Regular.woff": "5e28753be717dac97f559f49bc10be9cf3c124ddcabda6659d11cb68febc6463",
+    "assets/katex/fonts/KaTeX_Fraktur-Regular.woff2": "51814d270d06ff0255dba0799994fa4d8c84d11f09951d47595f4abb1f3602dc",
+    "assets/katex/fonts/KaTeX_Main-Bold.ttf": "138ac28d1663b3037e9c5f52371fa5c63d8324f4a38d22cd573e6ea3a3fd0cf8",
+    "assets/katex/fonts/KaTeX_Main-Bold.woff": "c76c5d696297d51b9cb1639c7da4334f0e7dec81b42b11213b5e25ef671bb822",
+    "assets/katex/fonts/KaTeX_Main-Bold.woff2": "0f60d1b897938ec918c8ce073092411baf9438f6739465693ff18b0f9d20b021",
+    "assets/katex/fonts/KaTeX_Main-BoldItalic.ttf": "70ee1f64a20f2048c21940ef46d0144fd215baa953ca69afd1e31e98544f708f",
+    "assets/katex/fonts/KaTeX_Main-BoldItalic.woff": "a6f7ec0d846ac7ad975adb8959c37ed49b94acbc4ae436db9ce9e20287e4a64c",
+    "assets/katex/fonts/KaTeX_Main-BoldItalic.woff2": "99cd42a3c072d918f2f44984a807cf7aa16e13545fd0875fc07c6c65f99e715b",
+    "assets/katex/fonts/KaTeX_Main-Italic.ttf": "0d85ae7cc30f23790a7f1a58c4a112fdca8aae769b6ba11429af1d98b1b6cb3a",
+    "assets/katex/fonts/KaTeX_Main-Italic.woff": "f1d6ef86f3b11a528bd5185199bd2443ecb2b0dead96d88674b5a2c12be24bdf",
+    "assets/katex/fonts/KaTeX_Main-Italic.woff2": "97479ca6cce906abc961ecac96faa5f9ca2e61b8e7670d475826bcdee9a7c267",
+    "assets/katex/fonts/KaTeX_Main-Regular.ttf": "d0332f52868370fd83ae7fa46470f90c8f2eab2fcf12bc4f88080b340c95a830",
+    "assets/katex/fonts/KaTeX_Main-Regular.woff": "c6368d87e8a1a3a5d337623d83d8dc4b868f242a9ad476237d6f8d1e0f168cdc",
+    "assets/katex/fonts/KaTeX_Main-Regular.woff2": "c2342cd8b869e01752a9321dc17213fc40d4d04c79688c1d43f2cf316abd7866",
+    "assets/katex/fonts/KaTeX_Math-BoldItalic.ttf": "f9377ab0271cda59af24bcffbd46a4d0c8a3572ffafdbb38de2ad5ea7b0d5ee5",
+    "assets/katex/fonts/KaTeX_Math-BoldItalic.woff": "850c0af5c2238497febaf5e461d880bf458c341f42f4f330f1b1ab5698b1998e",
+    "assets/katex/fonts/KaTeX_Math-BoldItalic.woff2": "dc47344dbb6cb5b655c8460d561f4df5f501b90c804ad3c6cec65fe322351ab1",
+    "assets/katex/fonts/KaTeX_Math-Italic.ttf": "08ce98e51b04d58945a301e639e02b6998af29fdfd61a7b8afdd07bbfc479d4a",
+    "assets/katex/fonts/KaTeX_Math-Italic.woff": "8a8d244581371912b8f3f5a23e2437cb2a59cd9bcaebb0346e722c05737a2571",
+    "assets/katex/fonts/KaTeX_Math-Italic.woff2": "7af58c5ec8f132a2ddde9027c6d7814decce4d3b822a11192a42a20e2e973264",
+    "assets/katex/fonts/KaTeX_SansSerif-Bold.ttf": "1ece03f79f95277d57dc7f6b435a74e1379b0d46104a8530286b60ff49369ea0",
+    "assets/katex/fonts/KaTeX_SansSerif-Bold.woff": "ece03cfd83e22c212cdef66feb8442d25a083beb988db3f1883f3f9738d750ba",
+    "assets/katex/fonts/KaTeX_SansSerif-Bold.woff2": "e99ae51144bf1232efcc1bfe5add36262c6866b0faab24fa75740e1b98577a62",
+    "assets/katex/fonts/KaTeX_SansSerif-Italic.ttf": "3931dd81faed86ba021bb2bbdc36f5bed9a38d6b4f4077aca59b265aa1b02083",
+    "assets/katex/fonts/KaTeX_SansSerif-Italic.woff": "91ee67500cc0129aa0ace3ac5c61ff1692102f0f31d02b69347fba35dcb75bf2",
+    "assets/katex/fonts/KaTeX_SansSerif-Italic.woff2": "00b26ac825e2095056396e0553b8ac26d3f8ad158c3826e28b4c45b385c4714a",
+    "assets/katex/fonts/KaTeX_SansSerif-Regular.ttf": "f36ea897e19f4a2e571d1e900e4e3710e438deb05a842486045ba0a3e616a4ad",
+    "assets/katex/fonts/KaTeX_SansSerif-Regular.woff": "11e4dc8a6471ff6d6ee561d53d10fde8f7489e798257ff449c5d37c197435605",
+    "assets/katex/fonts/KaTeX_SansSerif-Regular.woff2": "68e8c73ef42afd3ccec58bf0fba302cce448938e7fc020a5e31f8a952eee1342",
+    "assets/katex/fonts/KaTeX_Script-Regular.ttf": "1c67f068fea8bb09bf099c088b1cf64bd27516a6e07f4684344873564bb66a67",
+    "assets/katex/fonts/KaTeX_Script-Regular.woff": "d96cdf2b3bdd4d64a8fd5f74a4c467f123a8a73931cd435889f08ffaf9bf947a",
+    "assets/katex/fonts/KaTeX_Script-Regular.woff2": "036d4e95149b69ff9bcc0cd55771efeb25ffa3947293e69acd78d5ac328c684b",
+    "assets/katex/fonts/KaTeX_Size1-Regular.ttf": "95b6d2f1a50173bfedb8c63e1d1c99b10427d0a4df4201cb44513b226951a22b",
+    "assets/katex/fonts/KaTeX_Size1-Regular.woff": "c943cc986384f59e86bea5fd7dc50a9c4dfe567a7c05eb40d6790720dead97c9",
+    "assets/katex/fonts/KaTeX_Size1-Regular.woff2": "6b47c40166b6dbe21a5dfca7718413f2147fd2399be1ba605d8ad39cedf25dfe",
+    "assets/katex/fonts/KaTeX_Size2-Regular.ttf": "a6b2099fb555c60e3a0db3a08842ebf1d732c6eb4e4bf44913613bed4fc4e39b",
+    "assets/katex/fonts/KaTeX_Size2-Regular.woff": "2014c523c3210bcc166648c4d4cc57f05b747df07a24277bf71c51e67dc79e3d",
+    "assets/katex/fonts/KaTeX_Size2-Regular.woff2": "d04c54219f9eaec6d4d4fd42dfb28785975a4794d6b2fc71e566b9cd6db842dd",
+    "assets/katex/fonts/KaTeX_Size3-Regular.ttf": "500e04d54f0d51666332c9d2089aa803be22aa878eca539e59fa53c6e522b082",
+    "assets/katex/fonts/KaTeX_Size3-Regular.woff": "6ab6b62e9b62dae2c00dd90f791bd10950be0ecc3490d7d6045f51c2e8fe0949",
+    "assets/katex/fonts/KaTeX_Size3-Regular.woff2": "73d591271b1604960cb10bb90fee021670af7297017e0e98480b332d11f51995",
+    "assets/katex/fonts/KaTeX_Size4-Regular.ttf": "c647367d1dd4e162468717d020e1fc0f1dc5c26ebfdffbe55261713bf88c5877",
+    "assets/katex/fonts/KaTeX_Size4-Regular.woff": "99f9c6750b489c9462bf04900bd3f939df9b829339daaaaa99ef5495cdddea58",
+    "assets/katex/fonts/KaTeX_Size4-Regular.woff2": "a4af7d414440a1c1790825cfb700cf9cf43b0f2c4b04f0ebc523011ad9853ec0",
+    "assets/katex/fonts/KaTeX_Typewriter-Regular.ttf": "f01f3e87d9c6a61c0c081ceb577abd864eb00a612f7ac1620dd6915fad2ef5aa",
+    "assets/katex/fonts/KaTeX_Typewriter-Regular.woff": "e14fed02b1aba7ce9f5afd5844b5d0321b22351febc720e0de8b8723527609f7",
+    "assets/katex/fonts/KaTeX_Typewriter-Regular.woff2": "71d517d67827787cfabdf186914cc3358eda539e37931941f2b2fd4a21f68c0b",
+    "assets/katex/katex.min.css": "717bc9ae7853b61f0f76455dddf0ecd4f527a783f42de2ac24684899c1c46258",
+    "assets/study.css": "e668eeb425f80309e18350f3f945d08726166a800806d6f14be226fbc75127d9",
+    "dom-report.json": "6b1240441982b22b264725629fa517558eef66705779b5fb3b54e2947253c04e",
+    "standalone/00_MASTER_chemistry.html": "b9fda9278d0e347133a126c74dc146eb26ac4156b00e09d1584c21a110baaf74",
+    "standalone/01_formulas_and_symbols.html": "e90cf2dabe83deb90f044c6d669e6615cf091bc29048fc55554e2b8735b58261",
+    "standalone/02_important_points.html": "3dcbac0c19aed0606268a70a216bf88254d180a1e333de2b8d6b337a7dd60e40",
+    "standalone/03_graphs_and_diagrams.html": "539d7672e0ae757dc28d5a1b5cc322f1fd07a2c97069e6189696a8ef5ba65b40",
+    "standalone/04_flowcharts_and_visuals.html": "8743c78b6a0acbb998ec4bd46a32d011d53c5b508e4752a8b9f22b23f44eaeb0",
+    "standalone/05_short_notes_keywords.html": "4ab8ad518455b4a1e0c5937e870f933cb3209ec32176c8b371728d1d93a989b4",
+    "standalone/06_question_bank.html": "d77fdede112b9f2ba95f3f71044bd6ee38d513b45896f9ef183587d3f23e9adb"
+  }
+}

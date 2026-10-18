@@ -1,0 +1,7 @@
+playwright==1.62.0
+PyMuPDF==1.26.6
+Pillow==12.3.0
+matplotlib==3.10.8
+numpy==2.3.5
+sympy==1.14.0
+jsonschema==4.26.0

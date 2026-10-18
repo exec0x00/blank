@@ -1,0 +1,5 @@
+sources/
+work/cache/
+work/rendered/
+packs/*/output/
+packs/*/sources/

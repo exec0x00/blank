@@ -1,0 +1,40 @@
+test_bad_math (test_contract.ContractTests.test_bad_math) ... ok
+test_complete_fixture (test_contract.ContractTests.test_complete_fixture) ... ok
+test_duplicate_id (test_contract.ContractTests.test_duplicate_id) ... ok
+test_escape_source_path (test_contract.ContractTests.test_escape_source_path) ... ok
+test_expression_rejects_code (test_contract.ContractTests.test_expression_rejects_code) ... ok
+test_external_attribute (test_contract.ContractTests.test_external_attribute) ... ok
+test_false_coverage_mapping (test_contract.ContractTests.test_false_coverage_mapping) ... ok
+test_gap_blocks_release_validation (test_contract.ContractTests.test_gap_blocks_release_validation) ... ok
+test_hash_mismatch (test_contract.ContractTests.test_hash_mismatch) ... ok
+test_low_content_topic (test_contract.ContractTests.test_low_content_topic) ... ok
+test_manual_check_not_reviewed (test_contract.ContractTests.test_manual_check_not_reviewed) ... ok
+test_missing_check (test_contract.ContractTests.test_missing_check) ... ok
+test_missing_figure (test_contract.ContractTests.test_missing_figure) ... ok
+test_missing_source (test_contract.ContractTests.test_missing_source) ... ok
+test_missing_source_unit (test_contract.ContractTests.test_missing_source_unit) ... ok
+test_missing_top_equation (test_contract.ContractTests.test_missing_top_equation) ... ok
+test_missing_worked (test_contract.ContractTests.test_missing_worked) ... ok
+test_modules_overlap (test_contract.ContractTests.test_modules_overlap) ... ok
+test_multiple_notes_render (test_contract.ContractTests.test_multiple_notes_render) ... ok
+test_no_formula_and_code_together (test_contract.ContractTests.test_no_formula_and_code_together) ... ok
+test_placeholder (test_contract.ContractTests.test_placeholder) ... ok
+test_ragged_table (test_contract.ContractTests.test_ragged_table) ... ok
+test_relocated_merge (test_contract.ContractTests.test_relocated_merge) ... ok
+test_safe_expression_arithmetic (test_contract.ContractTests.test_safe_expression_arithmetic) ... ok
+test_script_html (test_contract.ContractTests.test_script_html) ... ok
+test_unknown_citation (test_contract.ContractTests.test_unknown_citation) ... ok
+test_unknown_root_key (test_contract.ContractTests.test_unknown_root_key) ... ok
+test_unknown_symbol (test_contract.ContractTests.test_unknown_symbol) ... ok
+test_unknown_topic (test_contract.ContractTests.test_unknown_topic) ... ok
+test_unrendered_math (test_contract.ContractTests.test_unrendered_math) ... ok
+test_unreviewed_source (test_contract.ContractTests.test_unreviewed_source) ... ok
+test_unsourced_rank (test_contract.ContractTests.test_unsourced_rank) ... ok
+test_unsourced_trap (test_contract.ContractTests.test_unsourced_trap) ... ok
+test_wrong_answer_assertion (test_contract.ContractTests.test_wrong_answer_assertion) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 1.105s
+
+OK
+/tmp/tmp9_n_5ni1/merged
