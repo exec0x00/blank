@@ -10,6 +10,11 @@ import re
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 INDEX = ROOT / "study-materials/work/unit-pack-index.json"
 OUT = ROOT / "study-materials/video-packs"
+CONTENT_KEYS = (
+    "DEFS", "STATEMENTS", "FORMULAS", "SYMBOLS", "POINTS", "NOTES", "TOP_FACTS",
+    "TRAPS", "WHY", "RAPID", "MNEMONICS", "WORKED", "DERIVATIONS", "FIGS",
+    "FLOWS", "COMPARISONS", "PRACTICE", "KEYWORDS",
+)
 
 
 def sha(path: pathlib.Path) -> str:
@@ -31,7 +36,7 @@ def build_one(row: dict, video: dict, lesson_number: int) -> dict:
     topic_id = video["topic_id"]
     topic = next(x for x in source_pack["TOPICS"] if x["id"] == topic_id)
     selected = {}
-    for key in ("POINTS", "NOTES", "FIGS"):
+    for key in CONTENT_KEYS:
         selected[key] = [x for x in source_pack.get(key, []) if x.get("topic") == topic_id]
     item_ids = {topic_id}
     for records in selected.values():
@@ -59,28 +64,25 @@ def build_one(row: dict, video: dict, lesson_number: int) -> dict:
         shutil.copyfile(src, target)
         if sha(target) != source["sha256"]:
             raise ValueError(f"SHA-256 mismatch in video project for {rel}")
-    for figure in selected["FIGS"]:
-        rel = figure["file"]
-        target = dest / rel
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(unit_project / rel, target)
-    topic = {**topic, "srcs": [x for x in topic.get("srcs", []) if x in evidence_ids]}
+    # Keep the lesson title consistent with the human-readable video title.
+    video_title = video["title"].replace("_", " ")
+    topic = {**topic, "title": video_title,
+             "srcs": [x for x in topic.get("srcs", []) if x in evidence_ids]}
     for key in selected:
         for item in selected[key]:
             item["srcs"] = [x for x in item.get("srcs", []) if x in evidence_ids]
-    for figure in selected["FIGS"]:
-        figure["srcs"] = [x for x in figure.get("srcs", []) if x in evidence_ids]
     unit_name = source_pack["PACK"]["unit"]
-    video_title = video["title"]
+    # Source filenames sometimes use underscore-delimited names; render those as
+    # ordinary words so titles can wrap naturally in the PDF header/footer.
     pack = source_pack
     pack["PACK"] = {**pack["PACK"]}
     pack["PACK"].update({
         "title": f"{row['course_code']} · {unit_name} · {video_title}",
-        "subtitle": "Standalone video lesson · source transcript and assigned slide pages",
+        "subtitle": "Standalone video lesson · authored study notes with source citations",
         "slug": slug(f"{row['course_code']}-{row['unit_id']}-{video['video_id']}-{video_title}"),
         "header": f"{row['course_code']} · {row['unit_id']} · Lesson {lesson_number:02d}",
-        "scope": f"Standalone source record for video {video_title} in {row['course_code']}, {unit_name}. The timestamped transcript and any assigned slide pages come from the complete unit master.",
-        "how_to_use": "Read the transcript in timestamp order. Compare any included slide pages with the original page render. Transcript confidence and video-to-slide match caveats are retained from the unit master.",
+        "scope": f"Standalone study notes for video {video_title} in {row['course_code']}, {unit_name}. The notes are organized around the lesson topic and cite relevant source intervals and slide pages.",
+        "how_to_use": "Read the topic explanation, worked examples, and recap. Evidence citations point to source transcript intervals and slide pages; full slide images remain in the source visual index.",
         "coverage_note": "This video study document is a DRAFT pending human transcript/audio and page-level semantic and visual review.",
         "sources": source_rows,
         "topic_order": [topic_id],
@@ -89,23 +91,25 @@ def build_one(row: dict, video: dict, lesson_number: int) -> dict:
     })
     pack["MODULES"] = [{"id": "M1", "title": topic["title"], "topics": [topic_id]}]
     pack["TOPICS"] = [topic]
-    for key in ("POINTS", "NOTES", "FIGS"):
+    for key in CONTENT_KEYS:
         pack[key] = selected[key]
+    pack["TOP_FORMULAS"] = [fid for fid in source_pack.get("TOP_FORMULAS", [])
+                            if any(x.get("id") == fid for x in selected.get("FORMULAS", []))]
     pack["EVIDENCE"] = evidence
-    pack["CHECKS"] = []
+    pack["CHECKS"] = [x for x in source_pack.get("CHECKS", []) if x.get("item") in item_ids]
     (dest / "work/brief.md").write_text(
         f"# PDF Study Forge brief\n\n"
         f"- Requested scope: standalone source study file for video `{video['video_id']}`: {video_title}.\n"
-        f"- Explicit exclusions: no transcript correction or claim that the video itself was watched; only its scored slide assignment is included.\n"
+        f"- Explicit exclusions: source slide screenshots are not embedded as lesson content; their text and locators remain in the cited notes and source datasets.\n"
         f"- Audience: PESU first-year students.\n"
         f"- Required sources: the unit master's four transcript sidecars and any assigned slide page text/render.\n"
-        f"- Required sections: complete timestamped lesson transcript and matching source slide pages when available.\n"
+        f"- Required sections: topic explanation, relevant definitions/formulas/examples/points, citations, and recap where supported by the source pack.\n"
         f"- Deliverables: standalone video PDF and HTML plus reusable source pack.\n"
         f"- Assumptions: human audio/visual review remains pending; this artifact remains visibly labelled DRAFT.\n",
         encoding="utf-8",
     )
     (dest / "pack.json").write_text(json.dumps(pack, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
-    return {"video_id": video["video_id"], "lesson_number": lesson_number, "title": video_title, "course_code": row["course_code"], "unit_id": row["unit_id"], "topic_id": topic_id, "project": str(dest.relative_to(ROOT)), "sources": len(source_rows), "notes": len(selected["NOTES"]), "points": len(selected["POINTS"]), "figures": len(selected["FIGS"])}
+    return {"video_id": video["video_id"], "lesson_number": lesson_number, "title": video_title, "course_code": row["course_code"], "unit_id": row["unit_id"], "topic_id": topic_id, "project": str(dest.relative_to(ROOT)), "sources": len(source_rows), "notes": len(selected["NOTES"]), "points": len(selected["POINTS"]), "definitions": len(selected["DEFS"]), "formulas": len(selected["FORMULAS"]), "worked": len(selected["WORKED"]), "figures": len(selected["FIGS"])}
 
 
 def main() -> None:

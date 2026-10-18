@@ -75,6 +75,9 @@ def deliver_one(pack_dir: Path, family: str, build_records: dict[str, dict]) -> 
     unit = pack_dir.name if family == "unit" else pack_dir.parent.name
     slug = pack.get("slug") or pack_dir.name
     output = pack_dir / "output"
+    record = build_records.get(pack_dir.relative_to(ROOT).as_posix())
+    if record and record.get("status") != "DRAFT":
+        raise RuntimeError(f"Refusing to publish non-current or failed build for {pack_dir}: {record.get('status')}")
     html_sources = sorted(output.glob("*.html"))
     pdf_sources = sorted(output.glob("*.pdf"))
     if len(html_sources) != 1 or len(pdf_sources) != 1:
@@ -84,7 +87,7 @@ def deliver_one(pack_dir: Path, family: str, build_records: dict[str, dict]) -> 
         destination /= "master"
         label = pack.get("title") or unit
     else:
-        destination /= "videos" / slug
+        destination = destination / "videos" / slug
         label = pack.get("title") or slug
     destination.mkdir(parents=True, exist_ok=True)
     html_target = destination / "index.html"
@@ -93,7 +96,7 @@ def deliver_one(pack_dir: Path, family: str, build_records: dict[str, dict]) -> 
     asset_count, asset_bytes, asset_hash = copy_assets(output / "assets", destination / "assets")
     pdf_hash, pdf_optimized = copy_pdf(pdf_sources[0], pdf_target)
     relative = destination.relative_to(STUDY).as_posix()
-    record = build_records.get(pack_dir.relative_to(ROOT).as_posix(), {})
+    record = record or {}
     return {
         "family": family,
         "course_code": course,
@@ -174,9 +177,9 @@ def main() -> int:
     (DEST / ".gitattributes").write_text(gitattributes, encoding="utf-8")
     (DEST / "README.md").write_text(
         "# PESU study documents\n\n"
-        "This folder contains the generated unit master and per-video PDF/HTML documents, grouped by course and unit.\n\n"
+        "This folder contains note-first unit masters and per-video PDF/HTML documents, grouped by course and unit. Lesson PDFs use authored or edited topic notes with citations; slide screenshots are not embedded as the lesson.\n\n"
         "Open each document's `index.html` in a browser. Its neighboring `assets/` directory contains the diagrams, figures, and fonts used by the page. The neighboring PDF is the print copy. Keep the HTML and assets together.\n\n"
-        "All documents are marked DRAFT. Transcript/audio, source attribution, formula interpretation, and page-level visual/semantic review remains incomplete. `deliverables-index.json` records each file path, SHA-256, PDF page count, and asset inventory. The source datasets and Forge packs are in sibling folders under `study-materials/`.\n",
+        "All documents are marked DRAFT. Transcript/audio, source attribution, formula interpretation, and page-level visual/semantic review remains incomplete. `deliverables-index.json` records each file path, SHA-256, PDF page count, and asset inventory. Reusable note content is in `datasets/study-notes-dataset.json`; complete source point text, formula candidates, visual-page locators, transcripts, and question records are preserved in sibling datasets under `study-materials/`.\n",
         encoding="utf-8",
     )
     print(f"published {len(records)} documents ({index['unit_master_count']} unit masters, {index['video_lesson_count']} videos)")
