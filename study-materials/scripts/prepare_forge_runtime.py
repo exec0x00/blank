@@ -57,10 +57,15 @@ def validate(k,base,final=True):
         raise SystemExit("Could not locate review flag check; installed skill may have changed")
     code = code.replace(old_review, new_review, 1)
     validator.write_text(code, encoding="utf-8")
+    style = DEST / "engine/study.css"
+    css = style.read_text(encoding="utf-8")
+    wrap_rule = "\n/* Keep long source URLs searchable while allowing safe line breaks in source prose. */\n.lead, .remark, ol.pts li { overflow-wrap: anywhere; word-break: normal; }\n"
+    if wrap_rule.strip() not in css:
+        style.write_text(css + wrap_rule, encoding="utf-8")
     (DEST / "RUNTIME-PATCH.md").write_text(
         "# Draft runtime patch\n\n"
-        "This disposable copy leaves `.codex/skills/pdf-study-forge/` untouched. It makes two narrow changes for this source-preservation job: "
-        "it allows only base64-embedded PNG/JPEG data on SVG `<image>` nodes, and it turns an unreviewed-source error into a warning only in draft mode. "
+        "This disposable copy leaves `.codex/skills/pdf-study-forge/` untouched. It makes three narrow changes for this source-preservation job: "
+        "it allows only base64-embedded PNG/JPEG data on SVG `<image>` nodes, turns an unreviewed-source error into a warning only in draft mode, and allows long source URLs to wrap in content blocks. "
         "All other external/active SVG references remain rejected. Builds still carry the engine's visible DRAFT label and cannot be finalized without the required human review.\n",
         encoding="utf-8",
     )

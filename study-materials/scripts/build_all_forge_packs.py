@@ -22,6 +22,19 @@ def file_sha(path: pathlib.Path) -> str:
     return h.hexdigest()
 
 
+def engine_sha() -> str:
+    h = hashlib.sha256()
+    root = FORGE.parents[1]
+    for sub in ("engine", "vendor/katex", "references/pack.schema.json", "scripts/forge.py"):
+        path = root / sub
+        files = sorted(path.rglob("*") if path.is_dir() else [path])
+        for file in files:
+            if file.is_file() and "__pycache__" not in file.parts:
+                h.update(str(file.relative_to(root)).encode())
+                h.update(file.read_bytes())
+    return h.hexdigest()
+
+
 def build(project_rel: str, family: str, number: int, total: int) -> dict:
     project = ROOT / project_rel
     out = project / "output"
@@ -35,6 +48,7 @@ def build(project_rel: str, family: str, number: int, total: int) -> dict:
             current_assets.update(x["local_path"] for x in json.loads(pack.read_text(encoding="utf-8"))["PACK"]["sources"] if x.get("availability") == "available")
             asset_shas = {name: file_sha(project / name) for name in sorted(current_assets)}
             if (report.get("input_sha256") == current_sha and report.get("input_assets") == asset_shas
+                    and report.get("engine_sha256") == engine_sha()
                     and report.get("draft") is True and report.get("status") == "DRAFT"):
                 record = {"family": family, "project": project_rel, "status": "DRAFT", "skipped_current_build": True, "pages": sum(x.get("pages", 0) for x in report.get("pdfs", [])), "warnings": len(report.get("warnings", [])), "errors": len(report.get("errors", [])), "pdf_bytes": sum((out / x["file"]).stat().st_size for x in report.get("pdfs", []) if (out / x["file"]).exists()), "html_bytes": sum(x.stat().st_size for x in (out / "standalone").glob("*.html"))}
                 print(f"[{number}/{total}] {family} {project_rel}: DRAFT (current build retained) pages={record['pages']}", flush=True)

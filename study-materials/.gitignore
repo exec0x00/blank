@@ -10,9 +10,13 @@ packs/**/figures/
 packs/**/work/
 packs/**/.forge-build-*/
 packs/**/validation-report.json
+packs/**/last-build-failure.json
 video-packs/**/output/
 video-packs/**/sources/
 video-packs/**/figures/
 video-packs/**/work/
 video-packs/**/.forge-build-*/
 video-packs/**/validation-report.json
+video-packs/**/last-build-failure.json
+work/forge-build-report.json
+work/forge-build-summary.json
