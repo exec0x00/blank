@@ -5,7 +5,7 @@ V  = 0:0.5:9.5;                                         // volume of NaOH (mL)
 pH = [3.01 3.41 3.63 3.82 3.96 4.12 4.25 4.42 4.56 4.72 ..
       4.96 5.26 5.76 9.88 10.91 11.41 11.60 11.70 11.78 11.84];
 
-dpH  = diff(pH) / 0.5;                                  // delta pH / delta V
+dpH  = diff(pH) / 0.5;                                  // ΔpH / ΔV
 Vd   = V(2:$);
 
 [m, k] = max(dpH);
@@ -37,7 +37,7 @@ f2 = scf(2); clf();
 plot(Vd, dpH, "-x");
 plot([Veq Veq], [0 m], "r--");
 a = gca(); a.data_bounds = [0 0; 10 9]; a.box = "on";
-xtitle("", "Volume of NaOH (mL)", "delta pH / delta V");
+xtitle("", "Volume of NaOH (mL)", "ΔpH / ΔV");
 xstring(0.3, 8.3, "scale:");
 xstring(0.3, 7.7, "x-axis: 1cm = 0.5 mL");
 xstring(0.3, 7.1, "y-axis: 1cm = 1 unit");
