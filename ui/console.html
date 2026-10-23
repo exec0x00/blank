@@ -1,0 +1,1091 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Claude Bridge Console</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: fixed left rail of views, a status bar on top, one scrolling work surface. Dark-first. */
+:root{
+  --ink:#0d1114;--panel:#141a1e;--panel-2:#1a2126;--line:#263038;--line-2:#33404a;
+  --fg:#e7ecee;--fg-2:#a9b5bb;--fg-3:#77858d;
+  --accent:#e9a54a;--accent-ink:#1c1206;--accent-soft:rgba(233,165,74,.14);
+  --ok:#5fc59a;--ok-soft:rgba(95,197,154,.14);--warn:#e8c25a;--warn-soft:rgba(232,194,90,.15);
+  --bad:#ef7a6c;--bad-soft:rgba(239,122,108,.15);--info:#7fb2e6;--info-soft:rgba(127,178,230,.14);
+  --scrim:rgba(5,8,10,.62);--shadow:0 18px 50px -20px rgba(0,0,0,.7);
+  --f-display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r:10px;--r-s:7px;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --ink:#f3f1ec;--panel:#fffdf9;--panel-2:#f7f4ee;--line:#e2ddd3;--line-2:#d2cbbe;
+  --fg:#1b2024;--fg-2:#4d585e;--fg-3:#7a8489;
+  --accent:#b8650f;--accent-ink:#fffaf2;--accent-soft:rgba(184,101,15,.1);
+  --ok:#1f8a5c;--ok-soft:rgba(31,138,92,.1);--warn:#9a6d00;--warn-soft:rgba(154,109,0,.11);
+  --bad:#c0432f;--bad-soft:rgba(192,67,47,.1);--info:#2c6aa8;--info-soft:rgba(44,106,168,.1);
+  --scrim:rgba(30,26,20,.35);--shadow:0 18px 50px -24px rgba(60,40,10,.35);color-scheme:light}}
+:root[data-theme="light"]{
+  --ink:#f3f1ec;--panel:#fffdf9;--panel-2:#f7f4ee;--line:#e2ddd3;--line-2:#d2cbbe;
+  --fg:#1b2024;--fg-2:#4d585e;--fg-3:#7a8489;
+  --accent:#b8650f;--accent-ink:#fffaf2;--accent-soft:rgba(184,101,15,.1);
+  --ok:#1f8a5c;--ok-soft:rgba(31,138,92,.1);--warn:#9a6d00;--warn-soft:rgba(154,109,0,.11);
+  --bad:#c0432f;--bad-soft:rgba(192,67,47,.1);--info:#2c6aa8;--info-soft:rgba(44,106,168,.1);
+  --scrim:rgba(30,26,20,.35);--shadow:0 18px 50px -24px rgba(60,40,10,.35);color-scheme:light}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--ink);color:var(--fg);font:15px/1.55 var(--f-body);-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+a{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mono{font-family:var(--f-mono);font-size:.88em}
+.num{font-variant-numeric:tabular-nums}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;letter-spacing:-.01em;text-wrap:balance;margin:0}
+h1{font-size:1.9rem;line-height:1.15}
+h2{font-size:1.15rem}
+h3{font-size:.98rem;font-family:var(--f-body);font-weight:600;letter-spacing:0}
+p{margin:0}
+.eyebrow{font:500 .7rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3)}
+.muted{color:var(--fg-2)}.faint{color:var(--fg-3)}
+
+/* ---------- buttons & fields ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line-2);background:var(--panel-2);border-radius:var(--r-s);padding:8px 14px;cursor:pointer;font-weight:500;font-size:.9rem;white-space:nowrap;transition:background .15s,border-color .15s,transform .1s}
+.btn:hover{border-color:var(--fg-3)}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--fg-2)}
+.btn.ghost:hover{background:var(--panel-2);color:var(--fg)}
+.btn.danger{color:var(--bad)}
+.btn.danger.armed{background:var(--bad);border-color:var(--bad);color:var(--ink)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.btn svg{width:16px;height:16px;flex:none}
+.field{display:grid;gap:6px}
+.field>label,.lbl{font-size:.8rem;font-weight:500;color:var(--fg-2)}
+.input,select.input,textarea.input{width:100%;background:var(--ink);border:1px solid var(--line-2);border-radius:var(--r-s);padding:10px 12px;transition:border-color .15s}
+.input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+textarea.input{resize:vertical;min-height:120px}
+.hint{font-size:.8rem;color:var(--fg-3)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--fg-2);cursor:pointer}
+.check input{margin-top:3px;accent-color:var(--accent)}
+.err{color:var(--bad);font-size:.86rem;white-space:pre-wrap}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spacer{flex:1}
+
+/* ---------- pills ---------- */
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font:500 .75rem/1.4 var(--f-mono);letter-spacing:.02em;white-space:nowrap}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.info{background:var(--info-soft);color:var(--info)}
+.pill.plain{background:var(--panel-2);color:var(--fg-2)}
+.pill.plain::before{display:none}
+.pill.busy::before{animation:pulse 1.1s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+
+/* ---------- auth gate ---------- */
+.gate{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:var(--ink);padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));overflow:auto}
+.gate-card{width:min(420px,100%);display:grid;gap:22px}
+.mark{display:flex;align-items:center;gap:10px;font:700 1.05rem var(--f-display)}
+.mark i{width:30px;height:30px;border-radius:8px;background:var(--accent);display:grid;place-items:center;color:var(--accent-ink)}
+.mark i svg{width:18px;height:18px}
+.gate h1{font-size:2.2rem}
+.gate form{display:grid;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
+.gate .pw{position:relative}
+.gate .pw .input{padding-right:70px;font-family:var(--f-mono)}
+.gate .pw .btn{position:absolute;right:5px;top:5px}
+.gate-foot{display:grid;gap:6px;font-size:.82rem;color:var(--fg-3)}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+
+/* ---------- shell ---------- */
+.shell{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100%}
+.rail{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:22px;padding:22px 14px 18px max(14px,env(safe-area-inset-left,0px));border-right:1px solid var(--line);background:var(--panel)}
+.rail nav{display:grid;gap:2px}
+.rail nav a{display:flex;align-items:center;gap:11px;padding:9px 11px;border-radius:var(--r-s);text-decoration:none;color:var(--fg-2);font-weight:500;font-size:.92rem}
+.rail nav a svg{width:17px;height:17px;flex:none;opacity:.85}
+.rail nav a:hover{background:var(--panel-2);color:var(--fg)}
+.rail nav a[aria-current="page"]{background:var(--accent-soft);color:var(--fg)}
+.rail nav a[aria-current="page"] svg{color:var(--accent);opacity:1}
+.rail nav a .count{margin-left:auto;font:500 .72rem var(--f-mono);color:var(--fg-3)}
+.rail-foot{margin-top:auto;display:grid;gap:10px;font-size:.78rem;color:var(--fg-3)}
+.main{min-width:0;display:flex;flex-direction:column}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;gap:12px;padding:12px max(16px,env(safe-area-inset-right,0px)) 12px 28px;background:color-mix(in srgb,var(--ink) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--ink)}
+.topbar .menu{display:none}
+.crumb{font:600 .95rem var(--f-display)}
+.view{padding:28px max(16px,env(safe-area-inset-right,0px)) 48px 28px;display:grid;gap:22px;max-width:1240px;width:100%}
+.view-head{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.view-head .lead{max-width:62ch;color:var(--fg-2);margin-top:6px}
+.demo-flag{display:inline-flex;align-items:center;gap:8px;font:500 .74rem var(--f-mono);color:var(--info);background:var(--info-soft);border-radius:999px;padding:4px 11px}
+
+/* ---------- surfaces ---------- */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px;min-width:0}
+.card-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.grid{display:grid;gap:18px}
+.g-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g-3-1{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
+
+/* stat strip: one bordered band, not a row of separate tiles */
+.strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--panel);border:1px solid var(--line);border-radius:var(--r)}
+.stat{padding:18px 20px;display:grid;gap:6px;align-content:start;min-width:0}
+.stat+.stat{border-left:1px solid var(--line)}
+.stat b{font:600 1.85rem/1.1 var(--f-display);font-variant-numeric:tabular-nums}
+.stat b small{font-size:.95rem;color:var(--fg-3);font-weight:500;margin-left:2px}
+.stat .sub{font-size:.8rem;color:var(--fg-3);overflow-wrap:anywhere}
+
+/* meters */
+.meter{display:grid;gap:6px}
+.meter-top{display:flex;justify-content:space-between;gap:8px;font-size:.82rem}
+.meter-top .w{font-family:var(--f-mono);color:var(--fg-2)}
+.track{position:relative;height:8px;border-radius:99px;background:var(--panel-2);overflow:hidden;border:1px solid var(--line)}
+.track i{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--ok);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.track i.warn{background:var(--warn)}.track i.bad{background:var(--bad)}
+.meter .reset{font-size:.76rem;color:var(--fg-3)}
+
+/* accounts */
+.acct-list{display:grid;gap:14px}
+.acct{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.6fr) auto;gap:22px;align-items:start;padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);position:relative}
+.acct.cool{border-color:color-mix(in srgb,var(--bad) 40%,var(--line))}
+.acct-id{display:grid;gap:8px;min-width:0}
+.acct-name{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.acct-name strong{font:600 1.08rem var(--f-display)}
+.avatar{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font:700 .9rem var(--f-display);background:var(--accent-soft);color:var(--accent);flex:none}
+.acct-meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.78rem;color:var(--fg-3)}
+.acct-meters{display:grid;gap:12px;min-width:0}
+.acct-actions{display:grid;gap:6px;justify-items:end}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 .72rem var(--f-mono);border:1px solid var(--line-2);color:var(--fg-2);border-radius:6px;padding:2px 7px}
+.pick-tag{position:absolute;top:-9px;left:18px;font:600 .66rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);padding:2px 8px;border-radius:5px}
+.empty{display:grid;justify-items:center;gap:10px;text-align:center;padding:40px 20px;border:1px dashed var(--line-2);border-radius:var(--r);color:var(--fg-2)}
+
+/* combined usage chart */
+.cu{display:grid;gap:22px}
+.cu-window{display:grid;gap:10px}
+.cu-row{display:grid;grid-template-columns:120px minmax(0,1fr) 56px;gap:12px;align-items:center;font-size:.84rem}
+.cu-row .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--fg-2)}
+.cu-row.pool .nm{color:var(--fg);font-weight:600}
+.cu-row .v{text-align:right;font-family:var(--f-mono);font-size:.8rem}
+.cu-bar{position:relative;height:14px;background:var(--panel-2);border-radius:4px;overflow:hidden}
+.cu-bar i{position:absolute;inset:0 auto 0 0;background:var(--fg-3);border-radius:4px;opacity:.75}
+.cu-row.pool .cu-bar i{background:var(--accent);opacity:1}
+.cu-bar i.bad{background:var(--bad);opacity:.9}
+.cu-axis{display:grid;grid-template-columns:120px minmax(0,1fr) 56px;gap:12px}
+.cu-axis div{position:relative;height:14px;font:400 .68rem var(--f-mono);color:var(--fg-3)}
+.cu-axis span{position:absolute;transform:translateX(-50%)}
+.cu-axis span:first-child{transform:none}.cu-axis span:last-child{transform:translateX(-100%)}
+.cu-grid{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 calc(25% - 1px),var(--line) calc(25% - 1px) 25%)}
+
+/* gauge */
+.gauge{display:grid;grid-template-columns:auto minmax(0,1fr);gap:20px;align-items:center}
+.gauge svg{width:132px;height:132px}
+.gauge .legend{display:grid;gap:10px}
+.lg{display:flex;justify-content:space-between;gap:10px;font-size:.84rem;border-bottom:1px solid var(--line);padding-bottom:8px}
+.lg:last-child{border:0;padding:0}
+
+/* timeline / feed */
+.list{display:grid}
+.li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:11px 0;border-top:1px solid var(--line);font-size:.86rem}
+.li:first-child{border-top:0}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--fg-3)}
+.dot.ok{background:var(--ok)}.dot.bad{background:var(--bad)}.dot.warn{background:var(--warn)}.dot.info{background:var(--info)}.dot.acc{background:var(--accent)}
+.li .t{font:400 .75rem var(--f-mono);color:var(--fg-3);white-space:nowrap}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+table{width:100%;border-collapse:collapse;font-size:.86rem;min-width:560px}
+th{font:500 .7rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--panel-2)}
+td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+.method{font:600 .7rem var(--f-mono);padding:2px 6px;border-radius:4px;background:var(--panel-2);color:var(--fg-2);margin-right:4px;display:inline-block;margin-bottom:2px}
+.method.post{color:var(--accent);background:var(--accent-soft)}
+.method.get{color:var(--ok);background:var(--ok-soft)}
+.method.del{color:var(--bad);background:var(--bad-soft)}
+.method.ws{color:var(--info);background:var(--info-soft)}
+
+/* key / code */
+.keybox{display:flex;align-items:center;gap:8px;background:var(--ink);border:1px solid var(--line-2);border-radius:var(--r-s);padding:6px 6px 6px 12px;min-width:0}
+.keybox code{flex:1;min-width:0;font:400 .85rem var(--f-mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin-bottom:0;overflow-x:auto}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:9px 12px;cursor:pointer;color:var(--fg-3);font-weight:500;font-size:.86rem;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+pre.code{margin:0;background:var(--ink);border:1px solid var(--line);border-top:0;border-radius:0 0 var(--r-s) var(--r-s);padding:16px;overflow-x:auto;font:400 .82rem/1.65 var(--f-mono);color:var(--fg-2)}
+pre.code .k{color:var(--accent)}pre.code .s{color:var(--ok)}pre.code .c{color:var(--fg-3)}
+
+/* playground */
+.pg{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:18px;align-items:start}
+.pg-form{display:grid;gap:14px}
+.seg{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line-2);border-radius:var(--r-s);overflow:hidden}
+.seg button{background:var(--ink);border:0;border-left:1px solid var(--line-2);padding:8px 0;cursor:pointer;font-size:.78rem;color:var(--fg-2)}
+.seg button:first-child{border-left:0}
+.seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--fg);font-weight:600}
+.drop{display:flex;align-items:center;gap:10px;border:1px dashed var(--line-2);border-radius:var(--r-s);padding:10px 12px;font-size:.84rem;color:var(--fg-2);cursor:pointer}
+.drop:hover{border-color:var(--accent)}
+.drop input{display:none}
+.out{min-height:340px;display:flex;flex-direction:column}
+.out-body{flex:1;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.95rem;line-height:1.7;padding:4px 2px;min-height:220px}
+.out-body.placeholder{color:var(--fg-3)}
+.caret{display:inline-block;width:8px;height:1.1em;background:var(--accent);vertical-align:text-bottom;animation:pulse 1s steps(2) infinite}
+.out-meta{display:flex;flex-wrap:wrap;gap:6px 18px;border-top:1px solid var(--line);padding-top:12px;margin-top:14px;font:400 .76rem var(--f-mono);color:var(--fg-3)}
+
+/* modal / drawer */
+.scrim{position:fixed;inset:0;z-index:60;background:var(--scrim);display:flex;justify-content:flex-end}
+.drawer{width:min(520px,100%);height:100%;background:var(--panel);border-left:1px solid var(--line);display:flex;flex-direction:column;box-shadow:var(--shadow);animation:slide .25s cubic-bezier(.2,.8,.2,1);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@keyframes slide{from{transform:translateX(30px);opacity:0}}
+.drawer-head{display:flex;align-items:center;gap:10px;padding:18px max(22px,env(safe-area-inset-right,0px)) 0 22px}
+.drawer-body{flex:1;overflow:auto;padding:18px max(22px,env(safe-area-inset-right,0px)) 26px 22px;display:grid;gap:18px;align-content:start}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.step{display:grid;gap:6px;font-size:.74rem;color:var(--fg-3)}
+.step i{height:3px;border-radius:2px;background:var(--line-2)}
+.step.on{color:var(--fg)}.step.on i{background:var(--accent)}
+.step.done i{background:var(--ok)}
+.status-line{display:flex;gap:10px;align-items:center;font-size:.86rem;color:var(--fg-2);background:var(--panel-2);border-radius:var(--r-s);padding:10px 12px}
+.spin{width:14px;height:14px;border:2px solid var(--line-2);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;flex:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fake-captcha{display:flex;align-items:center;gap:12px;border:1px solid var(--line-2);border-radius:var(--r-s);padding:14px;background:var(--ink);max-width:320px}
+.fake-captcha button{width:26px;height:26px;border:2px solid var(--fg-3);border-radius:5px;background:var(--panel);cursor:pointer;display:grid;place-items:center;color:var(--ok);padding:0}
+.otp{display:grid;grid-template-columns:repeat(6,minmax(0,52px));gap:8px}
+.otp input{text-align:center;font:600 1.3rem var(--f-mono);padding:10px 0}
+.facts{display:grid;gap:8px;font-size:.84rem}
+.facts div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.facts div:last-child{border:0}
+
+/* toast */
+.toasts{position:fixed;z-index:80;right:max(18px,calc(env(safe-area-inset-right,0px) + 12px));bottom:calc(18px + env(safe-area-inset-bottom,0px));display:grid;gap:8px;justify-items:end}
+.toast{background:var(--fg);color:var(--ink);border-radius:var(--r-s);padding:10px 14px;font-size:.86rem;font-weight:500;box-shadow:var(--shadow);animation:slide .2s}
+.toast.bad{background:var(--bad);color:var(--ink)}
+
+.note{font-size:.82rem;color:var(--fg-3);max-width:80ch}
+.callout{display:flex;gap:12px;align-items:flex-start;background:var(--panel-2);border-radius:var(--r-s);padding:12px 14px;font-size:.85rem;color:var(--fg-2)}
+.callout svg{width:18px;height:18px;flex:none;color:var(--accent);margin-top:2px}
+
+@media (max-width:1080px){
+  .g-3-1{grid-template-columns:minmax(0,1fr)}
+  .acct{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}
+  .acct-actions{grid-column:1/-1;display:flex;justify-content:flex-start;flex-wrap:wrap}
+  .pg{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:860px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .rail{position:fixed;z-index:40;left:0;top:0;width:260px;transform:translateX(-102%);transition:transform .25s;box-shadow:var(--shadow);padding-top:calc(22px + env(safe-area-inset-top,0px))}
+  .rail.open{transform:none}
+  .topbar{padding-left:max(16px,env(safe-area-inset-left,0px))}
+  .topbar .menu{display:inline-flex}
+  .view{padding-left:max(16px,env(safe-area-inset-left,0px))}
+  .strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat:nth-child(3){border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .g-2{grid-template-columns:minmax(0,1fr)}
+  .acct{grid-template-columns:minmax(0,1fr)}
+  .gauge{grid-template-columns:minmax(0,1fr);justify-items:center}
+  .gauge .legend{width:100%}
+}
+@media (max-width:520px){
+  h1{font-size:1.55rem}
+  .cu-row,.cu-axis{grid-template-columns:78px minmax(0,1fr) 46px;gap:8px}
+  .stat b{font-size:1.5rem}
+  .hide-sm{display:none}
+  .topbar{gap:6px}
+  .topbar .btn.sm{padding:5px 8px}
+  #poolPill{display:none}
+}
+@media (prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ================= AUTH GATE ================= -->
+<div class="gate" id="gate" hidden>
+  <div class="gate-card">
+    <div class="mark"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 16c3-6 13-6 16 0"/><path d="M4 16v3M20 16v3M9 12.6V19M15 12.6V19"/></svg></i>Claude Bridge</div>
+    <div style="display:grid;gap:8px">
+      <h1>Unlock the console</h1>
+      <p class="muted">Enter the Space password. It also works as the Bearer API key for your clients.</p>
+    </div>
+    <form id="gateForm" method="post" action="/auth" autocomplete="on">
+      <div class="field">
+        <label for="gatePw">Space password</label>
+        <div class="pw">
+          <input class="input" id="gatePw" name="password" type="password" autocomplete="current-password" required autofocus>
+          <button class="btn sm ghost" type="button" id="gateShow">Show</button>
+        </div>
+      </div>
+      <p class="err" id="gateErr" role="alert"></p>
+      <button class="btn primary" style="justify-content:center;padding:11px" id="gateBtn">Unlock</button>
+    </form>
+    <div class="gate-foot">
+      <span>The password is the <span class="mono">PASSWORD</span> Space secret. It also encrypts saved session keys in the private bucket.</span>
+      <span id="gateDemoHint" hidden>Demo mode: any password unlocks.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ================= APP SHELL ================= -->
+<div class="shell" id="app" hidden>
+  <aside class="rail" id="rail">
+    <div class="mark"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 16c3-6 13-6 16 0"/><path d="M4 16v3M20 16v3M9 12.6V19M15 12.6V19"/></svg></i>Claude Bridge</div>
+    <nav id="nav" aria-label="Sections">
+      <a href="#overview" data-view="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Overview</a>
+      <a href="#accounts" data-view="accounts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c2 .7 3.2 2.5 3.6 5.2"/></svg>Accounts<span class="count num" id="navCount">0</span></a>
+      <a href="#usage" data-view="usage"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 20h18"/><path d="M6 16v-5M11 16V6M16 16v-8M21 16v-3"/></svg>Usage</a>
+      <a href="#connect" data-view="connect"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 7 3 12l5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>API &amp; keys</a>
+      <a href="#playground" data-view="playground"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8"/></svg>Playground</a>
+      <a href="#limits" data-view="limits"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Limits</a>
+    </nav>
+    <div class="rail-foot">
+      <span id="modeLabel" class="demo-flag" hidden>Demo data</span>
+      <span>Unofficial bridge to Claude's web interface. Private endpoints can change without notice.</span>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="btn ghost sm menu" id="menuBtn" aria-label="Open navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <span class="crumb" id="crumb">Overview</span>
+      <span id="poolPill" class="pill plain">Loading</span>
+      <span class="spacer"></span>
+      <span class="faint hide-sm num" id="lastSync" style="font-size:.78rem"></span>
+      <button class="btn sm" id="refreshBtn" title="Ask Claude for fresh usage on every account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg><span class="hide-sm">Refresh usage</span></button>
+      <button class="btn ghost sm" id="themeBtn" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></button>
+      <button class="btn ghost sm" id="lockBtn" aria-label="Lock console"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></button>
+    </header>
+
+    <!-- ===== OVERVIEW ===== -->
+    <section class="view" data-panel="overview">
+      <div class="view-head">
+        <div>
+          <span class="eyebrow">Account pool</span>
+          <h1 id="greet">One API address for every Claude account</h1>
+          <p class="lead">Requests go to the connected account with the most headroom. Linked turns stay on the account that started them.</p>
+        </div>
+        <span class="spacer"></span>
+        <button class="btn primary" data-open-add><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>Add account</button>
+      </div>
+
+      <div class="strip" id="strip"></div>
+
+      <div class="grid g-3-1">
+        <div class="card">
+          <div class="card-head"><h2>Combined usage</h2><span class="spacer"></span><a href="#usage" class="btn ghost sm">Details</a></div>
+          <div id="ovCombined" class="cu"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Pool headroom</h2></div>
+          <div id="ovGauge"></div>
+        </div>
+      </div>
+
+      <div class="grid g-3-1">
+        <div class="card">
+          <div class="card-head"><h2>Accounts</h2><span class="spacer"></span><a href="#accounts" class="btn ghost sm">Manage</a></div>
+          <div class="list" id="ovAccounts"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Activity</h2><span class="faint" style="font-size:.78rem">This browser session</span></div>
+          <div class="list" id="feed"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ACCOUNTS ===== -->
+    <section class="view" data-panel="accounts" hidden>
+      <div class="view-head">
+        <div>
+          <span class="eyebrow">Accounts</span>
+          <h1>Connected Claude accounts</h1>
+          <p class="lead">Session keys are encrypted with the Space password and saved in the private bucket, so accounts reconnect after a restart.</p>
+        </div>
+        <span class="spacer"></span>
+        <button class="btn primary" data-open-add><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>Add account</button>
+      </div>
+      <div class="acct-list" id="acctList"></div>
+      <p class="note">Each account runs one turn at a time. A 429 or an exhausted window cools the account down until Claude's reset time, or for 60 seconds when Claude gives none.</p>
+    </section>
+
+    <!-- ===== USAGE ===== -->
+    <section class="view" data-panel="usage" hidden>
+      <div class="view-head">
+        <div>
+          <span class="eyebrow">Usage</span>
+          <h1>Usage windows across the pool</h1>
+          <p class="lead">Claude reports utilization as a percentage per window, such as the 5-hour session and the weekly limit. It does not report message counts or token balances.</p>
+        </div>
+      </div>
+      <div class="strip" id="usageStrip"></div>
+      <div class="card">
+        <div class="card-head"><h2>Combined usage by window</h2><span class="spacer"></span><span class="faint" style="font-size:.78rem">Pool = average of accounts reporting that window</span></div>
+        <div id="usCombined" class="cu"></div>
+      </div>
+      <div class="grid g-2">
+        <div class="card">
+          <div class="card-head"><h2>Upcoming resets</h2></div>
+          <div class="list" id="resets"></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h2>Bridge traffic</h2><span class="faint" style="font-size:.78rem">Playground, this session</span></div>
+          <div class="facts" id="traffic"></div>
+          <p class="note" style="margin-top:14px">Token figures use the bridge's local o200k_base estimate. They are a safety estimate, not Claude's exact count.</p>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Account</th><th>Window</th><th class="r">Used</th><th class="r">Left</th><th>Resets</th><th>Status</th></tr></thead>
+          <tbody id="usageTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== CONNECT ===== -->
+    <section class="view" data-panel="connect" hidden>
+      <div class="view-head">
+        <div>
+          <span class="eyebrow">API &amp; keys</span>
+          <h1>Connect an OpenAI-compatible client</h1>
+          <p class="lead">Point any OpenAI SDK at the base URL and use the Space password as the API key. Pick an explicit Claude model from the models list.</p>
+        </div>
+      </div>
+      <div class="grid g-2">
+        <div class="card" style="display:grid;gap:16px">
+          <div class="field">
+            <span class="lbl">Base URL</span>
+            <div class="keybox"><code id="baseUrl"></code><button class="btn sm" data-copy="base">Copy</button></div>
+            <span class="hint">Also accepted: <span class="mono" id="altBases"></span></span>
+          </div>
+          <div class="field">
+            <span class="lbl">API key</span>
+            <div class="keybox"><code id="apiKeyView"></code><button class="btn sm ghost" id="revealKey">Show</button><button class="btn sm" data-copy="key">Copy</button></div>
+            <span class="hint">Send it as <span class="mono">Authorization: Bearer &lt;key&gt;</span>.</span>
+          </div>
+          <div class="field">
+            <span class="lbl">Models available now</span>
+            <div class="chips" id="modelChips"></div>
+          </div>
+        </div>
+        <div class="card" style="padding:0;overflow:hidden">
+          <div class="tabs" role="tablist" id="snipTabs" style="padding:0 12px">
+            <button role="tab" aria-selected="true" data-snip="python">Python</button>
+            <button role="tab" aria-selected="false" data-snip="node">Node</button>
+            <button role="tab" aria-selected="false" data-snip="curl">curl</button>
+          </div>
+          <pre class="code" id="snippet" style="border:0;border-radius:0;min-height:230px"></pre>
+          <div style="padding:10px 12px;border-top:1px solid var(--line);display:flex"><span class="spacer"></span><button class="btn sm" data-copy="snippet">Copy snippet</button></div>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th style="width:34%">Route</th><th>What it does</th></tr></thead>
+          <tbody id="routes"></tbody>
+        </table>
+      </div>
+      <p class="note">Only web search is available as a tool. Plugins, connectors and automatic model selection are turned off for bridge requests.</p>
+    </section>
+
+    <!-- ===== PLAYGROUND ===== -->
+    <section class="view" data-panel="playground" hidden>
+      <div class="view-head">
+        <div>
+          <span class="eyebrow">Playground</span>
+          <h1>Send a test response</h1>
+          <p class="lead">Streams from <span class="mono">/api/responses</span> through the same router your clients use.</p>
+        </div>
+      </div>
+      <div class="pg">
+        <form class="card pg-form" id="pgForm">
+          <div class="field"><label for="pgModel">Model</label><select class="input" id="pgModel"></select></div>
+          <div class="field"><span class="lbl">Reasoning effort</span>
+            <div class="seg" id="effort">
+              <button type="button" data-v="low">Low</button><button type="button" data-v="medium" aria-pressed="true">Med</button><button type="button" data-v="high">High</button><button type="button" data-v="xhigh">X-high</button><button type="button" data-v="max">Max</button>
+            </div>
+          </div>
+          <div class="field"><label for="pgMax">Max output tokens <span class="faint num" id="pgMaxV">2,048</span></label><input type="range" id="pgMax" min="256" max="8192" step="256" value="2048" style="accent-color:var(--accent)"></div>
+          <label class="check"><input type="checkbox" id="pgSearch"> Allow web search</label>
+          <div class="field"><label for="pgPrompt">Message</label><textarea class="input" id="pgPrompt">Summarise in three sentences why a 5-hour usage window matters when routing requests across several Claude accounts.</textarea></div>
+          <label class="drop" for="pgFile"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.5 12.7 20.8a5 5 0 0 1-7.1-7.1l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4L15.5 8"/></svg><span id="pgFileName">Attach a text, PDF or image file (10 MiB max)</span><input type="file" id="pgFile"></label>
+          <div class="row"><button class="btn primary" id="pgSend" type="submit">Send</button><button class="btn" id="pgStop" type="button" disabled>Stop</button></div>
+        </form>
+        <div class="card out">
+          <div class="card-head" style="margin-bottom:8px"><h2>Response</h2><span class="spacer"></span><span id="pgState" class="pill plain">Idle</span></div>
+          <div class="out-body placeholder" id="pgOut" aria-live="polite">The streamed reply appears here.</div>
+          <div class="out-meta" id="pgMeta"><span>No response yet</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LIMITS ===== -->
+    <section class="view" data-panel="limits" hidden>
+      <div class="view-head">
+        <div>
+          <span class="eyebrow">Limits</span>
+          <h1>What the bridge accepts</h1>
+          <p class="lead">These are local ceilings the bridge enforces before a request reaches Claude. Claude can still reject a request below them.</p>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Bridge limit</th><th>Notes</th></tr></thead>
+          <tbody id="limitsTable"></tbody>
+        </table>
+      </div>
+      <div class="grid g-2">
+        <div class="card"><div class="card-head"><h2>Storage lifetime</h2></div>
+          <div class="facts">
+            <div><span>Uploaded files</span><span class="num">1 hour</span></div>
+            <div><span>Responses, conversations, stored chats</span><span class="num">2 hours</span></div>
+            <div><span>Compaction items</span><span class="num">2 hours</span></div>
+            <div><span>Connected accounts</span><span>Saved, restored on restart</span></div>
+          </div>
+        </div>
+        <div class="card"><div class="card-head"><h2>Compaction &amp; handoff</h2></div>
+          <p class="muted" style="font-size:.9rem">History is summarized in chunks of at most 12,000 estimated tokens. A compaction item keeps up to four recent text messages within 8,000 tokens. With <span class="mono">handoff="compact"</span>, a linked turn can move to another account before Claude accepts it. Both consume usage allowance.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ================= ADD ACCOUNT DRAWER ================= -->
+<div class="scrim" id="addScrim" hidden>
+  <div class="drawer" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+    <div class="drawer-head"><h2 id="addTitle">Add an account</h2><span class="spacer"></span><button class="btn ghost sm" id="addClose" aria-label="Close">Close</button></div>
+    <div class="tabs" role="tablist" style="padding:0 22px;margin-top:12px">
+      <button role="tab" aria-selected="true" data-add="email">Sign in with email</button>
+      <button role="tab" aria-selected="false" data-add="key">Paste a session key</button>
+    </div>
+    <div class="drawer-body" id="addEmail">
+      <div class="steps" id="steps">
+        <div class="step" data-s="0"><i></i>Email</div><div class="step" data-s="1"><i></i>CAPTCHA</div><div class="step" data-s="2"><i></i>Code</div><div class="step" data-s="3"><i></i>Connected</div>
+      </div>
+
+      <form id="emForm" style="display:grid;gap:14px">
+        <div class="field"><label for="emEmail">Claude account email</label><input class="input" id="emEmail" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+        <label class="check"><input type="checkbox" id="emConsent" required><span>I confirm I am over 24. If this is a new account, I agree to Claude's <a href="https://www.anthropic.com/legal/consumer-terms" target="_blank" rel="noopener">Consumer Terms</a>, <a href="https://www.anthropic.com/legal/aup" target="_blank" rel="noopener">Acceptable Use Policy</a> and <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Privacy Policy</a>. Do not sign me up for marketing email.</span></label>
+        <div class="row"><button class="btn primary" id="emStart">Continue</button></div>
+      </form>
+
+      <div id="emCaptcha" hidden style="display:grid;gap:10px">
+        <span class="lbl" id="emCaptchaLbl">Complete the CAPTCHA to send the code</span>
+        <div id="hcap"></div>
+      </div>
+
+      <form id="emCodeForm" hidden style="display:grid;gap:14px">
+        <div class="field"><span class="lbl">Six-digit code from your email</span>
+          <div class="otp" id="otp"></div>
+        </div>
+        <div class="row"><button class="btn primary">Verify code</button></div>
+      </form>
+
+      <div id="emDone" hidden style="display:grid;gap:14px">
+        <div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4.5 4.5L19 7"/></svg><span id="emDoneMsg">Verification complete. The account was added to the pool.</span></div>
+        <div class="field"><span class="lbl">Session key</span>
+          <div class="keybox"><code id="emKey"></code><button class="btn sm" id="emCopy">Copy</button></div>
+        </div>
+        <div class="facts" id="emFacts"></div>
+        <div class="row"><button class="btn primary" id="emFinish">Done</button><button class="btn ghost" id="emAnother">Add another</button></div>
+      </div>
+
+      <div class="status-line" id="emStatus" hidden><span class="spin" id="emSpin"></span><span id="emStatusText"></span></div>
+      <p class="err" id="emErr" role="alert"></p>
+      <div class="row" id="emStopRow" hidden><button class="btn ghost danger" id="emStop">Stop and start over</button></div>
+    </div>
+
+    <div class="drawer-body" id="addKey" hidden>
+      <form id="keyForm" style="display:grid;gap:14px">
+        <div class="field"><label for="kLabel">Label</label><input class="input" id="kLabel" maxlength="60" placeholder="Personal"></div>
+        <div class="field"><label for="kKey">Claude session key</label><input class="input mono" id="kKey" type="password" autocomplete="off" placeholder="sk-ant-sid…" required><span class="hint">The bridge checks the key with Claude before saving it.</span></div>
+        <p class="err" id="kErr" role="alert"></p>
+        <div class="row"><button class="btn primary" id="kBtn">Connect account</button><span class="faint" id="kStatus" style="font-size:.85rem"></span></div>
+      </form>
+      <div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>Find the key in your browser's cookies for claude.ai under <span class="mono">sessionKey</span>, or copy it from a connected account here.</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+'use strict';
+/* The Space's /dashboard route replaces the quoted placeholder below with the real key.
+   When it is still the placeholder, the console runs on built-in demo data. */
+const KEY='__API_KEY__';
+const LIVE=KEY!=='__API'+'_KEY__';
+const $=id=>document.getElementById(id);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+function h(tag,attrs,...kids){const e=document.createElement(tag);for(const[k,v]of Object.entries(attrs||{})){if(v==null||v===false)continue;if(k==='class')e.className=v;else if(k==='style')e.style.cssText=v;else if(k.startsWith('on'))e[k]=v;else e.setAttribute(k,v===true?'':v)}for(const c of kids.flat()){if(c==null||c===false)continue;e.append(c.nodeType?c:String(c))}return e}
+const store={get(k){try{return localStorage.getItem('cbc.'+k)}catch{return null}},set(k,v){try{localStorage.setItem('cbc.'+k,v)}catch{}}};
+const now=()=>Date.now()/1000;
+const fmtN=n=>Math.round(n).toLocaleString('en-US');
+function dur(s){s=Math.max(0,Math.round(s));const d=Math.floor(s/86400);s%=86400;const hh=Math.floor(s/3600);s%=3600;const m=Math.floor(s/60);if(d)return d+'d '+hh+'h';if(hh)return hh+'h '+m+'m';if(m)return m+'m';return s+'s'}
+function ago(t){if(!t)return 'never';const s=now()-t;return s<60?'just now':dur(s)+' ago'}
+function clock(t){return new Date(t*1000).toLocaleString([], {weekday:'short',hour:'2-digit',minute:'2-digit'})}
+function level(p){return p>=90?'bad':p>=70?'warn':''}
+function toast(msg,bad){const t=h('div',{class:'toast'+(bad?' bad':'')},msg);$('toasts').append(t);setTimeout(()=>t.remove(),2600)}
+async function copyText(text,btn){try{await navigator.clipboard.writeText(text);if(btn){const o=btn.textContent;btn.textContent='Copied';setTimeout(()=>btn.textContent=o,1400)}else toast('Copied')}catch{toast('Copy was blocked. Select the text and copy it manually.',true)}}
+const WINDOW_NAMES={'5h':'5-hour session','five_hour':'5-hour session','7d':'Weekly','seven_day':'Weekly','seven_day_opus':'Weekly · Opus','7d_opus':'Weekly · Opus','seven_day_sonnet':'Weekly · Sonnet','7d_sonnet':'Weekly · Sonnet'};
+const wname=k=>WINDOW_NAMES[k]||k.replace(/_/g,' ');
+
+/* ---------------- data layer ---------------- */
+let state={accounts:[],models:[],limits:{}};let lastSync=0;const feed=[];const traffic={requests:0,ok:0,failed:0,inTok:0,outTok:0,ms:0};
+function log(kind,text){feed.unshift({kind,text,t:now()});feed.length=Math.min(feed.length,12);renderFeed()}
+
+const demo=(()=>{const t=now();const H=3600;
+  const accounts=[
+    {id:'acc_7f3a91',label:'Primary',models:['claude-sonnet-5-5','claude-opus-5-5','claude-haiku-5-5','claude-sonnet-4-6'],windows:{'5h':{percent:34,resets_at:t+2.6*H,status:'allowed'},'7d':{percent:12,resets_at:t+3.1*86400,status:'allowed'},'7d_opus':{percent:21,resets_at:t+3.1*86400,status:'allowed'}},busy:false,cooldown_until:0,usage_checked_at:t-140},
+    {id:'acc_c04e2d',label:'Research',models:['claude-sonnet-5-5','claude-opus-5-5','claude-haiku-5-5'],windows:{'5h':{percent:100,resets_at:t+47*60,status:'rejected'},'7d':{percent:63,resets_at:t+1.4*86400,status:'allowed'}},busy:false,cooldown_until:t+47*60,usage_checked_at:t-60},
+    {id:'acc_19b8e5',label:'team@lab.dev',models:['claude-sonnet-5-5','claude-haiku-5-5'],windows:{'5h':{percent:72,resets_at:t+4.2*H,status:'allowed'},'7d':{percent:38,resets_at:t+5.6*86400,status:'allowed'}},busy:true,cooldown_until:0,usage_checked_at:t-30},
+    {id:'acc_5ad210',label:'Backup',models:['claude-sonnet-5-5','claude-haiku-5-5'],windows:{},busy:false,cooldown_until:0,usage_checked_at:t-600}
+  ];
+  const limits={request_bytes:16777216,file_bytes:10485760,files_total_bytes:104857600,files_per_turn:10,input_items:200,input_budget:100000,output_budget:8192};
+  const models=()=>[...new Set(accounts.flatMap(a=>a.models))];
+  return {accounts,limits,models,keys:{}};
+})();
+
+async function api(path,method='GET',data){
+  const r=await fetch(path,{method,headers:{Authorization:'Bearer '+KEY,...(data instanceof FormData?{}:{'Content-Type':'application/json'})},body:data?(data instanceof FormData?data:JSON.stringify(data)):undefined});
+  let v;try{v=await r.json()}catch{v={}}
+  if(!r.ok)throw Error(v.error?.message||v.error||('Request failed with HTTP '+r.status));
+  return v;
+}
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const backend={
+  async status(){if(LIVE)return api('/admin/status');await wait(150);return {accounts:structuredClone(demo.accounts),models:demo.models(),limits:demo.limits}},
+  async refresh(){if(LIVE)return api('/admin/refresh','POST',{});await wait(700);for(const a of demo.accounts){a.usage_checked_at=now();for(const w of Object.values(a.windows))if(w.percent<100)w.percent=Math.min(99,w.percent+Math.random()*1.5)}return this.status()},
+  async add(session_key,label){if(LIVE)return api('/admin/accounts','POST',{session_key,label});await wait(900);if(!/^sk-ant-/.test(session_key))throw Error('That does not look like a Claude session key. It starts with sk-ant-.');if(demo.accounts.some(a=>demo.keys[a.id]===session_key))throw Error('This account is already connected.');const id='acc_'+Math.random().toString(16).slice(2,8);demo.accounts.push({id,label:label||'Account '+(demo.accounts.length+1),models:['claude-sonnet-5-5','claude-haiku-5-5'],windows:{},busy:false,cooldown_until:0,usage_checked_at:now()});demo.keys[id]=session_key;return {id,label}},
+  async remove(id){if(LIVE)return api('/admin/accounts/'+encodeURIComponent(id),'DELETE');await wait(300);const i=demo.accounts.findIndex(a=>a.id===id);if(i>=0)demo.accounts.splice(i,1);return {deleted:true}},
+  async key(id){if(LIVE)return (await api('/admin/accounts/'+encodeURIComponent(id)+'/key')).key;return demo.keys[id]||'sk-ant-sid01-demo-'+id.slice(4)+'-xxxxxxxxxxxxxxxx'}
+};
+
+async function load(fresh){
+  try{state=fresh?await backend.refresh():await backend.status();lastSync=now();renderAll();if(fresh){log('info','Usage refreshed for '+state.accounts.length+' account'+(state.accounts.length===1?'':'s'));toast('Usage refreshed')}}
+  catch(e){toast(e.message,true);log('bad',e.message)}
+}
+
+/* ---------------- derived figures ---------------- */
+function acctStatus(a){
+  if(a.cooldown_until>now())return {cls:'bad',text:'Cooling down · '+dur(a.cooldown_until-now())};
+  if(a.busy)return {cls:'info busy',text:'Generating'};
+  const ws=Object.values(a.windows);
+  if(ws.some(w=>w.percent>=100))return {cls:'bad',text:'Window exhausted'};
+  if(!ws.length)return {cls:'plain',text:'Usage not reported yet'};
+  if(ws.some(w=>w.percent>=70))return {cls:'warn',text:'Ready · running low'};
+  return {cls:'ok',text:'Ready'};
+}
+const ready=a=>a.cooldown_until<=now()&&!a.busy&&!Object.values(a.windows).some(w=>w.percent>=100);
+const peak=a=>Math.max(0,...Object.values(a.windows).map(w=>w.percent));
+function nextPick(){const r=state.accounts.filter(ready);if(!r.length)return null;return r.reduce((b,a)=>peak(a)<peak(b)?a:b)}
+function windowKeys(){const order=['5h','five_hour','7d','seven_day'];const ks=[...new Set(state.accounts.flatMap(a=>Object.keys(a.windows)))];return ks.sort((x,y)=>{const i=order.indexOf(x),j=order.indexOf(y);return (i<0?99:i)-(j<0?99:j)||x.localeCompare(y)})}
+function poolFor(k){const vals=state.accounts.filter(a=>a.windows[k]).map(a=>a.windows[k].percent);if(!vals.length)return null;return {avg:vals.reduce((s,v)=>s+v,0)/vals.length,n:vals.length,left:vals.reduce((s,v)=>s+(100-v),0)}}
+
+/* ---------------- render ---------------- */
+function renderAll(){renderTop();renderStrip();renderCombined($('ovCombined'),true);renderGauge();renderOvAccounts();renderAccounts();renderUsage();renderConnect();renderModels();renderLimits()}
+
+function renderTop(){
+  const n=state.accounts.length,r=state.accounts.filter(ready).length;
+  const p=$('poolPill');
+  p.className='pill '+(n===0?'plain':r===0?'bad':r<n?'warn':'ok');
+  p.textContent=n===0?'No accounts':r+' of '+n+' ready';
+  $('navCount').textContent=n;
+  $('lastSync').textContent=lastSync?'Synced '+ago(lastSync):'';
+}
+
+function statCell(label,value,unit,sub){return h('div',{class:'stat'},h('span',{class:'eyebrow'},label),h('b',null,value,unit?h('small',null,unit):null),h('span',{class:'sub'},sub))}
+function renderStrip(){
+  const n=state.accounts.length,r=state.accounts.filter(ready).length;
+  const s5=poolFor(windowKeys()[0]||'5h'),pick=nextPick();
+  const wk=windowKeys().find(k=>/7d|seven/.test(k)&&!/opus|sonnet/.test(k));const s7=wk?poolFor(wk):null;
+  $('strip').replaceChildren(
+    statCell('Ready accounts',r,'/ '+n,n?(n-r)+' busy, cooling or exhausted':'Add an account to start'),
+    statCell('Session left',s5?Math.round(100-s5.avg):'—',s5?'%':'',s5?'Average 5-hour headroom across '+s5.n:'No window reported yet'),
+    statCell('Weekly left',s7?Math.round(100-s7.avg):'—',s7?'%':'',s7?'Average weekly headroom across '+s7.n:'No window reported yet'),
+    statCell('Next request goes to',pick?pick.label:'—','',pick?'Lowest peak usage: '+Math.round(peak(pick))+'%':'No account can take a turn right now')
+  );
+  $('strip').lastChild.querySelector('b').style.fontSize='1.35rem';
+  $('strip').lastChild.querySelector('b').style.overflowWrap='anywhere';
+}
+
+function renderCombined(root,compact){
+  const keys=windowKeys();root.replaceChildren();
+  if(!keys.length){root.append(h('div',{class:'empty'},h('p',null,'No usage windows reported yet.'),h('span',{class:'faint'},'Claude reports them after an account connects or answers a turn. Use Refresh usage to ask again.')));return}
+  for(const k of (compact?keys.slice(0,2):keys)){
+    const pool=poolFor(k);const rows=state.accounts.filter(a=>a.windows[k]);
+    const box=h('div',{class:'cu-window'},h('div',{class:'row'},h('h3',null,wname(k)),h('span',{class:'mono faint',style:'font-size:.74rem'},k)));
+    const mk=(name,p,isPool)=>h('div',{class:'cu-row'+(isPool?' pool':'')},h('span',{class:'nm',title:name},name),h('div',{class:'cu-bar'},h('div',{class:'cu-grid'}),h('i',{class:!isPool&&p>=90?'bad':'',style:'width:'+Math.min(100,p)+'%'})),h('span',{class:'v num'},Math.round(p)+'%'));
+    box.append(mk('Pool average',pool.avg,true));
+    for(const a of rows)box.append(mk(a.label,a.windows[k].percent));
+    box.append(h('div',{class:'cu-axis'},h('div'),h('div',null,...[0,25,50,75,100].map(v=>h('span',{style:'left:'+v+'%'},v+'%'))),h('div')));
+    root.append(box);
+  }
+}
+
+function renderGauge(){
+  const k=windowKeys()[0];const pool=k?poolFor(k):null;const left=pool?100-pool.avg:0;
+  const R=52,C=2*Math.PI*R;const ns='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 132 132');svg.setAttribute('role','img');svg.setAttribute('aria-label',pool?Math.round(left)+' percent session headroom':'No data');
+  const c=(attrs)=>{const e=document.createElementNS(ns,'circle');for(const[a,v]of Object.entries(attrs))e.setAttribute(a,v);return e};
+  svg.append(c({cx:66,cy:66,r:R,fill:'none',stroke:'var(--panel-2)','stroke-width':12}));
+  const arc=c({cx:66,cy:66,r:R,fill:'none',stroke:left<15?'var(--bad)':left<30?'var(--warn)':'var(--accent)','stroke-width':12,'stroke-linecap':'round','stroke-dasharray':C,'stroke-dashoffset':C*(1-left/100),transform:'rotate(-90 66 66)'});
+  arc.style.transition='stroke-dashoffset .8s cubic-bezier(.2,.8,.2,1)';svg.append(arc);
+  const t=document.createElementNS(ns,'text');t.setAttribute('x',66);t.setAttribute('y',68);t.setAttribute('text-anchor','middle');t.setAttribute('fill','var(--fg)');t.setAttribute('style','font:700 26px var(--f-display)');t.textContent=pool?Math.round(left)+'%':'—';svg.append(t);
+  const t2=document.createElementNS(ns,'text');t2.setAttribute('x',66);t2.setAttribute('y',86);t2.setAttribute('text-anchor','middle');t2.setAttribute('fill','var(--fg-3)');t2.setAttribute('style','font:500 8.5px var(--f-mono);letter-spacing:.06em');t2.textContent='SESSION LEFT';svg.append(t2);
+  const resets=state.accounts.flatMap(a=>Object.values(a.windows).filter(w=>w.resets_at>now()).map(w=>w.resets_at)).sort((a,b)=>a-b);
+  const cooling=state.accounts.filter(a=>a.cooldown_until>now()).length;
+  $('ovGauge').replaceChildren(h('div',{class:'gauge'},svg,h('div',{class:'legend'},
+    h('div',{class:'lg'},h('span',{class:'muted'},'Window'),h('span',null,k?wname(k):'Not reported')),
+    h('div',{class:'lg'},h('span',{class:'muted'},'Accounts cooling'),h('span',{class:'num'},cooling)),
+    h('div',{class:'lg'},h('span',{class:'muted'},'Next reset'),h('span',{class:'num'},resets.length?'in '+dur(resets[0]-now()):'—')),
+    h('div',{class:'lg'},h('span',{class:'muted'},'Models offered'),h('span',{class:'num'},state.models.length))
+  )));
+}
+
+function renderOvAccounts(){
+  const root=$('ovAccounts');root.replaceChildren();
+  if(!state.accounts.length){root.append(h('div',{class:'empty'},h('p',null,'No accounts connected.'),h('button',{class:'btn primary sm',onclick:openAdd},'Add your first account')));return}
+  const pick=nextPick();
+  for(const a of state.accounts){const st=acctStatus(a);const p=peak(a);
+    root.append(h('div',{class:'li'},h('span',{class:'avatar',style:'width:28px;height:28px;font-size:.78rem'},initials(a.label)),
+      h('div',{style:'min-width:0;display:grid;gap:4px'},h('div',{class:'row',style:'gap:8px'},h('strong',{style:'font-weight:600'},a.label),a===pick?h('span',{class:'pill plain',style:'color:var(--accent)'},'next pick'):null),
+        h('div',{class:'track',style:'height:5px'},h('i',{class:level(p),style:'width:'+p+'%'}))),
+      h('span',{class:'pill '+st.cls},st.text)));
+  }
+}
+function initials(s){const w=s.replace(/@.*/,'').split(/[\s._-]+/).filter(Boolean);return ((w[0]||'?')[0]+((w[1]||'')[0]||'')).toUpperCase()}
+
+function renderFeed(){
+  const root=$('feed');if(!root)return;root.replaceChildren();
+  if(!feed.length){root.append(h('p',{class:'faint',style:'font-size:.86rem'},'Account changes, refreshes and test responses from this session appear here.'));return}
+  for(const f of feed)root.append(h('div',{class:'li'},h('span',{class:'dot '+f.kind}),h('span',{style:'overflow-wrap:anywhere'},f.text),h('span',{class:'t'},ago(f.t))));
+}
+
+function meter(k,w){const p=w.percent;const lvl=level(p);
+  return h('div',{class:'meter'},h('div',{class:'meter-top'},h('span',null,wname(k),' ',h('span',{class:'w'},k)),h('span',{class:'num'},p.toFixed(1)+'%')),
+    h('div',{class:'track'},h('i',{class:lvl,style:'width:'+Math.min(100,p)+'%'})),
+    h('span',{class:'reset num'},w.resets_at?(w.resets_at>now()?'Resets in '+dur(w.resets_at-now())+' · '+clock(w.resets_at):'Reset time passed. Refresh to update.'):'Reset time not reported'));
+}
+
+function renderAccounts(){
+  const root=$('acctList');root.replaceChildren();
+  if(!state.accounts.length){root.append(h('div',{class:'empty'},h('h2',null,'No accounts yet'),h('p',null,'Sign in with an email code or paste a session key. Each account adds its own usage allowance to the pool.'),h('button',{class:'btn primary',onclick:openAdd},'Add account')));return}
+  const pick=nextPick();
+  for(const a of state.accounts){
+    const st=acctStatus(a);const ws=Object.entries(a.windows);
+    const copyBtn=h('button',{class:'btn sm'},'Copy session key');
+    copyBtn.onclick=async()=>{try{copyText(await backend.key(a.id),copyBtn)}catch(e){toast(e.message,true)}};
+    const rm=h('button',{class:'btn sm danger'},'Disconnect');let armed=0;
+    rm.onclick=async()=>{if(!armed){armed=setTimeout(()=>{armed=0;rm.classList.remove('armed');rm.textContent='Disconnect'},3000);rm.classList.add('armed');rm.textContent='Click to confirm';return}
+      clearTimeout(armed);rm.disabled=true;try{await backend.remove(a.id);log('warn','Disconnected '+a.label);toast(a.label+' disconnected');await load()}catch(e){toast(e.message,true);rm.disabled=false}};
+    root.append(h('article',{class:'acct'+(a.cooldown_until>now()?' cool':'')},
+      a===pick?h('span',{class:'pick-tag'},'Next request'):null,
+      h('div',{class:'acct-id'},
+        h('div',{class:'acct-name'},h('span',{class:'avatar'},initials(a.label)),h('strong',null,a.label)),
+        h('div',null,h('span',{class:'pill '+st.cls},st.text)),
+        h('div',{class:'acct-meta'},h('span',{class:'mono'},a.id),h('span',null,'Usage checked '+ago(a.usage_checked_at))),
+        h('div',{class:'chips'},a.models.map(m=>h('span',{class:'chip'},m)))),
+      h('div',{class:'acct-meters'},ws.length?ws.map(([k,w])=>meter(k,w)):h('p',{class:'faint',style:'font-size:.86rem'},'Claude has not reported usage percentages for this account yet. They appear after a refresh or the first response.')),
+      h('div',{class:'acct-actions'},copyBtn,rm)));
+  }
+}
+
+function renderUsage(){
+  const keys=windowKeys();
+  const exhausted=state.accounts.filter(a=>Object.values(a.windows).some(w=>w.percent>=100)).length;
+  const hottest=state.accounts.length?state.accounts.reduce((b,a)=>peak(a)>peak(b)?a:b):null;
+  const s=keys.map(k=>[k,poolFor(k)]);
+  $('usageStrip').replaceChildren(
+    statCell('Windows tracked',keys.length,'',keys.map(wname).join(', ')||'None reported'),
+    statCell('Pool session used',s[0]?Math.round(s[0][1].avg):'—',s[0]?'%':'',s[0]?'Combined headroom '+fmtN(s[0][1].left)+' points':'—'),
+    statCell('Exhausted',exhausted,'/ '+state.accounts.length,'Accounts with a window at 100%'),
+    statCell('Busiest account',hottest&&peak(hottest)?Math.round(peak(hottest)):'—',hottest&&peak(hottest)?'%':'',hottest?hottest.label:'—'));
+  renderCombined($('usCombined'),false);
+  const resets=state.accounts.flatMap(a=>Object.entries(a.windows).filter(([,w])=>w.resets_at>now()).map(([k,w])=>({a,k,w}))).sort((x,y)=>x.w.resets_at-y.w.resets_at);
+  $('resets').replaceChildren(...(resets.length?resets.slice(0,8).map(({a,k,w})=>h('div',{class:'li'},h('span',{class:'dot '+(w.percent>=90?'bad':w.percent>=70?'warn':'ok')}),h('span',null,h('strong',{style:'font-weight:600'},a.label),' · ',wname(k),h('span',{class:'faint num'},' at '+Math.round(w.percent)+'%')),h('span',{class:'t num'},'in '+dur(w.resets_at-now())))):[h('p',{class:'faint'},'No reset times reported.')]));
+  renderTraffic();
+  const rows=[];for(const a of state.accounts){const st=acctStatus(a);const ws=Object.entries(a.windows);
+    if(!ws.length)rows.push(h('tr',null,h('td',null,a.label),h('td',{class:'faint'},'Not reported'),h('td',{class:'r'},'—'),h('td',{class:'r'},'—'),h('td',null,'—'),h('td',null,h('span',{class:'pill '+st.cls},st.text))));
+    ws.forEach(([k,w],i)=>rows.push(h('tr',null,h('td',null,i?'':a.label),h('td',null,wname(k)),h('td',{class:'r num'},w.percent.toFixed(1)+'%'),h('td',{class:'r num'},Math.max(0,100-w.percent).toFixed(1)+'%'),h('td',{class:'num'},w.resets_at?clock(w.resets_at):'—'),h('td',null,i?'':h('span',{class:'pill '+st.cls},st.text)))))}
+  $('usageTable').replaceChildren(...(rows.length?rows:[h('tr',null,h('td',{colspan:6,class:'faint'},'No accounts connected.'))]));
+}
+function renderTraffic(){
+  $('traffic').replaceChildren(
+    h('div',null,h('span',null,'Test responses'),h('span',{class:'num'},traffic.requests)),
+    h('div',null,h('span',null,'Completed · failed'),h('span',{class:'num'},traffic.ok+' · '+traffic.failed)),
+    h('div',null,h('span',null,'Input tokens (est.)'),h('span',{class:'num'},fmtN(traffic.inTok))),
+    h('div',null,h('span',null,'Output tokens (est.)'),h('span',{class:'num'},fmtN(traffic.outTok))),
+    h('div',null,h('span',null,'Average latency'),h('span',{class:'num'},traffic.ok?(traffic.ms/traffic.ok/1000).toFixed(1)+' s':'—')));
+}
+
+/* ---------------- connect ---------------- */
+const base=()=>(LIVE?location.origin:'https://alvin3y12-test.hf.space')+'/api';
+let keyShown=false;
+function renderConnect(){
+  $('baseUrl').textContent=base();
+  $('altBases').textContent=base()+'/v1 · '+base().replace(/\/api$/,'')+'/v1';
+  $('apiKeyView').textContent=keyShown?(LIVE?KEY:'demo-space-password'):'••••••••••••••••••••';
+  renderSnippet();
+}
+const ROUTES=[
+  [['GET'],'/models','Models offered by at least one connected account'],
+  [['POST','WS'],'/responses','Text, files, images, web search, streaming, background jobs and chaining'],
+  [['POST'],'/responses/compact','Summarize earlier context into an encrypted compaction item'],
+  [['GET','DEL'],'/responses/{id}','Retrieve or delete a stored response'],
+  [['POST'],'/responses/{id}/cancel','Cancel a running background response'],
+  [['POST'],'/chat/completions','Stateless chat with streaming; optional local store=true'],
+  [['POST'],'/completions','Legacy text completion with optional streaming'],
+  [['POST','GET','DEL'],'/files','Temporary uploads for model input, kept for one hour'],
+  [['POST'],'/audio/speech','Claude speech as Opus in Ogg; use model "claude-tts"'],
+  [['POST','GET','DEL'],'/conversations','Local conversation state and items']
+];
+function renderRoutes(){$('routes').replaceChildren(...ROUTES.map(([ms,p,d])=>h('tr',null,h('td',null,ms.map(m=>h('span',{class:'method '+m.toLowerCase()},m)),h('div',{class:'mono',style:'margin-top:4px'},'/api'+p)),h('td',{class:'muted'},d))))}
+let snip='python';
+function renderSnippet(){
+  const model=state.models[0]||'claude-sonnet-5-5';const b=base();
+  const S={
+    python:`<span class="k">from</span> openai <span class="k">import</span> OpenAI
+
+client = OpenAI(
+    base_url=<span class="s">"${b}"</span>,
+    api_key=<span class="s">"YOUR_SPACE_PASSWORD"</span>,
+)
+
+resp = client.responses.create(
+    model=<span class="s">"${model}"</span>,
+    input=<span class="s">"Write a haiku about routers."</span>,
+    reasoning={<span class="s">"effort"</span>: <span class="s">"medium"</span>},
+)
+print(resp.output_text)`,
+    node:`<span class="k">import</span> OpenAI <span class="k">from</span> <span class="s">"openai"</span>;
+
+<span class="k">const</span> client = <span class="k">new</span> OpenAI({
+  baseURL: <span class="s">"${b}"</span>,
+  apiKey: process.env.SPACE_PASSWORD,
+});
+
+<span class="k">const</span> stream = <span class="k">await</span> client.responses.create({
+  model: <span class="s">"${model}"</span>,
+  input: <span class="s">"Write a haiku about routers."</span>,
+  stream: <span class="k">true</span>,
+});
+<span class="k">for await</span> (<span class="k">const</span> e <span class="k">of</span> stream)
+  <span class="k">if</span> (e.type === <span class="s">"response.output_text.delta"</span>) process.stdout.write(e.delta);`,
+    curl:`curl ${b}/chat/completions \\
+  -H <span class="s">"Authorization: Bearer $SPACE_PASSWORD"</span> \\
+  -H <span class="s">"Content-Type: application/json"</span> \\
+  -d <span class="s">'{
+    "model": "${model}",
+    "messages": [{"role": "user", "content": "Hello"}],
+    "stream": false
+  }'</span>`};
+  $('snippet').innerHTML=S[snip];
+}
+function renderModels(){
+  $('modelChips').replaceChildren(...(state.models.length?state.models.map(m=>h('span',{class:'chip'},m)):[h('span',{class:'faint'},'Connect an account to list models.')]));
+  const sel=$('pgModel');const prior=sel.value||store.get('model');
+  sel.replaceChildren(...(state.models.length?state.models.map(m=>h('option',{value:m},m)):[h('option',{value:''},'Connect an account first')]));
+  if(state.models.includes(prior))sel.value=prior;
+}
+
+/* ---------------- limits ---------------- */
+function renderLimits(){
+  const L=state.limits||{};const mib=b=>b?(b/1048576).toFixed(0)+' MiB':'—';
+  const rows=[
+    ['HTTP request body',mib(L.request_bytes),'Includes JSON and base64 overhead'],
+    ['Input items per Responses call',L.input_items??'—','Messages and content parts combined'],
+    ['New-chat input budget',L.input_budget?fmtN(L.input_budget)+' tokens':'—','Prompt + 1,024 reserve + requested output, estimated locally'],
+    ['Output per turn',L.output_budget?'1 – '+fmtN(L.output_budget)+' tokens':'—','max_output_tokens defaults to 2,048'],
+    ['Uploaded file size',mib(L.file_bytes)+' each','Text, PDF and image uploads'],
+    ['Files per turn',L.files_per_turn??'—','No cumulative per-chat cap; Claude allows about 20'],
+    ['File storage',mib(L.files_total_bytes),'Held in memory, each file expires after one hour'],
+    ['Images','1024 × 1024 px','Static PNG, JPEG, WebP or GIF; reserves 32,768 tokens each'],
+    ['Concurrency','1 turn per account','More accounts allow more parallel turns']];
+  $('limitsTable').replaceChildren(...rows.map(r=>h('tr',null,h('td',null,r[0]),h('td',{class:'num',style:'white-space:nowrap;font-weight:600'},String(r[1])),h('td',{class:'muted'},r[2]))));
+}
+
+/* ---------------- playground ---------------- */
+let effort=store.get('effort')||'medium',abortCtl=null;
+function setEffort(v){effort=v;store.set('effort',v);$$('#effort button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.v===v)))}
+$$('#effort button').forEach(b=>b.onclick=()=>setEffort(b.dataset.v));setEffort(effort);
+$('pgMax').oninput=()=>$('pgMaxV').textContent=fmtN(+$('pgMax').value);
+$('pgFile').onchange=()=>{const f=$('pgFile').files[0];$('pgFileName').textContent=f?f.name+' · '+(f.size/1024).toFixed(0)+' KB':'Attach a text, PDF or image file (10 MiB max)'};
+$('pgModel').onchange=()=>store.set('model',$('pgModel').value);
+function pgSetState(cls,text){const s=$('pgState');s.className='pill '+cls;s.textContent=text}
+const estTok=s=>Math.ceil(s.length/4);
+$('pgForm').onsubmit=async e=>{
+  e.preventDefault();const model=$('pgModel').value,prompt=$('pgPrompt').value.trim();
+  if(!model){toast('Connect an account first',true);return}if(!prompt){$('pgPrompt').focus();return}
+  const out=$('pgOut');out.classList.remove('placeholder');out.textContent='';const caret=h('span',{class:'caret'});out.append(caret);
+  const text=document.createTextNode('');out.insertBefore(text,caret);
+  $('pgSend').disabled=true;$('pgStop').disabled=false;pgSetState('info busy','Streaming');
+  abortCtl=new AbortController();const t0=performance.now();let usage=null,first=0;traffic.requests++;
+  try{
+    if(LIVE){
+      const content=[{type:'input_text',text:prompt}];const f=$('pgFile').files[0];
+      if(f){const form=new FormData();form.append('purpose','user_data');form.append('file',f);const v=await api('/api/files','POST',form);content.push({type:'input_file',file_id:v.id})}
+      const r=await fetch('/api/responses',{method:'POST',headers:{Authorization:'Bearer '+KEY,'Content-Type':'application/json'},signal:abortCtl.signal,
+        body:JSON.stringify({model,input:[{role:'user',content}],stream:true,max_output_tokens:+$('pgMax').value,reasoning:{effort},tools:$('pgSearch').checked?[{type:'web_search'}]:[]})});
+      if(!r.ok){let v={};try{v=await r.json()}catch{}throw Error(v.error?.message||'Request failed with HTTP '+r.status)}
+      const reader=r.body.getReader(),dec=new TextDecoder();let buf='';
+      for(;;){const {value,done}=await reader.read();if(done)break;buf+=dec.decode(value,{stream:true});let i;
+        while((i=buf.indexOf('\n\n'))>=0){const block=buf.slice(0,i);buf=buf.slice(i+2);const line=block.split('\n').find(x=>x.startsWith('data: '));if(!line)continue;let ev;try{ev=JSON.parse(line.slice(6))}catch{continue}
+          if(ev.type==='response.output_text.delta'){if(!first)first=performance.now();text.data+=ev.delta}
+          else if(ev.type==='response.completed')usage=ev.response?.usage;
+          else if(ev.type==='response.failed')throw Error(ev.response?.error?.message||'Response failed');
+          else if(ev.type==='response.incomplete'){usage=ev.response?.usage;text.data+='\n\n[Output budget reached]'}}}
+    }else{
+      const reply='A 5-hour window is the fastest-moving constraint on a Claude account: once it reaches 100%, that account refuses new turns until the window resets. Routing each new request to the account with the lowest reported usage spreads load before any single account hits that wall. Weekly windows move slowly, so they decide which accounts stay in rotation over days, while the 5-hour window decides who takes the next request.';
+      await wait(500);first=performance.now();
+      for(const w of reply.split(/(?<=\s)/)){if(abortCtl.signal.aborted)throw Object.assign(Error('Stopped'),{name:'AbortError'});text.data+=w;await wait(28+Math.random()*40)}
+      const a=nextPick();if(a)for(const w of Object.values(a.windows))if(w.percent<99)w.percent+=0.4;
+    }
+    const ms=performance.now()-t0;traffic.ok++;traffic.ms+=ms;
+    const inT=usage?.input_tokens??estTok(prompt),outT=usage?.output_tokens??estTok(text.data);traffic.inTok+=inT;traffic.outTok+=outT;
+    pgSetState('ok','Completed');
+    $('pgMeta').replaceChildren(h('span',null,model),h('span',null,'effort '+effort),h('span',null,'first token '+((first-t0)/1000).toFixed(2)+' s'),h('span',null,'total '+(ms/1000).toFixed(2)+' s'),h('span',null,fmtN(inT)+' in · '+fmtN(outT)+' out'+(usage?'':' (est.)')));
+    log('ok','Test response on '+model+' in '+(ms/1000).toFixed(1)+' s');
+  }catch(err){
+    if(err.name==='AbortError'){text.data+=(text.data?'\n\n':'')+'Stopped.';pgSetState('plain','Stopped')}
+    else{traffic.failed++;text.data+=(text.data?'\n\n':'')+err.message;pgSetState('bad','Failed');log('bad','Test response failed: '+err.message)}
+  }finally{caret.remove();$('pgSend').disabled=false;$('pgStop').disabled=true;renderTraffic();load()}
+};
+$('pgStop').onclick=()=>abortCtl?.abort();
+
+/* ---------------- add account: paste key ---------------- */
+function openAdd(){$('addScrim').hidden=false;addTab(store.get('addTab')||'email');setTimeout(()=>(emStage==='idle'?$('emEmail'):$('kKey')).focus(),50)}
+function closeAdd(){$('addScrim').hidden=true}
+$$('[data-open-add]').forEach(b=>b.onclick=openAdd);
+$('addClose').onclick=closeAdd;$('addScrim').onclick=e=>{if(e.target===$('addScrim'))closeAdd()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('addScrim').hidden)closeAdd()});
+function addTab(t){store.set('addTab',t);$$('[data-add]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.add===t)));$('addEmail').hidden=t!=='email';$('addKey').hidden=t!=='key'}
+$$('[data-add]').forEach(b=>b.onclick=()=>addTab(b.dataset.add));
+$('keyForm').onsubmit=async e=>{e.preventDefault();$('kBtn').disabled=true;$('kErr').textContent='';$('kStatus').textContent='Checking the key with Claude…';
+  try{const r=await backend.add($('kKey').value.trim(),$('kLabel').value.trim());$('kKey').value='';$('kLabel').value='';$('kStatus').textContent='';toast((r.label||'Account')+' connected');log('ok','Connected '+(r.label||'an account')+' with a session key');closeAdd();await load()}
+  catch(x){$('kErr').textContent=x.message;$('kStatus').textContent=''}finally{$('kBtn').disabled=false}};
+
+/* ---------------- add account: email sign-in ---------------- */
+let emStage='idle',emGen=0,emPoll=null,emLocal=null,emKeys={},hcWidget=null,emKeyVer=0,emExpires=null,emNext=null,emRenewal='';
+const STEP={idle:0,error:0,starting:0,send_captcha:1,sending:1,code:2,verify_captcha:2,verifying:2,done:3};
+for(let i=0;i<6;i++){const inp=h('input',{class:'input',inputmode:'numeric',maxlength:1,'aria-label':'Digit '+(i+1),autocomplete:i?'off':'one-time-code'});
+  inp.oninput=()=>{inp.value=inp.value.replace(/\D/g,'').slice(-1);if(inp.value&&inp.nextSibling)inp.nextSibling.focus()};
+  inp.onkeydown=e=>{if(e.key==='Backspace'&&!inp.value&&inp.previousSibling)inp.previousSibling.focus()};
+  inp.onpaste=e=>{const d=(e.clipboardData.getData('text')||'').replace(/\D/g,'').slice(0,6);if(d.length>1){e.preventDefault();$$('#otp input').forEach((x,j)=>x.value=d[j]||'');$$('#otp input')[Math.min(5,d.length)].focus()}};
+  $('otp').append(inp)}
+const otpVal=()=>$$('#otp input').map(x=>x.value).join('');
+
+function emRender(stage,message){
+  emStage=stage;const st=STEP[stage]??0;
+  $$('#steps .step').forEach((s,i)=>{s.classList.toggle('on',i===st);s.classList.toggle('done',i<st||stage==='done')});
+  $('emForm').hidden=!(stage==='idle'||stage==='error');
+  $('emCaptcha').hidden=!(stage==='send_captcha'||stage==='verify_captcha');
+  $('emCaptchaLbl').textContent=stage==='verify_captcha'?'One more CAPTCHA to confirm the code':'Complete the CAPTCHA to send the code';
+  $('emCodeForm').hidden=stage!=='code';
+  $('emDone').hidden=stage!=='done';
+  $('emStopRow').hidden=stage==='idle'||stage==='error'||stage==='done';
+  const showStatus=message&&stage!=='error'&&stage!=='done';
+  $('emStatus').hidden=!showStatus;$('emStatusText').textContent=message||'';$('emSpin').hidden=stage==='code'||stage.endsWith('captcha');
+  $('emErr').textContent=stage==='error'?(message||'Sign-in failed.'):'';
+  if(stage==='code')setTimeout(()=>$$('#otp input')[0].focus(),30);
+}
+function emFacts(){
+  const t=Date.now()/1000;
+  $('emFacts').replaceChildren(
+    h('div',null,h('span',{class:'muted'},'Cookie expires'),h('span',{class:'num'},emExpires?'in '+dur(emExpires-t):'Not provided by Claude')),
+    h('div',null,h('span',{class:'muted'},'Next session check'),h('span',{class:'num'},emNext?'in '+dur(emNext-t):'Unavailable')),
+    emRenewal?h('div',null,h('span',{class:'muted'},'Renewal'),h('span',null,emRenewal)):null);
+}
+
+/* demo simulation of the server's login stages */
+const demoLogin={async start(email){emRender('starting','Checking login methods…');await wait(900);emRender('send_captcha','');fakeCaptcha(async()=>{emRender('sending','Sending the code to '+email+'…');await wait(1000);emRender('code','Enter the six-digit code we emailed you.')})},
+  async code(code){emRender('verifying','Checking the code…');await wait(700);if(code==='000000'){emRender('code','');$('emErr').textContent='That code was not accepted. Check the latest email and try again.';return}
+    emRender('verify_captcha','');fakeCaptcha(async()=>{emRender('verifying','Creating the session…');await wait(900);
+      const email=$('emEmail').value.trim();const key='sk-ant-sid01-'+Math.random().toString(36).slice(2,14)+'-demo';
+      const r=await backend.add(key,email);emExpires=Date.now()/1000+30*86400;emNext=Date.now()/1000+30;emRenewal='First session check is scheduled in 30 seconds.';
+      $('emKey').textContent=key;emFacts();emRender('done');log('ok','Connected '+r.label+' by email sign-in');load()})}};
+function fakeCaptcha(next){const box=h('button',{type:'button','aria-label':'I am human'});const wrap=h('div',{class:'fake-captcha'},box,h('span',null,'I am human'),h('span',{class:'spacer'}),h('span',{class:'faint mono',style:'font-size:.7rem'},'demo'));
+  box.onclick=()=>{box.innerHTML='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 12 4.5 4.5L19 7"/></svg>';box.disabled=true;setTimeout(next,450)};$('hcap').replaceChildren(wrap)}
+
+/* live: the Space's /login page carries a per-process token and the hCaptcha site keys */
+async function liveLoginInit(){
+  if(emLocal)return;const html=await (await fetch('/login',{cache:'no-store'})).text();
+  emLocal=(html.match(/const localToken='([^']+)'/)||[])[1];
+  const m=html.match(/send_captcha:'([^']*)',verify_captcha:'([^']*)'/);emKeys=m?{send_captcha:m[1],verify_captcha:m[2]}:{};
+  if(!emLocal)throw Error('Could not open the sign-in flow. Reload the page and try again.');
+  if(!window.hcaptcha)await new Promise((res,rej)=>{window.__hcReady=res;document.head.append(h('script',{src:'https://js.hcaptcha.com/1/api.js?render=explicit&onload=__hcReady',async:true,onerror:()=>rej(Error('The CAPTCHA could not load. Check your connection or content blocker.'))}))});
+}
+async function lpost(action,body){const r=await fetch('/login/'+action,{method:'POST',headers:{'Content-Type':'application/json','X-Local-Token':emLocal},body:JSON.stringify(body),cache:'no-store'});const d=await r.json();if(!r.ok)throw Error(d.error||'Request failed');return d}
+function liveCaptcha(stage,gen){
+  if(hcWidget!==null&&window.hcaptcha?.remove)try{hcaptcha.remove(hcWidget)}catch{}
+  const el=h('div');$('hcap').replaceChildren(el);
+  hcWidget=hcaptcha.render(el,{sitekey:emKeys[stage],theme:document.documentElement.dataset.theme==='light'||matchMedia('(prefers-color-scheme: light)').matches&&document.documentElement.dataset.theme!=='dark'?'light':'dark',
+    callback:async token=>{try{await lpost('captcha',{stage,token,generation:gen})}catch(e){$('emErr').textContent=e.message}},
+    'expired-callback':()=>{$('emErr').textContent='The CAPTCHA expired. Complete it again.';hcaptcha.reset(hcWidget)},
+    'error-callback':e=>{$('emErr').textContent='CAPTCHA error: '+e}});
+}
+async function livePoll(){
+  try{const d=await (await fetch('/login/state',{cache:'no-store'})).json();
+    emExpires=d.expires_at||null;emNext=d.next_check_at||null;emRenewal=d.renewal||'';
+    if(d.stage!==emStage||d.generation!==emGen){emGen=d.generation;emRender(d.stage,d.message);if(emKeys[d.stage])liveCaptcha(d.stage,emGen);else{hcWidget=null}}
+    else if(d.stage!=='error'&&d.stage!=='done'){$('emStatusText').textContent=d.message||''}
+    if(d.stage==='done'){if(d.key_version!==emKeyVer){const k=await lpost('key',{});if(k.generation===emGen){$('emKey').textContent=k.key;emKeyVer=k.key_version;$('emDoneMsg').textContent=emKeyVer>1?'Claude issued an updated session key. The saved account uses it automatically.':'Verification complete. The account was added to the pool.';log('ok','Connected '+d.email+' by email sign-in');load()}}emFacts()}
+    else emKeyVer=0;
+  }catch(e){$('emErr').textContent=e.message||'Lost connection to the Space.'}
+}
+$('emForm').onsubmit=async e=>{e.preventDefault();$('emErr').textContent='';const email=$('emEmail').value.trim();
+  if(!$('emConsent').checked){$('emErr').textContent='Confirm the age and terms checkbox to continue.';return}
+  $('emStart').disabled=true;
+  try{if(LIVE){await liveLoginInit();await lpost('start',{email,consent:true});clearInterval(emPoll);emPoll=setInterval(livePoll,1000);livePoll()}else await demoLogin.start(email)}
+  catch(x){emRender('error',x.message)}finally{$('emStart').disabled=false}};
+$('emCodeForm').onsubmit=async e=>{e.preventDefault();const code=otpVal();$('emErr').textContent='';
+  if(!/^\d{6}$/.test(code)){$('emErr').textContent='Enter all six digits from the latest email.';return}
+  $$('#otp input').forEach(x=>x.value='');
+  try{if(LIVE){await lpost('code',{code,generation:emGen});livePoll()}else await demoLogin.code(code)}catch(x){$('emErr').textContent=x.message}};
+$('emStop').onclick=async()=>{try{if(LIVE){await lpost('stop',{generation:emGen});livePoll()}else emRender('idle')}catch(e){$('emErr').textContent=e.message}};
+$('emCopy').onclick=()=>copyText($('emKey').textContent,$('emCopy'));
+$('emFinish').onclick=()=>{closeAdd();clearInterval(emPoll);emPoll=null};
+$('emAnother').onclick=async()=>{$('emEmail').value='';$('emConsent').checked=false;if(LIVE){try{await lpost('stop',{generation:emGen})}catch{}livePoll()}else emRender('idle');$('emEmail').focus()};
+
+/* ---------------- routing, theme, chrome ---------------- */
+const VIEWS={overview:'Overview',accounts:'Accounts',usage:'Usage',connect:'API & keys',playground:'Playground',limits:'Limits'};
+function route(){const v=VIEWS[location.hash.slice(1)]?location.hash.slice(1):'overview';
+  $$('[data-panel]').forEach(p=>p.hidden=p.dataset.panel!==v);$$('#nav a').forEach(a=>a.dataset.view===v?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
+  $('crumb').textContent=VIEWS[v];$('rail').classList.remove('open');window.scrollTo(0,0)}
+addEventListener('hashchange',route);
+$$('#nav a').forEach(a=>a.onclick=e=>{e.preventDefault();if(location.hash!=='#'+a.dataset.view)history.pushState(null,'','#'+a.dataset.view);route()});
+$$('.view a[href^="#"]').forEach(a=>a.onclick=e=>{e.preventDefault();history.pushState(null,'',a.getAttribute('href'));route()});
+$('menuBtn').onclick=()=>$('rail').classList.toggle('open');
+document.addEventListener('click',e=>{if($('rail').classList.contains('open')&&!$('rail').contains(e.target)&&!$('menuBtn').contains(e.target))$('rail').classList.remove('open')});
+function applyTheme(t){if(t)document.documentElement.dataset.theme=t;else delete document.documentElement.dataset.theme}
+applyTheme(store.get('theme'));
+$('themeBtn').onclick=()=>{const cur=document.documentElement.dataset.theme||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');const n=cur==='light'?'dark':'light';applyTheme(n);store.set('theme',n)};
+$('refreshBtn').onclick=async()=>{const b=$('refreshBtn');b.disabled=true;await load(true);b.disabled=false};
+$('revealKey').onclick=()=>{keyShown=!keyShown;$('revealKey').textContent=keyShown?'Hide':'Show';renderConnect()};
+$$('[data-copy]').forEach(b=>b.onclick=()=>copyText(b.dataset.copy==='base'?base():b.dataset.copy==='key'?(LIVE?KEY:'demo-space-password'):$('snippet').textContent,b));
+$$('[data-snip]').forEach(b=>b.onclick=()=>{snip=b.dataset.snip;$$('[data-snip]').forEach(x=>x.setAttribute('aria-selected',String(x===b)));renderSnippet()});
+
+/* ---------------- auth gate ---------------- */
+function unlock(){$('gate').hidden=true;$('app').hidden=false;route();load();renderFeed()}
+$('gateShow').onclick=()=>{const i=$('gatePw');i.type=i.type==='password'?'text':'password';$('gateShow').textContent=i.type==='password'?'Show':'Hide'};
+$('gateForm').addEventListener('submit',e=>{
+  if(LIVE)return; /* real form POSTs to /auth, which sets the admin cookie and redirects to /dashboard */
+  e.preventDefault();const pw=$('gatePw').value;
+  if(pw.length<1){$('gateErr').textContent='Enter the Space password.';return}
+  $('gateBtn').disabled=true;$('gateBtn').textContent='Unlocking…';
+  setTimeout(()=>{$('gateBtn').disabled=false;$('gateBtn').textContent='Unlock';$('gatePw').value='';log('info','Console unlocked');unlock()},450);
+});
+$('lockBtn').onclick=()=>{if(LIVE){location.href='/auth';return}$('app').hidden=true;$('gate').hidden=false;$('gatePw').focus()};
+
+/* ---------------- boot ---------------- */
+renderRoutes();
+if(!LIVE){$('modeLabel').hidden=false;$('gateDemoHint').hidden=false;$('greet').after(h('span',{class:'demo-flag',style:'margin-top:8px'},'Example data · open from the Space to see your accounts'))}
+if(LIVE)unlock();else{$('gate').hidden=false}
+setInterval(()=>{if(!$('app').hidden){renderAll();if(emStage==='done')emFacts()}},30000);
+if(LIVE)setInterval(()=>{if(!$('app').hidden&&document.visibilityState==='visible')load()},60000);
+</script>
+</body>
+</html>
