@@ -486,7 +486,10 @@ textarea.input { padding: 9px 11px; resize: vertical; }
 /* Skills editor */
 .claude-skill-editor { display: flex; flex-direction: column; gap: 10px; animation: claude-fade 220ms ease both; }
 .claude-skill-path { color: var(--faint); font: 11.5px var(--mono, ui-monospace, monospace); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.claude-skill-fields { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: start; }
+.claude-skill-fields { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.claude-skill-fields .field { display: flex; flex-direction: column; align-items: stretch; gap: 6px; min-width: 0; font-size: 12px; color: var(--muted); }
+.claude-skill-fields .field .input { width: 100%; min-height: 34px; }
+.claude-skill-fields .claude-segment { align-self: flex-start; }
 .claude-skill-spacer { flex: 1; }
 .claude-segment { display: inline-flex; padding: 2px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel-2); }
 .claude-segment button { padding: 5px 10px; border-radius: 6px; font-size: 12px; color: var(--muted); transition: background-color 120ms ease, color 120ms ease; }
@@ -494,4 +497,3 @@ textarea.input { padding: 9px 11px; resize: vertical; }
 .claude-segment button:disabled:not(.active) { opacity: .45; }
 .claude-tools-list li.is-clickable { cursor: pointer; transition: background-color 120ms ease; }
 .claude-tools-list li.is-clickable:hover { background: var(--panel-2); }
-@media (max-width: 640px) { .claude-skill-fields { grid-template-columns: minmax(0, 1fr); } }

@@ -78,7 +78,8 @@ class RpcSession:
             request.header.mutation_id.version = int(origin_version or 1) + 1
         submit = request.submit_client_tool_result
         submit.tool_use_id = tool_use_id
-        submit.result_json = json.dumps(result)
+        # claude.ai hands result_json to Claude verbatim; plain text keeps tool output unquoted.
+        submit.result_json = result if isinstance(result, str) else json.dumps(result)
         submit.is_error = bool(is_error)
         await self.client.perform(self.conversation, request)
 

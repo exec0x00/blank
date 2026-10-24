@@ -536,24 +536,15 @@ class BrowserTurn:
 USER_SENT = re.compile(r"user sent (?:a new )?message", re.I)
 
 
-def with_user_note(results, content):
-    """Carry text the user sent alongside tool results (for example steering a running turn).
+def user_notes(content):
+    """Text the user sent alongside tool results, such as a message typed while Claude worked.
 
-    A tool result is posted on its own, so other text in the same message would
-    be lost; it rides along on the last result instead. System reminders stay out.
+    Claude Code wraps such a message in a system reminder; other reminders do not count.
     """
-    def wanted(text):
-        # Claude Code wraps a message typed mid-turn in a system reminder; other reminders stay out.
-        return text.strip() and (not text.lstrip().startswith('<system-reminder>') or USER_SENT.search(text))
-    notes = [b.get('text', '') for b in content if isinstance(b, dict) and b.get('type') == 'text' and wanted(b.get('text', ''))]
-    if not notes or not results:
-        return results
-    results = copy.deepcopy(results)
-    last = results[-1]
-    body = last.get('content', '')
-    text = text_of(body) if isinstance(body, list) else str(body)
-    last['content'] = text + '\n\n<user-message-during-turn>\n' + '\n\n'.join(notes) + '\n</user-message-during-turn>'
-    return results
+    if not isinstance(content, list):
+        return []
+    return [b.get('text', '') for b in content if isinstance(b, dict) and b.get('type') == 'text' and b.get('text', '').strip()
+            and (not b.get('text', '').lstrip().startswith('<system-reminder>') or USER_SENT.search(b.get('text', '')))]
 
 # claude.ai drops client tools whose names it reserves (Read, Bash, Glob, Skill, Workflow, ...),
 # so every tool is declared under this prefix and mapped back when Claude calls it.
@@ -571,6 +562,7 @@ def tool_note(tools):
 
 # Conversation and elicitation states from the RPC schema.
 RPC_RUNNING, RPC_WAITING, RPC_ERROR = 2, 3, 5
+TOOL_SETTLE_SECONDS = 0.6
 RPC_STOP = {1: 'end_turn', 2: 'max_tokens', 3: 'tool_use', 5: 'stop_sequence', 8: 'max_tokens', 9: 'max_tokens', 7: 'pause_turn'}
 
 
@@ -599,6 +591,7 @@ class RpcTurn(BrowserTurn):
         self.waiting = False
         self.complete = None
         self.citations, self.cited = {}, []
+        self.reader = None
 
     async def rpc_files(self, files):
         client = self.account.client
@@ -847,10 +840,20 @@ class RpcTurn(BrowserTurn):
 
         stop = 'end_turn'
         while True:
+            unresolved = [b for b in self.ordered() if self.kind(b) == 'tool' and b.id not in self.forwarded]
+            # Every call in this step has its input: hand them over once Claude stops adding calls.
+            # (With a standing tool grant the conversation never reports WAITING_FOR_INPUT.)
+            settle = TOOL_SETTLE_SECONDS if tool_ids and not unresolved else None
             try:
-                event = await self.events.__anext__()
+                event = await self.next_event(settle)
             except StopAsyncIteration:
                 fail(502, 'Claude closed its update stream early.', 'api_error')
+            if event is None:
+                for item in finish_current():
+                    yield item
+                stop = 'tool_use'
+                self.pending.update(tool_ids)
+                break
             if event.HasField('heartbeat'):
                 yield {'type': 'ping'}
                 continue
@@ -882,6 +885,16 @@ class RpcTurn(BrowserTurn):
         yield {'type': 'message_delta', 'delta': {'stop_reason': stop, 'stop_sequence': None},
                'usage': {'input_tokens': input_tokens, 'output_tokens': output_tokens}}
         yield {'type': 'message_stop'}
+
+    async def next_event(self, timeout=None):
+        """The next timeline event, or None after ``timeout`` seconds; a pending read survives for the next call."""
+        if self.reader is None:
+            self.reader = asyncio.ensure_future(self.events.__anext__())
+        done, _ = await asyncio.wait({self.reader}, timeout=timeout)
+        if not done:
+            return None
+        reader, self.reader = self.reader, None
+        return reader.result()
 
     async def submit(self, results):
         if not self.pending:
@@ -915,6 +928,9 @@ class RpcTurn(BrowserTurn):
                 await asyncio.wait_for(self.session.stop(self.assistant_id), 10)
             except Exception:
                 pass
+        if self.reader is not None:
+            self.reader.cancel()
+            await asyncio.gather(self.reader, return_exceptions=True)
         if self.events is not None:
             try:
                 await self.events.aclose()
@@ -961,12 +977,15 @@ class AnthropicBridge:
                             and previous['system'] == plan['system'])
             visual = any(isinstance(c, dict) and c.get('type') in ('image', 'document')
                          for b in result_blocks if isinstance(b.get('content'), list) for c in b['content'])
-            if result_blocks and turn and turn.pending and not turn.closed and not visual:
+            # A tool result can only carry tool output. Images and messages from the user need a real
+            # user turn, so those close the waiting website turn and replay the conversation instead.
+            steering = bool(result_blocks and user_notes(last['content']))
+            if result_blocks and turn and turn.pending and not turn.closed and not visual and not steering:
                 if turn.expire_task:
                     turn.expire_task.cancel()
                     turn.expire_task = None
                 try:
-                    await turn.submit(with_user_note(result_blocks, last['content']))
+                    await turn.submit(result_blocks)
                 except Exception:
                     self.sessions.pop(session, None)
                     await turn.close()

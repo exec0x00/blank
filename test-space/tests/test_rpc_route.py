@@ -151,7 +151,7 @@ def test_rpc_client_tool_round_trip(monkeypatch, tmp_path):
     kinds = [kind for kind, _ in fake.actions]
     assert kinds == ['send_message', 'respond_to_elicitation', 'submit_client_tool_result']
     submit = fake.actions[2][1]
-    assert json.loads(submit.submit_client_tool_result.result_json) == 'pong'
+    assert submit.submit_client_tool_result.result_json == 'pong'
     assert submit.header.mutation_id.session_id == fake.call['origin_session_id']
     declared = fake.actions[0][1].send_message.client_tools[0]
     assert declared.name == 'cc_echo_ping' and json.loads(declared.input_schema_json) == {'type': 'object'}
@@ -187,7 +187,40 @@ def test_text_sent_with_a_tool_result_reaches_claude(monkeypatch, tmp_path):
                                                             {'type': 'text', 'text': '<system-reminder>todo list</system-reminder>'},
                                                             {'type': 'text', 'text': 'Also say goodbye.'},
                                                             {'type': 'text', 'text': '<system-reminder>\nThe user sent a new message while you were working:\nUse French.\n</system-reminder>'}]}]
-        assert client.post('/v1/messages', json=follow, headers=headers).status_code == 200
-    submitted = json.loads(fake.actions[2][1].submit_client_tool_result.result_json)
-    assert submitted.startswith('pong') and 'Also say goodbye.' in submitted and 'todo list' not in submitted
-    assert 'Use French.' in submitted
+        response = client.post('/v1/messages', json=follow, headers=headers)
+        assert response.status_code == 200, response.text
+        assert response.headers['x-bridge-route'] == 'new'
+    kinds = [kind for kind, _ in fake.actions]
+    assert 'submit_client_tool_result' not in kinds and kinds.count('send_message') == 2
+    replay = [action for kind, action in fake.actions if kind == 'send_message'][-1].send_message.text
+    assert 'Also say goodbye.' in replay and 'Use French.' in replay and 'Tool toolu_rpc returned: pong' in replay
+
+
+def standing_grant_script(kind, action, fake):
+    # A tool already allowed for this account: no approval request and no WAITING status.
+    if kind == 'send_message':
+        fake.assistant = a = action.send_message.assistant_message_id
+        call = {'tool_name': 'cc_echo_ping', 'tool_use_id': 'toolu_grant', 'origin_session_id': action.header.mutation_id.session_id,
+                'origin_version': '1', 'input_json': '{"value": "ping"}', 'consent': 'CLIENT_TOOL_CONSENT_STANDING_GRANT'}
+        return [{'update': {'display_groups': [group('g1', a, 0, 'GROUP_STYLE_TIMELINE')],
+                            'content_blocks': [{'id': 'tool', 'display_group_id': 'g1', 'state': 'CONTENT_BLOCK_STATE_RUNNING', 'display_content': {'client_tool': call}}]}}]
+    if kind == 'submit_client_tool_result':
+        a = fake.assistant
+        return [{'update': {'display_groups': [group('g2', a, 1, 'GROUP_STYLE_INLINE')], 'content_blocks': [{'id': 'answer', 'display_group_id': 'g2', 'text': 'pong received'}]}}, done(a)]
+    return []
+
+
+def test_rpc_tool_call_with_standing_grant_is_forwarded_promptly(monkeypatch, tmp_path):
+    import time
+    app, store, pool, fake = rpc_app(monkeypatch, tmp_path, standing_grant_script)
+    tools = [{'name': 'echo_ping', 'description': 'Echo', 'input_schema': {'type': 'object'}}]
+    with TestClient(app) as client:
+        started = time.time()
+        first = client.post('/v1/messages', json=request('call it', tools=tools, model='claude-haiku-5-5'), headers={**HEADERS, 'x-session-id': 'grant'}).json()
+        assert time.time() - started < 5
+        assert first['stop_reason'] == 'tool_use' and first['content'][-1]['input'] == {'value': 'ping'}
+        follow = request('call it', tools=tools, model='claude-haiku-5-5')
+        follow['messages'] += [{'role': 'assistant', 'content': first['content']},
+                               {'role': 'user', 'content': [{'type': 'tool_result', 'tool_use_id': 'toolu_grant', 'content': 'pong'}]}]
+        second = client.post('/v1/messages', json=follow, headers={**HEADERS, 'x-session-id': 'grant'})
+        assert second.json()['content'][0]['text'] == 'pong received'

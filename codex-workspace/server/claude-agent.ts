@@ -648,6 +648,7 @@ function handleMessage(ctx: AppContext, item: ClaudeConversation, state: Live, m
         const sessionId = item.sessionId;
         // The transcript entry for the goal check can land just after the result.
         void new Promise(resolve => setTimeout(resolve, 1500)).then(() => transcriptGoal(claudeConfigDir(ctx), sessionId, item.goal)).then(goal => {
+          console.log(`Goal check for ${item.id}: ${goal === undefined ? 'no transcript entry' : goal ? `active (${goal.iterations} checks)` : 'met or cleared'}`);
           if (goal === undefined || JSON.stringify(goal) === JSON.stringify(item.goal)) return;
           item.goal = goal;
           emit(item.id, { type: 'meta', patch: { goal } });

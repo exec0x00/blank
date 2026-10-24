@@ -77,7 +77,7 @@ export function SkillsEditor({ workspaceId, onNotify, onChanged }: { workspaceId
           <div className="claude-segment">{(['project', 'user'] as const).map(scope => <button key={scope} type="button" disabled={draft.existing} className={draft.scope === scope ? 'active' : ''} onClick={() => setDraft({ ...draft, scope })}>
             {scope === 'project' ? 'This workspace' : 'All workspaces'}</button>)}</div></div>
       </div>
-      <textarea className="input claude-mono claude-memory" rows={16} value={draft.content} spellCheck={false} onChange={event => setDraft({ ...draft, content: event.target.value })} />
+      <textarea className="input claude-mono claude-memory" rows={11} value={draft.content} spellCheck={false} onChange={event => setDraft({ ...draft, content: event.target.value })} />
       <p className="claude-tools-help">Keep the <code>description</code> specific: Claude reads it to decide when the skill applies. You can also run it directly with <code>/{draft.name || 'name'}</code>.</p>
       <div className="claude-tools-actions">
         {draft.existing && <button type="button" className={`button ${confirmDelete ? 'danger' : 'ghost'}`} disabled={busy} onClick={() => void remove()}><Trash2 size={13} />{confirmDelete ? 'Delete for good?' : 'Delete'}</button>}
