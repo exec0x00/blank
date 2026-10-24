@@ -1,0 +1,60 @@
+/* Truncate presentation labels only. The complete text remains in the DOM and
+   in the custom tooltip/accessibility description; editors and content keep
+   their own wrapping and scrolling. */
+.text-ellipsis {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  unicode-bidi: isolate;
+}
+
+.modal-heading > div { flex: 1; min-width: 0; }
+.conversation-header-picker > svg,
+.conversation-history-current > button > svg,
+.editor-file-tab > button[role="tab"] > svg,
+.editor-workspace-name > svg,
+.editor-breadcrumb > span > svg { flex-shrink: 0; }
+.editor-breadcrumb > span > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.terminal-tab-title { flex: 1 1 auto; }
+
+/* A flex/grid label can truncate only after every intervening item can shrink. */
+.native-plugin-card-copy { flex: 1; }
+.native-plugin-heading > div,
+.native-files-heading > div,
+.native-mcp-catalog-heading > div,
+.native-processes-heading > div:first-child { min-width: 0; }
+.native-plugin-marketplaces > li > div:first-child { flex: 1; }
+.native-plugin-marketplaces > li > .native-plugin-actions,
+.native-plugin-marketplaces > li > .button,
+.native-plugin-detail-top > .icon-button,
+.native-plugin-heading > .icon-button,
+.native-files-subheading > .button,
+.native-files-list li > button:first-child > svg,
+.native-mcp-catalog-heading > .button { flex-shrink: 0; }
+.native-files-subheading > .text-ellipsis { flex: 1; }
+.native-files-list li > button:first-child > .text-ellipsis { flex: 1; }
+.native-org-picker .native-org-check > .text-ellipsis { flex: 1; }
+.native-plugin-skill-name { display: flex; align-items: baseline; min-width: 0; }
+.native-plugin-skill-name > span:last-child:not(:first-child) { flex-shrink: 0; }
+.native-plugin-skill-action { min-width: 0; max-width: 100%; }
+.native-mcp-catalog h4.text-ellipsis { display: block; }
+.native-mcp-catalog-item p { overflow-wrap: anywhere; }
+.native-child-status { display: flex; min-width: 0; }
+.native-child-status > span:first-child { flex-shrink: 0; }
+.native-child-window { flex-shrink: 0; }
+.chat-context-child-heading { display: flex; align-items: baseline; flex: 1; min-width: 0; gap: 8px; }
+.chat-context-child-heading > .text-ellipsis { flex: 1; }
+.chat-context-child-status { flex-shrink: 0; }
+.command-action-text { min-width: 0; }
+.command-action > kbd, .command-enter { flex-shrink: 0; }
+.command-action-text > span { overflow-wrap: anywhere; }
+.native-skills-list code.text-ellipsis, .native-skills-issues code.text-ellipsis { white-space: nowrap; }
+.github-repo-meta .text-ellipsis { min-width: 0; }
+.editor-quick-caption > span:last-child,
+.editor-quick-open-label,
+.editor-quick-results > button > svg { flex-shrink: 0; }
+.terminal-empty > div { min-width: 0; max-width: 100%; }
+.terminal-empty p { overflow-wrap: anywhere; }

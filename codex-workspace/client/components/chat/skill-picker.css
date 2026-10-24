@@ -1,0 +1,8 @@
+.chat-skill-picker-footer { min-width: 0; }
+.chat-skill-picker-footer:empty { display: none; }
+.chat-skill-picker-footer .page-navigation { padding-block: 4px; }
+.chat-skill-picker-footer .chat-skill-first-page { min-height: 36px; margin-bottom: 4px; font-size: 11px; }
+.chat-skill-picker-footer p { margin: 6px 2px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+@media (pointer: coarse), (max-width: 679px) {
+  .chat-skill-picker-footer .button { min-height: 44px; }
+}

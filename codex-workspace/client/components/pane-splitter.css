@@ -1,0 +1,67 @@
+.pane-splitter {
+  position: relative;
+  flex: 0 0 8px;
+  width: 8px;
+  min-width: 0;
+  align-self: stretch;
+  cursor: col-resize;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
+  z-index: 6;
+}
+.pane-splitter-line { position: absolute; inset: 12px 3.5px; border-radius: 2px; background: transparent; transition: background 140ms; }
+.pane-splitter-grip {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border-radius: 8px;
+  touch-action: none;
+}
+.pane-splitter-grip > span { width: 2px; height: 24px; border-radius: 2px; background: var(--border-strong); }
+.pane-splitter:hover .pane-splitter-line,
+.pane-splitter:focus-visible .pane-splitter-line,
+.pane-splitter[data-resizing] .pane-splitter-line,
+.pane-splitter:hover .pane-splitter-grip > span,
+.pane-splitter:focus-visible .pane-splitter-grip > span,
+.pane-splitter[data-resizing] .pane-splitter-grip > span { background: var(--text); }
+.pane-splitter:focus-visible .pane-splitter-grip { outline: 1px solid var(--focus); outline-offset: -4px; background: var(--panel); }
+.pane-splitter[aria-disabled="true"] { cursor: default; }
+.pane-splitter-instructions { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+body[data-resizing-pane="true"], body[data-resizing-pane="true"] * { cursor: col-resize !important; user-select: none !important; -webkit-user-select: none !important; }
+
+.workbench .workbench-stage.workbench-stage-resizable { gap: 0; }
+.workbench.is-split .workbench-stage-resizable > .agent-pane { flex: 0 0 var(--agent-pane-width); min-width: 0; }
+.workbench.is-split .workbench-stage-resizable > .editor-pane { flex: 1 1 0; min-width: 0; }
+
+.editor-panel.editor-panel-resizable > .editor-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 8px var(--resizable-explorer-width, 216px);
+}
+.editor-panel.editor-panel-resizable.editor-sidebar-hidden > .editor-body { grid-template-columns: minmax(0, 1fr); }
+.editor-panel.editor-panel-resizable .editor-body > .editor-main,
+.editor-panel.editor-panel-resizable .editor-body > .editor-sidebar { display: flex; width: auto; min-width: 0; }
+.editor-panel.editor-panel-resizable .editor-body > .editor-sidebar { border-left: 0; }
+.editor-panel.editor-panel-resizable.editor-sidebar-hidden .editor-body > .editor-sidebar { display: none; }
+.editor-panel.editor-panel-resizable .editor-mobile-files-button,
+.editor-panel.editor-panel-resizable .editor-mobile-browse,
+.editor-panel.editor-panel-resizable .editor-sidebar-header > .editor-mobile-back { display: none; }
+.editor-panel.editor-panel-resizable .editor-sidebar-tabs { padding: 0; min-height: 36px; }
+.editor-panel.editor-panel-resizable .editor-sidebar-tabs > button { font-size: 12px; padding: 4px 8px; min-height: 32px; }
+.editor-panel.editor-panel-resizable .editor-tree-item,
+.editor-panel.editor-panel-resizable .editor-tree-row { min-height: calc(var(--explorer-page-row-height, 34px) - 2px); }
+.editor-panel.editor-panel-resizable .editor-tree-row { padding-block: 4px; font-size: 13px; }
+
+@media (any-pointer: coarse) {
+  .pane-splitter-grip { width: 44px; height: 72px; }
+  .editor-panel.editor-panel-resizable .editor-sidebar-tabs > button { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pane-splitter, .pane-splitter * { transition: none !important; animation: none !important; }
+}

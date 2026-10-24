@@ -1,0 +1,239 @@
+{
+  "recordedAt": "2026-09-20T11:51:17Z",
+  "environment": {
+    "nodeExecutable": "node-v22.23.2-linux-x64",
+    "cpuAffinityCount": 2,
+    "nodeHeapLimitMiB": 1024,
+    "headless": "5.5.0",
+    "serializeAddon": "0.13.0"
+  },
+  "fixture": {
+    "sourceLines": 9000,
+    "columns": 100,
+    "rows": 28,
+    "colored": true,
+    "unicode": true,
+    "baselineUtf16Characters": 262144,
+    "baselineScrollbackLines": 5000
+  },
+  "passedTests": 12,
+  "durationSeconds": 1.49,
+  "supervisor": {
+    "cleanup_complete": true,
+    "command_executable": "node",
+    "command_exit": 0,
+    "command_pid": 361369,
+    "elapsed_seconds": 2.157,
+    "failure": null,
+    "failure_details": null,
+    "parent1_zombie_delta": 0,
+    "peak_owned_processes": 8,
+    "reaped_adopted_descendants": 1,
+    "signals_sent": {
+      "SIGHUP": 0,
+      "SIGINT": 0,
+      "SIGKILL": 0,
+      "SIGTERM": 0
+    },
+    "skipped_nonleader_threads": 0,
+    "supervisor_exit": 0,
+    "supervisor_pid": 361368,
+    "timed_out": false,
+    "zombie_delta": 0,
+    "zombies_after": {
+      "complete": true,
+      "parent1": 4666,
+      "total": 4666
+    },
+    "zombies_before": {
+      "complete": true,
+      "parent1": 4666,
+      "total": 4666
+    }
+  },
+  "summary": [
+    {
+      "historyLines": 100,
+      "samples": 3,
+      "utf8SnapshotBytes": 11811,
+      "snapshotMsMedian": 2.3996049999998377,
+      "parseMsMedian": 3.0665070000000014,
+      "parseMsMax": 4.121180999999979
+    },
+    {
+      "historyLines": 250,
+      "samples": 3,
+      "utf8SnapshotBytes": 25864,
+      "snapshotMsMedian": 2.094669999999951,
+      "parseMsMedian": 2.860678999999891,
+      "parseMsMax": 6.012546999999813
+    },
+    {
+      "historyLines": 500,
+      "samples": 3,
+      "utf8SnapshotBytes": 49189,
+      "snapshotMsMedian": 3.626989999999978,
+      "parseMsMedian": 4.216711000000032,
+      "parseMsMax": 4.302731999999878
+    },
+    {
+      "historyLines": 1000,
+      "samples": 3,
+      "utf8SnapshotBytes": 95839,
+      "snapshotMsMedian": 5.757951000000048,
+      "parseMsMedian": 6.0945829999998296,
+      "parseMsMax": 7.04898900000012
+    },
+    {
+      "historyLines": 2000,
+      "samples": 3,
+      "utf8SnapshotBytes": 189139,
+      "snapshotMsMedian": 12.305848999999853,
+      "parseMsMedian": 10.126935000000003,
+      "parseMsMax": 10.232980999999882
+    },
+    {
+      "historyLines": "previous-raw-tail",
+      "samples": 3,
+      "utf8SnapshotBytes": 280108,
+      "snapshotMsMedian": 0,
+      "parseMsMedian": 11.587159000000156,
+      "parseMsMax": 12.42439300000001
+    }
+  ],
+  "observations": [
+    {
+      "lines": 100,
+      "bytes": 11811,
+      "retainedLines": 100,
+      "snapshotMs": 2.4311640000000807,
+      "parseMs": 3.0665070000000014
+    },
+    {
+      "lines": 100,
+      "bytes": 11811,
+      "retainedLines": 100,
+      "snapshotMs": 1.821374999999989,
+      "parseMs": 4.121180999999979
+    },
+    {
+      "lines": 100,
+      "bytes": 11811,
+      "retainedLines": 100,
+      "snapshotMs": 2.3996049999998377,
+      "parseMs": 2.3125370000000203
+    },
+    {
+      "lines": 250,
+      "bytes": 25864,
+      "retainedLines": 250,
+      "snapshotMs": 4.053461000000198,
+      "parseMs": 6.012546999999813
+    },
+    {
+      "lines": 250,
+      "bytes": 25864,
+      "retainedLines": 250,
+      "snapshotMs": 2.0653939999999693,
+      "parseMs": 2.860678999999891
+    },
+    {
+      "lines": 250,
+      "bytes": 25864,
+      "retainedLines": 250,
+      "snapshotMs": 2.094669999999951,
+      "parseMs": 2.708650000000034
+    },
+    {
+      "lines": 500,
+      "bytes": 49189,
+      "retainedLines": 500,
+      "snapshotMs": 3.5339600000002065,
+      "parseMs": 4.302731999999878
+    },
+    {
+      "lines": 500,
+      "bytes": 49189,
+      "retainedLines": 500,
+      "snapshotMs": 3.6321550000000116,
+      "parseMs": 3.4412959999999657
+    },
+    {
+      "lines": 500,
+      "bytes": 49189,
+      "retainedLines": 500,
+      "snapshotMs": 3.626989999999978,
+      "parseMs": 4.216711000000032
+    },
+    {
+      "lines": 1000,
+      "bytes": 95839,
+      "retainedLines": 1000,
+      "snapshotMs": 5.734941000000163,
+      "parseMs": 5.790502999999944
+    },
+    {
+      "lines": 1000,
+      "bytes": 95839,
+      "retainedLines": 1000,
+      "snapshotMs": 5.882228000000168,
+      "parseMs": 6.0945829999998296
+    },
+    {
+      "lines": 1000,
+      "bytes": 95839,
+      "retainedLines": 1000,
+      "snapshotMs": 5.757951000000048,
+      "parseMs": 7.04898900000012
+    },
+    {
+      "lines": 2000,
+      "bytes": 189139,
+      "retainedLines": 2000,
+      "snapshotMs": 10.121988000000101,
+      "parseMs": 10.232980999999882
+    },
+    {
+      "lines": 2000,
+      "bytes": 189139,
+      "retainedLines": 2000,
+      "snapshotMs": 12.682160999999951,
+      "parseMs": 9.187184000000116
+    },
+    {
+      "lines": 2000,
+      "bytes": 189139,
+      "retainedLines": 2000,
+      "snapshotMs": 12.305848999999853,
+      "parseMs": 10.126935000000003
+    },
+    {
+      "lines": "previous-raw-tail",
+      "bytes": 280108,
+      "snapshotMs": 0,
+      "parseMs": 12.42439300000001
+    },
+    {
+      "lines": "previous-raw-tail",
+      "bytes": 280108,
+      "snapshotMs": 0,
+      "parseMs": 11.481130000000121
+    },
+    {
+      "lines": "previous-raw-tail",
+      "bytes": 280108,
+      "snapshotMs": 0,
+      "parseMs": 11.587159000000156
+    }
+  ],
+  "sourceSha256": {
+    "server/terminal-replay.ts": "cb560fef95720facdd040a53ae05402f3bf5992f0888b5e46437f0cc6a30f309",
+    "shared/terminal-replay.ts": "2900073c0acff760e68ba36ddab860461c8ef2fd304a423aecfc27e780954d23",
+    "tests/terminal-replay.test.ts": "b2f02a00794b84fc14348ec22c4486db301efdcb37771f728ccb10d2ee9fba80"
+  },
+  "limitations": [
+    "Local headless parsing measurements, not browser paint or hosted network latency.",
+    "Three observations per candidate; no claim of an optimal fixed budget.",
+    "Real PTY integration and browser gates remain pending."
+  ]
+}

@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.local-data/
+test-results/
+playwright-report/
+__pycache__/
+*.pyc
+*.log
+credentials*.json
+upstream/codex/.git/
+
+# Local Claude SDK probes
+sdk-inspect/

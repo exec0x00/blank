@@ -1,0 +1,66 @@
+/* The thumb fades; its width, scroll range, and drag target never change. */
+@property --codex-scrollbar-opacity {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+:root[data-scrollbars='activity'][data-scroll-active='true'],
+:root[data-scrollbars='activity'] [data-scroll-active='true'] {
+  --codex-scrollbar-opacity: 1;
+}
+
+:root[data-scrollbars='activity'],
+:root[data-scrollbars='activity'] * {
+  --codex-scrollbar-opacity: 0;
+  scrollbar-color: rgb(133 133 133 / var(--codex-scrollbar-opacity, 0)) transparent !important;
+}
+
+/* Keep the existing per-pane WebKit widths instead of switching to UA geometry. */
+@supports selector(::-webkit-scrollbar) {
+  :root[data-scrollbars='activity'],
+  :root[data-scrollbars='activity'] * {
+    /* A non-auto standard width disables WebKit thumb styling in Chromium. */
+    scrollbar-width: auto !important;
+    scrollbar-color: auto !important;
+  }
+
+  :root[data-scrollbars='activity']::-webkit-scrollbar-track,
+  :root[data-scrollbars='activity'] *::-webkit-scrollbar-track,
+  :root[data-scrollbars='activity']::-webkit-scrollbar-corner,
+  :root[data-scrollbars='activity'] *::-webkit-scrollbar-corner {
+    background: transparent !important;
+  }
+
+  :root[data-scrollbars='activity']::-webkit-scrollbar-thumb,
+  :root[data-scrollbars='activity'] *::-webkit-scrollbar-thumb {
+    --codex-scrollbar-opacity: inherit;
+    background-color: rgb(133 133 133 / var(--codex-scrollbar-opacity, 0)) !important;
+    border-color: transparent !important;
+  }
+
+  :root[data-scrollbars='activity']::-webkit-scrollbar-thumb:active,
+  :root[data-scrollbars='activity'] *::-webkit-scrollbar-thumb:active {
+    background-color: rgb(133 133 133) !important;
+  }
+}
+
+/* Monaco scrolls virtually. Its editor hook observes real position changes, so
+   the built-in hover state does not keep these bars visible while idle. */
+:root[data-scrollbars='activity'] .monaco-scrollable-element > .scrollbar {
+  opacity: 0 !important;
+  transition: opacity 180ms ease-out !important;
+}
+
+:root[data-scrollbars='activity'] .monaco-editor[data-scroll-active='true'] > .overflow-guard > .editor-scrollable > .scrollbar,
+:root[data-scrollbars='activity'] .monaco-scrollable-element[data-scroll-active='true'] > .scrollbar,
+:root[data-scrollbars='activity'] .monaco-scrollable-element > .scrollbar:has(> .slider.active) {
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-scrollbars='activity'] .monaco-scrollable-element > .scrollbar {
+    transition: none !important;
+  }
+}

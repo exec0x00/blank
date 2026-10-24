@@ -1,0 +1,17 @@
+.github-import-recovery { margin-bottom: 20px; padding: 12px 15px; border: 1px solid var(--border); border-radius: 12px; background: var(--panel); }
+.github-import-recovery-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.github-import-recovery-heading h3 { margin: 0; font-size: 13px; font-weight: 550; color: var(--text); }
+.github-import-recovery-heading .button { min-height: 36px; padding: 6px 9px; font-size: 13px; }
+.github-import-recovery-check, .github-import-recovery-error { margin: 4px 0 0; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.github-import-recovery-error { color: var(--red); }
+.github-import-recovery-list { display: flex; flex-direction: column; gap: 10px; max-height: 220px; overflow-y: auto; margin: 7px 0 0; padding: 0; list-style: none; }
+.github-import-recovery-list li { min-width: 0; overflow-wrap: anywhere; }
+.github-import-recovery-list strong { display: block; font-size: 13px; font-weight: 550; color: var(--text); }
+.github-import-recovery-list p { margin: 3px 0 0; font-size: 13px; line-height: 1.6; color: var(--muted); }
+@container github (max-width: 539px) {
+  .github-import-recovery { padding: 10px 12px; }
+  .github-import-recovery-heading .button { min-width: 44px; min-height: 44px; }
+}
+@media (pointer: coarse) {
+  .github-import-recovery-heading .button { min-width: 44px; min-height: 44px; }
+}

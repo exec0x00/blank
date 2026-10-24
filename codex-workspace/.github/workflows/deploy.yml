@@ -1,0 +1,38 @@
+name: Deploy Hugging Face Space
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hugging-face-production
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    uses: ./.github/workflows/verify.yml
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'huggingface_hub==1.16.1'
+      - uses: actions/download-artifact@v4
+        with:
+          name: arc-workspace-portable-build
+          path: release
+      - name: Publish the verified source and portable application build
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          WORKSPACE_PASSWORD: ${{ secrets.WORKSPACE_PASSWORD }}
+          HF_SPACE_ID: ${{ vars.HF_SPACE_ID || 'alvin3y12/codex-workspace' }}
+          HF_BUCKET: ${{ vars.HF_BUCKET || 'alvin3y12/data' }}
+        run: python scripts/deploy.py --source-only --skip-verify

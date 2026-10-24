@@ -1,0 +1,37 @@
+/* The editor uses 80 ms caret travel and a 500 ms alternating smooth fade.
+   Only the decorative caret moves: text insertion and layout remain native. */
+input[data-input-motion-active="true"],
+textarea[data-input-motion-active="true"] { caret-color: transparent !important; }
+
+.cw-input-motion-layer {
+  position: fixed;
+  inset: auto;
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text, #ededed);
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2147483646;
+  contain: strict;
+}
+.cw-input-motion-layer[hidden] { display: none; }
+.cw-input-motion-layer::backdrop { background: transparent; pointer-events: none; }
+.cw-input-motion-caret { position: absolute; inset: 0 auto auto 0; width: 1px; pointer-events: none; transition: transform 80ms ease; }
+.cw-input-motion-bar { display: block; width: 100%; height: 100%; background: currentColor; opacity: 1; }
+.cw-input-motion-layer[data-snap="true"] .cw-input-motion-caret { transition: none; }
+.cw-input-motion-layer[data-reduced-motion="true"] .cw-input-motion-caret { transition: none !important; }
+.cw-input-motion-layer[data-reduced-motion="true"] .cw-input-motion-bar { animation: none !important; opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cw-input-motion-caret { transition: none !important; }
+  .cw-input-motion-bar { animation: none !important; opacity: 1; }
+}
+@media (forced-colors: active) {
+  .cw-input-motion-layer { forced-color-adjust: none; color: CanvasText !important; }
+}

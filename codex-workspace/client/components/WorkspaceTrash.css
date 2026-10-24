@@ -1,0 +1,76 @@
+.workspace-trash { min-width: 0; }
+.workspace-trash-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.workspace-trash-toolbar .button { min-height: 36px; font-size: 13px; }
+.workspace-trash-toolbar .icon-button { width: 36px; height: 36px; }
+.workspace-trash-intro { margin: 0 0 18px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.workspace-trash-list { display: grid; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.workspace-operational-scroll { display: flex; flex-direction: column; gap: 0; min-height: 0; max-height: min(430px, 52dvh); overflow: auto; overscroll-behavior: contain; }
+.workspace-operational-scroll > .workspace-operational-row { flex-shrink: 0; margin: 0 0 10px; }
+.workspace-operational-search { display: flex; align-items: center; gap: 8px; min-height: 38px; margin-bottom: 12px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); }
+.workspace-operational-search:focus-within { border-color: var(--border-strong); }
+.workspace-operational-search input { min-width: 0; width: 100%; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 13px; outline: none; }
+.workspace-operational-search svg { flex-shrink: 0; }
+.workspace-operational-loading { display: flex; align-items: center; gap: 7px; padding: 0 0 10px; color: var(--muted); font-size: 13px; }
+.workspace-trash-item, .workspace-permanent-deletion-item { min-width: 0; padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--panel); }
+.workspace-trash-item-heading { display: flex; align-items: flex-start; gap: 10px; }
+.workspace-trash-folder { flex-shrink: 0; display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); }
+.workspace-trash-item-heading > div { display: grid; min-width: 0; gap: 4px; }
+.workspace-trash-item-heading strong { font-size: 13px; font-weight: 500; overflow-wrap: anywhere; }
+.workspace-trash-item-heading > div > span { color: var(--muted); font-size: 13px; line-height: 1.5; }
+.workspace-trash-item-detail { display: grid; gap: 8px; margin: 11px 0 13px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.workspace-trash-item-detail p { margin: 0; overflow-wrap: anywhere; }
+.workspace-trash-item-detail time { color: var(--faint); font-size: 12px; }
+.workspace-trash-item-detail .workspace-trash-expiry { color: var(--muted); }
+.workspace-trash-issue { display: flex; align-items: flex-start; gap: 6px; }
+.workspace-trash-issue svg { flex-shrink: 0; margin-top: 2px; }
+.workspace-trash-item-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 7px; }
+.workspace-trash-item-actions .button { min-height: 34px; font-size: 13px; }
+.workspace-trash-empty { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 30px 14px; text-align: center; color: var(--muted); font-size: 13px; }
+.workspace-trash-empty strong { color: var(--text); font-weight: 500; }
+.workspace-trash-empty p { margin: 0; line-height: 1.6; }
+.workspace-trash-feedback { display: flex; align-items: center; gap: 9px; padding: 12px; margin-bottom: 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--muted); }
+.workspace-trash-feedback > svg { flex-shrink: 0; }
+.workspace-trash-feedback p { flex: 1; margin: 0; line-height: 1.6; overflow-wrap: anywhere; }
+.workspace-trash-feedback .button { flex-shrink: 0; }
+.workspace-trash-notice { padding: 10px 12px; margin: 0 0 12px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 13px; line-height: 1.6; }
+.workspace-permanent-deletions { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); }
+.workspace-permanent-deletions h3 { margin: 0; color: var(--text); font-size: 13px; line-height: 1.6; font-weight: 500; }
+.workspace-permanent-deletions > p { margin: 7px 0 14px; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.workspace-permanent-deletions > .workspace-permanent-deletions-empty { margin-bottom: 0; color: var(--faint); }
+.workspace-permanent-deletions .form-error { margin-bottom: 12px; }
+.workspace-trash-delete-dialog { max-width: 460px; }
+.workspace-trash-delete-body { padding: 0 20px 20px; }
+.workspace-trash-delete-body > p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; overflow-wrap: anywhere; }
+.workspace-trash-delete-body .form-error { margin-top: 12px; }
+.workspace-trash-delete-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 22px; }
+.workspace-trash-delete-actions .button { min-height: 36px; }
+.workspace-trash-entry { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 46px; padding: 12px; margin-top: 10px; border: 1px solid var(--border); border-radius: 8px; text-align: left; color: var(--muted); font-size: 13px; }
+.workspace-trash-entry:hover { background: var(--panel-2); color: var(--text); }
+.workspace-trash-entry > span { flex: 1; }
+.workspace-trash-confirm { width: 100%; padding: 12px; border-top: 1px solid var(--border); border-radius: 0 0 8px 8px; background: var(--bg); }
+.workspace-trash-confirm p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
+.workspace-trash-confirm strong { color: var(--text); font-weight: 500; }
+.workspace-trash-confirm > div { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+.workspace-list-refresh { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; color: var(--muted); font-size: 13px; }
+.workspace-list-refresh .icon-button { margin-left: auto; width: 32px; height: 32px; }
+.workspace-dialog .workspace-row-actions .icon-button { width: 36px; height: 36px; }
+.workspace-recovery-banner { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 10px 14px; padding: 12px 18px; border-bottom: 1px solid var(--border-strong); background: var(--panel); color: var(--text); }
+.workspace-recovery-banner > svg { flex-shrink: 0; margin-top: 3px; color: var(--muted); }
+.workspace-recovery-copy { flex: 1; min-width: min(250px, 100%); }
+.workspace-recovery-copy strong { display: block; font-weight: 500; font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+.workspace-recovery-copy p { margin: 3px 0 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+.workspace-recovery-actions { display: flex; flex-wrap: wrap; gap: 7px; }
+.workspace-recovery-actions .button { min-height: 34px; font-size: 13px; }
+@media (pointer: coarse), (max-width: 679px) {
+  .workspace-operational-search { min-height: 44px; }
+  .workspace-operational-search input { font-size: 16px; }
+  .workspace-trash-item, .workspace-permanent-deletion-item { padding: 12px; }
+  .workspace-trash-toolbar .button, .workspace-trash-toolbar .icon-button, .workspace-trash-item-actions .button, .workspace-trash-delete-actions .button, .workspace-trash-confirm .button, .workspace-recovery-actions .button, .workspace-trash .page-navigation .button { min-height: 44px; }
+  .workspace-trash-toolbar .icon-button, .workspace-list-refresh .icon-button, .workspace-dialog .workspace-row-actions .icon-button { min-width: 44px; min-height: 44px; }
+  .workspace-trash-delete-actions { flex-wrap: wrap; }
+  .workspace-trash-delete-actions .button { flex: 1; }
+  .workspace-recovery-banner { padding: 10px 14px; gap: 8px; }
+  .workspace-recovery-copy { min-width: 0; flex-basis: calc(100% - 30px); }
+  .workspace-recovery-actions { width: 100%; }
+  .workspace-recovery-actions .button { flex: 1; }
+}

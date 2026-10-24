@@ -1,0 +1,35 @@
+.native-skills { min-width: 0; color: var(--text); }
+.native-skills-heading { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+.native-skills-heading > svg { color: var(--muted); margin-top: 2px; }
+.native-skills-heading > div { min-width: 0; flex: 1; }
+.native-skills-heading h3 { margin: 0; font-size: 20px; font-weight: 550; letter-spacing: -.4px; }
+.native-skills-heading p { margin: 5px 0 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.native-skills-toolbar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.native-skills-search { display: flex; align-items: center; gap: 8px; min-width: 160px; flex: 1; padding: 0 12px; border: 1px solid var(--border-strong); border-radius: var(--radius-control); background: var(--surface-input); color: var(--muted); }
+.native-skills-search:focus-within { border-color: var(--focus); }
+.native-skills-search input { width: 100%; min-width: 0; min-height: 38px; border: 0; background: transparent; color: var(--text); font-size: 13px; outline: none; }
+.native-skills-toolbar > .cw-select { min-width: 130px; }
+.native-skills-list { list-style: none; margin: 0; padding: 0; }
+.native-skills-list > li { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.native-skills-list > li:first-child { border-top: 1px solid var(--border); }
+.native-skills-list > li > div { flex: 1; min-width: 0; }
+.native-skill-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
+.native-skill-name strong { font-size: 13px; font-weight: 550; overflow-wrap: anywhere; }
+.native-skill-name > span { color: var(--faint); font-size: 12px; }
+.native-skills-list p, .native-skills-issues p { margin: 6px 0; color: var(--muted); font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+.native-skills-list code, .native-skills-issues code { display: block; color: var(--faint); font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; white-space: normal; }
+.native-skill-switch { flex-shrink: 0; margin-top: 2px; }
+.native-skills-error { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px; border: 1px solid var(--border-strong); border-radius: 8px; background: var(--panel-2); font-size: 13px; margin-bottom: 12px; }
+.native-skills-error > span { flex: 1; min-width: 180px; overflow-wrap: anywhere; }
+.native-skills-empty { display: flex; align-items: center; justify-content: center; gap: 9px; color: var(--muted); font-size: 13px; text-align: center; padding: 28px 12px; }
+.native-skills-notice { font-size: 13px; color: var(--muted); margin: 0 0 10px; }
+.native-skills-issues { margin-top: 16px; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.native-skills-issues summary { cursor: pointer; color: var(--muted); font-size: 13px; padding-block: 4px; }
+.native-skills-issues ul { list-style: none; padding: 0; }
+.native-skills-issues li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+@media (max-width: 679px), (pointer: coarse) {
+  .native-skills-search input { min-height: 44px; font-size: 16px; }
+  .native-skills-heading > .icon-button { width: 44px; height: 44px; }
+  .native-skill-switch { min-width: 44px; min-height: 44px; }
+  .native-skills-issues summary { min-height: 44px; display: flex; align-items: center; }
+}

@@ -1,0 +1,26 @@
+.native-plan { min-width: 0; margin-top: 8px; border: 1px solid var(--border, #2b2b2b); border-radius: 12px; background: var(--panel, #111); }
+.native-plan-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 14px; border-bottom: 1px solid var(--border, #2b2b2b); }
+.native-plan-heading > span { display: flex; align-items: center; gap: 8px; color: var(--text, #ededed); font-size: 14px; font-weight: 500; }
+.native-plan-heading > button { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 8px; border-radius: 8px; color: var(--muted, #a1a1a1); font-size: 14px; }
+.native-plan-heading > button:hover:not(:disabled) { color: var(--text, #ededed); background: var(--panel-2, #191919); }
+.native-plan-heading > button:focus-visible { outline: 2px solid var(--text, #ededed); outline-offset: 2px; }
+.native-plan-progress { display: flex; flex-direction: column; gap: 10px; padding: 14px; color: var(--muted, #a1a1a1); font-size: 14px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.native-plan-progress progress { display: block; width: 100%; height: 3px; overflow: hidden; border: 0; border-radius: 2px; appearance: none; background: var(--border, #2b2b2b); }
+.native-plan-progress progress::-webkit-progress-bar { background: var(--border, #2b2b2b); }
+.native-plan-progress progress::-webkit-progress-value { background: var(--text, #ededed); }
+.native-plan-progress progress::-moz-progress-bar { background: var(--text, #ededed); }
+.native-plan-steps { display: flex; flex-direction: column; gap: 0; max-height: 400px; margin: 0; padding: 0 14px 10px; overflow: auto; list-style: none; }
+.native-plan-steps > li { display: flex; align-items: flex-start; gap: 12px; min-height: 48px; padding: 10px 0; }
+.native-plan-steps > li + li { border-top: 1px solid var(--border, #2b2b2b); }
+.native-plan-step-icon { flex: 0 0 18px; display: flex; align-items: center; justify-content: center; width: 18px; height: 22px; color: var(--muted, #a1a1a1); }
+.native-plan-steps .is-in_progress .native-plan-step-icon, .native-plan-steps .is-completed .native-plan-step-icon { color: var(--text, #ededed); }
+.native-plan-steps > li > div { display: flex; flex: 1; flex-direction: column; gap: 4px; min-width: 0; }
+.native-plan-step-title { color: var(--text, #ededed); font-size: 15px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; }
+.native-plan-steps small { color: var(--muted, #a1a1a1); font-size: 13px; line-height: 1.5; }
+.native-plan-omitted { margin: 0; padding: 0 14px 14px; color: var(--muted, #a1a1a1); font-size: 14px; line-height: 1.6; }
+.native-plan-dialog .native-plan-progress { padding: 0; }
+.native-plan-dialog .native-plan-steps { max-height: none; overflow: visible; padding: 0; }
+.native-plan-dialog .native-plan-explanation { white-space: pre-wrap; }
+.native-plan-dialog .native-plan-omitted { padding: 0; }
+@media (max-width: 560px) { .native-plan-heading, .native-plan-progress { padding-inline: 12px; }.native-plan-steps { padding-inline: 12px; }.native-plan-step-title { font-size: 15px; } }
+@media (prefers-reduced-motion: reduce) { .native-plan *, .native-plan-dialog * { animation: none !important; transition: none !important; } }

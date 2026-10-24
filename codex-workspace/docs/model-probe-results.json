@@ -1,0 +1,900 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-09-19T10:32:37.511Z",
+  "endpoint": "https://alvin3y10-api.hf.space/api",
+  "method": "POST",
+  "discovery": "Exact model IDs from existing Codex model catalog; no /models request and no model-name guessing.",
+  "scope": "Benign Responses streaming text smoke tests. These tests do not verify tool calling, model quality, pricing, or long-context behavior.",
+  "request": {
+    "input": "Reply only READY.",
+    "stream": true,
+    "store": false,
+    "max_output_tokens": 256,
+    "reasoning_effort": "medium except older/non-reasoning chat models",
+    "timeout_ms": 90000,
+    "maximum_concurrency": 3
+  },
+  "source_references": [
+    {
+      "kind": "local_model_metadata",
+      "description": "Existing 21-entry Codex model catalog. Only model identifiers, labels, visibility and reasoning metadata read; no model instructions copied."
+    },
+    {
+      "kind": "official_model_documentation",
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.6-cyber",
+      "fetched_at": "2026-09-19T10:32:37.511Z",
+      "http_status": 200,
+      "observation": "Names GPT-5.6 Cyber and documents separate Daybreak approval and provisioning for direct OpenAI access. Access to the user-selected endpoint is tested independently below."
+    }
+  ],
+  "results": [
+    {
+      "id": "gpt-daybreak-red-latest",
+      "catalog_display_name": "Daybreak Red",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:37.514Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-5.6-cyber"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.output_item.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 5,
+        "total_tokens": 15
+      },
+      "duration_ms": 1990,
+      "response_bytes": 5308
+    },
+    {
+      "id": "gpt-5.6-cyber",
+      "catalog_display_name": "gpt-5.6-cyber",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:37.536Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-5.6-cyber"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.output_item.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 5,
+        "total_tokens": 15
+      },
+      "duration_ms": 1323,
+      "response_bytes": 5308
+    },
+    {
+      "id": "gpt-daybreak-blue-latest",
+      "catalog_display_name": "Daybreak Blue",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max",
+        "ultra"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:37.537Z",
+      "http_status": 403,
+      "accepted": false,
+      "outcome": "http_error",
+      "completed": false,
+      "exact_ready_reply": false,
+      "reply": "",
+      "reported_models": [],
+      "event_types": [],
+      "content_type": "application/json",
+      "error": {
+        "code": "access_program_not_enabled",
+        "message": "The requested Daybreak tier is not enabled for this organization or project."
+      },
+      "duration_ms": 958,
+      "response_bytes": 215
+    },
+    {
+      "id": "gpt-6-astra",
+      "catalog_display_name": "gpt-6-astra",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:38.496Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-6-astra"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.output_item.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 5,
+        "total_tokens": 15
+      },
+      "duration_ms": 6437,
+      "response_bytes": 5302
+    },
+    {
+      "id": "gpt-5.6-sol",
+      "catalog_display_name": "gpt-5.6-sol",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:38.859Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-5.6-sol"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.output_item.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 5,
+        "total_tokens": 15
+      },
+      "duration_ms": 1586,
+      "response_bytes": 5302
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "catalog_display_name": "gpt-5.6-terra",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:39.505Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-5.6-terra"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.output_item.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 5,
+        "total_tokens": 15
+      },
+      "duration_ms": 1211,
+      "response_bytes": 5308
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "catalog_display_name": "gpt-5.6-luna",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:40.446Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-5.6-luna"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.output_item.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 5,
+        "total_tokens": 15
+      },
+      "duration_ms": 1311,
+      "response_bytes": 5305
+    },
+    {
+      "id": "gpt-5.5",
+      "catalog_display_name": "gpt-5.5",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:40.716Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-5.5-2026-04-23"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.output_item.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 5,
+        "total_tokens": 15
+      },
+      "duration_ms": 1202,
+      "response_bytes": 5332
+    },
+    {
+      "id": "gpt-5.4",
+      "catalog_display_name": "gpt-5.4",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:41.758Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-5.4-2026-03-05"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.output_item.done",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 16,
+        "total_tokens": 26
+      },
+      "duration_ms": 1252,
+      "response_bytes": 8256
+    },
+    {
+      "id": "codex-auto-review",
+      "catalog_display_name": "Codex Auto Review",
+      "purpose": "dedicated_approval_review",
+      "catalog_reasoning_levels": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:41.919Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-5.6-luna"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.output_item.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 5,
+        "total_tokens": 15
+      },
+      "duration_ms": 1259,
+      "response_bytes": 5323
+    },
+    {
+      "id": "gpt-5.5-pro",
+      "catalog_display_name": "gpt-5.5-pro",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:43.011Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-5.5-pro-2026-04-23"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.output_item.done",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 17,
+        "total_tokens": 27
+      },
+      "duration_ms": 2769,
+      "response_bytes": 8340
+    },
+    {
+      "id": "gpt-5.4-pro",
+      "catalog_display_name": "gpt-5.4-pro",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:43.178Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-5.4-pro-2026-03-05"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.output_item.done",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 20,
+        "total_tokens": 30
+      },
+      "duration_ms": 7384,
+      "response_bytes": 8340
+    },
+    {
+      "id": "gpt-5.4-mini",
+      "catalog_display_name": "gpt-5.4-mini",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:44.934Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-5.4-mini-2026-03-17"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.output_item.done",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 17,
+        "total_tokens": 27
+      },
+      "duration_ms": 1760,
+      "response_bytes": 8316
+    },
+    {
+      "id": "gpt-5.4-nano",
+      "catalog_display_name": "gpt-5.4-nano",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:45.787Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-5.4-nano-2026-03-17"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.output_item.done",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 20,
+        "total_tokens": 30
+      },
+      "duration_ms": 1252,
+      "response_bytes": 8336
+    },
+    {
+      "id": "gpt-5.3-codex",
+      "catalog_display_name": "gpt-5.3-codex",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:33:23.521Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-5.3-codex"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.output_item.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "duration_ms": 1192,
+      "response_bytes": 5317,
+      "retry_note": "One retry after transient server_error, using the same benign input and token bound.",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 5,
+        "total_tokens": 15
+      },
+      "attempts": [
+        {
+          "id": "gpt-5.3-codex",
+          "catalog_display_name": "gpt-5.3-codex",
+          "purpose": "general_text_or_coding",
+          "catalog_reasoning_levels": [
+            "max",
+            "xhigh",
+            "medium"
+          ],
+          "tested_reasoning_effort": "medium",
+          "started_at": "2026-09-19T10:32:46.695Z",
+          "http_status": 200,
+          "accepted": true,
+          "outcome": "failed",
+          "completed": false,
+          "exact_ready_reply": false,
+          "reply": "",
+          "reported_models": [
+            "gpt-5.3-codex"
+          ],
+          "event_types": [
+            "response.created",
+            "response.in_progress",
+            "error",
+            "response.failed"
+          ],
+          "content_type": "text/event-stream; charset=utf-8",
+          "error": {
+            "code": "server_error",
+            "message": "An error occurred while processing your request. You can retry your request, or contact us through our help center at help.openai.com if the error persists. Please include the request ID [request ID omitted] in your message."
+          },
+          "duration_ms": 1059,
+          "response_bytes": 4121
+        },
+        {
+          "id": "gpt-5.3-codex",
+          "catalog_display_name": "gpt-5.3-codex",
+          "purpose": "general_text_or_coding",
+          "catalog_reasoning_levels": [
+            "max",
+            "xhigh",
+            "medium"
+          ],
+          "tested_reasoning_effort": "medium",
+          "started_at": "2026-09-19T10:33:23.521Z",
+          "http_status": 200,
+          "accepted": true,
+          "outcome": "completed",
+          "completed": true,
+          "exact_ready_reply": true,
+          "reply": "READY",
+          "reported_models": [
+            "gpt-5.3-codex"
+          ],
+          "event_types": [
+            "response.created",
+            "response.in_progress",
+            "response.output_item.added",
+            "response.content_part.added",
+            "response.output_text.delta",
+            "response.output_text.done",
+            "response.content_part.done",
+            "response.output_item.done",
+            "response.completed"
+          ],
+          "content_type": "text/event-stream; charset=utf-8",
+          "duration_ms": 1192,
+          "response_bytes": 5317,
+          "retry_note": "One retry after transient server_error, using the same benign input and token bound.",
+          "usage": {
+            "input_tokens": 10,
+            "output_tokens": 5,
+            "total_tokens": 15
+          }
+        }
+      ]
+    },
+    {
+      "id": "gpt-5.3-chat-latest",
+      "catalog_display_name": "gpt-5.3-chat-latest",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": null,
+      "started_at": "2026-09-19T10:32:47.039Z",
+      "http_status": 404,
+      "accepted": false,
+      "outcome": "http_error",
+      "completed": false,
+      "exact_ready_reply": false,
+      "reply": "",
+      "reported_models": [],
+      "event_types": [],
+      "content_type": "application/json",
+      "error": {
+        "code": "model_not_found",
+        "message": "The model `gpt-5.3-chat-latest` does not exist or you do not have access to it."
+      },
+      "duration_ms": 780,
+      "response_bytes": 204
+    },
+    {
+      "id": "gpt-5.2-chat-latest",
+      "catalog_display_name": "gpt-5.2-chat-latest",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": null,
+      "started_at": "2026-09-19T10:32:47.755Z",
+      "http_status": 404,
+      "accepted": false,
+      "outcome": "http_error",
+      "completed": false,
+      "exact_ready_reply": false,
+      "reply": "",
+      "reported_models": [],
+      "event_types": [],
+      "content_type": "application/json",
+      "error": {
+        "code": "model_not_found",
+        "message": "The model `gpt-5.2-chat-latest` does not exist or you do not have access to it."
+      },
+      "duration_ms": 708,
+      "response_bytes": 204
+    },
+    {
+      "id": "gpt-4.1-mini",
+      "catalog_display_name": "gpt-4.1-mini",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": null,
+      "started_at": "2026-09-19T10:32:47.820Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "gpt-4.1-mini-2025-04-14"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.output_item.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 11,
+        "output_tokens": 2,
+        "total_tokens": 13
+      },
+      "duration_ms": 1519,
+      "response_bytes": 5220
+    },
+    {
+      "id": "kindle-alpha",
+      "catalog_display_name": "kindle-alpha",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:48.463Z",
+      "http_status": 200,
+      "accepted": true,
+      "outcome": "completed",
+      "completed": true,
+      "exact_ready_reply": true,
+      "reply": "READY",
+      "reported_models": [
+        "kindle-alpha"
+      ],
+      "event_types": [
+        "response.created",
+        "response.in_progress",
+        "response.output_item.added",
+        "response.content_part.added",
+        "response.output_text.delta",
+        "response.output_text.done",
+        "response.content_part.done",
+        "response.output_item.done",
+        "response.completed"
+      ],
+      "content_type": "text/event-stream; charset=utf-8",
+      "usage": {
+        "input_tokens": 10,
+        "output_tokens": 5,
+        "total_tokens": 15
+      },
+      "duration_ms": 8876,
+      "response_bytes": 5323
+    },
+    {
+      "id": "kepler-alpha",
+      "catalog_display_name": "kepler-alpha",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:49.340Z",
+      "http_status": 404,
+      "accepted": false,
+      "outcome": "http_error",
+      "completed": false,
+      "exact_ready_reply": false,
+      "reply": "",
+      "reported_models": [],
+      "event_types": [],
+      "content_type": "application/json",
+      "error": {
+        "code": "model_not_found",
+        "message": "The model `kepler-alpha` does not exist or you do not have access to it."
+      },
+      "duration_ms": 742,
+      "response_bytes": 197
+    },
+    {
+      "id": "mercury-alpha",
+      "catalog_display_name": "mercury-alpha",
+      "purpose": "general_text_or_coding",
+      "catalog_reasoning_levels": [
+        "max",
+        "xhigh",
+        "medium"
+      ],
+      "tested_reasoning_effort": "medium",
+      "started_at": "2026-09-19T10:32:50.083Z",
+      "http_status": 404,
+      "accepted": false,
+      "outcome": "http_error",
+      "completed": false,
+      "exact_ready_reply": false,
+      "reply": "",
+      "reported_models": [],
+      "event_types": [],
+      "content_type": "application/json",
+      "error": {
+        "code": "model_not_found",
+        "message": "The model `mercury-alpha` does not exist or you do not have access to it."
+      },
+      "duration_ms": 717,
+      "response_bytes": 198
+    }
+  ],
+  "finished_at": "2026-09-19T10:33:24.713Z",
+  "summary": {
+    "model_count": 21,
+    "accepted_count": 16,
+    "completed_count": 16,
+    "exact_ready_reply_count": 16
+  }
+}

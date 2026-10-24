@@ -1,0 +1,237 @@
+{
+  "kind": "codex-fixed-service-image-capability-v2",
+  "evidenceDate": "2026-09-20",
+  "endpoint": "https://alvin3y10-api.hf.space/api",
+  "currentNativeRuntimeProof": {
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "low",
+    "reasoningSummary": null,
+    "verbosity": "low",
+    "maxOutputTokens": 4096,
+    "nativeFunction": "generate_image",
+    "hostedTool": {
+      "type": "image_generation",
+      "model": "gpt-image-2",
+      "size": "auto",
+      "quality": "auto",
+      "output_format": "png",
+      "partial_images": 0
+    },
+    "startedAt": "2026-09-20T18:31:07.284Z",
+    "generationAndReplayCompletedAt": "2026-09-20T18:31:29.155Z",
+    "localDeliveryCompletedAt": "2026-09-20T18:32:56.936Z",
+    "requests": [
+      {
+        "purpose": "ordinary_agent_turn",
+        "model": "gpt-5.6-luna",
+        "reasoningEffort": "low",
+        "httpStatus": 200,
+        "usage": {
+          "input_tokens": 11567,
+          "input_tokens_details": {
+            "cache_write_tokens": 11564,
+            "cached_tokens": 0
+          },
+          "output_tokens": 127,
+          "output_tokens_details": {
+            "reasoning_tokens": 52
+          },
+          "total_tokens": 11694
+        },
+        "timestampedResourcesPresent": true,
+        "hostRulesPresent": true,
+        "inputImageCount": 0
+      },
+      {
+        "purpose": "native_generate_image_helper",
+        "model": "gpt-5.6-luna",
+        "reasoningEffort": "low",
+        "httpStatus": 200,
+        "usage": {
+          "input_tokens": 4197,
+          "input_tokens_details": {
+            "cache_write_tokens": 2056,
+            "cached_tokens": 0
+          },
+          "output_tokens": 77,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 4274
+        },
+        "timestampedResourcesPresent": true,
+        "hostRulesPresent": true,
+        "inputImageCount": 0
+      },
+      {
+        "purpose": "ordinary_agent_turn",
+        "model": "gpt-5.6-luna",
+        "reasoningEffort": "low",
+        "httpStatus": 200,
+        "usage": {
+          "input_tokens": 13767,
+          "input_tokens_details": {
+            "cache_write_tokens": 2200,
+            "cached_tokens": 11564
+          },
+          "output_tokens": 29,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 13796
+        },
+        "timestampedResourcesPresent": true,
+        "hostRulesPresent": true,
+        "inputImageCount": 1
+      }
+    ],
+    "image": {
+      "mimeType": "image/png",
+      "bytes": 786935,
+      "width": 1254,
+      "height": 1254,
+      "sha256": "c0ea8d98c0ae29279ded94372a4550e0b9fbff765322965fb0034b0085396d3d"
+    },
+    "reportedUsage": {
+      "requests": 3,
+      "inputTokens": 29531,
+      "outputTokens": 233,
+      "totalTokens": 29764,
+      "cachedInputTokens": 11564,
+      "cacheWriteInputTokens": 15820,
+      "reasoningOutputTokens": 52
+    },
+    "limits": {
+      "httpAttempts": 3,
+      "outputTokensPerRequest": 4096,
+      "imageBytes": 8388608,
+      "ordinaryTimeoutMs": 45000,
+      "imageTimeoutMs": 120000,
+      "totalTimeoutMs": 240000
+    },
+    "verification": {
+      "actualAgentEngineFunctionHelper": true,
+      "validatedRasterHeaderAndCrc": true,
+      "exactPixelsReplayedToFollowingModelRequest": true,
+      "privateImageBytesAbsentFromSavedHistoryJournalsAndEvents": true,
+      "separateNodeProcessLocalReplay": true,
+      "actualImageCardAndAuthenticatedLocalRoutes": true,
+      "browserDecodedWidth": 1254,
+      "browserDecodedHeight": 1254,
+      "visualContentInspected": true,
+      "unauthenticatedPreviewStatus": 401,
+      "changedHashStatus": 409,
+      "createOnlySaveHashVerified": true,
+      "existingDestinationPreservedStatus": 409,
+      "crossOriginMutationRejectedStatus": 403,
+      "publicHuggingFaceDownloadVerified": false,
+      "hostedDeployedSiteVerified": false,
+      "editingVerified": false,
+      "partialPreviewsVerified": false
+    },
+    "harnessCorrection": {
+      "outcome": "inconclusive",
+      "failure": {
+        "message": "Expected values to be strictly equal:\n\n403 !== 200\n"
+      },
+      "reason": "The appended local login request omitted X-Codex-Workspace and was correctly rejected with 403. The standalone local continuation corrected the harness and used the same retained live-generated pixels with zero new model requests."
+    },
+    "artifactDirectory": "/tmp/codex-image-live-artifacts-rRSAOC",
+    "evidenceFiles": [
+      "report.json",
+      "delivery-report.json",
+      "visual-inspection.json",
+      "verification-summary.json",
+      "original.png",
+      "card-desktop.png",
+      "card-phone.png"
+    ],
+    "sourceFiles": [
+      ".release-verification/image-real-proof-20260920.ts",
+      ".release-verification/image-replay-child-20260920.ts",
+      ".release-verification/image-delivery-proof-20260920.ts"
+    ],
+    "credentialsPersisted": false,
+    "privateReasoningPersisted": false,
+    "providerModelDiscoveryPerformed": false,
+    "otherModelRoutesProbed": false,
+    "productionEffortChanged": false
+  },
+  "historicalCapabilityHarness": {
+    "kind": "codex-fixed-service-image-capability-v1",
+    "evidenceDate": "2026-09-20",
+    "endpoint": "https://alvin3y10-api.hf.space/api",
+    "publicProviderSourceRevisionRead": "7ea650d02b0acb8dad8755b69e030a481b812be6",
+    "requests": [
+      {
+        "model": "gpt-5.5",
+        "reasoningEffort": "max",
+        "httpStatus": 400,
+        "error": {
+          "type": "invalid_request_error",
+          "param": "reasoning.effort",
+          "code": "unsupported_value",
+          "messageSha256": "106c87f39ea31ea15294b4a4f835c98470917eca736b36f2cb3ac5ac2ca49812"
+        },
+        "imageCapabilityEstablished": false,
+        "supportedEffortsListRetained": false
+      },
+      {
+        "startedAt": "2026-09-20T07:59:20.243764Z",
+        "model": "gpt-5.5",
+        "reasoningEffort": "medium",
+        "tool": {
+          "type": "image_generation",
+          "model": "gpt-image-2",
+          "quality": "low",
+          "size": "1024x1024",
+          "output_format": "png",
+          "partial_images": 0
+        },
+        "requestBodySha256": "e354e76c63363ae6f3c27e23378665c65bf36dc939d35c6f810cccae4f0a68f1",
+        "httpStatus": 200,
+        "contentType": "text/event-stream",
+        "terminalEvent": "response.completed",
+        "elapsedSeconds": 10.27,
+        "streamBytes": 974079,
+        "image": {
+          "status": "completed",
+          "bytes": 723857,
+          "mimeType": "image/png",
+          "width": 1024,
+          "height": 1024,
+          "bitDepth": 8,
+          "colorType": 2,
+          "interlaced": false,
+          "sha256": "a5ae85094f8fd80ab22908327ec2d77ec16bdaa73cb3f817bc57c9b8d7902b00",
+          "canonicalBase64": true,
+          "validChunkCrc": true,
+          "chunkCount": 4,
+          "validPixelStream": true,
+          "decompressedBytes": 3146752
+        },
+        "imageCapabilityEstablished": true,
+        "visualContentInspected": false
+      }
+    ],
+    "limits": {
+      "deadlineSeconds": 120,
+      "streamBytes": 33554432,
+      "eventLineBytes": 12582912,
+      "decodedImageBytes": 8388608,
+      "redirects": false,
+      "automaticRetries": 0
+    },
+    "scope": {
+      "rawImagePersisted": false,
+      "privateReasoningPersisted": false,
+      "credentialsPersisted": false,
+      "providerModelDiscoveryPerformed": false,
+      "otherRoutesProbed": false,
+      "productionEffortChanged": false,
+      "partialPreviewsVerified": false,
+      "editingVerified": false,
+      "applicationIntegrationVerified": false
+    }
+  }
+}

@@ -1,0 +1,167 @@
+.modal.chat-review-dialog { max-width: 580px; }
+.chat-review-dialog .modal-heading { padding: 22px 24px 19px; }
+.chat-review-dialog .modal-heading > .icon-button { width: 44px; height: 44px; margin: -8px -10px -8px 0; }
+.chat-review-form { display: flex; flex-direction: column; min-height: 0; }
+.chat-review-form-body { display: flex; flex-direction: column; gap: 21px; padding: 21px 24px 24px; min-width: 0; overflow-y: auto; overscroll-behavior: contain; }
+.chat-review-workspace { display: flex; align-items: center; gap: 11px; min-width: 0; }
+.chat-review-workspace-icon { display: grid; place-items: center; flex-shrink: 0; width: 38px; height: 38px; border: 1px solid var(--border); border-radius: 9px; color: var(--muted); background: var(--panel-2); }
+.chat-review-workspace > div { display: flex; flex: 1; flex-direction: column; min-width: 0; gap: 2px; }
+.chat-review-workspace strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-weight: 500; }
+.chat-review-workspace > div > span { color: var(--faint); font-family: var(--font-mono); font-size: 11px; overflow-wrap: anywhere; }
+.chat-review-workspace > .icon-button { width: 44px; height: 44px; }
+.chat-review-field { display: flex; flex-direction: column; min-width: 0; gap: 8px; }
+.chat-review-field > label { color: var(--text); font-size: 12px; font-weight: 500; }
+.chat-review-select { width: 100%; min-height: 44px; padding: 10px 12px; border-radius: 8px; }
+.chat-review-menu .cw-dropdown-item { min-height: 44px; }
+.chat-review-field > .input { min-height: 44px; line-height: 1.65; border-radius: 8px; }
+.chat-review-ref { font-family: var(--font-mono); }
+.chat-review-instructions { resize: vertical; max-height: 280px; }
+.chat-review-instructions-help { display: flex; gap: 14px; align-items: baseline; justify-content: space-between; }
+.chat-review-instructions-help > span { flex-shrink: 0; color: var(--faint); font-size: 10px; font-variant-numeric: tabular-nums; }
+.chat-review-help { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.7; overflow-wrap: anywhere; }
+.chat-review-scope { display: flex; align-items: flex-start; gap: 11px; padding: 15px; border: 1px solid var(--border); border-radius: 9px; background: var(--panel-2); }
+.chat-review-scope > svg { color: var(--muted); margin-top: 2px; }
+.chat-review-scope > div { min-width: 0; }
+.chat-review-scope strong { display: block; margin-bottom: 4px; font-size: 12px; font-weight: 500; }
+.chat-review-scope p { color: var(--muted); font-size: 11px; line-height: 1.7; }
+.chat-review-notice { display: flex; align-items: flex-start; gap: 9px; min-width: 0; padding: 12px 13px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel-2); color: var(--muted); font-size: 11px; line-height: 1.7; overflow-wrap: anywhere; }
+.chat-review-notice > svg { margin-top: 2px; }
+.chat-review-notice > div { min-width: 0; }
+.chat-review-notice strong { display: block; color: var(--text); font-weight: 500; margin-bottom: 3px; }
+.chat-review-notice p { margin: 0; }
+.chat-review-notice .button { min-height: 44px; margin: 4px 0 -4px -10px; }
+.chat-review-error { display: flex; align-items: flex-start; gap: 9px; color: var(--red); font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
+.chat-review-error > svg { margin-top: 2px; }
+.chat-review-dialog .chat-review-footer { gap: 8px; padding: 15px 24px; }
+.chat-review-footer > .button { min-height: 44px; }
+.chat-review-results { min-width: 0; }
+.chat-review-results-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.chat-review-results-heading > span:first-child { display: flex; align-items: center; gap: 8px; }
+.chat-review-results-heading svg { color: var(--muted); }
+.chat-review-results-heading strong { font-size: 13px; font-weight: 550; }
+.chat-review-count { color: var(--muted); font-size: 11px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.chat-review-verdict { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; color: var(--muted); font-size: 12px; }
+.chat-review-findings { display: flex; flex-direction: column; gap: 10px; }
+.chat-review-finding { min-width: 0; border: 1px solid var(--border); border-radius: 10px; background: var(--panel-2); }
+.chat-review-finding-summary { display: flex; align-items: flex-start; gap: 10px; min-height: 48px; padding: 13px; cursor: pointer; list-style: none; border-radius: 9px; }
+.chat-review-finding-summary::-webkit-details-marker, .chat-review-conclusion > summary::-webkit-details-marker { display: none; }
+.chat-review-finding-summary::marker, .chat-review-conclusion > summary::marker { content: ''; }
+.chat-review-finding-summary:hover { background: var(--panel-3); }
+.chat-review-finding-summary:focus-visible, .chat-review-conclusion > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.chat-review-priority { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; min-width: 28px; min-height: 22px; padding: 1px 5px; border: 1px solid var(--border-strong); border-radius: 5px; background: var(--panel-3); color: var(--text); font-family: var(--font-mono); font-size: 10px; font-weight: 500; line-height: 1.5; }
+.chat-review-finding[data-priority="0"] .chat-review-priority, .chat-review-finding[data-priority="1"] .chat-review-priority { color: var(--primary-ink); border-color: var(--primary); background: var(--primary); }
+.chat-review-priority.is-unspecified, .chat-review-finding[data-priority="3"] .chat-review-priority { color: var(--muted); border-color: var(--border); background: transparent; }
+.chat-review-finding-title { flex: 1; min-width: 0; padding-top: 1px; color: var(--text); font-size: 12px; font-weight: 500; line-height: 1.7; overflow-wrap: anywhere; }
+.chat-review-chevron { flex-shrink: 0; color: var(--faint); transition: transform 120ms ease; }
+.chat-review-finding-summary > .chat-review-chevron { margin-top: 4px; }
+.chat-review-finding details[open] > summary > .chat-review-chevron, .chat-review-conclusion[open] > summary > .chat-review-chevron { transform: rotate(90deg); }
+.chat-review-finding-body { min-width: 0; padding: 0 15px 14px; }
+.chat-review-finding-body .chat-markdown { font-size: 12px; line-height: 1.8; }
+.chat-review-finding-body .chat-markdown > :last-child { margin-bottom: 0; }
+.chat-review-confidence { margin: 0; color: var(--faint); font-size: 10px; font-variant-numeric: tabular-nums; }
+.chat-review-finding-body > .chat-review-confidence { margin-top: 11px; }
+.chat-review-finding-location { min-width: 0; padding: 0 8px 5px; }
+.chat-review-file { display: flex; align-items: center; width: 100%; min-width: 0; min-height: 44px; gap: 7px; padding: 8px; border-radius: 6px; color: var(--muted); text-align: left; font-family: var(--font-mono); font-size: 10px; }
+button.chat-review-file:hover { background: var(--panel-3); color: var(--text); }
+.chat-review-file-path { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chat-review-file-lines { flex-shrink: 0; color: var(--faint); white-space: nowrap; }
+.chat-review-file > svg:last-child { margin-left: auto; }
+.chat-review-before { flex-shrink: 0; padding: 0 4px; color: var(--muted); border: 1px solid var(--border); border-radius: 4px; font-family: inherit; font-size: 9px; }
+.chat-review-source-tag { flex-shrink: 0; padding: 0 4px; color: var(--muted); border: 1px solid var(--border); border-radius: 4px; font-family: inherit; font-size: 9px; }
+.chat-review-empty { margin: 0 0 14px; color: var(--muted); font-size: 12px; }
+.chat-review-conclusion { margin-top: 13px; border-top: 1px solid var(--border); }
+.chat-review-conclusion > summary { display: flex; align-items: center; gap: 7px; min-height: 44px; padding: 10px 2px; border-radius: 5px; color: var(--muted); font-size: 11px; cursor: pointer; list-style: none; }
+.chat-review-conclusion > summary:hover { color: var(--text); }
+.chat-review-conclusion > summary > .chat-review-confidence { margin-left: auto; }
+.chat-review-conclusion > div { padding: 4px 2px 0; }
+.chat-review-conclusion .chat-markdown { font-size: 12px; }
+.chat-review-results.is-invalid > .chat-review-notice { margin-bottom: 14px; }
+.chat-review-results .chat-copy { min-width: 44px; min-height: 44px; }
+.modal.chat-review-source-dialog { max-width: 960px; height: min(760px, calc(100dvh - 48px)); }
+.chat-review-source-dialog .modal-heading { align-items: center; padding: 20px 23px; }
+.chat-review-source-dialog .modal-heading > .icon-button { width: 44px; height: 44px; margin: -7px -9px -7px 0; }
+.chat-review-source-body { display: flex; flex: 1; flex-direction: column; min-height: 0; overflow: hidden; }
+.chat-review-source-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; flex-shrink: 0; padding: 12px 19px; border-bottom: 1px solid var(--border); }
+.chat-review-source-path { display: flex; align-items: center; flex: 1; min-width: 0; gap: 8px; color: var(--text); font-family: var(--font-mono); font-size: 11px; }
+.chat-review-source-path > svg { color: var(--muted); }
+.chat-review-source-path > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chat-review-source-kind { display: inline-flex; align-items: center; min-height: 24px; padding: 2px 7px; color: var(--muted); background: var(--panel-2); border: 1px solid var(--border); border-radius: 5px; font-size: 10px; white-space: nowrap; }
+.chat-review-source-range { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 10px; padding: 5px 11px 5px 19px; border-bottom: 1px solid var(--border); }
+.chat-review-source-range > p { color: var(--muted); font-size: 11px; line-height: 1.7; }
+.chat-review-source-range .button { min-height: 44px; padding: 8px 10px; font-size: 11px; }
+.chat-review-source-scroller { position: relative; flex: 1; min-height: 0; min-width: 0; overflow: auto; overscroll-behavior: contain; background: var(--bg); scrollbar-gutter: stable; }
+.chat-review-source-scroller:focus-visible { outline: 1px solid var(--focus); outline-offset: -1px; }
+.chat-review-source-code { width: max-content; min-width: 100%; margin: 0; padding: 13px 0; color: var(--text); font-family: var(--font-mono); font-size: 12px; line-height: 1.85; tab-size: 2; }
+.chat-review-source-code > code { display: block; font: inherit; }
+.chat-review-source-line { display: grid; grid-template-columns: 7ch minmax(0, 1fr); min-height: 23px; border-inline-start: 2px solid transparent; background: var(--bg); }
+.chat-review-source-line.is-highlighted { border-inline-start-color: var(--text); background: var(--panel-3); }
+.chat-review-source-line-number { position: sticky; left: 0; display: block; padding: 0 12px 0 8px; color: var(--faint); background: inherit; text-align: right; user-select: none; font-variant-numeric: tabular-nums; }
+.chat-review-source-line-text { padding: 0 20px 0 12px; white-space: pre; }
+.chat-review-source-message { display: flex; flex: 1; align-items: center; justify-content: center; flex-direction: column; gap: 10px; min-height: 170px; padding: 28px 24px; text-align: center; }
+.chat-review-source-message > svg { color: var(--muted); }
+.chat-review-source-message > strong { color: var(--text); font-size: 13px; font-weight: 500; }
+.chat-review-source-message > p { max-width: 460px; color: var(--muted); font-size: 12px; line-height: 1.75; overflow-wrap: anywhere; }
+.chat-review-source-message > .button { min-height: 44px; margin-top: 4px; }
+.chat-review-source-message.is-error > svg { color: var(--red); }
+.chat-review-source-limit { flex-shrink: 0; display: flex; align-items: flex-start; gap: 8px; padding: 11px 18px; border-top: 1px solid var(--border); color: var(--muted); font-size: 11px; line-height: 1.7; }
+.chat-review-source-limit > svg { margin-top: 2px; }
+.chat-review-source-footer { flex-shrink: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 11px 18px; border-top: 1px solid var(--border); }
+.chat-review-source-pagination { display: flex; flex: 1; align-items: center; gap: 6px; min-width: 0; }
+.chat-review-source-pagination > .icon-button { width: 44px; height: 44px; border: 1px solid var(--border); }
+.chat-review-source-pagination > span { min-width: 0; margin: 0 5px; color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; text-align: center; overflow-wrap: anywhere; }
+.chat-review-source-actions { display: flex; align-items: center; gap: 7px; }
+.chat-review-source-actions > .button { min-height: 44px; }
+.chat-review-spin { animation: chat-review-rotate 900ms linear infinite; }
+@keyframes chat-review-rotate { to { transform: rotate(360deg); } }
+
+@media (max-width: 680px) {
+  .modal.chat-review-dialog { max-width: none; }
+  .chat-review-dialog .modal-heading { padding: 20px 18px 16px; }
+  .chat-review-form-body { padding: 18px; gap: 19px; }
+  .chat-review-field > .input { font-size: 16px; }
+  .chat-review-field > label { font-size: 12px; }
+  .chat-review-select { min-height: 48px; }
+  .chat-review-instructions { min-height: 150px; }
+  .chat-review-instructions-help { flex-direction: column; align-items: stretch; gap: 5px; }
+  .chat-review-instructions-help > span { align-self: flex-end; }
+  .chat-review-dialog .chat-review-footer { display: grid; grid-template-columns: 1fr; padding: 14px 18px calc(14px + env(safe-area-inset-bottom, 0px)); gap: 6px; }
+  .chat-review-footer > .button.primary { grid-row: 1; min-height: 46px; }
+  .chat-review-finding-summary { gap: 8px; padding: 12px 11px; }
+  .chat-review-finding-body { padding-right: 12px; padding-left: 12px; }
+  .chat-review-finding-location { padding-right: 5px; padding-left: 5px; }
+  .chat-review-file { flex-wrap: wrap; gap: 5px 7px; font-size: 10px; }
+  .chat-review-file-path { flex: 1; flex-basis: calc(100% - 25px); white-space: normal; overflow-wrap: anywhere; }
+  .chat-review-file-lines { margin-left: 21px; }
+  .chat-review-conclusion > summary { flex-wrap: wrap; }
+  .chat-review-conclusion > summary > .chat-review-confidence { font-size: 9px; }
+  .modal.chat-review-source-dialog { max-width: none; height: calc(100dvh - 24px); max-height: calc(100dvh - 24px); }
+  .chat-review-source-dialog .modal-heading { padding: 17px 18px; }
+  .chat-review-source-toolbar { padding: 11px 15px; gap: 7px; }
+  .chat-review-source-path { flex-basis: 100%; padding-bottom: 3px; }
+  .chat-review-source-range { padding-left: 15px; }
+  .chat-review-source-range > p { font-size: 10px; }
+  .chat-review-source-range .button { padding-right: 6px; padding-left: 6px; font-size: 10px; }
+  .chat-review-source-line { grid-template-columns: 6ch minmax(0, 1fr); min-height: 24px; }
+  .chat-review-source-line-number { padding-right: 9px; padding-left: 6px; }
+  .chat-review-source-line-text { padding-left: 10px; }
+  .chat-review-source-footer { display: grid; grid-template-columns: minmax(0, 1fr); gap: 9px; padding: 11px 14px calc(11px + env(safe-area-inset-bottom, 0px)); }
+  .chat-review-source-pagination { justify-content: space-between; }
+  .chat-review-source-pagination > span { flex: 1; }
+  .chat-review-source-actions > .button { flex: 1; }
+  .chat-review-source-limit { padding: 10px 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-review-spin { animation: none; }
+  .chat-review-chevron { transition: none; }
+}
+
+.chat-review-retry { margin: 2px 0 12px; min-height: 34px; font-size: 11px; }
+.chat-review-original { margin-top: 8px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel-2); }
+.chat-review-original > summary { display: flex; align-items: center; gap: 6px; min-height: 36px; padding: 9px 11px; color: var(--muted); font-size: 11px; cursor: pointer; list-style: none; }
+.chat-review-original > summary::-webkit-details-marker { display: none; }
+.chat-review-original[open] > summary .chat-review-chevron { transform: rotate(90deg); }
+.chat-review-original > div { padding: 12px; border-top: 1px solid var(--border); max-height: 360px; overflow: auto; }
+@media (pointer: coarse), (max-width: 679px) {
+  .chat-review-retry, .chat-review-original > summary { min-height: 44px; }
+}

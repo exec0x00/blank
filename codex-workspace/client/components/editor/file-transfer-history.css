@@ -1,0 +1,20 @@
+.editor-transfers-dialog .file-transfer-search { display: flex; align-items: center; gap: 8px; min-height: 38px; padding: 8px 10px; margin: 0 0 12px; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); }
+.editor-transfers-dialog .file-transfer-search:focus-within { border-color: var(--border-strong); }
+.editor-transfers-dialog .file-transfer-search > svg { flex: 0 0 auto; }
+.editor-transfers-dialog .file-transfer-search > input { min-width: 0; width: 100%; padding: 0; border: 0; outline: none; background: transparent; color: var(--text); font: inherit; font-size: 13px; }
+.editor-transfers-dialog .file-transfer-loading { display: flex; align-items: center; gap: 7px; margin-bottom: 10px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.editor-transfers-dialog .file-transfer-loading > svg { flex: 0 0 auto; }
+.editor-transfers-dialog .file-transfer-read-error { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 12px; }
+.editor-transfers-dialog .file-transfer-read-error > span { flex: 1; min-width: min(150px, 100%); }
+.editor-transfers-dialog .file-transfer-inspect-error { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 12px; }
+.editor-transfers-dialog .file-transfer-inspect-error > span { min-width: 0; overflow-wrap: anywhere; }
+.editor-transfers-dialog .file-transfer-history-scroll { display: flex; flex-direction: column; gap: 0; min-height: 0; max-height: min(380px, 42dvh); overflow: auto; overscroll-behavior: contain; }
+.editor-transfers-dialog .file-transfer-history-scroll > .editor-file-transfer { flex-shrink: 0; margin: 0 0 10px; }
+.editor-transfers-dialog .editor-file-transfer > p { margin: 8px 0; font-size: 13px; line-height: 1.6; }
+.editor-transfers-dialog .editor-file-transfer-heading > svg { flex: 0 0 auto; }
+.editor-transfers-dialog .editor-file-transfer-actions .button { min-height: 36px; }
+.editor-transfers-dialog .editor-dialog-footer { padding-top: 14px; }
+@media (pointer: coarse), (max-width: 679px) {
+  .editor-transfers-dialog .file-transfer-search, .editor-transfers-dialog .button { min-height: 44px; }
+  .editor-transfers-dialog .file-transfer-search > input { font-size: 16px; }
+}

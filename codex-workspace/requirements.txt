@@ -1,0 +1,2 @@
+# ZeroGPU registration only. The user interface and server are TypeScript/Node.
+spaces==0.51.3

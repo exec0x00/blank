@@ -1,0 +1,7 @@
+.page-navigation { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 0; min-width: 0; }
+.page-navigation .button { min-height: 36px; padding: 6px 8px; gap: 4px; flex: 0 0 auto; }
+.page-navigation .button[aria-disabled="true"] { opacity: .5; cursor: default; }
+.page-navigation .button[aria-disabled="true"]:is(:hover, :active) { color: var(--muted); background: transparent; border-color: transparent; transition: none; }
+.page-navigation-status { display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 0; color: var(--muted); font-size: 13px; text-align: center; font-variant-numeric: tabular-nums; }
+@media (pointer: coarse) { .page-navigation .button { min-height: 44px; } }
+@media (max-width: 360px) { .page-navigation { gap: 4px; } .page-navigation .button { padding-inline: 4px; font-size: 13px; } }

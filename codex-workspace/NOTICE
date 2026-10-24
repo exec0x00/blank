@@ -1,0 +1,14 @@
+Arc Workspace
+
+An independent TypeScript web workspace using the official open-source OpenAI Codex CLI.
+Original Codex source is copyright OpenAI and licensed under Apache License 2.0.
+The downloaded upstream source, license, notice, and exact revision are preserved under upstream/.
+See docs/CLI_CAPABILITY_AUDIT.md and docs/CLI_RUNTIME_POLICY.md for the current integration.
+docs/CODEX_PORT.md describes the historical TypeScript implementation.
+
+OpenAI Codex
+Copyright 2025 OpenAI
+
+This project includes code derived from [Ratatui](https://github.com/ratatui/ratatui), licensed under the MIT license.
+Copyright (c) 2016-2022 Florian Dehau
+Copyright (c) 2023-2025 The Ratatui Developers

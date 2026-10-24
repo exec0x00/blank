@@ -1,0 +1,41 @@
+.cw-generated-image { display: flex; flex-direction: column; gap: 0; width: 100%; max-width: 560px; min-width: 0; margin: 8px 0; overflow: hidden; border: 1px solid var(--border); border-radius: 13px; background: var(--panel); color: var(--text); }
+.cw-generated-image-preview { position: relative; display: grid; place-items: center; width: 100%; min-height: 148px; max-height: 440px; overflow: hidden; background: var(--bg); }
+.cw-generated-image-preview > img { grid-area: 1 / 1; display: block; width: 100%; height: 100%; max-height: 440px; min-width: 0; object-fit: contain; }
+.cw-generated-image-preview.is-loading > img { opacity: 0; }
+.cw-generated-image-preview-message { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 20px; color: var(--muted); text-align: center; font-size: 12px; }
+.cw-generated-image-preview-message > p { max-width: 270px; margin: 0; line-height: 1.5; }
+.cw-generated-image-caption { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 5px 12px; min-width: 0; padding: 10px 12px; border-top: 1px solid var(--border); }
+.cw-generated-image-caption > span { min-width: 0; color: var(--muted); font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+.cw-generated-image-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; min-width: 0; }
+.cw-generated-image-button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-width: 44px; min-height: 44px; padding: 8px 10px; border: 1px solid transparent; border-radius: 8px; color: var(--text); font-size: 12px; line-height: 1.4; text-align: center; transition: background 120ms, border-color 120ms; }
+.cw-generated-image-button:hover:not(:disabled) { border-color: var(--border); background: var(--panel-3); }
+.cw-generated-image-button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.cw-generated-image-button:disabled { opacity: .5; cursor: not-allowed; }
+.cw-generated-image-note, .cw-generated-image-error { display: flex; align-items: flex-start; gap: 6px; min-width: 0; margin: 0; padding: 0 12px 12px; color: var(--muted); font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; }
+.cw-generated-image-note > svg, .cw-generated-image-error > svg { flex-shrink: 0; margin-top: 2px; }
+.cw-generated-image-note > code { min-width: 0; color: var(--text); overflow-wrap: anywhere; }
+.cw-generated-image-error { color: var(--text); }
+.cw-generated-image-unavailable { display: flex; align-items: center; gap: 10px; min-height: 72px; padding: 16px; border: 1px solid var(--border); border-radius: 10px; color: var(--muted); background: var(--panel); font-size: 12px; line-height: 1.6; }
+.cw-generated-image-unavailable > svg { flex-shrink: 0; }
+.cw-generated-image-save { width: 520px; max-width: 100%; }
+.cw-generated-image-save-body { padding: 20px; }
+.cw-generated-image-save .input { min-height: 44px; font-size: 13px; }
+.cw-generated-image-save .cw-generated-image-note, .cw-generated-image-save .cw-generated-image-error { display: block; margin-top: 10px; padding: 0; }
+.cw-generated-image-save .cw-generated-image-error > svg { margin: 0 6px 0 0; vertical-align: text-bottom; }
+.cw-generated-image-save .button, .cw-generated-image-save .modal-heading .icon-button { min-width: 44px; min-height: 44px; }
+.cw-generated-image-save .modal-footer { flex-wrap: wrap; }
+.cw-generated-image-spin { animation: cw-generated-image-spin 1s linear infinite; }
+@keyframes cw-generated-image-spin { to { transform: rotate(360deg); } }
+@media (max-width: 600px) {
+  .cw-generated-image { border-radius: 11px; }
+  .cw-generated-image-preview, .cw-generated-image-preview > img { max-height: 340px; }
+  .cw-generated-image-caption { align-items: stretch; gap: 7px; padding: 10px; }
+  .cw-generated-image-actions { width: 100%; gap: 6px; }
+  .cw-generated-image-actions > button { flex: 1 1 auto; border-color: var(--border); }
+  .cw-generated-image-save-body { padding: 16px; }
+  .cw-generated-image-save .input { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cw-generated-image-spin { animation: none; }
+  .cw-generated-image-button { transition: none; }
+}

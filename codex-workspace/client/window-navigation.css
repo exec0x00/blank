@@ -1,0 +1,16 @@
+.app-window-link, .chat-window-link { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; text-decoration: none; }
+.app-window-link { width: 32px; height: 32px; }
+.chat-window-link { width: 30px; height: 30px; }
+.app-window-link:focus-visible, .chat-window-link:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.window-link-error { flex-wrap: wrap; }
+.window-link-error > span { flex: 1; min-width: min(220px, 100%); }
+.window-view .topbar-page { white-space: nowrap; }
+
+@media (max-width: 679px) {
+  .app-window-link, .chat-window-link { width: 36px; min-height: 44px; }
+  .window-view .topbar-page { max-width: 110px; overflow: hidden; text-overflow: ellipsis; }
+}
+
+@media (pointer: coarse) {
+  .app-window-link, .chat-window-link { min-width: 44px; min-height: 44px; }
+}

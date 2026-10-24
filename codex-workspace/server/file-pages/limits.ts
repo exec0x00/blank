@@ -1,0 +1,13 @@
+export const PAGE_BYTES = 128 * 1024;
+export const MAX_PAGE_BYTES = 256 * 1024;
+export const LINE_LOOKBEHIND_BYTES = 8 * 1024;
+export const LINE_LOOKAHEAD_BYTES = 16 * 1024;
+export const SEARCH_SCAN_BYTES = 2 * 1024 * 1024;
+export const MAX_SEARCH_QUERY_BYTES = 4096;
+export const MAX_SEARCH_MATCHES = 100;
+export const MAX_RANGE_SAVE_FILE_BYTES = 64 * 1024 * 1024;
+export const SMALL_FILE_BYTES = 5 * 1024 * 1024;
+export const FILE_PAGE_READ_BYTES = MAX_PAGE_BYTES + LINE_LOOKBEHIND_BYTES + 8;
+export const MAX_READ_OPERATIONS = 8;
+export const MAX_RANGE_SAVE_OPERATIONS = 2;
+export const RANGE_SAVE_TIMEOUT_MS = 5 * 60 * 1000;

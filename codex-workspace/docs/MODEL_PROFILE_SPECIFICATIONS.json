@@ -1,0 +1,619 @@
+{
+  "version": 1,
+  "verifiedDate": "2026-09-20",
+  "purpose": "Research evidence; not a runtime catalog or fixed-service capability probe.",
+  "pinnedCodexCommit": "78245b47af2a7aafcabe025828ceecca69db4df1",
+  "models": [
+    {
+      "modelId": "gpt-6-astra",
+      "officialContextWindow": 1050000,
+      "officialMaxOutputTokens": 128000,
+      "officialEfforts": [
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "officialDefaultEffort": null,
+      "officialModelPage": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "officialSpecificationStatus": "published",
+      "proposedDefaultCompactionPercent": 90,
+      "proposedDefaultCompactionTokens": 945000,
+      "separateCliStyleUsablePercent": 95,
+      "separateCliStyleUsableTokens": 997500,
+      "pinnedCliCatalog": {
+        "sourcePath": "codex-rs/models-manager/models.json",
+        "contextWindow": 272000,
+        "maxContextWindow": 872000,
+        "supportsReasoningSummaryParameter": true,
+        "supportsReasoningSummaries": true,
+        "supportsVerbosity": true,
+        "defaultReasoningSummary": "none",
+        "defaultVerbosity": "low",
+        "defaultEffort": "low",
+        "effortChoices": [
+          "low",
+          "medium",
+          "high",
+          "xhigh",
+          "max",
+          "ultra"
+        ],
+        "note": "Codex harness metadata, not official API capacity. Ultra is a locally resolved UI choice, not an ordinary API effort."
+      }
+    },
+    {
+      "modelId": "gpt-5.6-sol",
+      "officialContextWindow": 1050000,
+      "officialMaxOutputTokens": 128000,
+      "officialEfforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "officialDefaultEffort": "medium",
+      "officialModelPage": "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
+      "officialSpecificationStatus": "published",
+      "proposedDefaultCompactionPercent": 90,
+      "proposedDefaultCompactionTokens": 945000,
+      "separateCliStyleUsablePercent": 95,
+      "separateCliStyleUsableTokens": 997500,
+      "pinnedCliCatalog": {
+        "sourcePath": "codex-rs/models-manager/models.json",
+        "contextWindow": 272000,
+        "maxContextWindow": 872000,
+        "supportsReasoningSummaryParameter": true,
+        "supportsReasoningSummaries": true,
+        "supportsVerbosity": true,
+        "defaultReasoningSummary": "none",
+        "defaultVerbosity": "low",
+        "defaultEffort": "low",
+        "effortChoices": [
+          "low",
+          "medium",
+          "high",
+          "xhigh",
+          "max",
+          "ultra"
+        ],
+        "note": "Codex harness metadata, not official API capacity. Ultra is a locally resolved UI choice, not an ordinary API effort."
+      }
+    },
+    {
+      "modelId": "gpt-5.6-terra",
+      "officialContextWindow": 1050000,
+      "officialMaxOutputTokens": 128000,
+      "officialEfforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "officialDefaultEffort": "medium",
+      "officialModelPage": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+      "officialSpecificationStatus": "published",
+      "proposedDefaultCompactionPercent": 90,
+      "proposedDefaultCompactionTokens": 945000,
+      "separateCliStyleUsablePercent": 95,
+      "separateCliStyleUsableTokens": 997500,
+      "pinnedCliCatalog": {
+        "sourcePath": "codex-rs/models-manager/models.json",
+        "contextWindow": 272000,
+        "maxContextWindow": 872000,
+        "supportsReasoningSummaryParameter": true,
+        "supportsReasoningSummaries": true,
+        "supportsVerbosity": true,
+        "defaultReasoningSummary": "none",
+        "defaultVerbosity": "low",
+        "defaultEffort": "medium",
+        "effortChoices": [
+          "low",
+          "medium",
+          "high",
+          "xhigh",
+          "max",
+          "ultra"
+        ],
+        "note": "Codex harness metadata, not official API capacity. Ultra is a locally resolved UI choice, not an ordinary API effort."
+      }
+    },
+    {
+      "modelId": "gpt-5.6-luna",
+      "officialContextWindow": 1050000,
+      "officialMaxOutputTokens": 128000,
+      "officialEfforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "officialDefaultEffort": "medium",
+      "officialModelPage": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+      "officialSpecificationStatus": "published",
+      "proposedDefaultCompactionPercent": 90,
+      "proposedDefaultCompactionTokens": 945000,
+      "separateCliStyleUsablePercent": 95,
+      "separateCliStyleUsableTokens": 997500,
+      "pinnedCliCatalog": {
+        "sourcePath": "codex-rs/models-manager/models.json",
+        "contextWindow": 272000,
+        "maxContextWindow": 872000,
+        "supportsReasoningSummaryParameter": true,
+        "supportsReasoningSummaries": true,
+        "supportsVerbosity": true,
+        "defaultReasoningSummary": "none",
+        "defaultVerbosity": "low",
+        "defaultEffort": "medium",
+        "effortChoices": [
+          "low",
+          "medium",
+          "high",
+          "xhigh",
+          "max"
+        ],
+        "note": "Codex harness metadata, not official API capacity. Ultra is a locally resolved UI choice, not an ordinary API effort."
+      }
+    },
+    {
+      "modelId": "gpt-5.6-cyber",
+      "officialContextWindow": 400000,
+      "officialMaxOutputTokens": 128000,
+      "officialEfforts": null,
+      "officialDefaultEffort": null,
+      "officialModelPage": "https://developers.openai.com/api/docs/models/gpt-5.6-cyber",
+      "officialSpecificationStatus": "published",
+      "proposedDefaultCompactionPercent": 90,
+      "proposedDefaultCompactionTokens": 360000,
+      "separateCliStyleUsablePercent": 95,
+      "separateCliStyleUsableTokens": 380000,
+      "effortNote": "Exact official model page confirms reasoning support but does not enumerate supported efforts. Preserve separately evidenced service/Codex settings without labeling them model-page facts.",
+      "pinnedCliCatalog": null
+    },
+    {
+      "modelId": "gpt-daybreak-red-latest",
+      "officialContextWindow": 400000,
+      "officialMaxOutputTokens": 128000,
+      "officialEfforts": null,
+      "officialDefaultEffort": null,
+      "officialModelPage": "https://developers.openai.com/api/docs/models/gpt-daybreak-red-latest",
+      "officialSpecificationStatus": "published",
+      "proposedDefaultCompactionPercent": 90,
+      "proposedDefaultCompactionTokens": 360000,
+      "separateCliStyleUsablePercent": 95,
+      "separateCliStyleUsableTokens": 380000,
+      "effortNote": "Exact official model page confirms reasoning support but does not enumerate supported efforts. Preserve separately evidenced service/Codex settings without labeling them model-page facts.",
+      "pinnedCliCatalog": {
+        "sourcePath": "codex-rs/models-manager/models.json",
+        "contextWindow": 372000,
+        "maxContextWindow": 372000,
+        "supportsReasoningSummaryParameter": true,
+        "supportsReasoningSummaries": true,
+        "supportsVerbosity": true,
+        "defaultReasoningSummary": "none",
+        "defaultVerbosity": "high",
+        "defaultEffort": "medium",
+        "effortChoices": [
+          "low",
+          "medium",
+          "high",
+          "xhigh",
+          "max",
+          "ultra"
+        ],
+        "note": "Codex harness metadata, not official API capacity. Ultra is a locally resolved UI choice, not an ordinary API effort."
+      }
+    },
+    {
+      "modelId": "kindle-alpha",
+      "officialContextWindow": null,
+      "officialMaxOutputTokens": null,
+      "officialEfforts": null,
+      "officialDefaultEffort": null,
+      "officialModelPage": "https://developers.openai.com/api/docs/models/kindle-alpha",
+      "officialSpecificationStatus": "not-found",
+      "proposedDefaultCompactionPercent": 90,
+      "proposedDefaultCompactionTokens": null,
+      "separateCliStyleUsablePercent": 95,
+      "separateCliStyleUsableTokens": null,
+      "unknownNote": "Exact developers model page and platform redirect returned404; no matching ID in fetched public model catalog. This does not prove the private/custom service lacks the model. User-supplied capacity must remain labeled user configuration.",
+      "pinnedCliCatalog": null
+    }
+  ],
+  "responsesSchema": {
+    "source": "https://developers.openai.com/api/reference/resources/responses/methods/create",
+    "reasoningSummary": [
+      "auto",
+      "concise",
+      "detailed"
+    ],
+    "reasoningSummaryOffWireBehavior": "omit reasoning.summary; never send the CLI none sentinel",
+    "verbosity": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "apiDefaultVerbosity": "medium",
+    "reasoningEffortUnion": [
+      "none",
+      "minimal",
+      "low",
+      "medium",
+      "high",
+      "xhigh",
+      "max"
+    ],
+    "reasoningContext": [
+      "auto",
+      "current_turn",
+      "all_turns"
+    ],
+    "note": "Union values are not per-model support evidence."
+  },
+  "familyEvidence": {
+    "gpt56": {
+      "source": "https://developers.openai.com/api/docs/guides/latest-model?model=gpt-5.6",
+      "efforts": [
+        "none",
+        "low",
+        "medium",
+        "high",
+        "xhigh",
+        "max"
+      ],
+      "defaultEffort": "medium",
+      "verbosity": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "defaultReasoningContext": "all_turns"
+    },
+    "astra": {
+      "source": "https://developers.openai.com/api/docs/guides/latest-model?model=gpt-6-astra",
+      "unsupportedParameters": [
+        "temperature",
+        "top_p",
+        "top_logprobs"
+      ],
+      "unsupportedEfforts": [
+        "none"
+      ],
+      "inheritsExistingGpt56Capabilities": true
+    },
+    "daybreakAlias": {
+      "source": "https://developers.openai.com/api/docs/guides/safety-checks/cybersecurity",
+      "modelId": "gpt-daybreak-red-latest",
+      "underlyingModelId": "gpt-5.6-cyber",
+      "note": "Official API mapping; does not prove owner-service routing or unlisted parameter support."
+    }
+  },
+  "codexCompaction": {
+    "resolvedCapacity": "context_window ?? max_context_window",
+    "usableContext": "floor(resolvedCapacity * effective_context_window_percent / 100)",
+    "defaultEffectivePercent": 95,
+    "autoCompactTotalScope": "min(configuredTokenLimit ?? floor(resolvedCapacity * 0.9), floor(resolvedCapacity * 0.9))",
+    "defaultScope": "total",
+    "comparison": ">=",
+    "usage": "last response reported total tokens plus estimated later local items; add older opaque-reasoning estimate only when server has not already included it",
+    "lifetimeUsageIsSeparate": true,
+    "ordinaryRequestHasMaxOutputTokensField": false,
+    "sourceLocations": [
+      {
+        "path": "codex-rs/protocol/src/openai_models.rs",
+        "lines": [
+          389,
+          390,
+          452,
+          467,
+          514,
+          535
+        ]
+      },
+      {
+        "path": "codex-rs/models-manager/src/model_info.rs",
+        "lines": [
+          19,
+          30
+        ]
+      },
+      {
+        "path": "codex-rs/core/src/session/context_window.rs",
+        "lines": [
+          58,
+          110
+        ]
+      },
+      {
+        "path": "codex-rs/core/src/context_manager/history.rs",
+        "lines": [
+          516,
+          540,
+          730,
+          787,
+          890,
+          908
+        ]
+      },
+      {
+        "path": "codex-rs/core/src/session/mod.rs",
+        "lines": [
+          4648,
+          4685
+        ]
+      },
+      {
+        "path": "codex-rs/protocol/src/protocol.rs",
+        "lines": [
+          2270,
+          2307
+        ]
+      },
+      {
+        "path": "codex-rs/core/src/session/turn.rs",
+        "lines": [
+          179,
+          182,
+          553,
+          641,
+          704,
+          735,
+          1274,
+          1302,
+          1392,
+          1436
+        ]
+      },
+      {
+        "path": "codex-rs/core/src/compact.rs",
+        "lines": [
+          60,
+          89,
+          317,
+          328,
+          350,
+          406
+        ]
+      },
+      {
+        "path": "codex-rs/codex-api/src/common.rs",
+        "lines": [
+          259,
+          285
+        ]
+      }
+    ],
+    "serverReasoningInclusionSignal": {
+      "header": "x-reasoning-included",
+      "pinnedCliInterpretation": "header presence",
+      "sources": [
+        {
+          "path": "codex-rs/codex-api/src/sse/responses.rs",
+          "lines": [
+            30,
+            53,
+            56,
+            83,
+            86
+          ]
+        },
+        {
+          "path": "codex-rs/codex-api/src/endpoint/responses_websocket.rs",
+          "lines": [
+            156,
+            280,
+            283
+          ]
+        }
+      ]
+    }
+  },
+  "requestConstructionSourceLocations": [
+    {
+      "path": "codex-rs/core/src/client.rs",
+      "lines": [
+        848,
+        866,
+        935,
+        983
+      ]
+    },
+    {
+      "path": "codex-rs/codex-api/src/common.rs",
+      "lines": [
+        374,
+        391
+      ]
+    },
+    {
+      "path": "codex-rs/protocol/src/openai_models.rs",
+      "lines": [
+        56,
+        87
+      ]
+    },
+    {
+      "path": "codex-rs/protocol/src/openai_models/reasoning_effort.rs",
+      "lines": [
+        10,
+        38
+      ]
+    }
+  ],
+  "sourceCaptures": [
+    {
+      "id": "catalog",
+      "url": "https://developers.openai.com/api/docs/models",
+      "resolvedUrl": "https://developers.openai.com/api/docs/models",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:34:33.026237+00:00",
+      "capturedBytes": 381995,
+      "capturedSha256": "f8910c7b5d350633afe17a9864a7973445e018c6210fddf337e65a4a90791483",
+      "captureIsBoundedPrefix": false
+    },
+    {
+      "id": "gpt-6-astra",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "resolvedUrl": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:34:33.096237+00:00",
+      "capturedBytes": 430362,
+      "capturedSha256": "3f18e788c088107cfd363e36e74206b4d77e13c29353f41d0d0e84215b31f493",
+      "captureIsBoundedPrefix": false
+    },
+    {
+      "id": "gpt-5.6-sol",
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
+      "resolvedUrl": "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:34:33.066237+00:00",
+      "capturedBytes": 431560,
+      "capturedSha256": "b9e5b02f4eab5a9b311e796df7f22535a13a22e098f104beec2fea548e6faca8",
+      "captureIsBoundedPrefix": false
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+      "resolvedUrl": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:34:33.136237+00:00",
+      "capturedBytes": 430615,
+      "capturedSha256": "7a86dc29d129d57710557432f5fad4ddad12327e686b729d59c9f860fd8ea4dc",
+      "captureIsBoundedPrefix": false
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+      "resolvedUrl": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:34:33.176238+00:00",
+      "capturedBytes": 429893,
+      "capturedSha256": "d0c60ad75b2db846889c62514df43b445de1dfd2771dd0b880f2c651554d21af",
+      "captureIsBoundedPrefix": false
+    },
+    {
+      "id": "gpt-5.6-cyber",
+      "url": "https://developers.openai.com/api/docs/models/gpt-5.6-cyber",
+      "resolvedUrl": "https://developers.openai.com/api/docs/models/gpt-5.6-cyber",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:34:33.236238+00:00",
+      "capturedBytes": 437978,
+      "capturedSha256": "9737902c30dcc8db6aed6e5c8161fc2e3b9fc147bc4f8ecd6fd087212da2ecdd",
+      "captureIsBoundedPrefix": false
+    },
+    {
+      "id": "gpt-daybreak-red-latest",
+      "url": "https://developers.openai.com/api/docs/models/gpt-daybreak-red-latest",
+      "resolvedUrl": "https://developers.openai.com/api/docs/models/gpt-daybreak-red-latest",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:34:33.256238+00:00",
+      "capturedBytes": 433728,
+      "capturedSha256": "6d058b732208a910906db93f69f6fe1ca508b7cdf57ff2ad63fcd5f7de8de43c",
+      "captureIsBoundedPrefix": false
+    },
+    {
+      "id": "kindle-alpha",
+      "url": "https://developers.openai.com/api/docs/models/kindle-alpha",
+      "resolvedUrl": "https://developers.openai.com/api/docs/models/kindle-alpha",
+      "httpStatus": 404,
+      "capturedAt": "2026-09-20T11:34:33.376239+00:00",
+      "capturedBytes": 150000,
+      "capturedSha256": "6b4b5deb8104bb3d3d2c2b8da146153943b7382c69d21160afb88055429660c0",
+      "captureIsBoundedPrefix": true
+    },
+    {
+      "id": "config-reference",
+      "url": "https://developers.openai.com/codex/config-reference/",
+      "resolvedUrl": "https://learn.chatgpt.com/docs/config-file/config-reference",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:34:33.356239+00:00",
+      "capturedBytes": 1414589,
+      "capturedSha256": "b6c0f01c8e6110790fe3bb593462f8dc285b623a7f9f84b277bcd6cb4b35e85b",
+      "captureIsBoundedPrefix": false
+    },
+    {
+      "id": "reasoning",
+      "url": "https://developers.openai.com/api/docs/guides/reasoning",
+      "resolvedUrl": "https://developers.openai.com/api/docs/guides/reasoning",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:34:33.316239+00:00",
+      "capturedBytes": 1068123,
+      "capturedSha256": "bdb6162bb047ad324b5a7513d14e075f1eb1432c3e0182cb08d5d50eeb627b2c",
+      "captureIsBoundedPrefix": false
+    },
+    {
+      "id": "responses",
+      "url": "https://developers.openai.com/api/reference/resources/responses/methods/create",
+      "resolvedUrl": "https://developers.openai.com/api/reference/resources/responses/methods/create",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:34:33.406239+00:00",
+      "capturedBytes": 4000000,
+      "capturedSha256": "bfe246e441827920fedd21cfe838061f424101b8d46b0751ce0b9a72ff3d4f0d",
+      "captureIsBoundedPrefix": true
+    },
+    {
+      "id": "latest-model-astra",
+      "url": "https://developers.openai.com/api/docs/guides/latest-model?model=gpt-6-astra",
+      "resolvedUrl": "https://developers.openai.com/api/docs/guides/latest-model?model=gpt-6-astra",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:35:27.436570+00:00",
+      "capturedBytes": 396207,
+      "capturedSha256": "92cfc46f3f807edac3d8d003a07d4dd8f4750402f1420059c1035c0d09f4d70e",
+      "captureIsBoundedPrefix": false
+    },
+    {
+      "id": "latest-model-sol",
+      "url": "https://developers.openai.com/api/docs/guides/latest-model?model=gpt-5.6-sol",
+      "resolvedUrl": "https://developers.openai.com/api/docs/guides/latest-model?model=gpt-5.6-sol",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:35:27.406569+00:00",
+      "capturedBytes": 396207,
+      "capturedSha256": "d569545d40a5add8c31618697b1ac4d51561520588314a104bed2f24536ce42d",
+      "captureIsBoundedPrefix": false
+    },
+    {
+      "id": "cybersecurity",
+      "url": "https://developers.openai.com/api/docs/guides/safety-checks/cybersecurity",
+      "resolvedUrl": "https://developers.openai.com/api/docs/guides/safety-checks/cybersecurity",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:35:27.226568+00:00",
+      "capturedBytes": 339671,
+      "capturedSha256": "ee7c61575d90142bbd2cb9f6cd2f2e1724e92cf351d20bccaeb296f84c18312a",
+      "captureIsBoundedPrefix": false
+    },
+    {
+      "id": "kindle-alpha-platform",
+      "url": "https://platform.openai.com/docs/models/kindle-alpha",
+      "resolvedUrl": "https://developers.openai.com/api/docs/models/kindle-alpha",
+      "httpStatus": 404,
+      "capturedAt": "2026-09-20T11:35:27.576571+00:00",
+      "capturedBytes": 200000,
+      "capturedSha256": "48fc08e8ba82e7c8a3ffcc573d36171f44d577199c6b99b9327c23e739502a48",
+      "captureIsBoundedPrefix": true
+    },
+    {
+      "id": "latest-model-5-6",
+      "url": "https://developers.openai.com/api/docs/guides/latest-model?model=gpt-5.6",
+      "resolvedUrl": "https://developers.openai.com/api/docs/guides/latest-model?model=gpt-5.6",
+      "httpStatus": 200,
+      "capturedAt": "2026-09-20T11:36:41.397021+00:00",
+      "capturedBytes": 416617,
+      "capturedSha256": "f0f362291ea8883818840663407c00194a824c6b6a8cb2b55fa1cf5669a3975b",
+      "captureIsBoundedPrefix": false
+    }
+  ],
+  "researchBoundaries": {
+    "providerRequestsMade": false,
+    "providerModelsRouteQueried": false,
+    "credentialsRead": false,
+    "runtimeTestsRun": false,
+    "networkProxyUsed": false
+  }
+}

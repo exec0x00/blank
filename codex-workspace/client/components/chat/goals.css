@@ -1,0 +1,45 @@
+.goal-controls { min-width: 0; margin-bottom: 12px; }
+.goal-strip { display: flex; align-items: center; gap: 6px; min-width: 0; padding: 6px; border: 1px solid var(--border); border-radius: 12px; background: var(--panel); }
+.goal-summary { display: flex; flex: 1; align-items: center; gap: 12px; min-width: 0; min-height: 52px; padding: 8px 10px; border-radius: 8px; color: var(--muted); text-align: left; }
+.goal-summary > svg { flex-shrink: 0; }
+.goal-summary:hover { background: var(--panel-2); }
+.goal-summary-copy { display: flex; flex: 1; flex-direction: column; gap: 5px; min-width: 0; }
+.goal-summary-objective { overflow: hidden; color: var(--text); font-size: 15px; line-height: 1.5; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
+.goal-summary-copy > small { color: var(--muted); font-size: 13px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.goal-strip-actions { display: flex; flex-shrink: 0; align-items: center; gap: 4px; }
+.goal-strip-actions > .button { min-height: 44px; padding: 8px 12px; border-color: transparent; border-radius: 8px; background: transparent; font-size: 14px; }
+.goal-strip-actions > .button:hover:not(:disabled) { border-color: var(--border); background: var(--panel-2); }
+.goal-strip-actions > .icon-button { width: 44px; height: 44px; border-radius: 8px; }
+.goal-dialog { width: min(540px, calc(100vw - 32px)); max-width: 540px; border-radius: 12px; background: var(--panel); }
+.goal-dialog > .modal-heading { padding: 22px 24px 18px; }
+.goal-dialog .modal-heading h2 { font-size: 18px; font-weight: 550; }
+.goal-dialog .modal-heading p { margin: 6px 0 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.goal-dialog .modal-heading > .icon-button { width: 44px; height: 44px; min-width: 44px; border-radius: 8px; }
+.goal-dialog form { display: flex; flex: 1; flex-direction: column; min-height: 0; }
+.goal-dialog .chat-control-dialog-body { display: flex; flex-direction: column; gap: 20px; min-height: 0; padding: 24px; overflow-y: auto; overscroll-behavior: contain; }
+.goal-dialog .field { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+.goal-dialog .field > span { color: var(--text); font-size: 14px; line-height: 1.5; }
+.goal-dialog .input { min-height: 44px; border-radius: 8px; background: var(--panel-2); font-size: 15px; }
+.goal-dialog textarea.input { display: block; min-height: 120px; max-height: 300px; padding: 12px; line-height: 1.6; resize: vertical; }
+.goal-dialog .chat-control-dialog-body > p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.65; overflow-wrap: anywhere; white-space: pre-wrap; }
+.goal-dialog .chat-control-dialog-body > p:first-child:not(.chat-control-dialog-error) { color: var(--text); }
+.goal-dialog .chat-control-dialog-body .chat-control-dialog-error { padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel-2); color: var(--red); font-size: 14px; }
+.goal-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); }
+.goal-details > div { min-width: 0; }
+.goal-details dt { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.goal-details dd { margin: 6px 0 0; color: var(--text); font-size: 15px; line-height: 1.6; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.goal-dialog .modal-footer { flex-shrink: 0; flex-wrap: wrap; gap: 12px; padding: 16px 24px; background: var(--panel); }
+.goal-dialog .button { min-height: 44px; border-radius: 8px; font-size: 14px; }
+.goal-controls :where(button):focus-visible, .goal-dialog :where(button, input, textarea):focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+@media (max-width: 560px) {
+  .goal-strip { flex-wrap: wrap; gap: 0; }
+  .goal-summary { flex-basis: 100%; }
+  .goal-strip-actions { flex: 1; justify-content: flex-end; margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--border); }
+  .goal-strip-actions > .button { flex: 1; justify-content: flex-start; }
+  .goal-dialog { width: calc(100vw - 20px); max-height: calc(100dvh - 20px); }
+  .goal-dialog > .modal-heading { padding: 16px; }
+  .goal-dialog .chat-control-dialog-body { gap: 18px; padding: 18px 16px; }
+  .goal-dialog .modal-footer { padding: 14px 16px; }
+  .goal-details { gap: 16px; padding: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { .goal-controls *, .goal-dialog, .goal-dialog * { animation: none !important; transition: none !important; }.goal-controls button:active, .goal-dialog button:active { transform: none; } }

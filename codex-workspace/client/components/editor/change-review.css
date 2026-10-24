@@ -1,0 +1,42 @@
+.editor-document-area, .editor-review-area { display: flex; flex: 1; flex-direction: column; min-width: 0; min-height: 0; overflow: hidden; }
+.editor-document-area[hidden], .editor-review-area[hidden] { display: none; }
+.editor-review-tab { max-width: 230px; }
+.change-review { display: flex; flex: 1; flex-direction: column; min-width: 0; min-height: 0; background: var(--editor-bg); }
+.change-review-heading { display: flex; gap: 8px; align-items: center; min-height: 40px; padding: 6px 12px; border-bottom: 1px solid var(--border); color: var(--muted); }
+.change-review-heading > strong { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 12px; font-weight: 500; color: var(--text); }
+.change-review-readonly { display: inline-flex; align-items: center; gap: 5px; color: var(--muted); font-size: 11px; white-space: nowrap; }
+.change-review-toolbar { display: flex; align-items: center; gap: 10px; min-width: 0; min-height: 42px; padding: 5px 10px; border-bottom: 1px solid var(--border); }
+.change-review-file-select { min-width: 0; flex: 1; }
+.change-review-file-select > button { width: 100%; min-width: 0; }
+.change-review-file-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.change-review-tools { display: flex; flex-shrink: 0; align-items: center; gap: 2px; }
+.change-review-tools .icon-button, .change-review-heading .icon-button { width: 28px; height: 28px; border-radius: 6px; }
+.change-review-notices { padding: 8px 12px; background: var(--panel); border-bottom: 1px solid var(--border); color: var(--muted); font-size: 11px; line-height: 1.6; max-height: 110px; overflow: auto; }
+.change-review-notices p { margin: 0; }
+.change-review-notices p + p { margin-top: 4px; }
+.change-review-surface { flex: 1; min-width: 0; min-height: 0; overflow: hidden; display: flex; }
+.change-review-message { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-height: 0; padding: 22px; overflow: auto; text-align: center; color: var(--muted); }
+.change-review-message strong { color: var(--text); font-size: 13px; font-weight: 500; }
+.change-review-message p { margin: 0; max-width: 450px; font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
+.change-review-pagination { display: flex; align-items: center; gap: 8px; justify-content: space-between; padding: 6px 10px; min-height: 40px; border-top: 1px solid var(--border); }
+.change-review-pagination > span { min-width: 0; text-align: center; font-size: 10px; line-height: 1.5; color: var(--muted); }
+.change-review-pagination > button { flex-shrink: 0; font-size: 11px; }
+.response-tool-review-action { display: flex; align-items: center; gap: 8px; padding: 4px 12px 8px 35px; }
+.response-tool-review-action > button { display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 4px 9px; border: 1px solid var(--border); border-radius: 7px; color: var(--text); font-size: 11px; }
+.response-tool-review-action > button:hover:not(:disabled) { background: var(--hover); }
+.response-tool-review-action > span { color: var(--faint); font-size: 11px; }
+@container (max-width: 540px) {
+  .change-review-toolbar { flex-wrap: wrap; gap: 4px; }
+  .change-review-file-select, .change-review-file-label { flex-basis: calc(100% - 120px); }
+  .change-review-readonly { font-size: 10px; }
+  .change-review-tools .icon-button, .change-review-heading .icon-button { min-width: 32px; min-height: 32px; }
+  .change-review-pagination { padding: 5px; gap: 3px; }
+  .change-review-pagination > button { min-height: 36px; padding: 5px; }
+}
+@media (max-width: 679px) {
+  .change-review-toolbar { flex-wrap: wrap; }
+  .change-review-file-select, .change-review-file-label { flex-basis: 100%; min-height: 36px; }
+  .change-review-file-select { min-height: 44px; }
+  .change-review-tools .icon-button, .change-review-tools .chat-copy, .change-review-heading .icon-button { min-width: 44px; min-height: 44px; }
+  .change-review-pagination > button, .response-tool-review-action > button { min-height: 44px; }
+}

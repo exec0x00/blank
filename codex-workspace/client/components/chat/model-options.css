@@ -1,0 +1,23 @@
+.model-options-fields { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px 14px; margin-top: 18px; }
+.model-options-fields > div:last-child { grid-column: 1 / -1; }
+.model-options-fields .input, .model-options-fields .cw-select { width: 100%; }
+.model-options-fields .field-help { margin: 6px 0 0; }
+.model-options-dialog { max-width: 510px; }
+.model-options-content { padding: 0 22px 22px; }
+.model-options-identity { font-family: var(--font-mono, monospace); font-size: 11px; color: var(--muted); overflow-wrap: anywhere; }
+.model-options-capacity { font-size: 12px; color: var(--muted); line-height: 1.65; margin-top: 10px; }
+.model-options-feedback { color: var(--red); font-size: 12px; line-height: 1.6; margin: 16px 0 0; }
+.model-options-trigger { display: inline-flex; align-items: center; justify-content: center; width: 28px; min-width: 28px; height: 28px; border-radius: 7px; color: var(--muted); }
+.model-options-trigger:hover:not(:disabled), .model-options-trigger[aria-expanded="true"] { color: var(--text); background: var(--panel-2); }
+.model-catalog-feedback { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 11px; line-height: 1.6; color: var(--muted); margin: 0 0 9px; }
+.model-catalog-feedback .text-button { margin-left: auto; }
+@media (max-width: 679px) {
+  .model-options-fields { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .model-options-fields > div:last-child { grid-column: auto; }
+  .model-options-fields .input { min-height: 44px; font-size: 16px; }
+  .model-options-trigger { width: 44px; min-width: 44px; height: 44px; }
+  .model-options-content { padding: 0 16px 18px; }
+}
+@media (pointer: coarse) {
+  .model-options-trigger { width: 44px; min-width: 44px; height: 44px; }
+}

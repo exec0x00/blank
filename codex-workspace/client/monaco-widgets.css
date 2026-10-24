@@ -1,0 +1,240 @@
+/* Monaco owns the controls, virtual rows and measured textarea mirror. Keep the
+   styling here so normal, split, diff and large-file editors share one surface. */
+:root .monaco-editor .suggest-widget,
+:root .monaco-editor .suggest-details,
+:root .monaco-editor .find-widget {
+  border: 1px solid var(--vscode-editorWidget-border);
+  border-radius: 12px;
+  background: var(--vscode-editorWidget-background);
+  color: var(--vscode-editorWidget-foreground);
+  box-shadow: none;
+  text-shadow: none;
+}
+
+:root .monaco-editor .suggest-widget *,
+:root .monaco-editor .suggest-details *,
+:root .monaco-editor .find-widget * {
+  box-shadow: none;
+  text-shadow: none;
+}
+
+:root .monaco-editor .suggest-widget > .tree {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+:root .monaco-editor .suggest-widget.with-status-bar > .tree {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+:root .monaco-editor .suggest-widget .monaco-list-row {
+  border-radius: 8px;
+  padding-left: 4px;
+  padding-right: 10px;
+}
+
+:root .monaco-editor .suggest-widget .monaco-list-row:hover:not(.focused) {
+  background-color: #1b1b1b;
+}
+
+:root .monaco-editor .suggest-widget .monaco-list-row.focused {
+  background-color: var(--vscode-editorSuggestWidget-selectedBackground);
+  outline: 1px solid var(--vscode-editorSuggestWidget-border);
+  outline-offset: -1px;
+}
+
+:root .monaco-editor .suggest-widget .suggest-icon {
+  color: var(--muted, #a3a3a3);
+}
+
+:root .monaco-editor .suggest-widget .monaco-list-row > .contents > .main > .right > .details-label,
+:root .monaco-editor .suggest-widget .monaco-list-row > .contents > .main > .left > .qualifier-label {
+  color: var(--muted, #a3a3a3);
+  opacity: 1;
+}
+
+:root .monaco-editor .suggest-widget .suggest-status-bar {
+  padding: 0 10px;
+  border-radius: 0 0 12px 12px;
+  background: #232323;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+}
+
+:root .monaco-editor .suggest-widget .suggest-status-bar .action-label {
+  border-radius: 4px;
+}
+
+:root .monaco-editor .suggest-details > .monaco-scrollable-element {
+  border-radius: 12px;
+}
+
+:root .monaco-editor .suggest-details.focused {
+  border-color: var(--vscode-focusBorder);
+}
+
+:root .monaco-editor .suggest-details > .monaco-scrollable-element > .body > .header > .type {
+  margin-right: 32px;
+  padding: 8px 10px;
+  opacity: 1;
+}
+
+:root .monaco-editor .suggest-details > .monaco-scrollable-element > .body > .docs:not(.markdown-docs),
+:root .monaco-editor .suggest-details > .monaco-scrollable-element > .body > .docs.markdown-docs > div,
+:root .monaco-editor .suggest-details > .monaco-scrollable-element > .body > .docs.markdown-docs > span:not(:empty) {
+  padding: 8px 10px;
+}
+
+:root .monaco-editor .suggest-details a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+:root .monaco-editor .suggest-details code {
+  border: 1px solid var(--vscode-editorSuggestWidget-border);
+  border-radius: 4px;
+}
+
+:root .monaco-editor .suggest-details > .monaco-scrollable-element > .body > .header > .codicon-close {
+  top: 4px;
+  right: 4px;
+  border-radius: 8px;
+}
+
+/* Preserve Monaco's computed width, height, row positions and resize sash. Both
+   the live input and its invisible mirror receive exactly the same typography
+   and vertical padding so multiline searches keep the correct view-zone size. */
+:root .monaco-editor .find-widget {
+  margin-top: 8px;
+  padding: 0 4px;
+  line-height: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  transition: transform 120ms ease-out;
+}
+
+:root .monaco-editor .find-widget > .find-part,
+:root .monaco-editor .find-widget > .replace-part {
+  margin-left: 25px;
+  margin-right: 31px;
+}
+
+:root .monaco-editor .find-widget .monaco-inputbox {
+  border-radius: 8px;
+}
+
+:root .monaco-editor .find-widget .monaco-inputbox > .ibwrapper > .input,
+:root .monaco-editor .find-widget .monaco-inputbox > .ibwrapper > .mirror {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+
+:root .monaco-editor .find-widget .monaco-inputbox .input {
+  min-height: 0;
+  border-radius: 8px;
+}
+
+:root .monaco-editor .find-widget .monaco-inputbox.synthetic-focus {
+  outline: 1px solid var(--vscode-focusBorder);
+  outline-offset: -1px;
+}
+
+:root .monaco-editor .find-widget .monaco-inputbox.synthetic-focus.error {
+  outline-color: var(--vscode-inputValidation-errorBorder);
+}
+
+:root .monaco-editor .find-widget .monaco-findInput > .controls,
+:root .monaco-editor .find-widget > .replace-part > .monaco-findInput > .controls {
+  top: 2px;
+}
+
+:root .monaco-editor .find-widget .monaco-custom-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  border-radius: 4px;
+}
+
+:root .monaco-editor .find-widget .matchesCount {
+  height: 30px;
+  line-height: 26px;
+  padding-top: 2px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted, #a3a3a3);
+}
+
+:root .monaco-editor .find-widget.no-results .matchesCount {
+  color: var(--vscode-errorForeground);
+}
+
+:root .monaco-editor .find-widget > .find-part .find-actions,
+:root .monaco-editor .find-widget > .replace-part .replace-actions {
+  height: 30px;
+}
+
+/* App buttons have a separate minimum size/padding. Reset those properties on
+   Monaco's compact native actions rather than changing their click handlers. */
+:root .monaco-editor .find-widget .button {
+  box-sizing: border-box;
+  width: 26px;
+  height: 28px;
+  min-height: 0;
+  padding: 4px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  transition: background-color 100ms ease-out;
+}
+
+:root .monaco-editor .find-widget .codicon-find-selection {
+  width: 26px;
+  height: 28px;
+  padding: 3px;
+  margin-left: 3px;
+  border-radius: 8px;
+}
+
+:root .monaco-editor .find-widget .button.toggle {
+  top: 4px;
+  left: 3px;
+  width: 26px;
+  height: 30px;
+  margin: 0;
+}
+
+:root .monaco-editor .find-widget > .button.codicon-widget-close {
+  top: 4px;
+  right: 4px;
+}
+
+:root .monaco-editor .find-widget .button.disabled {
+  color: var(--vscode-disabledForeground);
+}
+
+:root .monaco-editor .find-widget .button:focus-visible,
+:root .monaco-editor .find-widget .monaco-custom-toggle:focus-visible,
+:root .monaco-editor .suggest-widget .action-label:focus-visible,
+:root .monaco-editor .suggest-details .codicon-close:focus-visible {
+  outline: 1px solid var(--vscode-focusBorder);
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root .monaco-editor .find-widget,
+  :root .monaco-editor .find-widget *,
+  :root .monaco-editor .suggest-widget,
+  :root .monaco-editor .suggest-widget *,
+  :root .monaco-editor .suggest-details,
+  :root .monaco-editor .suggest-details * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

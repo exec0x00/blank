@@ -1,0 +1,93 @@
+/* Shared motion only decorates state changes. Never transition workbench sizes,
+   virtual rows, streaming content, Monaco/xterm, or the native typing surfaces. */
+:root {
+  --motion-fast: 100ms;
+  --motion-standard: 160ms;
+  --motion-enter: 180ms;
+  --motion-exit: 100ms;
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-standard: cubic-bezier(.2, 0, 0, 1);
+}
+
+/* These controls have stable geometry, even while their state or label changes. */
+:is(.text-button, .sidebar-settings, .search-field, .command-action, .workspace-list-item,
+    .workspace-select, .conversation-header-picker, .conversation-history-search,
+    .conversation-history-row, .conversation-history-page,
+    .conversation-history-current > button, .conversation-history-visibility > button,
+    .native-features-tabs > button, .native-mcp-tabs > button,
+    .native-processes-task, .native-processes-task-select,
+    .native-mcp-request-trigger, .native-feature-error > button) {
+  transition-property: color, background-color, border-color, opacity;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-standard);
+}
+
+/* Preserve discoverable row actions. Keyboard focus gets the same row context
+   as a pointer; the focused control still owns its visible neutral outline. */
+.workspace-dialog .workspace-list-item:focus-within:not(.is-current) {
+  background: var(--panel-2);
+}
+.workspace-dialog .workspace-row-actions .icon-button:focus-visible {
+  color: var(--text);
+}
+.workspace-dialog .workspace-select:active:not(:disabled),
+.conversation-history-dialog .conversation-history-row:active:not(:disabled),
+.conversation-history-dialog .conversation-history-page:active:not(:disabled),
+.conversation-history-current > button:active:not(:disabled) {
+  background: var(--surface-selected);
+}
+.conversation-history-dialog .conversation-history-search:focus-within {
+  border-color: var(--focus);
+}
+.conversation-history-visibility > button:active:not(:disabled) {
+  background: var(--surface-selected);
+  color: var(--text);
+}
+.command-action:active:not(:disabled) {
+  background: var(--surface-selected);
+  color: var(--text);
+}
+
+/* App-server surfaces use the same response as ordinary workspace controls.
+   Do not animate status/output replacements or list insertion and removal. */
+.native-features-modal .native-features-tabs > button:active:not(:disabled),
+.native-mcp-tabs > button:active:not(:disabled),
+.native-mcp-request-trigger:active:not(:disabled),
+.native-processes-task .native-processes-task-select:active:not(:disabled) {
+  background: var(--surface-selected);
+  color: var(--text);
+}
+@media (hover: hover) and (pointer: fine) {
+  .native-mcp-tabs > button:hover:not(:disabled):not([aria-pressed="true"]),
+  .native-mcp-request-trigger:hover:not(:disabled),
+  .native-processes-task:not(.is-selected):hover {
+    background: var(--surface-hover);
+  }
+  .native-mcp-request-trigger:hover:not(:disabled),
+  .native-processes-task:not(.is-selected):hover {
+    border-color: var(--border-strong);
+  }
+}
+.native-processes-task:focus-within:not(.is-selected) {
+  border-color: var(--focus);
+}
+
+/* A real pending action stays legible while disabled. The existing spinner
+   and label own its status; this rule never implies success or adds progress. */
+.button:disabled:has(> :is(.spin, .chat-spin, .native-mcp-spin)),
+.icon-button:disabled:has(> :is(.spin, .chat-spin, .native-mcp-spin)) {
+  opacity: .75;
+  cursor: progress;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-standard: 0ms;
+    --motion-enter: 0ms;
+    --motion-exit: 0ms;
+  }
+  .spin, .modal-overlay, .modal, .toast, .workspace-welcome, .login-card {
+    animation: none !important;
+  }
+}

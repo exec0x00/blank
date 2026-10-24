@@ -1,0 +1,20 @@
+.editor-tree-scroll { --explorer-page-row-height: 34px; overflow-anchor: none; }
+.editor-tree-window-gap { width: 100%; }
+.editor-tree-entry.editor-tree-windowed { box-sizing: border-box; }
+.editor-tree-windowed > .editor-tree-message { height: 100%; box-sizing: border-box; }
+.editor-tree-windowed > .editor-tree-error { align-content: center; overflow: hidden; }
+.editor-tree-windowed > .editor-tree-error > span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.editor-tree-more { gap: 8px; padding: 0 8px; justify-content: space-between; min-height: 32px; }
+.editor-tree-more > span { font-size: 11px; white-space: nowrap; color: var(--muted); }
+.editor-tree-more > .button { gap: 4px; min-height: 28px; font-size: 12px; padding: 4px 8px; flex-shrink: 0; }
+.editor-tree-more > .button[aria-disabled="true"] { color: var(--faint); cursor: progress; }
+.editor-tree-more > .button:focus-visible { outline: 1px solid var(--focus); outline-offset: -1px; }
+@media (pointer: coarse), (max-width: 679px) {
+  .editor-tree-scroll { --explorer-page-row-height: 46px; }
+  .editor-tree-more { min-height: 44px; }
+  .editor-tree-more > .button { min-height: 44px; padding-inline: 10px; }
+}
+
+@container codex-editor (max-width: 640px) {
+  .editor-tree-scroll { --explorer-page-row-height: 46px; }
+}

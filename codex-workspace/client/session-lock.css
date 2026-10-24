@@ -1,0 +1,12 @@
+.login-lock-notice {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: left;
+}
+.login-card .login-lock-notice p { margin: 0; font-size: 12px; line-height: 1.5; }
+.login-lock-notice .button { align-self: flex-start; }

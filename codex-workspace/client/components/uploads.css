@@ -1,0 +1,36 @@
+.workspace-uploads { flex: 0 0 auto; min-width: 0; border-bottom: 1px solid var(--border); background: var(--panel); color: var(--text); }
+.workspace-upload-heading { display: flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 10px 0 12px; font-size: 11px; }
+.workspace-upload-heading > span:first-child { font-weight: 550; }
+.workspace-upload-count { flex: 1; color: var(--faint); text-align: right; font-size: 10px; font-variant-numeric: tabular-nums; }
+.workspace-upload-action { min-width: 44px; min-height: 44px; padding: 0 8px; display: inline-flex; align-items: center; justify-content: center; border-radius: 7px; color: var(--muted); font-size: 11px; }
+.workspace-upload-action:hover { color: var(--text); background: var(--panel-3); }
+.workspace-upload-action:disabled { cursor: default; opacity: .6; }
+.workspace-upload-action:focus-visible { outline: 1px solid var(--text); outline-offset: -3px; }
+.workspace-upload-dismiss { padding: 0; }
+.workspace-upload-list { margin: 0; padding: 0; max-height: min(260px, 30dvh); overflow: auto; list-style: none; overscroll-behavior: contain; }
+.workspace-upload-list.is-windowed { display: flex; flex-direction: column; gap: 0; height: min(260px, 30dvh); overflow-anchor: none; scrollbar-gutter: stable; }
+.workspace-upload-list.is-windowed:focus-visible, .workspace-upload-list.is-windowed .workspace-upload-item:focus-visible { outline: 1px solid var(--text); outline-offset: -2px; }
+.workspace-upload-list.is-windowed .workspace-upload-item { min-height: 44px; }
+.workspace-upload-list.is-windowed .workspace-upload-item.is-selected { background: var(--panel-2); }
+.workspace-upload-overview { display: flex; align-items: center; gap: 7px; min-width: 0; padding: 0 10px 0 12px; }
+.workspace-upload-summary { flex: 1; min-width: 0; margin: 0; padding: 0 0 9px; color: var(--muted); font-size: 10px; line-height: 1.5; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.workspace-uploads-windowed .workspace-upload-heading { flex-wrap: wrap; gap: 0 7px; }
+.workspace-upload-item { padding: 9px 12px 11px; border-top: 1px solid var(--border); }
+.workspace-upload-file { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.workspace-upload-icon { color: var(--muted); flex: 0 0 15px; display: inline-flex; align-items: center; justify-content: center; }
+.workspace-upload-file > strong { flex: 1; min-width: 0; color: var(--text); font-size: 11px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.workspace-upload-file > span:last-child { flex-shrink: 0; font-size: 10px; color: var(--faint); font-variant-numeric: tabular-nums; }
+.workspace-upload-status { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 7px 0 0 22px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+.workspace-upload-status > span:last-child:not(:first-child) { color: var(--faint); font-variant-numeric: tabular-nums; }
+.workspace-upload-track { height: 3px; margin: 7px 0 1px 22px; overflow: hidden; border-radius: 3px; background: var(--border); }
+.workspace-upload-track > span { display: block; height: 100%; background: var(--text); border-radius: inherit; transition: width 100ms linear; }
+.workspace-upload-track.is-waiting > span { width: 28%; background: var(--muted); animation: workspace-upload-wait 1500ms ease-in-out infinite; }
+.workspace-upload-error, .workspace-upload-note { margin: 7px 0 0 22px; font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+.workspace-upload-error { color: var(--red); }
+.workspace-upload-note { color: var(--faint); }
+.workspace-upload-spin { animation: workspace-upload-spin 900ms linear infinite; }
+@keyframes workspace-upload-spin { to { transform: rotate(360deg); } }
+@keyframes workspace-upload-wait { 0%, 100% { transform: translateX(-100%); } 50% { transform: translateX(360%); } }
+@media (max-width: 640px) { .workspace-upload-heading { padding-left: 14px; } .workspace-upload-item { padding: 10px 14px 12px; } .workspace-upload-file > strong, .workspace-upload-action { font-size: 12px; } .workspace-upload-status { font-size: 11px; } .workspace-upload-list { max-height: min(240px, 28dvh); } }
+@media (max-width: 640px) { .workspace-upload-list.is-windowed { height: min(240px, 28dvh); } .workspace-upload-overview { padding-left: 14px; } .workspace-upload-summary { font-size: 11px; } }
+@media (prefers-reduced-motion: reduce) { .workspace-upload-spin, .workspace-upload-track.is-waiting > span { animation: none; } .workspace-upload-track > span { transition: none; } .workspace-upload-track.is-waiting > span { width: 100%; opacity: .45; } }

@@ -1,0 +1,1783 @@
+{
+  "measurementNotes": {
+    "units": "Milliseconds unless an individual field explicitly says otherwise.",
+    "localBeforeAfter": "Matched real HTTP fixture; source before and after API performance changes. A temporary server request timer measured application processing until response headers, including authentication.",
+    "localCurrent": "Committed scripts/benchmark-api.ts uses authenticated-route Server-Timing, which excludes the authentication middleware. Compare like scopes.",
+    "hostedBaseline": "24 samples per route on the deployed Space before these API performance changes, with a new isolated 65-file Git workspace.",
+    "hostedScriptSmoke": "5 samples per route on the following provider/style release, before API performance changes. Confirms hosted execution and removal of fixture files/registration/PTY; small sample and visible outliers are not used as a post-change performance comparison.",
+    "cold": "First observed request after application setup, not a claim of uncached hosting hardware or an empty native storage cache.",
+    "metadataScan": "Local filesystem test, not an extrapolation to the native HF bucket. API requests execute while a real metadata capture scans 10,000 files.",
+    "nativeBucketTimestampProbe": "Only an isolated generated file was used. Workspace/PTY and generated files removed afterwards.",
+    "hostedPerformanceReleaseInterrupted": "Incomplete attempted post-change benchmark on exact source/runtime40d2770484149b3922b82aea3b54bb3e18b31577. Own workspace registration disappeared during concurrent workspace creation; benchmark retries held for investigation. Excluded from completed comparisons.",
+    "hostedAfterRegistryHotfix65Files": "Successful complete24-sample-per-route profile on exact source/runtimea785470ccb66be1e8c7992905be7663d1332d9b3. RUNNING before/after, own fixture removed,4 original registrations and active selection preserved. This profile includes the independent workspace registry correction; later full-release account/session changes are outside its scope. Tail latency is material and is retained without filtering.",
+    "nativeFilesystemLookupCosts": "Read-only native /data probe from its own temporary PTY in an existing owned QA workspace. Output is timing/counts only, selected reads are non-credential workspace metadata; no state mutations. PTY removed and active selection preserved.",
+    "nativeWorkspaceListReadOnlyReplay": "Six exact private listing methods from frozen a785 and pending main, same JsonStore bytes, extracted into standalone readers. Ten alternating-order rounds1100ms apart against actual native /data. No initialize/migrate/mutate calls, no workspace/preferences changes, own PTY removed. Measures listing cost only; final HTTP deployment remains separate.",
+    "nativeProfilerCommittedScriptCheck": "Parameterised scripts/profile-native-storage.mjs was executed on an owned existing QA workspace with private session file. It reproduced negative-lookup costs, removed only its PTY, and printed confirmation of unchanged active workspace and preserved QA workspace."
+  },
+  "reports": {
+    "localBefore513Files": {
+      "capturedAt": "2026-09-19T11:00:15.423Z",
+      "mode": "local",
+      "fixture": {
+        "files": 513,
+        "fileBytes": 4608,
+        "samples": 24
+      },
+      "cold": {
+        "health": {
+          "durationMs": 4.931971999999973,
+          "appMs": 0.523
+        },
+        "session": {
+          "durationMs": 3.302353000000039,
+          "appMs": 0.736
+        },
+        "bootstrap": {
+          "durationMs": 3.688984000000005,
+          "appMs": 1.956
+        },
+        "workspaces": {
+          "durationMs": 2.8702030000000605,
+          "appMs": 1.095
+        },
+        "tree": {
+          "durationMs": 37.381758999999875,
+          "appMs": 32.364
+        },
+        "file": {
+          "durationMs": 4.433708000000024,
+          "appMs": 2.011
+        },
+        "gitStatus": {
+          "durationMs": 21.095808000000034,
+          "appMs": 18.111
+        }
+      },
+      "warm": {
+        "health": {
+          "count": 24,
+          "total": {
+            "p50": 1.0919420000000173,
+            "p95": 1.805742999999893
+          },
+          "app": {
+            "p50": 0.182,
+            "p95": 0.271
+          }
+        },
+        "session": {
+          "count": 24,
+          "total": {
+            "p50": 1.0398119999999835,
+            "p95": 1.5747559999999794
+          },
+          "app": {
+            "p50": 0.243,
+            "p95": 0.322
+          }
+        },
+        "bootstrap": {
+          "count": 24,
+          "total": {
+            "p50": 1.4492060000002311,
+            "p95": 1.7189370000000963
+          },
+          "app": {
+            "p50": 0.674,
+            "p95": 0.848
+          }
+        },
+        "workspaces": {
+          "count": 24,
+          "total": {
+            "p50": 1.2523689999998169,
+            "p95": 1.3640659999996387
+          },
+          "app": {
+            "p50": 0.454,
+            "p95": 0.525
+          }
+        },
+        "tree": {
+          "count": 24,
+          "total": {
+            "p50": 18.141809999999623,
+            "p95": 23.431164999999964
+          },
+          "app": {
+            "p50": 16.422,
+            "p95": 21.855
+          }
+        },
+        "file": {
+          "count": 24,
+          "total": {
+            "p50": 1.903559000000314,
+            "p95": 2.2499769999999444
+          },
+          "app": {
+            "p50": 0.775,
+            "p95": 0.97
+          }
+        },
+        "gitStatus": {
+          "count": 24,
+          "total": {
+            "p50": 23.25887000000057,
+            "p95": 35.815104999999676
+          },
+          "app": {
+            "p50": 21.306,
+            "p95": 34.03
+          }
+        },
+        "save": {
+          "count": 24,
+          "total": {
+            "p50": 4.107035999999425,
+            "p95": 6.085224999999809
+          },
+          "app": {
+            "p50": 2.413,
+            "p95": 3.721
+          }
+        }
+      }
+    },
+    "localAfter513Files": {
+      "capturedAt": "2026-09-19T11:01:48.863Z",
+      "mode": "local",
+      "fixture": {
+        "files": 513,
+        "fileBytes": 4608,
+        "samples": 24
+      },
+      "cold": {
+        "health": {
+          "durationMs": 3.8727850000000217,
+          "appMs": 0.412
+        },
+        "session": {
+          "durationMs": 2.766340000000014,
+          "appMs": 0.597
+        },
+        "bootstrap": {
+          "durationMs": 3.140041999999994,
+          "appMs": 1.622
+        },
+        "workspaces": {
+          "durationMs": 2.300707999999986,
+          "appMs": 0.922
+        },
+        "tree": {
+          "durationMs": 23.99649399999987,
+          "appMs": 17.619
+        },
+        "file": {
+          "durationMs": 4.793154999999842,
+          "appMs": 2.415
+        },
+        "gitStatus": {
+          "durationMs": 23.030193999999938,
+          "appMs": 19.659
+        }
+      },
+      "warm": {
+        "health": {
+          "count": 24,
+          "total": {
+            "p50": 1.2832579999999325,
+            "p95": 1.9834960000002866
+          },
+          "app": {
+            "p50": 0.2,
+            "p95": 0.307
+          }
+        },
+        "session": {
+          "count": 24,
+          "total": {
+            "p50": 1.0630380000002333,
+            "p95": 1.225793000000067
+          },
+          "app": {
+            "p50": 0.244,
+            "p95": 0.348
+          }
+        },
+        "bootstrap": {
+          "count": 24,
+          "total": {
+            "p50": 1.2884869999998045,
+            "p95": 1.79898299999968
+          },
+          "app": {
+            "p50": 0.507,
+            "p95": 0.901
+          }
+        },
+        "workspaces": {
+          "count": 24,
+          "total": {
+            "p50": 1.154095999999754,
+            "p95": 1.4652670000000398
+          },
+          "app": {
+            "p50": 0.386,
+            "p95": 0.511
+          }
+        },
+        "tree": {
+          "count": 24,
+          "total": {
+            "p50": 6.601404999999886,
+            "p95": 9.095290000000205
+          },
+          "app": {
+            "p50": 4.903,
+            "p95": 6.999
+          }
+        },
+        "file": {
+          "count": 24,
+          "total": {
+            "p50": 1.8443099999999504,
+            "p95": 2.029054999999971
+          },
+          "app": {
+            "p50": 0.724,
+            "p95": 0.811
+          }
+        },
+        "gitStatus": {
+          "count": 24,
+          "total": {
+            "p50": 17.710336000000098,
+            "p95": 37.581474999999955
+          },
+          "app": {
+            "p50": 16.094,
+            "p95": 33.49
+          }
+        },
+        "save": {
+          "count": 24,
+          "total": {
+            "p50": 3.492135999999846,
+            "p95": 4.167175999999927
+          },
+          "app": {
+            "p50": 2.01,
+            "p95": 2.685
+          }
+        }
+      }
+    },
+    "localCurrent65Files": {
+      "capturedAt": "2026-09-19T11:03:30.294Z",
+      "startedAt": "2026-09-19T11:03:27.223Z",
+      "mode": "local",
+      "fixture": {
+        "files": 65,
+        "initialFileBytes": 4608,
+        "samples": 24
+      },
+      "first": {
+        "health": {
+          "totalMs": 4.213822999999991
+        },
+        "session": {
+          "totalMs": 2.54669100000001
+        },
+        "bootstrap": {
+          "totalMs": 5.080010000000016,
+          "appMs": 1.375
+        },
+        "workspaces": {
+          "totalMs": 2.3339979999999514,
+          "appMs": 0.631
+        },
+        "tree": {
+          "totalMs": 14.722391000000016,
+          "appMs": 9.81
+        },
+        "file": {
+          "totalMs": 4.272495000000049,
+          "appMs": 1.654
+        },
+        "gitStatus": {
+          "totalMs": 19.90988399999992,
+          "appMs": 17.107
+        },
+        "save": {
+          "totalMs": 6.25244500000008,
+          "appMs": 3.327
+        }
+      },
+      "warm": {
+        "health": {
+          "count": 24,
+          "totalMs": {
+            "p50": 1.175,
+            "p95": 2.136
+          }
+        },
+        "session": {
+          "count": 24,
+          "totalMs": {
+            "p50": 1.015,
+            "p95": 1.134
+          }
+        },
+        "bootstrap": {
+          "count": 24,
+          "totalMs": {
+            "p50": 1.34,
+            "p95": 1.538
+          },
+          "appMs": {
+            "p50": 0.333,
+            "p95": 0.465
+          }
+        },
+        "workspaces": {
+          "count": 24,
+          "totalMs": {
+            "p50": 1.184,
+            "p95": 1.263
+          },
+          "appMs": {
+            "p50": 0.214,
+            "p95": 0.239
+          }
+        },
+        "tree": {
+          "count": 24,
+          "totalMs": {
+            "p50": 2.633,
+            "p95": 3.793
+          },
+          "appMs": {
+            "p50": 1.154,
+            "p95": 1.434
+          }
+        },
+        "file": {
+          "count": 24,
+          "totalMs": {
+            "p50": 1.806,
+            "p95": 5.735
+          },
+          "appMs": {
+            "p50": 0.493,
+            "p95": 1.246
+          }
+        },
+        "gitStatus": {
+          "count": 24,
+          "totalMs": {
+            "p50": 17.515,
+            "p95": 21.789
+          },
+          "appMs": {
+            "p50": 15.787,
+            "p95": 20.044
+          }
+        },
+        "save": {
+          "count": 24,
+          "totalMs": {
+            "p50": 3.213,
+            "p95": 4.504
+          },
+          "appMs": {
+            "p50": 1.576,
+            "p95": 1.894
+          }
+        }
+      },
+      "cleanup": "isolated-directory-removed-on-exit"
+    },
+    "hostedBaseline65Files": {
+      "capturedAt": "2026-09-19T10:55:29.242Z",
+      "mode": "hosted",
+      "fixture": {
+        "files": 65,
+        "fileBytes": 4608,
+        "samples": 24
+      },
+      "cold": {
+        "health": {
+          "durationMs": 126.43447499999996
+        },
+        "session": {
+          "durationMs": 71.65475600000002
+        },
+        "bootstrap": {
+          "durationMs": 292.086762
+        },
+        "workspaces": {
+          "durationMs": 26.797879999999964
+        },
+        "tree": {
+          "durationMs": 33.2840090000002
+        },
+        "file": {
+          "durationMs": 28.288095999999996
+        },
+        "gitStatus": {
+          "durationMs": 57.21196399999985
+        }
+      },
+      "warm": {
+        "health": {
+          "count": 24,
+          "total": {
+            "p50": 26.478746999999885,
+            "p95": 27.40866600000004
+          }
+        },
+        "session": {
+          "count": 24,
+          "total": {
+            "p50": 26.766320000000178,
+            "p95": 28.91395199999988
+          }
+        },
+        "bootstrap": {
+          "count": 24,
+          "total": {
+            "p50": 28.420869999999923,
+            "p95": 35.499526999999944
+          }
+        },
+        "workspaces": {
+          "count": 24,
+          "total": {
+            "p50": 27.48410399999966,
+            "p95": 29.4091370000001
+          }
+        },
+        "tree": {
+          "count": 24,
+          "total": {
+            "p50": 30.431838999999854,
+            "p95": 38.41951100000006
+          }
+        },
+        "file": {
+          "count": 24,
+          "total": {
+            "p50": 28.320096999999805,
+            "p95": 30.457492999999886
+          }
+        },
+        "gitStatus": {
+          "count": 24,
+          "total": {
+            "p50": 52.57668300000023,
+            "p95": 71.23314399999981
+          }
+        },
+        "save": {
+          "count": 24,
+          "total": {
+            "p50": 32.249094000000696,
+            "p95": 45.71553899999981
+          }
+        }
+      }
+    },
+    "hostedScriptSmoke5Files": {
+      "capturedAt": "2026-09-19T11:04:26.834Z",
+      "startedAt": "2026-09-19T11:04:21.623Z",
+      "mode": "hosted",
+      "fixture": {
+        "files": 5,
+        "initialFileBytes": 4608,
+        "samples": 5
+      },
+      "first": {
+        "health": {
+          "totalMs": 129.85454199999998
+        },
+        "session": {
+          "totalMs": 78.81941999999998
+        },
+        "bootstrap": {
+          "totalMs": 135.16312499999992
+        },
+        "workspaces": {
+          "totalMs": 49.45634300000006
+        },
+        "tree": {
+          "totalMs": 32.00441699999999
+        },
+        "file": {
+          "totalMs": 31.115530000000035
+        },
+        "gitStatus": {
+          "totalMs": 48.106054000000086
+        },
+        "save": {
+          "totalMs": 35.40511800000013
+        }
+      },
+      "warm": {
+        "health": {
+          "count": 5,
+          "totalMs": {
+            "p50": 28.545,
+            "p95": 41.679
+          }
+        },
+        "session": {
+          "count": 5,
+          "totalMs": {
+            "p50": 28.81,
+            "p95": 42.382
+          }
+        },
+        "bootstrap": {
+          "count": 5,
+          "totalMs": {
+            "p50": 29.319,
+            "p95": 76.925
+          }
+        },
+        "workspaces": {
+          "count": 5,
+          "totalMs": {
+            "p50": 28.566,
+            "p95": 31.176
+          }
+        },
+        "tree": {
+          "count": 5,
+          "totalMs": {
+            "p50": 30.125,
+            "p95": 350.117
+          }
+        },
+        "file": {
+          "count": 5,
+          "totalMs": {
+            "p50": 30.419,
+            "p95": 179.307
+          }
+        },
+        "gitStatus": {
+          "count": 5,
+          "totalMs": {
+            "p50": 47.694,
+            "p95": 49.947
+          }
+        },
+        "save": {
+          "count": 5,
+          "totalMs": {
+            "p50": 44.475,
+            "p95": 46.251
+          }
+        }
+      },
+      "cleanup": "fixture-files-and-registration-removed"
+    },
+    "localMetadataScan10000Files": {
+      "capturedAt": "2026-09-19T11:04:01.868Z",
+      "fixture": {
+        "files": 10000,
+        "folders": 20
+      },
+      "captureMs": 723.9080089999998,
+      "cpuMs": {
+        "user": 1059.805,
+        "system": 162.533
+      },
+      "eventLoopMs": {
+        "p50": 0.988159,
+        "p95": 1.429503,
+        "max": 8.429567
+      },
+      "idle": {
+        "count": 50,
+        "totalMs": {
+          "p50": 1.4590739999998732,
+          "p95": 3.01591099999996
+        },
+        "appMs": {
+          "p50": 0.37,
+          "p95": 0.74
+        }
+      },
+      "duringCapture": {
+        "count": 483,
+        "totalMs": {
+          "p50": 1.4054810000002362,
+          "p95": 1.7974770000000717
+        },
+        "appMs": {
+          "p50": 0.349,
+          "p95": 0.505
+        }
+      },
+      "metadata": {
+        "initialized": true,
+        "capturing": false,
+        "entries": 24,
+        "revision": 2,
+        "lastCapturedAt": "2026-09-19T11:04:01.865Z",
+        "lastSavedAt": "2026-09-19T11:04:01.865Z",
+        "error": null,
+        "issues": [],
+        "issueCount": 0
+      }
+    },
+    "nativeBucketTimestampProbe": {
+      "capturedAt": "2026-09-19T10:58:07.562Z",
+      "results": [
+        {
+          "delaySeconds": 0,
+          "before": {
+            "dev": 42991732,
+            "ino": 299,
+            "size": 15,
+            "mtimeNs": 1700000000000000000,
+            "ctimeNs": 1789815485395193000
+          },
+          "after": {
+            "dev": 42991732,
+            "ino": 299,
+            "size": 15,
+            "mtimeNs": 1700000000000000000,
+            "ctimeNs": 1789815485395419600
+          },
+          "wallNs": 1789815485395434200
+        },
+        {
+          "delaySeconds": 0.01,
+          "before": {
+            "dev": 42991732,
+            "ino": 299,
+            "size": 15,
+            "mtimeNs": 1700000000000000000,
+            "ctimeNs": 1789815485395544000
+          },
+          "after": {
+            "dev": 42991732,
+            "ino": 299,
+            "size": 15,
+            "mtimeNs": 1700000000000000000,
+            "ctimeNs": 1789815485405852000
+          },
+          "wallNs": 1789815485405871600
+        },
+        {
+          "delaySeconds": 2.1,
+          "before": {
+            "dev": 42991732,
+            "ino": 299,
+            "size": 15,
+            "mtimeNs": 1700000000000000000,
+            "ctimeNs": 1789815485406074600
+          },
+          "after": {
+            "dev": 42991732,
+            "ino": 299,
+            "size": 15,
+            "mtimeNs": 1700000000000000000,
+            "ctimeNs": 1789815487506539300
+          },
+          "wallNs": 1789815487506560300
+        }
+      ]
+    },
+    "hostedPerformanceReleaseInterrupted": {
+      "status": "failed-profile-retained-for-investigation",
+      "expectedRelease": "40d2770484149b3922b82aea3b54bb3e18b31577",
+      "beforeRelease": {
+        "checkedAt": "2026-09-19T12:14:18.351Z",
+        "sourceSha": "40d2770484149b3922b82aea3b54bb3e18b31577",
+        "runtimeSha": "40d2770484149b3922b82aea3b54bb3e18b31577",
+        "stage": "RUNNING"
+      },
+      "afterReleaseGuardPassed": true,
+      "existingWorkspaceCountBefore": 2,
+      "fixtureId": "cb98ab09-3f16-4554-8b83-6fd48d191afd",
+      "completedActions": [
+        "created isolated Git workspace via POST /api/workspaces",
+        "wrote benchmark.txt and 64 generated fixture files through file PUT API",
+        "successful first tree, file read, Git status and version-checked save",
+        "waited 2.1 seconds for metadata timestamp admission",
+        "completed 24 warm health, session, bootstrap and workspace-list samples"
+      ],
+      "failure": {
+        "route": "GET /api/workspaces/cb98ab09-3f16-4554-8b83-6fd48d191afd/tree",
+        "status": 404,
+        "code": "WORKSPACE_NOT_FOUND"
+      },
+      "cleanup": "automatic own-fixture cleanup could not create terminal because registration was missing; no file deletion performed",
+      "partialWarm": {
+        "health": {
+          "count": 24,
+          "totalMs": {
+            "p50": 28.294,
+            "p95": 32.625
+          }
+        },
+        "session": {
+          "count": 24,
+          "totalMs": {
+            "p50": 29.043,
+            "p95": 32.961
+          }
+        },
+        "bootstrap": {
+          "count": 24,
+          "totalMs": {
+            "p50": 30.626,
+            "p95": 57.981
+          },
+          "appMs": {
+            "p50": 0.87,
+            "p95": 24.092
+          }
+        },
+        "workspaces": {
+          "count": 24,
+          "totalMs": {
+            "p50": 29.576,
+            "p95": 43.712
+          },
+          "appMs": {
+            "p50": 0.58,
+            "p95": 0.901
+          }
+        }
+      },
+      "followupOwnTreeAndFileStatus": 404,
+      "notes": "Partial data is not a successful before/after comparison. Root asked all retries held while registry loss is investigated."
+    },
+    "hostedAfterRegistryHotfix65Files": {
+      "capturedAt": "2026-09-19T12:42:26.338Z",
+      "startedAt": "2026-09-19T12:42:10.686Z",
+      "mode": "hosted",
+      "fixture": {
+        "files": 65,
+        "initialFileBytes": 4608,
+        "samples": 24
+      },
+      "first": {
+        "health": {
+          "totalMs": 128.28828600000008
+        },
+        "session": {
+          "totalMs": 68.52278899999999
+        },
+        "bootstrap": {
+          "totalMs": 519.7092410000001,
+          "appMs": 473.679
+        },
+        "workspaces": {
+          "totalMs": 44.65841299999988,
+          "appMs": 1.608
+        },
+        "tree": {
+          "totalMs": 34.165379999999914,
+          "appMs": 3.59
+        },
+        "file": {
+          "totalMs": 78.20617399999992,
+          "appMs": 49.226
+        },
+        "gitStatus": {
+          "totalMs": 49.35091199999988,
+          "appMs": 20.557
+        },
+        "save": {
+          "totalMs": 51.96723100000008,
+          "appMs": 19.813
+        }
+      },
+      "warm": {
+        "health": {
+          "count": 24,
+          "totalMs": {
+            "p50": 27.603,
+            "p95": 30.201
+          }
+        },
+        "session": {
+          "count": 24,
+          "totalMs": {
+            "p50": 26.907,
+            "p95": 29.985
+          }
+        },
+        "bootstrap": {
+          "count": 24,
+          "totalMs": {
+            "p50": 30.867,
+            "p95": 923.567
+          },
+          "appMs": {
+            "p50": 1.852,
+            "p95": 889.65
+          }
+        },
+        "workspaces": {
+          "count": 24,
+          "totalMs": {
+            "p50": 30.696,
+            "p95": 193.446
+          },
+          "appMs": {
+            "p50": 1.534,
+            "p95": 154.257
+          }
+        },
+        "tree": {
+          "count": 24,
+          "totalMs": {
+            "p50": 29.041,
+            "p95": 35.16
+          },
+          "appMs": {
+            "p50": 1.955,
+            "p95": 5.209
+          }
+        },
+        "file": {
+          "count": 24,
+          "totalMs": {
+            "p50": 28.643,
+            "p95": 80.5
+          },
+          "appMs": {
+            "p50": 0.955,
+            "p95": 53.635
+          }
+        },
+        "gitStatus": {
+          "count": 24,
+          "totalMs": {
+            "p50": 47.945,
+            "p95": 90.377
+          },
+          "appMs": {
+            "p50": 20.546,
+            "p95": 29.762
+          }
+        },
+        "save": {
+          "count": 24,
+          "totalMs": {
+            "p50": 32.666,
+            "p95": 54.63
+          },
+          "appMs": {
+            "p50": 3.193,
+            "p95": 18.12
+          }
+        }
+      },
+      "cleanup": "fixture-files-and-registration-removed",
+      "releaseVerification": {
+        "before": {
+          "checkedAt": "2026-09-19T12:42:09.653Z",
+          "sourceSha": "a785470ccb66be1e8c7992905be7663d1332d9b3",
+          "runtimeSha": "a785470ccb66be1e8c7992905be7663d1332d9b3",
+          "stage": "RUNNING"
+        },
+        "after": {
+          "checkedAt": "2026-09-19T12:42:27.039Z",
+          "sourceSha": "a785470ccb66be1e8c7992905be7663d1332d9b3",
+          "runtimeSha": "a785470ccb66be1e8c7992905be7663d1332d9b3",
+          "stage": "RUNNING"
+        }
+      },
+      "workspaceVerification": {
+        "activeSelectionPreserved": true,
+        "existingRegistrationsPreserved": true,
+        "registrationSetUnchanged": true,
+        "beforeCount": 4,
+        "afterCount": 4
+      }
+    },
+    "nativeFilesystemLookupCosts": {
+      "capturedAt": "2026-09-19T13:02:07.622Z",
+      "node": "v22.23.2",
+      "elapsedMs": 11028.688,
+      "registryCounts": {
+        "entries": 32,
+        "current": 3,
+        "legacyBase": 0,
+        "legacyVersions": 3,
+        "archived": 1
+      },
+      "measurements": {
+        "existingStat": {
+          "count": 20,
+          "hits": 20,
+          "misses": 0,
+          "firstMs": 0.064,
+          "p50Ms": 0.02,
+          "p95Ms": 0.064,
+          "maxMs": 0.075,
+          "samplesMs": [
+            0.064,
+            0.045,
+            0.031,
+            0.026,
+            0.02,
+            0.018,
+            0.016,
+            0.075,
+            0.034,
+            0.025,
+            0.016,
+            0.029,
+            0.015,
+            0.015,
+            0.017,
+            0.023,
+            0.012,
+            0.015,
+            0.014,
+            0.021
+          ]
+        },
+        "existingRead": {
+          "count": 20,
+          "hits": 20,
+          "misses": 0,
+          "bytesRead": 4840,
+          "firstMs": 0.487,
+          "p50Ms": 0.086,
+          "p95Ms": 0.487,
+          "maxMs": 0.619,
+          "samplesMs": [
+            0.487,
+            0.116,
+            0.086,
+            0.08,
+            0.086,
+            0.079,
+            0.619,
+            0.139,
+            0.172,
+            0.153,
+            0.132,
+            0.14,
+            0.142,
+            0.08,
+            0.079,
+            0.078,
+            0.079,
+            0.077,
+            0.076,
+            0.122
+          ]
+        },
+        "directoryList": {
+          "count": 20,
+          "hits": 20,
+          "misses": 0,
+          "firstMs": 0.254,
+          "p50Ms": 0.098,
+          "p95Ms": 0.187,
+          "maxMs": 0.254,
+          "samplesMs": [
+            0.254,
+            0.187,
+            0.117,
+            0.131,
+            0.101,
+            0.092,
+            0.097,
+            0.15,
+            0.119,
+            0.101,
+            0.098,
+            0.097,
+            0.094,
+            0.098,
+            0.096,
+            0.092,
+            0.096,
+            0.099,
+            0.104,
+            0.093
+          ]
+        },
+        "sameMissingStatBurst": {
+          "count": 20,
+          "hits": 0,
+          "misses": 20,
+          "firstMs": 56.567,
+          "p50Ms": 0.039,
+          "p95Ms": 0.141,
+          "maxMs": 56.567,
+          "samplesMs": [
+            56.567,
+            0.119,
+            0.081,
+            0.042,
+            0.051,
+            0.039,
+            0.046,
+            0.065,
+            0.04,
+            0.141,
+            0.039,
+            0.033,
+            0.056,
+            0.035,
+            0.036,
+            0.031,
+            0.032,
+            0.032,
+            0.034,
+            0.034
+          ]
+        },
+        "sameMissingReadBurst": {
+          "count": 20,
+          "hits": 0,
+          "misses": 20,
+          "firstMs": 0.07,
+          "p50Ms": 0.039,
+          "p95Ms": 0.07,
+          "maxMs": 0.566,
+          "samplesMs": [
+            0.07,
+            0.039,
+            0.04,
+            0.037,
+            0.053,
+            0.038,
+            0.037,
+            0.035,
+            0.046,
+            0.039,
+            0.037,
+            0.033,
+            0.035,
+            0.046,
+            0.037,
+            0.036,
+            0.049,
+            0.039,
+            0.04,
+            0.566
+          ]
+        },
+        "newMissingStat": {
+          "count": 10,
+          "hits": 0,
+          "misses": 10,
+          "firstMs": 45.738,
+          "p50Ms": 45.795,
+          "p95Ms": 54.052,
+          "maxMs": 54.052,
+          "samplesMs": [
+            45.738,
+            44.693,
+            47.383,
+            45.409,
+            42.428,
+            46.925,
+            51.819,
+            52.113,
+            54.052,
+            45.795
+          ]
+        },
+        "newMissingRead": {
+          "count": 10,
+          "hits": 0,
+          "misses": 10,
+          "firstMs": 55.166,
+          "p50Ms": 49.99,
+          "p95Ms": 63.982,
+          "maxMs": 63.982,
+          "samplesMs": [
+            55.166,
+            44.309,
+            50.239,
+            47.629,
+            44.902,
+            49.02,
+            54.876,
+            49.99,
+            52.28,
+            63.982
+          ]
+        },
+        "sameMissingStat1100msApart": {
+          "count": 6,
+          "hits": 0,
+          "misses": 6,
+          "firstMs": 66.529,
+          "p50Ms": 50.976,
+          "p95Ms": 66.529,
+          "maxMs": 66.529,
+          "samplesMs": [
+            66.529,
+            48.164,
+            52.197,
+            59.215,
+            50.976,
+            48.458
+          ]
+        },
+        "existingStatAfter11seconds": {
+          "count": 5,
+          "hits": 5,
+          "misses": 0,
+          "firstMs": 25.227,
+          "p50Ms": 0.042,
+          "p95Ms": 25.227,
+          "maxMs": 25.227,
+          "samplesMs": [
+            25.227,
+            0.069,
+            0.036,
+            0.042,
+            0.016
+          ]
+        },
+        "directoryListAfter11seconds": {
+          "count": 5,
+          "hits": 5,
+          "misses": 0,
+          "firstMs": 0.346,
+          "p50Ms": 0.159,
+          "p95Ms": 0.346,
+          "maxMs": 0.346,
+          "samplesMs": [
+            0.346,
+            0.194,
+            0.159,
+            0.129,
+            0.151
+          ]
+        }
+      }
+    },
+    "workspaceListCallCountsBefore": {
+      "capturedAt": "2026-09-19T13:04:57.884Z",
+      "fixture": {
+        "current": 3,
+        "legacyVersions": 3,
+        "archived": 1,
+        "visible": 4
+      },
+      "samples": [
+        {
+          "name": "list",
+          "calls": {
+            "stat": 15,
+            "readdir": 1
+          },
+          "missing": 8,
+          "missingByKind": {
+            "archive": 4,
+            "current": 2,
+            "legacy": 2
+          },
+          "fileTimeMs": 2.2223149999999805,
+          "totalMs": 0.8456460000002153,
+          "returned": 4
+        },
+        {
+          "name": "getModern",
+          "calls": {
+            "stat": 2
+          },
+          "missing": 1,
+          "missingByKind": {
+            "archive": 1
+          },
+          "fileTimeMs": 0.09636800000043877,
+          "totalMs": 0.15391300000010233,
+          "returned": 1
+        },
+        {
+          "name": "getLegacy",
+          "calls": {
+            "stat": 7
+          },
+          "missing": 5,
+          "missingByKind": {
+            "archive": 2,
+            "current": 2,
+            "legacy": 1
+          },
+          "fileTimeMs": 0.2093500000005406,
+          "totalMs": 0.2741790000000037,
+          "returned": 1
+        }
+      ]
+    },
+    "workspaceListCallCountsAfter": {
+      "capturedAt": "2026-09-19T13:06:27.296Z",
+      "fixture": {
+        "current": 3,
+        "legacyVersions": 3,
+        "archived": 1,
+        "visible": 4
+      },
+      "samples": [
+        {
+          "name": "list",
+          "calls": {
+            "stat": 7,
+            "readdir": 1
+          },
+          "missing": 0,
+          "missingByKind": {},
+          "fileTimeMs": 0.9215260000005401,
+          "totalMs": 0.6346649999995861,
+          "returned": 4
+        },
+        {
+          "name": "getModern",
+          "calls": {
+            "stat": 2
+          },
+          "missing": 1,
+          "missingByKind": {
+            "archive": 1
+          },
+          "fileTimeMs": 0.220698000000084,
+          "totalMs": 0.2353170000001228,
+          "returned": 1
+        },
+        {
+          "name": "getLegacy",
+          "calls": {
+            "stat": 7
+          },
+          "missing": 5,
+          "missingByKind": {
+            "archive": 2,
+            "current": 2,
+            "legacy": 1
+          },
+          "fileTimeMs": 0.322559000000183,
+          "totalMs": 0.412717000000157,
+          "returned": 1
+        }
+      ]
+    },
+    "nativeWorkspaceListReadOnlyReplay": {
+      "capturedAt": "2026-09-19T13:09:53.983Z",
+      "scope": "read-only private listing methods extracted from frozen a785 source and pending main patch; no initialization/migration/mutations",
+      "before": {
+        "samples": 10,
+        "p50Ms": 430.565,
+        "p95Ms": 471.629,
+        "missingProbes": 80,
+        "statCalls": 140
+      },
+      "after": {
+        "samples": 10,
+        "p50Ms": 0.714,
+        "p95Ms": 1.078,
+        "missingProbes": 0,
+        "statCalls": 60
+      },
+      "samples": [
+        {
+          "round": 0,
+          "variant": "before",
+          "calls": {
+            "readdir": 1,
+            "stat": 14
+          },
+          "misses": 8,
+          "durationMs": 363.59,
+          "visible": 4
+        },
+        {
+          "round": 0,
+          "variant": "after",
+          "calls": {
+            "readdir": 1,
+            "stat": 6
+          },
+          "misses": 0,
+          "durationMs": 0.989,
+          "visible": 4
+        },
+        {
+          "round": 1,
+          "variant": "after",
+          "calls": {
+            "readdir": 1,
+            "stat": 6
+          },
+          "misses": 0,
+          "durationMs": 0.734,
+          "visible": 4
+        },
+        {
+          "round": 1,
+          "variant": "before",
+          "calls": {
+            "readdir": 1,
+            "stat": 14
+          },
+          "misses": 8,
+          "durationMs": 407.325,
+          "visible": 4
+        },
+        {
+          "round": 2,
+          "variant": "before",
+          "calls": {
+            "readdir": 1,
+            "stat": 14
+          },
+          "misses": 8,
+          "durationMs": 411.025,
+          "visible": 4
+        },
+        {
+          "round": 2,
+          "variant": "after",
+          "calls": {
+            "readdir": 1,
+            "stat": 6
+          },
+          "misses": 0,
+          "durationMs": 0.599,
+          "visible": 4
+        },
+        {
+          "round": 3,
+          "variant": "after",
+          "calls": {
+            "readdir": 1,
+            "stat": 6
+          },
+          "misses": 0,
+          "durationMs": 0.936,
+          "visible": 4
+        },
+        {
+          "round": 3,
+          "variant": "before",
+          "calls": {
+            "readdir": 1,
+            "stat": 14
+          },
+          "misses": 8,
+          "durationMs": 451.76,
+          "visible": 4
+        },
+        {
+          "round": 4,
+          "variant": "before",
+          "calls": {
+            "readdir": 1,
+            "stat": 14
+          },
+          "misses": 8,
+          "durationMs": 410.206,
+          "visible": 4
+        },
+        {
+          "round": 4,
+          "variant": "after",
+          "calls": {
+            "readdir": 1,
+            "stat": 6
+          },
+          "misses": 0,
+          "durationMs": 0.53,
+          "visible": 4
+        },
+        {
+          "round": 5,
+          "variant": "after",
+          "calls": {
+            "readdir": 1,
+            "stat": 6
+          },
+          "misses": 0,
+          "durationMs": 0.714,
+          "visible": 4
+        },
+        {
+          "round": 5,
+          "variant": "before",
+          "calls": {
+            "readdir": 1,
+            "stat": 14
+          },
+          "misses": 8,
+          "durationMs": 430.565,
+          "visible": 4
+        },
+        {
+          "round": 6,
+          "variant": "before",
+          "calls": {
+            "readdir": 1,
+            "stat": 14
+          },
+          "misses": 8,
+          "durationMs": 471.629,
+          "visible": 4
+        },
+        {
+          "round": 6,
+          "variant": "after",
+          "calls": {
+            "readdir": 1,
+            "stat": 6
+          },
+          "misses": 0,
+          "durationMs": 0.51,
+          "visible": 4
+        },
+        {
+          "round": 7,
+          "variant": "after",
+          "calls": {
+            "readdir": 1,
+            "stat": 6
+          },
+          "misses": 0,
+          "durationMs": 0.734,
+          "visible": 4
+        },
+        {
+          "round": 7,
+          "variant": "before",
+          "calls": {
+            "readdir": 1,
+            "stat": 14
+          },
+          "misses": 8,
+          "durationMs": 431.989,
+          "visible": 4
+        },
+        {
+          "round": 8,
+          "variant": "before",
+          "calls": {
+            "readdir": 1,
+            "stat": 14
+          },
+          "misses": 8,
+          "durationMs": 431.034,
+          "visible": 4
+        },
+        {
+          "round": 8,
+          "variant": "after",
+          "calls": {
+            "readdir": 1,
+            "stat": 6
+          },
+          "misses": 0,
+          "durationMs": 0.53,
+          "visible": 4
+        },
+        {
+          "round": 9,
+          "variant": "after",
+          "calls": {
+            "readdir": 1,
+            "stat": 6
+          },
+          "misses": 0,
+          "durationMs": 1.078,
+          "visible": 4
+        },
+        {
+          "round": 9,
+          "variant": "before",
+          "calls": {
+            "readdir": 1,
+            "stat": 14
+          },
+          "misses": 8,
+          "durationMs": 464.273,
+          "visible": 4
+        }
+      ],
+      "sourceVerification": {
+        "readerStoreIdenticalToHotfix": true,
+        "storeSha256": "f32ce8cce9ee6bce059cbf7888ae7d011b0b4dfac4eef0fd54381b192af090e3",
+        "beforeWorkspaceSha256": "ed9a89f823fcdebc2e3da0f18db0be588dd2893927a571e295a4e738c7753632",
+        "afterWorkspaceSha256": "32bff4430025a6f78633d45974982b007d44f1390e79be5fd9534cdc52fab577",
+        "compiledReadOnlyProbeSha256": "e2df5f3c045b71721b2140ff5891f5c893e0d4b9186e27bf3e3e10780628ba40"
+      }
+    },
+    "nativeProfilerCommittedScriptCheck": {
+      "capturedAt": "2026-09-19T13:16:45.945Z",
+      "node": "v22.23.2",
+      "elapsedMs": 11026.641,
+      "registryCounts": {
+        "entries": 36,
+        "current": 3,
+        "legacyBase": 0,
+        "legacyVersions": 3,
+        "archived": 1
+      },
+      "measurements": {
+        "existingStat": {
+          "count": 20,
+          "hits": 20,
+          "misses": 0,
+          "firstMs": 0.056,
+          "p50Ms": 0.022,
+          "p95Ms": 0.075,
+          "maxMs": 0.09,
+          "samplesMs": [
+            0.056,
+            0.041,
+            0.03,
+            0.04,
+            0.027,
+            0.075,
+            0.022,
+            0.09,
+            0.03,
+            0.021,
+            0.017,
+            0.03,
+            0.017,
+            0.021,
+            0.017,
+            0.027,
+            0.013,
+            0.022,
+            0.02,
+            0.014
+          ]
+        },
+        "existingRead": {
+          "count": 20,
+          "hits": 20,
+          "misses": 0,
+          "bytesRead": 4840,
+          "firstMs": 0.58,
+          "p50Ms": 0.173,
+          "p95Ms": 0.58,
+          "maxMs": 1.209,
+          "samplesMs": [
+            0.58,
+            0.214,
+            0.151,
+            0.126,
+            0.475,
+            0.238,
+            1.209,
+            0.246,
+            0.239,
+            0.329,
+            0.173,
+            0.131,
+            0.115,
+            0.176,
+            0.126,
+            0.107,
+            0.078,
+            0.272,
+            0.148,
+            0.136
+          ]
+        },
+        "directoryList": {
+          "count": 20,
+          "hits": 20,
+          "misses": 0,
+          "firstMs": 0.285,
+          "p50Ms": 0.14,
+          "p95Ms": 0.264,
+          "maxMs": 0.285,
+          "samplesMs": [
+            0.285,
+            0.229,
+            0.155,
+            0.185,
+            0.144,
+            0.115,
+            0.126,
+            0.264,
+            0.126,
+            0.14,
+            0.141,
+            0.162,
+            0.11,
+            0.146,
+            0.107,
+            0.154,
+            0.092,
+            0.09,
+            0.085,
+            0.086
+          ]
+        },
+        "sameMissingStatBurst": {
+          "count": 20,
+          "hits": 0,
+          "misses": 20,
+          "firstMs": 52.349,
+          "p50Ms": 0.101,
+          "p95Ms": 0.397,
+          "maxMs": 52.349,
+          "samplesMs": [
+            52.349,
+            0.167,
+            0.113,
+            0.207,
+            0.131,
+            0.397,
+            0.085,
+            0.084,
+            0.1,
+            0.241,
+            0.107,
+            0.084,
+            0.101,
+            0.067,
+            0.067,
+            0.054,
+            0.117,
+            0.092,
+            0.057,
+            0.227
+          ]
+        },
+        "sameMissingReadBurst": {
+          "count": 20,
+          "hits": 0,
+          "misses": 20,
+          "firstMs": 0.266,
+          "p50Ms": 0.05,
+          "p95Ms": 0.266,
+          "maxMs": 0.621,
+          "samplesMs": [
+            0.266,
+            0.058,
+            0.046,
+            0.081,
+            0.045,
+            0.036,
+            0.037,
+            0.047,
+            0.034,
+            0.034,
+            0.05,
+            0.049,
+            0.086,
+            0.072,
+            0.065,
+            0.05,
+            0.066,
+            0.621,
+            0.073,
+            0.058
+          ]
+        },
+        "newMissingStat": {
+          "count": 10,
+          "hits": 0,
+          "misses": 10,
+          "firstMs": 53.733,
+          "p50Ms": 47.997,
+          "p95Ms": 67.329,
+          "maxMs": 67.329,
+          "samplesMs": [
+            53.733,
+            46.407,
+            53.071,
+            47.068,
+            48.282,
+            47.423,
+            47.138,
+            67.329,
+            47.997,
+            48.435
+          ]
+        },
+        "newMissingRead": {
+          "count": 10,
+          "hits": 0,
+          "misses": 10,
+          "firstMs": 51.588,
+          "p50Ms": 47.325,
+          "p95Ms": 71.378,
+          "maxMs": 71.378,
+          "samplesMs": [
+            51.588,
+            46.442,
+            44.976,
+            49.025,
+            47.234,
+            53.266,
+            49.125,
+            46.834,
+            47.325,
+            71.378
+          ]
+        },
+        "sameMissingStat1100msApart": {
+          "count": 6,
+          "hits": 0,
+          "misses": 6,
+          "firstMs": 50.072,
+          "p50Ms": 50.072,
+          "p95Ms": 60.389,
+          "maxMs": 60.389,
+          "samplesMs": [
+            50.072,
+            53.083,
+            52.608,
+            60.389,
+            49.777,
+            49.226
+          ]
+        },
+        "existingStatAfter11seconds": {
+          "count": 5,
+          "hits": 5,
+          "misses": 0,
+          "firstMs": 23.536,
+          "p50Ms": 0.045,
+          "p95Ms": 23.536,
+          "maxMs": 23.536,
+          "samplesMs": [
+            23.536,
+            0.058,
+            0.045,
+            0.041,
+            0.025
+          ]
+        },
+        "directoryListAfter11seconds": {
+          "count": 5,
+          "hits": 5,
+          "misses": 0,
+          "firstMs": 0.337,
+          "p50Ms": 0.198,
+          "p95Ms": 0.337,
+          "maxMs": 0.337,
+          "samplesMs": [
+            0.337,
+            0.198,
+            0.3,
+            0.159,
+            0.108
+          ]
+        }
+      }
+    }
+  }
+}

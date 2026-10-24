@@ -1,0 +1,3155 @@
+{
+  "version": 1,
+  "caseCount": 419,
+  "files": [
+    {
+      "file": "agent-change-review.spec.ts",
+      "sha256": "62d97b4dac1c8ec16aa32e6db29b4aacd49da26ef293db2d3c808cccbac7c4f4"
+    },
+    {
+      "file": "agent-pane-toggle.spec.ts",
+      "sha256": "4192fb4a95ee67c30cd4435c8f1aced34d7b4055286b3cd0f4fc2dd7a6be364c"
+    },
+    {
+      "file": "agent-windows.spec.ts",
+      "sha256": "d31d06908a14f8602ac5280903404e7653daf7040c1f2184479b7f2d693baf41"
+    },
+    {
+      "file": "chat-file-attachments.spec.ts",
+      "sha256": "750171967fbc5fd7423f59907e0c41a024558587c0a566a7ac7f5c389b6f086b"
+    },
+    {
+      "file": "chronological-activity.spec.ts",
+      "sha256": "dac0b1890dd535900e1c84453085b381786e1f3378febb5741e23fc57b905151"
+    },
+    {
+      "file": "codex-cli-chat.spec.ts",
+      "sha256": "6ca1eb84b000eb9bd2e93b67bf0046759c07ef9ee3d4d1eedec8592c1f5d8c0e"
+    },
+    {
+      "file": "codex-cli-model-picker.spec.ts",
+      "sha256": "638773c35148f71853ce160781e3ca66e922e9151c386f2b5bf22d33c506a726"
+    },
+    {
+      "file": "codex-cli-settings.spec.ts",
+      "sha256": "a84d2f2ad7ffa0bd7acdb1d30e2e886610dd58b726e096ee73516d5691d02e9c"
+    },
+    {
+      "file": "codex-native-readiness.spec.ts",
+      "sha256": "6ce0dcaa64f7b510fae86c404c63ff846c5da90cdbca8acae2de0bf5e421f2f3"
+    },
+    {
+      "file": "conversation-navigation.spec.ts",
+      "sha256": "79a9ec3adea571c24dade3412df3c92e15c5c11388343ff1a292c6da3d084ac5"
+    },
+    {
+      "file": "conversation-windowing.spec.ts",
+      "sha256": "c092d6c2c2698d0bcf412eb5549b6c9f454870ae02ba4e2f10e10f9941f9e78b"
+    },
+    {
+      "file": "dark-only.spec.ts",
+      "sha256": "92606634d963809c331b4abc4d87c081be1593ee5285f991a4b47a27633eef92"
+    },
+    {
+      "file": "downloads.spec.ts",
+      "sha256": "a30ddc0644d47915dea3a989503a4304074dc5a5e5ac6a64e8e5f477813af1a6"
+    },
+    {
+      "file": "dropdowns.spec.ts",
+      "sha256": "2ead3d81d272a49bf2ca5a4fabc2f7fbaed5028dff8de278ee3552aad0b1ce7d"
+    },
+    {
+      "file": "editor-pane-toggle.spec.ts",
+      "sha256": "88d75afbaf25bbd86726080ec7dae0b8ae6a7059652baef783f5b8ad7123c3d8"
+    },
+    {
+      "file": "editor-topbar.spec.ts",
+      "sha256": "f6573767121e0fe80a22ee9597ed373c0a414f41723f6cf6a211f993368e3743"
+    },
+    {
+      "file": "explorer-pages.spec.ts",
+      "sha256": "298af73890d196df4813d7ec5fa6cc3be9c9a02d5660fe92d8b40762c7b98dd4"
+    },
+    {
+      "file": "explorer-transfers.spec.ts",
+      "sha256": "9d20d40a162a81f22436f453308f126c1770414a691ae0d2ca2ee3522383fe05"
+    },
+    {
+      "file": "explorer-tree.spec.ts",
+      "sha256": "5df4fdc343c6514d5d779d7a0a7607ab8c12c00a0fdbbdf84a409724a2c55ed6"
+    },
+    {
+      "file": "file-trash.spec.ts",
+      "sha256": "c1b9d47d3dd7de02439e69716d41d5dc90acb5e5486fea561a971a934d09526f"
+    },
+    {
+      "file": "generated-images-editor.spec.ts",
+      "sha256": "3eac96aa9760e900b4a0cae1c9dafc7e2551b29f53d489b34734f0fb9189921f"
+    },
+    {
+      "file": "generated-images.spec.ts",
+      "sha256": "6764bcf0302e006b390f6fd7c8a82cfe1a10a01f0c317621cc88e1a584de1600"
+    },
+    {
+      "file": "github-import-recovery.spec.ts",
+      "sha256": "a9061cd412deeac44e57a2adfdbf5233653bb1b4e5a92e482a1f54d9cf042018"
+    },
+    {
+      "file": "github-lists.spec.ts",
+      "sha256": "17f767ba8b8baf355c931439af938e9585f6836d66e367822a38b87b978c6c80"
+    },
+    {
+      "file": "image-attachment-staging.spec.ts",
+      "sha256": "b0c72397ff21a7e4c3b2b673d002446edabaa19f4edd8ded3b2d59f7adad3036"
+    },
+    {
+      "file": "image-attachments-ui.spec.ts",
+      "sha256": "5e3cdd875cd645e5c53a6939e09bb3032165bf8b6976f2ce5de602c6a1ac6153"
+    },
+    {
+      "file": "input-motion.spec.ts",
+      "sha256": "5c8f336b4bb7e0d82043ab2994b9d0edf68b584c7a4e1e66b2d872fa8217299e"
+    },
+    {
+      "file": "large-file-editor.spec.ts",
+      "sha256": "0dc4bb8e562eb28e0410040e0e6f9cbc4708fc5e163b40fdb4f9f5d87ec52525"
+    },
+    {
+      "file": "measured-window-focus.spec.ts",
+      "sha256": "3658a2e5e49be0eca2dae8e26994bbdb8352af946635d9bfe845fd7580a1988d"
+    },
+    {
+      "file": "message-citations.spec.ts",
+      "sha256": "dd8fcc216eae156a158306ac66022cae10bd2e016b20b162c4e80d52b575ed16"
+    },
+    {
+      "file": "monaco-widgets.spec.ts",
+      "sha256": "064fdfb40d3d999c543c62ae2a3499265bf640ec875c1e59aaca1d2712ea45b4"
+    },
+    {
+      "file": "native-item-detail.spec.ts",
+      "sha256": "1a72305af3f391ce11daff310001be92ddca430e654da16071c2eced533d58f0"
+    },
+    {
+      "file": "native-request-dialogs.spec.ts",
+      "sha256": "0e93ebe28e92743fe299f0afbb8b92e525cc53f6e01307aa111bf0a575931c2c"
+    },
+    {
+      "file": "pane-resize.spec.ts",
+      "sha256": "12932a5bf8ff18c24ec526570a5f057d716dc73030c8c8e56539ecc4a0937c2d"
+    },
+    {
+      "file": "scrollbars.spec.ts",
+      "sha256": "48012be10a11f224d1cffeb5a277ee4ddee5d9e5af6f1de9a51036fd8d0688d3"
+    },
+    {
+      "file": "session-recovery.spec.ts",
+      "sha256": "be23b33488115efe821d64975f10ffc5cc486f4070b8fb2f4e2beb8868348899"
+    },
+    {
+      "file": "terminal-connectivity.spec.ts",
+      "sha256": "21502df5693753a60fd4b10850886a040d1be5e9e6c3dd55f95f4ef84f296712"
+    },
+    {
+      "file": "terminal-lifecycle.spec.ts",
+      "sha256": "2da32fbdc36911acfdab09453af051db5daddb9d8db12e7072ffe14f79e46d9a"
+    },
+    {
+      "file": "terminal-performance.spec.ts",
+      "sha256": "7487040e028e9cb1f3109289f9ba1f5f86e6643cdfc06f8d718a41cc293e3e98"
+    },
+    {
+      "file": "terminal-replay.spec.ts",
+      "sha256": "5b863ec08b3ee9aafc50832fe4310276afc8365cfc482238b6def7db659a1d83"
+    },
+    {
+      "file": "tool-results.spec.ts",
+      "sha256": "f231bb88701d8b52b1b346aab1497d3f4475355936adddb11b5fc2cf724e6427"
+    },
+    {
+      "file": "tooltips.spec.ts",
+      "sha256": "f09f3936ab6824f53ead25bc1c8434db073c69735299e69da0edc5220dcf659d"
+    },
+    {
+      "file": "turn-activity.spec.ts",
+      "sha256": "ac95ec54f14ab78a4cb9a68df6f392d8d9931fa43f03fbc01c17558be2cd1584"
+    },
+    {
+      "file": "ui-state.spec.ts",
+      "sha256": "ef5945535e027eb041d84be2675e6123365cbb7619defa055295c84c2e61d68a"
+    },
+    {
+      "file": "upload-progress-windowing.spec.ts",
+      "sha256": "d0d7e30f7e91aa5e9c20ca6fb36701f13f4f9fda92fb87f802c4fce4e172670e"
+    },
+    {
+      "file": "uploads.spec.ts",
+      "sha256": "7571fac176e2020aafb37614470d20b6a1a9b1765ceb066bec41d596a6dca352"
+    },
+    {
+      "file": "workspace-pages.spec.ts",
+      "sha256": "73c9d9ebf9e4b014aa0719d18fc0a7153e04d94f875f365ee1baa4a923b32915"
+    },
+    {
+      "file": "workspace-switcher.spec.ts",
+      "sha256": "0a7249f6dea7c98a35d209fd66b714262056be8ba309d9f5e57735a990be2397"
+    },
+    {
+      "file": "workspace-trash.spec.ts",
+      "sha256": "1fb43afeb4753e936e0572bbf9af7953f0669057627ae2c5bceaf7ab2c8936b1"
+    },
+    {
+      "file": "workspace.spec.ts",
+      "sha256": "af1fb3c189fcedadf81a3bf2b3e6e64bcaa26a377f1cbba37224c15a67e2eecb"
+    },
+    {
+      "file": "worktrees-ui.spec.ts",
+      "sha256": "21763ec72bcc7e087dc0fee33530fbc00138a3956254452237366467012db142"
+    }
+  ],
+  "cases": [
+    {
+      "projectName": "case-0001",
+      "file": "agent-change-review.spec.ts",
+      "titlePath": [
+        "recorded review reveals a hidden editor while retaining dirty buffers and disabling saves"
+      ]
+    },
+    {
+      "projectName": "case-0002",
+      "file": "agent-change-review.spec.ts",
+      "titlePath": [
+        "phone Open changes selects the editor surface instead of leaving review behind the file tree"
+      ]
+    },
+    {
+      "projectName": "case-0003",
+      "file": "agent-pane-toggle.spec.ts",
+      "titlePath": [
+        "desktop Agent icon hides and restores live panes, retains drafts and editor buffers, and restores its saved layout"
+      ]
+    },
+    {
+      "projectName": "case-0004",
+      "file": "agent-pane-toggle.spec.ts",
+      "titlePath": [
+        "laptop Agent icon hides and restores live panes, retains drafts and editor buffers, and restores its saved layout"
+      ]
+    },
+    {
+      "projectName": "case-0005",
+      "file": "agent-pane-toggle.spec.ts",
+      "titlePath": [
+        "tablet main-rail Agent toggles between Codex and Editor without losing the unsent draft"
+      ]
+    },
+    {
+      "projectName": "case-0006",
+      "file": "agent-pane-toggle.spec.ts",
+      "titlePath": [
+        "phone Agent remains ordinary bottom navigation when tapped repeatedly"
+      ]
+    },
+    {
+      "projectName": "case-0007",
+      "file": "agent-windows.spec.ts",
+      "titlePath": [
+        "agent and editor windows keep their selection, dirty buffers, drafts and the original PTY"
+      ]
+    },
+    {
+      "projectName": "case-0008",
+      "file": "agent-windows.spec.ts",
+      "titlePath": [
+        "invalid workspace links never mount an unrelated saved workspace"
+      ]
+    },
+    {
+      "projectName": "case-0009",
+      "file": "chat-file-attachments.spec.ts",
+      "titlePath": [
+        "mixed files and photos retain previews and only committed refs enter a real composer request"
+      ]
+    },
+    {
+      "projectName": "case-0010",
+      "file": "chat-file-attachments.spec.ts",
+      "titlePath": [
+        "changing conversations pauses the original file and rejects a late picker result for another draft"
+      ]
+    },
+    {
+      "projectName": "case-0011",
+      "file": "chat-file-attachments.spec.ts",
+      "titlePath": [
+        "lock aborts upload activity while preserving the text draft and paused file for an explicit retry"
+      ]
+    },
+    {
+      "projectName": "case-0012",
+      "file": "chat-file-attachments.spec.ts",
+      "titlePath": [
+        "direct upload failures remain visible, block Send, and never proxy or finalize file bytes"
+      ]
+    },
+    {
+      "projectName": "case-0013",
+      "file": "chat-file-attachments.spec.ts",
+      "titlePath": [
+        "mixed paste keeps normal text insertion available and composer drops attach individual files"
+      ]
+    },
+    {
+      "projectName": "case-0014",
+      "file": "chat-file-attachments.spec.ts",
+      "titlePath": [
+        "phone file cards use public download fallback without claiming the browser saved the file"
+      ]
+    },
+    {
+      "projectName": "case-0015",
+      "file": "chronological-activity.spec.ts",
+      "titlePath": [
+        "actual chat preserves tool/text order through live events, reconnect and reload without repeated assistant branding"
+      ]
+    },
+    {
+      "projectName": "case-0016",
+      "file": "chronological-activity.spec.ts",
+      "titlePath": [
+        "chronological controls remain usable in phone and tablet panes with reduced motion"
+      ]
+    },
+    {
+      "projectName": "case-0017",
+      "file": "chronological-activity.spec.ts",
+      "titlePath": [
+        "one native reasoning item with seven summary sections shows one Reasoning disclosure through streaming and reload"
+      ]
+    },
+    {
+      "projectName": "case-0018",
+      "file": "chronological-activity.spec.ts",
+      "titlePath": [
+        "replayed completion of one commentary item keeps one message and one native turn ending"
+      ]
+    },
+    {
+      "projectName": "case-0019",
+      "file": "chronological-activity.spec.ts",
+      "titlePath": [
+        "canonical partial history replaces live item identities while preserving real turns, paging and late-frame fences"
+      ]
+    },
+    {
+      "projectName": "case-0020",
+      "file": "chronological-activity.spec.ts",
+      "titlePath": [
+        "streaming groups stay collapsed and only the current action animates across message boundaries"
+      ]
+    },
+    {
+      "projectName": "case-0021",
+      "file": "chronological-activity.spec.ts",
+      "titlePath": [
+        "group and tool choices survive measured-window unmount and remount without duplicating canonical entries"
+      ]
+    },
+    {
+      "projectName": "case-0022",
+      "file": "chronological-activity.spec.ts",
+      "titlePath": [
+        "retains an unavailable native-model effort visibly and submits only the explicit supported wire choice"
+      ]
+    },
+    {
+      "projectName": "case-0023",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "runtime startup keeps an unsent draft and only native readiness permits a new turn"
+      ]
+    },
+    {
+      "projectName": "case-0024",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "startup waits for native readiness before reopening a selected conversation and keeps its draft"
+      ]
+    },
+    {
+      "projectName": "case-0025",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "a transient runtime status failure preserves the selected stream, draft, and confirmed native readiness"
+      ]
+    },
+    {
+      "projectName": "case-0026",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "an obsolete pending status reply cannot replace a newer successful readiness check"
+      ]
+    },
+    {
+      "projectName": "case-0027",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "loading native model metadata stays neutral and a failed first fetch recovers automatically"
+      ]
+    },
+    {
+      "projectName": "case-0028",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "a stalled conversation list cannot disable the composer indefinitely or apply its late response"
+      ]
+    },
+    {
+      "projectName": "case-0029",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "New conversation stays local until first Send creates exactly one native thread and turn"
+      ]
+    },
+    {
+      "projectName": "case-0030",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "conversation navigation keeps names, archive state, and per-thread drafts together without deleting history"
+      ]
+    },
+    {
+      "projectName": "case-0031",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "native run sends literal model settings and Enter remains a newline"
+      ]
+    },
+    {
+      "projectName": "case-0032",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "an unknown HTTP outcome keeps the draft and correlation ID without automatic replay"
+      ]
+    },
+    {
+      "projectName": "case-0033",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "native skill selection sends its actual path and turn-bound guidance keeps an uncertain message identity"
+      ]
+    },
+    {
+      "projectName": "case-0034",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "interrupt requests identify the currently reported native turn"
+      ]
+    },
+    {
+      "projectName": "case-0035",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "native steer and queue use their own acknowledgments and pending input stays out of history"
+      ]
+    },
+    {
+      "projectName": "case-0036",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "a minimal native queue acknowledgment clears the accepted draft before a separate queue refresh"
+      ]
+    },
+    {
+      "projectName": "case-0037",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "an unconfirmed queue acknowledgment preserves the draft without replay: thread"
+      ]
+    },
+    {
+      "projectName": "case-0038",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "an unconfirmed queue acknowledgment preserves the draft without replay: client"
+      ]
+    },
+    {
+      "projectName": "case-0039",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "an unconfirmed queue acknowledgment preserves the draft without replay: missing"
+      ]
+    },
+    {
+      "projectName": "case-0040",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "an unloaded unmaterialized native thread keeps its draft and offers a fresh local conversation"
+      ]
+    },
+    {
+      "projectName": "case-0041",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "unsupported native plan and queue controls stay absent without swallowing Shift Enter"
+      ]
+    },
+    {
+      "projectName": "case-0042",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "only offered approval decisions are sent and secret question answers never become cached drafts"
+      ]
+    },
+    {
+      "projectName": "case-0043",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "native child requests use the child thread endpoints and expose no custom lifecycle controls"
+      ]
+    },
+    {
+      "projectName": "case-0044",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "explicit root and child request checks report failures inside the dialog and join an existing child refresh"
+      ]
+    },
+    {
+      "projectName": "case-0045",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "advertised MCP requests appear in the composer shelf and descendant answers use the owning thread"
+      ]
+    },
+    {
+      "projectName": "case-0046",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "agent switching, browser history and a separate child window preserve independent unsent drafts"
+      ]
+    },
+    {
+      "projectName": "case-0047",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "a directly linked native child resolves its family and supports keyboard switching on a phone"
+      ]
+    },
+    {
+      "projectName": "case-0048",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "a stale child response and a foreign-workspace conversation cannot replace the selected agent"
+      ]
+    },
+    {
+      "projectName": "case-0049",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "native usage stays unknown until reported and compaction uses no custom context endpoint"
+      ]
+    },
+    {
+      "projectName": "case-0050",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "context refresh preserves newer live reports and rewind invalidation, with independent thread values"
+      ]
+    },
+    {
+      "projectName": "case-0051",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "native goals use POST and PATCH without a fake budget clear or scheduler options"
+      ]
+    },
+    {
+      "projectName": "case-0052",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "native conversation revert preserves the current draft and offers no workspace restore action"
+      ]
+    },
+    {
+      "projectName": "case-0053",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "native review and fork call the official conversation routes without a custom title job"
+      ]
+    },
+    {
+      "projectName": "case-0054",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "a confirmed clear of the captured native goal cannot erase a newer streamed goal"
+      ]
+    },
+    {
+      "projectName": "case-0055",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "previous conversations stay readable during CLI startup and list sources never share cursors"
+      ]
+    },
+    {
+      "projectName": "case-0056",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "a failed saved-thread read never treats an unknown legacy selection as a native writable thread"
+      ]
+    },
+    {
+      "projectName": "case-0057",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "photos and general files retain exact refs across native queue rejection and accepted queue cleanup"
+      ]
+    },
+    {
+      "projectName": "case-0058",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "native queue pages use opaque cursors and only an explicit start calls queue start"
+      ]
+    },
+    {
+      "projectName": "case-0059",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "a late native queue acknowledgment cannot erase another conversation draft or replay itself"
+      ]
+    },
+    {
+      "projectName": "case-0060",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "an empty native public page retains its real older cursor without claiming an empty history"
+      ]
+    },
+    {
+      "projectName": "case-0061",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "native phone controls remain reachable with touch targets and reduced motion"
+      ]
+    },
+    {
+      "projectName": "case-0062",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "response activity follows actual text, preserves streamed response controls, and never replays saved text"
+      ]
+    },
+    {
+      "projectName": "case-0063",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "response activity stays singular across thinking, reconnect, approval and reduced motion"
+      ]
+    },
+    {
+      "projectName": "case-0064",
+      "file": "codex-cli-chat.spec.ts",
+      "titlePath": [
+        "streamed response updates preserve composer selection, IME input and the current read position"
+      ]
+    },
+    {
+      "projectName": "case-0065",
+      "file": "codex-cli-model-picker.spec.ts",
+      "titlePath": [
+        "requested hidden native Red and missing Cyber keep exact identities and distinct metadata"
+      ]
+    },
+    {
+      "projectName": "case-0066",
+      "file": "codex-cli-model-picker.spec.ts",
+      "titlePath": [
+        "keyboard search selects a literal ID unchanged and does not probe or alias on typing"
+      ]
+    },
+    {
+      "projectName": "case-0067",
+      "file": "codex-cli-model-picker.spec.ts",
+      "titlePath": [
+        "an existing literal effort remains visible and unchanged while only default is offered for unknown models"
+      ]
+    },
+    {
+      "projectName": "case-0068",
+      "file": "codex-cli-model-picker.spec.ts",
+      "titlePath": [
+        "invalid, overlong and retired text cannot become a shortened or substituted model ID"
+      ]
+    },
+    {
+      "projectName": "case-0069",
+      "file": "codex-cli-model-picker.spec.ts",
+      "titlePath": [
+        "connection and explicit disabled states prevent literal selection without losing the current value"
+      ]
+    },
+    {
+      "projectName": "case-0070",
+      "file": "codex-cli-model-picker.spec.ts",
+      "titlePath": [
+        "a phone picker keeps an exact literal choice within the visible dropdown"
+      ]
+    },
+    {
+      "projectName": "case-0071",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "native settings expose supported settings and actual runtime state without provider controls"
+      ]
+    },
+    {
+      "projectName": "case-0072",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "Update Codex posts once, polls accepted progress and shows only the actual new version"
+      ]
+    },
+    {
+      "projectName": "case-0073",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "runtime refusals and native update blocking stay visible without inventing a successful version"
+      ]
+    },
+    {
+      "projectName": "case-0074",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "native model identities, literal effort, summary and global verbosity reach the exact settings payload"
+      ]
+    },
+    {
+      "projectName": "case-0075",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "appearance drafts survive tab changes, rejected saves and discard cancellation independently of model availability"
+      ]
+    },
+    {
+      "projectName": "case-0076",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "skills use native absolute paths, bounded rows, local search and acknowledged enablement"
+      ]
+    },
+    {
+      "projectName": "case-0077",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "late skill mutation replies cannot replace another workspace list"
+      ]
+    },
+    {
+      "projectName": "case-0078",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "skill failures remain visible and do not optimistically enable an unavailable skill"
+      ]
+    },
+    {
+      "projectName": "case-0079",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "the composer picker selects native skill paths and keeps per-turn options limited to summaries"
+      ]
+    },
+    {
+      "projectName": "case-0080",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "native settings remain opaque, keyboard usable and within 320px layout"
+      ]
+    },
+    {
+      "projectName": "case-0081",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "native settings remain opaque, keyboard usable and within 390px layout"
+      ]
+    },
+    {
+      "projectName": "case-0082",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "native settings remain opaque, keyboard usable and within 820px layout"
+      ]
+    },
+    {
+      "projectName": "case-0083",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "native settings remain opaque, keyboard usable and within 1440px layout"
+      ]
+    },
+    {
+      "projectName": "case-0084",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "fast mode, concurrent agents and context controls save one native draft with the real model maximum"
+      ]
+    },
+    {
+      "projectName": "case-0085",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "context bounds reject overcapacity and current GPT-6 Sol catalog choices retain exact model and effort values"
+      ]
+    },
+    {
+      "projectName": "case-0086",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "response detail buttons save literal values and Default removes only the verbosity override"
+      ]
+    },
+    {
+      "projectName": "case-0087",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "managed response defaults reset only editable keys and retain disabled controls"
+      ]
+    },
+    {
+      "projectName": "case-0088",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "short laptop footer stays accessible while long settings categories scroll"
+      ]
+    },
+    {
+      "projectName": "case-0089",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "agent and context presets remain exact through keyboard sliders, navigation and reopening"
+      ]
+    },
+    {
+      "projectName": "case-0090",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "large custom concurrency stays unchanged and individual resets retain adjacent native preferences"
+      ]
+    },
+    {
+      "projectName": "case-0091",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "native option groups, friendly search and customized filters edit only the selected overrides"
+      ]
+    },
+    {
+      "projectName": "case-0092",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "More settings opens a category directory and supports keyboard section browsing and global search"
+      ]
+    },
+    {
+      "projectName": "case-0093",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "More settings quick views and bounded pages preserve an exact draft through filter resets"
+      ]
+    },
+    {
+      "projectName": "case-0094",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "More settings customization filtering restarts at the first page after browsing later pages"
+      ]
+    },
+    {
+      "projectName": "case-0095",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "More settings keeps backward keyboard focus visible while scrolling desktop results"
+      ]
+    },
+    {
+      "projectName": "case-0096",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "More settings directory navigation preserves invalid field JSON and unapplied configuration JSON"
+      ]
+    },
+    {
+      "projectName": "case-0097",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "More settings directory, sections and results fit 320\u00d7740"
+      ]
+    },
+    {
+      "projectName": "case-0098",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "More settings directory, sections and results fit 390\u00d7844"
+      ]
+    },
+    {
+      "projectName": "case-0099",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "More settings directory, sections and results fit 1366\u00d7650"
+      ]
+    },
+    {
+      "projectName": "case-0100",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "More settings directory, sections and results fit 1440\u00d7960"
+      ]
+    },
+    {
+      "projectName": "case-0101",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "MCP forms persist stdio and HTTP references without exposing private values and offer a real restart"
+      ]
+    },
+    {
+      "projectName": "case-0102",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "official schema controls and advanced JSON preserve drafts and reject edits to managed options"
+      ]
+    },
+    {
+      "projectName": "case-0103",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "native revision conflicts preserve the draft until the user chooses to reload it"
+      ]
+    },
+    {
+      "projectName": "case-0104",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "MCP checks show native failures and appearance remains savable while native configuration is unavailable"
+      ]
+    },
+    {
+      "projectName": "case-0105",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "MCP and schema editors fit a phone and retain drafts during tab changes"
+      ]
+    },
+    {
+      "projectName": "case-0106",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "runtime refresh preserves an unfinished private draft and locking clears it"
+      ]
+    },
+    {
+      "projectName": "case-0107",
+      "file": "codex-cli-settings.spec.ts",
+      "titlePath": [
+        "JSON fields follow later edits made through the curated controls"
+      ]
+    },
+    {
+      "projectName": "case-0108",
+      "file": "codex-native-readiness.spec.ts",
+      "titlePath": [
+        "App refreshes the actual native default after installation without opening Settings or replacing the draft"
+      ]
+    },
+    {
+      "projectName": "case-0109",
+      "file": "codex-native-readiness.spec.ts",
+      "titlePath": [
+        "a native readiness refresh cannot overwrite a newer successful appearance save"
+      ]
+    },
+    {
+      "projectName": "case-0110",
+      "file": "codex-native-readiness.spec.ts",
+      "titlePath": [
+        "a readiness response from a previous real session cannot replace preferences after lock and unlock"
+      ]
+    },
+    {
+      "projectName": "case-0111",
+      "file": "codex-native-readiness.spec.ts",
+      "titlePath": [
+        "Settings uses Codex default for absent web search and refreshes only untouched native and appearance fields"
+      ]
+    },
+    {
+      "projectName": "case-0112",
+      "file": "conversation-navigation.spec.ts",
+      "titlePath": [
+        "opens with search focus, restores focus, and moves through offscreen conversation rows with the keyboard"
+      ]
+    },
+    {
+      "projectName": "case-0113",
+      "file": "conversation-navigation.spec.ts",
+      "titlePath": [
+        "searches the server catalog, rejects stale responses, and keeps preserved and archived history distinct"
+      ]
+    },
+    {
+      "projectName": "case-0114",
+      "file": "conversation-navigation.spec.ts",
+      "titlePath": [
+        "retains a bounded catalog and mounted rows during paging while preserving keyboard focus"
+      ]
+    },
+    {
+      "projectName": "case-0115",
+      "file": "conversation-navigation.spec.ts",
+      "titlePath": [
+        "shows recoverable list failures and rejects an old workspace response"
+      ]
+    },
+    {
+      "projectName": "case-0116",
+      "file": "conversation-navigation.spec.ts",
+      "titlePath": [
+        "fits a phone viewport with 44px controls, readable titles, and a top new-conversation action"
+      ]
+    },
+    {
+      "projectName": "case-0117",
+      "file": "conversation-navigation.spec.ts",
+      "titlePath": [
+        "compact headers truncate a single-line title while preserving context access and reported values"
+      ]
+    },
+    {
+      "projectName": "case-0118",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "loads preserved bounded HTTP pages and actually unmounts both ends of a long mixed-height transcript"
+      ]
+    },
+    {
+      "projectName": "case-0119",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "keeps the same reading anchor through prepend, delayed image decode and width reflow"
+      ]
+    },
+    {
+      "projectName": "case-0120",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "rejects an older page that arrives after switching to another saved conversation"
+      ]
+    },
+    {
+      "projectName": "case-0121",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "retains native text selection and focused controls when their rows leave the normal viewport"
+      ]
+    },
+    {
+      "projectName": "case-0122",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "shows paging failures without losing the current viewport and retries the same cursor"
+      ]
+    },
+    {
+      "projectName": "case-0123",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "supports phone keyboard navigation and a reachable latest action with reduced motion"
+      ]
+    },
+    {
+      "projectName": "case-0124",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "native conversation-only revert rejects an obsolete in-flight page and preserves the current draft"
+      ]
+    },
+    {
+      "projectName": "case-0125",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "native snapshots keep the reading anchor while approvals and questions remain beside the composer"
+      ]
+    },
+    {
+      "projectName": "case-0126",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "keeps selected text through a disjoint native reconnect without replacing the inspected DOM"
+      ]
+    },
+    {
+      "projectName": "case-0127",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "keeps focused copy control through a disjoint native reconnect without replacing the inspected DOM"
+      ]
+    },
+    {
+      "projectName": "case-0128",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "native window-limit failure waits for one explicit bounded reconnect without automatic replay"
+      ]
+    },
+    {
+      "projectName": "case-0129",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "a failed native reconnect stays visible and requires an explicit reload"
+      ]
+    },
+    {
+      "projectName": "case-0130",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "rejects a late native reconnect response when switching conversations"
+      ]
+    },
+    {
+      "projectName": "case-0131",
+      "file": "conversation-windowing.spec.ts",
+      "titlePath": [
+        "rejects a late native reconnect response when locking the workspace"
+      ]
+    },
+    {
+      "projectName": "case-0132",
+      "file": "dark-only.spec.ts",
+      "titlePath": [
+        "desktop keeps settings dark through legacy responses while saving every remaining preference"
+      ]
+    },
+    {
+      "projectName": "case-0133",
+      "file": "dark-only.spec.ts",
+      "titlePath": [
+        "phone keeps settings dark through legacy responses while saving every remaining preference"
+      ]
+    },
+    {
+      "projectName": "case-0134",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "saved-file download shows measured progress, uses bucket bytes, and preserves Unicode filenames"
+      ]
+    },
+    {
+      "projectName": "case-0135",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "the first click gives feedback immediately and cancelling a pending request cancels the eventual server job"
+      ]
+    },
+    {
+      "projectName": "case-0136",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "a failed bucket preparation can be retried without rewriting the source file"
+      ]
+    },
+    {
+      "projectName": "case-0137",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "version conflicts remain visible and do not silently export different bytes"
+      ]
+    },
+    {
+      "projectName": "case-0138",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "locking hides public links, closes the stream, and unlocking recovers a ready job without auto-saving"
+      ]
+    },
+    {
+      "projectName": "case-0139",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "lost event streams reconcile from the authenticated job snapshot"
+      ]
+    },
+    {
+      "projectName": "case-0140",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "large downloads stream each chunk to a chosen file without creating a large Blob"
+      ]
+    },
+    {
+      "projectName": "case-0141",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "stopping a streamed save aborts the writable file and keeps a retry available"
+      ]
+    },
+    {
+      "projectName": "case-0142",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "unsupported large-file saving goes directly to the browser download manager"
+      ]
+    },
+    {
+      "projectName": "case-0143",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "a reload restores pending jobs, reconnects, and leaves saving under user control"
+      ]
+    },
+    {
+      "projectName": "case-0144",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "a large active download batch windows transfer rows while keeping cancellation usable"
+      ]
+    },
+    {
+      "projectName": "case-0145",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "a bucket object deleted after preparation becomes expired and can be prepared again"
+      ]
+    },
+    {
+      "projectName": "case-0146",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "expired or unsafe links never become clickable downloads"
+      ]
+    },
+    {
+      "projectName": "case-0147",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "the phone download tray stays on screen with full touch targets"
+      ]
+    },
+    {
+      "projectName": "case-0148",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "blocked browser fetch",
+        "a blocked fetch falls back to a real native download and native retries avoid the failed fetch"
+      ]
+    },
+    {
+      "projectName": "case-0149",
+      "file": "downloads.spec.ts",
+      "titlePath": [
+        "blocked browser fetch",
+        "a blocked automatic handoff leaves an explicit native link that can save the file"
+      ]
+    },
+    {
+      "projectName": "case-0150",
+      "file": "dropdowns.spec.ts",
+      "titlePath": [
+        "settings dropdown preserves the max draft and Escape closes the menu before the dialog"
+      ]
+    },
+    {
+      "projectName": "case-0151",
+      "file": "dropdowns.spec.ts",
+      "titlePath": [
+        "settings dropdown preserves the Not sent draft and Escape closes the menu before the dialog"
+      ]
+    },
+    {
+      "projectName": "case-0152",
+      "file": "dropdowns.spec.ts",
+      "titlePath": [
+        "editor commands support keyboard navigation, disabled commands, toggles, and focus return"
+      ]
+    },
+    {
+      "projectName": "case-0153",
+      "file": "dropdowns.spec.ts",
+      "titlePath": [
+        "file context actions use the shared menu and still rename a real workspace file"
+      ]
+    },
+    {
+      "projectName": "case-0154",
+      "file": "dropdowns.spec.ts",
+      "titlePath": [
+        "Git branch selection switches the real repository and retains keyboard focus"
+      ]
+    },
+    {
+      "projectName": "case-0155",
+      "file": "dropdowns.spec.ts",
+      "titlePath": [
+        "Git file pages stay bounded, retry without clearing rows, and window large patches"
+      ]
+    },
+    {
+      "projectName": "case-0156",
+      "file": "dropdowns.spec.ts",
+      "titlePath": [
+        "Git branch search fetches bounded pages and keeps keyboard focus through page navigation"
+      ]
+    },
+    {
+      "projectName": "case-0157",
+      "file": "dropdowns.spec.ts",
+      "titlePath": [
+        "session expiry dismisses a portalled dropdown before the password gate"
+      ]
+    },
+    {
+      "projectName": "case-0158",
+      "file": "dropdowns.spec.ts",
+      "titlePath": [
+        "phone dropdowns stay visible, search correctly, and have no shadows"
+      ]
+    },
+    {
+      "projectName": "case-0159",
+      "file": "dropdowns.spec.ts",
+      "titlePath": [
+        "tablet dropdowns stay visible, search correctly, and have no shadows"
+      ]
+    },
+    {
+      "projectName": "case-0160",
+      "file": "dropdowns.spec.ts",
+      "titlePath": [
+        "laptop dropdowns stay visible, search correctly, and have no shadows"
+      ]
+    },
+    {
+      "projectName": "case-0161",
+      "file": "dropdowns.spec.ts",
+      "titlePath": [
+        "desktop dropdowns stay visible, search correctly, and have no shadows"
+      ]
+    },
+    {
+      "projectName": "case-0162",
+      "file": "editor-pane-toggle.spec.ts",
+      "titlePath": [
+        "desktop Editor rail toggle preserves mounted buffers, drafts and PTY sessions and saves its layout"
+      ]
+    },
+    {
+      "projectName": "case-0163",
+      "file": "editor-pane-toggle.spec.ts",
+      "titlePath": [
+        "laptop Editor rail toggle preserves mounted buffers, drafts and PTY sessions and saves its layout"
+      ]
+    },
+    {
+      "projectName": "case-0164",
+      "file": "editor-pane-toggle.spec.ts",
+      "titlePath": [
+        "top-bar layout, command and file navigation reopen the mounted editor"
+      ]
+    },
+    {
+      "projectName": "case-0165",
+      "file": "editor-pane-toggle.spec.ts",
+      "titlePath": [
+        "tablet Editor rail toggle restores the existing buffer and keeps the Agent draft"
+      ]
+    },
+    {
+      "projectName": "case-0166",
+      "file": "editor-pane-toggle.spec.ts",
+      "titlePath": [
+        "phone Files remains ordinary navigation and preserves the editor on repeated taps"
+      ]
+    },
+    {
+      "projectName": "case-0167",
+      "file": "editor-topbar.spec.ts",
+      "titlePath": [
+        "existing top bar controls the real editor through busy saves, failures, and version conflicts"
+      ]
+    },
+    {
+      "projectName": "case-0168",
+      "file": "editor-topbar.spec.ts",
+      "titlePath": [
+        "Go to file queues once for the first lazy editor and binds to its actual controller"
+      ]
+    },
+    {
+      "projectName": "case-0169",
+      "file": "editor-topbar.spec.ts",
+      "titlePath": [
+        "lazy editor actions stay in their workspace and preserve scoped line and column navigation"
+      ]
+    },
+    {
+      "projectName": "case-0170",
+      "file": "editor-topbar.spec.ts",
+      "titlePath": [
+        "Save rejects old workspaces, remounted editors, and pre-lock commands without losing dirty buffers"
+      ]
+    },
+    {
+      "projectName": "case-0171",
+      "file": "editor-topbar.spec.ts",
+      "titlePath": [
+        "phone top bar",
+        "keeps file opening and saving direct while explorer navigation uses the workspace menu"
+      ]
+    },
+    {
+      "projectName": "case-0172",
+      "file": "explorer-pages.spec.ts",
+      "titlePath": [
+        "large folders page on demand, reveal unseen files, window loaded rows and recover a changed cursor"
+      ]
+    },
+    {
+      "projectName": "case-0173",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "dragging an edited file moves saved bytes to the hovered folder and keeps its unsaved Monaco buffer"
+      ]
+    },
+    {
+      "projectName": "case-0174",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "modifier-drag copies a folder including empty descendants using saved contents and preserves original edits"
+      ]
+    },
+    {
+      "projectName": "case-0175",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "keyboard Cut Copy and Paste respect folder targets and a conflicting paste never replaces existing bytes"
+      ]
+    },
+    {
+      "projectName": "case-0176",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "an unconfirmed move retains the original dirty buffer and reports both filesystem locations"
+      ]
+    },
+    {
+      "projectName": "case-0177",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "a transfer holds affected saves and a late move confirmation cannot change the next workspace"
+      ]
+    },
+    {
+      "projectName": "case-0178",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "locking during a move fences the late response and preserves the dirty buffer when the session resumes"
+      ]
+    },
+    {
+      "projectName": "case-0179",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "saved interrupted-operation status exposes both paths and refresh failures keep healthy files usable"
+      ]
+    },
+    {
+      "projectName": "case-0180",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "file operations requests bounded pages and server searches while Inspect preserves an unsaved editor buffer"
+      ]
+    },
+    {
+      "projectName": "case-0181",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "a malformed foreign operation page leaves the last validated paths inspectable and retries only the status read"
+      ]
+    },
+    {
+      "projectName": "case-0182",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "phone operation paging ignores an older search and a status response spanning lock and workspace selection"
+      ]
+    },
+    {
+      "projectName": "case-0183",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "Inspect reports a missing destination and focuses an off-page native source without replacing a dirty editor model"
+      ]
+    },
+    {
+      "projectName": "case-0184",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "dropped native folder handles preserve empty nested folders in the actual hovered destination"
+      ]
+    },
+    {
+      "projectName": "case-0185",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "nested native folder files retain their complete upload paths and a service failure is never reported complete"
+      ]
+    },
+    {
+      "projectName": "case-0186",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "unsupported directory drops show working file and folder alternatives without mutating the workspace"
+      ]
+    },
+    {
+      "projectName": "case-0187",
+      "file": "explorer-transfers.spec.ts",
+      "titlePath": [
+        "phone explorer transfers",
+        "touch menus copy and paste a file without requiring drag gestures"
+      ]
+    },
+    {
+      "projectName": "case-0188",
+      "file": "explorer-tree.spec.ts",
+      "titlePath": [
+        "the guided tree supports one tab stop, keyboard traversal, typeahead, menus and unsaved files"
+      ]
+    },
+    {
+      "projectName": "case-0189",
+      "file": "explorer-tree.spec.ts",
+      "titlePath": [
+        "tree actions create folders and files and rename, trash and restore real saved contents"
+      ]
+    },
+    {
+      "projectName": "case-0190",
+      "file": "explorer-tree.spec.ts",
+      "titlePath": [
+        "lazy folder loading exposes failures and Retry retains cached children during refresh errors"
+      ]
+    },
+    {
+      "projectName": "case-0191",
+      "file": "explorer-tree.spec.ts",
+      "titlePath": [
+        "editor tabs distinguish duplicate names, support arrow navigation, and reveal the current unsaved file"
+      ]
+    },
+    {
+      "projectName": "case-0192",
+      "file": "explorer-tree.spec.ts",
+      "titlePath": [
+        "initial directory and file reads use skeletons while refreshes retain actual content"
+      ]
+    },
+    {
+      "projectName": "case-0193",
+      "file": "explorer-tree.spec.ts",
+      "titlePath": [
+        "phone explorer",
+        "keeps touch menus and files/editor navigation usable with a dirty nested file"
+      ]
+    },
+    {
+      "projectName": "case-0194",
+      "file": "file-trash.spec.ts",
+      "titlePath": [
+        "Recently deleted shows real deadlines and keeps healthy files restorable through slow or failed cleanup checks"
+      ]
+    },
+    {
+      "projectName": "case-0195",
+      "file": "file-trash.spec.ts",
+      "titlePath": [
+        "expiry disables Restore while Recently deleted stays open and server expiry errors remain visible"
+      ]
+    },
+    {
+      "projectName": "case-0196",
+      "file": "file-trash.spec.ts",
+      "titlePath": [
+        "restore conflicts preserve the current saved file and its unsaved editor buffer"
+      ]
+    },
+    {
+      "projectName": "case-0197",
+      "file": "file-trash.spec.ts",
+      "titlePath": [
+        "Recently deleted pages real files with bounded rows, usable sparse pages and recovery after failure or lock"
+      ]
+    },
+    {
+      "projectName": "case-0198",
+      "file": "file-trash.spec.ts",
+      "titlePath": [
+        "late trash reads and restore responses cannot cross workspace, unmount or lock boundaries"
+      ]
+    },
+    {
+      "projectName": "case-0199",
+      "file": "generated-images-editor.spec.ts",
+      "titlePath": [
+        "real dirty ancestor blocks image Save before POST and an unrelated destination preserves the exact Monaco buffer"
+      ]
+    },
+    {
+      "projectName": "case-0200",
+      "file": "generated-images-editor.spec.ts",
+      "titlePath": [
+        "image save freezes the actual editor before fetch, then releases it with the same unsaved buffer"
+      ]
+    },
+    {
+      "projectName": "case-0201",
+      "file": "generated-images.spec.ts",
+      "titlePath": [
+        "authenticated preview exposes honest loading/failure/retry and keeps the activity between its surrounding text"
+      ]
+    },
+    {
+      "projectName": "case-0202",
+      "file": "generated-images.spec.ts",
+      "titlePath": [
+        "foreign metadata and running activities never request image bytes, and locking removes the completed preview"
+      ]
+    },
+    {
+      "projectName": "case-0203",
+      "file": "generated-images.spec.ts",
+      "titlePath": [
+        "save is explicit, uses the original owner on a fork, and retains dirty buffers behind the real workspace registry"
+      ]
+    },
+    {
+      "projectName": "case-0204",
+      "file": "generated-images.spec.ts",
+      "titlePath": [
+        "lost, conflicting and foreign save responses keep the chosen path and never imply success"
+      ]
+    },
+    {
+      "projectName": "case-0205",
+      "file": "generated-images.spec.ts",
+      "titlePath": [
+        "workspace switches and locks fence late save receipts without affecting a different workspace"
+      ]
+    },
+    {
+      "projectName": "case-0206",
+      "file": "generated-images.spec.ts",
+      "titlePath": [
+        "download uses the public job path and keeps a real native action when browser fetch is blocked"
+      ]
+    },
+    {
+      "projectName": "case-0207",
+      "file": "generated-images.spec.ts",
+      "titlePath": [
+        "keyboard, phone and split-pane layouts keep visible controls, bounded previews and reduced motion"
+      ]
+    },
+    {
+      "projectName": "case-0208",
+      "file": "github-import-recovery.spec.ts",
+      "titlePath": [
+        "recovery shows the actual workspace and safe reason, refreshes real status, and leaves repository controls usable"
+      ]
+    },
+    {
+      "projectName": "case-0209",
+      "file": "github-import-recovery.spec.ts",
+      "titlePath": [
+        "failed or malformed status stays visible without masking accounts, and a failed import reloads its real recovery status"
+      ]
+    },
+    {
+      "projectName": "case-0210",
+      "file": "github-import-recovery.spec.ts",
+      "titlePath": [
+        "lock and unmount abort pending status reads and late results cannot replace fresh status"
+      ]
+    },
+    {
+      "projectName": "case-0211",
+      "file": "github-lists.spec.ts",
+      "titlePath": [
+        "account pages replace rows and exact selected metadata survives paging and server search"
+      ]
+    },
+    {
+      "projectName": "case-0212",
+      "file": "github-lists.spec.ts",
+      "titlePath": [
+        "the shared account selector resolves an off-page saved account and uses bounded keyboard paging"
+      ]
+    },
+    {
+      "projectName": "case-0213",
+      "file": "github-lists.spec.ts",
+      "titlePath": [
+        "repository pages replace thirty rows and page failures retain the last usable result before retry"
+      ]
+    },
+    {
+      "projectName": "case-0214",
+      "file": "github-lists.spec.ts",
+      "titlePath": [
+        "sparse repository searches continue automatically and never call a partial empty batch no results"
+      ]
+    },
+    {
+      "projectName": "case-0215",
+      "file": "github-lists.spec.ts",
+      "titlePath": [
+        "search pause cancels a pending batch and resumes its exact continuation without premature completion"
+      ]
+    },
+    {
+      "projectName": "case-0216",
+      "file": "github-lists.spec.ts",
+      "titlePath": [
+        "changed searches and locked sessions ignore delayed repository responses and stop discovery"
+      ]
+    },
+    {
+      "projectName": "case-0217",
+      "file": "github-lists.spec.ts",
+      "titlePath": [
+        "hiding the repository pane stops automatic discovery and restoring it resumes the same batch"
+      ]
+    },
+    {
+      "projectName": "case-0218",
+      "file": "github-lists.spec.ts",
+      "titlePath": [
+        "an exact account selection remains scoped while an older account page completes late"
+      ]
+    },
+    {
+      "projectName": "case-0219",
+      "file": "github-lists.spec.ts",
+      "titlePath": [
+        "phone account paging and repository search controls fit the viewport with touch targets"
+      ]
+    },
+    {
+      "projectName": "case-0220",
+      "file": "image-attachment-staging.spec.ts",
+      "titlePath": [
+        "photos use actual worker CAS bytes and JSON-only promotion before explicit image-reference submission"
+      ]
+    },
+    {
+      "projectName": "case-0221",
+      "file": "image-attachment-staging.spec.ts",
+      "titlePath": [
+        "a lost promotion reply retries the exact upload without a second reservation or conversion identity"
+      ]
+    },
+    {
+      "projectName": "case-0222",
+      "file": "image-attachment-staging.spec.ts",
+      "titlePath": [
+        "cancelled promotion stays out of the draft until retry checks the same uploaded photo"
+      ]
+    },
+    {
+      "projectName": "case-0223",
+      "file": "image-attachment-staging.spec.ts",
+      "titlePath": [
+        "an invalid promoted reference remains unconfirmed and retains its original generic upload"
+      ]
+    },
+    {
+      "projectName": "case-0224",
+      "file": "image-attachment-staging.spec.ts",
+      "titlePath": [
+        "a late promotion response cannot populate a different workspace or submit its source"
+      ]
+    },
+    {
+      "projectName": "case-0225",
+      "file": "image-attachments-ui.spec.ts",
+      "titlePath": [
+        "picker uploads actual bytes and keeps authenticated message previews after acknowledgement"
+      ]
+    },
+    {
+      "projectName": "case-0226",
+      "file": "image-attachments-ui.spec.ts",
+      "titlePath": [
+        "file count and byte limits reject selections before any network upload"
+      ]
+    },
+    {
+      "projectName": "case-0227",
+      "file": "image-attachments-ui.spec.ts",
+      "titlePath": [
+        "photo filename admission matches staging limits before upload and preserves an accepted Unicode name"
+      ]
+    },
+    {
+      "projectName": "case-0228",
+      "file": "image-attachments-ui.spec.ts",
+      "titlePath": [
+        "text paste stays native, image paste uploads, and file drops cannot navigate away"
+      ]
+    },
+    {
+      "projectName": "case-0229",
+      "file": "image-attachments-ui.spec.ts",
+      "titlePath": [
+        "uploads are bounded to two requests and queued or active uploads can be canceled and retried"
+      ]
+    },
+    {
+      "projectName": "case-0230",
+      "file": "image-attachments-ui.spec.ts",
+      "titlePath": [
+        "workspace and thread drafts stay separate through promotion and confirmed restoration"
+      ]
+    },
+    {
+      "projectName": "case-0231",
+      "file": "image-attachments-ui.spec.ts",
+      "titlePath": [
+        "network errors remain visible, and preview and deletion retries use the real routes"
+      ]
+    },
+    {
+      "projectName": "case-0232",
+      "file": "image-attachments-ui.spec.ts",
+      "titlePath": [
+        "locking and unmounting abort pending uploads, close previews, and release object URLs"
+      ]
+    },
+    {
+      "projectName": "case-0233",
+      "file": "image-attachments-ui.spec.ts",
+      "titlePath": [
+        "phone controls have touch targets, fit the viewport, and honor reduced motion"
+      ]
+    },
+    {
+      "projectName": "case-0234",
+      "file": "input-motion.spec.ts",
+      "titlePath": [
+        "password, revealed credentials and explicitly private inputs retain the native caret without measurement"
+      ]
+    },
+    {
+      "projectName": "case-0235",
+      "file": "input-motion.spec.ts",
+      "titlePath": [
+        "composer typing, native selection, paste and undo stay immediate while the caret moves smoothly"
+      ]
+    },
+    {
+      "projectName": "case-0236",
+      "file": "input-motion.spec.ts",
+      "titlePath": [
+        "composition temporarily returns to the native caret without intercepting composition or input"
+      ]
+    },
+    {
+      "projectName": "case-0237",
+      "file": "input-motion.spec.ts",
+      "titlePath": [
+        "reduced motion makes the input caret solid and instantaneous without changing editing"
+      ]
+    },
+    {
+      "projectName": "case-0238",
+      "file": "input-motion.spec.ts",
+      "titlePath": [
+        "wrapped textarea caret tracks real scrolling and horizontal input scrolling stays clipped"
+      ]
+    },
+    {
+      "projectName": "case-0239",
+      "file": "input-motion.spec.ts",
+      "titlePath": [
+        "native Go to file dialog and Monaco find inputs share motion while Monaco editing owns its caret"
+      ]
+    },
+    {
+      "projectName": "case-0240",
+      "file": "input-motion.spec.ts",
+      "titlePath": [
+        "autofill-style replacement, focus changes and page suspension keep the native value and caret recoverable"
+      ]
+    },
+    {
+      "projectName": "case-0241",
+      "file": "input-motion.spec.ts",
+      "titlePath": [
+        "a settled focused field follows position-only sibling layout changes without typing or scrolling"
+      ]
+    },
+    {
+      "projectName": "case-0242",
+      "file": "input-motion.spec.ts",
+      "titlePath": [
+        "a caret clipped by an ancestor stays native instead of painting outside the pane"
+      ]
+    },
+    {
+      "projectName": "case-0243",
+      "file": "input-motion.spec.ts",
+      "titlePath": [
+        "End at a soft-wrap boundary preserves the native upstream caret affinity"
+      ]
+    },
+    {
+      "projectName": "case-0244",
+      "file": "input-motion.spec.ts",
+      "titlePath": [
+        "a delayed font face invalidates caret measurements while a field keeps the same value and font declaration"
+      ]
+    },
+    {
+      "projectName": "case-0245",
+      "file": "input-motion.spec.ts",
+      "titlePath": [
+        "multiline caret travel snaps to a new baseline and resumes smooth horizontal typing"
+      ]
+    },
+    {
+      "projectName": "case-0246",
+      "file": "large-file-editor.spec.ts",
+      "titlePath": [
+        "loads a bounded page, preserves dirty tabs, and saves through the main top bar without touching unseen bytes"
+      ]
+    },
+    {
+      "projectName": "case-0247",
+      "file": "large-file-editor.spec.ts",
+      "titlePath": [
+        "retains a conflicting page and applies it only after reviewing the current matching range"
+      ]
+    },
+    {
+      "projectName": "case-0248",
+      "file": "large-file-editor.spec.ts",
+      "titlePath": [
+        "reports a failed page read, retries it, and ignores an old workspace response after switching"
+      ]
+    },
+    {
+      "projectName": "case-0249",
+      "file": "large-file-editor.spec.ts",
+      "titlePath": [
+        "searches saved text in bounded sections and uses honest byte and global line navigation"
+      ]
+    },
+    {
+      "projectName": "case-0250",
+      "file": "large-file-editor.spec.ts",
+      "titlePath": [
+        "keeps a dirty page through locking and a native rename without using its old range token"
+      ]
+    },
+    {
+      "projectName": "case-0251",
+      "file": "large-file-editor.spec.ts",
+      "titlePath": [
+        "phone paged editor",
+        "offers touch page controls and top-bar saving without horizontal layout overflow"
+      ]
+    },
+    {
+      "projectName": "case-0252",
+      "file": "measured-window-focus.spec.ts",
+      "titlePath": [
+        "selecting a native child keeps one grouped conversation, preserves tool focus and restores the parent window"
+      ]
+    },
+    {
+      "projectName": "case-0253",
+      "file": "measured-window-focus.spec.ts",
+      "titlePath": [
+        "changing the native parent ignores a late child refresh and permits a fresh child read in the new scope"
+      ]
+    },
+    {
+      "projectName": "case-0254",
+      "file": "measured-window-focus.spec.ts",
+      "titlePath": [
+        "an initially autoFocused input stays attached and focused while its row is outside the normal window"
+      ]
+    },
+    {
+      "projectName": "case-0255",
+      "file": "measured-window-focus.spec.ts",
+      "titlePath": [
+        "saved conversation rows keep their variable heights and both margins across virtual spacers"
+      ]
+    },
+    {
+      "projectName": "case-0256",
+      "file": "measured-window-focus.spec.ts",
+      "titlePath": [
+        "group aliases retain one measured row and turn geometry after predecessor nodes unmount"
+      ]
+    },
+    {
+      "projectName": "case-0257",
+      "file": "message-citations.spec.ts",
+      "titlePath": [
+        "preserved source metadata survives reload, preserves Markdown, and opens safely by keyboard"
+      ]
+    },
+    {
+      "projectName": "case-0258",
+      "file": "message-citations.spec.ts",
+      "titlePath": [
+        "source lists remain readable and touch accessible on narrow phones and desktop, with all sources reachable"
+      ]
+    },
+    {
+      "projectName": "case-0259",
+      "file": "message-citations.spec.ts",
+      "titlePath": [
+        "native child answers keep their actual Markdown sources inspectable inside the conversation"
+      ]
+    },
+    {
+      "projectName": "case-0260",
+      "file": "monaco-widgets.spec.ts",
+      "titlePath": [
+        "keyboard TypeScript completions use neutral rounded rows and save the selected member"
+      ]
+    },
+    {
+      "projectName": "case-0261",
+      "file": "monaco-widgets.spec.ts",
+      "titlePath": [
+        "completion details expose real TypeScript documentation and leave the file unchanged until acceptance"
+      ]
+    },
+    {
+      "projectName": "case-0262",
+      "file": "monaco-widgets.spec.ts",
+      "titlePath": [
+        "find navigation, case and whole-word controls constrain a real replacement that can be undone"
+      ]
+    },
+    {
+      "projectName": "case-0263",
+      "file": "monaco-widgets.spec.ts",
+      "titlePath": [
+        "invalid regex stays visible and recoverable before capture-group Replace All and undo"
+      ]
+    },
+    {
+      "projectName": "case-0264",
+      "file": "monaco-widgets.spec.ts",
+      "titlePath": [
+        "reduced-motion tablet widgets remain usable without animated transitions"
+      ]
+    },
+    {
+      "projectName": "case-0265",
+      "file": "monaco-widgets.spec.ts",
+      "titlePath": [
+        "phone Monaco widgets",
+        "touch completion and compact find controls fit the viewport and save real edits"
+      ]
+    },
+    {
+      "projectName": "case-0266",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "native truncated rows use canonical IDs and bounded version-pinned UTF-16 sections"
+      ]
+    },
+    {
+      "projectName": "case-0267",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "command expansion reads output inline, keeps focus and retains one bounded page on collapse"
+      ]
+    },
+    {
+      "projectName": "case-0268",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "pointer clicks have no white outline and keyboard focus remains gray and visible"
+      ]
+    },
+    {
+      "projectName": "case-0269",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "collapsing output discards an unabortable pending page and reopening retries inline"
+      ]
+    },
+    {
+      "projectName": "case-0270",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "pending inline output stays scoped after a thread change"
+      ]
+    },
+    {
+      "projectName": "case-0271",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "pending inline output stays scoped after a workspace change"
+      ]
+    },
+    {
+      "projectName": "case-0272",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "session lock closes inline output and rejects late content through unlock"
+      ]
+    },
+    {
+      "projectName": "case-0273",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "new output leaves the current page stable and offers an inline refresh"
+      ]
+    },
+    {
+      "projectName": "case-0274",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "native search advances only through explicit bounded continuation"
+      ]
+    },
+    {
+      "projectName": "case-0275",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "native command and summary readers retain their fields while file changes open the exact editor target"
+      ]
+    },
+    {
+      "projectName": "case-0276",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "a changed source clears the old section and requires explicit restart"
+      ]
+    },
+    {
+      "projectName": "case-0277",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "invalid native reply is visible without retaining content: wrongIdentity"
+      ]
+    },
+    {
+      "projectName": "case-0278",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "invalid native reply is visible without retaining content: protocolFields"
+      ]
+    },
+    {
+      "projectName": "case-0279",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "invalid native reply is visible without retaining content: oversized"
+      ]
+    },
+    {
+      "projectName": "case-0280",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "invalid native reply is visible without retaining content: invalidRange"
+      ]
+    },
+    {
+      "projectName": "case-0281",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "native absence is reported honestly: unavailable"
+      ]
+    },
+    {
+      "projectName": "case-0282",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "native absence is reported honestly: notFound"
+      ]
+    },
+    {
+      "projectName": "case-0283",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "late native detail content cannot cross a thread change"
+      ]
+    },
+    {
+      "projectName": "case-0284",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "late native detail content cannot cross a workspace change"
+      ]
+    },
+    {
+      "projectName": "case-0285",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "session lock closes inspection and discards an unabortable late read"
+      ]
+    },
+    {
+      "projectName": "case-0286",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "legacy inspection retains the saved history route and epoch contract"
+      ]
+    },
+    {
+      "projectName": "case-0287",
+      "file": "native-item-detail.spec.ts",
+      "titlePath": [
+        "native detail remains readable on a phone without shadows or motion"
+      ]
+    },
+    {
+      "projectName": "case-0288",
+      "file": "native-request-dialogs.spec.ts",
+      "titlePath": [
+        "multi-question dialog requires explicit answers and retains an ordinary draft when closed"
+      ]
+    },
+    {
+      "projectName": "case-0289",
+      "file": "native-request-dialogs.spec.ts",
+      "titlePath": [
+        "secret answers stay in native inputs, clear on close and failure, and never leak server echoes"
+      ]
+    },
+    {
+      "projectName": "case-0290",
+      "file": "native-request-dialogs.spec.ts",
+      "titlePath": [
+        "accepted secret answers stay sent until the native request disappears and cannot be submitted twice"
+      ]
+    },
+    {
+      "projectName": "case-0291",
+      "file": "native-request-dialogs.spec.ts",
+      "titlePath": [
+        "stale and locked question scopes discard draft state and ignore a late submission failure"
+      ]
+    },
+    {
+      "projectName": "case-0292",
+      "file": "native-request-dialogs.spec.ts",
+      "titlePath": [
+        "approval dialog shows command scope and only offered decisions, with local failure and retry"
+      ]
+    },
+    {
+      "projectName": "case-0293",
+      "file": "native-request-dialogs.spec.ts",
+      "titlePath": [
+        "opaque approval offers display complete scopes and submit only the current offered identifier"
+      ]
+    },
+    {
+      "projectName": "case-0294",
+      "file": "native-request-dialogs.spec.ts",
+      "titlePath": [
+        "a replaced approval drops obsolete decisions and ignores a late failed response"
+      ]
+    },
+    {
+      "projectName": "case-0295",
+      "file": "native-request-dialogs.spec.ts",
+      "titlePath": [
+        "native queue editing preserves the submission and attachment identities with an explicit save"
+      ]
+    },
+    {
+      "projectName": "case-0296",
+      "file": "native-request-dialogs.spec.ts",
+      "titlePath": [
+        "plan dialog updates native progress in place without inventing completion for remaining steps"
+      ]
+    },
+    {
+      "projectName": "case-0297",
+      "file": "native-request-dialogs.spec.ts",
+      "titlePath": [
+        "request dialogs remain usable on a phone with visible focus, touch targets and reduced motion"
+      ]
+    },
+    {
+      "projectName": "case-0298",
+      "file": "native-request-dialogs.spec.ts",
+      "titlePath": [
+        "busy approvals skip disabled decisions and keep keyboard and programmatic focus inside"
+      ]
+    },
+    {
+      "projectName": "case-0299",
+      "file": "native-request-dialogs.spec.ts",
+      "titlePath": [
+        "controlled dropdown portals retain keyboard focus and close before their request dialog"
+      ]
+    },
+    {
+      "projectName": "case-0300",
+      "file": "native-request-dialogs.spec.ts",
+      "titlePath": [
+        "shared dialog prioritizes a rendered autofocus field and excludes hidden, inert and disabled targets"
+      ]
+    },
+    {
+      "projectName": "case-0301",
+      "file": "pane-resize.spec.ts",
+      "titlePath": [
+        "desktop dragging both separators resizes adjacent panes and persists only released widths across reload"
+      ]
+    },
+    {
+      "projectName": "case-0302",
+      "file": "pane-resize.spec.ts",
+      "titlePath": [
+        "laptop dragging both separators resizes adjacent panes and persists only released widths across reload"
+      ]
+    },
+    {
+      "projectName": "case-0303",
+      "file": "pane-resize.spec.ts",
+      "titlePath": [
+        "Resize agent and editor supports keyboard steps and Home/End bounds with reduced motion"
+      ]
+    },
+    {
+      "projectName": "case-0304",
+      "file": "pane-resize.spec.ts",
+      "titlePath": [
+        "Resize editor and explorer supports keyboard steps and Home/End bounds with reduced motion"
+      ]
+    },
+    {
+      "projectName": "case-0305",
+      "file": "pane-resize.spec.ts",
+      "titlePath": [
+        "Escape cancels either active drag without saving or leaving a captured pointer behind"
+      ]
+    },
+    {
+      "projectName": "case-0306",
+      "file": "pane-resize.spec.ts",
+      "titlePath": [
+        "viewport clamping keeps all three panes usable and restores independent desktop and laptop preferences"
+      ]
+    },
+    {
+      "projectName": "case-0307",
+      "file": "pane-resize.spec.ts",
+      "titlePath": [
+        "saved pane widths apply across workspace switches through the top bar"
+      ]
+    },
+    {
+      "projectName": "case-0308",
+      "file": "pane-resize.spec.ts",
+      "titlePath": [
+        "resizing and pane toggles preserve Monaco undo, dirty buffers, the chat draft and the original live PTY"
+      ]
+    },
+    {
+      "projectName": "case-0309",
+      "file": "pane-resize.spec.ts",
+      "titlePath": [
+        "tablet keeps ordinary navigation and dirty editor buffers without pane splitters"
+      ]
+    },
+    {
+      "projectName": "case-0310",
+      "file": "pane-resize.spec.ts",
+      "titlePath": [
+        "mobile keeps ordinary navigation and dirty editor buffers without pane splitters"
+      ]
+    },
+    {
+      "projectName": "case-0311",
+      "file": "pane-resize.spec.ts",
+      "titlePath": [
+        "native touch pane resizing",
+        "touch grips resize both panes and native pointer cancellation restores uncommitted dimensions"
+      ]
+    },
+    {
+      "projectName": "case-0312",
+      "file": "scrollbars.spec.ts",
+      "titlePath": [
+        "native file explorer reveals only its own thumb during real scrolling and fades without changing pane geometry"
+      ]
+    },
+    {
+      "projectName": "case-0313",
+      "file": "scrollbars.spec.ts",
+      "titlePath": [
+        "keyboard scrolling in a portalled dropdown shows its thumb without activating the underlying dialog"
+      ]
+    },
+    {
+      "projectName": "case-0314",
+      "file": "scrollbars.spec.ts",
+      "titlePath": [
+        "nested conversation and code scroll independently using actual vertical and horizontal input"
+      ]
+    },
+    {
+      "projectName": "case-0315",
+      "file": "scrollbars.spec.ts",
+      "titlePath": [
+        "real Monaco scrolling covers primary, split, and diff editors, while idle hover stays hidden and dragging remains usable"
+      ]
+    },
+    {
+      "projectName": "case-0316",
+      "file": "scrollbars.spec.ts",
+      "titlePath": [
+        "xterm scrollback from a real host command fades at idle and keeps the viewport dimensions"
+      ]
+    },
+    {
+      "projectName": "case-0317",
+      "file": "scrollbars.spec.ts",
+      "titlePath": [
+        "Monaco completion lists reveal a thumb only when their own virtual position changes"
+      ]
+    },
+    {
+      "projectName": "case-0318",
+      "file": "scrollbars.spec.ts",
+      "titlePath": [
+        "touch and reduced motion",
+        "phone explorer still responds to touch and skips the idle fade animation when reduced motion is enabled"
+      ]
+    },
+    {
+      "projectName": "case-0319",
+      "file": "session-recovery.spec.ts",
+      "titlePath": [
+        "a failed server logout stays visibly locked after reload and can be retried without losing the lock"
+      ]
+    },
+    {
+      "projectName": "case-0320",
+      "file": "session-recovery.spec.ts",
+      "titlePath": [
+        "an unreadable successful bootstrap response exposes a recoverable startup error"
+      ]
+    },
+    {
+      "projectName": "case-0321",
+      "file": "session-recovery.spec.ts",
+      "titlePath": [
+        "a stalled session read times out visibly and a later retry can open the workspace"
+      ]
+    },
+    {
+      "projectName": "case-0322",
+      "file": "terminal-connectivity.spec.ts",
+      "titlePath": [
+        "a silent open connection is retired and resumes the same shell without replaying input"
+      ]
+    },
+    {
+      "projectName": "case-0323",
+      "file": "terminal-connectivity.spec.ts",
+      "titlePath": [
+        "a terminal reconnect preserves focus and an unsent message elsewhere in the workspace"
+      ]
+    },
+    {
+      "projectName": "case-0324",
+      "file": "terminal-lifecycle.spec.ts",
+      "titlePath": [
+        "closing the last terminal at 1440px hides it, preserves drafts, and reopens one fresh shell"
+      ]
+    },
+    {
+      "projectName": "case-0325",
+      "file": "terminal-lifecycle.spec.ts",
+      "titlePath": [
+        "closing the last terminal at 390px hides it, preserves drafts, and reopens one fresh shell"
+      ]
+    },
+    {
+      "projectName": "case-0326",
+      "file": "terminal-lifecycle.spec.ts",
+      "titlePath": [
+        "a close pending during lock/unlock cannot reopen its deleted shell"
+      ]
+    },
+    {
+      "projectName": "case-0327",
+      "file": "terminal-lifecycle.spec.ts",
+      "titlePath": [
+        "a late close response from the old workspace leaves the new workspace terminal intact"
+      ]
+    },
+    {
+      "projectName": "case-0328",
+      "file": "terminal-lifecycle.spec.ts",
+      "titlePath": [
+        "closing one of two tabs preserves the other, and a natural exit keeps its output and new-shell control"
+      ]
+    },
+    {
+      "projectName": "case-0329",
+      "file": "terminal-performance.spec.ts",
+      "titlePath": [
+        "one terminal action opens a real shell; switching warm tabs keeps their DOM, sockets and output"
+      ]
+    },
+    {
+      "projectName": "case-0330",
+      "file": "terminal-performance.spec.ts",
+      "titlePath": [
+        "large output is consumed without disconnecting a slower renderer, with real command completion"
+      ]
+    },
+    {
+      "projectName": "case-0331",
+      "file": "terminal-performance.spec.ts",
+      "titlePath": [
+        "consumes tiny native TUI frames with bounded acknowledgements under CPU throttling"
+      ]
+    },
+    {
+      "projectName": "case-0332",
+      "file": "terminal-performance.spec.ts",
+      "titlePath": [
+        "applies a pane resize after older native TUI output without wrapping over other rows"
+      ]
+    },
+    {
+      "projectName": "case-0333",
+      "file": "terminal-performance.spec.ts",
+      "titlePath": [
+        "measures real key echo through the next frame after xterm updates"
+      ]
+    },
+    {
+      "projectName": "case-0334",
+      "file": "terminal-performance.spec.ts",
+      "titlePath": [
+        "phone terminal has neutral colors, accessible touch controls, and keeps the viewport contained"
+      ]
+    },
+    {
+      "projectName": "case-0335",
+      "file": "terminal-replay.spec.ts",
+      "titlePath": [
+        "reconnect preserves the settled viewport for live output"
+      ]
+    },
+    {
+      "projectName": "case-0336",
+      "file": "terminal-replay.spec.ts",
+      "titlePath": [
+        "reconnect preserves the settled viewport for intentional history"
+      ]
+    },
+    {
+      "projectName": "case-0337",
+      "file": "terminal-replay.spec.ts",
+      "titlePath": [
+        "restores the recent context and a native TUI through reload, paste, mouse, clear and phone resize"
+      ]
+    },
+    {
+      "projectName": "case-0338",
+      "file": "terminal-replay.spec.ts",
+      "titlePath": [
+        "measures candidate scrollback restoration in the actual xterm renderer under fourfold CPU throttling"
+      ]
+    },
+    {
+      "projectName": "case-0339",
+      "file": "terminal-replay.spec.ts",
+      "titlePath": [
+        "keeps real native scrollbar clamps finite across both terminal reset paths"
+      ]
+    },
+    {
+      "projectName": "case-0340",
+      "file": "terminal-replay.spec.ts",
+      "titlePath": [
+        "uses measured viewport geometry for hidden terminals and releases only its own reset wrapper"
+      ]
+    },
+    {
+      "projectName": "case-0341",
+      "file": "tool-results.spec.ts",
+      "titlePath": [
+        "keyboard disclosures reveal true command and JSON file content, and search links open exact editor locations"
+      ]
+    },
+    {
+      "projectName": "case-0342",
+      "file": "tool-results.spec.ts",
+      "titlePath": [
+        "streaming updates never flash a protocol envelope, preserve disclosure choice, and reveal later failures"
+      ]
+    },
+    {
+      "projectName": "case-0343",
+      "file": "tool-results.spec.ts",
+      "titlePath": [
+        "truncation, unknown results, and hostile output remain visible and safe without external requests"
+      ]
+    },
+    {
+      "projectName": "case-0344",
+      "file": "tool-results.spec.ts",
+      "titlePath": [
+        "file-review and child failures stay visible even when their tool calls completed"
+      ]
+    },
+    {
+      "projectName": "case-0345",
+      "file": "tool-results.spec.ts",
+      "titlePath": [
+        "representative results fit desktop split panes, laptops, tablets, and phones with 44px controls and reduced motion"
+      ]
+    },
+    {
+      "projectName": "case-0346",
+      "file": "tool-results.spec.ts",
+      "titlePath": [
+        "long output uses the shared auto-hide scrollbar and remains keyboard scrollable without layout shifts"
+      ]
+    },
+    {
+      "projectName": "case-0347",
+      "file": "tool-results.spec.ts",
+      "titlePath": [
+        "native web search enriches a completed row with observed queries and safely opens sources after keyboard activation"
+      ]
+    },
+    {
+      "projectName": "case-0348",
+      "file": "tool-results.spec.ts",
+      "titlePath": [
+        "native web search page actions and preserved failures fit narrow panes without unsafe links or automatic requests"
+      ]
+    },
+    {
+      "projectName": "case-0349",
+      "file": "tooltips.spec.ts",
+      "titlePath": [
+        "actual rail hints are custom, hoverable, and preserve dialog keyboard dismissal and focus"
+      ]
+    },
+    {
+      "projectName": "case-0350",
+      "file": "tooltips.spec.ts",
+      "titlePath": [
+        "dynamic and removed title props update the one hint without losing accessible names or descriptions"
+      ]
+    },
+    {
+      "projectName": "case-0351",
+      "file": "tooltips.spec.ts",
+      "titlePath": [
+        "native-dialog hints remain in the top layer and fit phone corners with reduced motion"
+      ]
+    },
+    {
+      "projectName": "case-0352",
+      "file": "tooltips.spec.ts",
+      "titlePath": [
+        "session locking clears a workspace hint immediately and never turns a password value into a hint"
+      ]
+    },
+    {
+      "projectName": "case-0353",
+      "file": "tooltips.spec.ts",
+      "titlePath": [
+        "hidden controls retain text and image-alt names through updates and session unlock"
+      ]
+    },
+    {
+      "projectName": "case-0354",
+      "file": "tooltips.spec.ts",
+      "titlePath": [
+        "removed virtual rows, pending hints, scroll and workspace changes leave no stale surface"
+      ]
+    },
+    {
+      "projectName": "case-0355",
+      "file": "tooltips.spec.ts",
+      "titlePath": [
+        "disabled reasons remain available while editor and terminal input surfaces keep their own behavior"
+      ]
+    },
+    {
+      "projectName": "case-0356",
+      "file": "tooltips.spec.ts",
+      "titlePath": [
+        "touch tooltips",
+        "a normal tap activates once and a help hold does not execute its action on release"
+      ]
+    },
+    {
+      "projectName": "case-0357",
+      "file": "turn-activity.spec.ts",
+      "titlePath": [
+        "completed activity is compact, keyboard accessible, and keeps real commands and public summary links inspectable"
+      ]
+    },
+    {
+      "projectName": "case-0358",
+      "file": "turn-activity.spec.ts",
+      "titlePath": [
+        "streaming replacements preserve the user disclosure choice and leave a visible failure when collapsed"
+      ]
+    },
+    {
+      "projectName": "case-0359",
+      "file": "turn-activity.spec.ts",
+      "titlePath": [
+        "finishing collapses untouched activity but preserves a tool log the user is inspecting"
+      ]
+    },
+    {
+      "projectName": "case-0360",
+      "file": "turn-activity.spec.ts",
+      "titlePath": [
+        "pending and failed details fit narrow panes with touch targets and reduced motion"
+      ]
+    },
+    {
+      "projectName": "case-0361",
+      "file": "ui-state.spec.ts",
+      "titlePath": [
+        "a fresh browser restores server-backed workspace, root thread, tabs and editor options with independent phone navigation"
+      ]
+    },
+    {
+      "projectName": "case-0362",
+      "file": "ui-state.spec.ts",
+      "titlePath": [
+        "temporary restore failures retain saved paths and retry without clearing the active file"
+      ]
+    },
+    {
+      "projectName": "case-0363",
+      "file": "ui-state.spec.ts",
+      "titlePath": [
+        "unlock preserves dirty buffers when another browser changes the saved active workspace"
+      ]
+    },
+    {
+      "projectName": "case-0364",
+      "file": "upload-progress-windowing.spec.ts",
+      "titlePath": [
+        "a thousand-file plan scrolls with bounded DOM and cancellation retains every real outcome"
+      ]
+    },
+    {
+      "projectName": "case-0365",
+      "file": "upload-progress-windowing.spec.ts",
+      "titlePath": [
+        "current transfer updates stay accurate while keyboard focus and text selection survive scrolling"
+      ]
+    },
+    {
+      "projectName": "case-0366",
+      "file": "upload-progress-windowing.spec.ts",
+      "titlePath": [
+        "phone navigation reveals offscreen problems and resets cleanly for a different batch"
+      ]
+    },
+    {
+      "projectName": "case-0367",
+      "file": "uploads.spec.ts",
+      "titlePath": [
+        "real SDK worker uploads to the chosen folder, confirms import, and preserves an unrelated dirty buffer"
+      ]
+    },
+    {
+      "projectName": "case-0368",
+      "file": "uploads.spec.ts",
+      "titlePath": [
+        "blocked direct network requests stay visible as failed uploads and never finalize"
+      ]
+    },
+    {
+      "projectName": "case-0369",
+      "file": "uploads.spec.ts",
+      "titlePath": [
+        "cancelling a file awaiting its capability also cancels queued files and stops the worker"
+      ]
+    },
+    {
+      "projectName": "case-0370",
+      "file": "uploads.spec.ts",
+      "titlePath": [
+        "a conflicting filename fails independently while another selected file is saved"
+      ]
+    },
+    {
+      "projectName": "case-0371",
+      "file": "uploads.spec.ts",
+      "titlePath": [
+        "an upload cannot replace an edited file with unsaved changes"
+      ]
+    },
+    {
+      "projectName": "case-0372",
+      "file": "workspace-pages.spec.ts",
+      "titlePath": [
+        "workspace pages preserve an off-page editor, draft and terminal across search, refresh, lock and exact recovery"
+      ]
+    },
+    {
+      "projectName": "case-0373",
+      "file": "workspace-switcher.spec.ts",
+      "titlePath": [
+        "desktop: actions precede search and the list retains its query, page and scroll through create and reopen"
+      ]
+    },
+    {
+      "projectName": "case-0374",
+      "file": "workspace-switcher.spec.ts",
+      "titlePath": [
+        "phone: actions precede search and the list retains its query, page and scroll through create and reopen"
+      ]
+    },
+    {
+      "projectName": "case-0375",
+      "file": "workspace-switcher.spec.ts",
+      "titlePath": [
+        "search Enter and row arrow navigation switch directly while declined callbacks retain the draft"
+      ]
+    },
+    {
+      "projectName": "case-0376",
+      "file": "workspace-switcher.spec.ts",
+      "titlePath": [
+        "creation validates the name, shows progress, retains failures and waits for the parent guard"
+      ]
+    },
+    {
+      "projectName": "case-0377",
+      "file": "workspace-switcher.spec.ts",
+      "titlePath": [
+        "visible deletion uses verified ordinary and repository plans, with keyboard cancel and parent guards"
+      ]
+    },
+    {
+      "projectName": "case-0378",
+      "file": "workspace-switcher.spec.ts",
+      "titlePath": [
+        "failed deletion checks cannot delete, and managed checkouts retain their worktree removal flow"
+      ]
+    },
+    {
+      "projectName": "case-0379",
+      "file": "workspace-switcher.spec.ts",
+      "titlePath": [
+        "an empty account keeps creation and import above search with a clear first-workspace state"
+      ]
+    },
+    {
+      "projectName": "case-0380",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "phone workspace trash restores saved files without changing the dirty workspace and confirms permanent deletion"
+      ]
+    },
+    {
+      "projectName": "case-0381",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "moving the current workspace to trash runs the unsaved-buffer guard before sending a delete"
+      ]
+    },
+    {
+      "projectName": "case-0382",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "external workspace deletion retires active navigation while preserving mounted editor buffers and chat drafts for restoration"
+      ]
+    },
+    {
+      "projectName": "case-0383",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "failed reconciliation keeps navigation intact and verified missing roots have no false restore action"
+      ]
+    },
+    {
+      "projectName": "case-0384",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "a stale workspace listing cannot put a deleted workspace back in navigation"
+      ]
+    },
+    {
+      "projectName": "case-0385",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "a delayed delete response from a locked session cannot change the newly selected workspace"
+      ]
+    },
+    {
+      "projectName": "case-0386",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "a changed GitHub deletion plan requires a new permanent local deletion confirmation and never promises restoration"
+      ]
+    },
+    {
+      "projectName": "case-0387",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "unavailable workspaces keep real terminal sessions reachable and closable without creating replacement shells"
+      ]
+    },
+    {
+      "projectName": "case-0388",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "unfinished permanent deletions stay separate from usable trash and retry their exact saved operation"
+      ]
+    },
+    {
+      "projectName": "case-0389",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "a stale permanent-deletion retry cannot affect a later workspace or a newer deletion record"
+      ]
+    },
+    {
+      "projectName": "case-0390",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "pages and searches trash and permanent statuses independently with bounded phone cards and keyboard controls"
+      ]
+    },
+    {
+      "projectName": "case-0391",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "an older trash page cannot replace a newer search or trigger recovery after its request is cancelled"
+      ]
+    },
+    {
+      "projectName": "case-0392",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "healthy trash remains usable while permanent statuses load and restores keyboard focus after its own refresh completes"
+      ]
+    },
+    {
+      "projectName": "case-0393",
+      "file": "workspace-trash.spec.ts",
+      "titlePath": [
+        "finishing the last deletion on a later page keeps earlier statuses reachable when the follow-up read fails"
+      ]
+    },
+    {
+      "projectName": "case-0394",
+      "file": "workspace.spec.ts",
+      "titlePath": [
+        "password gate, failed password, session persistence, and lock"
+      ]
+    },
+    {
+      "projectName": "case-0395",
+      "file": "workspace.spec.ts",
+      "titlePath": [
+        "editor saves real files and terminal runs in the same workspace"
+      ]
+    },
+    {
+      "projectName": "case-0396",
+      "file": "workspace.spec.ts",
+      "titlePath": [
+        "settings, workspace switching, and repository connection screens are usable"
+      ]
+    },
+    {
+      "projectName": "case-0397",
+      "file": "workspace.spec.ts",
+      "titlePath": [
+        "phone has its intended layout with functional navigation"
+      ]
+    },
+    {
+      "projectName": "case-0398",
+      "file": "workspace.spec.ts",
+      "titlePath": [
+        "tablet has its intended layout with functional navigation"
+      ]
+    },
+    {
+      "projectName": "case-0399",
+      "file": "workspace.spec.ts",
+      "titlePath": [
+        "laptop has its intended layout with functional navigation"
+      ]
+    },
+    {
+      "projectName": "case-0400",
+      "file": "workspace.spec.ts",
+      "titlePath": [
+        "desktop has its intended layout with functional navigation"
+      ]
+    },
+    {
+      "projectName": "case-0401",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "creates through the real API client, registers before the dirty guard, and switches only after the guard accepts"
+      ]
+    },
+    {
+      "projectName": "case-0402",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "keeps a rejected create draft, uses only relevant branch fields, and prevents duplicate submissions while loading"
+      ]
+    },
+    {
+      "projectName": "case-0403",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "a failed active-workspace save retains the created checkout and retries opening it without creating another"
+      ]
+    },
+    {
+      "projectName": "case-0404",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "archives and reopens the same workspace without changing its account or creating a conversation"
+      ]
+    },
+    {
+      "projectName": "case-0405",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "requires an explicit removal confirmation and surfaces busy or newly dirty server refusals without removing the workspace"
+      ]
+    },
+    {
+      "projectName": "case-0406",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "a removed worktree returns focus through its parent dialog without replacing a control chosen during refresh"
+      ]
+    },
+    {
+      "projectName": "case-0407",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "protects the current checkout and Git-locked files, and makes recovery problems readable"
+      ]
+    },
+    {
+      "projectName": "case-0408",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "invalidates reviewed removal details when a newer list reports a changed commit"
+      ]
+    },
+    {
+      "projectName": "case-0409",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "failed cleanup after native removal offers an explicitly confirmed Finish removal and never reopens the removed checkout"
+      ]
+    },
+    {
+      "projectName": "case-0410",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "changing the removal receipt invalidates Finish removal confirmation and preserves ordinary recovery and Archive"
+      ]
+    },
+    {
+      "projectName": "case-0411",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "ignores late reads from a previous repository and shows retryable list failures without inventing an empty result"
+      ]
+    },
+    {
+      "projectName": "case-0412",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "a delayed create cannot register, select, or reopen a dialog after locking; unlock discovers the saved checkout"
+      ]
+    },
+    {
+      "projectName": "case-0413",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "expired authentication hides the manager and stops actions until the session unlocks"
+      ]
+    },
+    {
+      "projectName": "case-0414",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "topbar menus, touch controls, nested confirmation focus and activity scrollbars work on narrow screens"
+      ]
+    },
+    {
+      "projectName": "case-0415",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "requests separate worktree pages, bounds mounted cards, and retains the last page when the next read fails"
+      ]
+    },
+    {
+      "projectName": "case-0416",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "keeps the exact current checkout and primary metadata when both are outside the first workspace page"
+      ]
+    },
+    {
+      "projectName": "case-0417",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "supports keyboard paging and virtualized card scrolling on a phone without changing navigation or issuing mutations"
+      ]
+    },
+    {
+      "projectName": "case-0418",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "@app creates, archives and reopens a native worktree through the top bar while preserving files, tabs and conversations"
+      ]
+    },
+    {
+      "projectName": "case-0419",
+      "file": "worktrees-ui.spec.ts",
+      "titlePath": [
+        "@app the real App rejects an activation response spanning lock and unlock, then permits a fresh guarded switch"
+      ]
+    }
+  ]
+}

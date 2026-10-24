@@ -1,0 +1,36 @@
+.measured-window-origin { height: 0; min-height: 0; flex: none; overflow-anchor: none; }
+/* Spacer height is layout bookkeeping and must settle before scroll correction,
+   even when global reduced-motion rules shorten otherwise implicit transitions. */
+.measured-window-space { min-height: 0; flex: none; pointer-events: none; overflow-anchor: none; transition: none !important; }
+.measured-window-row { flex-shrink: 0; overflow-anchor: none; }
+.measured-window-container { display: flex; flex-direction: column; min-width: 0; }
+.measured-window-container:empty { min-height: 1px; }
+.chat-window-activity.measured-window-row { margin-top: 0; }
+.chat-window-activity.measured-window-row.follows-activity { margin-top: -9px; }
+.chat-window-turn-end.measured-window-row { margin-top: -17px; }
+.chat-window-turn-end.measured-window-row.follows-activity, .chat-window-turn-end.measured-window-row.follows-reasoning { margin-top: 0; }
+.chat-conversation, .chat-history-list, .inline-agent-conversation-scroll { overflow-anchor: none; }
+.chat-panel .chat-history-list { display: flex; flex-direction: column; gap: 0; }
+.chat-history-selected-rename { flex: none; margin: 0 8px 8px; }
+.chat-conversation :focus-visible, .inline-agent-conversation-scroll :focus-visible { scroll-margin-block: 36px; }
+.chat-history-page { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; flex: none; padding: 5px 8px; color: var(--muted); font-size: 11px; }
+.chat-history-page button { min-height: 36px; padding: 5px 10px; border: 1px solid var(--border); border-radius: 7px; color: var(--text); background: var(--panel-2); }
+.chat-history-page button:disabled { opacity: .6; }
+.chat-history-page [role="alert"] { color: var(--text); }
+.chat-history-page[role="alert"] { position: sticky; top: 0; z-index: 2; flex-wrap: wrap; justify-content: flex-start; border: 1px solid var(--border); border-radius: 8px; background: var(--panel); color: var(--text); }
+.chat-pending-requests { max-height: min(42dvh, 360px); overflow: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
+.chat-pending-requests:empty { display: none; }
+.chat-pending-requests .chat-approval, .chat-pending-requests .chat-question { margin: 0 0 10px; }
+.inline-agent-conversation-scroll { max-height: min(58dvh, 540px); min-height: 100px; overflow: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
+.inline-agent-conversation-scroll .inline-agent-conversation { gap: 0; }
+.inline-agent-conversation-scroll .inline-agent-message { margin-bottom: 14px; }
+.inline-agent-conversation > .measured-window-row { margin-bottom: 14px; }
+.inline-agent-conversation > .chat-window-reasoning > .chat-timeline-reasoning { margin-block: 0; }
+.inline-agent-conversation > .chat-window-activity.measured-window-row { margin-top: 0; }
+.inline-agent-conversation > .chat-window-activity.measured-window-row.follows-activity { margin-top: -7px; }
+.inline-agent-history-latest { display: flex; justify-content: flex-end; margin-block: 4px; }
+.inline-agent-history-latest button { min-height: 36px; padding: 5px 9px; border: 1px solid var(--border); border-radius: 7px; background: var(--panel-2); font-size: 11px; }
+.chat-history-excerpt { display: flex; flex-direction: column; min-width: 0; }
+.chat-history-detail-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 10px; margin: -8px 0 18px; color: var(--faint); font-size: 10px; }
+.chat-history-detail-actions button { min-height: 36px; padding: 4px 7px; border: 1px solid var(--border); border-radius: 6px; color: var(--text); }
+@media (pointer: coarse), (max-width: 600px) { .chat-history-page button, .inline-agent-history-latest button, .chat-panel .chat-jump-latest, .chat-history-detail-actions button { min-height: 44px; } }
