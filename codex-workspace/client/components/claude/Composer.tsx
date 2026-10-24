@@ -1,49 +1,105 @@
-import { useEffect, useMemo, useRef, useState, type ClipboardEvent, type DragEvent, type KeyboardEvent } from 'react';
-import { ArrowUp, Brain, CornerDownRight, FileText, ListPlus, LoaderCircle, Paperclip, Square, Target, X, AtSign, Slash, Gauge } from 'lucide-react';
-import { CLAUDE_PERMISSION_MODES, type ClaudeGoal, type ClaudeAttachment, type ClaudeCommand, type ClaudeEffort, type ClaudeModelOption, type ClaudePermissionMode, type ClaudeUsage } from '../../../shared/claude';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ClipboardEvent, type CSSProperties, type DragEvent, type KeyboardEvent } from 'react';
+import { CLAUDE_PERMISSION_MODES, type ClaudeAttachment, type ClaudeCommand, type ClaudeEffort, type ClaudeGoal, type ClaudeModelOption, type ClaudePermissionMode,
+  type ClaudeQueuedMessage, type ClaudeTodo } from '../../../shared/claude';
 import { api, json } from '../../api';
-import { SelectMenu } from '../ui/Dropdown';
-import { EFFORT_DESCRIPTIONS, EFFORT_LABELS, modelEfforts } from './catalog';
-import { compactTokens, money } from './Timeline';
-import { ContextRing } from './Working';
+import { modelEfforts } from './catalog';
+import { ArrowUp, BrainOff, BrainOn, Check, Chevron, Close, Edit, FileGlyph, ModeIcon, Plus, Queue, Steer, StopSquare } from './composer/icons';
+import { ModelPicker } from './composer/ModelPicker';
+import { StatusTray, type TrayState } from './composer/StatusTray';
+import { useCustomScroll } from './composer/useCustomScroll';
+import '@fontsource-variable/geist/wght.css';
+import '@fontsource-variable/geist-mono/wght.css';
+import './composer/composer.css';
 
 export interface ComposerSettings { model: string; effort: ClaudeEffort | null; thinking: boolean; permissionMode: ClaudePermissionMode }
+export type QueueAction = 'edit' | 'steer' | 'remove';
 interface Props {
   workspaceId: string; draft: string; onDraft: (value: string) => void; attachments: ClaudeAttachment[]; onAttachments: (value: ClaudeAttachment[]) => void;
   settings: ComposerSettings; onSettings: (patch: Partial<ComposerSettings>) => void; models: ClaudeModelOption[]; modelsLoading: boolean;
-  commands: ClaudeCommand[]; running: boolean; stopping: boolean; sending: boolean; disabled: boolean; usage?: ClaudeUsage;
-  onSend: () => void; onQueue: () => void; onStop: () => void; goal?: ClaudeGoal | null; onClearGoal?: () => void; onNotify: (message: string, kind?: 'error' | 'success' | 'info') => void; focusKey?: string;
+  commands: ClaudeCommand[]; running: boolean; stopping: boolean; sending: boolean; disabled: boolean;
+  status: { label: string; startedAt?: string }; goal?: ClaudeGoal | null; todos?: ClaudeTodo[] | null; queue: ClaudeQueuedMessage[];
+  onSend: () => void; onQueue: () => void; onSteer: () => void; onStop: () => void;
+  onQueueAction: (item: ClaudeQueuedMessage, action: QueueAction) => void; onClearGoal: () => void; onResumeGoal: () => void;
+  onNotify: (message: string, kind?: 'error' | 'success' | 'info') => void; focusKey?: string;
 }
 type Menu = { kind: 'command'; query: string } | { kind: 'file'; query: string; start: number } | null;
-const DEFAULT = '$auto';
+type Pop = 'mode' | 'model' | null;
 const LOCAL_COMMANDS: ClaudeCommand[] = [
   { name: 'clear', description: 'Start a new conversation', builtin: true },
   { name: 'compact', description: 'Summarize the conversation to free up context', argumentHint: '[instructions]', builtin: true },
 ];
-const modeColors: Record<ClaudePermissionMode, string> = { default: '', acceptEdits: 'is-accept', plan: 'is-plan', auto: 'is-auto', dontAsk: 'is-dontask', bypassPermissions: 'is-bypass' };
 const coarse = () => typeof window !== 'undefined' && window.matchMedia?.('(pointer: coarse)').matches;
+const size = (bytes: number) => bytes < 1024 ? `${bytes} B` : bytes < 1048576 ? `${(bytes / 1024).toFixed(1)} KB` : `${(bytes / 1048576).toFixed(1)} MB`;
+const extension = (name: string, media: string) => { const dot = name.lastIndexOf('.'); return (dot > 0 ? name.slice(dot + 1) : media.split('/')[1] || 'file').toUpperCase().slice(0, 5); };
 
 function readFile(file: File) {
   return new Promise<string>((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(String(reader.result)); reader.onerror = () => reject(reader.error); reader.readAsDataURL(file); });
 }
+function highlight(text: string, query: string) {
+  const at = query ? text.toLowerCase().indexOf(query.toLowerCase()) : -1;
+  return at < 0 ? text : <>{text.slice(0, at)}<mark>{text.slice(at, at + query.length)}</mark>{text.slice(at + query.length)}</>;
+}
 
 export function Composer(props: Props) {
-  const { workspaceId, draft, onDraft, attachments, onAttachments, settings, onSettings, models, modelsLoading, commands, running, stopping, sending, disabled, usage, onSend, onQueue, onStop, onNotify, focusKey, goal, onClearGoal } = props;
+  const { workspaceId, draft, onDraft, attachments, onAttachments, settings, onSettings, models, modelsLoading, commands, running, stopping, sending, disabled,
+    status, goal, todos, queue, onSend, onQueue, onSteer, onStop, onQueueAction, onClearGoal, onResumeGoal, onNotify, focusKey } = props;
   const textarea = useRef<HTMLTextAreaElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
+  const composer = useRef<HTMLDivElement>(null);
+  const strip = useRef<HTMLDivElement>(null);
+  const bubbles = useRef<HTMLDivElement>(null);
+  const menuList = useRef<HTMLDivElement>(null);
   const [menu, setMenu] = useState<Menu>(null);
   const [menuIndex, setMenuIndex] = useState(0);
   const [files, setFiles] = useState<string[]>([]);
   const [uploading, setUploading] = useState(0);
-  const [dragging, setDragging] = useState(false);
+  const [dragging, setDragging] = useState(0);
+  const [pop, setPop] = useState<Pop>(null);
+  const [bumped, setBumped] = useState<string | null>(null);
+  const [removing, setRemoving] = useState<Set<string>>(new Set());
+  const [lightbox, setLightbox] = useState<ClaudeAttachment | null>(null);
+  const [collapseKey, setCollapseKey] = useState(0);
+  // The tray follows the run: working while Claude runs, then a still word until dismissed.
+  const [tray, setTray] = useState<{ state: TrayState; endedAt?: number; dismissed: boolean }>({ state: 'done', dismissed: true });
+  const stopAsked = useRef(false);
+  const wasRunning = useRef(running);
+
+  useCustomScroll(textarea, { right: 5, inset: 2 });
+  useCustomScroll(bubbles, { right: -14 });
+  useCustomScroll(menuList, { right: 2, inset: 4 }, [menu?.kind]);
 
   useEffect(() => { textarea.current?.focus({ preventScroll: true }); }, [focusKey]);
-  useEffect(() => {
-    const element = textarea.current;
-    if (!element) return;
+  useLayoutEffect(() => {
+    const element = textarea.current; if (!element) return;
     element.style.height = 'auto';
-    element.style.height = `${Math.min(element.scrollHeight, Math.round(window.innerHeight * 0.4))}px`;
+    const max = parseFloat(getComputedStyle(element).maxHeight) || 216;
+    element.style.height = `${Math.min(element.scrollHeight, max)}px`;
+    element.classList.toggle('scroll', element.scrollHeight > max + 1);
   }, [draft]);
+  useEffect(() => {
+    if (running && !wasRunning.current) { stopAsked.current = false; setTray({ state: 'working', dismissed: false }); }
+    if (!running && wasRunning.current) setTray(value => ({ ...value, state: stopAsked.current ? 'stopped' : 'done', endedAt: Date.now() }));
+    wasRunning.current = running;
+  }, [running]);
+  // A finished run folds away on its own unless a goal or the queue keeps it relevant.
+  useEffect(() => {
+    if (running || tray.dismissed || tray.state !== 'done' || goal || queue.length) return;
+    const timer = window.setTimeout(() => setTray(value => ({ ...value, dismissed: true })), 6000);
+    return () => window.clearTimeout(timer);
+  }, [running, tray.dismissed, tray.state, goal, queue.length]);
+  useEffect(() => {
+    if (!pop) return;
+    const close = (event: PointerEvent) => { if (!(event.target as Element).closest('.qc-anchor')) setPop(null); };
+    const escape = (event: globalThis.KeyboardEvent) => { if (event.key === 'Escape') setPop(null); };
+    document.addEventListener('pointerdown', close); document.addEventListener('keydown', escape);
+    return () => { document.removeEventListener('pointerdown', close); document.removeEventListener('keydown', escape); };
+  }, [pop]);
+  useEffect(() => {
+    if (!lightbox) return;
+    const escape = (event: globalThis.KeyboardEvent) => { if (event.key === 'Escape') setLightbox(null); };
+    document.addEventListener('keydown', escape);
+    return () => document.removeEventListener('keydown', escape);
+  }, [lightbox]);
 
   const allCommands = useMemo(() => {
     const seen = new Set<string>();
@@ -53,7 +109,6 @@ export function Composer(props: Props) {
     .sort((a, b) => Number(!a.name.startsWith(menu.query)) - Number(!b.name.startsWith(menu.query))).slice(0, 40) : [];
   const fileMatches = menu?.kind === 'file' ? files.slice(0, 30) : [];
   const menuItems = menu?.kind === 'command' ? commandMatches.length : fileMatches.length;
-
   useEffect(() => {
     if (menu?.kind !== 'file') return;
     const controller = new AbortController();
@@ -63,12 +118,17 @@ export function Composer(props: Props) {
     }, 120);
     return () => { clearTimeout(timer); controller.abort(); };
   }, [menu?.kind, menu?.kind === 'file' ? menu.query : '', workspaceId]);
+  useEffect(() => { menuList.current?.querySelector('.qc-item.hl')?.scrollIntoView({ block: 'nearest' }); }, [menuIndex]);
+  // Keep the menu inside the room above the composer.
+  useLayoutEffect(() => {
+    if (!menu || !menuList.current || !composer.current) return;
+    menuList.current.style.maxHeight = `${Math.max(110, Math.min(300, composer.current.getBoundingClientRect().top - 52))}px`;
+  }, [menu]);
 
   function detectMenu(value: string, caret: number) {
-    if (/^\/[\w:.-]*$/.test(value.slice(0, caret)) && !value.slice(0, caret).includes(' ')) { setMenu({ kind: 'command', query: value.slice(1, caret) }); setMenuIndex(0); return; }
-    const before = value.slice(0, caret);
-    const match = /(^|\s)@([^\s@]*)$/.exec(before);
-    if (match) { setMenu({ kind: 'file', query: match[2], start: caret - match[2].length - 1 }); setMenuIndex(0); return; }
+    if (/^\/[\w:.-]*$/.test(value.slice(0, caret)) && !value.slice(0, caret).includes(' ')) { setMenu({ kind: 'command', query: value.slice(1, caret) }); setMenuIndex(0); setPop(null); return; }
+    const match = /(^|\s)@([^\s@]*)$/.exec(value.slice(0, caret));
+    if (match) { setMenu({ kind: 'file', query: match[2], start: caret - match[2].length - 1 }); setMenuIndex(0); setPop(null); return; }
     setMenu(null);
   }
   function choose(index: number) {
@@ -78,8 +138,7 @@ export function Composer(props: Props) {
     } else if (menu?.kind === 'file') {
       const file = fileMatches[index]; if (!file) return;
       const caret = textarea.current?.selectionStart ?? draft.length;
-      const next = `${draft.slice(0, menu.start)}@${file} ${draft.slice(caret)}`;
-      onDraft(next); setMenu(null);
+      onDraft(`${draft.slice(0, menu.start)}@${file} ${draft.slice(caret)}`); setMenu(null);
       requestAnimationFrame(() => { const position = menu.start + file.length + 2; textarea.current?.setSelectionRange(position, position); });
     }
     textarea.current?.focus();
@@ -98,8 +157,28 @@ export function Composer(props: Props) {
       } catch (failure) { onNotify(failure instanceof Error ? failure.message : `${file.name} could not be attached.`, 'error'); }
       finally { setUploading(value => value - 1); }
     }
-    if (added.length) onAttachments([...attachments, ...added]);
+    if (added.length) {
+      onAttachments([...attachments, ...added]);
+      requestAnimationFrame(() => strip.current?.scrollTo({ left: strip.current.scrollWidth, behavior: 'smooth' }));
+    }
   }
+  function removeAttachment(attachment: ClaudeAttachment) {
+    setRemoving(value => new Set(value).add(attachment.id));
+    window.setTimeout(() => { onAttachments(attachments.filter(item => item.id !== attachment.id)); setRemoving(value => { const next = new Set(value); next.delete(attachment.id); return next; }); }, 180);
+  }
+
+  const hasText = !!draft.trim() || attachments.length > 0;
+  const canSend = !disabled && !sending && uploading === 0 && hasText;
+  const stopMode = running && !hasText;
+  function primary() {
+    setCollapseKey(value => value + 1); setMenu(null);
+    if (stopMode) { stopAsked.current = true; onStop(); return; }
+    if (!canSend) return;
+    if (running) onQueue(); else onSend();
+  }
+  function steer() { if (!canSend) return; setCollapseKey(value => value + 1); setMenu(null); if (running) onSteer(); else onSend(); }
+  function bump(name: string) { setBumped(null); requestAnimationFrame(() => setBumped(name)); }
+  function setMode(mode: ClaudePermissionMode) { onSettings({ permissionMode: mode }); bump('mode'); setPop(null); }
 
   function keyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
     if (event.nativeEvent.isComposing) return;
@@ -108,14 +187,14 @@ export function Composer(props: Props) {
       if (event.key === 'ArrowUp') { event.preventDefault(); setMenuIndex(index => (index - 1 + menuItems) % menuItems); return; }
       if (event.key === 'Tab' || (event.key === 'Enter' && !event.shiftKey)) { event.preventDefault(); choose(menuIndex); return; }
     }
-    if (menu && event.key === 'Escape') { event.preventDefault(); setMenu(null); return; }
-    if (event.key === 'Escape' && running) { event.preventDefault(); onStop(); return; }
-    if (event.key === 'Enter' && event.altKey && running) { event.preventDefault(); if (canSend) onQueue(); return; }
-    if (event.key === 'Enter' && (event.metaKey || event.ctrlKey || (!event.shiftKey && !coarse()))) { event.preventDefault(); if (canSend) onSend(); }
+    if (event.key === 'Escape' && menu) { event.preventDefault(); setMenu(null); return; }
+    if (event.key === 'Escape' && running) { event.preventDefault(); stopAsked.current = true; onStop(); return; }
+    if (event.key === 'Enter' && (event.metaKey || event.ctrlKey) && running) { event.preventDefault(); steer(); return; }
+    if (event.key === 'Enter' && !event.shiftKey && (event.metaKey || event.ctrlKey || !coarse())) { event.preventDefault(); primary(); return; }
     if (event.key === 'Tab' && event.shiftKey && !menu) {
       event.preventDefault();
       const order: ClaudePermissionMode[] = ['default', 'acceptEdits', 'plan'];
-      onSettings({ permissionMode: order[(order.indexOf(settings.permissionMode) + 1) % order.length] ?? 'default' });
+      setMode(order[(order.indexOf(settings.permissionMode) + 1) % order.length] ?? 'default');
     }
   }
   function paste(event: ClipboardEvent<HTMLTextAreaElement>) {
@@ -123,68 +202,101 @@ export function Composer(props: Props) {
     if (images.length) { event.preventDefault(); void upload(images); }
   }
   function drop(event: DragEvent) {
-    event.preventDefault(); setDragging(false);
+    event.preventDefault(); setDragging(0);
     if (event.dataTransfer.files.length) void upload(event.dataTransfer.files);
   }
 
-  const canSend = !disabled && !sending && uploading === 0 && (!!draft.trim() || attachments.length > 0);
   const efforts = modelEfforts(models, settings.model);
-  const contextPercent = usage?.contextWindow && usage.contextTokens ? Math.min(100, Math.round(usage.contextTokens / usage.contextWindow * 100)) : null;
   const mode = CLAUDE_PERMISSION_MODES.find(item => item.value === settings.permissionMode)!;
+  // A goal keeps its tray; otherwise a finished run can be dismissed.
+  const trayShown = running || !tray.dismissed || !!goal;
+  const trayLabel = running ? status.label : tray.state === 'stopped' ? (goal ? 'Paused' : 'Stopped') : 'Completed';
+  const modelOptions = models.length ? models : [{ id: settings.model, label: modelsLoading ? 'Loading…' : settings.model }];
 
-  return <div className="claude-composer-wrap">
-      {menu && menuItems > 0 && <div className="claude-menu" role="listbox" aria-label={menu.kind === 'command' ? 'Slash commands' : 'Files'}>
-        <div className="claude-menu-heading">{menu.kind === 'command' ? <><Slash size={12} />Commands & skills</> : <><AtSign size={12} />Mention a file</>}</div>
-        {menu.kind === 'command' ? commandMatches.map((command, index) => <button type="button" role="option" aria-selected={index === menuIndex} key={command.name} className={index === menuIndex ? 'is-active' : ''}
-          onMouseEnter={() => setMenuIndex(index)} onMouseDown={event => { event.preventDefault(); choose(index); }}>
-          <strong>/{command.name}</strong>{command.argumentHint && <em>{command.argumentHint}</em>}<small>{command.description}</small></button>)
-          : fileMatches.map((file, index) => <button type="button" role="option" aria-selected={index === menuIndex} key={file} className={index === menuIndex ? 'is-active' : ''}
-            onMouseEnter={() => setMenuIndex(index)} onMouseDown={event => { event.preventDefault(); choose(index); }}><FileText size={13} /><strong>{file.split('/').pop()}</strong><small>{file}</small></button>)}
-      </div>}
-    <form className={`chat-composer claude-composer${running ? ' is-working' : ''}${dragging ? ' is-dragging-files' : ''} ${modeColors[settings.permissionMode]}`}
-      onSubmit={event => { event.preventDefault(); if (canSend) onSend(); }}
-      onDragOver={event => { if (event.dataTransfer.types.includes('Files')) { event.preventDefault(); setDragging(true); } }} onDragLeave={() => setDragging(false)} onDrop={drop}>
-      {dragging && <div className="claude-drop-hint">Drop images, PDFs, or text files to attach</div>}
-      {(attachments.length > 0 || uploading > 0) && <div className="claude-attachments">{attachments.map(attachment => <span key={attachment.id} className="claude-attachment">
-        {attachment.kind === 'image' ? <img src={`/api/claude/attachments/${attachment.id}`} alt="" /> : <FileText size={14} />}
-        <span className="text-ellipsis">{attachment.name}</span>
-        <button type="button" aria-label={`Remove ${attachment.name}`} onClick={() => onAttachments(attachments.filter(item => item.id !== attachment.id))}><X size={12} /></button></span>)}
-        {uploading > 0 && <span className="claude-attachment is-uploading"><LoaderCircle size={14} className="chat-spin" />Uploading…</span>}</div>}
-      {goal && <div className="claude-goal-chip" title={goal.lastReason ? `Last check: ${goal.lastReason}` : 'Claude keeps working until this is met'}>
-        <Target size={13} /><span className="claude-goal-label">Goal</span><span className="claude-goal-text">{goal.condition}</span>
-        {goal.iterations > 0 && <span className="claude-goal-count">{goal.iterations} check{goal.iterations === 1 ? '' : 's'}</span>}
-        {onClearGoal && <button type="button" aria-label="Clear goal" title="Clear goal" onClick={onClearGoal}><X size={12} /></button>}
-      </div>}
-      <label className="chat-sr-only" htmlFor={`claude-prompt-${workspaceId}`}>Message Claude</label>
-      <textarea ref={textarea} id={`claude-prompt-${workspaceId}`} rows={2} value={draft} maxLength={200_000} disabled={disabled}
-        placeholder={running ? 'Steer Claude while it works… (Alt+Enter queues for after)' : settings.permissionMode === 'plan' ? 'Describe what to plan…' : 'Ask Claude to build, fix, or explain… (/ for commands, @ for files)'}
-        onChange={event => { onDraft(event.target.value); detectMenu(event.target.value, event.target.selectionStart); }}
-        onClick={event => detectMenu(event.currentTarget.value, event.currentTarget.selectionStart)} onBlur={() => setTimeout(() => { if (document.activeElement !== textarea.current) setMenu(null); }, 150)}
-        onKeyUp={event => { if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) detectMenu(event.currentTarget.value, event.currentTarget.selectionStart); }}
-        onKeyDown={keyDown} onPaste={paste} spellCheck={false} />
-      <div className="chat-composer-controls">
-        <button type="button" className="chat-meta-button claude-attach" aria-label="Attach files" title="Attach images, PDFs, or text files" disabled={disabled} onClick={() => fileInput.current?.click()}><Paperclip size={15} /></button>
-        <input ref={fileInput} type="file" multiple hidden accept="image/png,image/jpeg,image/gif,image/webp,application/pdf,text/*,.md,.json,.yaml,.yml,.csv,.ts,.tsx,.js,.py" onChange={event => { if (event.target.files) void upload(event.target.files); event.target.value = ''; }} />
-        <SelectMenu value={settings.permissionMode} onValueChange={value => onSettings({ permissionMode: value })} aria-label="Permission mode" className={`chat-permissions claude-mode-select ${modeColors[settings.permissionMode]}`} compact align="start"
-          title="Permission mode (Shift+Tab cycles)" renderValue={() => <><span className={`claude-mode-dot is-${settings.permissionMode}`} />{mode.label}</>}
-          options={CLAUDE_PERMISSION_MODES.map(item => ({ value: item.value, label: item.label, description: item.description, icon: <span className={`claude-mode-dot is-${item.value}`} /> }))} />
-        <span className="chat-composer-spacer" />
-        {contextPercent !== null && contextPercent >= 1 && <ContextRing percent={contextPercent} title={`${usage!.contextTokens.toLocaleString()} of ${usage!.contextWindow!.toLocaleString()} context tokens used${usage!.totalCostUsd ? ` · ${money(usage!.totalCostUsd)} spent` : ''}`} />}
-        {running && <button type="button" className="chat-send chat-stop" aria-label="Stop Claude" title="Stop (Esc)" disabled={stopping} onClick={onStop}>{stopping ? <LoaderCircle size={15} className="chat-spin" /> : <Square size={13} />}</button>}
-        {running && <button type="button" className={`chat-send claude-queue-button${canSend ? ' is-ready' : ''}`} aria-label="Queue for after this turn" title="Queue for after this turn (Alt+Enter)" disabled={!canSend} onClick={onQueue}><ListPlus size={15} /></button>}
-        <button type="submit" className={`chat-send claude-send${running ? ' claude-steer' : ''}${canSend ? ' is-ready' : ''}`} aria-label={running ? 'Steer Claude' : 'Send message'} title={running ? 'Steer: Claude reads this at its next step (Enter)' : 'Send (Enter)'} disabled={!canSend}>
-          <span className="claude-icon-swap" key={sending ? 'sending' : running ? 'steer' : 'send'}>{sending ? <LoaderCircle size={16} className="chat-spin" /> : running ? <CornerDownRight size={16} /> : <ArrowUp size={18} />}</span></button>
+  return <div className="qc">
+    {(attachments.length > 0 || uploading > 0) && <div className="qc-attachments" ref={strip}
+      onWheel={event => { const box = event.currentTarget; if (box.scrollWidth <= box.clientWidth || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return; box.scrollLeft += event.deltaY; }}>
+      {attachments.map(attachment => {
+        const image = attachment.kind === 'image';
+        return <div key={attachment.id} className={`qc-file${image ? ' img' : ''}${removing.has(attachment.id) ? ' out' : ''}`} title={attachment.name}
+          onClick={event => { if (image && !(event.target as Element).closest('.qc-x')) setLightbox(attachment); }}>
+          {image && <img alt="" decoding="async" src={`/api/claude/attachments/${attachment.id}`} onLoad={event => event.currentTarget.classList.add('ld')} />}
+          <span className="qc-type">{extension(attachment.name, attachment.mediaType)}</span>
+          {!image && <FileGlyph />}
+          <div className="qc-meta-b"><div className="qc-name">{attachment.name}</div><div className="qc-size">{size(attachment.size)}</div></div>
+          <button type="button" className="qc-x" aria-label={`Remove ${attachment.name}`} onClick={() => removeAttachment(attachment)}><Close size={10} /></button>
+        </div>;
+      })}
+      {Array.from({ length: uploading }, (_, index) => <div key={`up-${index}`} className="qc-file is-uploading"><span className="qc-type">…</span><div className="qc-meta-b"><div className="qc-name qc-shimmer">Uploading</div></div></div>)}
+    </div>}
+
+    {queue.length > 0 && <div className="qc-bubbles" ref={bubbles} aria-live="polite">{queue.map(item => <div key={item.id} className="qc-bubble new" data-kind="queue">
+      <span className="qc-b-acts">
+        <button type="button" aria-label="Edit" onClick={() => onQueueAction(item, 'edit')}><Edit /></button>
+        <button type="button" aria-label={running ? 'Send as steering' : 'Run now'} onClick={() => onQueueAction(item, 'steer')}><Steer size={13} /></button>
+        <button type="button" aria-label="Remove" data-a="x" onClick={() => onQueueAction(item, 'remove')}><Close /></button>
+      </span>
+      <div className="qc-b-pill"><span className="qc-b-ic"><Queue /></span><span className="qc-b-text" title={item.text}>{item.text || `${item.attachments?.length ?? 0} attachments`}</span></div>
+    </div>)}</div>}
+
+    <StatusTray show={trayShown} state={running ? 'working' : tray.state} label={trayLabel} startedAt={status.startedAt} endedAt={tray.endedAt}
+      goal={goal} todos={todos} collapseKey={collapseKey}
+      onPause={() => { stopAsked.current = true; onStop(); }} onResume={onResumeGoal} onClearGoal={onClearGoal}
+      onDismiss={() => { if (goal) setCollapseKey(value => value + 1); else setTray(value => ({ ...value, dismissed: true })); }} />
+
+    <div ref={composer} className={`qc-composer${hasText ? ' has-text' : ''}${dragging ? ' dragging' : ''}${running ? ' running' : ''}`}
+      onDragEnter={event => { if (event.dataTransfer.types.includes('Files')) { event.preventDefault(); setDragging(value => value + 1); } }}
+      onDragOver={event => { if (event.dataTransfer.types.includes('Files')) event.preventDefault(); }}
+      onDragLeave={() => setDragging(value => Math.max(0, value - 1))} onDrop={drop}>
+      <div className={`qc-pop qc-suggest${menu && menuItems ? ' open' : ''}`} role="listbox" aria-label={menu?.kind === 'file' ? 'Files' : 'Commands'}>
+        <div className="qc-pop-h"><span>{menu?.kind === 'file' ? 'Files' : 'Commands'}</span></div>
+        <div className="qc-sug-wrap"><div className="qc-sug-list" ref={menuList}>
+          {menu?.kind === 'command' && commandMatches.map((command, index) => <button type="button" role="option" aria-selected={index === menuIndex} key={command.name}
+            className={`qc-item${index === menuIndex ? ' hl' : ''}`} onMouseEnter={() => setMenuIndex(index)} onMouseDown={event => { event.preventDefault(); choose(index); }}>
+            <span className="qc-body qc-row"><span className="qc-cmd">/{highlight(command.name, menu.query)}</span><span className="qc-d">{command.description}</span></span></button>)}
+          {menu?.kind === 'file' && fileMatches.map((file, index) => <button type="button" role="option" aria-selected={index === menuIndex} key={file}
+            className={`qc-item${index === menuIndex ? ' hl' : ''}`} onMouseEnter={() => setMenuIndex(index)} onMouseDown={event => { event.preventDefault(); choose(index); }}>
+            <span className="qc-body qc-row"><span className="qc-cmd">{highlight(file, menu.query)}</span></span></button>)}
+        </div></div>
       </div>
-    </form>
-    <div className="chat-composer-footer claude-composer-footer"><div className="chat-model-controls">
-      <SelectMenu value={settings.model} onValueChange={model => onSettings({ model })} aria-label="Model" className="chat-model-select" compact searchable={models.length > 8}
-        renderValue={option => option?.label ?? settings.model}
-        options={(models.length ? models : [{ id: settings.model, label: modelsLoading ? 'Loading models…' : settings.model }]).map(model => ({ value: model.id, label: model.label, description: model.description }))} />
-      <SelectMenu value={settings.effort ?? DEFAULT} onValueChange={value => onSettings({ effort: value === DEFAULT ? null : value as ClaudeEffort })} aria-label="Reasoning effort" className="chat-effort-select" compact
-        renderValue={() => <span className="claude-effort-label"><Gauge size={12} />{settings.effort ? EFFORT_LABELS[settings.effort] : 'Auto'}</span>} title="Reasoning effort"
-        options={[{ value: DEFAULT, label: 'Auto', description: 'Claude Code chooses for this model' }, ...efforts.map(value => ({ value, label: EFFORT_LABELS[value], description: EFFORT_DESCRIPTIONS[value] }))]} />
-      <button type="button" className={`chat-meta-button claude-thinking-toggle${settings.thinking ? ' is-on' : ''}`} aria-pressed={settings.thinking} title={settings.thinking ? 'Extended thinking on' : 'Extended thinking off'}
-        onClick={() => onSettings({ thinking: !settings.thinking })}><Brain size={13} /><span>Thinking</span></button>
-    </div>{usage && usage.totalCostUsd > 0 && <span className="claude-cost" title={`${compactTokens(usage.inputTokens)} in · ${compactTokens(usage.outputTokens)} out`}>{money(usage.totalCostUsd)}</span>}</div>
+      <div className="qc-drop">Drop files to attach</div>
+      <div className="qc-field">
+        <textarea ref={textarea} rows={1} value={draft} maxLength={200_000} disabled={disabled} aria-label="Prompt" spellCheck={false}
+          onChange={event => { onDraft(event.target.value); detectMenu(event.target.value, event.target.selectionStart); }}
+          onClick={event => detectMenu(event.currentTarget.value, event.currentTarget.selectionStart)}
+          onBlur={() => setTimeout(() => { if (document.activeElement !== textarea.current) setMenu(null); }, 150)}
+          onKeyUp={event => { if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) detectMenu(event.currentTarget.value, event.currentTarget.selectionStart); }}
+          onKeyDown={keyDown} onPaste={paste} />
+        <div className="qc-ph"><span key={running ? 'run' : 'idle'}>{running ? 'Steer or queue a follow-up…' : "What's on your mind?"}</span></div>
+      </div>
+      <div className="qc-toolbar">
+        <div className="qc-tl">
+          <button type="button" className="qc-ibtn" aria-label="Attach files" data-tip="Attach files" disabled={disabled} onClick={() => fileInput.current?.click()}><Plus /></button>
+          <input ref={fileInput} type="file" multiple hidden accept="image/png,image/jpeg,image/gif,image/webp,application/pdf,text/*,.md,.json,.yaml,.yml,.csv,.ts,.tsx,.js,.py"
+            onChange={event => { if (event.target.files) void upload(event.target.files); event.target.value = ''; }} />
+          <button type="button" className={`qc-ibtn qc-think${bumped === 'think' ? ' bump' : ''}`} aria-pressed={settings.thinking} aria-label="Extended thinking"
+            data-tip={settings.thinking ? 'Extended thinking' : 'Thinking off'} onClick={() => { onSettings({ thinking: !settings.thinking }); bump('think'); }}><BrainOn /><BrainOff /></button>
+          <div className="qc-anchor qc-mode-anchor">
+            <button type="button" className={`qc-pill qc-mode-pill${pop === 'mode' ? ' active' : ''}${bumped === 'mode' ? ' bump' : ''}`} aria-haspopup="true" aria-expanded={pop === 'mode'}
+              aria-label={`Permissions: ${mode.label}`} onClick={() => { setMenu(null); setPop(pop === 'mode' ? null : 'mode'); }}>
+              <span className="qc-micon-wrap" key={mode.value}><ModeIcon mode={mode.value} /></span>
+              <span className="qc-mode-label" key={`l-${mode.value}`}>{mode.label}</span><Chevron />
+            </button>
+            <div className={`qc-pop${pop === 'mode' ? ' open' : ''}`} role="menu">{CLAUDE_PERMISSION_MODES.map((item, index) => <button type="button" role="menuitemradio"
+              aria-checked={item.value === mode.value} key={item.value} className={`qc-item${item.value === mode.value ? ' sel' : ''}`} style={{ '--i': index } as CSSProperties}
+              onClick={() => setMode(item.value)}>
+              <span className="qc-mi"><ModeIcon mode={item.value} /></span><span className="qc-body"><span className="qc-t">{item.label}</span><span className="qc-d">{item.description}</span></span><Check /></button>)}</div>
+          </div>
+        </div>
+        <div className="qc-tr">
+          <ModelPicker models={modelOptions} model={settings.model} efforts={efforts} effort={settings.effort} open={pop === 'model'}
+            onOpen={open => { setMenu(null); setPop(open ? 'model' : null); }} onModel={model => onSettings({ model })} onEffort={effort => onSettings({ effort })} />
+          <button type="button" className={`qc-send${stopMode ? ' stop' : ''}`} disabled={stopMode ? stopping : !canSend}
+            aria-label={stopMode ? 'Stop' : running ? 'Queue message' : 'Send'} onClick={primary}><ArrowUp /><StopSquare /></button>
+        </div>
+      </div>
+    </div>
+    {lightbox && <div className="qc-lightbox open" onClick={() => setLightbox(null)} role="dialog" aria-label={lightbox.name}>
+      <figure><img alt={lightbox.name} src={`/api/claude/attachments/${lightbox.id}`} /><figcaption>{lightbox.name}</figcaption></figure></div>}
   </div>;
 }

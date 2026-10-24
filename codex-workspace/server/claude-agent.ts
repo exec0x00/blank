@@ -833,12 +833,12 @@ async function loadCapabilities(ctx: AppContext, workspaceId: string, cwd: strin
   return loading;
 }
 
-const knownModels: Record<string, { label: string; description: string; efforts: ClaudeEffort[] }> = {
-  'claude-opus-5-5': { label: 'Opus 5.5', description: 'Most capable for complex work', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultracode'] },
+const knownModels: Record<string, { label: string; description: string; efforts: ClaudeEffort[]; tag?: string }> = {
+  'claude-opus-5-5': { tag: 'Smartest', label: 'Opus 5.5', description: 'Most capable for complex work', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultracode'] },
   'claude-fable-5-1': { label: 'Fable 5.1', description: 'Frontier model for the hardest problems', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultracode'] },
-  'claude-sonnet-5-5': { label: 'Sonnet 5.5', description: 'Smart, efficient model for everyday coding', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultracode'] },
+  'claude-sonnet-5-5': { tag: 'Default', label: 'Sonnet 5.5', description: 'Smart, efficient model for everyday coding', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultracode'] },
   'claude-sonnet-5': { label: 'Sonnet 5', description: 'Balanced speed and intelligence', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultracode'] },
-  'claude-haiku-5-5': { label: 'Haiku 5.5', description: 'Fastest for quick answers', efforts: ['low', 'medium', 'high'] },
+  'claude-haiku-5-5': { tag: 'Fastest', label: 'Haiku 5.5', description: 'Fastest for quick answers', efforts: ['low', 'medium', 'high'] },
   'claude-sonnet-4-6': { label: 'Sonnet 4.6', description: 'Previous-generation Sonnet', efforts: ['low', 'medium', 'high', 'max'] },
   'claude-haiku-4-5-20251001': { label: 'Haiku 4.5', description: 'Previous-generation Haiku', efforts: [] },
 };
@@ -849,7 +849,7 @@ async function models(force = false): Promise<ClaudeModelOption[]> {
   const body = await response.json() as { data?: { id?: string; display_name?: string }[] };
   const value = (body.data ?? []).filter(model => typeof model.id === 'string').map(model => {
     const known = knownModels[model.id!];
-    return { id: model.id!, label: known?.label || (model.display_name && model.display_name !== model.id ? model.display_name : model.id!), description: known?.description, efforts: known?.efforts ?? ['low', 'medium', 'high'], supportsThinking: true };
+    return { id: model.id!, label: known?.label || (model.display_name && model.display_name !== model.id ? model.display_name : model.id!), description: known?.description, tag: known?.tag, efforts: known?.efforts ?? ['low', 'medium', 'high'], supportsThinking: true };
   });
   modelCache = { value, expires: Date.now() + 10 * 60_000 };
   return value;

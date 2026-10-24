@@ -98,7 +98,7 @@ export type ClaudeStreamEvent =
 
 export interface ClaudeCommand { name: string; description: string; argumentHint?: string; builtin?: boolean }
 export interface ClaudeAgentInfo { name: string; description: string; model?: string }
-export interface ClaudeModelOption { id: string; label: string; description?: string; efforts?: ClaudeEffort[]; supportsThinking?: boolean }
+export interface ClaudeModelOption { id: string; label: string; description?: string; tag?: string; efforts?: ClaudeEffort[]; supportsThinking?: boolean }
 export interface ClaudeMcpStatus { name: string; status: string; error?: string; tools?: number; scope?: string }
 export interface ClaudeCapabilities {
   commands: ClaudeCommand[]; agents: ClaudeAgentInfo[]; outputStyles: string[]; outputStyle?: string;
