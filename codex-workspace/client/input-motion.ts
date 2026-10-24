@@ -1,4 +1,4 @@
-import { CARET_BLINK_DELAY_MS, CARET_BLINK_HALF_CYCLE_MS, MAX_CARET_TEXT, clipCaret, layoutInputCaret, type CaretLayout } from './input-motion-layout';
+import { CARET_BLINK_CYCLE_MS, CARET_BLINK_DELAY_MS, CARET_IDLE_MS, CARET_SPRING_DAMPING, CARET_SPRING_STIFFNESS, MAX_CARET_TEXT, clipCaret, layoutInputCaret, type CaretLayout } from './input-motion-layout';
 
 type TextField = HTMLInputElement | HTMLTextAreaElement;
 const ACTIVE = 'data-input-motion-active';
@@ -28,9 +28,11 @@ export function installInputMotion(document: Document = window.document): () => 
   layer.hidden = true;
   const caret = document.createElement('span');
   caret.className = 'cw-input-motion-caret';
+  const trail = document.createElement('span');
+  trail.className = 'cw-input-motion-trail';
   const bar = document.createElement('span');
   bar.className = 'cw-input-motion-bar';
-  caret.append(bar);
+  caret.append(trail, bar);
   layer.append(caret);
   // A manual, inert popover keeps the decorative caret above native <dialog>
   // without stealing focus or inheriting its opening transform. No backdrop UI.
@@ -50,7 +52,10 @@ export function installInputMotion(document: Document = window.document): () => 
   let lastGeometry = '';
   let lastSelection = '';
   let lastViewport = '';
-  let lastLine: number | undefined;
+  // Critically damped spring: quick to start, no overshoot, and it keeps its
+  // velocity when the target moves again, so bursts of typing flow together.
+  const spring = { x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0, frame: 0, last: 0 };
+  let idleTimer = 0;
   // A field that was private stays native if a reveal control changes its type.
   // These weak identities never retain or inspect the secret itself.
   const privateFields = new WeakSet<TextField>();
@@ -85,26 +90,75 @@ export function installInputMotion(document: Document = window.document): () => 
     if (topLayer && layer.matches(':popover-open')) layer.hidePopover();
     blink?.cancel();
     blink = undefined;
+    if (spring.frame) window!.cancelAnimationFrame(spring.frame);
+    spring.frame = 0;
+    window!.clearTimeout(idleTimer);
+    caret.removeAttribute('data-moving');
     measured = undefined;
     lastGeometry = '';
     lastViewport = '';
-    lastLine = undefined;
   }
 
   function startBlink(): void {
     blink?.cancel();
     blink = undefined;
     if (motion.matches || typeof bar.animate !== 'function') return;
-    // Same keyframes, delay and finite idle cycle as Monaco's smooth cursor.
+    // Solid while the caret is busy, then a soft eased blink once idle.
     blink = bar.animate([
-      { opacity: 1, offset: 0, easing: 'ease-in-out' },
-      { opacity: 1, offset: .2, easing: 'ease-in-out' },
-      { opacity: 0, offset: .6, easing: 'ease-in-out' },
-      { opacity: 0, offset: 1 },
-    ], {
-      delay: CARET_BLINK_DELAY_MS, duration: CARET_BLINK_HALF_CYCLE_MS,
-      easing: 'linear', direction: 'alternate', iterations: 20,
-    });
+      { opacity: 1, offset: 0 }, { opacity: 1, offset: .38 }, { opacity: .08, offset: .5 }, { opacity: 1, offset: .62 }, { opacity: 1, offset: 1 },
+    ], { delay: CARET_BLINK_DELAY_MS, duration: CARET_BLINK_CYCLE_MS, easing: 'cubic-bezier(.45,0,.55,1)', iterations: 40 });
+  }
+
+  function drawCaret(): void {
+    caret.style.transform = `translate3d(${spring.x.toFixed(2)}px, ${spring.y.toFixed(2)}px, 0)`;
+    // A short streak behind the caret while it travels sideways along a line.
+    const sameLine = Math.abs(spring.ty - spring.y) < 2;
+    const length = sameLine ? Math.min(34, Math.abs(spring.vx) * 0.022) : 0;
+    trail.dataset.side = spring.vx > 0 ? 'left' : 'right';
+    trail.style.setProperty('--trail-width', `${length.toFixed(1)}px`);
+    trail.style.setProperty('--trail-opacity', Math.min(1, length / 14).toFixed(2));
+  }
+
+  function stepSpring(time: number): void {
+    const dt = Math.min(0.032, (time - (spring.last || time)) / 1000 || 0.016);
+    spring.last = time;
+    const damping = 2 * CARET_SPRING_DAMPING * Math.sqrt(CARET_SPRING_STIFFNESS);
+    // Two half-steps keep it stable at low frame rates.
+    for (let step = 0; step < 2; step++) {
+      const h = dt / 2;
+      spring.vx += (CARET_SPRING_STIFFNESS * (spring.tx - spring.x) - damping * spring.vx) * h; spring.x += spring.vx * h;
+      spring.vy += (CARET_SPRING_STIFFNESS * (spring.ty - spring.y) - damping * spring.vy) * h; spring.y += spring.vy * h;
+    }
+    const done = Math.abs(spring.tx - spring.x) < .05 && Math.abs(spring.ty - spring.y) < .05 && Math.abs(spring.vx) < 5 && Math.abs(spring.vy) < 5;
+    if (done) { spring.x = spring.tx; spring.y = spring.ty; spring.vx = spring.vy = 0; spring.last = 0; }
+    drawCaret();
+    spring.frame = done ? 0 : window!.requestAnimationFrame(stepSpring);
+  }
+
+  /** Glide to a new spot, or jump there when the view itself moved. */
+  function moveCaret(x: number, y: number, jump: boolean): void {
+    const moved = Math.abs(x - spring.tx) > .1 || Math.abs(y - spring.ty) > .1;
+    spring.tx = x; spring.ty = y;
+    if (jump || motion.matches) {
+      if (spring.frame) window!.cancelAnimationFrame(spring.frame);
+      spring.frame = 0; spring.last = 0;
+      spring.x = x; spring.y = y; spring.vx = spring.vy = 0;
+      drawCaret();
+    } else if (moved && !spring.frame) {
+      spring.last = 0;
+      spring.frame = window!.requestAnimationFrame(stepSpring);
+    }
+    if (moved || jump) {
+      caret.dataset.moving = 'true';
+      window!.clearTimeout(idleTimer);
+      idleTimer = window!.setTimeout(() => caret.removeAttribute('data-moving'), CARET_IDLE_MS);
+    }
+  }
+
+  function tapCaret(): void {
+    if (motion.matches || typeof bar.animate !== 'function') return;
+    bar.animate([{ transform: 'scaleY(1)' }, { transform: 'scale(1.25, 1.12)', offset: .35 }, { transform: 'scaleY(1)' }],
+      { duration: 180, easing: 'cubic-bezier(.2,.8,.2,1)' });
   }
 
   function activate(): void {
@@ -175,6 +229,12 @@ export function installInputMotion(document: Document = window.document): () => 
     const fontHeight = fontMetrics.fontBoundingBoxAscent + fontMetrics.fontBoundingBoxDescent;
     if (!Number.isFinite(fontHeight) || fontMetrics.fontBoundingBoxAscent <= 0
       || fontMetrics.fontBoundingBoxDescent < 0 || fontHeight <= 0) { hide(); return; }
+    // Size the caret to the ink (cap top to descender) and centre it there, not on the font box.
+    const cap = context!.measureText('H').actualBoundingBoxAscent;
+    const descender = context!.measureText('g').actualBoundingBoxDescent;
+    const inkHeight = Number.isFinite(cap) && Number.isFinite(descender) && cap > 0 ? Math.round((cap + descender) * 1.34 * 2) / 2 : fontHeight;
+    // Distance from the top of a centred font box to the ink centre.
+    const inkCentre = fontMetrics.fontBoundingBoxAscent - (Number.isFinite(cap) && cap > 0 ? (cap - descender) / 2 : fontHeight / 2 - fontMetrics.fontBoundingBoxDescent);
     // Modern canvas spacing properties avoid per-character rounding/shaping.
     const canvasSpacing = context as CanvasRenderingContext2D & { letterSpacing?: string; wordSpacing?: string };
     const letterSpacing = number(style.letterSpacing);
@@ -193,11 +253,11 @@ export function installInputMotion(document: Document = window.document): () => 
     });
     if (!point) { hide(); return; }
     measured = { text: value.text, key: measureKey, point };
-    const height = Math.min(fontHeight, multiline ? lineHeight : innerHeight);
+    const height = Math.min(inkHeight, multiline ? lineHeight : innerHeight);
+    const box = multiline ? lineHeight : innerHeight;
     const x = paddingLeft + number(style.textIndent) + point.x - target.scrollLeft;
-    const y = paddingTop + (multiline
-      ? point.line * lineHeight + Math.floor((lineHeight - height) / 2) - target.scrollTop
-      : Math.floor((innerHeight - height) / 2));
+    const centre = (box - fontHeight) / 2 + inkCentre;
+    const y = paddingTop + (multiline ? point.line * lineHeight - target.scrollTop : 0) + centre - height / 2;
     const fieldLeft = rect.left + target.clientLeft * scaleX;
     const fieldTop = rect.top + target.clientTop * scaleY;
     // Native text carets settle on the physical pixel grid. Keep a thin stroke
@@ -236,20 +296,17 @@ export function installInputMotion(document: Document = window.document): () => 
     // the new baseline instead of sweeping a diagonal stroke across the draft.
     // Keep that decision until a real move. Unrelated streamed DOM updates
     // must not re-enable a transition before the snapped baseline is painted.
-    if (snap || wasHidden || viewportKey !== lastViewport || geometryKey !== lastGeometry) {
-      layer.dataset.snap = String(snap || wasHidden || viewportKey !== lastViewport || point.line !== lastLine);
-    }
-    lastLine = point.line;
+    const jump = snap || wasHidden || viewportKey !== lastViewport;
     lastViewport = viewportKey;
     layer.style.left = `${left}px`;
     layer.style.top = `${top}px`;
     layer.style.width = `${target.clientWidth * scaleX}px`;
     layer.style.height = `${target.clientHeight * scaleY}px`;
     layer.style.color = style.color;
-    if (geometryKey !== lastGeometry) {
-      caret.style.transform = `translate(${geometry.x}px, ${geometry.y}px)`;
+    if (geometryKey !== lastGeometry || jump) {
       caret.style.width = `${geometry.width}px`;
       caret.style.height = `${geometry.height}px`;
+      moveCaret(geometry.x, geometry.y, jump);
       lastGeometry = geometryKey;
     }
     const selectionKey = `${target.selectionStart}:${target.value.length}`;
@@ -263,6 +320,7 @@ export function installInputMotion(document: Document = window.document): () => 
 
   function onEdit(event: Event): void {
     if (event.target !== active) return;
+    if (event.type === 'input') tapCaret();
     schedule(false, true);
   }
   function onSelection(): void { schedule(false, true); }

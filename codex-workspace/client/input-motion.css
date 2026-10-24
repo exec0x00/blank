@@ -1,4 +1,5 @@
-/* The editor uses 80 ms caret travel and a 500 ms alternating smooth fade.
+/* A 1px caret that glides on a critically damped spring, leaves a short trail on
+   sideways moves, squashes on each keystroke and blinks softly once idle.
    Only the decorative caret moves: text insertion and layout remain native. */
 input[data-input-motion-active="true"],
 textarea[data-input-motion-active="true"] { caret-color: transparent !important; }
@@ -22,15 +23,17 @@ textarea[data-input-motion-active="true"] { caret-color: transparent !important;
 }
 .cw-input-motion-layer[hidden] { display: none; }
 .cw-input-motion-layer::backdrop { background: transparent; pointer-events: none; }
-.cw-input-motion-caret { position: absolute; inset: 0 auto auto 0; width: 1px; pointer-events: none; transition: transform 80ms ease; }
-.cw-input-motion-bar { display: block; width: 100%; height: 100%; background: currentColor; opacity: 1; }
-.cw-input-motion-layer[data-snap="true"] .cw-input-motion-caret { transition: none; }
-.cw-input-motion-layer[data-reduced-motion="true"] .cw-input-motion-caret { transition: none !important; }
+.cw-input-motion-caret { position: absolute; inset: 0 auto auto 0; width: 1px; pointer-events: none; will-change: transform; }
+.cw-input-motion-bar { position: absolute; inset: 0; display: block; border-radius: 1px; background: currentColor; opacity: 1; transform-origin: 50% 50%; }
+.cw-input-motion-trail { position: absolute; top: 22%; bottom: 22%; width: var(--trail-width, 0px); border-radius: 2px; opacity: var(--trail-opacity, 0); pointer-events: none; }
+.cw-input-motion-trail[data-side="left"] { right: 1px; background: linear-gradient(90deg, transparent, color-mix(in srgb, currentColor 22%, transparent)); }
+.cw-input-motion-trail[data-side="right"] { left: 1px; background: linear-gradient(270deg, transparent, color-mix(in srgb, currentColor 22%, transparent)); }
 .cw-input-motion-layer[data-reduced-motion="true"] .cw-input-motion-bar { animation: none !important; opacity: 1; }
+.cw-input-motion-layer[data-reduced-motion="true"] .cw-input-motion-trail { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .cw-input-motion-caret { transition: none !important; }
   .cw-input-motion-bar { animation: none !important; opacity: 1; }
+  .cw-input-motion-trail { display: none; }
 }
 @media (forced-colors: active) {
   .cw-input-motion-layer { forced-color-adjust: none; color: CanvasText !important; }

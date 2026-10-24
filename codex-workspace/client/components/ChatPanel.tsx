@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent } from 'react';
-import { AlertCircle, Archive, ArchiveRestore, ArrowDown, Check, ClipboardList, Code2, ExternalLink, FolderOpen, GitFork, Lightbulb, ListTodo, LoaderCircle, MoreHorizontal, PencilLine, Pin, PinOff, Plus, Settings2, Sparkles, Trash2, Bug, WifiOff, X } from 'lucide-react';
+import { AlertCircle, Archive, ArchiveRestore, ArrowDown, Check, ClipboardList, Code2, ExternalLink, FolderOpen, GitFork, Lightbulb, ListTodo, LoaderCircle, MoreHorizontal, PencilLine, Pin, PinOff, Plus, Settings2, Sparkles, Trash2, Bug, WifiOff } from 'lucide-react';
 import type { AppSettings, Workspace } from '../../shared/types';
-import type { ClaudeAttachment, ClaudeConversation, ClaudeConversationSummary, ClaudeEntry, ClaudeNativeSession } from '../../shared/claude';
+import type { ClaudeAttachment, ClaudeConversation, ClaudeConversationSummary, ClaudeEntry, ClaudeNativeSession, ClaudeQueuedMessage } from '../../shared/claude';
 import { api, json } from '../api';
 import { getUiThread, setUiThread } from '../ui-state';
 import { useWindowLocation, windowLink, writeWindowLocation, readWindowLocation } from '../window-navigation';
@@ -14,9 +14,7 @@ import { useConversation } from './claude/useConversation';
 import { Timeline } from './claude/Timeline';
 import { RequestCard, type RequestAnswer } from './claude/RequestCards';
 import { HistoryPanel } from './claude/HistoryPanel';
-import { Composer, type ComposerSettings } from './claude/Composer';
-import { TodoList } from './claude/ToolCard';
-import { WorkingIndicator } from './claude/Working';
+import { Composer, type ComposerSettings, type QueueAction } from './claude/Composer';
 import { useClaudeCapabilities, useClaudeModels } from './claude/catalog';
 import './chat.css';
 import './claude/claude.css';
@@ -165,15 +163,24 @@ export default function ChatPanel({ workspace, settings, onSettings, onNotify, o
       const result = await api<{ queued?: boolean; steered?: boolean }>(`/claude/conversations/${id}/messages`, json('POST', { text, mode, attachments: draftAttachments.map(item => ({ id: item.id })), ...composerSettings }));
       setDrafts(previous => ({ ...previous, [id!]: '', [draftKey]: '' })); setAttachments(previous => ({ ...previous, [id!]: [], [draftKey]: [] }));
       following.current = true;
-      if (result.queued) onNotify('Queued. Claude will read it when the current turn finishes.', 'info');
-      else if (result.steered) onNotify('Sent. Claude will read it at its next step.', 'info');
     } catch (error) { onNotify(errorText(error), 'error'); }
     finally { setSending(false); }
   }
-  async function sendText(text: string) {
+  async function sendText(text: string, mode: 'steer' | 'queue' = 'queue') {
     if (!current) return;
-    try { await api(`/claude/conversations/${current.id}/messages`, json('POST', { text, mode: 'queue' })); }
+    try { await api(`/claude/conversations/${current.id}/messages`, json('POST', { text, mode })); }
     catch (error) { onNotify(errorText(error), 'error'); }
+  }
+  async function queueAction(item: ClaudeQueuedMessage, action: QueueAction) {
+    if (!current) return;
+    const rest = (current.queue ?? []).filter(entry => entry.id !== item.id);
+    setConversation(previous => previous ? { ...previous, queue: rest } : previous);
+    await patchConversation(current.id, { queue: rest.map(entry => entry.id) });
+    if (action === 'edit') { setDraft(item.text); if (item.attachments?.length) setDraftAttachments(item.attachments); }
+    if (action === 'steer') {
+      try { await api(`/claude/conversations/${current.id}/messages`, json('POST', { text: item.text, mode: 'steer', attachments: (item.attachments ?? []).map(entry => ({ id: entry.id })) })); }
+      catch (error) { onNotify(errorText(error), 'error'); }
+    }
   }
   async function stop() {
     if (!current || stopping) return;
@@ -239,8 +246,6 @@ export default function ChatPanel({ workspace, settings, onSettings, onNotify, o
   const empty = !selectedId || (!!current && !current.entries.length);
   const statusText = running ? (live.detail || statusLabel[live.status] || 'Working') : '';
   const detail = archived ? 'Archived conversation' : running ? statusText : current?.forkedFrom ? `Forked from ${current.forkedFrom.title}` : current?.importedFrom ? 'Imported Claude Code session' : selectedId ? `${items.find(item => item.id === selectedId)?.messageCount ?? 0} messages` : 'New conversation';
-  const streamingNow = !!current?.entries.some(entry => (entry.kind === 'assistant' || entry.kind === 'thinking') && entry.streaming && entry.text.length > 0);
-  const todos = current?.todos?.length && current.todos.some(todo => todo.status !== 'completed') ? current.todos : null;
   const suggestions = [
     { icon: <FolderOpen size={16} />, title: 'Understand the project', text: 'Explore this workspace and explain its structure, main entry points, and how to run it.' },
     { icon: <Lightbulb size={16} />, title: 'Plan a change', text: 'Help me plan the next change to this project.', plan: true },
@@ -286,21 +291,20 @@ export default function ChatPanel({ workspace, settings, onSettings, onNotify, o
             actions={{ onEdit: entry => setRewind({ entry, edit: true }), onRewind: entry => setRewind({ entry, edit: false }), onFork: entryId => void fork(entryId) }}
             onNotify={onNotify} onOpenFile={onOpenFile} />}
           {current?.error && !running && !current.entries.some(entry => entry.kind === 'system' && entry.text === current.error) && <div className="chat-run-error" role="alert"><AlertCircle size={15} /><p>{current.error}</p></div>}
-          {running && !permissions.length && !streamingNow && <WorkingIndicator label={statusText} startedAt={live.startedAt} tone={live.status} />}
           {permissions.map(request => <RequestCard key={request.id} request={request} workspacePath={workspace.path} onAnswer={value => answer(request.id, value)} onNotify={onNotify} onOpenFile={onOpenFile} />)}
         </div>
       </div>
       {away && <button type="button" className="chat-jump-latest" onClick={jump}><ArrowDown size={13} />Jump to latest</button>}
     </div>
     {!archived && <div className="chat-compose-area">
-      {todos && <details className="claude-todo-panel" open><summary><ListTodo size={14} /><span>Plan</span><span className="claude-todo-progress" aria-hidden="true"><i style={{ width: `${Math.round(todos.filter(todo => todo.status === 'completed').length / todos.length * 100)}%` }} /></span><span className="claude-todo-count">{todos.filter(todo => todo.status === 'completed').length}/{todos.length}</span></summary><TodoList todos={todos} /></details>}
-      {!!current?.queue?.length && <div className="claude-queue-list" aria-label="Queued messages">{current.queue.map(item => <div key={item.id} className="claude-queued"><ListTodo size={13} /><span className="text-ellipsis">{item.text || `${item.attachments?.length ?? 0} attachments`}</span>
-        <button type="button" aria-label="Remove queued message" onClick={() => void patchConversation(current.id, { queue: current.queue!.filter(entry => entry.id !== item.id).map(entry => entry.id) })}><X size={12} /></button></div>)}</div>}
       <Composer workspaceId={workspace.id} draft={draft} onDraft={setDraft} attachments={draftAttachments} onAttachments={setDraftAttachments}
         settings={composerSettings} onSettings={changeSettings} models={models} modelsLoading={modelsLoading} commands={capabilities?.commands ?? []}
-        running={running} stopping={stopping} sending={sending} disabled={opening || !settings.agentConfigured} usage={current?.usage}
-        goal={current?.goal} onClearGoal={current ? () => void sendText('/goal clear') : undefined}
-        onSend={() => void send()} onQueue={() => void send('queue')} onStop={() => void stop()} onNotify={onNotify} focusKey={selectedId ?? DRAFT_KEY} />
+        running={running} stopping={stopping} sending={sending} disabled={opening || !settings.agentConfigured}
+        status={{ label: permissions.length ? 'Waiting for you' : statusText ? `${statusText}…`.replace(/……$/, '…') : 'Working…', startedAt: live.startedAt }}
+        goal={current?.goal} todos={current?.todos?.length ? current.todos : null} queue={current?.queue ?? []}
+        onQueueAction={(item, action) => void queueAction(item, action)}
+        onClearGoal={() => void sendText('/goal clear')} onResumeGoal={() => void sendText('Continue working toward the goal.', 'steer')}
+        onSend={() => void send()} onQueue={() => void send('queue')} onSteer={() => void send('steer')} onStop={() => void stop()} onNotify={onNotify} focusKey={selectedId ?? DRAFT_KEY} />
     </div>}
     <Modal open={!!renaming} onClose={() => setRenaming(null)} title="Rename conversation" titleId="rename-conversation">
       <form onSubmit={event => void rename(event)}><div className="chat-control-dialog-body"><label className="field"><span>Conversation name</span><input className="input" autoFocus maxLength={120} value={renaming?.title ?? ''} onChange={event => setRenaming(previous => previous ? { ...previous, title: event.target.value } : null)} /></label></div>

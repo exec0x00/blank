@@ -1,8 +1,12 @@
 /** Bounded geometry for a decorative caret. No input text is copied into the DOM. */
 export const MAX_CARET_TEXT = 32_768;
-export const CARET_MOVE_MS = 80;
-export const CARET_BLINK_DELAY_MS = 500;
-export const CARET_BLINK_HALF_CYCLE_MS = 500;
+/** Spring stiffness and damping ratio for caret travel (critically damped). */
+export const CARET_SPRING_STIFFNESS = 1250;
+export const CARET_SPRING_DAMPING = 1;
+/** The caret stays solid this long after it moves, then starts to blink. */
+export const CARET_IDLE_MS = 520;
+export const CARET_BLINK_DELAY_MS = 520;
+export const CARET_BLINK_CYCLE_MS = 1150;
 
 export interface CaretLayoutOptions {
   text: string;
