@@ -64,6 +64,7 @@ export const Timeline = memo(function Timeline({ conversationId, entries, worksp
           {!!entry.attachments?.length && <div className="claude-message-attachments">{entry.attachments.map(attachment => attachment.kind === 'image'
             ? <a key={attachment.id} href={`/api/claude/attachments/${attachment.id}`} target="_blank" rel="noreferrer"><img src={`/api/claude/attachments/${attachment.id}`} alt={attachment.name} /></a>
             : <a key={attachment.id} className="claude-file-chip" href={`/api/claude/attachments/${attachment.id}`} target="_blank" rel="noreferrer"><FileText size={13} />{attachment.name}</a>)}</div>}
+          {entry.steered && <span className="claude-steered-tag" title="Sent while Claude was working; it joined that turn">Steered</span>}
           {entry.text && <div className="chat-user-content">{entry.text}</div>}
           {!nested && <div className="chat-message-actions claude-user-actions">
             <CopyButton text={entry.text} label="Copy message" onNotify={onNotify} />

@@ -2,8 +2,9 @@ import { randomUUID } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { Router, type Request, type Response } from 'express';
+import { z } from 'zod';
 import {
-  forkSession, getSessionMessages, listSessions, query,
+  createSdkMcpServer, forkSession, getSessionMessages, listSessions, query, tool,
   type PermissionResult, type PermissionUpdate, type Query, type SDKMessage, type SDKUserMessage, type Options,
 } from '@anthropic-ai/claude-agent-sdk';
 import type { AppContext } from './context';
@@ -15,7 +16,7 @@ import {
   isEffort, isPermissionMode,
   type ClaudeAttachment, type ClaudeCapabilities, type ClaudeConversation, type ClaudeConversationSummary, type ClaudeEntry, type ClaudeLiveState,
   type ClaudeLiveStatus, type ClaudeModelOption, type ClaudeNativeSession, type ClaudePermissionMode, type ClaudePermissionRequest, type ClaudeQueuedMessage,
-  type ClaudeStreamEvent, type ClaudeTodo, type ClaudeEffort,
+  type ClaudeStreamEvent, type ClaudeTodo, type ClaudeEffort, type ClaudeSkill, type ClaudeSkillScope, type ClaudeGoal,
 } from '../shared/claude';
 
 const idsKey = 'claude-conversation-index';
@@ -180,25 +181,25 @@ const attachmentKind = (mediaType: string, name: string): ClaudeAttachment['kind
  */
 async function attachmentBlocks(ctx: AppContext, attachments: ClaudeAttachment[], workspacePath: string) {
   const blocks: Record<string, unknown>[] = [];
-  const nativeMedia = /^https:\/\/api\.anthropic\.com/.test(baseUrl());
   const notes: string[] = [];
   for (const attachment of attachments) {
     const data = await fs.readFile(path.join(attachmentsDir(ctx), attachment.id));
     if (attachment.kind === 'text') {
       blocks.push({ type: 'text', text: `<attached-file name="${attachment.name.replace(/"/g, "'")}">\n${data.toString('utf8')}\n</attached-file>` });
-    } else if (nativeMedia) {
-      blocks.push(attachment.kind === 'image'
-        ? { type: 'image', source: { type: 'base64', media_type: attachment.mediaType === 'image/jpg' ? 'image/jpeg' : attachment.mediaType, data: data.toString('base64') } }
-        : { type: 'document', title: attachment.name, source: { type: 'base64', media_type: 'application/pdf', data: data.toString('base64') } });
-    } else {
-      const directory = path.join(workspacePath, '.claude', 'attachments');
-      await fs.mkdir(directory, { recursive: true });
-      const safeName = `${attachment.id.slice(0, 8)}-${attachment.name.replace(/[^\w.-]+/g, '_')}`;
-      await fs.writeFile(path.join(directory, safeName), data);
-      notes.push(`- ${attachment.kind === 'image' ? 'Image' : 'PDF'} \`${attachment.name}\` saved at \`.claude/attachments/${safeName}\``);
+      continue;
     }
+    // The bridge uploads images and PDFs to Claude, so Claude sees them directly.
+    blocks.push(attachment.kind === 'image'
+      ? { type: 'image', source: { type: 'base64', media_type: attachment.mediaType === 'image/jpg' ? 'image/jpeg' : attachment.mediaType, data: data.toString('base64') } }
+      : { type: 'document', title: attachment.name, source: { type: 'base64', media_type: 'application/pdf', data: data.toString('base64') } });
+    // A copy in the workspace lets tools (scripts, converters) use the file too.
+    const directory = path.join(workspacePath, '.claude', 'attachments');
+    await fs.mkdir(directory, { recursive: true });
+    const safeName = `${attachment.id.slice(0, 8)}-${attachment.name.replace(/[^\w.-]+/g, '_')}`;
+    await fs.writeFile(path.join(directory, safeName), data);
+    notes.push(`- \`${attachment.name}\` is also saved at \`.claude/attachments/${safeName}\``);
   }
-  if (notes.length) blocks.push({ type: 'text', text: `The user attached files. Open them with the Read tool:\n${notes.join('\n')}` });
+  if (notes.length) blocks.push({ type: 'text', text: `The attached files are shown above. If a tool needs them:\n${notes.join('\n')}` });
   return blocks;
 }
 async function resolveAttachments(ctx: AppContext, value: unknown): Promise<ClaudeAttachment[]> {
@@ -244,9 +245,112 @@ async function claudeEnvironment(ctx: AppContext): Promise<Record<string, string
     ANTHROPIC_BASE_URL: await startClaudeRelay(baseUrl), ANTHROPIC_API_KEY: process.env.PASSWORD || '', CLAUDE_CONFIG_DIR: claudeConfigDir(ctx),
     CLAUDE_AGENT_SDK_CLIENT_APP: 'arc-claude-workspace/2.0', DISABLE_AUTOUPDATER: '1', DISABLE_TELEMETRY: '1', DISABLE_ERROR_REPORTING: '1',
     CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: '1', NO_COLOR: '1',
+    // Send every tool up front: deferred tools cost Claude an extra ToolSearch round before it can use them.
+    ENABLE_TOOL_SEARCH: 'false',
     // Containers that run as root are still isolated; Claude Code needs this to allow bypass mode there.
     ...(process.getuid?.() === 0 ? { IS_SANDBOX: '1' } : {}),
   };
+}
+
+// ---------------------------------------------------------------------------
+// Skills
+
+const skillNamePattern = /^[a-z0-9][a-z0-9-]{0,63}$/;
+const MAX_SKILL_BYTES = 200_000;
+
+async function skillsRoot(ctx: AppContext, workspaceId: string, scope: ClaudeSkillScope) {
+  if (scope === 'user') return path.join(claudeConfigDir(ctx), 'skills');
+  return path.join((await ctx.workspaces.getAvailable(workspaceId)).path, '.claude', 'skills');
+}
+
+/** The description from a SKILL.md front matter block, if present. */
+export function skillDescription(content: string): string {
+  const match = /^---\s*\n([\s\S]*?)\n---/.exec(content);
+  const line = match?.[1].split('\n').find(entry => /^description\s*:/.test(entry));
+  return line ? line.replace(/^description\s*:\s*/, '').replace(/^["']|["']$/g, '').trim() : '';
+}
+
+async function listSkills(ctx: AppContext, workspaceId: string): Promise<ClaudeSkill[]> {
+  const result: ClaudeSkill[] = [];
+  for (const scope of ['project', 'user'] as const) {
+    const root = await skillsRoot(ctx, workspaceId, scope);
+    const names = await fs.readdir(root, { withFileTypes: true }).catch(() => []);
+    for (const entry of names) {
+      if (!entry.isDirectory() || !skillNamePattern.test(entry.name)) continue;
+      const file = path.join(root, entry.name, 'SKILL.md');
+      const content = await fs.readFile(file, 'utf8').catch(() => null);
+      if (content !== null) result.push({ name: entry.name, scope, description: skillDescription(content), path: file });
+    }
+  }
+  return result.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+async function skillFile(ctx: AppContext, req: Request) {
+  const scope: ClaudeSkillScope | null = req.params.scope === 'user' ? 'user' : req.params.scope === 'project' ? 'project' : null;
+  const name = String(req.params.name);
+  if (!scope || !skillNamePattern.test(name)) throw new HttpError(400, 'Skill names use lowercase letters, numbers, and hyphens.');
+  const root = await skillsRoot(ctx, String(req.params.workspaceId), scope);
+  return { scope, name, directory: path.join(root, name), file: path.join(root, name, 'SKILL.md') };
+}
+
+// ---------------------------------------------------------------------------
+// Web search
+
+export const WEB_SEARCH_TOOL = 'mcp__web__search';
+type SearchLink = { title: string; url: string };
+
+/** Read the bridge's streamed answer: the sources it found and the text written from them. */
+export function readSearchStream(raw: string): { links: SearchLink[]; text: string; error?: string } {
+  const links: SearchLink[] = []; let text = ''; let error: string | undefined;
+  for (const chunk of raw.split('\n\n')) {
+    const line = chunk.split('\n').find(part => part.startsWith('data: '));
+    if (!line) continue;
+    let event: { type?: string; content_block?: { type?: string; content?: unknown }; delta?: { type?: string; text?: string }; error?: { message?: string } };
+    try { event = JSON.parse(line.slice(6)); } catch { continue; }
+    if (event.type === 'content_block_start' && event.content_block?.type === 'web_search_tool_result' && Array.isArray(event.content_block.content)) {
+      for (const result of event.content_block.content as { title?: string; url?: string }[]) {
+        if (typeof result?.url === 'string' && !links.some(link => link.url === result.url)) links.push({ title: result.title || result.url, url: result.url });
+      }
+    } else if (event.type === 'content_block_delta' && event.delta?.type === 'text_delta') text += event.delta.text ?? '';
+    else if (event.type === 'error') error = event.error?.message || 'Web search failed.';
+  }
+  return { links, text: text.trim(), error };
+}
+
+/**
+ * Claude Code turns its built-in WebSearch off when the API is a custom endpoint, so the
+ * workspace supplies a search tool backed by the bridge's native Claude web search.
+ */
+async function bridgeSearch(query: string, model: string, signal?: AbortSignal): Promise<string> {
+  const response = await fetch(`${baseUrl()}/v1/messages`, {
+    method: 'POST', signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(360_000)]) : AbortSignal.timeout(360_000),
+    headers: { 'x-api-key': process.env.PASSWORD || '', 'anthropic-version': '2023-06-01', 'content-type': 'application/json', 'x-session-id': `web-search-${randomUUID()}` },
+    body: JSON.stringify({
+      model, max_tokens: 2048, stream: true, tools: [{ type: 'web_search_20250305', name: 'web_search', max_uses: 3 }],
+      messages: [{ role: 'user', content: `Search the web for: ${query}\n\nThen summarise what the sources say in a few short paragraphs, with the key facts, dates, and figures.` }],
+    }),
+  });
+  if (!response.ok) {
+    const body = await response.json().catch(() => ({})) as { error?: { message?: string } };
+    throw new Error(body.error?.message || `Web search failed with HTTP ${response.status}.`);
+  }
+  const { links, text, error } = readSearchStream(await response.text());
+  if (error && !links.length && !text) throw new Error(error);
+  return `Web search results for query: "${query}"\n\nLinks: ${JSON.stringify(links)}\n\n${text || 'No summary was returned.'}\n\nREMINDER: Cite the relevant sources above as markdown links in your answer.`;
+}
+
+function webSearchServer() {
+  return createSdkMcpServer({ name: 'web', version: '1.0.0', tools: [tool('search',
+    'Search the web for current information: recent events, documentation, versions, prices, people, or anything after your training data. Returns the sources found and a summary of them. Cite the sources you use as markdown links.',
+    { query: z.string().min(2).max(400).describe('The search query') },
+    async ({ query }, extra) => {
+      try {
+        const model = (await modelAliases()).ANTHROPIC_DEFAULT_HAIKU_MODEL || DEFAULT_MODEL;
+        return { content: [{ type: 'text' as const, text: await bridgeSearch(query, model, (extra as { signal?: AbortSignal } | undefined)?.signal) }] };
+      } catch (error) {
+        return { content: [{ type: 'text' as const, text: `Web search failed: ${safeError(error)}` }], isError: true };
+      }
+    }, { annotations: { readOnlyHint: true, openWorldHint: true } })] });
 }
 
 async function baseOptions(ctx: AppContext, cwd: string): Promise<Options> {
@@ -256,9 +360,10 @@ async function baseOptions(ctx: AppContext, cwd: string): Promise<Options> {
     cwd, env, tools: { type: 'preset', preset: 'claude_code' }, settingSources: preferences.settingSources,
     systemPrompt: { type: 'preset', preset: 'claude_code', ...(preferences.appendSystemPrompt.trim() ? { append: preferences.appendSystemPrompt } : {}) },
     ...(preferences.additionalDirectories.length ? { additionalDirectories: preferences.additionalDirectories } : {}),
-    ...(preferences.allowedTools.length ? { allowedTools: preferences.allowedTools } : {}),
+    // Web search only reads public pages, so it runs without a permission prompt.
+    allowedTools: [...new Set([...preferences.allowedTools, WEB_SEARCH_TOOL])],
     ...(preferences.disallowedTools.length ? { disallowedTools: preferences.disallowedTools } : {}),
-    ...(Object.keys(preferences.mcpServers).length ? { mcpServers: preferences.mcpServers as Options['mcpServers'] } : {}),
+    mcpServers: { ...preferences.mcpServers as Options['mcpServers'], web: webSearchServer() },
     ...(preferences.maxTurns ? { maxTurns: preferences.maxTurns } : {}),
     ...(preferences.maxBudgetUsd ? { maxBudgetUsd: preferences.maxBudgetUsd } : {}),
     ...(preferences.fallbackModel ? { fallbackModel: preferences.fallbackModel } : {}),
@@ -268,9 +373,10 @@ async function baseOptions(ctx: AppContext, cwd: string): Promise<Options> {
   };
 }
 
-function userMessage(text: string, blocks: Record<string, unknown>[], uuid: string): SDKUserMessage {
+function userMessage(text: string, blocks: Record<string, unknown>[], uuid: string, steer = false): SDKUserMessage {
   const content = [...blocks, ...(text ? [{ type: 'text', text }] : [])];
-  return { type: 'user', message: { role: 'user', content: content as never }, parent_tool_use_id: null, uuid: uuid as SDKUserMessage['uuid'] };
+  // 'next' joins the running turn: Claude reads it at its next step without being stopped.
+  return { type: 'user', message: { role: 'user', content: content as never }, parent_tool_use_id: null, uuid: uuid as SDKUserMessage['uuid'], ...(steer ? { priority: 'next' as const } : {}) };
 }
 
 const MAX_TOOL_IMAGES = 4;
@@ -313,7 +419,9 @@ async function runTurns(ctx: AppContext, item: ClaudeConversation, state: Live, 
   const forking = !!item.resumeAt && !!item.sessionId;
   const stream = query({ prompt: state.input, options: {
     ...options, model: item.model, permissionMode: item.permissionMode, allowDangerouslySkipPermissions: true,
-    ...(item.effort ? { effort: item.effort } : {}),
+    ...(item.effort && item.effort !== 'ultracode' ? { effort: item.effort } : {}),
+    // Ultracode is a session setting rather than an effort level.
+    settings: { ...(typeof options.settings === 'object' ? options.settings : {}), ...(item.effort === 'ultracode' ? { ultracode: true } : {}) },
     thinking: item.thinking ? { type: 'adaptive', display: 'summarized' } : { type: 'disabled' },
     includePartialMessages: true, abortController: state.controller,
     ...(item.sessionId ? { resume: item.sessionId } : {}),
@@ -357,11 +465,61 @@ function describeSuggestions(suggestions: PermissionUpdate[]): string {
   return 'Always allow';
 }
 
+/**
+ * The goal as Claude Code's transcript records it. Goal results are transcript attachments that the
+ * SDK stream does not carry, so this mirrors Claude Code's own lookup: the newest goal_status entry
+ * decides (met or failed means no goal). Undefined when the transcript has no goal entries.
+ */
+export async function transcriptGoal(configDir: string, sessionId: string, previous?: ClaudeGoal | null): Promise<ClaudeGoal | null | undefined> {
+  const projects = path.join(configDir, 'projects');
+  const folders = await fs.readdir(projects).catch(() => [] as string[]);
+  for (const folder of folders) {
+    const file = path.join(projects, folder, `${sessionId}.jsonl`);
+    const text = await fs.readFile(file, 'utf8').catch(() => null);
+    if (text === null) continue;
+    const lines = text.trimEnd().split('\n');
+    for (let index = lines.length - 1; index >= 0; index--) {
+      if (!lines[index].includes('"goal_status"')) continue;
+      let entry: { type?: string; attachment?: { type?: string; met?: boolean; failed?: boolean; condition?: string; iterations?: number; reason?: string } };
+      try { entry = JSON.parse(lines[index]); } catch { continue; }
+      const goal = entry.type === 'attachment' && entry.attachment?.type === 'goal_status' ? entry.attachment : null;
+      if (!goal) continue;
+      if (goal.met || goal.failed || !goal.condition) return null;
+      return { condition: goal.condition, iterations: goal.iterations ?? previous?.iterations ?? 0, lastReason: goal.reason ?? previous?.lastReason,
+        setAt: previous?.condition === goal.condition ? previous.setAt : new Date().toISOString() };
+    }
+    return undefined;
+  }
+  return undefined;
+}
+
+const seenMessageKinds = new Set<string>();
+const knownMessageTypes = new Set(['stream_event', 'assistant', 'user', 'result', 'system', 'tool_progress', 'active_goal', 'rate_limit_event', 'tool_use_summary', 'prompt_suggestion', 'auth_status']);
+
 function handleMessage(ctx: AppContext, item: ClaudeConversation, state: Live, message: SDKMessage) {
   const sessionId = (message as { session_id?: string }).session_id;
   if (sessionId && item.sessionId !== sessionId && message.type !== 'stream_event') {
     item.sessionId = sessionId; item.resumeAt = undefined;
     emit(item.id, { type: 'meta', patch: { sessionId } });
+  }
+  const raw = message as unknown as { type: string; subtype?: string; met?: boolean; failed?: boolean; condition?: string; reason?: string; iterations?: number };
+  // A goal check result: met (or failed) clears the goal, otherwise it counts another check.
+  if (raw.type === 'goal_status' || raw.subtype === 'goal_status') {
+    if (raw.met || raw.failed) item.goal = null;
+    else if (item.goal) item.goal = { ...item.goal, iterations: raw.iterations ?? item.goal.iterations + 1, lastReason: raw.reason ?? item.goal.lastReason };
+    emit(item.id, { type: 'meta', patch: { goal: item.goal } });
+    scheduleSave(ctx, item);
+    return;
+  }
+  const kind = `${raw.type}${raw.subtype ? `/${raw.subtype}` : ''}`;
+  if ((!knownMessageTypes.has(raw.type) || raw.type === 'system') && !seenMessageKinds.has(kind)) { seenMessageKinds.add(kind); console.log(`Claude Code message: ${kind}`); }
+  // Claude Code reports goal progress after each check; null means the goal was met or cleared.
+  if (raw.type === 'active_goal') {
+    const value = (message as unknown as { value: { condition: string; iterations: number; set_at: number; last_reason?: string } | null }).value;
+    item.goal = value ? { condition: value.condition, iterations: value.iterations, lastReason: value.last_reason, setAt: new Date(value.set_at || Date.now()).toISOString() } : null;
+    emit(item.id, { type: 'meta', patch: { goal: item.goal } });
+    scheduleSave(ctx, item);
+    return;
   }
   switch (message.type) {
     case 'stream_event': {
@@ -486,6 +644,16 @@ function handleMessage(ctx: AppContext, item: ClaudeConversation, state: Live, m
       touch(item);
       void save(ctx, item).catch(() => undefined);
       if (!state.outstanding.size) advanceQueue(ctx, item, state);
+      if (item.goal && item.sessionId) {
+        const sessionId = item.sessionId;
+        // The transcript entry for the goal check can land just after the result.
+        void new Promise(resolve => setTimeout(resolve, 1500)).then(() => transcriptGoal(claudeConfigDir(ctx), sessionId, item.goal)).then(goal => {
+          if (goal === undefined || JSON.stringify(goal) === JSON.stringify(item.goal)) return;
+          item.goal = goal;
+          emit(item.id, { type: 'meta', patch: { goal } });
+          scheduleSave(ctx, item);
+        }).catch(() => undefined);
+      }
       return;
     }
     case 'system': {
@@ -532,20 +700,28 @@ function advanceQueue(ctx: AppContext, item: ClaudeConversation, state: Live) {
   });
 }
 
-async function pushPrompt(ctx: AppContext, item: ClaudeConversation, state: Live, text: string, attachments: ClaudeAttachment[]) {
+async function pushPrompt(ctx: AppContext, item: ClaudeConversation, state: Live, text: string, attachments: ClaudeAttachment[], steer = false) {
   const uuid = randomUUID();
   const workspace = await ctx.workspaces.getAvailable(item.workspaceId);
   const blocks = await attachmentBlocks(ctx, attachments, workspace.path);
-  upsert(item, { kind: 'user', id: uuid, uuid, at: now(), text, ...(attachments.length ? { attachments } : {}), ...(text.startsWith('/') ? { command: true } : {}) });
+  upsert(item, { kind: 'user', id: uuid, uuid, at: now(), text, ...(attachments.length ? { attachments } : {}), ...(text.startsWith('/') ? { command: true } : {}), ...(steer ? { steered: true } : {}) });
   if (!item.titleSet && (item.title === 'New conversation' || !item.entries.some(entry => entry.kind === 'user' && entry.id !== uuid)) && text && !text.startsWith('/')) {
     item.title = text.replace(/\s+/g, ' ').slice(0, 80);
     emit(item.id, { type: 'meta', patch: { title: item.title } });
   }
+  const goal = /^\/goal(?:\s+([\s\S]*))?$/.exec(text.trim());
+  if (goal) {
+    const condition = (goal[1] ?? '').trim();
+    if (condition) {
+      item.goal = /^clear$/i.test(condition) ? null : { condition, iterations: 0, setAt: now() };
+      emit(item.id, { type: 'meta', patch: { goal: item.goal } });
+    }
+  }
   touch(item);
   await save(ctx, item);
   state.outstanding.add(uuid);
-  setLive(item, 'requesting', 'Waiting for Claude');
-  state.input.push(userMessage(text, blocks, uuid));
+  if (!steer) setLive(item, 'requesting', 'Waiting for Claude');
+  state.input.push(userMessage(text, blocks, uuid, steer));
 }
 
 async function startTurn(ctx: AppContext, item: ClaudeConversation, workspacePath: string, text: string, attachments: ClaudeAttachment[]) {
@@ -657,10 +833,10 @@ async function loadCapabilities(ctx: AppContext, workspaceId: string, cwd: strin
 }
 
 const knownModels: Record<string, { label: string; description: string; efforts: ClaudeEffort[] }> = {
-  'claude-opus-5-5': { label: 'Opus 5.5', description: 'Most capable for complex work', efforts: ['low', 'medium', 'high', 'xhigh', 'max'] },
-  'claude-fable-5-1': { label: 'Fable 5.1', description: 'Frontier model for the hardest problems', efforts: ['low', 'medium', 'high', 'xhigh', 'max'] },
-  'claude-sonnet-5-5': { label: 'Sonnet 5.5', description: 'Smart, efficient model for everyday coding', efforts: ['low', 'medium', 'high', 'xhigh', 'max'] },
-  'claude-sonnet-5': { label: 'Sonnet 5', description: 'Balanced speed and intelligence', efforts: ['low', 'medium', 'high', 'xhigh', 'max'] },
+  'claude-opus-5-5': { label: 'Opus 5.5', description: 'Most capable for complex work', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultracode'] },
+  'claude-fable-5-1': { label: 'Fable 5.1', description: 'Frontier model for the hardest problems', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultracode'] },
+  'claude-sonnet-5-5': { label: 'Sonnet 5.5', description: 'Smart, efficient model for everyday coding', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultracode'] },
+  'claude-sonnet-5': { label: 'Sonnet 5', description: 'Balanced speed and intelligence', efforts: ['low', 'medium', 'high', 'xhigh', 'max', 'ultracode'] },
   'claude-haiku-5-5': { label: 'Haiku 5.5', description: 'Fastest for quick answers', efforts: ['low', 'medium', 'high'] },
   'claude-sonnet-4-6': { label: 'Sonnet 4.6', description: 'Previous-generation Sonnet', efforts: ['low', 'medium', 'high', 'max'] },
   'claude-haiku-4-5-20251001': { label: 'Haiku 4.5', description: 'Previous-generation Haiku', efforts: [] },
@@ -739,6 +915,33 @@ export function createAgentRouter(ctx: AppContext): Router {
     res.json(await loadCapabilities(ctx, workspace.id, workspace.path, req.query.refresh === '1'));
   });
 
+  router.get('/claude/workspaces/:workspaceId/skills', async (req, res) => {
+    res.json(await listSkills(ctx, String(req.params.workspaceId)));
+  });
+  router.get('/claude/workspaces/:workspaceId/skills/:scope/:name', async (req, res) => {
+    const { scope, name, file } = await skillFile(ctx, req);
+    const content = await fs.readFile(file, 'utf8').catch(() => { throw new HttpError(404, 'Skill not found.'); });
+    res.json({ name, scope, path: file, description: skillDescription(content), content } satisfies ClaudeSkill);
+  });
+  router.put('/claude/workspaces/:workspaceId/skills/:scope/:name', async (req, res) => {
+    const { scope, name, directory, file } = await skillFile(ctx, req);
+    const content = typeof req.body?.content === 'string' ? req.body.content : null;
+    if (!content?.trim() || Buffer.byteLength(content) > MAX_SKILL_BYTES) throw new HttpError(400, 'Write the skill instructions (under 200 KB).');
+    await fs.mkdir(directory, { recursive: true });
+    const temporary = `${file}.${process.pid}.tmp`;
+    await fs.writeFile(temporary, content);
+    await fs.rename(temporary, file);
+    // New and changed skills show up in the slash menu on the next capability load.
+    if (scope === 'user') capabilityCache.clear(); else capabilityCache.delete(String(req.params.workspaceId));
+    res.json({ name, scope, path: file, description: skillDescription(content), content } satisfies ClaudeSkill);
+  });
+  router.delete('/claude/workspaces/:workspaceId/skills/:scope/:name', async (req, res) => {
+    const { scope, directory } = await skillFile(ctx, req);
+    await fs.rm(directory, { recursive: true, force: true });
+    if (scope === 'user') capabilityCache.clear(); else capabilityCache.delete(String(req.params.workspaceId));
+    res.status(204).end();
+  });
+
   router.get('/claude/events', async (req, res) => {
     const workspaceId = String(req.query.workspaceId || '');
     await ctx.workspaces.getAvailable(workspaceId);
@@ -789,7 +992,7 @@ export function createAgentRouter(ctx: AppContext): Router {
     }
     if (body.effort === null || isEffort(body.effort)) {
       item.effort = body.effort; patch.effort = body.effort;
-      if (state?.query) await state.query.applyFlagSettings({ effortLevel: body.effort }).catch(() => undefined);
+      if (state?.query) await state.query.applyFlagSettings(body.effort === 'ultracode' ? { ultracode: true } : { effortLevel: body.effort, ultracode: false }).catch(() => undefined);
     }
     if (typeof body.thinking === 'boolean') { item.thinking = body.thinking; patch.thinking = body.thinking; }
     if (isPermissionMode(body.permissionMode)) {
@@ -838,6 +1041,11 @@ export function createAgentRouter(ctx: AppContext): Router {
     if (req.body?.effort === null || isEffort(req.body?.effort)) item.effort = req.body.effort;
     if (typeof req.body?.thinking === 'boolean') item.thinking = req.body.thinking;
     const state = live.get(item.id);
+    // While Claude works, a message steers the running turn unless the sender asks to queue it.
+    if (state && !state.stopping && !state.input.closed && req.body?.mode !== 'queue' && !text.startsWith('/')) {
+      await pushPrompt(ctx, item, state, text, attachments, true);
+      res.status(202).json({ steered: true }); return;
+    }
     if (state) {
       const queued: ClaudeQueuedMessage = { id: randomUUID(), text, ...(attachments.length ? { attachments } : {}), at: now() };
       item.queue = [...(item.queue ?? []), queued].slice(-20);

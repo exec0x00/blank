@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ClipboardEvent, type DragEvent, type KeyboardEvent } from 'react';
-import { ArrowUp, Brain, FileText, ListPlus, LoaderCircle, Paperclip, Square, X, AtSign, Slash, Gauge } from 'lucide-react';
-import { CLAUDE_PERMISSION_MODES, type ClaudeAttachment, type ClaudeCommand, type ClaudeEffort, type ClaudeModelOption, type ClaudePermissionMode, type ClaudeUsage } from '../../../shared/claude';
+import { ArrowUp, Brain, CornerDownRight, FileText, ListPlus, LoaderCircle, Paperclip, Square, Target, X, AtSign, Slash, Gauge } from 'lucide-react';
+import { CLAUDE_PERMISSION_MODES, type ClaudeGoal, type ClaudeAttachment, type ClaudeCommand, type ClaudeEffort, type ClaudeModelOption, type ClaudePermissionMode, type ClaudeUsage } from '../../../shared/claude';
 import { api, json } from '../../api';
 import { SelectMenu } from '../ui/Dropdown';
 import { EFFORT_DESCRIPTIONS, EFFORT_LABELS, modelEfforts } from './catalog';
@@ -12,7 +12,7 @@ interface Props {
   workspaceId: string; draft: string; onDraft: (value: string) => void; attachments: ClaudeAttachment[]; onAttachments: (value: ClaudeAttachment[]) => void;
   settings: ComposerSettings; onSettings: (patch: Partial<ComposerSettings>) => void; models: ClaudeModelOption[]; modelsLoading: boolean;
   commands: ClaudeCommand[]; running: boolean; stopping: boolean; sending: boolean; disabled: boolean; usage?: ClaudeUsage;
-  onSend: () => void; onStop: () => void; onNotify: (message: string, kind?: 'error' | 'success' | 'info') => void; focusKey?: string;
+  onSend: () => void; onQueue: () => void; onStop: () => void; goal?: ClaudeGoal | null; onClearGoal?: () => void; onNotify: (message: string, kind?: 'error' | 'success' | 'info') => void; focusKey?: string;
 }
 type Menu = { kind: 'command'; query: string } | { kind: 'file'; query: string; start: number } | null;
 const DEFAULT = '$auto';
@@ -28,7 +28,7 @@ function readFile(file: File) {
 }
 
 export function Composer(props: Props) {
-  const { workspaceId, draft, onDraft, attachments, onAttachments, settings, onSettings, models, modelsLoading, commands, running, stopping, sending, disabled, usage, onSend, onStop, onNotify, focusKey } = props;
+  const { workspaceId, draft, onDraft, attachments, onAttachments, settings, onSettings, models, modelsLoading, commands, running, stopping, sending, disabled, usage, onSend, onQueue, onStop, onNotify, focusKey, goal, onClearGoal } = props;
   const textarea = useRef<HTMLTextAreaElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
   const [menu, setMenu] = useState<Menu>(null);
@@ -110,6 +110,7 @@ export function Composer(props: Props) {
     }
     if (menu && event.key === 'Escape') { event.preventDefault(); setMenu(null); return; }
     if (event.key === 'Escape' && running) { event.preventDefault(); onStop(); return; }
+    if (event.key === 'Enter' && event.altKey && running) { event.preventDefault(); if (canSend) onQueue(); return; }
     if (event.key === 'Enter' && (event.metaKey || event.ctrlKey || (!event.shiftKey && !coarse()))) { event.preventDefault(); if (canSend) onSend(); }
     if (event.key === 'Tab' && event.shiftKey && !menu) {
       event.preventDefault();
@@ -149,9 +150,14 @@ export function Composer(props: Props) {
         <span className="text-ellipsis">{attachment.name}</span>
         <button type="button" aria-label={`Remove ${attachment.name}`} onClick={() => onAttachments(attachments.filter(item => item.id !== attachment.id))}><X size={12} /></button></span>)}
         {uploading > 0 && <span className="claude-attachment is-uploading"><LoaderCircle size={14} className="chat-spin" />Uploading…</span>}</div>}
+      {goal && <div className="claude-goal-chip" title={goal.lastReason ? `Last check: ${goal.lastReason}` : 'Claude keeps working until this is met'}>
+        <Target size={13} /><span className="claude-goal-label">Goal</span><span className="claude-goal-text">{goal.condition}</span>
+        {goal.iterations > 0 && <span className="claude-goal-count">{goal.iterations} check{goal.iterations === 1 ? '' : 's'}</span>}
+        {onClearGoal && <button type="button" aria-label="Clear goal" title="Clear goal" onClick={onClearGoal}><X size={12} /></button>}
+      </div>}
       <label className="chat-sr-only" htmlFor={`claude-prompt-${workspaceId}`}>Message Claude</label>
       <textarea ref={textarea} id={`claude-prompt-${workspaceId}`} rows={2} value={draft} maxLength={200_000} disabled={disabled}
-        placeholder={running ? 'Queue a follow-up for Claude…' : settings.permissionMode === 'plan' ? 'Describe what to plan…' : 'Ask Claude to build, fix, or explain… (/ for commands, @ for files)'}
+        placeholder={running ? 'Steer Claude while it works… (Alt+Enter queues for after)' : settings.permissionMode === 'plan' ? 'Describe what to plan…' : 'Ask Claude to build, fix, or explain… (/ for commands, @ for files)'}
         onChange={event => { onDraft(event.target.value); detectMenu(event.target.value, event.target.selectionStart); }}
         onClick={event => detectMenu(event.currentTarget.value, event.currentTarget.selectionStart)} onBlur={() => setTimeout(() => { if (document.activeElement !== textarea.current) setMenu(null); }, 150)}
         onKeyUp={event => { if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) detectMenu(event.currentTarget.value, event.currentTarget.selectionStart); }}
@@ -165,8 +171,9 @@ export function Composer(props: Props) {
         <span className="chat-composer-spacer" />
         {contextPercent !== null && contextPercent >= 1 && <ContextRing percent={contextPercent} title={`${usage!.contextTokens.toLocaleString()} of ${usage!.contextWindow!.toLocaleString()} context tokens used${usage!.totalCostUsd ? ` · ${money(usage!.totalCostUsd)} spent` : ''}`} />}
         {running && <button type="button" className="chat-send chat-stop" aria-label="Stop Claude" title="Stop (Esc)" disabled={stopping} onClick={onStop}>{stopping ? <LoaderCircle size={15} className="chat-spin" /> : <Square size={13} />}</button>}
-        <button type="submit" className={`chat-send claude-send${running ? ' claude-queue' : ''}${canSend ? ' is-ready' : ''}`} aria-label={running ? 'Queue message' : 'Send message'} title={running ? 'Queue for when Claude finishes' : 'Send (Enter)'} disabled={!canSend}>
-          <span className="claude-icon-swap" key={sending ? 'sending' : running ? 'queue' : 'send'}>{sending ? <LoaderCircle size={16} className="chat-spin" /> : running ? <ListPlus size={16} /> : <ArrowUp size={18} />}</span></button>
+        {running && <button type="button" className={`chat-send claude-queue-button${canSend ? ' is-ready' : ''}`} aria-label="Queue for after this turn" title="Queue for after this turn (Alt+Enter)" disabled={!canSend} onClick={onQueue}><ListPlus size={15} /></button>}
+        <button type="submit" className={`chat-send claude-send${running ? ' claude-steer' : ''}${canSend ? ' is-ready' : ''}`} aria-label={running ? 'Steer Claude' : 'Send message'} title={running ? 'Steer: Claude reads this at its next step (Enter)' : 'Send (Enter)'} disabled={!canSend}>
+          <span className="claude-icon-swap" key={sending ? 'sending' : running ? 'steer' : 'send'}>{sending ? <LoaderCircle size={16} className="chat-spin" /> : running ? <CornerDownRight size={16} /> : <ArrowUp size={18} />}</span></button>
       </div>
     </form>
     <div className="chat-composer-footer claude-composer-footer"><div className="chat-model-controls">

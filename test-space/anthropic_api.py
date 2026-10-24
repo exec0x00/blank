@@ -12,6 +12,7 @@ import copy
 import hashlib
 import io
 import json
+import re
 import time
 import uuid
 
@@ -20,6 +21,7 @@ from PIL import Image
 from errors import APIError
 from pool import transient
 from token_budget import count_text, fit_delta
+from rpc import RpcSession, as_dict as rpc_dict
 from upstream import BASE, WEB_CLIENT_BUILD, WEB_CLIENT_SHA, message_uuid
 
 # Recent raw upstream stream events, for the admin diagnostics view.
@@ -530,6 +532,397 @@ class BrowserTurn:
         await self.bridge.pool.release(self.account)
 
 
+
+USER_SENT = re.compile(r"user sent (?:a new )?message", re.I)
+
+
+def with_user_note(results, content):
+    """Carry text the user sent alongside tool results (for example steering a running turn).
+
+    A tool result is posted on its own, so other text in the same message would
+    be lost; it rides along on the last result instead. System reminders stay out.
+    """
+    def wanted(text):
+        # Claude Code wraps a message typed mid-turn in a system reminder; other reminders stay out.
+        return text.strip() and (not text.lstrip().startswith('<system-reminder>') or USER_SENT.search(text))
+    notes = [b.get('text', '') for b in content if isinstance(b, dict) and b.get('type') == 'text' and wanted(b.get('text', ''))]
+    if not notes or not results:
+        return results
+    results = copy.deepcopy(results)
+    last = results[-1]
+    body = last.get('content', '')
+    text = text_of(body) if isinstance(body, list) else str(body)
+    last['content'] = text + '\n\n<user-message-during-turn>\n' + '\n\n'.join(notes) + '\n</user-message-during-turn>'
+    return results
+
+# claude.ai drops client tools whose names it reserves (Read, Bash, Glob, Skill, Workflow, ...),
+# so every tool is declared under this prefix and mapped back when Claude calls it.
+TOOL_ALIAS = 'cc_'
+DEVICE_PREFIX = 'mcp__claude-device__'
+
+
+def tool_note(tools):
+    names = ', '.join(DEVICE_PREFIX + TOOL_ALIAS + t['name'] for t in tools[:60])
+    return ('<bridge-tools>\nThe tools for this conversation are exposed with the prefix ' + DEVICE_PREFIX + TOOL_ALIAS +
+            '. When the instructions name a tool (for example Read or Bash), call ' + DEVICE_PREFIX + TOOL_ALIAS +
+            'Read or ' + DEVICE_PREFIX + TOOL_ALIAS + 'Bash. Use only tools with this prefix' +
+            ' (and web_search when it is offered); do not use other built-in tools that lack the prefix, such as web_fetch or widgets.\n'
+            'Available: ' + names + '\n</bridge-tools>')
+
+# Conversation and elicitation states from the RPC schema.
+RPC_RUNNING, RPC_WAITING, RPC_ERROR = 2, 3, 5
+RPC_STOP = {1: 'end_turn', 2: 'max_tokens', 3: 'tool_use', 5: 'stop_sequence', 8: 'max_tokens', 9: 'max_tokens', 7: 'pause_turn'}
+
+
+class RpcTurn(BrowserTurn):
+    """A completion over claude.ai's protobuf conversation service.
+
+    Same interface as BrowserTurn. The RPC route is not behind the website's
+    per-client burst throttle. Client tool calls arrive as timeline content
+    blocks that need the client's approval; the bridge approves them (its
+    caller decides what to run), forwards them as ``tool_use`` blocks, and
+    returns results with ``submit_client_tool_result``.
+    """
+
+    route = 'rpc'
+
+    def __init__(self, bridge, account, plan, conversation=None, parent=None):
+        super().__init__(bridge, account, plan, conversation, parent)
+        self.session = RpcSession(account.client, self.conversation)
+        self.events = None
+        self.groups, self.blocks = {}, {}
+        self.texts, self.thoughts = {}, {}
+        self.calls = {}
+        self.approved = set()
+        self.emitted = {}
+        self.forwarded = set()
+        self.waiting = False
+        self.complete = None
+        self.citations, self.cited = {}, []
+
+    async def rpc_files(self, files):
+        client = self.account.client
+        attachments, inline = [], []
+        if len(files) > MAX_ATTACHMENTS:
+            fail(400, f'Attach at most {MAX_ATTACHMENTS} files per message.')
+        for file in files:
+            if file['kind'] == 'image':
+                file = prepare_image(file)
+                value = await client.request('POST', f'/api/{client.org}/upload', files={'file': (file['filename'], file['data'], file['mime'])})
+                if not value.get('file_uuid'):
+                    fail(502, 'Claude did not accept the image upload.', 'api_error')
+                item = {'id': value['file_uuid'], 'file_name': file['filename'], 'file_size': len(file['data']), 'media_type': file['mime'], 'file_kind': 1}
+                if value.get('document_id'):
+                    item['document_id'] = value['document_id']
+                attachments.append(item)
+            elif file['kind'] == 'text' or file['mime'].startswith('text/') or file['mime'] in ('application/json', 'application/xml'):
+                try:
+                    text = file['data'].decode('utf8')
+                except UnicodeDecodeError:
+                    fail(400, 'Text attachments must use UTF-8.')
+                inline.append({'file_name': file['filename'], 'file_size': len(file['data']), 'file_type': 'text/plain', 'extracted_content': text})
+            else:
+                inline.append(await client.convert(file))
+        return attachments, inline
+
+    async def open(self, prompt, files=()):
+        attachments, inline = await self.rpc_files(list(files)) if files else ([], [])
+        DIAGNOSTICS.append({'t': time.time(), 'account': self.account.id, 'kind': 'rpc_send',
+                            'payload': json.dumps({'tools': [t['name'] for t in self.plan['tools']], 'attachments': attachments, 'inline': len(inline),
+                                                   'prompt_chars': len(prompt), 'parent': self.parent, 'web_search': self.plan['web_search']})[:4000]})
+        tools = [{**tool, 'name': TOOL_ALIAS + tool['name']} for tool in self.plan['tools']]
+        if tools and not self.parent:
+            prompt = tool_note(self.plan['tools']) + '\n\n' + prompt
+        await self.session.send(prompt=prompt, model=self.plan['model'], assistant_id=self.assistant_id, parent=self.parent,
+                                tools=tools, web_search=self.plan['web_search'], effort=self.plan['effort'],
+                                thinking=True, attachments=attachments, inline=inline)
+        self.events = self.session.events()
+
+    def ours(self, block):
+        group = self.groups.get(block.display_group_id)
+        return group is not None and group.message_id == self.assistant_id
+
+    def ordered(self):
+        items = [b for b in self.blocks.values() if self.ours(b)]
+        return sorted(items, key=lambda b: (self.groups[b.display_group_id].index, b.index))
+
+    def kind(self, block):
+        if block.HasField('display_content') and block.display_content.HasField('client_tool'):
+            return 'tool'
+        if block.analytics_tool_name == 'web_search' or block.row_kind == 3:
+            return 'search'
+        if block.HasField('thinking_display') or len(block.summaries) or block.id in self.thoughts:
+            return 'thinking'
+        if self.groups[block.display_group_id].style == 1:
+            return 'text'
+        return 'other'
+
+    async def absorb(self, event):
+        """Fold one timeline event into the turn state."""
+        if not event.HasField('heartbeat'):
+            DIAGNOSTICS.append({'t': time.time(), 'account': self.account.id, 'kind': 'rpc_event',
+                                'payload': json.dumps(rpc_dict(event), ensure_ascii=False)[:2000]})
+        if event.HasField('message_limit'):
+            limit = rpc_dict(event.message_limit)
+            self.account.update({'type': limit.get('status', ''), 'windows': limit.get('windows') or {}}, stream=True)
+        if event.HasField('model_fallback'):
+            fail(409, 'Claude switched to a different model; the response was stopped.', 'api_error')
+        if event.HasField('append'):
+            append = event.append
+            if append.text_delta:
+                self.texts[append.content_block_id] = self.texts.get(append.content_block_id, '') + append.text_delta
+            if append.HasField('thinking_summary') and append.thinking_summary.summary:
+                self.thoughts.setdefault(append.content_block_id, []).append(append.thinking_summary.summary)
+            if append.HasField('citation_start') and append.citation_start.url:
+                self.citations[append.citation_start.uuid] = append.citation_start
+            if append.citation_end:
+                self.cited.append((append.content_block_id, append.citation_end))
+        if not event.HasField('update'):
+            return
+        update = event.update
+        if update.replace_all_state:
+            self.groups.clear()
+            self.blocks.clear()
+        for group in update.display_groups:
+            self.groups[group.id] = group
+        for block in update.content_blocks:
+            self.blocks[block.id] = block
+            if block.text and len(block.text) > len(self.texts.get(block.id, '')):
+                self.texts[block.id] = block.text
+            if len(block.summaries) > len(self.thoughts.get(block.id, [])):
+                self.thoughts[block.id] = [x.summary for x in block.summaries]
+            if block.HasField('display_content') and block.display_content.HasField('client_tool'):
+                call = block.display_content.client_tool
+                known = self.calls.setdefault(call.tool_use_id, {'input': '', 'session': '', 'version': 1})
+                known.update(name=call.tool_name[len(TOOL_ALIAS):] if call.tool_name.startswith(TOOL_ALIAS) else call.tool_name, session=call.origin_session_id or known['session'], version=call.origin_version or known['version'])
+                if call.input_json:
+                    known['input'] = call.input_json
+        for block_id in update.deleted_content_block_ids:
+            self.blocks.pop(block_id, None)
+        for elicitation in update.elicitations:
+            request = elicitation.request
+            if not request.tool_use_id or elicitation.HasField('response') or request.status != 1 or elicitation.id in self.approved:
+                continue
+            if request.kind != 1:
+                fail(409, 'Claude asked for something the bridge cannot answer: ' + (request.title or 'an input request'), 'api_error')
+            self.approved.add(elicitation.id)
+            known = self.calls.setdefault(request.tool_use_id, {'input': '', 'session': '', 'version': 1})
+            if request.reported_action.tool_input and not known['input']:
+                known['input'] = request.reported_action.tool_input
+            # The caller (for example Claude Code) applies its own permission rules before running a tool.
+            await self.session.approve(elicitation, always=True)
+        if update.HasField('conversation'):
+            conversation = update.conversation
+            if conversation.status == RPC_ERROR:
+                status = 429 if conversation.status_error_class in (1, 12, 13, 20) else 502
+                fail(status, conversation.status_detail or 'Claude stopped with an error.', 'rate_limit_error' if status == 429 else 'api_error')
+            self.waiting = conversation.status == RPC_WAITING
+        for message in update.messages:
+            if message.id == self.assistant_id and message.is_complete:
+                if message.stop_reason in (11, 12):
+                    fail(502, 'Claude could not complete this response.', 'api_error')
+                self.complete = message.stop_reason
+
+    async def segment(self):
+        if self.done:
+            fail(409, 'Claude turn has already completed.')
+        self.reset_stats()
+        self.message_id = 'msg_' + uuid.uuid4().hex
+        self.citations, self.cited = {}, []
+        content, tool_ids = [], []
+        index = -1
+        current = None  # (block id, anthropic index, item)
+        cite_from = {}
+        input_tokens = max(1, count_text(render(self.plan['messages'], self.plan['system'])))
+        self.stats['input_tokens'] = input_tokens
+        yield {'type': 'message_start', 'message': {'id': self.message_id, 'type': 'message', 'role': 'assistant', 'content': [],
+               'model': self.plan['model'], 'stop_reason': None, 'stop_sequence': None,
+               'usage': {'input_tokens': input_tokens, 'output_tokens': 0}}}
+
+        def begin(item):
+            nonlocal index
+            index += 1
+            content.append(item)
+            return index, {'type': 'content_block_start', 'index': index, 'content_block': copy.deepcopy(item)}
+
+        def finish_current():
+            nonlocal current
+            if current is None:
+                return []
+            block_id, at, item = current
+            current = None
+            out = []
+            if item['type'] == 'thinking':
+                item['signature'] = 'bridge'
+                out.append({'type': 'content_block_delta', 'index': at, 'delta': {'type': 'signature_delta', 'signature': 'bridge'}})
+            out.append({'type': 'content_block_stop', 'index': at})
+            return out
+
+        def emit():
+            """Turn new timeline state into Anthropic events, in display order."""
+            nonlocal current
+            out = []
+            for block in self.ordered():
+                kind = self.kind(block)
+                if kind == 'other' or (kind == 'thinking' and not self.plan['thinking']):
+                    self.forwarded.add(block.id)
+                    continue
+                if kind in ('text', 'thinking'):
+                    if current and current[0] == block.id:
+                        pass
+                    elif block.id in self.forwarded:
+                        continue
+                    else:
+                        out += finish_current()
+                        item = {'type': 'text', 'text': ''} if kind == 'text' else {'type': 'thinking', 'thinking': '', 'signature': ''}
+                        at, start = begin(item)
+                        out.append(start)
+                        current = (block.id, at, item)
+                        self.forwarded.add(block.id)
+                    at, item = current[1], current[2]
+                    if kind == 'text':
+                        text = self.texts.get(block.id, '')
+                        if len(text) > len(item['text']) and text.startswith(item['text']):
+                            delta = text[len(item['text']):]
+                            item['text'] = text
+                            if self.stats['first_token'] is None:
+                                self.stats['first_token'] = time.time()
+                            out.append({'type': 'content_block_delta', 'index': at, 'delta': {'type': 'text_delta', 'text': delta}})
+                        for block_id, uid in [c for c in self.cited if c[0] == block.id]:
+                            self.cited.remove((block_id, uid))
+                            citation = self.citations.pop(uid, None)
+                            if citation is None:
+                                continue
+                            cited = item['text'][cite_from.get(block.id, 0):].strip()[-300:]
+                            cite_from[block.id] = len(item['text'])
+                            value = {'type': 'web_search_result_location', 'url': citation.url, 'title': citation.title,
+                                     'cited_text': cited, 'encrypted_index': ''}
+                            item.setdefault('citations', []).append(value)
+                            out.append({'type': 'content_block_delta', 'index': at, 'delta': {'type': 'citations_delta', 'citation': value}})
+                    else:
+                        summary = '\n\n'.join(self.thoughts.get(block.id, []))
+                        if len(summary) > len(item['thinking']) and summary.startswith(item['thinking']):
+                            delta = summary[len(item['thinking']):]
+                            item['thinking'] = summary
+                            out.append({'type': 'content_block_delta', 'index': at, 'delta': {'type': 'thinking_delta', 'thinking': delta}})
+                    continue
+                if block.id in self.forwarded:
+                    continue
+                if kind == 'search':
+                    if block.state != 2 and not block.is_complete:
+                        break  # Keep display order: wait for the search to finish.
+                    out += finish_current()
+                    self.forwarded.add(block.id)
+                    self.stats['web_searches'] += 1
+                    tool_id = block.tool_use_id or 'srvtoolu_' + uuid.uuid4().hex
+                    query = {'query': block.input_summary}
+                    at, start = begin({'type': 'server_tool_use', 'id': tool_id, 'name': 'web_search', 'input': query})
+                    out += [start, {'type': 'content_block_stop', 'index': at}]
+                    items = block.display_content.rich_items.items if block.HasField('display_content') else []
+                    seen, results = set(), []
+                    for entry in items:
+                        if entry.url and entry.url not in seen:
+                            seen.add(entry.url)
+                            results.append({'type': 'web_search_result', 'url': entry.url, 'title': entry.title, 'encrypted_content': '', 'page_age': None})
+                    at, start = begin({'type': 'web_search_tool_result', 'tool_use_id': tool_id, 'content': results})
+                    out += [start, {'type': 'content_block_stop', 'index': at}]
+                    continue
+                # A client tool call: forward it once its input is known.
+                call = self.calls.get(block.display_content.client_tool.tool_use_id)
+                if not call or not call['input']:
+                    break
+                try:
+                    arguments = json.loads(call['input'])
+                except ValueError:
+                    fail(502, 'Claude sent invalid tool arguments.', 'api_error')
+                out += finish_current()
+                self.forwarded.add(block.id)
+                tool_id = block.display_content.client_tool.tool_use_id
+                at, start = begin({'type': 'tool_use', 'id': tool_id, 'name': call['name'], 'input': arguments if isinstance(arguments, dict) else {}})
+                out += [start, {'type': 'content_block_delta', 'index': at, 'delta': {'type': 'input_json_delta', 'partial_json': json.dumps(arguments)}},
+                        {'type': 'content_block_stop', 'index': at}]
+                tool_ids.append(tool_id)
+                self.stats['tool_calls'] += 1
+            return out
+
+        stop = 'end_turn'
+        while True:
+            try:
+                event = await self.events.__anext__()
+            except StopAsyncIteration:
+                fail(502, 'Claude closed its update stream early.', 'api_error')
+            if event.HasField('heartbeat'):
+                yield {'type': 'ping'}
+                continue
+            await self.absorb(event)
+            for item in emit():
+                yield item
+            if self.complete is not None:
+                for item in finish_current():
+                    yield item
+                stop = RPC_STOP.get(self.complete, 'end_turn')
+                if stop == 'tool_use' and not tool_ids:
+                    stop = 'end_turn'
+                self.done = stop != 'tool_use'
+                if tool_ids:
+                    self.pending.update(tool_ids)
+                break
+            unresolved = [b for b in self.ordered() if self.kind(b) == 'tool' and b.id not in self.forwarded]
+            if tool_ids and self.waiting and not unresolved:
+                for item in finish_current():
+                    yield item
+                stop = 'tool_use'
+                self.pending.update(tool_ids)
+                break
+        self.account.succeeded()
+        self.last_content = copy.deepcopy(content)
+        self.last_stop = stop
+        output_tokens = max(1, count_text(json.dumps(content, ensure_ascii=False)))
+        self.stats['output_tokens'] = output_tokens
+        yield {'type': 'message_delta', 'delta': {'stop_reason': stop, 'stop_sequence': None},
+               'usage': {'input_tokens': input_tokens, 'output_tokens': output_tokens}}
+        yield {'type': 'message_stop'}
+
+    async def submit(self, results):
+        if not self.pending:
+            fail(409, 'No client tool result is pending.', 'invalid_request_error')
+        if set(self.pending) != {x.get('tool_use_id') for x in results}:
+            fail(400, 'Supply one result for each pending tool use.')
+        for result in results:
+            content = result.get('content', '')
+            if isinstance(content, list):
+                content = text_of(content)
+            if not isinstance(content, str):
+                fail(400, 'tool_result content must be text or content blocks.')
+            content, truncated = fit_delta('', content, 24000)
+            if truncated:
+                content += '\n[Tool output truncated to fit the Claude account route. Narrow the command or read a smaller range.]'
+            call = self.calls.get(result['tool_use_id'], {})
+            await self.session.submit(result['tool_use_id'], content, bool(result.get('is_error')),
+                                      origin_session=call.get('session'), origin_version=call.get('version'))
+        self.pending.clear()
+        self.waiting = False
+        self.complete = None
+
+    async def close(self):
+        if self.closed:
+            return
+        self.closed = True
+        if self.expire_task and self.expire_task is not asyncio.current_task():
+            self.expire_task.cancel()
+        if not self.done:
+            try:
+                await asyncio.wait_for(self.session.stop(self.assistant_id), 10)
+            except Exception:
+                pass
+        if self.events is not None:
+            try:
+                await self.events.aclose()
+            except Exception:
+                pass
+        await self.bridge.pool.release(self.account)
+
+
 class AnthropicBridge:
     def __init__(self, pool):
         self.pool = pool
@@ -573,7 +966,7 @@ class AnthropicBridge:
                     turn.expire_task.cancel()
                     turn.expire_task = None
                 try:
-                    await turn.submit(result_blocks)
+                    await turn.submit(with_user_note(result_blocks, last['content']))
                 except Exception:
                     self.sessions.pop(session, None)
                     await turn.close()
@@ -615,14 +1008,24 @@ class AnthropicBridge:
                     if last_error:
                         raise last_error
                     raise
-                fresh = BrowserTurn(self, account, plan, conversation, parent)
+                # A conversation stays on the route it started on; new ones use RPC when the plan allows it.
+                kind = type(turn) if linked else (BrowserTurn if account.client.legacy_only else RpcTurn)
+                fresh = kind(self, account, plan, conversation, parent)
                 try:
-                    await self.pool.gate.wait()
+                    if kind is BrowserTurn:
+                        await self.pool.gate.wait()
                     await fresh.open(prompt, files)
-                    self.pool.gate.succeeded()
+                    if kind is BrowserTurn:
+                        self.pool.gate.succeeded()
                     break
                 except APIError as exc:
                     await fresh.close()
+                    if exc.code == 'rpc_org_tier_unavailable' and kind is RpcTurn:
+                        account.client.legacy_only = True
+                        if linked:
+                            linked = False
+                            info['handoff'] = True
+                        continue
                     if exc.status != 429:
                         raise
                     account.penalize(exc)

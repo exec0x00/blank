@@ -148,7 +148,7 @@ export default function ChatPanel({ workspace, settings, onSettings, onNotify, o
     if (patch.permissionMode && running) onNotify(`Switched to ${patch.permissionMode === 'acceptEdits' ? 'accept edits' : patch.permissionMode === 'bypassPermissions' ? 'bypass permissions' : patch.permissionMode} mode for this turn.`, 'info');
   }
 
-  async function send() {
+  async function send(mode: 'steer' | 'queue' = 'steer') {
     const text = draft.trim();
     if ((!text && !draftAttachments.length) || sending) return;
     if (text === '/clear' || text === '/new') { setDraft(''); select(null); return; }
@@ -162,12 +162,18 @@ export default function ChatPanel({ workspace, settings, onSettings, onNotify, o
         setConversation(created);
         select(created.id);
       }
-      const result = await api<{ queued?: boolean }>(`/claude/conversations/${id}/messages`, json('POST', { text, attachments: draftAttachments.map(item => ({ id: item.id })), ...composerSettings }));
+      const result = await api<{ queued?: boolean; steered?: boolean }>(`/claude/conversations/${id}/messages`, json('POST', { text, mode, attachments: draftAttachments.map(item => ({ id: item.id })), ...composerSettings }));
       setDrafts(previous => ({ ...previous, [id!]: '', [draftKey]: '' })); setAttachments(previous => ({ ...previous, [id!]: [], [draftKey]: [] }));
       following.current = true;
       if (result.queued) onNotify('Queued. Claude will read it when the current turn finishes.', 'info');
+      else if (result.steered) onNotify('Sent. Claude will read it at its next step.', 'info');
     } catch (error) { onNotify(errorText(error), 'error'); }
     finally { setSending(false); }
+  }
+  async function sendText(text: string) {
+    if (!current) return;
+    try { await api(`/claude/conversations/${current.id}/messages`, json('POST', { text, mode: 'queue' })); }
+    catch (error) { onNotify(errorText(error), 'error'); }
   }
   async function stop() {
     if (!current || stopping) return;
@@ -293,7 +299,8 @@ export default function ChatPanel({ workspace, settings, onSettings, onNotify, o
       <Composer workspaceId={workspace.id} draft={draft} onDraft={setDraft} attachments={draftAttachments} onAttachments={setDraftAttachments}
         settings={composerSettings} onSettings={changeSettings} models={models} modelsLoading={modelsLoading} commands={capabilities?.commands ?? []}
         running={running} stopping={stopping} sending={sending} disabled={opening || !settings.agentConfigured} usage={current?.usage}
-        onSend={() => void send()} onStop={() => void stop()} onNotify={onNotify} focusKey={selectedId ?? DRAFT_KEY} />
+        goal={current?.goal} onClearGoal={current ? () => void sendText('/goal clear') : undefined}
+        onSend={() => void send()} onQueue={() => void send('queue')} onStop={() => void stop()} onNotify={onNotify} focusKey={selectedId ?? DRAFT_KEY} />
     </div>}
     <Modal open={!!renaming} onClose={() => setRenaming(null)} title="Rename conversation" titleId="rename-conversation">
       <form onSubmit={event => void rename(event)}><div className="chat-control-dialog-body"><label className="field"><span>Conversation name</span><input className="input" autoFocus maxLength={120} value={renaming?.title ?? ''} onChange={event => setRenaming(previous => previous ? { ...previous, title: event.target.value } : null)} /></label></div>

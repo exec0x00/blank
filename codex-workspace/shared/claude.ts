@@ -1,10 +1,11 @@
 /** Shared shapes for the Claude Code conversation bridge. */
 
-export type ClaudeEffort = 'low' | 'medium' | 'high' | 'xhigh' | 'max';
+/** `ultracode` is Claude Code's standing workflow orchestration mode, not a reasoning level. */
+export type ClaudeEffort = 'low' | 'medium' | 'high' | 'xhigh' | 'max' | 'ultracode';
 export type ClaudePermissionMode = 'default' | 'acceptEdits' | 'plan' | 'auto' | 'dontAsk' | 'bypassPermissions';
 export type ClaudeSettingSource = 'user' | 'project' | 'local';
 
-export const CLAUDE_EFFORTS: readonly ClaudeEffort[] = ['low', 'medium', 'high', 'xhigh', 'max'];
+export const CLAUDE_EFFORTS: readonly ClaudeEffort[] = ['low', 'medium', 'high', 'xhigh', 'max', 'ultracode'];
 export const CLAUDE_PERMISSION_MODES: readonly { value: ClaudePermissionMode; label: string; description: string }[] = [
   { value: 'default', label: 'Ask permissions', description: 'Ask before edits and commands' },
   { value: 'acceptEdits', label: 'Accept edits', description: 'Edit files freely, ask before commands' },
@@ -39,7 +40,7 @@ export interface ClaudeAttachment { id: string; name: string; mediaType: string;
 export interface ClaudeTodo { content: string; status: 'pending' | 'in_progress' | 'completed'; activeForm?: string }
 
 export type ClaudeEntry =
-  | { kind: 'user'; id: string; at: string; text: string; attachments?: ClaudeAttachment[]; uuid?: string; command?: boolean }
+  | { kind: 'user'; id: string; at: string; text: string; attachments?: ClaudeAttachment[]; uuid?: string; command?: boolean; /** Sent while Claude was working; it joined that turn. */ steered?: boolean }
   | { kind: 'assistant'; id: string; at: string; text: string; uuid?: string; parentToolUseId?: string | null; streaming?: boolean }
   | { kind: 'thinking'; id: string; at: string; text: string; parentToolUseId?: string | null; streaming?: boolean; redacted?: boolean }
   | { kind: 'tool'; id: string; at: string; name: string; input: Record<string, unknown>; status: 'pending' | 'awaiting' | 'running' | 'success' | 'error' | 'denied';
@@ -62,7 +63,10 @@ export interface ClaudeConversation {
   error?: string; pinned?: boolean; archivedAt?: string | null;
   todos?: ClaudeTodo[]; usage?: ClaudeUsage; queue?: ClaudeQueuedMessage[];
   forkedFrom?: { id: string; title: string } | null; importedFrom?: 'claude-code' | null;
+  /** The condition set with /goal; Claude keeps working until it is met. */
+  goal?: ClaudeGoal | null;
 }
+export interface ClaudeGoal { condition: string; iterations: number; lastReason?: string; setAt: string }
 
 export interface ClaudeConversationSummary {
   id: string; workspaceId: string; title: string; model: string; createdAt: string; updatedAt: string; error?: string;
@@ -87,7 +91,7 @@ export type ClaudeStreamEvent =
   | { type: 'remove'; id: string }
   | { type: 'delta'; id: string; text: string }
   | { type: 'live'; live: ClaudeLiveState }
-  | { type: 'meta'; patch: Partial<Pick<ClaudeConversation, 'title' | 'model' | 'effort' | 'thinking' | 'permissionMode' | 'todos' | 'usage' | 'queue' | 'sessionId' | 'error' | 'pinned' | 'archivedAt' | 'updatedAt'>> }
+  | { type: 'meta'; patch: Partial<Pick<ClaudeConversation, 'title' | 'model' | 'effort' | 'thinking' | 'permissionMode' | 'todos' | 'usage' | 'queue' | 'sessionId' | 'error' | 'pinned' | 'archivedAt' | 'updatedAt' | 'goal'>> }
   | { type: 'permission'; request: ClaudePermissionRequest }
   | { type: 'permission_resolved'; id: string }
   | { type: 'done'; error?: string };
@@ -100,4 +104,6 @@ export interface ClaudeCapabilities {
   commands: ClaudeCommand[]; agents: ClaudeAgentInfo[]; outputStyles: string[]; outputStyle?: string;
   mcpServers: ClaudeMcpStatus[]; version?: string; tools?: string[]; skills?: string[]; loadedAt: string; error?: string;
 }
+export type ClaudeSkillScope = 'project' | 'user';
+export interface ClaudeSkill { name: string; scope: ClaudeSkillScope; description: string; path: string; content?: string }
 export interface ClaudeNativeSession { sessionId: string; title: string; firstPrompt?: string; lastModified: string; gitBranch?: string; size?: number }

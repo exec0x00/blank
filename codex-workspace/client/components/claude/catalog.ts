@@ -7,10 +7,11 @@ let modelValue: ClaudeModelOption[] | null = null;
 const capabilityValues = new Map<string, ClaudeCapabilities>();
 const capabilityPromises = new Map<string, Promise<ClaudeCapabilities>>();
 
-export const EFFORT_LABELS: Record<ClaudeEffort, string> = { low: 'Low', medium: 'Medium', high: 'High', xhigh: 'Extra high', max: 'Max' };
+export const EFFORT_LABELS: Record<ClaudeEffort, string> = { low: 'Low', medium: 'Medium', high: 'High', xhigh: 'Extra high', max: 'Max', ultracode: 'Ultracode' };
 export const EFFORT_DESCRIPTIONS: Record<ClaudeEffort, string> = {
   low: 'Fastest replies, minimal reasoning', medium: 'Balanced speed and depth', high: 'Thinks carefully before acting',
   xhigh: 'Deeper reasoning for hard problems', max: 'Maximum reasoning, slowest',
+  ultracode: 'Plans and runs multi-step workflows for large tasks',
 };
 
 export function useClaudeModels() {

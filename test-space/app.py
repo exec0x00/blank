@@ -202,6 +202,69 @@ def create_app(pool=None,initial_session_key=None,usage=None):
                 except APIError as exc:raw[a.id]={'error':str(exc),'status':exc.status}
             result['usage']=raw
         return result
+    @app.post('/admin/diagnostics/probe')
+    async def probe(request:Request):
+        """Send one tiny completion over a chosen Claude route and report timing and errors (admin only)."""
+        value=await body(request)
+        account=pool.get(str(value.get('account_id',''))) or (pool.accounts[0] if pool.accounts else None)
+        if not account:raise APIError(404,'No account.','not_found')
+        model=str(value.get('model') or 'claude-haiku-4-5-20251001')
+        route=value.get('route','rpc')
+        started=time.time();events=[];error=None
+        try:
+            if route=='rpc':
+                async for event in account.client._generate_rpc(model,'Reply with just OK.',[],'medium',100000,64):
+                    events.append({k:v for k,v in event.items() if k in ('type','text','reason')})
+            else:
+                async for event in account.client._generate_legacy(model,'Reply with just OK.',[],'medium',100000,64,False,None):
+                    events.append({k:v for k,v in event.items() if k in ('type','text','reason')})
+        except APIError as exc:error={'status':exc.status,'code':exc.code,'message':str(exc)}
+        except Exception as exc:error={'type':type(exc).__name__,'message':str(exc)[:300]}
+        return {'route':route,'account':account.id,'seconds':round(time.time()-started,2),'events':events[:20],'error':error}
+    @app.post('/admin/diagnostics/rpc-trace')
+    async def rpc_trace(request:Request):
+        """Run one RPC conversation and record its raw timeline (admin only), answering client tool calls with a canned result."""
+        from rpc import RpcSession, as_dict as rpc_dict
+        from upstream import message_uuid
+        import schema
+        value=await body(request)
+        account=pool.get(str(value.get('account_id',''))) or pool.accounts[0]
+        session=RpcSession(account.client)
+        assistant=message_uuid()
+        trace=[];submitted=set();started=time.time()
+        await session.send(prompt=str(value.get('prompt','Hello')),model=str(value.get('model','claude-haiku-4-5-20251001')),assistant_id=assistant,
+                           tools=value.get('tools') or [],web_search=bool(value.get('web_search')),thinking=bool(value.get('thinking',True)),
+                           effort=str(value.get('effort','medium')))
+        try:
+            async with asyncio.timeout(float(value.get('timeout',90))):
+                async for event in session.events():
+                    extras=[]
+                    data=rpc_dict(event,extras)
+                    if value.get('blocks_only'):
+                        blocks=(data.get('update') or {}).get('content_blocks') or []
+                        data={'elicitations':(data.get('update') or {}).get('elicitations'),'blocks':[b for b in blocks if 'display_content' in b or 'input_display' in b],'append':data.get('append'),'status':((data.get('update') or {}).get('conversation') or {}).get('status'),
+                              'messages':(data.get('update') or {}).get('messages')}
+                    trace.append({'t':round(time.time()-started,2),'event':json.dumps(data,ensure_ascii=False)[:int(value.get('clip',2500))],'extras':extras[:6]})
+                    if event.HasField('update'):
+                        for elicitation in event.update.elicitations:
+                            if elicitation.request.tool_use_id and not elicitation.HasField('response') and elicitation.id not in submitted and value.get('approve',True):
+                                submitted.add(elicitation.id)
+                                trace.append({'t':round(time.time()-started,2),'approve':elicitation.id,'tool_use_id':elicitation.request.tool_use_id,'kind':elicitation.request.kind})
+                                await session.approve(elicitation,always=bool(value.get('always',True)))
+                        for block in event.update.content_blocks:
+                            call=block.display_content.client_tool if block.HasField('display_content') and block.display_content.HasField('client_tool') else None
+                            if call and call.tool_use_id and call.tool_use_id not in submitted and call.input_json and block.state!=4:
+                                if value.get('wait_complete') and not (block.is_complete or block.state>=2):continue
+                                submitted.add(call.tool_use_id)
+                                trace.append({'t':round(time.time()-started,2),'submit':call.tool_use_id,'tool':call.tool_name,'input':call.input_json})
+                                await session.submit(call.tool_use_id,value.get('result',{'temperature':'18C','sky':'clear'}),
+                                                     origin_session=call.origin_session_id if value.get('origin',True) else None,origin_version=call.origin_version)
+                        done=[m for m in event.update.messages if m.id==assistant and m.is_complete]
+                        if done and (done[0].stop_reason!=3 or not value.get('tools')):
+                            trace.append({'done':done[0].stop_reason});break
+        except TimeoutError:
+            trace.append({'timeout':True})
+        return {'conversation':session.conversation,'assistant':assistant,'trace':trace[-int(value.get('keep',300)):]}
     @app.post('/admin/refresh')
     async def refresh():await pool.refresh();return await status()
 
@@ -332,6 +395,10 @@ def create_app(pool=None,initial_session_key=None,usage=None):
         entry={'id':'req_'+secrets.token_hex(6),'t':started,'model':str(value.get('model',''))[:80],'source':client_source(request),
                'session':hashlib.sha256(session.encode()).hexdigest()[:8],'stream':bool(value.get('stream')),
                'web_search_requested':any(isinstance(t,dict) and str(t.get('type','')).startswith('web_search') for t in (value.get('tools') or []))}
+        DIAGNOSTICS.append({'t':started,'account':'','kind':'request','payload':json.dumps({
+            'source':entry['source'],'model':entry['model'],'tools':len(value.get('tools') or []),
+            'messages':[[b.get('type') for b in m.get('content')] if isinstance(m.get('content'),list) else 'text'
+                        for m in (value.get('messages') or [])[-4:] if isinstance(m,dict)]})[:1500]})
         preparing=asyncio.create_task(bridge.prepare(value,session,authoritative=bool(explicit_session)))
 
         def failed(exc):

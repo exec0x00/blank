@@ -35,7 +35,7 @@ const ClaudeToolsDialog = lazy(() => import('./components/ClaudeToolsDialog'));
 type View = 'agent' | 'editor' | 'terminal' | 'git' | 'github';
 type AuthState = 'checking' | 'locked' | 'ready' | 'error';
 type PendingEditorAction = { type: EditorActionType; workspaceId: string; detail: EditorActionDetail; scope: EditorCommandScope | null; bindInitialEditor: boolean };
-type ToolsSection = 'commands' | 'agents' | 'mcp' | 'memory' | 'sessions';
+type ToolsSection = 'commands' | 'skills' | 'agents' | 'mcp' | 'memory' | 'sessions';
 type NativeToolsSelection = { workspaceId: string; section: ToolsSection };
 const sameEditorScope = (left: EditorCommandScope, right: EditorCommandScope) => left.workspaceId === right.workspaceId && left.editorInstanceId === right.editorInstanceId && left.generation === right.generation;
 const validEditorToolbar = (state: EditorToolbarState) => state && typeof state.workspaceId === 'string' && state.workspaceId.length > 0

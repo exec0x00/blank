@@ -69,6 +69,7 @@ def search_stream():
 class FakeClaude:
     def __init__(self, account_id='account-1', streams=None, status=None, fails=None, retry_after=None):
         self.org = 'org'
+        self.legacy_only = True  # These fakes speak the legacy SSE route.
         self.device_id = str(uuid.uuid4())
         self.activity_session_id = str(uuid.uuid4())
         self.account_id = account_id

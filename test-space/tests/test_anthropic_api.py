@@ -35,7 +35,7 @@ def native_stream(tool=True):
 
 class FakeClaude:
     def __init__(self):
-        self.org='org';self.device_id=str(uuid.uuid4());self.activity_session_id=str(uuid.uuid4())
+        self.org='org';self.legacy_only=True;self.device_id=str(uuid.uuid4());self.activity_session_id=str(uuid.uuid4())
         self.account_id='account-1';self.catalogue={'claude-haiku-5-5':{},'claude-sonnet-5-5':{}}
         self.calls=[]
         def transport(request):

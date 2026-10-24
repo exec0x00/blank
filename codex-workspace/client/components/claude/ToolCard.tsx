@@ -21,8 +21,11 @@ export function relativePath(file: string, root: string) {
   return file.startsWith(base) ? file.slice(base.length) : file === root ? '.' : file;
 }
 
+/** The workspace's own web search tool behaves like Claude Code's WebSearch. */
+const toolName = (name: string) => name === 'mcp__web__search' ? 'WebSearch' : name;
+
 function describe(entry: ToolEntry, root: string): { icon: ReactNode; title: string; detail?: string; path?: string } {
-  const input = entry.input, name = entry.name;
+  const input = entry.input, name = toolName(entry.name);
   const file = str(input.file_path || input.notebook_path || input.path);
   switch (name) {
     case 'Bash': return { icon: <SquareTerminal size={15} />, title: str(input.description) || 'Ran a command', detail: str(input.command) };
@@ -115,7 +118,7 @@ function Body({ entry, workspacePath, onOpenFile, onNotify }: Props) {
   const input = entry.input;
   const result = entry.result ?? '';
   const output = result && <><div className="chat-activity-section-heading"><span>{entry.status === 'error' ? 'Error' : entry.status === 'denied' ? 'Not run' : 'Output'}</span></div><pre className="chat-activity-output">{result}{entry.resultTruncated ? '\n… output truncated' : ''}</pre></>;
-  switch (entry.name) {
+  switch (toolName(entry.name)) {
     case 'Bash': return <><div className="chat-activity-section-heading"><span>Command</span></div><pre>{str(input.command)}</pre>{output}</>;
     case 'Edit': return <><DiffView before={str(input.old_string)} after={str(input.new_string)} />{entry.status !== 'success' && output}</>;
     case 'MultiEdit': return <>{((input.edits as { old_string?: string; new_string?: string }[] | undefined) ?? []).map((edit, index) => <DiffView key={index} before={str(edit.old_string)} after={str(edit.new_string)} />)}{entry.status !== 'success' && output}</>;

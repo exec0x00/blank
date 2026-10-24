@@ -12,9 +12,9 @@ from usage_store import UsageStore
 # client tool result keeps its upstream stream open, so it counts as well.
 ACCOUNT_CAPACITY = max(1, int(os.environ.get('ACCOUNT_CONCURRENCY', '3')))
 ACQUIRE_WAIT_SECONDS = 300
-# Upstream completions open at once across all accounts. Claude throttles every
-# account when one client runs more than about four, so requests queue instead.
-MAX_STREAMS = max(1, int(os.environ.get('MAX_STREAMS', '3')))
+# Upstream completions open at once across all accounts. Starts on the legacy
+# route are additionally paced by StartGate because that route is throttled.
+MAX_STREAMS = max(1, int(os.environ.get('MAX_STREAMS', '8')))
 USAGE_REFRESH_SECONDS = 600
 # Spacing between completion starts across all accounts. Claude rejects bursts of
 # new completions from one client with a 429 and ``retry-after: 0`` on every
@@ -333,7 +333,8 @@ class Pool:
 
     def _rank(self, model):
         now = time.time()
-        return lambda a: (a.peak(model) >= 90, now - a.throttled_at < 30, a.active, a.peak(model))
+        # Accounts limited to the throttled legacy route go last.
+        return lambda a: (a.peak(model) >= 90, bool(getattr(a.client, 'legacy_only', False)), now - a.throttled_at < 30, a.active, a.peak(model))
 
     async def acquire(self, model, exclude=(), account_id=None):
         """Reserve capacity on the best account; wait briefly when every account is merely busy."""

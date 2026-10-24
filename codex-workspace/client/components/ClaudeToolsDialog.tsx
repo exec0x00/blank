@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Bot, Download, FileText, ListTodo, LoaderCircle, Plug, RefreshCw, Search, Settings2, Slash } from 'lucide-react';
+import { BookOpen, Bot, Download, FileText, ListTodo, LoaderCircle, Plug, RefreshCw, Search, Settings2, Slash } from 'lucide-react';
 import type { Workspace } from '../../shared/types';
 import type { ClaudeConversation, ClaudeNativeSession } from '../../shared/claude';
 import Modal from './Modal';
@@ -7,15 +7,17 @@ import { api, json } from '../api';
 import { setUiThread } from '../ui-state';
 import { useClaudeCapabilities } from './claude/catalog';
 import { relativeTime } from './claude/HistoryPanel';
+import { SkillsEditor } from './claude/SkillsEditor';
 import './claude/claude.css';
 
-type Section = 'commands' | 'agents' | 'mcp' | 'memory' | 'sessions';
+type Section = 'commands' | 'skills' | 'agents' | 'mcp' | 'memory' | 'sessions';
 interface Props {
   workspace: Workspace; initialSection: Section; onClose: () => void;
   onNotify: (message: string, kind?: 'error' | 'success' | 'info') => void; onOpenSettings: (tab: string) => void;
 }
 const tabs = [
   { id: 'commands', label: 'Commands & skills', icon: Slash },
+  { id: 'skills', label: 'Edit skills', icon: BookOpen },
   { id: 'agents', label: 'Subagents', icon: Bot },
   { id: 'mcp', label: 'MCP servers', icon: Plug },
   { id: 'memory', label: 'Project memory', icon: FileText },
@@ -78,9 +80,10 @@ export default function ClaudeToolsDialog({ workspace, initialSection, onClose, 
         </div>}
         {capabilities?.error && section !== 'memory' && section !== 'sessions' && <p className="form-error">{capabilities.error}</p>}
         {!capabilities && loading && section !== 'memory' && section !== 'sessions' && <p className="claude-tools-empty"><LoaderCircle size={14} className="chat-spin" />Asking Claude Code what is available…</p>}
-        {section === 'commands' && capabilities && <><p className="claude-tools-help">Type <code>/</code> in the composer to run these. Add your own in <code>.claude/commands</code> or <code>.claude/skills</code>.</p>
+        {section === 'commands' && capabilities && <><p className="claude-tools-help">Type <code>/</code> in the composer to run these. Create your own under <button type="button" className="text-button" onClick={() => setSection('skills')}>Edit skills</button>.</p>
           <ul className="claude-tools-list">{commands.map(command => <li key={command.name}><strong>/{command.name}{command.argumentHint ? <em> {command.argumentHint}</em> : null}</strong><small>{command.description}</small></li>)}</ul>
           {!commands.length && <p className="claude-tools-empty">No commands match.</p>}</>}
+        {section === 'skills' && <SkillsEditor workspaceId={workspace.id} onNotify={onNotify} onChanged={reload} />}
         {section === 'agents' && capabilities && <><p className="claude-tools-help">Claude delegates to these with the Agent tool. Add custom agents in <code>.claude/agents</code>.</p>
           <ul className="claude-tools-list">{agents.map(agent => <li key={agent.name}><strong>{agent.name}{agent.model ? <em> · {agent.model}</em> : null}</strong><small>{agent.description}</small></li>)}</ul></>}
         {section === 'mcp' && capabilities && <>{capabilities.mcpServers.length ? <ul className="claude-status-list">{capabilities.mcpServers.map(server => <li key={server.name}><span className={`claude-status-dot is-${server.status}`} /><strong>{server.name}</strong><small>{server.status}{server.tools ? ` · ${server.tools} tools` : ''}{server.error ? ` · ${server.error}` : ''}</small></li>)}</ul>
