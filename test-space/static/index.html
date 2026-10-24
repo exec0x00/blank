@@ -821,7 +821,11 @@ async function run(){
       const paint=()=>{if(!frame)frame=requestAnimationFrame(()=>{frame=0;renderTranscript()})};
       pgState('info','Streaming');
       for(;;){const {value,done}=await reader.read();if(done)break;buf+=dec.decode(value,{stream:true});let i;
-        while((i=buf.indexOf('\n\n'))>=0){const chunk=buf.slice(0,i);buf=buf.slice(i+2);const line=chunk.split('\n').find(x=>x.startsWith('data: '));if(!line)continue;let ev;try{ev=JSON.parse(line.slice(6))}catch{continue}
+        while((i=buf.indexOf('\n\n'))>=0){const chunk=buf.slice(0,i);buf=buf.slice(i+2);
+          // The bridge sends SSE comments while a request waits in its queue, then names the serving account.
+          if(chunk.startsWith(': ')){try{if(chunk.startsWith(': bridge ')){const v=JSON.parse(chunk.slice(9));account=v.account||account;route=v.route||route;pgState('info','Streaming')}
+            else if(chunk.startsWith(': queued ')){const v=JSON.parse(chunk.slice(9));pgState('warn',v.paused_for>0?'Claude throttled · retrying in '+Math.ceil(v.paused_for)+'s':'Queued · waiting for a free slot')}}catch{}continue}
+          const line=chunk.split('\n').find(x=>x.startsWith('data: '));if(!line)continue;let ev;try{ev=JSON.parse(line.slice(6))}catch{continue}
           if(ev.type==='content_block_start'){reply.content[ev.index]=structuredClone(ev.content_block);json[ev.index]=''}
           else if(ev.type==='content_block_delta'){const b=reply.content[ev.index];const d=ev.delta;if(!b)continue;
             if(d.type==='text_delta'){b.text+=d.text;if(!first)first=performance.now()}else if(d.type==='thinking_delta')b.thinking+=d.thinking;else if(d.type==='input_json_delta')json[ev.index]+=d.partial_json;else if(d.type==='citations_delta')(b.citations||(b.citations=[])).push(d.citation)}

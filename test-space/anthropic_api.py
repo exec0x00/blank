@@ -177,7 +177,19 @@ def render(messages, system, files=None):
                 elif kind == 'tool_use':
                     out.append('Assistant called ' + str(block.get('name')) + ' with ' + json.dumps(block.get('input', {}), ensure_ascii=False))
                 elif kind == 'tool_result':
-                    out.append('Tool ' + str(block.get('tool_use_id')) + ' returned: ' + text_of(block.get('content', '')))
+                    value = block.get('content', '')
+                    text = text_of(value)
+                    if isinstance(value, list) and files is not None:
+                        # Images a tool returned (for example Claude Code reading a screenshot) become real attachments.
+                        notes = []
+                        for part in value:
+                            attachment = decode_attachment(part) if isinstance(part, dict) and part.get('type') in ('image', 'document') else None
+                            if attachment:
+                                files.append(attachment)
+                                notes.append(f"[Attached {attachment['kind']}: {attachment['filename']}]")
+                        if notes:
+                            text = '\n'.join([t for t in [text_of([i for i in value if isinstance(i, dict) and i.get('type') == 'text'])] if t] + notes)
+                    out.append('Tool ' + str(block.get('tool_use_id')) + ' returned: ' + text)
                 elif kind == 'server_tool_use':
                     query = (block.get('input') or {}).get('query', '')
                     out.append('Assistant searched the web for: ' + str(query))
@@ -200,6 +212,11 @@ def render(messages, system, files=None):
                 else:
                     out.append('[' + str(kind) + ' content omitted]')
         parts.append(item['role'].capitalize() + ': ' + '\n'.join(out))
+    if files is not None and len(files) > MAX_ATTACHMENTS:
+        # Keep the most recent attachments; older ones stay mentioned by name only.
+        del files[:len(files) - MAX_ATTACHMENTS]
+    while files is not None and len(files) > 1 and sum(len(f['data']) for f in files) > MAX_ATTACHMENT_BYTES:
+        files.pop(0)
     return '\n\n'.join(parts)
 
 
@@ -549,7 +566,9 @@ class AnthropicBridge:
             prefix = previous['expected'] if previous else None
             matching = bool(prefix and len(messages) >= len(prefix) and digest(messages[:len(prefix)]) == digest(prefix)
                             and previous['system'] == plan['system'])
-            if result_blocks and turn and turn.pending and not turn.closed:
+            visual = any(isinstance(c, dict) and c.get('type') in ('image', 'document')
+                         for b in result_blocks if isinstance(b.get('content'), list) for c in b['content'])
+            if result_blocks and turn and turn.pending and not turn.closed and not visual:
                 if turn.expire_task:
                     turn.expire_task.cancel()
                     turn.expire_task = None
@@ -563,8 +582,9 @@ class AnthropicBridge:
                 info.update(kind='tool_result', linked=True)
                 return plan, turn, info
             if turn and turn.pending:
-                # The client moved on without answering the tool call (for example it
-                # was interrupted). Stop that website turn and replay the history.
+                # The client moved on without answering the tool call (for example it was
+                # interrupted), or answered with an image the tool_result route cannot carry.
+                # Stop that website turn and replay the history with attachments.
                 self.sessions.pop(session, None)
                 await turn.close()
                 turn = None

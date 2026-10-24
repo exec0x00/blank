@@ -9,3 +9,7 @@ Claude throttles a client that runs more than about four completions at once. It
 A usage-limit 429 carries a reset time. That account alone cools down until then, and the request moves to another account. Accounts at their usage limit are skipped until their window resets.
 
 Forced `tool_choice` is passed to Claude as an instruction, because the website route has no forced mode. Token counts are local estimates. Public API prompt caching is not mapped.
+
+A streaming request that has to wait starts its response at once and sends SSE comment lines (`: queued {...}`) every few seconds, so proxies keep the connection open. Clients ignore SSE comments. When it starts, a `: bridge {"account":...,"route":...}` comment names the serving account. A request whose client disconnects while queued gives up its place.
+
+Images inside a `tool_result` cannot go through Claude's tool-result channel. When one arrives, the bridge ends the waiting turn and replays the conversation with the image uploaded. The 20 most recent attachments are kept.

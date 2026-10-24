@@ -43,7 +43,9 @@ export type ClaudeEntry =
   | { kind: 'assistant'; id: string; at: string; text: string; uuid?: string; parentToolUseId?: string | null; streaming?: boolean }
   | { kind: 'thinking'; id: string; at: string; text: string; parentToolUseId?: string | null; streaming?: boolean; redacted?: boolean }
   | { kind: 'tool'; id: string; at: string; name: string; input: Record<string, unknown>; status: 'pending' | 'awaiting' | 'running' | 'success' | 'error' | 'denied';
-    result?: string; resultTruncated?: boolean; parentToolUseId?: string | null; finishedAt?: string; elapsedSeconds?: number; progress?: string; uuid?: string }
+    result?: string; resultTruncated?: boolean; parentToolUseId?: string | null; finishedAt?: string; elapsedSeconds?: number; progress?: string; uuid?: string;
+    /** Images the tool returned, such as a screenshot Claude read. */
+    images?: ClaudeAttachment[] }
   | { kind: 'system'; id: string; at: string; text: string; level: 'info' | 'warning' | 'error' }
   | { kind: 'turn'; id: string; at: string; durationMs: number; costUsd: number; numTurns: number; inputTokens: number; outputTokens: number; ok: boolean; stopReason?: string | null };
 

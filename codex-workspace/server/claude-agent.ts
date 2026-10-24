@@ -218,6 +218,21 @@ async function resolveAttachments(ctx: AppContext, value: unknown): Promise<Clau
 // ---------------------------------------------------------------------------
 // Claude Code process configuration
 
+/**
+ * Claude Code names models by family for subagents, WebFetch summaries, and background work.
+ * Point each family at a model the bridge actually serves so those calls never 404.
+ */
+async function modelAliases(): Promise<Record<string, string>> {
+  const ids = await models().then(list => list.map(model => model.id)).catch(() => [] as string[]);
+  const pick = (...prefixes: string[]) => prefixes.map(prefix => ids.find(id => id.startsWith(prefix))).find(Boolean);
+  const haiku = pick('claude-haiku-5', 'claude-haiku');
+  const sonnet = pick('claude-sonnet-5-5', 'claude-sonnet-5', 'claude-sonnet');
+  const opus = pick('claude-opus', 'claude-fable') || sonnet;
+  return Object.fromEntries(Object.entries({
+    ANTHROPIC_DEFAULT_HAIKU_MODEL: haiku, ANTHROPIC_SMALL_FAST_MODEL: haiku, ANTHROPIC_DEFAULT_SONNET_MODEL: sonnet, ANTHROPIC_DEFAULT_OPUS_MODEL: opus,
+  }).filter((entry): entry is [string, string] => !!entry[1] && !process.env[entry[0]]));
+}
+
 async function claudeEnvironment(ctx: AppContext): Promise<Record<string, string>> {
   const base = await createTerminalEnvironment(ctx.config, 'claude-agent');
   // Web tools follow the host's network path; the API relay itself is always loopback.
@@ -225,7 +240,7 @@ async function claudeEnvironment(ctx: AppContext): Promise<Record<string, string
     .filter(key => process.env[key]).map(key => [key, process.env[key]!]));
   network.NO_PROXY = network.no_proxy = [process.env.NO_PROXY || process.env.no_proxy, '127.0.0.1,localhost'].filter(Boolean).join(',');
   return {
-    ...base, ...network,
+    ...base, ...network, ...await modelAliases(),
     ANTHROPIC_BASE_URL: await startClaudeRelay(baseUrl), ANTHROPIC_API_KEY: process.env.PASSWORD || '', CLAUDE_CONFIG_DIR: claudeConfigDir(ctx),
     CLAUDE_AGENT_SDK_CLIENT_APP: 'arc-claude-workspace/2.0', DISABLE_AUTOUPDATER: '1', DISABLE_TELEMETRY: '1', DISABLE_ERROR_REPORTING: '1',
     CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: '1', NO_COLOR: '1',
@@ -256,6 +271,28 @@ async function baseOptions(ctx: AppContext, cwd: string): Promise<Options> {
 function userMessage(text: string, blocks: Record<string, unknown>[], uuid: string): SDKUserMessage {
   const content = [...blocks, ...(text ? [{ type: 'text', text }] : [])];
   return { type: 'user', message: { role: 'user', content: content as never }, parent_tool_use_id: null, uuid: uuid as SDKUserMessage['uuid'] };
+}
+
+const MAX_TOOL_IMAGES = 4;
+
+/** Keep images a tool returned (for example a screenshot Claude read) so the conversation can show them. */
+async function saveToolImages(ctx: AppContext, content: unknown): Promise<ClaudeAttachment[]> {
+  if (!Array.isArray(content)) return [];
+  const saved: ClaudeAttachment[] = [];
+  for (const block of content as { type?: string; source?: { type?: string; media_type?: string; data?: string } }[]) {
+    if (saved.length >= MAX_TOOL_IMAGES) break;
+    if (block?.type !== 'image' || block.source?.type !== 'base64' || typeof block.source.data !== 'string') continue;
+    const mediaType = block.source.media_type || 'image/png';
+    if (!/^image\/(png|jpe?g|gif|webp)$/.test(mediaType)) continue;
+    const data = Buffer.from(block.source.data, 'base64');
+    if (!data.length || data.length > MAX_ATTACHMENT_BYTES) continue;
+    const attachment: ClaudeAttachment = { id: randomUUID(), name: `tool-image-${saved.length + 1}.${mediaType.split('/')[1].replace('jpeg', 'jpg')}`, mediaType, size: data.length, kind: 'image' };
+    await fs.mkdir(attachmentsDir(ctx), { recursive: true });
+    await fs.writeFile(path.join(attachmentsDir(ctx), attachment.id), data, { mode: 0o600 });
+    await fs.writeFile(path.join(attachmentsDir(ctx), `${attachment.id}.json`), JSON.stringify(attachment), { mode: 0o600 });
+    saved.push(attachment);
+  }
+  return saved;
 }
 
 function toolResultText(content: unknown): string {
@@ -401,6 +438,12 @@ function handleMessage(ctx: AppContext, item: ClaudeConversation, state: Live, m
         const { text, truncated } = truncate(redact(toolResultText(block.content)));
         const denied = block.is_error && /denied|rejected|doesn't want|user declined|stopped/i.test(text);
         upsert(item, { ...entry, result: text, resultTruncated: truncated, status: denied ? 'denied' : block.is_error ? 'error' : 'success', finishedAt: now() });
+        void saveToolImages(ctx, block.content).then(images => {
+          const current = item.entries.find(candidate => candidate.id === block.tool_use_id);
+          if (!images.length || current?.kind !== 'tool') return;
+          upsert(item, { ...current, images });
+          scheduleSave(ctx, item);
+        }).catch(error => console.error(`Could not keep a tool image: ${safeError(error)}`));
       }
       scheduleSave(ctx, item);
       return;

@@ -9,25 +9,14 @@ import type { AddressInfo } from 'node:net';
  * followed by a system reminder). The account bridge looks for tool results
  * only in the final message, so reminders are folded into the adjacent user
  * turn and consecutive same-role messages are merged before forwarding.
+ * Images and documents pass through: the bridge uploads them to Claude.
  */
 type Block = Record<string, unknown> & { type?: string };
 type Message = { role: string; content: string | Block[] };
 
 const blocks = (content: Message['content']): Block[] => typeof content === 'string' ? (content ? [{ type: 'text', text: content }] : []) : Array.isArray(content) ? content : [];
 
-/** Routes other than the official API accept only text, tool, and thinking blocks. */
-function textOnly(block: Block): Block {
-  if (block.type === 'image') return { type: 'text', text: '[An image was omitted because this Messages route does not accept images.]' };
-  if (block.type === 'document') {
-    const source = block.source as { type?: string; data?: string } | undefined;
-    return source?.type === 'text' && typeof source.data === 'string'
-      ? { type: 'text', text: `<attached-file name="${String(block.title ?? 'document')}">\n${source.data}\n</attached-file>` }
-      : { type: 'text', text: '[A document was omitted because this Messages route does not accept binary documents.]' };
-  }
-  return block;
-}
-
-export function normalizeMessages(messages: unknown, options: { textOnly?: boolean } = {}): unknown {
+export function normalizeMessages(messages: unknown): unknown {
   if (!Array.isArray(messages)) return messages;
   const result: Message[] = [];
   for (const original of messages as Message[]) {
@@ -40,7 +29,6 @@ export function normalizeMessages(messages: unknown, options: { textOnly?: boole
     if (previous && previous.role === message.role) previous.content = [...blocks(previous.content), ...blocks(message.content)];
     else result.push({ ...message });
   }
-  if (options.textOnly) for (const message of result) if (Array.isArray(message.content)) message.content = message.content.map(textOnly);
   // Tool results must lead their user message.
   for (const message of result) {
     if (message.role !== 'user' || !Array.isArray(message.content)) continue;
@@ -59,7 +47,7 @@ async function relay(req: IncomingMessage, res: ServerResponse, target: string) 
   if (body && req.method === 'POST' && /^\/v1\/messages(\?|$)/.test(req.url ?? '')) {
     try {
       const value = JSON.parse(body) as Record<string, unknown>;
-      value.messages = normalizeMessages(value.messages, { textOnly: !/^https:\/\/api\.anthropic\.com/.test(target) });
+      value.messages = normalizeMessages(value.messages);
       body = JSON.stringify(value);
     } catch { /* Forward bodies that are not JSON unchanged. */ }
   }

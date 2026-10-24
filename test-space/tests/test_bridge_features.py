@@ -331,3 +331,52 @@ async def test_start_gate_stays_quiet_while_paused_and_keeps_order():
     assert [n for n, _ in order] == ['a', 'b', 'c']
     assert order[0][1] >= 0.29
     assert order[2][1] - order[0][1] >= 0.09
+
+
+def test_image_tool_result_replays_with_the_image_attached(monkeypatch, tmp_path):
+    upstream = FakeClaude(streams=[tool_stream(), text_stream('I see a red square')])
+    app, _, _ = make_app(monkeypatch, tmp_path, upstream)
+    tools = [{'name': 'echo_ping', 'description': 'x', 'input_schema': {'type': 'object'}}]
+    headers = {**HEADERS, 'x-claude-code-session-id': 'image-tool'}
+    with TestClient(app) as client:
+        value = client.post('/v1/messages', json=request('look at it', tools=tools), headers=headers).json()
+        assert value['stop_reason'] == 'tool_use'
+        follow = request('look at it', tools=tools)
+        follow['messages'] += [{'role': 'assistant', 'content': value['content']},
+                               {'role': 'user', 'content': [{'type': 'tool_result', 'tool_use_id': value['content'][0]['id'],
+                                                             'content': [{'type': 'text', 'text': 'Read screenshot.png'}, png_block()]}]}]
+        response = client.post('/v1/messages', json=follow, headers=headers)
+        assert response.status_code == 200, response.text
+        assert response.json()['content'][0]['text'] == 'I see a red square'
+    assert any(path.endswith('/upload') for path, _ in upstream.calls)
+    assert not any(path.endswith('/tool_result') for path, _ in upstream.calls)
+    completions = [body for path, body in upstream.calls if path.endswith('/completion')]
+    assert completions[-1]['files'] == ['file-1'] and 'Read screenshot.png' in completions[-1]['prompt']
+
+
+def png_block():
+    image = io.BytesIO()
+    Image.new('RGB', (8, 8), 'red').save(image, 'PNG')
+    return {'type': 'image', 'source': {'type': 'base64', 'media_type': 'image/png', 'data': base64.b64encode(image.getvalue()).decode()}}
+
+
+@pytest.mark.anyio
+async def test_queued_stream_starts_at_once_and_keeps_the_connection_alive(monkeypatch, tmp_path):
+    first, second = FakeClaude('account-1'), FakeClaude('account-2')
+    first.gate = asyncio.Event()
+    app, store, pool = make_app(monkeypatch, tmp_path, first, second)
+    monkeypatch.setattr('app.QUEUE_NOTE_SECONDS', 0.1)
+    pool.max_streams = 1
+    transport = httpx.ASGITransport(app=app)
+    async with httpx.AsyncClient(transport=transport, base_url='http://test') as client:
+        slow = asyncio.create_task(client.post('/v1/messages', json=request('slow'), headers={**HEADERS, 'x-session-id': 'a'}))
+        await asyncio.sleep(0.1)
+        asyncio.get_running_loop().call_later(0.5, first.gate.set)
+        response = await asyncio.wait_for(client.post('/v1/messages', json=request('queued', stream=True), headers={**HEADERS, 'x-session-id': 'b'}), 10)
+        assert response.status_code == 200
+        lines = response.text.splitlines()
+        assert any(line.startswith(': queued') for line in lines)
+        assert (await slow).status_code == 200
+    assert any(line.startswith(': bridge') for line in lines)
+    assert any('message_stop' in line for line in lines)
+    assert store.requests[-1]['status'] == 'ok'

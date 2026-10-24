@@ -17,6 +17,8 @@ from pool import Pool
 from usage_store import UsageStore
 from persist import KeyStore
 from login_flow import State, PAGE, SEND_SITEKEY, VERIFY_SITEKEY, login as email_login
+# How often a queued streaming request sends a keep-alive comment.
+QUEUE_NOTE_SECONDS=8
 from anthropic_api import DIAGNOSTICS, AnthropicBridge, digest, parse as parse_messages, render as render_messages_api, sse as anthropic_sse
 from token_budget import count_text
 
@@ -330,17 +332,21 @@ def create_app(pool=None,initial_session_key=None,usage=None):
         entry={'id':'req_'+secrets.token_hex(6),'t':started,'model':str(value.get('model',''))[:80],'source':client_source(request),
                'session':hashlib.sha256(session.encode()).hexdigest()[:8],'stream':bool(value.get('stream')),
                'web_search_requested':any(isinstance(t,dict) and str(t.get('type','')).startswith('web_search') for t in (value.get('tools') or []))}
-        try:plan,turn,info=await bridge.prepare(value,session,authoritative=bool(explicit_session))
-        except APIError as exc:
+        preparing=asyncio.create_task(bridge.prepare(value,session,authoritative=bool(explicit_session)))
+
+        def failed(exc):
             entry.update(status='error',http=exc.status,error=str(exc)[:300],duration_ms=int((time.time()-started)*1000),rate_limited=exc.status==429,
                          throttled=getattr(exc,'throttled',0))
-            record(entry);raise
-        entry.update(kind=info['kind'],linked=info['linked'],handoff=info['handoff'],attachments=info['attachments'])
-        route='tool_result' if info['kind']=='tool_result' else 'handoff' if info['handoff'] else 'linked' if info['linked'] else 'new'
-        entry.update(route=route,throttled=info.get('throttled',0))
-        headers={'x-bridge-account':turn.account.label.encode('ascii','ignore').decode()[:80],'x-bridge-route':route}
+            record(entry)
 
-        def finalize(status,error=None,http=200):
+        def accepted(result):
+            plan,turn,info=result
+            entry.update(kind=info['kind'],linked=info['linked'],handoff=info['handoff'],attachments=info['attachments'])
+            route='tool_result' if info['kind']=='tool_result' else 'handoff' if info['handoff'] else 'linked' if info['linked'] else 'new'
+            entry.update(route=route,throttled=info.get('throttled',0))
+            return route
+
+        def finalize(turn,status,error=None,http=200):
             stats=turn.stats
             entry.update(status=status,http=http,error=error,duration_ms=int((time.time()-started)*1000),
                          ttft_ms=int((stats['first_token']-started)*1000) if stats.get('first_token') else None,
@@ -349,25 +355,82 @@ def create_app(pool=None,initial_session_key=None,usage=None):
                          stop_reason=turn.last_stop if status=='ok' else None,rate_limited=http==429)
             record(entry,turn)
 
+        async def abandon():
+            """The client went away while its request was still queued: give up its place."""
+            preparing.cancel()
+            try:
+                plan,turn,_=await preparing
+            except BaseException:
+                pass
+            else:
+                await bridge.abort(session,turn)
+            entry.update(status='error',http=499,error='Client disconnected while queued',duration_ms=int((time.time()-started)*1000))
+            record(entry)
+
+        def bridge_note(route,turn):
+            return ': bridge '+json.dumps({'account':turn.account.label,'route':route})+'\n\n'
+
+        async def events(plan,turn,route):
+            completed=False
+            try:
+                async for event in turn.segment():
+                    yield anthropic_sse(event)
+                completed=True
+                finalize(turn,'ok')
+            except APIError as exc:
+                kind=exc.code if exc.code in ('rate_limit_error','overloaded_error','invalid_request_error') else ('rate_limit_error' if exc.status==429 else 'api_error')
+                if exc.status==429:turn.account.penalize(exc)
+                finalize(turn,'error',str(exc)[:300],exc.status)
+                yield anthropic_sse({'type':'error','error':{'type':kind,'message':str(exc)}})
+            except asyncio.CancelledError:
+                finalize(turn,'error','Client disconnected',499)
+                raise
+            finally:
+                if completed:await bridge.finish(session,plan,turn)
+                else:await bridge.abort(session,turn)
+
+        # Most requests are ready at once. A request queued behind other work or a Claude
+        # throttle may wait minutes, so a streaming one starts its response right away and
+        # sends SSE comments (ignored by every client) to keep proxies from closing it.
+        done,_=await asyncio.wait({preparing},timeout=QUEUE_NOTE_SECONDS/5)
+        if not done and bool(value.get('stream')):
+            async def queued_stream():
+                try:
+                    while True:
+                        done,_=await asyncio.wait({preparing},timeout=QUEUE_NOTE_SECONDS)
+                        if done:break
+                        yield ': queued '+json.dumps(pool.gate.public())+'\n\n'
+                except asyncio.CancelledError:
+                    await abandon()
+                    raise
+                try:
+                    plan,turn,info=preparing.result()
+                except APIError as exc:
+                    failed(exc)
+                    kind='rate_limit_error' if exc.status==429 else exc.code if exc.code in ('overloaded_error','invalid_request_error') else 'api_error'
+                    yield anthropic_sse({'type':'error','error':{'type':kind,'message':str(exc)}})
+                    return
+                route=accepted((plan,turn,info))
+                yield bridge_note(route,turn)
+                async for chunk in events(plan,turn,route):
+                    yield chunk
+            return StreamingResponse(queued_stream(),media_type='text/event-stream',headers={'Cache-Control':'no-cache','X-Accel-Buffering':'no'})
+        while not done:
+            if await request.is_disconnected():
+                await abandon()
+                return JSONResponse({'type':'error','error':{'type':'api_error','message':'Client disconnected.'}},status_code=499)
+            done,_=await asyncio.wait({preparing},timeout=1)
+        try:plan,turn,info=preparing.result()
+        except APIError as exc:
+            failed(exc);raise
+        route=accepted((plan,turn,info))
+        headers={'x-bridge-account':turn.account.label.encode('ascii','ignore').decode()[:80],'x-bridge-route':route}
+
         if plan['stream']:
             async def stream():
-                completed=False
-                try:
-                    async for event in turn.segment():
-                        yield anthropic_sse(event)
-                    completed=True
-                    finalize('ok')
-                except APIError as exc:
-                    kind=exc.code if exc.code in ('rate_limit_error','overloaded_error','invalid_request_error') else ('rate_limit_error' if exc.status==429 else 'api_error')
-                    if exc.status==429:turn.account.penalize(exc)
-                    finalize('error',str(exc)[:300],exc.status)
-                    yield anthropic_sse({'type':'error','error':{'type':kind,'message':str(exc)}})
-                except asyncio.CancelledError:
-                    finalize('error','Client disconnected',499)
-                    raise
-                finally:
-                    if completed:await bridge.finish(session,plan,turn)
-                    else:await bridge.abort(session,turn)
+                yield bridge_note(route,turn)
+                async for chunk in events(plan,turn,route):
+                    yield chunk
             return StreamingResponse(stream(),media_type='text/event-stream',
                                      headers={'Cache-Control':'no-cache','X-Accel-Buffering':'no',**headers})
         try:
@@ -375,14 +438,14 @@ def create_app(pool=None,initial_session_key=None,usage=None):
             await bridge.finish(session,plan,turn)
         except APIError as exc:
             if exc.status==429:turn.account.penalize(exc)
-            finalize('error',str(exc)[:300],exc.status)
+            finalize(turn,'error',str(exc)[:300],exc.status)
             await bridge.abort(session,turn)
             raise
         except Exception:
-            finalize('error','Bridge error',500)
+            finalize(turn,'error','Bridge error',500)
             await bridge.abort(session,turn)
             raise
-        finalize('ok')
+        finalize(turn,'ok')
         content=turn.last_content
         return JSONResponse({'id':turn.message_id,'type':'message','role':'assistant','model':plan['model'],
                 'content':content,'stop_reason':turn.last_stop,'stop_sequence':None,

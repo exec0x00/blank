@@ -79,6 +79,38 @@ export function TodoList({ todos }: { todos: ClaudeTodo[] }) {
     <span>{todo.status === 'in_progress' && todo.activeForm ? todo.activeForm : todo.content}</span></li>)}</ol>;
 }
 
+/** Claude Code's WebSearch output is "Links: [{title,url}]" followed by its notes. */
+export function parseSearch(result: string): { links: { title: string; url: string }[]; notes: string } {
+  const match = /Links:\s*(\[[\s\S]*?\])\s*(?:\n|$)/.exec(result);
+  if (!match) return { links: [], notes: result };
+  try {
+    const parsed = JSON.parse(match[1]) as { title?: unknown; url?: unknown }[];
+    const links = parsed.filter(link => typeof link?.url === 'string' && /^https?:\/\//.test(link.url as string))
+      .map(link => ({ url: link.url as string, title: typeof link.title === 'string' && link.title ? link.title : link.url as string }));
+    const notes = result.slice(match.index + match[0].length).replace(/^\s*REMINDER:[\s\S]*$/m, '').trim();
+    return { links, notes };
+  } catch { return { links: [], notes: result }; }
+}
+
+const host = (url: string) => { try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return url; } };
+
+function SearchResults({ result, workspacePath, onOpenFile, onNotify }: { result: string } & Pick<Props, 'workspacePath' | 'onOpenFile' | 'onNotify'>) {
+  const { links, notes } = useMemo(() => parseSearch(result), [result]);
+  if (!links.length) return <pre className="chat-activity-output">{result}</pre>;
+  return <>
+    <div className="chat-activity-section-heading"><span>{links.length} source{links.length === 1 ? '' : 's'}</span></div>
+    <ol className="claude-sources">{links.map((link, index) => <li key={index} style={{ animationDelay: `${Math.min(index, 8) * 35}ms` }}>
+      <a href={link.url} target="_blank" rel="noreferrer"><img src={`https://www.google.com/s2/favicons?domain=${encodeURIComponent(host(link.url))}&sz=32`} alt="" loading="lazy" />
+        <span>{link.title}</span><small>{host(link.url)}</small></a></li>)}</ol>
+    {notes && <div className="claude-agent-result"><MarkdownMessage content={notes} workspacePath={workspacePath} onOpenFile={onOpenFile} onNotify={onNotify} /></div>}
+  </>;
+}
+
+function ToolImages({ images }: { images: NonNullable<ToolEntry['images']> }) {
+  return <div className="claude-tool-images">{images.map(image => <a key={image.id} href={`/api/claude/attachments/${image.id}`} target="_blank" rel="noreferrer" title="Open full size">
+    <img src={`/api/claude/attachments/${image.id}`} alt={image.name} loading="lazy" /></a>)}</div>;
+}
+
 function Body({ entry, workspacePath, onOpenFile, onNotify }: Props) {
   const input = entry.input;
   const result = entry.result ?? '';
@@ -92,7 +124,10 @@ function Body({ entry, workspacePath, onOpenFile, onNotify }: Props) {
     case 'TodoWrite': return <TodoList todos={(input.todos as ClaudeTodo[] | undefined) ?? []} />;
     case 'ExitPlanMode': return <div className="claude-plan-body"><MarkdownMessage content={str(input.plan)} workspacePath={workspacePath} onOpenFile={onOpenFile} onNotify={onNotify} /></div>;
     case 'AskUserQuestion': return <>{((input.questions as { question: string }[] | undefined) ?? []).map((question, index) => <p key={index} className="claude-question-recap">{question.question}</p>)}{output}</>;
-    case 'Read': case 'Glob': case 'Grep': case 'WebFetch': case 'WebSearch': return output || <p className="chat-activity-waiting">No output yet.</p>;
+    case 'WebSearch': return result && entry.status === 'success' ? <SearchResults result={result} workspacePath={workspacePath} onOpenFile={onOpenFile} onNotify={onNotify} /> : output || <p className="chat-activity-waiting">Searching…</p>;
+    case 'Read': if (entry.images?.length && result.trim() === '[image]') return null; // The image itself is shown above.
+      return output || <p className="chat-activity-waiting">No output yet.</p>;
+    case 'Glob': case 'Grep': case 'WebFetch': return output || <p className="chat-activity-waiting">No output yet.</p>;
     case 'Task': case 'Agent': return <>{!!input.prompt && <><div className="chat-activity-section-heading"><span>Instructions</span></div><pre>{str(input.prompt)}</pre></>}{result && <><div className="chat-activity-section-heading"><span>Result</span></div><div className="claude-agent-result"><MarkdownMessage content={result} workspacePath={workspacePath} onOpenFile={onOpenFile} onNotify={onNotify} /></div></>}</>;
     default: return <><div className="chat-activity-section-heading"><span>Input</span></div><pre>{JSON.stringify(input, null, 2)}</pre>{output}</>;
   }
@@ -117,6 +152,7 @@ export const ToolCard = memo(function ToolCard(props: Props) {
       <StatusIcon status={entry.status} />
       <ChevronRight size={14} className="chat-activity-chevron" />
     </button>
+    {!!entry.images?.length && <ToolImages images={entry.images} />}
     <div className={`claude-collapse${expanded ? ' is-open' : ''}`}><div className="claude-collapse-inner">
       {bodyMounted && <div className="chat-activity-body">
         {info.path && onOpenFile && <button type="button" className="text-button claude-open-file" onClick={() => onOpenFile(relativePath(info.path!, workspacePath))}>Open {relativePath(info.path, workspacePath)}</button>}

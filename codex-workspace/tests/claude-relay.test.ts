@@ -16,16 +16,14 @@ describe('Claude relay message normalization', () => {
     expect(messages[0].content.map(block => block.type)).toEqual(['text', 'text']);
   });
 
-  it('moves tool results ahead of text and replaces binary blocks for text-only routes', () => {
+  it('moves tool results ahead of text and passes images and documents through', () => {
     const messages = normalizeMessages([
       { role: 'assistant', content: [{ type: 'tool_use', id: 'toolu_2', name: 'Read', input: {} }] },
       { role: 'user', content: [{ type: 'text', text: 'note' }, { type: 'tool_result', tool_use_id: 'toolu_2', content: 'ok' }, { type: 'image', source: {} }] },
       { role: 'user', content: [{ type: 'document', title: 'a.txt', source: { type: 'text', data: 'hello' } }] },
-    ], { textOnly: true }) as { role: string; content: { type: string; text?: string }[] }[];
+    ]) as { role: string; content: { type: string; text?: string }[] }[];
     expect(messages).toHaveLength(2);
-    expect(messages[1].content.map(block => block.type)).toEqual(['tool_result', 'text', 'text', 'text']);
-    expect(messages[1].content[2].text).toContain('image was omitted');
-    expect(messages[1].content[3].text).toContain('hello');
+    expect(messages[1].content.map(block => block.type)).toEqual(['tool_result', 'text', 'image', 'document']);
   });
 
   it('leaves non-array payloads untouched', () => {
