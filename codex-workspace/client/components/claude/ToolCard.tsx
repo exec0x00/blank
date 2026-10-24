@@ -10,7 +10,7 @@ import { MarkdownMessage } from '../chat/MarkdownMessage';
 type ToolEntry = Extract<ClaudeEntry, { kind: 'tool' }>;
 type Notify = (message: string, kind?: 'error' | 'success' | 'info') => void;
 interface Props {
-  entry: ToolEntry; workspacePath: string; childrenEntries?: ReactNode; childCount?: number;
+  entry: ToolEntry; workspacePath: string; childrenEntries?: ReactNode; childCount?: number; fresh?: boolean;
   onOpenFile?: (path: string, location?: { line: number; column?: number }) => void; onNotify: Notify;
 }
 
@@ -50,6 +50,9 @@ function describe(entry: ToolEntry, root: string): { icon: ReactNode; title: str
 }
 
 function StatusIcon({ status }: { status: ToolEntry['status'] }) {
+  return <span className="claude-status-slot" key={status}><StatusGlyph status={status} /></span>;
+}
+function StatusGlyph({ status }: { status: ToolEntry['status'] }) {
   if (status === 'pending' || status === 'running') return <span className="chat-activity-status is-running" aria-label="Running"><LoaderCircle size={14} className="chat-spin" /></span>;
   if (status === 'awaiting') return <span className="chat-activity-status claude-status-awaiting" aria-label="Waiting for approval"><ShieldQuestion size={14} /></span>;
   if (status === 'success') return <span className="chat-activity-status is-completed" aria-label="Completed"><Check size={14} /></span>;
@@ -96,14 +99,17 @@ function Body({ entry, workspacePath, onOpenFile, onNotify }: Props) {
 }
 
 export const ToolCard = memo(function ToolCard(props: Props) {
-  const { entry, workspacePath, childrenEntries, childCount, onOpenFile } = props;
+  const { entry, workspacePath, childrenEntries, childCount, onOpenFile, fresh } = props;
   const agent = entry.name === 'Task' || entry.name === 'Agent';
-  const [expanded, setExpanded] = useState(entry.name === 'TodoWrite' || entry.name === 'ExitPlanMode');
+  const initiallyOpen = entry.name === 'TodoWrite' || entry.name === 'ExitPlanMode';
+  const [expanded, setExpanded] = useState(initiallyOpen);
+  const [bodyMounted, setBodyMounted] = useState(initiallyOpen);
   const [childrenOpen, setChildrenOpen] = useState(false);
+  const [childrenMounted, setChildrenMounted] = useState(false);
   const info = describe(entry, workspacePath);
   const duration = entry.elapsedSeconds ? `${entry.elapsedSeconds}s` : '';
-  return <div className={`chat-activity claude-tool is-${entry.status}${expanded ? ' is-expanded' : ''}${agent ? ' is-agent' : ''}`}>
-    <button type="button" className="chat-activity-summary" aria-expanded={expanded} onClick={() => setExpanded(value => !value)}>
+  return <div className={`chat-activity claude-tool is-${entry.status}${expanded ? ' is-expanded' : ''}${agent ? ' is-agent' : ''}${fresh ? ' claude-enter' : ''}`}>
+    <button type="button" className="chat-activity-summary" aria-expanded={expanded} onClick={() => { setBodyMounted(true); setExpanded(value => !value); }}>
       <span className="chat-activity-icon">{info.icon}</span>
       <span className="chat-activity-label"><span>{info.title}</span>{info.detail && <code title={info.detail}>{info.detail}</code>}
         {agent && entry.progress && entry.status === 'running' && <small className="claude-tool-progress">{entry.progress}</small>}</span>
@@ -111,14 +117,18 @@ export const ToolCard = memo(function ToolCard(props: Props) {
       <StatusIcon status={entry.status} />
       <ChevronRight size={14} className="chat-activity-chevron" />
     </button>
-    {expanded && <div className="chat-activity-body">
-      {info.path && onOpenFile && <button type="button" className="text-button claude-open-file" onClick={() => onOpenFile(relativePath(info.path!, workspacePath))}>Open {relativePath(info.path, workspacePath)}</button>}
-      <Body {...props} />
-    </div>}
+    <div className={`claude-collapse${expanded ? ' is-open' : ''}`}><div className="claude-collapse-inner">
+      {bodyMounted && <div className="chat-activity-body">
+        {info.path && onOpenFile && <button type="button" className="text-button claude-open-file" onClick={() => onOpenFile(relativePath(info.path!, workspacePath))}>Open {relativePath(info.path, workspacePath)}</button>}
+        <Body {...props} />
+      </div>}
+    </div></div>
     {agent && !!childCount && <div className="claude-agent-children">
-      <button type="button" className="claude-agent-toggle" onClick={() => setChildrenOpen(value => !value)} aria-expanded={childrenOpen}>
+      <button type="button" className="claude-agent-toggle" onClick={() => { setChildrenMounted(true); setChildrenOpen(value => !value); }} aria-expanded={childrenOpen}>
         <ChevronRight size={12} className={childrenOpen ? 'is-open' : ''} />{childCount} step{childCount === 1 ? '' : 's'} by the subagent</button>
-      {childrenOpen && <div className="claude-agent-steps">{childrenEntries}</div>}
+      <div className={`claude-collapse${childrenOpen ? ' is-open' : ''}`}><div className="claude-collapse-inner">
+        {childrenMounted && <div className="claude-agent-steps">{childrenEntries}</div>}
+      </div></div>
     </div>}
   </div>;
 });

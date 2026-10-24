@@ -5,6 +5,7 @@ import { api, json } from '../../api';
 import { SelectMenu } from '../ui/Dropdown';
 import { EFFORT_DESCRIPTIONS, EFFORT_LABELS, modelEfforts } from './catalog';
 import { compactTokens, money } from './Timeline';
+import { ContextRing } from './Working';
 
 export interface ComposerSettings { model: string; effort: ClaudeEffort | null; thinking: boolean; permissionMode: ClaudePermissionMode }
 interface Props {
@@ -147,7 +148,7 @@ export function Composer(props: Props) {
         {attachment.kind === 'image' ? <img src={`/api/claude/attachments/${attachment.id}`} alt="" /> : <FileText size={14} />}
         <span className="text-ellipsis">{attachment.name}</span>
         <button type="button" aria-label={`Remove ${attachment.name}`} onClick={() => onAttachments(attachments.filter(item => item.id !== attachment.id))}><X size={12} /></button></span>)}
-        {uploading > 0 && <span className="claude-attachment"><LoaderCircle size={14} className="chat-spin" />Uploading…</span>}</div>}
+        {uploading > 0 && <span className="claude-attachment is-uploading"><LoaderCircle size={14} className="chat-spin" />Uploading…</span>}</div>}
       <label className="chat-sr-only" htmlFor={`claude-prompt-${workspaceId}`}>Message Claude</label>
       <textarea ref={textarea} id={`claude-prompt-${workspaceId}`} rows={2} value={draft} maxLength={200_000} disabled={disabled}
         placeholder={running ? 'Queue a follow-up for Claude…' : settings.permissionMode === 'plan' ? 'Describe what to plan…' : 'Ask Claude to build, fix, or explain… (/ for commands, @ for files)'}
@@ -162,11 +163,10 @@ export function Composer(props: Props) {
           title="Permission mode (Shift+Tab cycles)" renderValue={() => <><span className={`claude-mode-dot is-${settings.permissionMode}`} />{mode.label}</>}
           options={CLAUDE_PERMISSION_MODES.map(item => ({ value: item.value, label: item.label, description: item.description, icon: <span className={`claude-mode-dot is-${item.value}`} /> }))} />
         <span className="chat-composer-spacer" />
-        {contextPercent !== null && <span className={`claude-context${contextPercent >= 80 ? ' is-high' : ''}`} title={`${usage!.contextTokens.toLocaleString()} of ${usage!.contextWindow!.toLocaleString()} context tokens used${usage!.totalCostUsd ? ` · ${money(usage!.totalCostUsd)} spent` : ''}`}>
-          <Gauge size={13} />{contextPercent}%</span>}
+        {contextPercent !== null && contextPercent >= 1 && <ContextRing percent={contextPercent} title={`${usage!.contextTokens.toLocaleString()} of ${usage!.contextWindow!.toLocaleString()} context tokens used${usage!.totalCostUsd ? ` · ${money(usage!.totalCostUsd)} spent` : ''}`} />}
         {running && <button type="button" className="chat-send chat-stop" aria-label="Stop Claude" title="Stop (Esc)" disabled={stopping} onClick={onStop}>{stopping ? <LoaderCircle size={15} className="chat-spin" /> : <Square size={13} />}</button>}
-        <button type="submit" className={`chat-send${running ? ' claude-queue' : ''}`} aria-label={running ? 'Queue message' : 'Send message'} title={running ? 'Queue for when Claude finishes' : 'Send (Enter)'} disabled={!canSend}>
-          {sending ? <LoaderCircle size={16} className="chat-spin" /> : running ? <ListPlus size={16} /> : <ArrowUp size={18} />}</button>
+        <button type="submit" className={`chat-send claude-send${running ? ' claude-queue' : ''}${canSend ? ' is-ready' : ''}`} aria-label={running ? 'Queue message' : 'Send message'} title={running ? 'Queue for when Claude finishes' : 'Send (Enter)'} disabled={!canSend}>
+          <span className="claude-icon-swap" key={sending ? 'sending' : running ? 'queue' : 'send'}>{sending ? <LoaderCircle size={16} className="chat-spin" /> : running ? <ListPlus size={16} /> : <ArrowUp size={18} />}</span></button>
       </div>
     </form>
     <div className="chat-composer-footer claude-composer-footer"><div className="chat-model-controls">

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type FormEvent } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent } from 'react';
 import { AlertCircle, Archive, ArchiveRestore, ArrowDown, Check, ClipboardList, Code2, ExternalLink, FolderOpen, GitFork, Lightbulb, ListTodo, LoaderCircle, MoreHorizontal, PencilLine, Pin, PinOff, Plus, Settings2, Sparkles, Trash2, Bug, WifiOff, X } from 'lucide-react';
 import type { AppSettings, Workspace } from '../../shared/types';
 import type { ClaudeAttachment, ClaudeConversation, ClaudeConversationSummary, ClaudeEntry, ClaudeNativeSession } from '../../shared/claude';
@@ -16,6 +16,7 @@ import { RequestCard, type RequestAnswer } from './claude/RequestCards';
 import { HistoryPanel } from './claude/HistoryPanel';
 import { Composer, type ComposerSettings } from './claude/Composer';
 import { TodoList } from './claude/ToolCard';
+import { WorkingIndicator } from './claude/Working';
 import { useClaudeCapabilities, useClaudeModels } from './claude/catalog';
 import './chat.css';
 import './claude/claude.css';
@@ -232,6 +233,7 @@ export default function ChatPanel({ workspace, settings, onSettings, onNotify, o
   const empty = !selectedId || (!!current && !current.entries.length);
   const statusText = running ? (live.detail || statusLabel[live.status] || 'Working') : '';
   const detail = archived ? 'Archived conversation' : running ? statusText : current?.forkedFrom ? `Forked from ${current.forkedFrom.title}` : current?.importedFrom ? 'Imported Claude Code session' : selectedId ? `${items.find(item => item.id === selectedId)?.messageCount ?? 0} messages` : 'New conversation';
+  const streamingNow = !!current?.entries.some(entry => (entry.kind === 'assistant' || entry.kind === 'thinking') && entry.streaming && entry.text.length > 0);
   const todos = current?.todos?.length && current.todos.some(todo => todo.status !== 'completed') ? current.todos : null;
   const suggestions = [
     { icon: <FolderOpen size={16} />, title: 'Understand the project', text: 'Explore this workspace and explain its structure, main entry points, and how to run it.' },
@@ -240,9 +242,9 @@ export default function ChatPanel({ workspace, settings, onSettings, onNotify, o
     { icon: <ClipboardList size={16} />, title: 'Write CLAUDE.md', text: '/init' },
   ];
 
-  return <section className="chat-panel claude-panel" aria-label="Claude conversation">
+  return <section className={`chat-panel claude-panel${running ? ' is-running' : ''}${permissions.length ? ' is-awaiting' : ''}`} aria-label="Claude conversation">
     <ConversationHeader title={title} detail={detail} historyOpen={historyOpen} onBrowse={() => setHistoryOpen(value => !value)}>
-      {!!current?.usage?.contextWindow && <span className="claude-header-context" title="Context used">{Math.min(100, Math.round(current.usage.contextTokens / current.usage.contextWindow * 100))}% context</span>}
+      {!!current?.usage?.contextWindow && current.usage.contextTokens / current.usage.contextWindow >= 0.01 && <span className="claude-header-context" title="Context used">{Math.min(100, Math.round(current.usage.contextTokens / current.usage.contextWindow * 100))}% context</span>}
       <a className="icon-button chat-window-link" href={windowLink({ workspaceId: workspace.id, threadId: selectedId, view: 'agent' })} target="_blank" rel="noopener noreferrer" aria-label="Open Claude in new window" title="Open in new window"><ExternalLink size={15} /></a>
       <button type="button" className="icon-button chat-new-thread" aria-label="New conversation" title="New conversation" onClick={() => select(null)}><Plus size={18} /></button>
       <DropdownMenu align="end" aria-label="Conversation actions" trigger={<button type="button" className="icon-button" aria-label="Conversation actions" title="Conversation actions"><MoreHorizontal size={17} /></button>} items={[
@@ -268,24 +270,24 @@ export default function ChatPanel({ workspace, settings, onSettings, onNotify, o
           {opening && <ConversationSkeleton label="Opening your conversation…" />}
           {empty && !opening && <div className="chat-empty"><div className="chat-empty-symbol" aria-hidden="true"><Code2 size={23} /><span><Sparkles size={13} /></span></div>
             <h2>What are we building?</h2><p className="chat-empty-description">Claude Code can read, edit, and run code in <strong>{workspace.name}</strong>.</p>
-            <div className="chat-suggestions claude-suggestions">{suggestions.map(item => <button type="button" key={item.title} onClick={() => { setDraft(item.text); if (item.plan) changeSettings({ permissionMode: 'plan' }); }}>
+            <div className="chat-suggestions claude-suggestions">{suggestions.map((item, index) => <button type="button" key={item.title} style={{ '--claude-i': index } as CSSProperties} onClick={() => { setDraft(item.text); if (item.plan) changeSettings({ permissionMode: 'plan' }); }}>
               <span className="chat-suggestion-icon">{item.icon}</span><span><strong>{item.title}</strong><small>{item.text.startsWith('/') ? 'Generate project instructions' : item.text.slice(0, 48) + '…'}</small></span></button>)}</div>
-            {items.length > 0 && !selectedId && <div className="claude-recent"><h3>Recent conversations</h3>{items.filter(item => !item.archivedAt).slice(0, 5).map(item => <button type="button" key={item.id} onClick={() => select(item.id)}>
+            {items.length > 0 && !selectedId && <div className="claude-recent"><h3>Recent conversations</h3>{items.filter(item => !item.archivedAt).slice(0, 5).map((item, index) => <button type="button" key={item.id} style={{ '--claude-i': index + 4 } as CSSProperties} onClick={() => select(item.id)}>
               {item.running ? <LoaderCircle size={14} className="chat-spin" /> : <Check size={14} />}<span className="text-ellipsis">{item.title}</span></button>)}
               <button type="button" className="text-button" onClick={() => setHistoryOpen(true)}>View all {items.length}</button></div>}
           </div>}
-          {current && <Timeline entries={current.entries} workspacePath={workspace.path} running={running} actionsDisabled={running || actionBusy || archived}
+          {current && <Timeline conversationId={current.id} entries={current.entries} workspacePath={workspace.path} running={running} actionsDisabled={running || actionBusy || archived}
             actions={{ onEdit: entry => setRewind({ entry, edit: true }), onRewind: entry => setRewind({ entry, edit: false }), onFork: entryId => void fork(entryId) }}
             onNotify={onNotify} onOpenFile={onOpenFile} />}
           {current?.error && !running && !current.entries.some(entry => entry.kind === 'system' && entry.text === current.error) && <div className="chat-run-error" role="alert"><AlertCircle size={15} /><p>{current.error}</p></div>}
-          {running && !permissions.length && <div className="claude-working" role="status"><span className="claude-working-dots"><i /><i /><i /></span>{statusText}</div>}
+          {running && !permissions.length && !streamingNow && <WorkingIndicator label={statusText} startedAt={live.startedAt} tone={live.status} />}
           {permissions.map(request => <RequestCard key={request.id} request={request} workspacePath={workspace.path} onAnswer={value => answer(request.id, value)} onNotify={onNotify} onOpenFile={onOpenFile} />)}
         </div>
       </div>
       {away && <button type="button" className="chat-jump-latest" onClick={jump}><ArrowDown size={13} />Jump to latest</button>}
     </div>
     {!archived && <div className="chat-compose-area">
-      {todos && <details className="claude-todo-panel" open><summary><ListTodo size={14} />Plan · {todos.filter(todo => todo.status === 'completed').length}/{todos.length} done</summary><TodoList todos={todos} /></details>}
+      {todos && <details className="claude-todo-panel" open><summary><ListTodo size={14} /><span>Plan</span><span className="claude-todo-progress" aria-hidden="true"><i style={{ width: `${Math.round(todos.filter(todo => todo.status === 'completed').length / todos.length * 100)}%` }} /></span><span className="claude-todo-count">{todos.filter(todo => todo.status === 'completed').length}/{todos.length}</span></summary><TodoList todos={todos} /></details>}
       {!!current?.queue?.length && <div className="claude-queue-list" aria-label="Queued messages">{current.queue.map(item => <div key={item.id} className="claude-queued"><ListTodo size={13} /><span className="text-ellipsis">{item.text || `${item.attachments?.length ?? 0} attachments`}</span>
         <button type="button" aria-label="Remove queued message" onClick={() => void patchConversation(current.id, { queue: current.queue!.filter(entry => entry.id !== item.id).map(entry => entry.id) })}><X size={12} /></button></div>)}</div>}
       <Composer workspaceId={workspace.id} draft={draft} onDraft={setDraft} attachments={draftAttachments} onAttachments={setDraftAttachments}
