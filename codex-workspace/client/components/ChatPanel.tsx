@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent } from 'react';
-import { AlertCircle, Archive, ArchiveRestore, ArrowDown, Check, ClipboardList, Code2, ExternalLink, FolderOpen, GitFork, Lightbulb, ListTodo, LoaderCircle, MoreHorizontal, PencilLine, Pin, PinOff, Plus, Settings2, Sparkles, Trash2, Bug, WifiOff } from 'lucide-react';
+import { AlertCircle, Archive, ArchiveRestore, ArrowDown, Check, ClipboardList, ExternalLink, FolderOpen, GitFork, Lightbulb, ListTodo, LoaderCircle, MessageSquare, MoreHorizontal, PencilLine, Pin, PinOff, Plus, Settings2, Trash2, Bug, WifiOff } from 'lucide-react';
 import type { AppSettings, Workspace } from '../../shared/types';
 import type { ClaudeAttachment, ClaudeConversation, ClaudeConversationSummary, ClaudeEntry, ClaudeNativeSession, ClaudeQueuedMessage } from '../../shared/claude';
 import { api, json } from '../api';
@@ -13,11 +13,13 @@ import Modal from './Modal';
 import { useConversation } from './claude/useConversation';
 import { Timeline } from './claude/Timeline';
 import { RequestCard, type RequestAnswer } from './claude/RequestCards';
-import { HistoryPanel } from './claude/HistoryPanel';
+import { HistoryPanel, relativeTime } from './claude/HistoryPanel';
 import { Composer, type ComposerSettings, type QueueAction } from './claude/Composer';
 import { useClaudeCapabilities, useClaudeModels } from './claude/catalog';
 import './chat.css';
 import './claude/claude.css';
+import './claude/agent/agent.css';
+import { useCustomScroll } from './claude/composer/useCustomScroll';
 
 export interface ChatPanelProps {
   workspace: Workspace; settings: AppSettings; onSettings: (section?: string) => void;
@@ -128,6 +130,7 @@ export default function ChatPanel({ workspace, settings, onSettings, onNotify, o
     const atEnd = element.scrollHeight - element.scrollTop - element.clientHeight < 80;
     following.current = atEnd; setAway(!atEnd);
   };
+  useCustomScroll(scrollRef, { right: 4, inset: 10 });
   const jump = () => { const element = scrollRef.current; if (element) { element.scrollTo({ top: element.scrollHeight, behavior: 'smooth' }); following.current = true; setAway(false); } };
 
   const setDraft = (value: string) => setDrafts(previous => ({ ...previous, [draftKey]: value }));
@@ -247,10 +250,10 @@ export default function ChatPanel({ workspace, settings, onSettings, onNotify, o
   const statusText = running ? (live.detail || statusLabel[live.status] || 'Working') : '';
   const detail = archived ? 'Archived conversation' : running ? statusText : current?.forkedFrom ? `Forked from ${current.forkedFrom.title}` : current?.importedFrom ? 'Imported Claude Code session' : selectedId ? `${items.find(item => item.id === selectedId)?.messageCount ?? 0} messages` : 'New conversation';
   const suggestions = [
-    { icon: <FolderOpen size={16} />, title: 'Understand the project', text: 'Explore this workspace and explain its structure, main entry points, and how to run it.' },
-    { icon: <Lightbulb size={16} />, title: 'Plan a change', text: 'Help me plan the next change to this project.', plan: true },
-    { icon: <Bug size={16} />, title: 'Find and fix bugs', text: 'Look for bugs or failing tests in this project and fix the most important one.' },
-    { icon: <ClipboardList size={16} />, title: 'Write CLAUDE.md', text: '/init' },
+    { icon: <FolderOpen size={15} strokeWidth={1.75} />, title: 'Understand the project', text: 'Explore this workspace and explain its structure, main entry points, and how to run it.' },
+    { icon: <Lightbulb size={15} strokeWidth={1.75} />, title: 'Plan a change', text: 'Help me plan the next change to this project.', plan: true },
+    { icon: <Bug size={15} strokeWidth={1.75} />, title: 'Find and fix bugs', text: 'Look for bugs or failing tests in this project and fix the most important one.' },
+    { icon: <ClipboardList size={15} strokeWidth={1.75} />, title: 'Write CLAUDE.md', text: '/init' },
   ];
 
   return <section className={`chat-panel claude-panel${running ? ' is-running' : ''}${permissions.length ? ' is-awaiting' : ''}`} aria-label="Claude conversation">
@@ -279,22 +282,22 @@ export default function ChatPanel({ workspace, settings, onSettings, onNotify, o
       <div className="chat-conversation" ref={scrollRef} onScroll={onScroll} tabIndex={0} role="region" aria-label="Conversation messages" aria-busy={opening}>
         <div className={'chat-conversation-content' + (empty && !opening ? ' is-empty' : '')}>
           {opening && <ConversationSkeleton label="Opening your conversation…" />}
-          {empty && !opening && <div className="chat-empty"><div className="chat-empty-symbol" aria-hidden="true"><Code2 size={23} /><span><Sparkles size={13} /></span></div>
-            <h2>What are we building?</h2><p className="chat-empty-description">Claude Code can read, edit, and run code in <strong>{workspace.name}</strong>.</p>
-            <div className="chat-suggestions claude-suggestions">{suggestions.map((item, index) => <button type="button" key={item.title} style={{ '--claude-i': index } as CSSProperties} onClick={() => { setDraft(item.text); if (item.plan) changeSettings({ permissionMode: 'plan' }); }}>
-              <span className="chat-suggestion-icon">{item.icon}</span><span><strong>{item.title}</strong><small>{item.text.startsWith('/') ? 'Generate project instructions' : item.text.slice(0, 48) + '…'}</small></span></button>)}</div>
-            {items.length > 0 && !selectedId && <div className="claude-recent"><h3>Recent conversations</h3>{items.filter(item => !item.archivedAt).slice(0, 5).map((item, index) => <button type="button" key={item.id} style={{ '--claude-i': index + 4 } as CSSProperties} onClick={() => select(item.id)}>
-              {item.running ? <LoaderCircle size={14} className="chat-spin" /> : <Check size={14} />}<span className="text-ellipsis">{item.title}</span></button>)}
-              <button type="button" className="text-button" onClick={() => setHistoryOpen(true)}>View all {items.length}</button></div>}
+          {empty && !opening && <div className="ag-empty">
+            <h2>What are we building?</h2><p>Claude Code can read, edit and run code in <strong>{workspace.name}</strong>.</p>
+            <div className="ag-sugs">{suggestions.map((item, index) => <button type="button" key={item.title} style={{ '--i': index } as CSSProperties} onClick={() => { setDraft(item.text); if (item.plan) changeSettings({ permissionMode: 'plan' }); }}>
+              <span className="ag-sug-i">{item.icon}</span><span className="ag-sug-b"><strong>{item.title}</strong><small>{item.text.startsWith('/') ? 'Generate project instructions' : item.text}</small></span></button>)}</div>
+            {items.length > 0 && !selectedId && <div className="ag-recent"><div className="ag-caption">Recent</div>{items.filter(item => !item.archivedAt).slice(0, 5).map((item, index) => <button type="button" key={item.id} style={{ '--i': index + 4 } as CSSProperties} onClick={() => select(item.id)}>
+              <span className="ag-recent-i">{item.running ? <i className="ag-ring" /> : <MessageSquare size={14} strokeWidth={1.75} />}</span><span className="ag-recent-t">{item.title}</span><span className="ag-recent-m">{relativeTime(item.updatedAt)}</span></button>)}
+              {items.length > 5 && <button type="button" className="ag-more" onClick={() => setHistoryOpen(true)}>View all</button>}</div>}
           </div>}
           {current && <Timeline conversationId={current.id} entries={current.entries} workspacePath={workspace.path} running={running} actionsDisabled={running || actionBusy || archived}
             actions={{ onEdit: entry => setRewind({ entry, edit: true }), onRewind: entry => setRewind({ entry, edit: false }), onFork: entryId => void fork(entryId) }}
             onNotify={onNotify} onOpenFile={onOpenFile} />}
-          {current?.error && !running && !current.entries.some(entry => entry.kind === 'system' && entry.text === current.error) && <div className="chat-run-error" role="alert"><AlertCircle size={15} /><p>{current.error}</p></div>}
+          {current?.error && !running && !current.entries.some(entry => entry.kind === 'system' && entry.text === current.error) && <div className="ag-alert" role="alert"><AlertCircle size={14} strokeWidth={1.75} /><p>{current.error}</p></div>}
           {permissions.map(request => <RequestCard key={request.id} request={request} workspacePath={workspace.path} onAnswer={value => answer(request.id, value)} onNotify={onNotify} onOpenFile={onOpenFile} />)}
         </div>
       </div>
-      {away && <button type="button" className="chat-jump-latest" onClick={jump}><ArrowDown size={13} />Jump to latest</button>}
+      <button type="button" className={`ag-jump${away ? ' on' : ''}`} onClick={jump} aria-label="Jump to latest" tabIndex={away ? 0 : -1}><ArrowDown size={15} strokeWidth={1.75} /></button>
     </div>
     {!archived && <div className="chat-compose-area">
       <Composer workspaceId={workspace.id} draft={draft} onDraft={setDraft} attachments={draftAttachments} onAttachments={setDraftAttachments}
