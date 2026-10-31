@@ -214,6 +214,17 @@ def autogen(book, ch, vdict, merged_map, need, existing_norm, manual_per_verse):
             if len(cands) > 3 and nw >= 9:
                 q, a = make_blank(c, [cands[2][1], cands[3][1]])
                 tiers[3].append(("fill", f"ವಾಕ್ಯ ಪೂರ್ಣಗೊಳಿಸಿ: “{q}”", "; ".join(a), c))
+        # write-out-the-verse (common in written quizzes) for verses of moderate length
+        full = vdict[str(v)]
+        nfull = len(full.split())
+        if 5 <= nfull <= 40:
+            r = ref_str(ch, v, merged_map)
+            tiers[2].insert(0, ("recite", f"{title} {r} ವಚನವನ್ನು ಬರೆಯಿರಿ.", full, full))
+        for k, c in enumerate(cs):
+            cands = blank_candidates(c, names)
+            if len(cands) > 4:
+                q, a = make_blank(c, [cands[4][1]])
+                tiers[3].append(("fill", f"ವಾಕ್ಯ ಪೂರ್ಣಗೊಳಿಸಿ: “{q}”", a[0], c))
         pools[v] = tiers[0] + tiers[1] + tiers[2] + tiers[3]
     # order each verse's pool: round-robin over chunks by type priority already; just keep
     out = []
@@ -292,7 +303,7 @@ def difficulty(t):
     return {"who": "easy", "what": "easy", "where": "easy", "when": "medium", "why": "medium",
             "howmany": "medium", "quote": "medium", "speaker": "easy", "whowhom": "medium",
             "list": "hard", "comp": "medium", "referent": "medium", "fill": "medium",
-            "continue": "hard", "which": "hard", "synthesis": "hard", "ot": "hard"}.get(t, "medium")
+            "continue": "hard", "which": "hard", "recite": "hard", "synthesis": "hard", "ot": "hard"}.get(t, "medium")
 
 
 def main():

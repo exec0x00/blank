@@ -18,7 +18,9 @@ def is_heading(line, nxt):
     s = line.strip()
     if not s or re.search(r"\d", s) or len(s) > 70:
         return False
-    if s.endswith(END_PUNCT):
+    if s.endswith("?") and len(s) < 35 and not re.search("[“”‘’\"]", s):
+        pass  # short question-style section heading, e.g. "ಧರ್ಮಶಾಸ್ತ್ರವೋ? ಶುಭಸಂದೇಶವೋ?"
+    elif s.endswith(END_PUNCT):
         return False
     return bool(re.match(r"^\s*\(?\d", nxt or ""))
 

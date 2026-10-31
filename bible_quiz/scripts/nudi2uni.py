@@ -97,6 +97,12 @@ def fix(s):
     # cleanup of common artefacts
     s = s.replace("ø", "ೃ")
     s = s.replace("‍", "")
+    # isolated glyph glitches seen in the KRCBC PDFs (checked by hand)
+    s = s.replace("ಭೇದÀ", "ಭೇದ")          # Galatians 3:28
+    s = s.replace("ತಾ¬ೂ", "ತಾಯೀ")         # John 8:10 (vocative "woman")
+    # 'ಮೀ' typed with the ವಿ glyph + ೂ + ೀ: ವಿೂ -> ಮೀ ; ಧವರ್ಿೂ -> ಧರ್ಮೀ
+    s = s.replace("ವರ್ಿೂ", "ರ್ಮೀ")
+    s = s.replace("ವಿೂ", "ಮೀ")
     s = s.replace("ೋ", "ೋ")
     return s
 
