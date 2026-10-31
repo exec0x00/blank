@@ -76,7 +76,7 @@ JS = r"""
     p.appendChild(el('h2',null,'ವಿದ್ಯಾರ್ಥಿಗಳ ಬೈಬಲ್ ರಸಪ್ರಶ್ನೆ – ಸಾಮಾನ್ಯ (ಲಿಖಿತ)'));
     p.appendChild(el('div','meta','ಭಾಗ: '+data.portion+'<br>ಭಾಷೆ: ಕನ್ನಡ · ಪಠ್ಯ: KRCBC ಕನ್ನಡ ಬೈಬಲ್'));
     const t = el('table'); t.id='toc';
-    t.innerHTML = '<tr><th>ಅಧ್ಯಾಯ</th><th>ಪ್ರಶ್ನೆಗಳು</th><th>ಪುಟ</th></tr>';
+    t.innerHTML = '<tr><th>'+(data.sections?'ಭಾಗ':'ಅಧ್ಯಾಯ')+'</th><th>ಪ್ರಶ್ನೆಗಳು</th><th>ಪುಟ</th></tr>';
     p.appendChild(t);
     p.appendChild(el('div','src','ಪ್ರತಿಯೊಂದು ಉತ್ತರದ ಕೊನೆಯಲ್ಲಿ ವಚನದ ಉಲ್ಲೇಖವಿದೆ. ಪ್ರತಿ ಅಧ್ಯಾಯದ ಪ್ರಶ್ನೆಗಳ ಸಂಖ್ಯೆ 1ರಿಂದ ಆರಂಭವಾಗುತ್ತದೆ.<br>ಆಧಾರ: krcbcbible.org/kannada_bible.php'));
     root.appendChild(p);
@@ -90,7 +90,8 @@ JS = r"""
     h.appendChild(el('div','folio',String(folio)));
     p.appendChild(h);
     if(first){
-      p.appendChild(el('div','chapter-banner','<b>'+ch.label+'</b><span>'+data.title+' '+ch.chapter+' · '+ch.verses+' ವಚನಗಳು · '+ch.questions.length+' ಪ್ರಶ್ನೆಗಳು</span>'));
+      const info = ch.subtitle ? ch.subtitle+' · '+ch.questions.length+' ಪ್ರಶ್ನೆಗಳು' : data.title+' '+ch.chapter+' · '+ch.verses+' ವಚನಗಳು · '+ch.questions.length+' ಪ್ರಶ್ನೆಗಳು';
+      p.appendChild(el('div','chapter-banner','<b>'+ch.label+'</b><span>'+info+'</span>'));
     }
     const ol = el('ol','questions'); p.appendChild(ol);
     const ans = el('div','answers');
@@ -120,7 +121,7 @@ JS = r"""
       }
       count++;
     }
-    if(toc){ const r=document.createElement('tr'); r.innerHTML='<td>'+ch.label+'</td><td>'+ch.questions.length+'</td><td>'+startFolio+'</td>'; toc.appendChild(r); }
+    if(toc){ const r=document.createElement('tr'); r.innerHTML='<td>'+ch.label+(ch.subtitle?' — '+ch.subtitle:'')+'</td><td>'+ch.questions.length+'</td><td>'+startFolio+'</td>'; toc.appendChild(r); }
   }
   window.__paginated = true;
 })();
@@ -138,12 +139,13 @@ def chapter_payload(d):
     for q in d["questions"]:
         qs.append({"n": q["number"], "q": esc(q["question"]), "a": esc(q["answer"]),
                    "r": esc("; ".join(q["refs"]))})
-    return {"chapter": d["chapter"], "label": d["chapter_label"], "verses": d["verses"], "questions": qs}
+    return {"chapter": d["chapter"], "label": d["chapter_label"], "verses": d["verses"],
+            "subtitle": d.get("section_title"), "questions": qs}
 
 
 def render(book, chapters_json, out_path, cover):
     meta = BOOKS[book]
-    payload = {"title": meta["title"], "portion": meta["portion"], "cover": cover,
+    payload = {"title": meta["title"], "portion": meta["portion"], "cover": cover, "sections": book == "general",
                "chapters": [chapter_payload(d) for d in chapters_json]}
     fontdir = os.path.relpath(os.path.join(ROOT, "fonts"), os.path.dirname(out_path))
     title = meta["title"] + (" — ಬೈಬಲ್ ರಸಪ್ರಶ್ನೆ" if cover else f" — {chapters_json[0]['chapter_label']} ರಸಪ್ರಶ್ನೆ")

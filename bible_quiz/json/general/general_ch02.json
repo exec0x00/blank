@@ -1,0 +1,1322 @@
+{
+ "book": "ಸಾಮಾನ್ಯ ಪ್ರಶ್ನೆಗಳು",
+ "book_id": "general",
+ "translation": "KRCBC",
+ "source_url": "https://krcbcbible.org/kannada_bible.php",
+ "chapter": 2,
+ "chapter_label": "ಭಾಗ 2",
+ "section_title": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳು",
+ "verses": null,
+ "question_count": 119,
+ "questions": [
+  {
+   "number": 1,
+   "type": "howmany",
+   "difficulty": "medium",
+   "question": "KRCBC ಕನ್ನಡ ಬೈಬಲಿನಲ್ಲಿ ಒಟ್ಟು ಎಷ್ಟು ಗ್ರಂಥಗಳಿವೆ?",
+   "answer": "73 (ಎಪ್ಪತ್ತಮೂರು)",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 2,
+   "type": "howmany",
+   "difficulty": "medium",
+   "question": "KRCBC ಬೈಬಲಿನ ಹಳೆಯ ಒಡಂಬಡಿಕೆಯಲ್ಲಿ ಎಷ್ಟು ಗ್ರಂಥಗಳಿವೆ?",
+   "answer": "46 (ನಲವತ್ತಾರು)",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 3,
+   "type": "howmany",
+   "difficulty": "medium",
+   "question": "KRCBC ಬೈಬಲಿನ ಹೊಸ ಒಡಂಬಡಿಕೆಯಲ್ಲಿ ಎಷ್ಟು ಗ್ರಂಥಗಳಿವೆ?",
+   "answer": "27 (ಇಪ್ಪತ್ತೇಳು)",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 4,
+   "type": "list",
+   "difficulty": "hard",
+   "question": "KRCBC ಬೈಬಲಿನ ಎರಡು ಮುಖ್ಯ ಭಾಗಗಳು ಯಾವುವು?",
+   "answer": "ಹಳೆಯ ಒಡಂಬಡಿಕೆ ಮತ್ತು ಹೊಸ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 5,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಮೊದಲನೆಯ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಆದಿಕಾಂಡ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 6,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಕೊನೆಯ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಯೊವಾನ್ನನು ಕಂಡ ದಿವ್ಯ ದರ್ಶನಗಳ ಪ್ರಕಟನೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 7,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಹಳೆಯ ಒಡಂಬಡಿಕೆಯ ಕೊನೆಯ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಮಲಾಕಿಯನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 8,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಹೊಸ ಒಡಂಬಡಿಕೆಯ ಮೊದಲನೆಯ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಮತ್ತಾಯನು ಬರೆದ ಶುಭಸಂದೇಶ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 9,
+   "type": "howmany",
+   "difficulty": "medium",
+   "question": "KRCBC ಹೊಸ ಒಡಂಬಡಿಕೆಯಲ್ಲಿ ಎಷ್ಟು ಶುಭಸಂದೇಶಗಳಿವೆ?",
+   "answer": "4 (ನಾಲ್ಕು)",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 10,
+   "type": "list",
+   "difficulty": "hard",
+   "question": "KRCBC ಹೊಸ ಒಡಂಬಡಿಕೆಯ ನಾಲ್ಕು ಶುಭಸಂದೇಶಗಳನ್ನು ಕ್ರಮವಾಗಿ ಹೆಸರಿಸಿ.",
+   "answer": "1) ಮತ್ತಾಯನು ಬರೆದ ಶುಭಸಂದೇಶ; 2) ಮಾರ್ಕನು ಬರೆದ ಶುಭಸಂದೇಶ; 3) ಲೂಕನು ಬರೆದ ಶುಭಸಂದೇಶ; 4) ಯೊವಾನ್ನನು ಬರೆದ ಶುಭಸಂದೇಶ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 11,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಹೊಸ ಒಡಂಬಡಿಕೆಯ ಮೊದಲನೆಯ ಶುಭಸಂದೇಶ ಯಾವುದು?",
+   "answer": "ಮತ್ತಾಯನು ಬರೆದ ಶುಭಸಂದೇಶ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 12,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಹೊಸ ಒಡಂಬಡಿಕೆಯ ಎರಡನೆಯ ಶುಭಸಂದೇಶ ಯಾವುದು?",
+   "answer": "ಮಾರ್ಕನು ಬರೆದ ಶುಭಸಂದೇಶ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 13,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಹೊಸ ಒಡಂಬಡಿಕೆಯ ಮೂರನೆಯ ಶುಭಸಂದೇಶ ಯಾವುದು?",
+   "answer": "ಲೂಕನು ಬರೆದ ಶುಭಸಂದೇಶ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 14,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಹೊಸ ಒಡಂಬಡಿಕೆಯ ನಾಲ್ಕನೆಯ ಶುಭಸಂದೇಶ ಯಾವುದು?",
+   "answer": "ಯೊವಾನ್ನನು ಬರೆದ ಶುಭಸಂದೇಶ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 15,
+   "type": "howmany",
+   "difficulty": "medium",
+   "question": "KRCBC ಬೈಬಲಿನಲ್ಲಿ ‘ಪೌಲನು … ಬರೆದ ಪತ್ರ’ ಎಂಬ ಶೀರ್ಷಿಕೆಯ ಪತ್ರಗಳು ಎಷ್ಟು?",
+   "answer": "13 (ಹದಿಮೂರು)",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 16,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನಲ್ಲಿ ಪೌಲನ ಪತ್ರಗಳಲ್ಲಿ ಮೊದಲನೆಯದು ಯಾವುದು?",
+   "answer": "ಪೌಲನು ರೋಮನರಿಗೆ ಬರೆದ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 17,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನಲ್ಲಿ ಪೌಲನ ಪತ್ರಗಳಲ್ಲಿ ಕೊನೆಯದು ಯಾವುದು?",
+   "answer": "ಪೌಲನು ಫಿಲೆಮೋನನಿಗೆ ಬರೆದ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 18,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಪೌಲನ ಪತ್ರಗಳ ಕ್ರಮದಲ್ಲಿ ಗಲಾತ್ಯರಿಗೆ ಬರೆದ ಪತ್ರ ಎಷ್ಟನೆಯದು?",
+   "answer": "ನಾಲ್ಕನೆಯ (4ನೆಯ)",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 19,
+   "type": "howmany",
+   "difficulty": "medium",
+   "question": "KRCBC ಹಳೆಯ ಒಡಂಬಡಿಕೆಯಲ್ಲಿ ‘ಪ್ರವಾದಿ … ಗ್ರಂಥ’ ಎಂಬ ಶೀರ್ಷಿಕೆಯ ಗ್ರಂಥಗಳು ಎಷ್ಟು?",
+   "answer": "16 (ಹದಿನಾರು)",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 20,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನಲ್ಲಿ ‘ಪ್ರವಾದಿ … ಗ್ರಂಥ’ ಎಂಬ ಶೀರ್ಷಿಕೆಯ ಮೊದಲ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಯೆಶಾಯನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 21,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನಲ್ಲಿ ‘ಪ್ರವಾದಿ … ಗ್ರಂಥ’ ಎಂಬ ಶೀರ್ಷಿಕೆಯ ಕೊನೆಯ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಮಲಾಕಿಯನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 22,
+   "type": "list",
+   "difficulty": "hard",
+   "question": "KRCBC ಬೈಬಲಿನಲ್ಲಿ ‘ಯೊವಾನ್ನನು’ ಎಂಬ ಹೆಸರಿನಿಂದ ಆರಂಭವಾಗುವ ಗ್ರಂಥಗಳು ಯಾವುವು?",
+   "answer": "ಯೊವಾನ್ನನು ಬರೆದ ಶುಭಸಂದೇಶ; ಯೊವಾನ್ನನು ಬರೆದ ಮೊದಲನೆಯ ಪತ್ರ; ಯೊವಾನ್ನನು ಬರೆದ ಎರಡನೆಯ ಪತ್ರ; ಯೊವಾನ್ನನು ಬರೆದ ಮೂರನೆಯ ಪತ್ರ; ಯೊವಾನ್ನನು ಕಂಡ ದಿವ್ಯ ದರ್ಶನಗಳ ಪ್ರಕಟನೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 23,
+   "type": "howmany",
+   "difficulty": "medium",
+   "question": "KRCBC ಬೈಬಲಿನಲ್ಲಿ ‘ಯೊವಾನ್ನನು ಬರೆದ … ಪತ್ರ’ಗಳು ಎಷ್ಟು?",
+   "answer": "3 (ಮೂರು)",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 24,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ರೂತಳು’ ಎಷ್ಟನೆಯ ಗ್ರಂಥ?",
+   "answer": "8ನೆಯ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 25,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ರೂತಳು’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದೆ?",
+   "answer": "ಹಳೆಯ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 26,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನಲ್ಲಿ ‘ರೂತಳು’ ಗ್ರಂಥಕ್ಕೆ ಮುಂಚಿನ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ನ್ಯಾಯಸ್ಥಾಪಕರು",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 27,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ಗಲಾತ್ಯರಿಗೆ ಬರೆದ ಪತ್ರ’ ಎಷ್ಟನೆಯ ಗ್ರಂಥ?",
+   "answer": "55ನೆಯ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 28,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಪೌಲನು ಗಲಾತ್ಯರಿಗೆ ಬರೆದ ಪತ್ರ’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದೆ?",
+   "answer": "ಹೊಸ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 29,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನಲ್ಲಿ ‘ಪೌಲನು ಗಲಾತ್ಯರಿಗೆ ಬರೆದ ಪತ್ರ’ ಗ್ರಂಥಕ್ಕೆ ಮುಂಚಿನ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ಕೊರಿಂಥಿಯರಿಗೆ ಬರೆದ ಎರಡನೆಯ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 30,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಯೊವಾನ್ನನು ಬರೆದ ಶುಭಸಂದೇಶ’ ಎಷ್ಟನೆಯ ಗ್ರಂಥ?",
+   "answer": "50ನೆಯ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 31,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಯೊವಾನ್ನನು ಬರೆದ ಶುಭಸಂದೇಶ’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದೆ?",
+   "answer": "ಹೊಸ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 32,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನಲ್ಲಿ ‘ಯೊವಾನ್ನನು ಬರೆದ ಶುಭಸಂದೇಶ’ ಗ್ರಂಥಕ್ಕೆ ಮುಂಚಿನ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಲೂಕನು ಬರೆದ ಶುಭಸಂದೇಶ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 33,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಆದಿಕಾಂಡ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ವಿಮೋಚನಕಾಂಡ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 34,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ವಿಮೋಚನಕಾಂಡ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಯಾಜಕಕಾಂಡ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 35,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಯಾಜಕಕಾಂಡ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಸಂಖ್ಯಾಕಾಂಡ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 36,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಸಂಖ್ಯಾಕಾಂಡ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಧರ್ಮೋಪದೇಶಕಾಂಡ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 37,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಧರ್ಮೋಪದೇಶಕಾಂಡ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಯೆಹೋಶುವ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 38,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಯೆಹೋಶುವ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ನ್ಯಾಯಸ್ಥಾಪಕರು",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 39,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ನ್ಯಾಯಸ್ಥಾಪಕರು’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ರೂತಳು",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 40,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ರೂತಳು’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಸಮುವೇಲನು — ಪ್ರಥಮ ಭಾಗ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 41,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಸಮುವೇಲನು — ಪ್ರಥಮ ಭಾಗ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಸಮುವೇಲನು — ದ್ವಿತೀಯ ಭಾಗ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 42,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಸಮುವೇಲನು — ದ್ವಿತೀಯ ಭಾಗ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಅರಸುಗಳು — ಪ್ರಥಮ ಭಾಗ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 43,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಅರಸುಗಳು — ಪ್ರಥಮ ಭಾಗ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಅರಸುಗಳು — ದ್ವಿತೀಯ ಭಾಗ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 44,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಅರಸುಗಳು — ದ್ವಿತೀಯ ಭಾಗ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೂರ್ವಕಾಲದ ಇತಿಹಾಸ — ಪ್ರಥಮ ಭಾಗ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 45,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೂರ್ವಕಾಲದ ಇತಿಹಾಸ — ಪ್ರಥಮ ಭಾಗ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೂರ್ವಕಾಲದ ಇತಿಹಾಸ — ದ್ವಿತೀಯ ಭಾಗ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 46,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೂರ್ವಕಾಲದ ಇತಿಹಾಸ — ದ್ವಿತೀಯ ಭಾಗ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಎಜ್ರನು",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 47,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಎಜ್ರನು’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ನೆಹೆಮೀಯ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 48,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ನೆಹೆಮೀಯ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ತೊಬೀತನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 49,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ತೊಬೀತನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಜೂಡಿತಳು",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 50,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಜೂಡಿತಳು’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಎಸ್ತೇರಳು",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 51,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಎಸ್ತೇರಳು’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಮಕ್ಕಬಿಯರ ಮೊದಲನೆಯ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 52,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಮಕ್ಕಬಿಯರ ಮೊದಲನೆಯ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಮಕ್ಕಬಿಯರ ಎರಡನೇ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 53,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಮಕ್ಕಬಿಯರ ಎರಡನೇ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಯೋಬನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 54,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಯೋಬನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಕೀರ್ತನೆಗಳು",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 55,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಕೀರ್ತನೆಗಳು’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಜ್ಞಾನೋಕ್ತಿಗಳು",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 56,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಜ್ಞಾನೋಕ್ತಿಗಳು’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಉಪದೇಶಕನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 57,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಉಪದೇಶಕನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪರಮಗೀತೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 58,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪರಮಗೀತೆ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಸುಜ್ಞಾನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 59,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಸುಜ್ಞಾನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಸಿರಾಖನು",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 60,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಸಿರಾಖನು’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಯೆಶಾಯನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 61,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಯೆಶಾಯನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಯೆರೆಮೀಯನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 62,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಯೆರೆಮೀಯನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರಲಾಪಗಳು",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 63,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರಲಾಪಗಳು’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಬಾರೂಕನು",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 64,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಬಾರೂಕನು’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಯೆಜೆಕಿಯೇಲನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 65,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಯೆಜೆಕಿಯೇಲನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ದಾನಿಯೇಲನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 66,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ದಾನಿಯೇಲನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಹೊಶೇಯನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 67,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಹೊಶೇಯನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಯೊವೇಲನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 68,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಯೊವೇಲನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಆಮೋಸನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 69,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಆಮೋಸನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಓಬದ್ಯನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 70,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಓಬದ್ಯನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಯೋನನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 71,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಯೋನನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಮೀಕನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 72,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಮೀಕನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ನಹೂಮನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 73,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ನಹೂಮನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಹಬೂಕ್ಕೂಕನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 74,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಹಬೂಕ್ಕೂಕನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಜೆಫನ್ಯನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 75,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಜೆಫನ್ಯನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಹಗ್ಗಾಯನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 76,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಹಗ್ಗಾಯನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಜೆಕರ್ಯನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 77,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಜೆಕರ್ಯನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರವಾದಿ ಮಲಾಕಿಯನ ಗ್ರಂಥ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 78,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರವಾದಿ ಮಲಾಕಿಯನ ಗ್ರಂಥ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಮತ್ತಾಯನು ಬರೆದ ಶುಭಸಂದೇಶ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 79,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಮತ್ತಾಯನು ಬರೆದ ಶುಭಸಂದೇಶ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಮಾರ್ಕನು ಬರೆದ ಶುಭಸಂದೇಶ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 80,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಮಾರ್ಕನು ಬರೆದ ಶುಭಸಂದೇಶ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಲೂಕನು ಬರೆದ ಶುಭಸಂದೇಶ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 81,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಲೂಕನು ಬರೆದ ಶುಭಸಂದೇಶ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಯೊವಾನ್ನನು ಬರೆದ ಶುಭಸಂದೇಶ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 82,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಯೊವಾನ್ನನು ಬರೆದ ಶುಭಸಂದೇಶ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪ್ರೇಷಿತರ ಕಾರ್ಯಕಲಾಪಗಳು",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 83,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪ್ರೇಷಿತರ ಕಾರ್ಯಕಲಾಪಗಳು’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ರೋಮನರಿಗೆ ಬರೆದ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 84,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ರೋಮನರಿಗೆ ಬರೆದ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ಕೊರಿಂಥಿಯರಿಗೆ ಬರೆದ ಮೊದಲನೆಯ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 85,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ಕೊರಿಂಥಿಯರಿಗೆ ಬರೆದ ಮೊದಲನೆಯ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ಕೊರಿಂಥಿಯರಿಗೆ ಬರೆದ ಎರಡನೆಯ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 86,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ಕೊರಿಂಥಿಯರಿಗೆ ಬರೆದ ಎರಡನೆಯ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ಗಲಾತ್ಯರಿಗೆ ಬರೆದ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 87,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ಗಲಾತ್ಯರಿಗೆ ಬರೆದ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ಎಫೆಸಿಯರಿಗೆ ಬರೆದ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 88,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ಎಫೆಸಿಯರಿಗೆ ಬರೆದ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ಫಿಲಿಪ್ಪಿಯರಿಗೆ ಬರೆದ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 89,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ಫಿಲಿಪ್ಪಿಯರಿಗೆ ಬರೆದ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ಕೊಲೊಸ್ಸೆಯರಿಗೆ ಬರೆದ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 90,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ಕೊಲೊಸ್ಸೆಯರಿಗೆ ಬರೆದ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ಥೆಸಲೋನಿಯರಿಗೆ ಬರೆದ ಮೊದಲನೆಯ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 91,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ಥೆಸಲೋನಿಯರಿಗೆ ಬರೆದ ಮೊದಲನೆಯ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ಥೆಸಲೋನಿಯರಿಗೆ ಬರೆದ ಎರಡನೆಯ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 92,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ಥೆಸಲೋನಿಯರಿಗೆ ಬರೆದ ಎರಡನೆಯ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ತಿಮೊಥೇಯನಿಗೆ ಬರೆದ ಮೊದಲನೆಯ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 93,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ತಿಮೊಥೇಯನಿಗೆ ಬರೆದ ಮೊದಲನೆಯ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ತಿಮೊಥೇಯನಿಗೆ ಬರೆದ ಎರಡನೆಯ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 94,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ತಿಮೊಥೇಯನಿಗೆ ಬರೆದ ಎರಡನೆಯ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ತೀತನಿಗೆ ಬರೆದ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 95,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ತೀತನಿಗೆ ಬರೆದ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೌಲನು ಫಿಲೆಮೋನನಿಗೆ ಬರೆದ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 96,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೌಲನು ಫಿಲೆಮೋನನಿಗೆ ಬರೆದ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಹಿಬ್ರಿಯರಿಗೆ ಬರೆದ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 97,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಹಿಬ್ರಿಯರಿಗೆ ಬರೆದ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಯಕೋಬನು ಬರೆದ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 98,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಯಕೋಬನು ಬರೆದ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೇತ್ರನು ಬರೆದ ಮೊದಲನೆಯ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 99,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೇತ್ರನು ಬರೆದ ಮೊದಲನೆಯ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಪೇತ್ರನು ಬರೆದ ಎರಡನೆಯ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 100,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಪೇತ್ರನು ಬರೆದ ಎರಡನೆಯ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಯೊವಾನ್ನನು ಬರೆದ ಮೊದಲನೆಯ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 101,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಯೊವಾನ್ನನು ಬರೆದ ಮೊದಲನೆಯ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಯೊವಾನ್ನನು ಬರೆದ ಎರಡನೆಯ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 102,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಯೊವಾನ್ನನು ಬರೆದ ಎರಡನೆಯ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಯೊವಾನ್ನನು ಬರೆದ ಮೂರನೆಯ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 103,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಯೊವಾನ್ನನು ಬರೆದ ಮೂರನೆಯ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಯೂದನು ಬರೆದ ಪತ್ರ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 104,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "KRCBC ಬೈಬಲಿನ ಗ್ರಂಥಗಳ ಕ್ರಮದಲ್ಲಿ ‘ಯೂದನು ಬರೆದ ಪತ್ರ’ ಗ್ರಂಥದ ನಂತರ ಬರುವ ಗ್ರಂಥ ಯಾವುದು?",
+   "answer": "ಯೊವಾನ್ನನು ಕಂಡ ದಿವ್ಯ ದರ್ಶನಗಳ ಪ್ರಕಟನೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 105,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ತೊಬೀತನ ಗ್ರಂಥ’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹಳೆಯ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 106,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಜೂಡಿತಳು’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹಳೆಯ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 107,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಮಕ್ಕಬಿಯರ ಮೊದಲನೆಯ ಗ್ರಂಥ’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹಳೆಯ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 108,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಮಕ್ಕಬಿಯರ ಎರಡನೇ ಗ್ರಂಥ’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹಳೆಯ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 109,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಸುಜ್ಞಾನ ಗ್ರಂಥ’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹಳೆಯ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 110,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಸಿರಾಖನು’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹಳೆಯ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 111,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಬಾರೂಕನು’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹಳೆಯ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 112,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಪ್ರೇಷಿತರ ಕಾರ್ಯಕಲಾಪಗಳು’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹೊಸ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 113,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಹಿಬ್ರಿಯರಿಗೆ ಬರೆದ ಪತ್ರ’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹೊಸ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 114,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಯಕೋಬನು ಬರೆದ ಪತ್ರ’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹೊಸ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 115,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಯೂದನು ಬರೆದ ಪತ್ರ’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹೊಸ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 116,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಯೊವಾನ್ನನು ಕಂಡ ದಿವ್ಯ ದರ್ಶನಗಳ ಪ್ರಕಟನೆ’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹೊಸ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 117,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಯೋಬನ ಗ್ರಂಥ’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹಳೆಯ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 118,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ಪ್ರಲಾಪಗಳು’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹಳೆಯ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  },
+  {
+   "number": 119,
+   "type": "what",
+   "difficulty": "easy",
+   "question": "‘ನ್ಯಾಯಸ್ಥಾಪಕರು’ ಯಾವ ಒಡಂಬಡಿಕೆಗೆ ಸೇರಿದ ಗ್ರಂಥ?",
+   "answer": "ಹಳೆಯ ಒಡಂಬಡಿಕೆ",
+   "refs": [
+    "KRCBC ಗ್ರಂಥಪಟ್ಟಿ"
+   ],
+   "source": "auto"
+  }
+ ]
+}

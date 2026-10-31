@@ -103,9 +103,11 @@ def load_manual(path, ch):
 def chunks_of(text):
     """Split a verse into sentence-like chunks of 4..22 words (quotes removed)."""
     t = text
-    for c in "“”‘’\"":
-        t = t.replace(c, "")
-    t = re.sub(r"\(.*?\)", "", t)
+    # the excerpt is shown inside “ ”, so the verse's own speech marks become ‘ ’ (KRCBC words unchanged)
+    t = t.replace("“", "‘").replace("”", "’").replace('"', "")
+    t = re.sub(r"\(([^)]*)\)\s*$", "", t.strip())          # trailing parenthetical note: drop
+    t = re.sub(r"^\s*\([^)]*\)\s*", "", t)                   # leading parenthetical: drop
+    t = re.sub(r"\s*\([^)]*\)\s*", " … ", t)               # mid-sentence: show the gap as …
     parts = re.split(r"(?<=[.?!;:])\s+", t)
     out = []
     for p in parts:
@@ -127,7 +129,9 @@ def chunks_of(text):
                     out.append(" ".join(buf))
         elif len(w) >= 4:
             out.append(p)
-    return [o.strip() for o in out if 4 <= len(o.split()) <= 26]
+    out = [o.strip() for o in out]
+    # drop fragments: chunks that end in the middle of a sentence (verse ends with a comma/colon)
+    return [o for o in out if 4 <= len(o.split()) <= 26 and not o.endswith((",", ":", "…")) and o != "…"]
 
 
 def clean_word(w):
@@ -139,8 +143,10 @@ def blank_candidates(chunk, names):
     cands = []
     for i, w in enumerate(words):
         cw = clean_word(w)
-        if len(cw) < 3 or cw in STOP or re.search(r"\d", cw):
+        if len(cw) < 3 or cw in STOP or re.search(r"\d", cw) or "…" in w:
             continue
+        if sum(cw in clean_word(x) for x in words) > 1:
+            continue  # word appears twice: a blank would be ambiguous / give itself away
         score = len(cw)
         if any(cw.startswith(n) for n in names):
             score += 12
@@ -169,7 +175,7 @@ def ref_str(ch, v, merged_map):
     return f"{ch}:{v}"
 
 
-def autogen(book, ch, vdict, merged_map, need, existing_norm, manual_per_verse):
+def autogen(book, ch, vdict, merged_map, need, existing_norm, manual_per_verse, minw=5):
     names = BOOKS[book]["names"]
     title = BOOKS[book]["ref_name"]
     # count chunk occurrences across chapter to keep "which verse" unambiguous
@@ -194,7 +200,7 @@ def autogen(book, ch, vdict, merged_map, need, existing_norm, manual_per_verse):
             cands = blank_candidates(c, names)
             nw = len(c.split())
             alt = k % 2  # alternate the second item type between chunks for variety
-            if cands:
+            if cands and nw >= minw:
                 q, a = make_blank(c, [cands[0][1]])
                 tiers[0].append(("fill", f"ವಾಕ್ಯ ಪೂರ್ಣಗೊಳಿಸಿ: “{q}”", a[0], c))
             which = None
@@ -207,7 +213,7 @@ def autogen(book, ch, vdict, merged_map, need, existing_norm, manual_per_verse):
                 cont = ("continue", f"ವಚನವನ್ನು ಮುಂದುವರಿಸಿ: “{' '.join(ws[:cut])} …”", f"“… {' '.join(ws[cut:])}”", c)
             first, second = (which, cont) if alt == 0 else (cont, which)
             if first: tiers[1].append(first)
-            if len(cands) > 1:
+            if len(cands) > 1 and nw >= minw + 1:
                 q, a = make_blank(c, [cands[1][1]])
                 tiers[2].append(("fill", f"ವಾಕ್ಯ ಪೂರ್ಣಗೊಳಿಸಿ: “{q}”", a[0], c))
             if second: tiers[3].append(second)
@@ -225,7 +231,11 @@ def autogen(book, ch, vdict, merged_map, need, existing_norm, manual_per_verse):
             if len(cands) > 4:
                 q, a = make_blank(c, [cands[4][1]])
                 tiers[3].append(("fill", f"ವಾಕ್ಯ ಪೂರ್ಣಗೊಳಿಸಿ: “{q}”", a[0], c))
-        pools[v] = tiers[0] + tiers[1] + tiers[2] + tiers[3]
+        fills2 = [x for x in tiers[2] if x[0] == "fill"]
+        rest2 = [x for x in tiers[2] if x[0] != "fill"]
+        other3 = [x for x in tiers[3] if x[0] != "fill"]
+        fills3 = [x for x in tiers[3] if x[0] == "fill"]
+        pools[v] = tiers[0] + tiers[1] + rest2 + other3 + fills2 + fills3
     # order each verse's pool: round-robin over chunks by type priority already; just keep
     out = []
     used = set(existing_norm)
@@ -331,6 +341,8 @@ def main():
         mpv[it["_v"]] += 1
     need = max(0, a.target - len(manual)) + 6  # small margin above the minimum
     auto = autogen(book, ch, vdict, merged_map, need, {norm(i["question"]) for i in manual}, mpv)
+    if len(manual) + len(auto) < a.target:  # short chapter: also allow blanks in 4-word sentences
+        auto = autogen(book, ch, vdict, merged_map, need, {norm(i["question"]) for i in manual}, mpv, minw=4)
     items = manual + auto
     errors, warns = validate(items, book, ch, allv)
     # order: by first verse, manual before auto, stable
