@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 2 Short Notes</title>
+<style>
+  :root{
+    --ink:#1b1f24; --muted:#5b6470; --accent:#1f4e8c; --accent-soft:#e8eff9;
+    --warn:#9a3412; --warn-soft:#fff3e8; --ok:#166534; --ok-soft:#ecf8ef;
+    --rule:#d5dbe3; --viewer:#4a4d52; --paper:#ffffff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--viewer);color:var(--ink);
+    font-family:"Charter","Bitstream Charter","Georgia","Cambria","DejaVu Serif",serif;
+    font-size:10.2pt;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;margin:10mm auto;background:var(--paper);
+    box-shadow:0 2px 12px rgba(0,0,0,.45);position:relative;overflow:hidden;
+    padding:17mm 15mm 16mm 15mm}
+  .runhead{position:absolute;top:7mm;left:15mm;right:15mm;display:flex;justify-content:space-between;
+    font-family:"Inter","Liberation Sans",sans-serif;font-size:7.5pt;color:var(--muted);
+    border-bottom:.6pt solid var(--rule);padding-bottom:1.5mm;letter-spacing:.02em}
+  .runfoot{position:absolute;bottom:7mm;left:15mm;right:15mm;display:flex;justify-content:space-between;
+    font-family:"Inter","Liberation Sans",sans-serif;font-size:7.5pt;color:var(--muted)}
+  h1,h2,h3,h4{font-family:"Inter","Liberation Sans",sans-serif;color:var(--accent);margin:0}
+  .title{border:1.2pt solid var(--accent);border-radius:2mm;padding:5mm 6mm;margin-bottom:4mm;
+    background:linear-gradient(135deg,#f4f8fd 0%,#ffffff 70%)}
+  .title .code{font-family:"Inter",sans-serif;font-size:8pt;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+  .title h1{font-size:20pt;margin:1mm 0 1mm;color:var(--ink)}
+  .title h1 span{color:var(--accent)}
+  .title p{margin:0;color:var(--muted);font-size:9.5pt}
+  h2{font-size:12.5pt;margin:4mm 0 2mm;padding-bottom:1mm;border-bottom:1.2pt solid var(--accent)}
+  h2 .n{display:inline-block;background:var(--accent);color:#fff;border-radius:1mm;padding:.2mm 2mm;font-size:10pt;margin-right:2.5mm;vertical-align:1pt}
+  h3{font-size:10.4pt;margin:3mm 0 1.2mm;color:var(--ink)}
+  h3::before{content:"▸ ";color:var(--accent)}
+  p{margin:1mm 0}
+  ul,ol{margin:1mm 0 1mm 0;padding-left:5mm}
+  li{margin:.5mm 0}
+  i,.v{font-style:italic}
+  .box{border:.8pt solid var(--accent);background:var(--accent-soft);border-radius:1.5mm;padding:2mm 3mm;margin:2mm 0}
+  .box.f{border-left:3pt solid var(--accent)}
+  .box .bt{font-family:"Inter",sans-serif;font-weight:700;font-size:8pt;color:var(--accent);
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:.8mm}
+  .tip{border:.8pt solid #f0b37e;background:var(--warn-soft);border-radius:1.5mm;padding:1.6mm 3mm;margin:2mm 0}
+  .tip .bt{font-family:"Inter",sans-serif;font-weight:700;font-size:8pt;color:var(--warn);text-transform:uppercase;letter-spacing:.06em}
+  .ex{border:.8pt solid #9fd0ab;background:var(--ok-soft);border-radius:1.5mm;padding:1.6mm 3mm;margin:2mm 0}
+  .ex .bt{font-family:"Inter",sans-serif;font-weight:700;font-size:8.6pt;color:var(--ok);letter-spacing:.02em}
+  .eq{text-align:center;margin:1.4mm 0;font-size:10.8pt}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+  .cols3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3mm}
+  table{border-collapse:collapse;width:100%;margin:1.5mm 0;font-size:9.6pt}
+  th,td{border:.6pt solid var(--rule);padding:1.2mm 2mm;text-align:left;vertical-align:middle}
+  th{background:var(--accent);color:#fff;font-family:"Inter",sans-serif;font-size:8.3pt;font-weight:600}
+  tr:nth-child(even) td{background:#f7f9fc}
+  .fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.9em;margin:0 .12em;line-height:1.12}
+  .fr>span{padding:0 .2em}
+  .fr>span:first-child{border-bottom:.7pt solid currentColor}
+  .hl{background:#fff2a8;padding:0 .6mm;border-radius:.6mm}
+  .muted{color:var(--muted)}
+  .small{font-size:9pt}
+  .toc{columns:2;column-gap:8mm;font-size:9.6pt;margin:0;padding-left:5mm}
+  .toc li{break-inside:avoid}
+  .ans{color:var(--ok);font-weight:700}
+  sup,sub{font-size:.72em;line-height:0}
+  @page{size:A4;margin:0}
+  @media print{
+    body{background:#fff}
+    .page{margin:0;box-shadow:none;page-break-after:always;break-after:page}
+    .page:last-child{page-break-after:auto;break-after:auto}
+  }
+  @media screen and (max-width:820px){
+    .page{width:100%;height:auto;min-height:0;margin:0 0 4mm;padding:16mm 4mm 14mm}
+    .runhead,.runfoot{left:4mm;right:4mm}
+    .cols,.cols3{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================== PAGE 1 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 2 · Higher Order Differential Equations</span></div>
+
+  <div class="title">
+    <div class="code">UE26MA141A · Engineering Mathematics – I · Short Notes</div>
+    <h1>Unit 2 — <span>Higher Order Linear Differential Equations</span></h1>
+    <p>Last-minute revision: CF rules, every PI type with its failure case, variation of parameters, Cauchy and Legendre equations, LCR circuits and SHM, with worked answers. Built from the PESU Unit 2 slides (sessions 1–11).</p>
+  </div>
+
+  <ol class="toc">
+    <li>Linear DEs: definitions &amp; operator D</li>
+    <li>Complementary function (CF)</li>
+    <li>Inverse operator &amp; particular integral (PI)</li>
+    <li>PI Type 1: X = e<sup>ax</sup></li>
+    <li>PI Type 2: X = sin(ax + b), cos(ax + b)</li>
+    <li>PI Type 3: X = x<sup>m</sup></li>
+    <li>PI Type 4: X = e<sup>ax</sup>V(x)</li>
+    <li>PI when X is any other function</li>
+    <li>Variation of parameters</li>
+    <li>Cauchy's &amp; Legendre's equations</li>
+    <li>Applications: LCR circuit &amp; SHM</li>
+    <li>One-page formula sheet</li>
+  </ol>
+
+  <h2><span class="n">1</span>Linear Differential Equations — Basics</h2>
+  <p>A DE is <b>linear</b> if the dependent variable <i>y</i> and its derivatives appear only to the first degree and are never multiplied together.</p>
+  <div class="box f">
+    <div class="bt">n-th order linear DE with constant coefficients</div>
+    <div class="eq"><span class="fr"><span>dⁿy</span><span>dxⁿ</span></span> + <i>a</i><sub>1</sub><span class="fr"><span>dⁿ⁻¹y</span><span>dxⁿ⁻¹</span></span> + … + <i>a</i><sub><i>n</i>−1</sub><span class="fr"><span>dy</span><span>dx</span></span> + <i>a<sub>n</sub>y</i> = <i>X(x)</i></div>
+    With <b><i>D</i> = d/dx</b> (so <i>D</i>² = d²/dx², …) this becomes &nbsp;<b><i>f(D) y = X</i></b>, where <i>f(D) = Dⁿ + a</i><sub>1</sub><i>D</i><sup><i>n</i>−1</sup> + … + <i>a<sub>n</sub></i> is the linear differential operator.
+  </div>
+  <table>
+    <tr><th>Type</th><th>Condition</th><th>Solution</th></tr>
+    <tr><td><b>Homogeneous</b></td><td><i>X</i> = 0</td><td><i>y</i> = CF</td></tr>
+    <tr><td><b>Non-homogeneous</b></td><td><i>X</i> ≠ 0</td><td><b><i>y</i> = CF + PI</b> &nbsp;(complete or general solution)</td></tr>
+  </table>
+  <ul>
+    <li><b>CF</b> (complementary function) is the general solution of <i>f(D)y</i> = 0 and contains <i>n</i> arbitrary constants.</li>
+    <li><b>PI</b> (particular integral) is any one solution of <i>f(D)y = X</i> and contains <b>no</b> arbitrary constants.</li>
+    <li><b>Superposition:</b> if <i>y</i><sub>1</sub> and <i>y</i><sub>2</sub> solve the homogeneous equation, so does <i>c</i><sub>1</sub><i>y</i><sub>1</sub> + <i>c</i><sub>2</sub><i>y</i><sub>2</sub>.</li>
+    <li><i>y</i><sub>1</sub> and <i>y</i><sub>2</sub> are <b>linearly independent</b> ⇔ the Wronskian <i>W</i> = <i>y</i><sub>1</sub><i>y</i><sub>2</sub>′ − <i>y</i><sub>2</sub><i>y</i><sub>1</sub>′ ≠ 0.</li>
+  </ul>
+
+  <h2><span class="n">2</span>Complementary Function (CF)</h2>
+  <p>Replace <i>D</i> by <i>m</i> to get the <b>auxiliary equation (AE)</b> <i>f(m)</i> = 0, find its roots, and read off the CF:</p>
+  <table>
+    <tr><th style="width:40%">Roots of AE</th><th>CF</th></tr>
+    <tr><td>Real &amp; distinct: <i>m</i><sub>1</sub>, <i>m</i><sub>2</sub>, …</td><td><i>c</i><sub>1</sub><i>e</i><sup><i>m</i><sub>1</sub><i>x</i></sup> + <i>c</i><sub>2</sub><i>e</i><sup><i>m</i><sub>2</sub><i>x</i></sup> + …</td></tr>
+    <tr><td>Real &amp; repeated: <i>m, m</i> (twice)</td><td>(<i>c</i><sub>1</sub> + <i>c</i><sub>2</sub><i>x</i>)<i>e<sup>mx</sup></i></td></tr>
+    <tr><td>Repeated <i>k</i> times</td><td>(<i>c</i><sub>1</sub> + <i>c</i><sub>2</sub><i>x</i> + … + <i>c<sub>k</sub>x</i><sup><i>k</i>−1</sup>)<i>e<sup>mx</sup></i></td></tr>
+    <tr><td>Complex: α ± <i>i</i>β</td><td><i>e</i><sup>α<i>x</i></sup>(<i>c</i><sub>1</sub> cos β<i>x</i> + <i>c</i><sub>2</sub> sin β<i>x</i>)</td></tr>
+    <tr><td>Complex repeated: α ± <i>i</i>β (twice)</td><td><i>e</i><sup>α<i>x</i></sup>[(<i>c</i><sub>1</sub> + <i>c</i><sub>2</sub><i>x</i>) cos β<i>x</i> + (<i>c</i><sub>3</sub> + <i>c</i><sub>4</sub><i>x</i>) sin β<i>x</i>]</td></tr>
+    <tr><td>Pure imaginary: ±<i>i</i>β</td><td><i>c</i><sub>1</sub> cos β<i>x</i> + <i>c</i><sub>2</sub> sin β<i>x</i></td></tr>
+  </table>
+
+  <div class="runfoot"><span>Short notes · Unit 2</span><span>Page 1 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 2 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 2 · Higher Order Differential Equations</span></div>
+
+  <div class="ex"><div class="bt">CF examples</div>
+    <table class="small" style="margin:0">
+      <tr><td>(<i>D</i>³ − 6<i>D</i>² + 11<i>D</i> − 6)<i>y</i> = 0</td><td><i>m</i> = 1, 2, 3 (try <i>m</i> = 1 first, then synthetic division)</td><td><i>c</i><sub>1</sub><i>e<sup>x</sup></i> + <i>c</i><sub>2</sub><i>e</i><sup>2<i>x</i></sup> + <i>c</i><sub>3</sub><i>e</i><sup>3<i>x</i></sup></td></tr>
+      <tr><td>(<i>D</i>² + 2<i>D</i> + 5)<i>y</i> = 0</td><td><i>m</i> = −1 ± 2<i>i</i></td><td><i>e</i><sup>−<i>x</i></sup>(<i>c</i><sub>1</sub> cos 2<i>x</i> + <i>c</i><sub>2</sub> sin 2<i>x</i>)</td></tr>
+      <tr><td>(<i>D</i>² − 2<i>D</i> + 1)<i>y</i> = 0</td><td><i>m</i> = 1, 1</td><td>(<i>c</i><sub>1</sub> + <i>c</i><sub>2</sub><i>x</i>)<i>e<sup>x</sup></i></td></tr>
+      <tr><td>(<i>D</i>⁴ + 8<i>D</i>² + 16)<i>y</i> = 0</td><td>(<i>m</i>² + 4)² = 0 ⇒ ±2<i>i</i> twice</td><td>(<i>c</i><sub>1</sub> + <i>c</i><sub>2</sub><i>x</i>) cos 2<i>x</i> + (<i>c</i><sub>3</sub> + <i>c</i><sub>4</sub><i>x</i>) sin 2<i>x</i></td></tr>
+      <tr><td>(2<i>D</i>² + 2<i>D</i> + 3)<i>y</i> = 0</td><td><i>m</i> = (−1 ± <i>i</i>√5)/2</td><td><i>e</i><sup>−<i>x</i>/2</sup>(<i>c</i><sub>1</sub> cos <span class="fr"><span>√5</span><span>2</span></span><i>x</i> + <i>c</i><sub>2</sub> sin <span class="fr"><span>√5</span><span>2</span></span><i>x</i>)</td></tr>
+      <tr><td>(<i>D</i>⁴ − 1)<i>y</i> = 0</td><td><i>m</i> = ±1, ±<i>i</i></td><td><i>c</i><sub>1</sub><i>e<sup>x</sup></i> + <i>c</i><sub>2</sub><i>e</i><sup>−<i>x</i></sup> + <i>c</i><sub>3</sub> cos <i>x</i> + <i>c</i><sub>4</sub> sin <i>x</i></td></tr>
+    </table>
+  </div>
+
+  <h2><span class="n">3</span>Inverse Operator &amp; Particular Integral</h2>
+  <div class="box f">
+    <div class="eq"><b>PI</b> = <span class="fr"><span>1</span><span>f(D)</span></span> <i>X</i>
+      &emsp;&emsp; <span class="fr"><span>1</span><span>D</span></span><i>X</i> = ∫<i>X dx</i>
+      &emsp;&emsp; <span class="fr"><span>1</span><span>D − a</span></span><i>X</i> = <i>e<sup>ax</sup></i>∫<i>X e</i><sup>−<i>ax</i></sup><i>dx</i>
+      &emsp;&emsp; <span class="fr"><span>1</span><span>D + a</span></span><i>X</i> = <i>e</i><sup>−<i>ax</i></sup>∫<i>X e<sup>ax</sup>dx</i></div>
+  </div>
+  <p class="small muted">1/<i>f(D)</i> is the inverse of <i>f(D)</i>: <i>f(D)</i>[1/<i>f(D)</i>]<i>X</i> = <i>X</i>. The shortcut rules below follow from <i>D e<sup>ax</sup> = a e<sup>ax</sup></i> and <i>D</i>² sin <i>ax</i> = −<i>a</i>² sin <i>ax</i>.</p>
+
+  <h2><span class="n">4</span>PI Type 1 — <i>X</i> = <i>e<sup>ax</sup></i> (also constants, sinh, cosh, <i>k<sup>x</sup></i>)</h2>
+  <div class="box f">
+    <div class="eq"><span class="fr"><span>1</span><span>f(D)</span></span><i>e<sup>ax</sup></i> = <span class="fr"><span>e<sup>ax</sup></span><span>f(a)</span></span>, &nbsp; <i>f(a)</i> ≠ 0 &nbsp;&nbsp;(replace <i>D</i> by <i>a</i>)</div>
+    <b>Case of failure</b> (<i>f(a)</i> = 0, i.e. <i>a</i> is a root of the AE):
+    <div class="eq">PI = <i>x</i><span class="fr"><span>e<sup>ax</sup></span><span>f′(a)</span></span> &nbsp;(<i>f′(a)</i> ≠ 0); &emsp; if <i>f′(a)</i> = 0 too: PI = <i>x</i>²<span class="fr"><span>e<sup>ax</sup></span><span>f″(a)</span></span>; &emsp; and so on.</div>
+  </div>
+  <ul class="small">
+    <li><b>Constant</b> <i>k</i> = <i>k e</i><sup>0<i>x</i></sup> ⇒ put <i>D</i> = 0.</li>
+    <li>sinh <i>ax</i> = (<i>e<sup>ax</sup> − e</i><sup>−<i>ax</i></sup>)/2 and cosh <i>ax</i> = (<i>e<sup>ax</sup> + e</i><sup>−<i>ax</i></sup>)/2: split and apply the rule to each part.</li>
+    <li><i>k<sup>x</sup> = e</i><sup><i>x</i> ln <i>k</i></sup> ⇒ <i>a</i> = ln <i>k</i>. &nbsp; For a sum <i>X</i> = <i>X</i><sub>1</sub> + <i>X</i><sub>2</sub>, PI = PI<sub>1</sub> + PI<sub>2</sub>.</li>
+  </ul>
+  <table class="small">
+    <tr><th style="width:36%">Equation</th><th>Working</th><th style="width:24%">PI</th></tr>
+    <tr><td>(<i>D</i>² + 2<i>D</i> + 5)<i>y</i> = 1</td><td><i>X</i> = <i>e</i><sup>0<i>x</i></sup>, <i>f</i>(0) = 5</td><td class="ans">1/5</td></tr>
+    <tr><td>(<i>D</i>² + 4<i>D</i> + 4)<i>y</i> = <i>e</i><sup>−2<i>x</i></sup></td><td><i>f</i>(−2) = 0, <i>f′</i>(−2) = 2<i>D</i> + 4 = 0, <i>f″</i> = 2</td><td class="ans"><i>x</i>²<i>e</i><sup>−2<i>x</i></sup>/2</td></tr>
+    <tr><td>(<i>D</i>³ − 3<i>D</i> + 2)<i>y</i> = 2 sinh <i>x</i> = <i>e<sup>x</sup> − e</i><sup>−<i>x</i></sup></td><td><i>a</i> = 1: <i>f</i> = <i>f′</i> = 0, <i>f″</i> = 6<i>D</i> = 6 ⇒ <i>x</i>²<i>e<sup>x</sup></i>/6. &nbsp;<i>a</i> = −1: <i>f</i>(−1) = 4</td><td class="ans"><span class="fr"><span>x²eˣ</span><span>6</span></span> − <span class="fr"><span>e⁻ˣ</span><span>4</span></span></td></tr>
+    <tr><td>(<i>D</i>² − 5<i>D</i> + 6)<i>y</i> = <i>e</i><sup>3<i>x</i></sup> + 3</td><td><i>f</i>(3) = 0, <i>f′</i>(3) = 2·3 − 5 = 1; constant: <i>f</i>(0) = 6</td><td class="ans"><i>x e</i><sup>3<i>x</i></sup> + ½</td></tr>
+  </table>
+
+  <div class="runfoot"><span>Short notes · Unit 2</span><span>Page 2 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 3 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 2 · Higher Order Differential Equations</span></div>
+
+  <h2><span class="n">5</span>PI Type 2 — <i>X</i> = sin(<i>ax + b</i>) or cos(<i>ax + b</i>)</h2>
+  <div class="box f">
+    <div class="eq"><span class="fr"><span>1</span><span>f(D²)</span></span> sin(<i>ax + b</i>) = <span class="fr"><span>sin(ax + b)</span><span>f(−a²)</span></span>, &nbsp;<i>f</i>(−<i>a</i>²) ≠ 0 &nbsp;&nbsp;(replace <b><i>D</i>² by −<i>a</i>²</b>; the same rule holds for cos)</div>
+    <b>Case of failure</b> (<i>f</i>(−<i>a</i>²) = 0): PI = <i>x</i> · <span class="fr"><span>1</span><span>f′(D)</span></span> sin(<i>ax + b</i>), then replace <i>D</i>² by −<i>a</i>² again. Most used special case:
+    <div class="eq"><span class="fr"><span>1</span><span>D² + a²</span></span> sin <i>ax</i> = − <span class="fr"><span>x</span><span>2a</span></span> cos <i>ax</i> &emsp;&emsp; <span class="fr"><span>1</span><span>D² + a²</span></span> cos <i>ax</i> = <span class="fr"><span>x</span><span>2a</span></span> sin <i>ax</i></div>
+  </div>
+  <ul class="small">
+    <li>If odd powers of <i>D</i> remain after substitution (e.g. 1/(<i>pD + q</i>)), multiply above and below by the <b>conjugate</b> (<i>pD − q</i>) to get <i>D</i>² in the denominator, replace <i>D</i>² by −<i>a</i>², then let <i>D</i> act (differentiate) on the numerator.</li>
+    <li>Rewrite powers and products first: sin²<i>x</i> = (1 − cos 2<i>x</i>)/2, cos²<i>x</i> = (1 + cos 2<i>x</i>)/2, sin <i>A</i> cos <i>B</i> = ½[sin(<i>A + B</i>) + sin(<i>A − B</i>)], sin³<i>x</i> = (3 sin <i>x</i> − sin 3<i>x</i>)/4, cos³<i>x</i> = (3 cos <i>x</i> + cos 3<i>x</i>)/4.</li>
+  </ul>
+  <table class="small">
+    <tr><th style="width:30%">Equation</th><th>Working</th><th style="width:26%">PI</th></tr>
+    <tr><td>(<i>D</i>² + 3)<i>y</i> = cos √3<i>x</i></td><td><i>f</i>(−3) = 0 ⇒ <i>x</i>·(1/2<i>D</i>) cos √3<i>x</i> = (<i>x</i>/2)∫cos √3<i>x dx</i></td><td class="ans"><span class="fr"><span>x sin √3x</span><span>2√3</span></span></td></tr>
+    <tr><td>(<i>D</i>³ − 2<i>D</i>² + <i>D</i>)<i>y</i> = sin²<i>x</i></td><td><i>X</i> = ½ − ½ cos 2<i>x</i>. Part 1: <i>f</i>(0) = 0, <i>f′</i>(0) = 1 ⇒ <i>x</i>/2. Part 2: <i>D</i>² = −4 gives <i>D</i>³ = −4<i>D</i>, denominator 8 − 3<i>D</i>; ×(8 + 3<i>D</i>) ⇒ (8 + 3<i>D</i>) cos 2<i>x</i>/100</td><td class="ans"><span class="fr"><span>x</span><span>2</span></span> − <span class="fr"><span>4 cos 2x − 3 sin 2x</span><span>100</span></span></td></tr>
+    <tr><td>(<i>D</i>² + 4)<i>y</i> = sin 2<i>x</i></td><td>failure case with <i>a</i> = 2</td><td class="ans">−(<i>x</i>/4) cos 2<i>x</i></td></tr>
+    <tr><td>(<i>D</i>² + <i>D</i> + 1)<i>y</i> = sin 2<i>x</i></td><td><i>D</i>² = −4 ⇒ 1/(<i>D</i> − 3) = (<i>D</i> + 3)/(<i>D</i>² − 9) = (<i>D</i> + 3)/(−13)</td><td class="ans">−(2 cos 2<i>x</i> + 3 sin 2<i>x</i>)/13</td></tr>
+  </table>
+
+  <h2><span class="n">6</span>PI Type 3 — <i>X</i> = <i>x<sup>m</sup></i> (polynomial)</h2>
+  <div class="box f">
+    <div class="eq">PI = [<i>f(D)</i>]<sup>−1</sup> <i>x<sup>m</sup></i> &nbsp;— take the lowest-degree term out, write the rest as [1 ± φ(<i>D</i>)]<sup>−1</sup>, expand in ascending powers of <i>D</i> <b>up to <i>D<sup>m</sup></i></b>, then operate term by term.</div>
+    <div class="cols3 small" style="margin-top:1mm">
+      <div>(1 + <i>z</i>)<sup>−1</sup> = 1 − <i>z</i> + <i>z</i>² − <i>z</i>³ + …</div>
+      <div>(1 − <i>z</i>)<sup>−1</sup> = 1 + <i>z</i> + <i>z</i>² + <i>z</i>³ + …</div>
+      <div>(1 + <i>z</i>)<sup>−2</sup> = 1 − 2<i>z</i> + 3<i>z</i>² − 4<i>z</i>³ + …</div>
+      <div>(1 − <i>z</i>)<sup>−2</sup> = 1 + 2<i>z</i> + 3<i>z</i>² + 4<i>z</i>³ + …</div>
+      <div style="grid-column:span 2">If <i>f(D)</i> has no constant term, take out <i>D</i>: <span class="fr"><span>1</span><span>D(…)</span></span> means integrate at the end.</div>
+    </div>
+  </div>
+  <div class="ex"><div class="bt">Example 1 — (D² + 3D + 2) y = x³ + x²</div>
+    CF: <i>m</i> = −1, −2 ⇒ <i>c</i><sub>1</sub><i>e</i><sup>−<i>x</i></sup> + <i>c</i><sub>2</sub><i>e</i><sup>−2<i>x</i></sup>. &nbsp;
+    PI = ½[1 + (3<i>D</i> + <i>D</i>²)/2]<sup>−1</sup>(<i>x</i>³ + <i>x</i>²) = ½[1 − <i>z</i> + <i>z</i>² − <i>z</i>³](<i>x</i>³ + <i>x</i>²), with <i>z</i> = (3<i>D</i> + <i>D</i>²)/2<br>
+    ⇒ PI = <span class="ans">½<i>x</i>³ − <span class="fr"><span>7</span><span>4</span></span><i>x</i>² + <span class="fr"><span>15</span><span>4</span></span><i>x</i> − <span class="fr"><span>31</span><span>8</span></span></span> &nbsp;<span class="muted small">(checked by substitution)</span>
+  </div>
+  <div class="ex"><div class="bt">Example 2 — (2D² + 2D + 3) y = x² + 2x − 1</div>
+    PI = ⅓[1 + (2<i>D</i> + 2<i>D</i>²)/3]<sup>−1</sup>(<i>x</i>² + 2<i>x</i> − 1) = ⅓[<i>x</i>² + 2<i>x</i> − 1 − (4<i>x</i> + 8)/3 + 8/9]
+    = <span class="ans"><span class="fr"><span>1</span><span>3</span></span>(<i>x</i>² + <span class="fr"><span>2x</span><span>3</span></span> − <span class="fr"><span>25</span><span>9</span></span>)</span>.
+    &nbsp; General solution: <i>y</i> = <i>e</i><sup>−<i>x</i>/2</sup>(<i>c</i><sub>1</sub> cos <span class="fr"><span>√5x</span><span>2</span></span> + <i>c</i><sub>2</sub> sin <span class="fr"><span>√5x</span><span>2</span></span>) + PI.
+  </div>
+
+  <div class="runfoot"><span>Short notes · Unit 2</span><span>Page 3 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 4 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 2 · Higher Order Differential Equations</span></div>
+
+  <h2><span class="n">7</span>PI Type 4 — <i>X</i> = <i>e<sup>ax</sup></i>·<i>V(x)</i> (exponential shift)</h2>
+  <div class="box f">
+    <div class="eq"><span class="fr"><span>1</span><span>f(D)</span></span> <i>e<sup>ax</sup>V</i> = <i>e<sup>ax</sup></i> <span class="fr"><span>1</span><span>f(D + a)</span></span> <i>V</i></div>
+    Move <i>e<sup>ax</sup></i> to the front and replace <b><i>D</i> by <i>D + a</i></b>. Then use Type 2 (if <i>V</i> = sin/cos) or Type 3 (if <i>V</i> = <i>x<sup>m</sup></i>).
+  </div>
+  <div class="box"><div class="bt">Bonus rule — X = x·V (e.g. x sin x)</div>
+    <span class="fr"><span>1</span><span>f(D)</span></span>(<i>xV</i>) = <i>x</i> <span class="fr"><span>1</span><span>f(D)</span></span><i>V</i> − <span class="fr"><span>f′(D)</span><span>[f(D)]²</span></span><i>V</i>.
+    &nbsp; Alternative: write <i>x</i> sin <i>ax</i> = Im(<i>x e<sup>iax</sup></i>) and apply Type 4.
+  </div>
+  <table class="small">
+    <tr><th style="width:28%">Equation</th><th>Working</th><th style="width:28%">PI</th></tr>
+    <tr><td>(<i>D</i>² + 2)<i>y</i> = <i>x</i>²<i>e</i><sup>3<i>x</i></sup></td><td><i>e</i><sup>3<i>x</i></sup>·1/[(<i>D</i> + 3)² + 2] <i>x</i>² = <span class="fr"><span>e³ˣ</span><span>11</span></span>[1 + (<i>D</i>² + 6<i>D</i>)/11]<sup>−1</sup><i>x</i>² = <span class="fr"><span>e³ˣ</span><span>11</span></span>[<i>x</i>² − (12<i>x</i> + 2)/11 + 72/121]</td><td class="ans"><span class="fr"><span>e³ˣ</span><span>11</span></span>(<i>x</i>² − <span class="fr"><span>12x</span><span>11</span></span> + <span class="fr"><span>50</span><span>121</span></span>)</td></tr>
+    <tr><td>(<i>D</i>² − 2<i>D</i> + 1)<i>y</i> = <i>e<sup>x</sup></i> sin <i>x</i></td><td><i>e<sup>x</sup></i>·1/(<i>D</i> + 1 − 1)² sin <i>x</i> = <i>e<sup>x</sup></i>·(1/<i>D</i>²) sin <i>x</i></td><td class="ans">−<i>e<sup>x</sup></i> sin <i>x</i></td></tr>
+    <tr><td>(<i>D</i>² − 4<i>D</i> + 4)<i>y</i> = <i>x</i>²<i>e</i><sup>2<i>x</i></sup></td><td><i>e</i><sup>2<i>x</i></sup>·(1/<i>D</i>²)<i>x</i>² (integrate twice)</td><td class="ans"><i>x</i>⁴<i>e</i><sup>2<i>x</i></sup>/12</td></tr>
+    <tr><td>(<i>D</i>² + 1)<i>y</i> = <i>x</i> sin <i>x</i></td><td>bonus rule / Im of <i>e<sup>ix</sup></i>·1/(<i>D</i>² + 2<i>iD</i>)·<i>x</i></td><td class="ans">−(<i>x</i>²/4) cos <i>x</i> + (<i>x</i>/4) sin <i>x</i></td></tr>
+  </table>
+  <p class="small">General solutions from the slides: (<i>D</i>² + 2)<i>y</i> = <i>x</i>²<i>e</i><sup>3<i>x</i></sup> ⇒ <i>y</i> = <i>c</i><sub>1</sub> cos √2<i>x</i> + <i>c</i><sub>2</sub> sin √2<i>x</i> + PI; &nbsp; (<i>D</i> − 1)²<i>y</i> = <i>e<sup>x</sup></i> sin <i>x</i> ⇒ <i>y</i> = (<i>c</i><sub>1</sub> + <i>c</i><sub>2</sub><i>x</i>)<i>e<sup>x</sup></i> − <i>e<sup>x</sup></i> sin <i>x</i>.</p>
+
+  <h2><span class="n">8</span>PI When <i>X</i> Is Any Other Function</h2>
+  <div class="box f">
+    Factorise <i>f(D)</i> = (<i>D − m</i><sub>1</sub>)(<i>D − m</i><sub>2</sub>)…(<i>D − m<sub>n</sub></i>) and split into <b>partial fractions</b>:
+    <div class="eq">PI = <i>A</i><sub>1</sub><i>e</i><sup><i>m</i><sub>1</sub><i>x</i></sup>∫<i>X e</i><sup>−<i>m</i><sub>1</sub><i>x</i></sup><i>dx</i> + <i>A</i><sub>2</sub><i>e</i><sup><i>m</i><sub>2</sub><i>x</i></sup>∫<i>X e</i><sup>−<i>m</i><sub>2</sub><i>x</i></sup><i>dx</i> + …</div>
+    Use this for tan <i>x</i>, sec <i>x</i>, log <i>x</i>, <i>e</i><sup><i>e<sup>x</sup></i></sup>, sin(<i>e<sup>x</sup></i>) and similar right-hand sides. For complex roots ±<i>ia</i>, the two terms are conjugates. Substitute <i>t = e<sup>x</sup></i> when <i>e<sup>x</sup></i> appears inside a function.
+  </div>
+  <table class="small">
+    <tr><th style="width:30%">Equation</th><th>Key step</th><th style="width:34%">PI</th></tr>
+    <tr><td>(<i>D</i>² + <i>a</i>²)<i>y</i> = tan <i>ax</i></td><td><span class="fr"><span>1</span><span>2ia</span></span>[<span class="fr"><span>1</span><span>D − ia</span></span> − <span class="fr"><span>1</span><span>D + ia</span></span>] tan <i>ax</i></td><td class="ans">−<span class="fr"><span>1</span><span>a²</span></span> cos <i>ax</i> · log(sec <i>ax</i> + tan <i>ax</i>)</td></tr>
+    <tr><td><span class="fr"><span>d²y</span><span>dx²</span></span> = ln <i>x</i></td><td>1/<i>D</i>²: integrate twice, ∫ln <i>x dx</i> = <i>x</i> ln <i>x − x</i></td><td class="ans"><span class="fr"><span>x² ln x</span><span>2</span></span> − <span class="fr"><span>3x²</span><span>4</span></span></td></tr>
+    <tr><td>(<i>D</i>² + 3<i>D</i> + 2)<i>y</i> = <i>e</i><sup><i>e<sup>x</sup></i></sup></td><td>[1/(<i>D</i> + 1) − 1/(<i>D</i> + 2)], with <i>t = e<sup>x</sup></i></td><td class="ans"><i>e</i><sup>−2<i>x</i></sup> <i>e</i><sup><i>e<sup>x</sup></i></sup></td></tr>
+    <tr><td>(<i>D</i> + 1)(<i>D</i> + 2)<i>y</i> = sin(<i>e<sup>x</sup></i>)</td><td>1/(<i>D</i> + 1) gives −<i>e</i><sup>−<i>x</i></sup> cos <i>e<sup>x</sup></i>; 1/(<i>D</i> + 2) gives −<i>e</i><sup>−<i>x</i></sup> cos <i>e<sup>x</sup></i> + <i>e</i><sup>−2<i>x</i></sup> sin <i>e<sup>x</sup></i></td><td class="ans">−<i>e</i><sup>−2<i>x</i></sup> sin(<i>e<sup>x</sup></i>)</td></tr>
+  </table>
+
+  <div class="runfoot"><span>Short notes · Unit 2</span><span>Page 4 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 5 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 2 · Higher Order Differential Equations</span></div>
+
+  <h3>Which PI rule? — quick decision table</h3>
+  <table class="small">
+    <tr><th>RHS <i>X</i></th><th>Rule</th><th>Failure / note</th></tr>
+    <tr><td><i>e<sup>ax</sup></i>, constant, sinh, cosh, <i>k<sup>x</sup></i></td><td><i>D → a</i></td><td><i>f(a)</i> = 0 ⇒ multiply by <i>x</i>, differentiate the denominator</td></tr>
+    <tr><td>sin(<i>ax + b</i>), cos(<i>ax + b</i>)</td><td><i>D</i>² → −<i>a</i>²</td><td><i>f</i>(−<i>a</i>²) = 0 ⇒ <i>x</i>·1/<i>f′(D)</i>; odd <i>D</i> left ⇒ conjugate</td></tr>
+    <tr><td><i>x<sup>m</sup></i>, polynomial</td><td>[1 ± φ(<i>D</i>)]<sup>−1</sup> binomial expansion</td><td>stop at <i>D<sup>m</sup></i></td></tr>
+    <tr><td><i>e<sup>ax</sup>V</i></td><td><i>e<sup>ax</sup></i> out, <i>D → D + a</i></td><td>then Type 2 or 3 on <i>V</i></td></tr>
+    <tr><td><i>x</i>·sin, <i>x</i>·cos</td><td>bonus rule, or Im/Re of <i>e<sup>iax</sup></i></td><td>—</td></tr>
+    <tr><td>tan, sec, cosec, log, <i>e</i><sup><i>e<sup>x</sup></i></sup>, …</td><td>partial fractions + 1/(<i>D − m</i>) or <b>variation of parameters</b></td><td>2nd-order equations: VOP is usually faster</td></tr>
+  </table>
+
+  <h2><span class="n">9</span>Method of Variation of Parameters (VOP)</h2>
+  <p>VOP gives the PI of <i>y″ + p y′ + q y = X</i> (it also works for variable coefficients) <b>once the CF is known</b>.</p>
+  <div class="box f">
+    <b>Step 1:</b> CF = <i>c</i><sub>1</sub><i>y</i><sub>1</sub> + <i>c</i><sub>2</sub><i>y</i><sub>2</sub>. &emsp;
+    <b>Step 2:</b> Wronskian <i>W</i> = <span style="display:inline-block;vertical-align:middle;border-left:.8pt solid;border-right:.8pt solid;padding:0 1.5mm;line-height:1.2;text-align:center"><i>y</i><sub>1</sub>&ensp;<i>y</i><sub>2</sub><br><i>y</i><sub>1</sub>′&ensp;<i>y</i><sub>2</sub>′</span> = <i>y</i><sub>1</sub><i>y</i><sub>2</sub>′ − <i>y</i><sub>2</sub><i>y</i><sub>1</sub>′ (≠ 0). &emsp;
+    <b>Step 3:</b>
+    <div class="eq">PI = <i>u y</i><sub>1</sub> + <i>v y</i><sub>2</sub>, &emsp; <i>u</i> = −∫<span class="fr"><span>y₂ X</span><span>W</span></span><i>dx</i>, &emsp; <i>v</i> = ∫<span class="fr"><span>y₁ X</span><span>W</span></span><i>dx</i></div>
+    <span class="small">The coefficient of <i>y″</i> must be 1. Divide through first if it is not.</span>
+  </div>
+  <table class="small">
+    <tr><th style="width:24%">Equation</th><th style="width:26%"><i>y</i><sub>1</sub>, <i>y</i><sub>2</sub>, <i>W</i></th><th>Result</th></tr>
+    <tr><td><i>y″</i> + 4<i>y</i> = tan 2<i>x</i></td><td>cos 2<i>x</i>, sin 2<i>x</i>; <i>W</i> = 2</td><td><i>u</i> = −¼ log(sec 2<i>x</i> + tan 2<i>x</i>) + ¼ sin 2<i>x</i>, <i>v</i> = −¼ cos 2<i>x</i> ⇒ <span class="ans">PI = −¼ cos 2<i>x</i> log(sec 2<i>x</i> + tan 2<i>x</i>)</span></td></tr>
+    <tr><td><i>y″</i> + <i>y</i> = sec <i>x</i></td><td>cos <i>x</i>, sin <i>x</i>; <i>W</i> = 1</td><td><i>u</i> = log cos <i>x</i>, <i>v</i> = <i>x</i> ⇒ <span class="ans">PI = cos <i>x</i> log cos <i>x</i> + <i>x</i> sin <i>x</i></span></td></tr>
+    <tr><td><i>y″</i> + <i>y</i> = cosec <i>x</i></td><td>cos <i>x</i>, sin <i>x</i>; <i>W</i> = 1</td><td><span class="ans">PI = −<i>x</i> cos <i>x</i> + sin <i>x</i> log sin <i>x</i></span></td></tr>
+    <tr><td><i>y″</i> − 2<i>y′</i> + <i>y</i> = <i>e<sup>x</sup></i>/<i>x</i></td><td><i>e<sup>x</sup></i>, <i>x e<sup>x</sup></i>; <i>W</i> = <i>e</i><sup>2<i>x</i></sup></td><td><i>u</i> = −<i>x</i>, <i>v</i> = log <i>x</i> ⇒ <span class="ans">PI = <i>x e<sup>x</sup></i>(log <i>x</i> − 1)</span></td></tr>
+  </table>
+  <div class="tip"><div class="bt">Trap</div>Keep the signs straight: the minus sign goes with <i>u</i> (the integral containing <i>y</i><sub>2</sub>). Do not add integration constants. They are already in the CF.</div>
+
+  <div class="runfoot"><span>Short notes · Unit 2</span><span>Page 5 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 6 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 2 · Higher Order Differential Equations</span></div>
+
+  <h2><span class="n">10</span>Equations with Variable Coefficients — Cauchy &amp; Legendre</h2>
+  <p>A suitable substitution reduces these to equations with constant coefficients. Then use CF and PI exactly as before, but in the variable <i>t</i>.</p>
+  <div class="cols">
+    <div class="box"><div class="bt">Cauchy–Euler equation</div>
+      <i>xⁿ y</i><sup>(<i>n</i>)</sup> + <i>k</i><sub>1</sub><i>x</i><sup><i>n</i>−1</sup><i>y</i><sup>(<i>n</i>−1)</sup> + … + <i>k<sub>n</sub>y = X</i><br>
+      Put <b><i>x = e<sup>t</sup></i></b> (<i>t</i> = log <i>x</i>), θ = <i>d/dt</i>:<br>
+      <i>xD</i> = θ<br>
+      <i>x</i>²<i>D</i>² = θ(θ − 1)<br>
+      <i>x</i>³<i>D</i>³ = θ(θ − 1)(θ − 2)
+    </div>
+    <div class="box"><div class="bt">Legendre's linear equation</div>
+      <i>k</i><sub>0</sub>(<i>ax + b</i>)<sup><i>n</i></sup><i>y</i><sup>(<i>n</i>)</sup> + <i>k</i><sub>1</sub>(<i>ax + b</i>)<sup><i>n</i>−1</sup><i>y</i><sup>(<i>n</i>−1)</sup> + … + <i>k<sub>n</sub>y = X</i><br>
+      Put <b><i>ax + b = e<sup>t</sup></i></b>, θ = <i>d/dt</i>:<br>
+      (<i>ax + b</i>)<i>D</i> = <i>a</i>θ<br>
+      (<i>ax + b</i>)²<i>D</i>² = <i>a</i>²θ(θ − 1)<br>
+      (<i>ax + b</i>)³<i>D</i>³ = <i>a</i>³θ(θ − 1)(θ − 2)
+    </div>
+  </div>
+  <p class="small">Cauchy's equation is Legendre's equation with <i>a</i> = 1, <i>b</i> = 0. Also convert the RHS: <i>x = e<sup>t</sup></i> (Cauchy), or <i>x</i> = (<i>e<sup>t</sup> − b</i>)/<i>a</i> (Legendre). <b>Write the final answer back in <i>x</i>.</b></p>
+  <div class="ex"><div class="bt">Example 1 (Cauchy) — x²y″ − xy′ + y = log x</div>
+    θ(θ − 1) − θ + 1 = (θ − 1)² ⇒ CF = (<i>c</i><sub>1</sub> + <i>c</i><sub>2</sub><i>t</i>)<i>e<sup>t</sup></i>. &nbsp;
+    PI = <span class="fr"><span>1</span><span>(1 − θ)²</span></span><i>t</i> = (1 + 2θ + …)<i>t</i> = <i>t</i> + 2.<br>
+    ⇒ <span class="ans"><i>y</i> = (<i>c</i><sub>1</sub> + <i>c</i><sub>2</sub> log <i>x</i>)<i>x</i> + log <i>x</i> + 2</span>
+  </div>
+  <div class="ex"><div class="bt">Example 2 (Legendre) — (2x + 3)²y″ − 2(2x + 3)y′ − 12y = 6x</div>
+    2<i>x</i> + 3 = <i>e<sup>t</sup></i>: 4θ(θ − 1) − 4θ − 12 = 4(θ − 3)(θ + 1); &nbsp;RHS 6<i>x</i> = 3(<i>e<sup>t</sup></i> − 3).<br>
+    CF = <i>c</i><sub>1</sub><i>e</i><sup>3<i>t</i></sup> + <i>c</i><sub>2</sub><i>e</i><sup>−<i>t</i></sup>; &nbsp; PI = <span class="fr"><span>3</span><span>4</span></span>[<span class="fr"><span>eᵗ</span><span>−4</span></span> − <span class="fr"><span>3</span><span>−3</span></span>] = −<span class="fr"><span>3eᵗ</span><span>16</span></span> + <span class="fr"><span>3</span><span>4</span></span><br>
+    ⇒ <span class="ans"><i>y</i> = <i>c</i><sub>1</sub>(2<i>x</i> + 3)³ + <span class="fr"><span>c₂</span><span>2x + 3</span></span> − <span class="fr"><span>3(2x + 3)</span><span>16</span></span> + <span class="fr"><span>3</span><span>4</span></span></span>
+  </div>
+  <div class="tip"><div class="bt">Common slip</div>In Legendre's equation, <b>do not forget the powers of <i>a</i></b>: (<i>ax + b</i>)²<i>D</i>² = <i>a</i>²θ(θ − 1), not θ(θ − 1). With 2<i>x</i> + 3 the factor is 4.</div>
+
+  <h2><span class="n">11</span>Application 1 — Series LCR Circuit</h2>
+  <p>A resistor <i>R</i> (Ω), an inductor <i>L</i> (H), a capacitor <i>C</i> (F) and an EMF <i>E(t)</i> (V) are connected in series. <i>Q</i> is the charge (C) and <i>I = dQ/dt</i> is the current (A).</p>
+  <table class="small">
+    <tr><th>Element</th><td>Resistor: <i>RI</i></td><td>Inductor: <i>L dI/dt</i></td><td>Capacitor: <i>Q/C</i></td></tr>
+  </table>
+  <div class="box f">
+    <b>Kirchhoff's voltage law</b> (sum of voltage drops = applied EMF):
+    <div class="eq"><i>L</i><span class="fr"><span>d²Q</span><span>dt²</span></span> + <i>R</i><span class="fr"><span>dQ</span><span>dt</span></span> + <span class="fr"><span>Q</span><span>C</span></span> = <i>E(t)</i>
+    &emsp; or, in terms of current, &emsp;
+    <i>L</i><span class="fr"><span>d²I</span><span>dt²</span></span> + <i>R</i><span class="fr"><span>dI</span><span>dt</span></span> + <span class="fr"><span>I</span><span>C</span></span> = <i>E′(t)</i></div>
+    AE: <i>Lm</i>² + <i>Rm</i> + 1/<i>C</i> = 0. &nbsp;
+    <i>R</i>² &gt; 4<i>L/C</i>: overdamped; &nbsp;<i>R</i>² = 4<i>L/C</i>: critically damped; &nbsp;<i>R</i>² &lt; 4<i>L/C</i>: oscillatory (underdamped). Natural frequency ω<sub>0</sub> = 1/√(<i>LC</i>).
+  </div>
+
+  <div class="runfoot"><span>Short notes · Unit 2</span><span>Page 6 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 7 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 2 · Higher Order Differential Equations</span></div>
+
+  <div class="ex"><div class="bt">Example — R = 8 Ω, L = 2 H, C = 0.1 F, E = 10 V, Q(0) = I(0) = 0</div>
+    2<i>Q″</i> + 8<i>Q′</i> + 10<i>Q</i> = 10 ⇒ <i>Q″</i> + 4<i>Q′</i> + 5<i>Q</i> = 5. &nbsp; AE: <i>m</i> = −2 ± <i>i</i>; &nbsp;CF = <i>e</i><sup>−2<i>t</i></sup>(<i>c</i><sub>1</sub> cos <i>t</i> + <i>c</i><sub>2</sub> sin <i>t</i>); &nbsp;PI = 5/5 = 1.<br>
+    <i>Q</i>(0) = 0 ⇒ <i>c</i><sub>1</sub> = −1; &nbsp; <i>Q′</i>(0) = −2<i>c</i><sub>1</sub> + <i>c</i><sub>2</sub> = 0 ⇒ <i>c</i><sub>2</sub> = −2.<br>
+    <span class="ans"><i>Q(t)</i> = 1 − <i>e</i><sup>−2<i>t</i></sup>(cos <i>t</i> + 2 sin <i>t</i>), &emsp; <i>I(t)</i> = <i>dQ/dt</i> = 5<i>e</i><sup>−2<i>t</i></sup> sin <i>t</i></span>
+  </div>
+  <div class="ex"><div class="bt">Example — E = 155 sin 377t, R = 100 Ω, L = 0.1 H, C = 10⁻³ F, q(0) = i(0) = 0</div>
+    0.1<i>q″</i> + 100<i>q′</i> + 1000<i>q</i> = 155 sin 377<i>t</i> ⇒ <i>q″</i> + 1000<i>q′</i> + 10000<i>q</i> = 1550 sin 377<i>t</i>.<br>
+    AE roots: <i>r</i> = −500 ± 200√6 ≈ −10.10, −989.90 (overdamped). Try <i>q<sub>p</sub></i> = <i>A</i> sin 377<i>t</i> + <i>B</i> cos 377<i>t</i> ⇒ <i>A</i> ≈ −0.00128, <i>B</i> ≈ −0.00366.<br>
+    Steady-state current <i>i<sub>p</sub></i> = <i>q<sub>p</sub>′</i> ≈ 1.380 sin 377<i>t</i> − 0.484 cos 377<i>t</i>. The transient terms <i>c</i><sub>1</sub><i>e</i><sup><i>r</i><sub>1</sub><i>t</i></sup> + <i>c</i><sub>2</sub><i>e</i><sup><i>r</i><sub>2</sub><i>t</i></sup> die out; fix <i>c</i><sub>1</sub>, <i>c</i><sub>2</sub> from the initial conditions.
+  </div>
+
+  <h2><span class="n">12</span>Application 2 — Simple Harmonic Motion (Spring–Mass)</h2>
+  <p>A mass <i>m</i> hangs on a spring with stiffness <i>k</i>. At equilibrium <b><i>mg = ks</i></b> (<i>s</i> = static stretch). Let <i>x(t)</i> be the displacement from equilibrium, taking <b>downward as positive</b>. Hooke's law gives the restoring force −<i>k(s + x)</i>, and Newton's law gives <i>m ẍ = mg − k(s + x)</i> = −<i>kx</i>.</p>
+  <div class="box f">
+    <div class="eq"><span class="fr"><span>d²x</span><span>dt²</span></span> + ω²<i>x</i> = 0, &emsp; ω² = <span class="fr"><span>k</span><span>m</span></span> = <span class="fr"><span>g</span><span>s</span></span></div>
+    <div class="eq"><i>x(t) = c</i><sub>1</sub> cos ω<i>t</i> + <i>c</i><sub>2</sub> sin ω<i>t</i> = <i>A</i> cos(ω<i>t</i> − φ)</div>
+    <table style="margin-top:1mm">
+      <tr><th>Amplitude</th><th>Period</th><th>Frequency</th><th>Max velocity</th><th>Phase</th></tr>
+      <tr><td><i>A</i> = √(<i>c</i><sub>1</sub>² + <i>c</i><sub>2</sub>²)</td><td><i>T</i> = 2π/ω</td><td><i>f</i> = ω/2π = 1/<i>T</i></td><td><i>v</i><sub>max</sub> = <i>A</i>ω</td><td>tan φ = <i>c</i><sub>2</sub>/<i>c</i><sub>1</sub></td></tr>
+    </table>
+    <span class="small"><b>Units:</b> in the FPS system <i>g</i> = 32 ft/s², mass = weight/32 (slug), and 1 inch = 1/12 ft.</span>
+  </div>
+  <div class="box"><div class="bt">Damped oscillation</div>
+    With resistance 2λ<i>mn ẋ</i> and restoring force <i>mn</i>²<i>x</i>: &nbsp; <i>ẍ</i> + 2λ<i>n ẋ</i> + <i>n</i>²<i>x</i> = 0, &nbsp; <i>r</i> = −λ<i>n</i> ± <i>in</i>√(1 − λ²) (0 &lt; λ &lt; 1).<br>
+    <i>x(t)</i> = <i>e</i><sup>−λ<i>nt</i></sup>(<i>A</i> cos ω<i>t</i> + <i>B</i> sin ω<i>t</i>), ω = <i>n</i>√(1 − λ²). With <i>x</i>(0) = 0, <i>ẋ</i>(0) = <i>v</i><sub>0</sub>:
+    <span class="ans"><i>x(t)</i> = <span class="fr"><span>v₀</span><span>n√(1 − λ²)</span></span> <i>e</i><sup>−λ<i>nt</i></sup> sin(<i>n</i>√(1 − λ²) <i>t</i>)</span>
+  </div>
+
+  <div class="runfoot"><span>Short notes · Unit 2</span><span>Page 7 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 8 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 2 · Higher Order Differential Equations</span></div>
+
+  <table class="small">
+    <tr><th style="width:36%">SHM problem</th><th>Solution → answers</th></tr>
+    <tr><td>12 lb weight stretches the spring 6 in. Pulled 4 in below equilibrium and given an upward velocity of 2 ft/s. No damping.</td>
+      <td><i>m</i> = 12/32 = 3/8 slug; <i>k</i> = 12/0.5 = 24 lb/ft ⇒ ω² = 64, ω = 8. <i>x</i>(0) = 1/3 ft, <i>ẋ</i>(0) = −2 ⇒ <i>c</i><sub>2</sub> = −1/4.<br>
+      <span class="ans"><i>x</i> = ⅓ cos 8<i>t</i> − ¼ sin 8<i>t</i>; &nbsp;<i>A</i> = 5/12 ft; &nbsp;<i>T</i> = π/4 s</span></td></tr>
+    <tr><td>8 lb weight, <i>k</i> = 12 lb/ft, raised 5 in above equilibrium and released from rest.</td>
+      <td><i>m</i> = 1/4 slug ⇒ <i>ẍ</i> + 48<i>x</i> = 0, ω = 4√3. <i>x</i>(0) = −5/12 ft, <i>ẋ</i>(0) = 0.<br>
+      <span class="ans"><i>x</i> = −(5/12) cos 4√3<i>t</i>; &nbsp;<i>A</i> = 5/12 ft; &nbsp;<i>T</i> = π/(2√3) s; &nbsp;<i>f</i> = 2√3/π Hz; &nbsp;<i>v</i><sub>max</sub> = 5√3/3 ft/s</span></td></tr>
+  </table>
+  <div class="tip"><div class="bt">Sign convention</div>Downward is positive. "Raised above equilibrium" means <i>x</i>(0) is negative. "Upward velocity" means <i>ẋ</i>(0) is negative. "Released / starts from rest" means <i>ẋ</i>(0) = 0.</div>
+
+  <h2><span class="n">★</span>One-Page Formula Sheet — Read This Before the Exam</h2>
+  <div class="cols">
+    <div>
+      <div class="box"><div class="bt">Structure</div>
+        <i>f(D)y = X</i> ⇒ <i>y</i> = CF + PI. &nbsp;AE: <i>D → m</i>.<br>
+        distinct: Σ<i>c e<sup>mx</sup></i> · repeated: (<i>c</i><sub>1</sub> + <i>c</i><sub>2</sub><i>x</i>)<i>e<sup>mx</sup></i><br>
+        α ± <i>i</i>β: <i>e</i><sup>α<i>x</i></sup>(<i>c</i><sub>1</sub> cos β<i>x</i> + <i>c</i><sub>2</sub> sin β<i>x</i>)
+      </div>
+      <div class="box"><div class="bt">Inverse operator</div>
+        1/<i>D</i> → ∫ &nbsp;·&nbsp; 1/(<i>D − a</i>) <i>X</i> = <i>e<sup>ax</sup></i>∫<i>X e</i><sup>−<i>ax</i></sup><i>dx</i>
+      </div>
+      <div class="box"><div class="bt">PI rules</div>
+        <i>e<sup>ax</sup></i>: <i>D → a</i>; if 0, <i>x</i>·<i>e<sup>ax</sup>/f′(a)</i>, <i>x</i>²<i>e<sup>ax</sup>/f″(a)</i><br>
+        sin/cos <i>ax</i>: <i>D</i>² → −<i>a</i>²; if 0, <i>x</i>·1/<i>f′(D)</i><br>
+        1/(<i>D</i>² + <i>a</i>²): sin <i>ax</i> → −(<i>x</i>/2<i>a</i>) cos <i>ax</i>; cos <i>ax</i> → (<i>x</i>/2<i>a</i>) sin <i>ax</i><br>
+        <i>x<sup>m</sup></i>: [1 ± φ(<i>D</i>)]<sup>−1</sup> expansion up to <i>D<sup>m</sup></i><br>
+        <i>e<sup>ax</sup>V</i>: <i>e<sup>ax</sup></i>·1/<i>f(D + a)</i>·<i>V</i><br>
+        <i>xV</i>: <i>x</i>·<i>V/f(D)</i> − <i>f′(D)</i>/<i>f(D)</i>²·<i>V</i>
+      </div>
+    </div>
+    <div>
+      <div class="box"><div class="bt">Variation of parameters</div>
+        <i>W = y</i><sub>1</sub><i>y</i><sub>2</sub>′ − <i>y</i><sub>2</sub><i>y</i><sub>1</sub>′<br>
+        PI = −<i>y</i><sub>1</sub>∫<i>y</i><sub>2</sub><i>X/W dx</i> + <i>y</i><sub>2</sub>∫<i>y</i><sub>1</sub><i>X/W dx</i>
+      </div>
+      <div class="box"><div class="bt">Cauchy / Legendre</div>
+        <i>x = e<sup>t</sup></i>: <i>xD</i> = θ, <i>x</i>²<i>D</i>² = θ(θ − 1), <i>x</i>³<i>D</i>³ = θ(θ − 1)(θ − 2)<br>
+        <i>ax + b = e<sup>t</sup></i>: (<i>ax + b</i>)<i><sup>k</sup>D<sup>k</sup> = a<sup>k</sup></i>θ(θ − 1)…(θ − <i>k</i> + 1)
+      </div>
+      <div class="box"><div class="bt">LCR</div>
+        <i>LQ″ + RQ′ + Q/C = E(t)</i>, &nbsp;<i>I = Q′</i><br>
+        <i>R</i>² vs 4<i>L/C</i>: over / critical / under-damped
+      </div>
+      <div class="box"><div class="bt">SHM</div>
+        <i>ẍ</i> + ω²<i>x</i> = 0, ω = √(<i>k/m</i>) = √(<i>g/s</i>)<br>
+        <i>A</i> = √(<i>c</i><sub>1</sub>² + <i>c</i><sub>2</sub>²), <i>T</i> = 2π/ω, <i>f</i> = ω/2π, <i>v</i><sub>max</sub> = <i>A</i>ω<br>
+        Damped: <i>ẍ</i> + 2λ<i>nẋ</i> + <i>n</i>²<i>x</i> = 0
+      </div>
+    </div>
+  </div>
+
+  <h3>Common mistakes that cost marks</h3>
+  <ul class="small">
+    <li>Writing only the PI. The <b>general solution is CF + PI</b>, and the CF must have <i>n</i> constants for an <i>n</i>-th order equation.</li>
+    <li>Not spotting the failure case: always check whether <i>a</i> (or ±<i>ia</i>) is a root of the AE <b>before</b> applying the shortcut.</li>
+    <li>Type 3: expanding past <i>D<sup>m</sup></i> (wasted time) or forgetting the constant factor taken out at the start.</li>
+    <li>Cauchy/Legendre: leaving the final answer in <i>t</i>. Convert back using <i>t</i> = log <i>x</i> or log(<i>ax + b</i>).</li>
+    <li>Applications: using inches instead of feet, and getting the sign of the initial displacement or velocity wrong.</li>
+  </ul>
+  <p class="small muted" style="margin-top:2mm">Source: PESU UE26MA141A Unit 2 slides (sessions 1–11) and lecture summaries. Many slide formulas were images, so the worked answers above were re-derived and checked by substitution.</p>
+
+  <div class="runfoot"><span>Short notes · Unit 2</span><span>Page 8 of 8</span></div>
+</section>
+
+</body>
+</html>

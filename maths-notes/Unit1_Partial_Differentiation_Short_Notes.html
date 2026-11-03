@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 1 Short Notes</title>
+<style>
+  :root{
+    --ink:#1b1f24; --muted:#5b6470; --accent:#1f4e8c; --accent-soft:#e8eff9;
+    --warn:#9a3412; --warn-soft:#fff3e8; --ok:#166534; --ok-soft:#ecf8ef;
+    --rule:#d5dbe3; --viewer:#4a4d52; --paper:#ffffff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--viewer);color:var(--ink);
+    font-family:"Charter","Bitstream Charter","Georgia","Cambria","DejaVu Serif",serif;
+    font-size:10.2pt;line-height:1.38;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{width:210mm;height:297mm;margin:10mm auto;background:var(--paper);
+    box-shadow:0 2px 12px rgba(0,0,0,.45);position:relative;overflow:hidden;
+    padding:17mm 15mm 16mm 15mm}
+  .runhead{position:absolute;top:7mm;left:15mm;right:15mm;display:flex;justify-content:space-between;
+    font-family:"Inter","Liberation Sans",sans-serif;font-size:7.5pt;color:var(--muted);
+    border-bottom:.6pt solid var(--rule);padding-bottom:1.5mm;letter-spacing:.02em}
+  .runfoot{position:absolute;bottom:7mm;left:15mm;right:15mm;display:flex;justify-content:space-between;
+    font-family:"Inter","Liberation Sans",sans-serif;font-size:7.5pt;color:var(--muted)}
+  h1,h2,h3,h4{font-family:"Inter","Liberation Sans",sans-serif;color:var(--accent);margin:0}
+  .title{border:1.2pt solid var(--accent);border-radius:2mm;padding:5mm 6mm;margin-bottom:4mm;
+    background:linear-gradient(135deg,#f4f8fd 0%,#ffffff 70%)}
+  .title .code{font-family:"Inter",sans-serif;font-size:8pt;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+  .title h1{font-size:20pt;margin:1mm 0 1mm;color:var(--ink)}
+  .title h1 span{color:var(--accent)}
+  .title p{margin:0;color:var(--muted);font-size:9.5pt}
+  h2{font-size:12.5pt;margin:4mm 0 2mm;padding-bottom:1mm;border-bottom:1.2pt solid var(--accent)}
+  h2 .n{display:inline-block;background:var(--accent);color:#fff;border-radius:1mm;padding:.2mm 2mm;font-size:10pt;margin-right:2.5mm;vertical-align:1pt}
+  h3{font-size:10.4pt;margin:3mm 0 1.2mm;color:var(--ink)}
+  h3::before{content:"▸ ";color:var(--accent)}
+  p{margin:1mm 0}
+  ul,ol{margin:1mm 0 1mm 0;padding-left:5mm}
+  li{margin:.5mm 0}
+  i,.v{font-style:italic}
+  .box{border:.8pt solid var(--accent);background:var(--accent-soft);border-radius:1.5mm;padding:2mm 3mm;margin:2mm 0}
+  .box.f{border-left:3pt solid var(--accent)}
+  .box .bt{font-family:"Inter",sans-serif;font-weight:700;font-size:8pt;color:var(--accent);
+    text-transform:uppercase;letter-spacing:.06em;margin-bottom:.8mm}
+  .tip{border:.8pt solid #f0b37e;background:var(--warn-soft);border-radius:1.5mm;padding:1.6mm 3mm;margin:2mm 0}
+  .tip .bt{font-family:"Inter",sans-serif;font-weight:700;font-size:8pt;color:var(--warn);text-transform:uppercase;letter-spacing:.06em}
+  .ex{border:.8pt solid #9fd0ab;background:var(--ok-soft);border-radius:1.5mm;padding:1.6mm 3mm;margin:2mm 0}
+  .ex .bt{font-family:"Inter",sans-serif;font-weight:700;font-size:8.6pt;color:var(--ok);letter-spacing:.02em}
+  .eq{text-align:center;margin:1.4mm 0;font-size:10.8pt}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+  .cols3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3mm}
+  table{border-collapse:collapse;width:100%;margin:1.5mm 0;font-size:9.6pt}
+  th,td{border:.6pt solid var(--rule);padding:1.2mm 2mm;text-align:left;vertical-align:middle}
+  th{background:var(--accent);color:#fff;font-family:"Inter",sans-serif;font-size:8.3pt;font-weight:600}
+  tr:nth-child(even) td{background:#f7f9fc}
+  .fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.9em;margin:0 .12em;line-height:1.12}
+  .fr>span{padding:0 .2em}
+  .fr>span:first-child{border-bottom:.7pt solid currentColor}
+  .hl{background:#fff2a8;padding:0 .6mm;border-radius:.6mm}
+  .muted{color:var(--muted)}
+  .small{font-size:9pt}
+  .toc{columns:2;column-gap:8mm;font-size:9.6pt;margin:0;padding-left:5mm}
+  .toc li{break-inside:avoid}
+  .ans{color:var(--ok);font-weight:700}
+  sup,sub{font-size:.72em;line-height:0}
+  @page{size:A4;margin:0}
+  @media print{
+    body{background:#fff}
+    .page{margin:0;box-shadow:none;page-break-after:always;break-after:page}
+    .page:last-child{page-break-after:auto;break-after:auto}
+  }
+  @media screen and (max-width:820px){
+    .page{width:100%;height:auto;min-height:0;margin:0 0 4mm;padding:16mm 4mm 14mm}
+    .runhead,.runfoot{left:4mm;right:4mm}
+    .cols,.cols3{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================== PAGE 1 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 1 · Partial Differentiation</span></div>
+
+  <div class="title">
+    <div class="code">UE26MA141A · Engineering Mathematics – I · Short Notes</div>
+    <h1>Unit 1 — <span>Partial Differentiation</span></h1>
+    <p>Last-minute revision: definitions, formulas, standard results, worked answers and exam traps — built from the PESU Unit 1 slides (classes 1–11).</p>
+  </div>
+
+  <ol class="toc">
+    <li>Limits, continuity &amp; differentiability</li>
+    <li>Partial derivatives &amp; geometric meaning</li>
+    <li>Total derivative, differentials &amp; errors</li>
+    <li>Chain rule &amp; composite functions</li>
+    <li>Implicit functions</li>
+    <li>Homogeneous functions &amp; Euler's theorem</li>
+    <li>Taylor's &amp; Maclaurin's series (2 variables)</li>
+    <li>Maxima, minima &amp; saddle points</li>
+    <li>Lagrange's undetermined multipliers</li>
+    <li>One-page formula sheet</li>
+  </ol>
+
+  <h2><span class="n">1</span>Limits, Continuity &amp; Differentiability</h2>
+  <p>A function of two variables <i>z = f(x, y)</i> assigns one real number to each point (<i>x, y</i>) in its domain <i>D</i>. Examples: area <i>A = lb</i>, cylinder volume <i>V = πr²h</i>, potential <i>V = f(x, y, z, t)</i>.</p>
+
+  <h3>Limit</h3>
+  <div class="box f">
+    lim<sub>(x,y)→(a,b)</sub> <i>f(x, y) = L</i> means <i>f</i> → <i>L</i> along <b>every</b> path to (<i>a, b</i>). There are infinitely many paths.
+  </div>
+  <ul>
+    <li><b>Limit does not exist (DNE):</b> find two paths that give different values. Common paths: <i>y</i> = 0, <i>x</i> = 0, <i>y = mx</i>, <i>y = mx²</i>.</li>
+    <li><b>To show a limit exists</b> at the origin, use polar form: <i>x = r</i> cos θ, <i>y = r</i> sin θ. If the result → <i>L</i> as <i>r</i> → 0 for every θ, the limit is <i>L</i>.</li>
+    <li>Polynomials: just substitute. E.g. lim<sub>(2,1)</sub>(<i>x</i>² − 2<i>xy</i> + 3<i>y</i>² − 4<i>x</i> + 3<i>y</i> − 6) = 4 − 4 + 3 − 8 + 3 − 6 = <span class="ans">−8</span>.</li>
+  </ul>
+  <div class="ex"><div class="bt">Standard examples</div>
+    <b>(i)</b> <span class="fr"><span>2xy</span><span>3x² + y²</span></span> at (0,0): along <i>y = mx</i> → <span class="fr"><span>2m</span><span>3 + m²</span></span>, which depends on <i>m</i> (<i>y</i> = 0 gives 0, <i>y = x</i> gives ½) ⇒ <b>limit DNE ⇒ not continuous</b>.<br>
+    <b>(ii)</b> <span class="fr"><span>3x²y</span><span>x² + y²</span></span> at (0,0): polar gives 3<i>r</i> cos²θ sin θ → 0 ⇒ <b>limit = 0 exists</b>, but <i>f</i>(0,0) is not defined ⇒ not continuous (the discontinuity is removable).
+  </div>
+
+  <h3>Continuity</h3>
+  <p><i>f</i> is continuous at (<i>a, b</i>) if: (1) <i>f(a, b)</i> is defined, (2) the limit exists, and (3) lim<sub>(x,y)→(a,b)</sub> <i>f</i> = <i>f(a, b)</i>. Geometrically, the surface has no hole or tear at that point.</p>
+  <div class="tip"><div class="bt">Trap</div>"Not continuous" does <b>not</b> mean "the limit does not exist". The limit may exist while <i>f(a, b)</i> is undefined or different (example ii).</div>
+
+  <h3>Differentiability</h3>
+  <p><i>f</i> is differentiable at (<i>a, b</i>) if Δ<i>f = f<sub>x</sub>h + f<sub>y</sub>k + ε<sub>1</sub>h + ε<sub>2</sub>k</i>, where ε<sub>1</sub>, ε<sub>2</sub> → 0 as (<i>h, k</i>) → (0, 0).</p>
+  <ul>
+    <li><b>Sufficient condition:</b> <i>f<sub>x</sub></i> and <i>f<sub>y</sub></i> exist and are continuous near (<i>a, b</i>).</li>
+    <li>Differentiable ⇒ continuous. The converse is false.</li>
+    <li>Partial derivatives can exist at a point where <i>f</i> is not continuous. Example: <i>xy</i>/(<i>x</i>² + <i>y</i>²) has <i>f<sub>x</sub></i>(0,0) = <i>f<sub>y</sub></i>(0,0) = 0, but it is discontinuous at the origin.</li>
+  </ul>
+
+  <div class="runfoot"><span>Short notes · Unit 1</span><span>Page 1 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 2 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 1 · Partial Differentiation</span></div>
+
+  <h2><span class="n">2</span>Partial Derivatives</h2>
+  <p>A partial derivative is the derivative with respect to one variable while all the others are held <b>constant</b>.</p>
+  <div class="box f">
+    <div class="eq"><span class="fr"><span>∂z</span><span>∂x</span></span> = <i>z<sub>x</sub></i> = <i>f<sub>x</sub></i> = lim<sub>h→0</sub> <span class="fr"><span>f(x + h, y) − f(x, y)</span><span>h</span></span>
+    &emsp;&emsp;
+    <span class="fr"><span>∂z</span><span>∂y</span></span> = <i>z<sub>y</sub></i> = <i>f<sub>y</sub></i> = lim<sub>h→0</sub> <span class="fr"><span>f(x, y + h) − f(x, y)</span><span>h</span></span></div>
+  </div>
+
+  <h3>Higher order</h3>
+  <table>
+    <tr><th>Notation</th><th>Meaning</th></tr>
+    <tr><td><i>f<sub>xx</sub></i> = <span class="fr"><span>∂²f</span><span>∂x²</span></span>, &nbsp; <i>f<sub>yy</sub></i> = <span class="fr"><span>∂²f</span><span>∂y²</span></span></td><td>Differentiate twice with respect to the same variable.</td></tr>
+    <tr><td><i>f<sub>xy</sub></i> = <span class="fr"><span>∂²f</span><span>∂y ∂x</span></span> = <span class="fr"><span>∂</span><span>∂y</span></span>(<span class="fr"><span>∂f</span><span>∂x</span></span>)</td><td>Mixed partial: first <i>x</i>, then <i>y</i>. Subscripts read left → right; ∂-notation reads right → left.</td></tr>
+  </table>
+  <ul>
+    <li><b>Clairaut / Schwarz theorem:</b> <i>f<sub>xy</sub> = f<sub>yx</sub></i> when the mixed partials are continuous, so the order does not matter.</li>
+    <li>A function of 2 variables has 2 first-order, 4 second-order and 2<sup>n</sup> n-th order partial derivatives. A function of <i>m</i> variables has <i>m<sup>n</sup></i> of order <i>n</i>.</li>
+  </ul>
+
+  <h3>Geometric interpretation</h3>
+  <ul>
+    <li><i>f<sub>x</sub>(x<sub>0</sub>, y<sub>0</sub>)</i> is the slope of the tangent to the curve cut from the surface <i>z = f(x, y)</i> by the plane <i>y = y<sub>0</sub></i> (the <i>x</i>-direction). <i>f<sub>y</sub></i> is the slope along the plane <i>x = x<sub>0</sub></i>.</li>
+    <li><i>f<sub>xx</sub></i> &gt; 0: the surface is concave up in the <i>x</i>-direction. <i>f<sub>yy</sub></i> &gt; 0: concave up in the <i>y</i>-direction.</li>
+    <li><i>f<sub>xy</sub></i> measures how the <i>x</i>-slope changes as we move in the <i>y</i>-direction.</li>
+    <li>Tangent plane at <i>P</i>: <i>z − z<sub>0</sub> = f<sub>x</sub>(x − x<sub>0</sub>) + f<sub>y</sub>(y − y<sub>0</sub>)</i>.</li>
+  </ul>
+
+  <h3>Frequently asked standard results</h3>
+  <table>
+    <tr><th style="width:52%">Given</th><th>Result</th></tr>
+    <tr><td><i>r</i>² = <i>x</i>² + <i>y</i>² + <i>z</i>²</td><td><i>r<sub>x</sub></i> = <i>x/r</i>, &nbsp;<i>r<sub>y</sub></i> = <i>y/r</i>, &nbsp;<i>r<sub>z</sub></i> = <i>z/r</i></td></tr>
+    <tr><td><i>u = f(r)</i>, <i>r</i> = √(<i>x</i>² + <i>y</i>² + <i>z</i>²)</td><td><i>u<sub>x</sub> = f′(r)·x/r</i>; &nbsp; <i>u<sub>xx</sub> + u<sub>yy</sub> + u<sub>zz</sub> = f″(r) + </i><span class="fr"><span>2</span><span>r</span></span><i>f′(r)</i></td></tr>
+    <tr><td><i>u = r<sup>n</sup></i> (3-D)</td><td>∇²<i>u</i> = <i>n(n + 1)r</i><sup>n−2</sup>; &nbsp;<i>u</i> = 1/<i>r</i> satisfies Laplace's equation</td></tr>
+    <tr><td><i>u</i> = log(<i>x</i>² + <i>y</i>²), &nbsp; <i>u</i> = tan<sup>−1</sup>(<i>y/x</i>)</td><td>Both satisfy <i>u<sub>xx</sub> + u<sub>yy</sub></i> = 0 (harmonic)</td></tr>
+    <tr><td><i>x = r</i> cos θ, <i>y = r</i> sin θ</td><td><i>r<sub>x</sub></i> = cos θ = <i>x/r</i>, <i>r<sub>y</sub></i> = sin θ, θ<sub>x</sub> = −<i>y/r</i>², θ<sub>y</sub> = <i>x/r</i>²</td></tr>
+  </table>
+  <div class="tip"><div class="bt">Exam tip</div>For "verify <i>u<sub>xy</sub> = u<sub>yx</sub></i>" questions, compute both orders fully and show they are equal. For "show <i>u</i> satisfies Laplace", compute <i>u<sub>xx</sub></i> and <i>u<sub>yy</sub></i> separately, then add.</div>
+
+  <h2><span class="n">3</span>Total Derivative, Differentials &amp; Errors</h2>
+  <div class="box f">
+    <div class="bt">Total derivative (tree rule)</div>
+    If <i>z = f(x, y)</i> with <i>x = x(t)</i>, <i>y = y(t)</i>: &emsp;
+    <span class="fr"><span>dz</span><span>dt</span></span> = <span class="fr"><span>∂z</span><span>∂x</span></span><span class="fr"><span>dx</span><span>dt</span></span> + <span class="fr"><span>∂z</span><span>∂y</span></span><span class="fr"><span>dy</span><span>dt</span></span>
+    &emsp; (add a term for each extra variable).<br>
+    <div class="bt" style="margin-top:1.5mm">Total differential</div>
+    <i>dz = f<sub>x</sub> dx + f<sub>y</sub> dy</i> &emsp;⇒&emsp; <i>f(a + h, b + k) ≈ f(a, b) + h f<sub>x</sub>(a, b) + k f<sub>y</sub>(a, b)</i>
+  </div>
+  <div class="cols">
+    <div class="ex"><div class="bt">Example — direct</div>
+      <i>z = x²y³</i>, <i>x = t²</i>, <i>y</i> = 2<i>t</i>³: <i>z<sub>x</sub></i> = 2<i>xy</i>³ = 16<i>t</i><sup>11</sup>, <i>z<sub>y</sub></i> = 3<i>x²y²</i> = 12<i>t</i><sup>10</sup>.<br>
+      <span class="fr"><span>dz</span><span>dt</span></span> = 16<i>t</i><sup>11</sup>(2<i>t</i>) + 12<i>t</i><sup>10</sup>(6<i>t</i>²) = <span class="ans">104 <i>t</i><sup>12</sup></span>.
+      <span class="muted small">(Check: <i>z</i> = 8<i>t</i><sup>13</sup>.)</span>
+    </div>
+    <div class="ex"><div class="bt">Example — approximation</div>
+      <i>f</i>(2, −3) = 6, <i>f<sub>x</sub></i> = 1.3, <i>f<sub>y</sub></i> = −0.6. Estimate <i>f</i>(2.1, −3.03):<br>
+      <i>dz</i> = 1.3(0.1) + (−0.6)(−0.03) = 0.148 ⇒ <i>f</i> ≈ <span class="ans">6.148</span>.
+    </div>
+  </div>
+
+  <div class="runfoot"><span>Short notes · Unit 1</span><span>Page 2 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 3 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 1 · Partial Differentiation</span></div>
+
+  <h3>Errors &amp; sensitivity</h3>
+  <ul>
+    <li>Absolute error ≈ <i>dz</i>; relative error = <i>dz/z</i>; percentage error = 100·<i>dz/z</i>.</li>
+    <li>If <i>u = k x<sup>a</sup> y<sup>b</sup> z<sup>c</sup></i>, take logs: <span class="fr"><span>du</span><span>u</span></span> = <i>a</i><span class="fr"><span>dx</span><span>x</span></span> + <i>b</i><span class="fr"><span>dy</span><span>y</span></span> + <i>c</i><span class="fr"><span>dz</span><span>z</span></span>, so percentage errors add with the powers as weights.</li>
+    <li><b>Cylinder tank</b> (<i>h</i> = 10, <i>r</i> = 2): <i>dV</i> = 2π<i>rh dr</i> + π<i>r</i>²<i>dh</i> = 40π <i>dr</i> + 4π <i>dh</i>. The volume is about <b>10× more sensitive to the radius</b> than to the height.</li>
+  </ul>
+
+  <h3>Rates-of-change problems (from the slides)</h3>
+  <table class="small">
+    <tr><th style="width:46%">Problem</th><th>Key step → answer</th></tr>
+    <tr><td>Triangle, area constant; <i>x</i>′ = 3, <i>y</i>′ = −2 cm/s; <i>x</i> = 20, <i>y</i> = 30, θ = π/6. Find θ′.</td>
+        <td><i>A</i> = ½<i>xy</i> sin θ ⇒ 0 = ½[<i>y</i> sin θ·3 + <i>x</i> sin θ·(−2) + <i>xy</i> cos θ·θ′] ⇒ θ′ = −25/(300√3) ≈ <span class="ans">−0.0481 rad/s</span> (θ decreasing)</td></tr>
+    <tr><td>Triangle: base 10 (+2 cm/s), height 6 (+1 cm/s). Rate of change of area?</td>
+        <td><i>A′</i> = ½(<i>b h′</i> + <i>h b′</i>) = ½(10 + 12) = <span class="ans">11 cm²/s</span></td></tr>
+    <tr><td>Cone, <i>r = h</i>, <i>V′</i> = 9 cm³/s. Find <i>h′</i> at <i>h</i> = 6.</td>
+        <td><i>V</i> = π<i>h</i>³/3 ⇒ 9 = π(36)<i>h′</i> ⇒ <i>h′</i> = <span class="ans">1/(4π) ≈ 0.0796 cm/s</span></td></tr>
+    <tr><td>Point on <i>x</i>²/16 − <i>y</i>²/9 = <i>z</i> and <i>x</i>² + <i>y</i>² = 5; <i>x′</i> = 0.2. Find <i>z′</i> at <i>x</i> = 2.</td>
+        <td><i>dy/dx</i> = −<i>x/y</i> (from the cylinder); use <i>z′ = z<sub>x</sub>x′ + z<sub>y</sub>y′</i> with <i>y</i> = ±1</td></tr>
+  </table>
+
+  <h2><span class="n">4</span>Chain Rule &amp; Composite Functions</h2>
+  <div class="box f">
+    If <i>z = f(x, y)</i>, <i>x = g(u, v)</i>, <i>y = h(u, v)</i>:
+    <div class="eq"><span class="fr"><span>∂z</span><span>∂u</span></span> = <span class="fr"><span>∂z</span><span>∂x</span></span><span class="fr"><span>∂x</span><span>∂u</span></span> + <span class="fr"><span>∂z</span><span>∂y</span></span><span class="fr"><span>∂y</span><span>∂u</span></span>
+    &emsp;&emsp;
+    <span class="fr"><span>∂z</span><span>∂v</span></span> = <span class="fr"><span>∂z</span><span>∂x</span></span><span class="fr"><span>∂x</span><span>∂v</span></span> + <span class="fr"><span>∂z</span><span>∂y</span></span><span class="fr"><span>∂y</span><span>∂v</span></span></div>
+    Draw the <b>tree diagram</b>: multiply along each branch and add over all branches that end at the variable.
+  </div>
+
+  <h3>Classic "prove that" results — introduce new variables <i>r, s, t</i></h3>
+  <table>
+    <tr><th style="width:48%">Given</th><th>Prove</th></tr>
+    <tr><td><i>v = f</i>(2<i>x</i> − 3<i>y</i>, 3<i>y</i> − 4<i>z</i>, 4<i>z</i> − 2<i>x</i>)</td><td>6<i>v<sub>x</sub></i> + 4<i>v<sub>y</sub></i> + 3<i>v<sub>z</sub></i> = 0 &nbsp;<span class="muted small">(<i>v<sub>x</sub></i> = 2<i>v<sub>r</sub></i> − 2<i>v<sub>t</sub></i>, <i>v<sub>y</sub></i> = −3<i>v<sub>r</sub></i> + 3<i>v<sub>s</sub></i>, <i>v<sub>z</sub></i> = −4<i>v<sub>s</sub></i> + 4<i>v<sub>t</sub></i>)</span></td></tr>
+    <tr><td><i>u = f(x − y, y − z, z − x)</i></td><td><i>u<sub>x</sub> + u<sub>y</sub> + u<sub>z</sub></i> = 0</td></tr>
+    <tr><td><i>u = f(x/y, y/z, z/x)</i></td><td><i>x u<sub>x</sub> + y u<sub>y</sub> + z u<sub>z</sub></i> = 0</td></tr>
+    <tr><td><i>z = f(r, θ)</i>, <i>r = ts − t</i>², θ = √(<i>s</i>² + <i>t</i>²)</td><td><i>z<sub>s</sub> = f<sub>r</sub>·t + f<sub>θ</sub>·s</i>/√(<i>s</i>² + <i>t</i>²); &nbsp;<i>z<sub>t</sub> = f<sub>r</sub>(s − 2t) + f<sub>θ</sub>·t</i>/√(<i>s</i>² + <i>t</i>²)</td></tr>
+    <tr><td><i>u = f(x, y)</i>, <i>x = e<sup>st</sup></i>, <i>y = s</i>² + <i>t</i>²</td><td><i>u<sub>s</sub> = f<sub>x</sub>·te<sup>st</sup> + f<sub>y</sub>·</i>2<i>s</i>; &nbsp; <i>u<sub>t</sub> = f<sub>x</sub>·se<sup>st</sup> + f<sub>y</sub>·</i>2<i>t</i></td></tr>
+    <tr><td><i>u = f(r, θ)</i>, <i>r</i> = √(<i>x</i>² + <i>y</i>²), θ = tan<sup>−1</sup>(<i>y/x</i>)</td><td><i>u<sub>x</sub> = f<sub>r</sub></i>·<i>x/r − f<sub>θ</sub></i>·<i>y/r</i>²; &nbsp; <i>u<sub>y</sub> = f<sub>r</sub></i>·<i>y/r + f<sub>θ</sub></i>·<i>x/r</i>²</td></tr>
+  </table>
+
+  <h3>Polar substitution results (<i>x = r</i> cos θ, <i>y = r</i> sin θ)</h3>
+  <ul>
+    <li><i>u = f(x</i>² + <i>y</i>²) (for example sin(<i>x</i>² + <i>y</i>²) or <i>e</i><sup><i>x</i>²+<i>y</i>²</sup>) ⇒ <span class="fr"><span>∂u</span><span>∂θ</span></span> = <span class="ans">0</span>, because <i>u</i> depends only on <i>r</i>.</li>
+    <li><i>u</i> = tan<sup>−1</sup>(<i>y/x</i>) ⇒ <i>u<sub>θ</sub></i> = <i>u<sub>x</sub></i>(−<i>r</i> sin θ) + <i>u<sub>y</sub></i>(<i>r</i> cos θ) = <i>r</i>²(sin²θ + cos²θ)/<i>r</i>² = <span class="ans">1</span>.</li>
+    <li><i>u = x²y + yz²</i>, with <i>x = r</i> cos θ, <i>y = r</i> sin θ, <i>z</i> = θ ⇒ <i>u<sub>θ</sub></i> = 2<i>xy</i>(−<i>r</i> sin θ) + (<i>x</i>² + <i>z</i>²)(<i>r</i> cos θ) + 2<i>yz</i>.</li>
+    <li>Identity: (<i>u<sub>x</sub></i>)² + (<i>u<sub>y</sub></i>)² = (<i>u<sub>r</sub></i>)² + <span class="fr"><span>1</span><span>r²</span></span>(<i>u</i><sub>θ</sub>)².</li>
+  </ul>
+  <div class="ex"><div class="bt">Example — one-variable chain</div>
+    <i>u = e<sup>xy</sup></i>·(stuff) problems: always write <span class="fr"><span>du</span><span>dt</span></span> = <i>u<sub>x</sub>x′ + u<sub>y</sub>y′</i>, then substitute <i>x(t)</i> and <i>y(t)</i> <b>at the end</b>.
+    E.g. <i>u = e<sup>xy</sup></i> + ln(<i>y</i>² + 1), <i>x</i> = tan <i>t</i>, <i>y</i> = cos <i>t</i>: <span class="fr"><span>du</span><span>dt</span></span> = <i>y e<sup>xy</sup></i> sec²<i>t</i> + (<i>x e<sup>xy</sup></i> + <span class="fr"><span>2y</span><span>y² + 1</span></span>)(−sin <i>t</i>).
+  </div>
+
+  <div class="runfoot"><span>Short notes · Unit 1</span><span>Page 3 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 4 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 1 · Partial Differentiation</span></div>
+
+  <h2><span class="n">5</span>Implicit Functions</h2>
+  <div class="box f">
+    <div class="cols">
+      <div><div class="bt">Two variables: f(x, y) = 0</div>
+        <div class="eq"><span class="fr"><span>dy</span><span>dx</span></span> = − <span class="fr"><span>f<sub>x</sub></span><span>f<sub>y</sub></span></span>, &nbsp; <i>f<sub>y</sub></i> ≠ 0</div>
+        <div class="eq small"><span class="fr"><span>d²y</span><span>dx²</span></span> = − <span class="fr"><span>f<sub>xx</sub>f<sub>y</sub>² − 2f<sub>xy</sub>f<sub>x</sub>f<sub>y</sub> + f<sub>yy</sub>f<sub>x</sub>²</span><span>f<sub>y</sub>³</span></span></div>
+      </div>
+      <div><div class="bt">Three variables: f(x, y, z) = 0</div>
+        <div class="eq"><span class="fr"><span>∂z</span><span>∂x</span></span> = − <span class="fr"><span>f<sub>x</sub></span><span>f<sub>z</sub></span></span>, &nbsp;
+        <span class="fr"><span>∂z</span><span>∂y</span></span> = − <span class="fr"><span>f<sub>y</sub></span><span>f<sub>z</sub></span></span></div>
+        <div class="eq"><span class="fr"><span>∂y</span><span>∂x</span></span> = − <span class="fr"><span>f<sub>x</sub></span><span>f<sub>y</sub></span></span> &nbsp;<span class="small muted">(holding <i>z</i> constant)</span></div>
+      </div>
+    </div>
+  </div>
+  <p class="small muted">Reason: on a level curve <i>f(x, y) = c</i>, <i>df</i> = <i>f<sub>x</sub>dx + f<sub>y</sub>dy</i> = 0.</p>
+  <table class="small">
+    <tr><th style="width:38%">Problem</th><th>Answer</th></tr>
+    <tr><td><i>x</i>³<i>y</i> + 3<i>xy</i>² = 3</td><td><i>dy/dx</i> = −3<i>y</i>(<i>x</i>² + <i>y</i>)/[<i>x</i>(<i>x</i>² + 6<i>y</i>)]</td></tr>
+    <tr><td><i>x e<sup>y</sup> + y e<sup>x</sup></i> = 0: tangent at the origin</td><td><i>dy/dx</i> = −(<i>e<sup>y</sup> + y e<sup>x</sup></i>)/(<i>x e<sup>y</sup> + e<sup>x</sup></i>) = −1 at (0,0) ⇒ tangent <span class="ans"><i>x + y</i> = 0</span></td></tr>
+    <tr><td>(cos <i>x</i>)<sup><i>y</i></sup> = (sin <i>y</i>)<sup><i>x</i></sup></td><td><i>dy/dx</i> = <span class="fr"><span>y tan x + log sin y</span><span>log cos x − x cot y</span></span> &nbsp; (take logs: <i>F = y</i> log cos <i>x − x</i> log sin <i>y</i>, then −<i>F<sub>x</sub>/F<sub>y</sub></i>)</td></tr>
+    <tr><td><i>z</i>³ + <i>xy</i> − <i>y</i>²<i>z</i> = 6 at (0, 1, 2)</td><td><i>z<sub>x</sub></i> = −<i>y</i>/(3<i>z</i>² − <i>y</i>²) = <span class="ans">−1/11</span>; &nbsp; <i>y<sub>x</sub></i> = −<i>y</i>/(<i>x</i> − 2<i>yz</i>) = <span class="ans">1/4</span></td></tr>
+    <tr><td><i>x</i>² + <i>xy</i> + <i>y</i>² = 7</td><td><i>dy/dx</i> = −(2<i>x + y</i>)/(<i>x</i> + 2<i>y</i>)</td></tr>
+    <tr><td><i>x</i>³ + <i>z</i>² + <i>y e<sup>xz</sup></i> + <i>z</i> cos <i>y</i> = 0</td><td><i>z<sub>x</sub></i> = −(3<i>x</i>² + <i>yz e<sup>xz</sup></i>)/(2<i>z</i> + <i>xy e<sup>xz</sup></i> + cos <i>y</i>) ⇒ 0 at (0,0,0)</td></tr>
+  </table>
+
+  <h2><span class="n">6</span>Homogeneous Functions &amp; Euler's Theorem</h2>
+  <div class="box f">
+    <div class="bt">Definition</div>
+    <i>u = f(x, y)</i> is homogeneous of degree <i>n</i> if &nbsp;<b><i>f(λx, λy) = λ<sup>n</sup> f(x, y)</i></b>, or equivalently <i>u = x<sup>n</sup> g(y/x)</i> = <i>y<sup>n</sup> g(x/y)</i>.
+    For three variables: <i>u = x<sup>n</sup> g(y/x, z/x)</i>. The degree <i>n</i> can be positive, negative, zero or a fraction.
+  </div>
+  <div class="cols">
+    <div class="box"><div class="bt">Euler's theorem</div>
+      <i>x u<sub>x</sub> + y u<sub>y</sub> = n u</i><br>
+      <i>x u<sub>x</sub> + y u<sub>y</sub> + z u<sub>z</sub> = n u</i> &nbsp;(3 variables)<br>
+      <div class="bt" style="margin-top:1.5mm">Corollary (second order)</div>
+      <i>x²u<sub>xx</sub></i> + 2<i>xy u<sub>xy</sub> + y²u<sub>yy</sub> = n(n − 1) u</i>
+    </div>
+    <div class="box"><div class="bt">Modified Euler — f(u) homogeneous, u not</div>
+      If <i>f(u)</i> is homogeneous of degree <i>n</i>:<br>
+      <i>x u<sub>x</sub> + y u<sub>y</sub></i> = <span class="hl"><i>n</i> <span class="fr"><span>f(u)</span><span>f′(u)</span></span> = <i>g(u)</i></span><br>
+      <i>x²u<sub>xx</sub></i> + 2<i>xy u<sub>xy</sub> + y²u<sub>yy</sub></i> = <span class="hl"><i>g(u)</i>[<i>g′(u)</i> − 1]</span>
+    </div>
+  </div>
+  <ul class="small">
+    <li>A constant has degree 0; linear functions have degree 1. In thermodynamics, extensive variables have degree 1 and intensive variables degree 0. Euler's theorem is also used in economics (production functions).</li>
+    <li><b>Degree checks from the slides:</b> (<i>x</i>⁴ + 2<i>x</i>²<i>y</i>² + <i>y</i>⁴)/(<i>x</i>² + <i>y</i>²)² → 0; &nbsp; sin<sup>−1</sup>(<i>y/x</i>)/√(<i>x</i>² + <i>y</i>²) → −1; &nbsp; (<i>x</i>²<i>y</i> + <i>xy</i>²)/(<i>x + y</i>)³ → 0; &nbsp; (<i>e<sup>x</sup> − e<sup>y</sup></i>)/(<i>x − y</i>) → <b>not homogeneous</b>.</li>
+  </ul>
+
+  <div class="runfoot"><span>Short notes · Unit 1</span><span>Page 4 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 5 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 1 · Partial Differentiation</span></div>
+
+  <h3>Euler's theorem — standard problems (memorise the pattern)</h3>
+  <table class="small">
+    <tr><th style="width:30%">Given <i>u</i></th><th style="width:22%">Homogeneous part &amp; degree</th><th>x u<sub>x</sub> + y u<sub>y</sub> (+ z u<sub>z</sub>)</th><th>x²u<sub>xx</sub> + 2xy u<sub>xy</sub> + y²u<sub>yy</sub></th></tr>
+    <tr><td><i>u</i> = (<i>x − y</i>)/(<i>x</i>² + <i>y</i>²)</td><td><i>u</i> itself, <i>n</i> = −1</td><td>−<i>u</i></td><td>(−1)(−2)<i>u</i> = 2<i>u</i></td></tr>
+    <tr><td><i>u</i> = sin<sup>−1</sup>[(<i>x</i> + 2<i>y</i> + 3<i>z</i>)/√(<i>x</i>⁸ + <i>y</i>⁸ + <i>z</i>⁸)]</td><td>sin <i>u</i>, <i>n</i> = 1 − 4 = −3</td><td>−3 tan <i>u</i> &nbsp;⇒ sum + 3 tan <i>u</i> = 0</td><td>—</td></tr>
+    <tr><td><i>u</i> = sin<sup>−1</sup>[(<i>x + y</i>)/(√<i>x</i> + √<i>y</i>)]</td><td>sin <i>u</i>, <i>n</i> = ½</td><td>½ tan <i>u</i></td><td>½ tan <i>u</i> (½ sec²<i>u</i> − 1) = − <span class="fr"><span>sin u cos 2u</span><span>4 cos³u</span></span></td></tr>
+    <tr><td><i>u</i> = log[(<i>x</i>² + <i>y</i>²)/(<i>x + y</i>)]</td><td><i>e<sup>u</sup></i>, <i>n</i> = 1</td><td>1</td><td>1·(0 − 1) = −1</td></tr>
+    <tr><td><i>u</i> = exp[<i>x</i>³<i>y</i>³/(<i>x</i>² + <i>y</i>²)]</td><td>log <i>u</i>, <i>n</i> = 4</td><td>4 <i>u</i> log <i>u</i></td><td>—</td></tr>
+    <tr><td><i>u</i> = tan<sup>−1</sup>[(<i>x</i>³ + <i>y</i>³)/(<i>x − y</i>)]</td><td>tan <i>u</i>, <i>n</i> = 2</td><td>2 sin <i>u</i> cos <i>u</i> = sin 2<i>u</i></td><td>sin 2<i>u</i>(2 cos 2<i>u</i> − 1) = sin 4<i>u</i> − sin 2<i>u</i></td></tr>
+    <tr><td><i>z</i> = (<i>x + y</i>)/(√<i>x</i> + √<i>y</i>)</td><td><i>z</i>, <i>n</i> = ½</td><td>½ <i>z</i> (verify directly)</td><td>−¼ <i>z</i></td></tr>
+  </table>
+  <div class="tip"><div class="bt">Method</div>
+    1) Check whether <i>u</i> is homogeneous using <i>u(λx, λy)</i>. 2) If not, look for <i>f(u)</i> (sin <i>u</i>, tan <i>u</i>, <i>e<sup>u</sup></i>, log <i>u</i>) that is homogeneous. 3) Apply Euler to <i>f(u)</i>: <i>f′(u)(x u<sub>x</sub> + y u<sub>y</sub>) = n f(u)</i>. 4) For the second-order result use <i>g(u)[g′(u) − 1]</i>. Write <i>g′(u)</i>, <b>not</b> <i>g(u)</i>, inside the bracket.
+  </div>
+
+  <h2><span class="n">7</span>Taylor's &amp; Maclaurin's Series</h2>
+  <h3>One variable (review)</h3>
+  <p><i>f(x) = f(a) + (x − a) f′(a) + </i><span class="fr"><span>(x − a)²</span><span>2!</span></span><i>f″(a) + … </i>; with <i>a</i> = 0 this is Maclaurin's series.</p>
+  <table class="small">
+    <tr><td><i>e<sup>x</sup></i> = 1 + <i>x</i> + <i>x</i>²/2! + <i>x</i>³/3! + …</td><td>sin <i>x</i> = <i>x − x</i>³/3! + <i>x</i>⁵/5! − …</td><td>cos <i>x</i> = 1 − <i>x</i>²/2! + <i>x</i>⁴/4! − …</td></tr>
+    <tr><td>log(1 + <i>x</i>) = <i>x − x</i>²/2 + <i>x</i>³/3 − … (|<i>x</i>| &lt; 1)</td><td>sinh <i>x</i> = <i>x + x</i>³/3! + <i>x</i>⁵/5! + …</td><td>cosh <i>x</i> = 1 + <i>x</i>²/2! + <i>x</i>⁴/4! + …</td></tr>
+    <tr><td>(1 + <i>x</i>)<sup><i>n</i></sup> = 1 + <i>nx</i> + <span class="fr"><span>n(n−1)</span><span>2!</span></span><i>x</i>² + …</td><td>tan<sup>−1</sup><i>x</i> = <i>x − x</i>³/3 + <i>x</i>⁵/5 − …</td><td>sin<sup>−1</sup><i>x</i> = <i>x</i> + <span class="fr"><span>1</span><span>2</span></span><span class="fr"><span>x³</span><span>3</span></span> + <span class="fr"><span>1·3</span><span>2·4</span></span><span class="fr"><span>x⁵</span><span>5</span></span> + …</td></tr>
+  </table>
+
+  <h3>Two variables — about (<i>a, b</i>), with <i>h = x − a</i>, <i>k = y − b</i></h3>
+  <div class="box f">
+    <i>f(x, y) = f(a, b)</i> + <span class="fr"><span>1</span><span>1!</span></span>[<i>h f<sub>x</sub> + k f<sub>y</sub></i>]
+    + <span class="fr"><span>1</span><span>2!</span></span>[<i>h²f<sub>xx</sub></i> + 2<i>hk f<sub>xy</sub> + k²f<sub>yy</sub></i>]
+    + <span class="fr"><span>1</span><span>3!</span></span>[<i>h³f<sub>xxx</sub></i> + 3<i>h²k f<sub>xxy</sub></i> + 3<i>hk²f<sub>xyy</sub> + k³f<sub>yyy</sub></i>] + …
+    <p class="small" style="margin-top:1.5mm">All derivatives are evaluated at (<i>a, b</i>). Compact form: <i>f(a + h, b + k)</i> = Σ <span class="fr"><span>1</span><span>n!</span></span>(<i>h</i>∂<sub>x</sub> + <i>k</i>∂<sub>y</sub>)<sup><i>n</i></sup> <i>f(a, b)</i>, with binomial coefficients 1-2-1 and 1-3-3-1.</p>
+    <b>Maclaurin</b> (<i>a = b</i> = 0): <i>f(x, y) = f(0,0) + [x f<sub>x</sub> + y f<sub>y</sub>]</i> + <span class="fr"><span>1</span><span>2!</span></span>[<i>x²f<sub>xx</sub></i> + 2<i>xy f<sub>xy</sub> + y²f<sub>yy</sub></i>] + …
+  </div>
+  <div class="tip"><div class="bt">Working rule</div>Make a table: <i>f</i>, <i>f<sub>x</sub></i>, <i>f<sub>y</sub></i>, <i>f<sub>xx</sub></i>, <i>f<sub>xy</sub></i>, <i>f<sub>yy</sub></i> (and the third-order derivatives if asked), each with its value at (<i>a, b</i>), then substitute. "Expand in powers of (<i>x</i> − 1) and (<i>y</i> + 2)" means <i>a</i> = 1, <i>b</i> = −2.</div>
+
+  <div class="runfoot"><span>Short notes · Unit 1</span><span>Page 5 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 6 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 1 · Partial Differentiation</span></div>
+
+  <h3>Worked expansions (final answers)</h3>
+  <table class="small">
+    <tr><th style="width:27%">Function &amp; point</th><th style="width:34%">Values at the point</th><th>Expansion</th></tr>
+    <tr><td><i>e<sup>x</sup></i> cos <i>y</i> about (1, π/4)</td><td><i>f = f<sub>x</sub> = f<sub>xx</sub> = e</i>/√2; &nbsp;<i>f<sub>y</sub> = f<sub>xy</sub> = f<sub>yy</sub></i> = −<i>e</i>/√2</td><td><span class="fr"><span>e</span><span>√2</span></span>[1 + <i>h − k</i> + ½(<i>h</i>² − 2<i>hk − k</i>²)] &nbsp; with <i>h = x</i> − 1, <i>k = y</i> − π/4</td></tr>
+    <tr><td>log(2<i>x + y</i> + 1) about (0,0)</td><td>0; 2, 1; −4, −2, −1</td><td>2<i>x + y</i> − ½(4<i>x</i>² + 4<i>xy + y</i>²) = (2<i>x + y</i>) − ½(2<i>x + y</i>)²</td></tr>
+    <tr><td>tan<sup>−1</sup>(<i>xy</i>) about (1, −1); estimate <i>f</i>(0.9, −1.2)</td><td><i>f</i> = −π/4; <i>f<sub>x</sub></i> = −½, <i>f<sub>y</sub></i> = ½; <i>f<sub>xx</sub></i> = ½, <i>f<sub>xy</sub></i> = 0, <i>f<sub>yy</sub></i> = ½</td><td>−π/4 − ½<i>h</i> + ½<i>k</i> + ¼<i>h</i>² + ¼<i>k</i>²; with <i>h</i> = −0.1, <i>k</i> = −0.2: ≈ <span class="ans">−0.823</span></td></tr>
+    <tr><td><i>e</i><sup><i>x−y</i></sup> about (0,0)</td><td>all derivatives ±1</td><td>1 + (<i>x − y</i>) + (<i>x − y</i>)²/2! + (<i>x − y</i>)³/3! + …</td></tr>
+    <tr><td><i>e<sup>x</sup></i> log(1 + <i>y</i>), first six terms</td><td><i>f<sub>y</sub></i> = 1, <i>f<sub>xy</sub></i> = 1, <i>f<sub>yy</sub></i> = −1, <i>f<sub>xxy</sub></i> = 1, <i>f<sub>xyy</sub></i> = −1, <i>f<sub>yyy</sub></i> = 2</td><td><i>y + xy − y</i>²/2 + <i>x</i>²<i>y</i>/2 − <i>xy</i>²/2 + <i>y</i>³/3</td></tr>
+    <tr><td>sin(<i>xy</i>) about (1, π/2)</td><td><i>f</i> = 1; <i>f<sub>x</sub> = f<sub>y</sub></i> = 0; <i>f<sub>xx</sub></i> = −π²/4, <i>f<sub>xy</sub></i> = −π/2, <i>f<sub>yy</sub></i> = −1</td><td>1 − <span class="fr"><span>π²</span><span>8</span></span><i>h</i>² − <span class="fr"><span>π</span><span>2</span></span><i>hk</i> − ½<i>k</i>² &nbsp; (<i>h = x</i> − 1, <i>k = y</i> − π/2)</td></tr>
+    <tr><td><i>xy</i>² + <i>y</i> cos(<i>x − y</i>) about (1,1)</td><td><i>f</i> = 2; 1, 3; <i>f<sub>xx</sub></i> = −1, <i>f<sub>xy</sub></i> = 3, <i>f<sub>yy</sub></i> = 1</td><td>2 + <i>h</i> + 3<i>k</i> + ½[−<i>h</i>² + 6<i>hk + k</i>²]</td></tr>
+  </table>
+  <p class="small muted">Uses: approximating values, polynomial models, optimisation (quadratic approximations), error and variance estimates; also why sin θ ≈ θ for a pendulum.</p>
+
+  <h2><span class="n">8</span>Maxima &amp; Minima (two variables)</h2>
+  <p><i>f(a, b)</i> is a <b>relative maximum</b> if <i>f(a, b) &gt; f(a + h, b + k)</i> for all small <i>h, k</i> (Δ = <i>f(a + h, b + k) − f(a, b)</i> &lt; 0), and a <b>relative minimum</b> if Δ &gt; 0. Maxima and minima together are called <b>extreme values</b>. A <b>saddle point</b> is a stationary point that is neither.</p>
+  <div class="box f">
+    <div class="bt">Second-derivative test</div>
+    Stationary points: solve <i>f<sub>x</sub></i> = 0 and <i>f<sub>y</sub></i> = 0. Let <i>r = f<sub>xx</sub></i>, <i>s = f<sub>xy</sub></i>, <i>t = f<sub>yy</sub></i>. Then <i>rt − s</i>² = det of the Hessian [[<i>f<sub>xx</sub>, f<sub>xy</sub></i>], [<i>f<sub>yx</sub>, f<sub>yy</sub></i>]].
+    <table style="margin-top:1.5mm">
+      <tr><th><i>rt − s</i>²</th><th><i>r</i></th><th>Nature of (<i>a, b</i>)</th></tr>
+      <tr><td>&gt; 0</td><td>&lt; 0</td><td><b>Maximum</b></td></tr>
+      <tr><td>&gt; 0</td><td>&gt; 0</td><td><b>Minimum</b></td></tr>
+      <tr><td>&lt; 0</td><td>any</td><td><b>Saddle point</b> (not an extremum)</td></tr>
+      <tr><td>= 0</td><td>—</td><td>Doubtful: the test fails, investigate further</td></tr>
+    </table>
+  </div>
+  <div class="tip"><div class="bt">Memory hook</div>"<b>r</b> negative ⇒ <b>max</b>, like <i>f″</i> &lt; 0 in one variable." Always check the sign of <i>rt − s</i>² <b>first</b>.</div>
+
+  <div class="runfoot"><span>Short notes · Unit 1</span><span>Page 6 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 7 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 1 · Partial Differentiation</span></div>
+
+  <h3>Solved maxima/minima problems</h3>
+  <table class="small">
+    <tr><th style="width:30%">Function</th><th style="width:30%">Stationary points</th><th>Result</th></tr>
+    <tr><td><i>x</i>³ + 3<i>xy</i>² − 15<i>x</i>² − 15<i>y</i>² + 72<i>x</i></td><td><i>f<sub>y</sub></i> = 6<i>y</i>(<i>x</i> − 5) ⇒ <i>y</i> = 0 or <i>x</i> = 5 ⇒ (6,0), (4,0), (5,±1)</td><td><i>rt − s</i>² = 36[(<i>x</i> − 5)² − <i>y</i>²]. (6,0): <b>min = 108</b>; (4,0): <b>max = 112</b>; (5,±1): saddle</td></tr>
+    <tr><td><i>x</i>⁴ + <i>y</i>⁴ − <i>x</i>² − <i>y</i>² + 1</td><td><i>x</i>, <i>y</i> ∈ {0, ±1/√2}</td><td>(0,0): <b>max = 1</b>; (±1/√2, ±1/√2): <b>min = ½</b>; (±1/√2, 0), (0, ±1/√2): saddle</td></tr>
+    <tr><td>sin <i>x</i> + sin <i>y</i> + sin(<i>x + y</i>)</td><td>cos <i>x</i> = cos <i>y</i> ⇒ <i>x = y</i>, cos 2<i>x</i> = −cos <i>x</i> ⇒ <i>x</i> = π/3</td><td>At (π/3, π/3): <i>r</i> = −√3 &lt; 0, <i>rt − s</i>² = 9/4 &gt; 0 ⇒ <b>max = 3√3/2</b></td></tr>
+    <tr><td><i>T</i> = 400<i>xyz</i>² on <i>x</i>² + <i>y</i>² + <i>z</i>² = 1</td><td>Eliminate <i>z</i>²: <i>F</i> = 400<i>xy</i>(1 − <i>x</i>² − <i>y</i>²); points (0,0), (±½, ±½)</td><td>(0,0): saddle; max at (½, ½), (−½, −½): <b><i>T</i><sub>max</sub> = 50</b></td></tr>
+    <tr><td><i>T</i> = <i>kxyz</i>² on <i>x</i>² + <i>y</i>² + <i>z</i>² = <i>a</i>²</td><td>(0,0), (±<i>a</i>/2, ±<i>a</i>/2)</td><td><b><i>T</i><sub>max</sub> = <i>ka</i>⁴/8</b> at <i>x = y = a</i>/2 (and −<i>a</i>/2)</td></tr>
+    <tr><td>Open box, volume <i>V</i>, least metal: <i>S = xy</i> + 2<i>V</i>/<i>x</i> + 2<i>V</i>/<i>y</i></td><td><i>S<sub>x</sub></i> = 0, <i>S<sub>y</sub></i> = 0 ⇒ <i>x = y</i> = (2<i>V</i>)<sup>1/3</sup></td><td><i>z = x</i>/2 (base square, height half the side). For <i>V</i> = 10: <i>x = y</i> = ∛20 ≈ 2.71, <i>z</i> ≈ 1.36</td></tr>
+  </table>
+
+  <h2><span class="n">9</span>Lagrange's Method of Undetermined Multipliers</h2>
+  <p>Use this method to find the extremum of <i>f(x, y, z)</i> <b>subject to a constraint</b> φ<i>(x, y, z)</i> = 0.</p>
+  <div class="box f">
+    <div class="bt">Working procedure</div>
+    1. Form <b><i>F = f</i> + λφ</b> (λ is the Lagrange multiplier).<br>
+    2. Solve <i>F<sub>x</sub></i> = 0, <i>F<sub>y</sub></i> = 0, <i>F<sub>z</sub></i> = 0 together with φ = 0 (4 equations in <i>x, y, z</i>, λ).<br>
+    3. <b>Trick:</b> write λ from each equation and equate, for example λ = −<i>yz</i>/(2<i>x</i>) = −<i>xz</i>/(2<i>y</i>) ⇒ <i>x</i>² = <i>y</i>². Then substitute into φ.
+  </div>
+  <div class="cols small">
+    <div><b>Advantages:</b> stationary values are found without solving for the variables explicitly at every step, and the method extends to many variables and constraints.</div>
+    <div><b>Disadvantages:</b> it does not tell whether a point is a max or a min (use physical reasoning), and the conditions <i>F<sub>x</sub> = F<sub>y</sub> = F<sub>z</sub></i> = 0 are only necessary conditions.</div>
+  </div>
+
+  <h3>Standard results</h3>
+  <table class="small">
+    <tr><th style="width:40%">Problem</th><th>Setup → Answer</th></tr>
+    <tr><td>Rectangular solid of max volume inscribed in a sphere <i>x</i>² + <i>y</i>² + <i>z</i>² = <i>a</i>²</td><td><i>V</i> = 8<i>xyz</i>, φ = <i>x</i>² + <i>y</i>² + <i>z</i>² − <i>a</i>². 8<i>yz</i> + 2λ<i>x</i> = 0, etc. ⇒ <i>x</i>² = <i>y</i>² = <i>z</i>² ⇒ <b>cube</b>, side 2<i>a</i>/√3, <i>V</i><sub>max</sub> = 8<i>a</i>³/(3√3)</td></tr>
+    <tr><td>Points on <i>x</i>² − <i>z</i>² = 1 closest to the origin</td><td><i>f = x</i>² + <i>y</i>² + <i>z</i>²: 2<i>x</i>(1 + λ) = 0, 2<i>y</i> = 0, 2<i>z</i>(1 − λ) = 0. <i>x</i> ≠ 0 ⇒ λ = −1 ⇒ <i>z</i> = 0 ⇒ <b>(±1, 0, 0)</b>, distance 1</td></tr>
+    <tr><td>Open box, surface <i>xy</i> + 2<i>yz</i> + 2<i>zx</i> = 432, max volume</td><td><i>x = y</i> = 2<i>z</i> ⇒ 3<i>x</i>² = 432 ⇒ <b>12 × 12 × 6 cm</b>, <i>V</i> = 864 cm³</td></tr>
+    <tr><td>Divide 24 into <i>x + y + z</i> with <i>xy</i>²<i>z</i>³ maximum</td><td>λ = −<i>y</i>²<i>z</i>³ = −2<i>xyz</i>³ = −3<i>xy</i>²<i>z</i>² ⇒ <i>y</i> = 2<i>x</i>, <i>z</i> = 3<i>x</i> ⇒ 6<i>x</i> = 24 ⇒ <b>4, 8, 12</b></td></tr>
+    <tr><td>Sum fixed (<i>x + y + z = k</i>), product <i>xyz</i> max</td><td><b>Equal parts</b>: <i>x = y = z = k</i>/3. General rule: <i>x<sup>p</sup>y<sup>q</sup>z<sup>r</sup></i> is max when <i>x</i> : <i>y</i> : <i>z</i> = <i>p</i> : <i>q</i> : <i>r</i></td></tr>
+  </table>
+
+  <div class="runfoot"><span>Short notes · Unit 1</span><span>Page 7 of 8</span></div>
+</section>
+
+<!-- ============================== PAGE 8 ============================== -->
+<section class="page">
+  <div class="runhead"><span>UE26MA141A · Engineering Mathematics – I</span><span>Unit 1 · Partial Differentiation</span></div>
+
+  <h2><span class="n">★</span>One-Page Formula Sheet — Read This Before the Exam</h2>
+  <div class="cols">
+    <div>
+      <div class="box"><div class="bt">Limits &amp; continuity</div>
+        Two paths give different limits ⇒ DNE. Polar form <i>r</i> → 0 to prove existence.<br>Continuous ⇔ lim = <i>f(a, b)</i>. Differentiable ⇒ continuous. Partial derivatives existing does not imply continuity.
+      </div>
+      <div class="box"><div class="bt">Partial derivatives</div>
+        <i>f<sub>xy</sub> = f<sub>yx</sub></i> (continuous mixed partials).<br>
+        <i>r</i>² = <i>x</i>² + <i>y</i>² + <i>z</i>² ⇒ <i>r<sub>x</sub> = x/r</i>.<br>
+        <i>u = f(r)</i>: ∇²<i>u = f″ + (2/r)f′</i> (3-D), &nbsp;<i>f″ + (1/r)f′</i> (2-D).
+      </div>
+      <div class="box"><div class="bt">Total derivative / differential</div>
+        <i>dz/dt = z<sub>x</sub>x′ + z<sub>y</sub>y′</i><br>
+        <i>dz = f<sub>x</sub>dx + f<sub>y</sub>dy</i>; &nbsp;<i>f(a + h, b + k) ≈ f + hf<sub>x</sub> + kf<sub>y</sub></i><br>
+        <i>u = x<sup>a</sup>y<sup>b</sup></i> ⇒ % error in <i>u</i> = <i>a</i>(% in <i>x</i>) + <i>b</i>(% in <i>y</i>)
+      </div>
+      <div class="box"><div class="bt">Chain rule</div>
+        <i>z<sub>u</sub> = z<sub>x</sub>x<sub>u</sub> + z<sub>y</sub>y<sub>u</sub></i>, &nbsp; <i>z<sub>v</sub> = z<sub>x</sub>x<sub>v</sub> + z<sub>y</sub>y<sub>v</sub></i><br>
+        <i>f(x − y, y − z, z − x)</i> ⇒ <i>u<sub>x</sub> + u<sub>y</sub> + u<sub>z</sub></i> = 0<br>
+        <i>f(x/y, y/z, z/x)</i> ⇒ <i>xu<sub>x</sub> + yu<sub>y</sub> + zu<sub>z</sub></i> = 0
+      </div>
+      <div class="box"><div class="bt">Implicit</div>
+        <i>dy/dx = −f<sub>x</sub>/f<sub>y</sub></i>; &nbsp;<i>z<sub>x</sub> = −f<sub>x</sub>/f<sub>z</sub></i>, <i>z<sub>y</sub> = −f<sub>y</sub>/f<sub>z</sub></i>
+      </div>
+    </div>
+    <div>
+      <div class="box"><div class="bt">Euler's theorem</div>
+        Degree <i>n</i>: <i>f(λx, λy) = λ<sup>n</sup>f</i><br>
+        <i>xu<sub>x</sub> + yu<sub>y</sub> = nu</i><br>
+        <i>x²u<sub>xx</sub></i> + 2<i>xyu<sub>xy</sub> + y²u<sub>yy</sub> = n(n − 1)u</i><br>
+        If <i>f(u)</i> is homogeneous: <i>g(u) = n f(u)/f′(u)</i>;<br>
+        second order = <i>g(u)[g′(u) − 1]</i><br>
+        sin <i>u</i> → <i>n</i> tan <i>u</i>; &nbsp;tan <i>u</i> → (<i>n</i>/2) sin 2<i>u</i>; &nbsp;<i>e<sup>u</sup></i> → <i>n</i>; &nbsp;log <i>u</i> → <i>n u</i> log <i>u</i>
+      </div>
+      <div class="box"><div class="bt">Taylor (two variables)</div>
+        <i>f = f + (hf<sub>x</sub> + kf<sub>y</sub>)</i> + <span class="fr"><span>1</span><span>2!</span></span>(<i>h²f<sub>xx</sub></i> + 2<i>hkf<sub>xy</sub> + k²f<sub>yy</sub></i>)<br>
+        &emsp;+ <span class="fr"><span>1</span><span>3!</span></span>(<i>h³f<sub>xxx</sub></i> + 3<i>h²kf<sub>xxy</sub></i> + 3<i>hk²f<sub>xyy</sub> + k³f<sub>yyy</sub></i>)<br>
+        <i>h = x − a</i>, <i>k = y − b</i>; Maclaurin: <i>a = b</i> = 0
+      </div>
+      <div class="box"><div class="bt">Max / min</div>
+        <i>f<sub>x</sub> = f<sub>y</sub></i> = 0; &nbsp;<i>r = f<sub>xx</sub></i>, <i>s = f<sub>xy</sub></i>, <i>t = f<sub>yy</sub></i><br>
+        <i>rt − s</i>² &gt; 0, <i>r</i> &lt; 0 → max &nbsp;|&nbsp; <i>r</i> &gt; 0 → min<br>
+        <i>rt − s</i>² &lt; 0 → saddle &nbsp;|&nbsp; = 0 → doubtful
+      </div>
+      <div class="box"><div class="bt">Lagrange</div>
+        <i>F = f</i> + λφ; &nbsp;<i>F<sub>x</sub> = F<sub>y</sub> = F<sub>z</sub></i> = 0 and φ = 0.<br>Equate the expressions for λ. Sphere → cube; open box (surface fixed) → <i>x = y</i> = 2<i>z</i>.
+      </div>
+    </div>
+  </div>
+
+  <h3>Common mistakes that cost marks</h3>
+  <ul class="small">
+    <li>Mixing up <i>f<sub>xy</sub></i> (first ∂<i>x</i>, then ∂<i>y</i>) with ∂²<i>f</i>/∂<i>x</i>∂<i>y</i> (first ∂<i>y</i>). The answer is the same when the partials are continuous, but state it correctly.</li>
+    <li>In implicit differentiation, forgetting the minus sign in −<i>f<sub>x</sub>/f<sub>y</sub></i>.</li>
+    <li>Applying Euler to <i>u</i> when only <i>f(u)</i> is homogeneous. Always test the degree with λ first.</li>
+    <li>Not converting units (inches → feet, degrees → radians) in rate and error problems.</li>
+    <li>Max/min: forgetting to list <b>all</b> stationary points (factor completely, consider every case such as <i>y</i> = 0 or <i>x</i> = 5) and to state the max/min <b>value</b>, not just the point.</li>
+    <li>Taylor: forgetting the factor 2 in 2<i>hk f<sub>xy</sub></i> and the 1/2! in front of the bracket.</li>
+  </ul>
+
+  <div class="ex"><div class="bt">Exam-hall checklist</div>
+    ✔ Write the formula first (it earns step marks) &nbsp; ✔ Draw a tree diagram for chain-rule questions &nbsp; ✔ Make a derivative table for Taylor and max/min &nbsp; ✔ Box the final answer with units.
+  </div>
+  <p class="small muted" style="margin-top:3mm">Source: PESU UE26MA141A Unit 1 slides (classes 1–11) and lecture summaries. Some slide formulas were images, so the worked answers above were re-derived and checked.</p>
+
+  <div class="runfoot"><span>Short notes · Unit 1</span><span>Page 8 of 8</span></div>
+</section>
+
+</body>
+</html>
