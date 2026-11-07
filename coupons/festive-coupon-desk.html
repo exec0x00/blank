@@ -86,10 +86,11 @@ kbd{font:600 11px var(--f-mono);border:1px solid var(--line-strong);border-botto
 .btn.filters-btn{display:none}
 
 /* ---------- hero ---------- */
-.hero{margin-top:22px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.9fr);gap:0;background:var(--night);color:var(--night-fg);border-radius:22px;overflow:hidden;position:relative;border:1px solid var(--night-line)}
+.hero{margin-top:22px;display:grid;grid-template-columns:1fr;gap:0;background:var(--night);color:var(--night-fg);border-radius:22px;overflow:hidden;position:relative;border:1px solid var(--night-line)}
 .hero::before{content:"";position:absolute;inset:0 0 auto;height:12px;background:radial-gradient(circle at 50% 0,var(--gold) 0 2.2px,transparent 2.8px) 0 0/34px 12px repeat-x;opacity:.75;pointer-events:none}
-.spot{padding:40px 40px 34px;position:relative;overflow:hidden;min-width:0;display:flex;flex-direction:column;gap:18px}
-.spot::after{content:"₹";position:absolute;right:-10px;bottom:-110px;font:italic 600 380px/1 var(--f-display);color:var(--night-2);pointer-events:none;z-index:0}
+.spot{padding:44px 44px 40px;position:relative;overflow:hidden;min-width:0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:32px 64px;align-items:end}
+.spot-main,.spot-side{display:flex;flex-direction:column;gap:18px;min-width:0}
+.spot::after{content:"₹";position:absolute;left:38%;bottom:-110px;font:italic 600 380px/1 var(--f-display);color:var(--night-2);pointer-events:none;z-index:0}
 .spot > *{position:relative;z-index:1}
 .eyebrow{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:var(--night-muted)}
 .live-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 var(--gold);animation:pulse 2.4s infinite}
@@ -101,12 +102,13 @@ kbd{font:600 11px var(--f-mono);border:1px solid var(--line-strong);border-botto
 .big-code:hover{border-color:var(--gold)}
 .big-code .tag{font:700 11px var(--f-body);letter-spacing:.06em;text-transform:uppercase;background:var(--gold);color:#2A1700;border-radius:7px;padding:5px 9px;display:inline-flex;gap:5px;align-items:center}
 .big-code .tag svg{width:14px;height:14px}
-.also{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.also > span{font-size:12.5px;color:var(--night-muted);margin-right:2px}
-.mini{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--night-line);background:none;color:var(--night-fg);border-radius:999px;padding:6px 12px 6px 10px;font:600 12.5px var(--f-mono)}
-.mini b{font:700 12px var(--f-body);color:var(--gold)}
+.also{display:grid;gap:8px}
+.also > span{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--night-muted)}
+.mini{display:flex;align-items:center;gap:16px;width:100%;text-align:left;border:1px solid var(--night-line);background:color-mix(in srgb,var(--night-2) 75%,transparent);color:var(--night-fg);border-radius:12px;padding:11px 14px;font:600 15px var(--f-mono);letter-spacing:.03em;min-width:0}
+.mini svg{margin-left:auto;width:16px;height:16px;color:var(--night-muted)}
+.mini b{font:800 16px/1 var(--f-body);font-variant-numeric:tabular-nums;color:var(--gold);min-width:68px}
 .mini:hover{border-color:var(--gold)}
-.clock{margin-top:auto;display:grid;gap:8px;max-width:440px}
+.clock{display:grid;gap:8px}
 .clock-row{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--night-muted)}
 .clock-row strong{color:var(--night-fg);font-weight:700;white-space:nowrap}
 .track{height:4px;border-radius:4px;background:var(--night-line);overflow:hidden}
@@ -115,36 +117,9 @@ kbd{font:600 11px var(--f-mono);border:1px solid var(--line-strong);border-botto
 .next button{border:0;background:none;padding:0;color:var(--night-fg);font:600 13px var(--f-mono);text-decoration:underline;text-decoration-color:var(--night-line);text-underline-offset:3px}
 .next button:hover{text-decoration-color:var(--gold)}
 
-/* order builder */
-.stack{position:relative;z-index:2;background:var(--card);color:var(--ink);margin:12px;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:14px;min-width:0;transition:box-shadow .3s}
-.stack.flash{box-shadow:0 0 0 3px var(--gold)}
-.stack-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.stack-head h2{font:600 26px/1 var(--f-display);letter-spacing:-.01em}
-.stack-head span{font-size:12px;color:var(--muted);text-align:right}
-.fld{display:grid;gap:6px;min-width:0}
-.fld > span{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.02em}
 .ctl{width:100%;min-width:0;height:44px;border:1px solid var(--line-strong);border-radius:10px;background:var(--card);padding:0 12px;font-size:14px}
 select.ctl{appearance:none;-webkit-appearance:none;padding-right:34px;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 17px) 19px,calc(100% - 12px) 19px;background-size:5px 5px;background-repeat:no-repeat;text-overflow:ellipsis}
 .ctl:hover{border-color:var(--faint)}
-.money{position:relative}
-.money span{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:600}
-.money .ctl{padding-left:28px;font-weight:700;font-variant-numeric:tabular-nums}
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.warn{font-size:12px;color:var(--gold-ink);background:var(--gold-soft);border-radius:8px;padding:7px 10px}
-.switch{display:flex;gap:11px;align-items:flex-start;cursor:pointer;padding:10px 12px;border:1px solid var(--line);border-radius:10px}
-.switch input{appearance:none;-webkit-appearance:none;width:34px;height:20px;border-radius:20px;background:var(--line-strong);position:relative;flex:none;margin:1px 0 0;cursor:pointer;transition:background .2s}
-.switch input::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s}
-.switch input:checked{background:var(--live)}
-.switch input:checked::after{transform:translateX(14px)}
-.switch input:disabled{opacity:.4;cursor:default}
-.switch b{display:block;font-size:13.5px;font-weight:700}
-.switch small{display:block;font-size:12px;color:var(--muted)}
-.sum{display:grid;gap:2px;border-top:1px dashed var(--line-strong);padding-top:14px}
-.sum-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px;color:var(--muted)}
-.sum-row strong{font-variant-numeric:tabular-nums;color:var(--ink);font-size:15px}
-.sum-row.save strong{font:italic 700 34px/1.1 var(--f-display);color:var(--live)}
-.sum-row.net strong{color:var(--live)}
-.stack-actions{display:grid;grid-template-columns:auto 1fr;gap:8px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:42px;padding:0 16px;border-radius:10px;border:1px solid var(--line-strong);background:var(--card);font-weight:700;font-size:13.5px;white-space:nowrap}
 .btn:hover{border-color:var(--ink)}
 .btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
@@ -286,10 +261,6 @@ select.ctl{appearance:none;-webkit-appearance:none;padding-right:34px;background
 .copied .cicon{color:var(--live)}
 .tmeta{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12.5px;color:var(--muted);min-width:0}
 .tmeta .when{min-width:0}
-.add{border:0;background:none;padding:4px 0;font-size:12.5px;font-weight:700;color:var(--ink);display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
-.add svg{width:14px;height:14px}
-.add:hover{color:var(--gold-ink)}
-.add.in{color:var(--live)}
 
 /* rows */
 .rows{display:grid;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -324,7 +295,6 @@ footer a{color:var(--gold-ink);font-weight:700}
 /* ---------- responsive ---------- */
 @media (max-width:1080px){
   .hero{grid-template-columns:1fr}
-  .stack{margin:0 12px 12px}
   .layout{grid-template-columns:230px minmax(0,1fr);gap:22px}
 }
 @media (max-width:860px){
@@ -334,6 +304,7 @@ footer a{color:var(--gold-ink);font-weight:700}
   .filters-btn .badge{background:var(--gold);color:#2A1700;border-radius:999px;font-size:11px;min-width:18px;height:18px;padding:0 5px;display:inline-grid;place-items:center}
   .filters-btn .badge:empty{display:none}
   .layout{grid-template-columns:1fr}
+  .spot{grid-template-columns:1fr}
   .rail{position:fixed;left:0;right:0;bottom:0;top:auto;max-height:82vh;z-index:40;background:var(--paper);border-radius:22px 22px 0 0;padding:0 max(18px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px));transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);box-shadow:0 -20px 50px -20px rgb(0 0 0/.4)}
   .rail.open{transform:none}
   .rail-head{display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--paper);padding:18px 0 10px;z-index:1}
@@ -341,7 +312,6 @@ footer a{color:var(--gold-ink);font-weight:700}
   .rail-foot{position:sticky;bottom:calc(-18px - env(safe-area-inset-bottom,0px));background:var(--paper);padding:12px 0 0}
   .row{grid-template-columns:78px minmax(0,1fr) auto;grid-template-areas:"a c x" "a w p";row-gap:6px}
   .row .amt{grid-area:a}.row .code{grid-area:c}.row .when{grid-area:w}.row .pill{grid-area:p;justify-self:end}.row .acts{grid-area:x}
-  .row .add span{display:none}
   footer{grid-template-columns:1fr}
 }
 @media (max-width:560px){
@@ -349,7 +319,6 @@ footer a{color:var(--gold-ink);font-weight:700}
   .spot{padding:30px 22px 26px}
   .spot-line{font-size:15px}
   .big-code{font-size:17px}
-  .stack{padding:20px}
   .ex-grid{grid-template-columns:1fr}
   .grid{grid-template-columns:1fr}
   .tix{grid-template-columns:92px minmax(0,1fr)}
@@ -406,29 +375,8 @@ footer a{color:var(--gold-ink);font-weight:700}
 </header>
 
 <main class="wrap" id="top">
-  <section class="hero" aria-label="Today's codes and order builder">
+  <section class="hero" aria-label="Today's codes">
     <div class="spot" id="spot"></div>
-    <div class="stack" id="stack">
-      <div class="stack-head"><h2>Your order</h2><span>One daily code plus<br>one primary code</span></div>
-      <label class="fld" for="cart"><span>Cart total before coupons</span>
-        <div class="money"><span aria-hidden="true">₹</span><input class="ctl" id="cart" inputmode="numeric" autocomplete="off"></div>
-      </label>
-      <div class="pair">
-        <label class="fld" for="selD"><span>Daily code</span><select class="ctl" id="selD"></select></label>
-        <label class="fld" for="selP"><span>Primary code</span><select class="ctl" id="selP"></select></label>
-      </div>
-      <p class="warn" id="stackWarn" hidden></p>
-      <label class="switch" for="cb"><input type="checkbox" id="cb"><span><b>₹10,000 bank card cashback</b><small id="cbNote">Full card payment, not EMI · ends 11 Nov</small></span></label>
-      <div class="sum" aria-live="polite">
-        <div class="sum-row save"><span>You save</span><strong id="sumSave">₹0</strong></div>
-        <div class="sum-row"><span>You pay at checkout</span><strong id="sumPay">₹0</strong></div>
-        <div class="sum-row net" id="netRow"><span>After cashback</span><strong id="sumNet">₹0</strong></div>
-      </div>
-      <div class="stack-actions">
-        <button class="btn" id="bestBtn"><svg class="i"><use href="#i-spark"/></svg>Best combo</button>
-        <button class="btn primary" id="copyBoth"><svg class="i"><use href="#i-copy"/></svg>Copy both codes</button>
-      </div>
-    </div>
   </section>
 
   <section class="strip-sec" aria-labelledby="stripTitle">
@@ -493,9 +441,9 @@ footer a{color:var(--gold-ink);font-weight:700}
   </div>
 
   <footer>
-    <div><h3>How codes combine</h3><p>Each order takes one daily code and one primary code. Adding a second code of the same type replaces the first one.</p></div>
-    <div><h3>Daily codes</h3><p>A daily code works only on its scheduled day, India time, and codes change at midnight. Larger daily codes may need a higher cart value. Percentage codes are worked out from the cart total you enter.</p></div>
-    <div><h3>Cashback</h3><p>The ₹10,000 cashback needs full payment with an eligible card, not EMI, and the offer ends on 11 November. Lenovo can change or withdraw any code. <a href="https://www.lenovo.com/in/en/lenovo-offer-details/" target="_blank" rel="noopener noreferrer">Read the offer terms ↗</a></p></div>
+    <div><h3>Daily codes</h3><p>A daily code works only on its scheduled day, India time. Codes change at midnight.</p></div>
+    <div><h3>Primary codes</h3><p>Primary codes have no fixed date. Percentage codes take that share off your cart total.</p></div>
+    <div><h3>Terms</h3><p>Lenovo can change or withdraw any code. <a href="https://www.lenovo.com/in/en/lenovo-offer-details/" target="_blank" rel="noopener noreferrer">Read the offer terms ↗</a></p></div>
   </footer>
 </main>
 
@@ -515,7 +463,6 @@ const RAW=[
 ["45mN8RKr3EQ6",0,""],["STUDENT5",0,""],["AFFOY6000",6000,""],["GRABON6000",6000,""],["GURU6000",6000,""],["UNBOX6000",6000,""],["ADM5000",5000,""],["AFFOY5000",5000,""],["EPIC5000",5000,""],["GRABON5000",5000,""],["STUDENT5000",5000,""],["ADM2250",2250,""],["GURU2250",2250,""],["UNBOXPDM2250",2250,""],["VISALAP2000",2000,""],["37UBPDH0QY5J",500,""]
 ];
 const PCT={"45mN8RKr3EQ6":5,"STUDENT5":5};
-const CASHBACK=10000, CASHBACK_END=Y+"-11-11", DEFAULT_CART=140993;
 const data=RAW.map(([code,amount,ds])=>{const dates=ds?ds.split(" ").map(x=>Y+"-"+x):[];return{code,amount,dates,kind:dates.length?"daily":"primary",pct:PCT[code]||0,lc:code.toLowerCase()}});
 const byCode=new Map(data.map(r=>[r.code,r]));
 
@@ -542,11 +489,10 @@ const LS="festive-coupon-desk.v1";
 let saved={};try{saved=JSON.parse(localStorage.getItem(LS)||"{}")||{}}catch(e){}
 const st={q:"",type:"all",when:new Set(),amts:new Set(),dates:new Set(),savedOnly:false,minA:"",maxA:"",
   sort:saved.sort||"best",group:saved.group||"none",view:saved.view||"cards",
-  cart:+saved.cart>0?+saved.cart:DEFAULT_CART,cashback:saved.cashback!==false,
-  favs:new Set(Array.isArray(saved.favs)?saved.favs:[]),copied:new Set(),stackD:null,stackP:null};
-function persist(){try{localStorage.setItem(LS,JSON.stringify({sort:st.sort,group:st.group,view:st.view,cart:st.cart,cashback:st.cashback,favs:[...st.favs]}))}catch(e){}}
+  favs:new Set(Array.isArray(saved.favs)?saved.favs:[]),copied:new Set()};
+function persist(){try{localStorage.setItem(LS,JSON.stringify({sort:st.sort,group:st.group,view:st.view,favs:[...st.favs]}))}catch(e){}}
 
-const eff=r=>r.pct?Math.floor(st.cart*r.pct/100):r.amount;
+const eff=r=>r.amount; /* flat rupee saving; percentage codes have 0 here and are handled on their own */
 const amtKey=r=>r.pct?"pct":String(r.amount);
 const AMTS=[["pct","5%"],["6000","₹6,000"],["5000","₹5,000"],["4000","₹4,000"],["2250","₹2,250"],["2000","₹2,000"],["1000","₹1,000"],["500","₹500"]];
 const WHEN=[["live","Live today","var(--live)"],["soon","Coming up","var(--soon)"],["any","Any day","var(--gold)"],["past","Ended","var(--past)"]];
@@ -609,6 +555,7 @@ function score(r,f){
     return null;
   }
   const a=eff(r);
+  if(f.amt.length&&r.pct)return null;
   for(const [op,v,w] of f.amt){const ok=op===">="?a>=v:op==="<="?a<=v:op===">"?a>v:op==="<"?a<v:op==="="?a===v:a>=Math.min(v,w)&&a<=Math.max(v,w);if(!ok)return null}
   if(f.pct&&!r.pct)return null;
   if(f.kind&&r.kind!==f.kind)return null;
@@ -628,7 +575,7 @@ function passes(r,except){
   if(except!=="when"&&st.when.size&&!st.when.has(r.st.k))return false;
   if(except!=="amt"){
     if(st.amts.size&&!st.amts.has(amtKey(r)))return false;
-    const a=eff(r);if(st.minA!==""&&a<+st.minA)return false;if(st.maxA!==""&&a>+st.maxA)return false;
+    const a=eff(r);if((st.minA!==""||st.maxA!=="")&&r.pct)return false;if(st.minA!==""&&a<+st.minA)return false;if(st.maxA!==""&&a>+st.maxA)return false;
   }
   if(except!=="dates"&&st.dates.size&&!(st.dates.has("any")&&r.kind==="primary")&&!r.dates.some(d=>st.dates.has(d)))return false;
   return true;
@@ -639,8 +586,8 @@ function cmp(a,b){
   const A=a.r,B=b.r;let v=0;
   switch(st.sort){
     case "best":v=(b.m.sc-a.m.sc)||(RANK[A.st.k]-RANK[B.st.k]);if(!v&&A.st.k==="soon")v=A.st.next.localeCompare(B.st.next);if(!v&&A.st.k==="past")v=B.st.last.localeCompare(A.st.last);if(!v)v=eff(B)-eff(A);break;
-    case "high":v=eff(B)-eff(A);break;
-    case "low":v=eff(A)-eff(B);break;
+    case "high":v=(A.pct?1:0)-(B.pct?1:0)||eff(B)-eff(A);break;
+    case "low":v=(A.pct?1:0)-(B.pct?1:0)||eff(A)-eff(B);break;
     case "soon":v=(relDates(A)[0]||"9999").localeCompare(relDates(B)[0]||"9999");break;
     case "late":v=(relDates(B).at(-1)||"0000").localeCompare(relDates(A).at(-1)||"0000");break;
     case "az":v=A.code.localeCompare(B.code);break;
@@ -660,15 +607,14 @@ function whenText(r){
   return r.dates.map(dS).join(" & ");
 }
 function amtHTML(r){return r.pct?`<span class="amt">${r.pct}<span class="rs">%</span></span>`:`<span class="amt num"><span class="rs">₹</span>${r.amount.toLocaleString("en-IN")}</span>`}
-function inStack(r){return st.stackD===r.code||st.stackP===r.code}
 function ticket({r,m}){
   const c=st.copied.has(r.code),fav=st.favs.has(r.code);
   return `<article class="tix s-${r.st.k}" data-code="${esc(r.code)}">
-  <div class="stub">${amtHTML(r)}<span class="amt-sub">${r.pct?"≈ "+inr(eff(r)):"off"}</span></div>
+  <div class="stub">${amtHTML(r)}<span class="amt-sub">off</span></div>
   <div class="tbody">
     <div class="trow"><span class="pill p-${r.st.k}">${r.st.label}</span><button class="star" data-fav aria-pressed="${fav}" aria-label="${fav?"Remove from saved":"Save"} ${esc(r.code)}" title="${fav?"Saved":"Save"}">${ico("star")}</button></div>
     <button class="code${c?" copied":""}" data-copy aria-label="Copy ${esc(r.code)}"><span class="ctext">${hl(r.code,m.marks)}</span><span class="cicon" title="${c?"Copied":"Copy"}">${c?ico("check"):ico("copy")}</span></button>
-    <div class="tmeta"><span class="when">${whenText(r)}</span><button class="add${inStack(r)?" in":""}" data-add>${inStack(r)?ico("check")+"In order":ico("plus")+"Add to order"}</button></div>
+    <div class="tmeta"><span class="when">${whenText(r)}</span></div>
   </div></article>`;
 }
 function row({r,m}){
@@ -676,9 +622,9 @@ function row({r,m}){
   return `<div class="row s-${r.st.k}" data-code="${esc(r.code)}">
     ${amtHTML(r)}
     <button class="code${c?" copied":""}" data-copy aria-label="Copy ${esc(r.code)}"><span class="ctext">${hl(r.code,m.marks)}</span><span class="cicon">${c?ico("check"):ico("copy")}</span></button>
-    <span class="when">${whenText(r)}${r.pct?" · ≈ "+inr(eff(r)):""}</span>
+    <span class="when">${whenText(r)}</span>
     <span class="pill p-${r.st.k}">${r.st.label}</span>
-    <span class="acts"><button class="add${inStack(r)?" in":""}" data-add aria-label="${inStack(r)?"In order":"Add to order"}">${inStack(r)?ico("check"):ico("plus")}<span>${inStack(r)?"In order":"Add"}</span></button><button class="star" data-fav aria-pressed="${fav}" aria-label="${fav?"Remove from saved":"Save"} ${esc(r.code)}">${ico("star")}</button></span>
+    <span class="acts"><button class="star" data-fav aria-pressed="${fav}" aria-label="${fav?"Remove from saved":"Save"} ${esc(r.code)}">${ico("star")}</button></span>
   </div>`;
 }
 
@@ -706,7 +652,7 @@ function groupsOf(list){
       else{title=dS(k);const d=diff(TODAY,k);tag=d===0?`<span class="gtag p-live">Today</span>`:d===1?`<span class="gtag p-soon">Tomorrow</span>`:d>1?`<span class="gtag p-soon">In ${d} days</span>`:`<span class="gtag p-past">Ended</span>`}
     }
     const top=Math.max(...items.map(x=>eff(x.r)));
-    return{title,tag,items,meta:`${items.length} ${items.length===1?"code":"codes"} · up to ${inr(top)}`};
+    return{title,tag,items,meta:`${items.length} ${items.length===1?"code":"codes"}${top?" · up to "+inr(top):""}`};
   });
 }
 
@@ -733,7 +679,7 @@ function renderResults(){
   $("#resTitle").textContent=title;
   const top=list.length?Math.max(...list.map(x=>eff(x.r))):0;
   const liveN=list.filter(x=>x.r.st.k==="live").length;
-  $("#resSub").innerHTML=list.length?`<b class="num">${list.length}</b> ${list.length===1?"code":"codes"} · up to <b class="num">${inr(top)}</b> off${liveN?` · <b class="num">${liveN}</b> live today`:""}`:"No codes match";
+  $("#resSub").innerHTML=list.length?`<b class="num">${list.length}</b> ${list.length===1?"code":"codes"}${top?` · up to <b class="num">${inr(top)}</b> off`:""}${liveN?` · <b class="num">${liveN}</b> live today`:""}`:"No codes match";
   $("#copyCodes").disabled=$("#copyTable").disabled=!list.length;
   $("#savedCountNote").textContent=st.favs.size?st.favs.size+" saved":"Nothing saved yet";
   $("#copySaved").disabled=!st.favs.size;
@@ -813,19 +759,20 @@ function renderSpot(){
   const tom=addDays(TODAY,1),tl=data.filter(r=>r.dates.includes(tom)).sort((a,b)=>b.amount-a.amount);
   if(live.length){
     const top=live[0];
-    S.innerHTML=`<div class="eyebrow"><span class="live-dot"></span>Live today · ${dL(TODAY)}</div>
+    S.innerHTML=`<div class="spot-main"><div class="eyebrow"><span class="live-dot"></span>Live today · ${dL(TODAY)}</div>
       <div class="spot-amt num" aria-label="${inr(top.amount)} off"><span class="rs">₹</span>${top.amount.toLocaleString("en-IN")}</div>
       <div class="spot-line">off with <button class="big-code" data-copycode="${top.code}" aria-label="Copy ${top.code}">${top.code}<span class="tag">${ico("copy")}Copy</span></button></div>
-      ${live.length>1?`<div class="also"><span>Also live today</span>${live.slice(1).map(r=>`<button class="mini" data-copycode="${r.code}" aria-label="Copy ${r.code}, ${inr(r.amount)} off"><b>${inr(r.amount)}</b>${r.code}</button>`).join("")}</div>`:""}
+      </div><div class="spot-side">
+      ${live.length>1?`<div class="also"><span>Also live today</span>${live.slice(1).map(r=>`<button class="mini" data-copycode="${r.code}" aria-label="Copy ${r.code}, ${inr(r.amount)} off"><b>${inr(r.amount)}</b>${r.code}${ico("copy")}</button>`).join("")}</div>`:""}
       <div class="clock"><div class="clock-row"><span>Today's daily codes change at midnight IST</span><strong id="clockLeft" class="num"></strong></div><div class="track"><i id="clockBar"></i></div>
-      ${tl.length?`<p class="next">Tomorrow, ${dS(tom)}: <button data-copycode="${tl[0].code}">${tl[0].code}</button> for ${inr(tl[0].amount)}${tl.length>1?` and ${tl.length-1} more`:""}</p>`:`<p class="next">Today is the last day of the daily campaign.</p>`}</div>`;
+      ${tl.length?`<p class="next">Tomorrow, ${dS(tom)}: <button data-copycode="${tl[0].code}">${tl[0].code}</button> for ${inr(tl[0].amount)}${tl.length>1?` and ${tl.length-1} more`:""}</p>`:`<p class="next">Today is the last day of the daily campaign.</p>`}</div></div>`;
   }else{
     const before=TODAY<DAYS[0];
     const bestP=data.filter(r=>r.kind==="primary").sort((a,b)=>eff(b)-eff(a))[0];
-    S.innerHTML=`<div class="eyebrow">${before?"Starts "+dL(DAYS[0]):"Daily campaign ended " +dL(DAYS.at(-1))}</div>
+    S.innerHTML=`<div class="spot-main"><div class="eyebrow">${before?"Starts "+dL(DAYS[0]):"Daily campaign ended " +dL(DAYS.at(-1))}</div>
       <div class="spot-amt num"><span class="rs">₹</span>${eff(bestP).toLocaleString("en-IN")}</div>
-      <div class="spot-line">off any day with <button class="big-code" data-copycode="${bestP.code}" aria-label="Copy ${bestP.code}">${bestP.code}<span class="tag">${ico("copy")}Copy</span></button></div>
-      <p class="next" style="margin-top:auto">${before?"Daily codes go live from 28 October. Browse the calendar below to plan ahead.":"Primary codes have no fixed date. The daily schedule stays below for reference."}</p>`;
+      <div class="spot-line">off any day with <button class="big-code" data-copycode="${bestP.code}" aria-label="Copy ${bestP.code}">${bestP.code}<span class="tag">${ico("copy")}Copy</span></button></div></div>
+      <div class="spot-side"><p class="next">${before?"Daily codes go live from 28 October. Browse the calendar below to plan ahead.":"Primary codes have no fixed date. The daily schedule stays below for reference."}</p></div>`;
   }
   tick();
 }
@@ -836,34 +783,8 @@ function tick(){
   if(!window.__today){const k=istKey();if(k!==TODAY){TODAY=k;refreshStatus();renderAll(true)}}
 }
 
-/* ---------- order builder ---------- */
-function bestDaily(){return data.filter(r=>r.dates.includes(TODAY)).sort((a,b)=>b.amount-a.amount)[0]}
-function bestPrimary(){return data.filter(r=>r.kind==="primary").sort((a,b)=>eff(b)-eff(a))[0]}
-function setBest(){st.stackD=bestDaily()?.code||null;st.stackP=bestPrimary()?.code||null}
-function renderStack(){
-  const daily=data.filter(r=>r.kind==="daily");
-  const grp=k=>daily.filter(r=>r.st.k===k).sort((a,b)=>k==="past"?b.st.last.localeCompare(a.st.last)||b.amount-a.amount:k==="soon"?a.st.next.localeCompare(b.st.next)||b.amount-a.amount:b.amount-a.amount);
-  const o=(r,extra)=>`<option value="${r.code}"${st.stackD===r.code||st.stackP===r.code?" selected":""}>${r.code} · ${r.pct?r.pct+"% ("+inr(eff(r))+")":inr(eff(r))}${extra?" · "+extra:""}</option>`;
-  $("#selD").innerHTML=`<option value="">No daily code</option>`+
-    [["live","Live today"],["soon","Coming up"],["past","Ended"]].map(([k,l])=>{const g=grp(k);return g.length?`<optgroup label="${l}">${g.map(r=>o(r,k==="live"?"":dS(k==="soon"?r.st.next:r.st.last))).join("")}</optgroup>`:""}).join("");
-  $("#selP").innerHTML=`<option value="">No primary code</option>`+data.filter(r=>r.kind==="primary").sort((a,b)=>eff(b)-eff(a)||a.code.localeCompare(b.code)).map(r=>o(r)).join("");
-  $("#selD").value=st.stackD||"";$("#selP").value=st.stackP||"";
-  if(document.activeElement!==$("#cart"))$("#cart").value=st.cart.toLocaleString("en-IN");
-  const D=st.stackD&&byCode.get(st.stackD),P=st.stackP&&byCode.get(st.stackP);
-  const save=(D?eff(D):0)+(P?eff(P):0),pay=Math.max(0,st.cart-save);
-  const cbOk=TODAY<=CASHBACK_END;
-  $("#cb").disabled=!cbOk;$("#cb").checked=cbOk&&st.cashback;
-  $("#cbNote").textContent=cbOk?"Full card payment, not EMI · ends 11 Nov":"This offer ended on 11 November";
-  $("#sumSave").textContent=inr(save);$("#sumPay").textContent=inr(pay);
-  $("#netRow").hidden=!(cbOk&&st.cashback);$("#sumNet").textContent=inr(Math.max(0,pay-CASHBACK));
-  const W=$("#stackWarn");
-  if(D&&D.st.k!=="live"){W.hidden=false;W.textContent=`${D.code} works only on ${D.dates.map(dS).join(" or ")}, not today.`}else W.hidden=true;
-  $("#copyBoth").disabled=!D&&!P;
-  $("#copyBoth").lastChild.textContent=D&&P?"Copy both codes":"Copy code";
-}
-
 /* ---------- render all ---------- */
-function renderAll(full){F=parse(st.q);if(full)renderSpot();renderStrip();renderRail();renderChips();renderResults();renderStack();syncControls()}
+function renderAll(full){F=parse(st.q);if(full)renderSpot();renderStrip();renderRail();renderChips();renderResults();syncControls()}
 function syncControls(){
   $("#sort").value=st.sort;$("#group").value=st.group;
   $("#vCards").setAttribute("aria-pressed",st.view==="cards");$("#vRows").setAttribute("aria-pressed",st.view==="rows");
@@ -913,7 +834,6 @@ document.addEventListener("click",e=>{
     const code=card.dataset.code;
     if(t.closest("[data-copy]")){copyCode(code);return}
     if(t.closest("[data-fav]")){st.favs.has(code)?st.favs.delete(code):st.favs.add(code);persist();toast(st.favs.has(code)?`Saved <code>${esc(code)}</code>`:`Removed <code>${esc(code)}</code> from saved`);renderAll();return}
-    if(t.closest("[data-add]")){addToOrder(code);return}
   }
   const day=t.closest("[data-day]");if(day){const d=day.dataset.day;st.dates.has(d)?st.dates.delete(d):st.dates.add(d);renderAll();return}
   const pr=t.closest("[data-preset]");if(pr){applyPreset(pr.dataset.preset);return}
@@ -942,15 +862,6 @@ function removeChip(k){
   else{const [g,v]=k.split(/:(.+)/);if(g==="when")st.when.delete(v);if(g==="amt")st.amts.delete(v);if(g==="date")st.dates.delete(v)}
   renderAll();
 }
-function addToOrder(code){
-  const r=byCode.get(code);
-  if(r.kind==="daily"){st.stackD=st.stackD===code?null:code}else{st.stackP=st.stackP===code?null:code}
-  const D=st.stackD&&byCode.get(st.stackD),P=st.stackP&&byCode.get(st.stackP);
-  const save=(D?eff(D):0)+(P?eff(P):0);
-  renderAll();
-  toast(inStack(r)?`<code>${esc(code)}</code> added · order saves ${inr(save)}`:`Removed <code>${esc(code)}</code> from your order`);
-  const S=$("#stack");S.classList.add("flash");setTimeout(()=>S.classList.remove("flash"),700);
-}
 for(const [id,key] of [["minA","minA"],["maxA","maxA"]]){
   $("#"+id).addEventListener("input",e=>{const v=e.target.value.replace(/[^\d]/g,"");st[key]=v;renderAll()});
 }
@@ -961,17 +872,8 @@ $("#vRows").onclick=()=>{st.view="rows";persist();renderAll()};
 $("#resetAll").onclick=()=>{clearFilters();renderAll()};
 $("#copyMenuBtn").onclick=e=>{e.stopPropagation();const M=$("#copyMenu");M.hidden=!M.hidden;e.currentTarget.setAttribute("aria-expanded",!M.hidden)};
 $("#copyCodes").onclick=()=>{const c=[...new Set(visible.map(r=>r.code))];copyText(c.join("\n"),`Copied ${c.length} ${c.length===1?"code":"codes"}`);$("#copyMenu").hidden=true};
-$("#copyTable").onclick=()=>{const rows=[["Code","Saving (₹)","Dates","Type"],...[...new Set(visible)].map(r=>[r.code,r.pct?r.pct+"% ("+eff(r)+")":r.amount,r.dates.length?r.dates.map(dS).join("; "):"Any day",r.kind==="daily"?"Daily":"Primary"])];copyText(rows.map(r=>r.join("\t")).join("\n"),`Copied a table of ${rows.length-1} codes`);$("#copyMenu").hidden=true};
+$("#copyTable").onclick=()=>{const rows=[["Code","Saving (₹)","Dates","Type"],...[...new Set(visible)].map(r=>[r.code,r.pct?r.pct+"%":r.amount,r.dates.length?r.dates.map(dS).join("; "):"Any day",r.kind==="daily"?"Daily":"Primary"])];copyText(rows.map(r=>r.join("\t")).join("\n"),`Copied a table of ${rows.length-1} codes`);$("#copyMenu").hidden=true};
 $("#copySaved").onclick=()=>{copyText([...st.favs].join("\n"),`Copied ${st.favs.size} saved ${st.favs.size===1?"code":"codes"}`);$("#copyMenu").hidden=true};
-
-// order builder
-$("#cart").addEventListener("input",e=>{const v=+e.target.value.replace(/[^\d]/g,"");st.cart=v>0?v:0;persist();renderAll()});
-$("#cart").addEventListener("blur",()=>{if(!st.cart){st.cart=DEFAULT_CART;persist();renderAll()}$("#cart").value=st.cart.toLocaleString("en-IN")});
-$("#selD").onchange=e=>{st.stackD=e.target.value||null;renderAll()};
-$("#selP").onchange=e=>{st.stackP=e.target.value||null;renderAll()};
-$("#cb").onchange=e=>{st.cashback=e.target.checked;persist();renderStack()};
-$("#bestBtn").onclick=()=>{setBest();renderAll();const D=st.stackD&&byCode.get(st.stackD),P=st.stackP&&byCode.get(st.stackP);toast(`Best combo saves ${inr((D?eff(D):0)+(P?eff(P):0))}`)};
-$("#copyBoth").onclick=()=>{const c=[st.stackD,st.stackP].filter(Boolean);copyText(c.join("\n"),`Copied ${c.map(x=>"<code>"+esc(x)+"</code>").join(" + ")}`)};
 
 // mobile filter sheet
 const rail=$("#rail"),bd=$("#backdrop");
@@ -981,7 +883,6 @@ $("#openFilters").onclick=openSheet;$("#closeFilters").onclick=closeSheet;bd.onc
 $("#applyFilters").onclick=()=>{closeSheet();$(".results").scrollIntoView({block:"start"})};
 
 // boot
-setBest();
 renderAll(true);
 {const sc=$(".strip-scroll"),t=$(".day.today");if(sc&&t)sc.scrollLeft=Math.max(0,t.offsetLeft-sc.clientWidth/2+t.offsetWidth/2)}
 setInterval(tick,30000);
